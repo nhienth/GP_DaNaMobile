@@ -1,5 +1,5 @@
 @extends('client.layouts.master')
-@section('client.products.product_details')
+@section('main')
 <main id="content" role="main">
     <!-- breadcrumb -->
     <div class="bg-gray-13 bg-md-transparent">
