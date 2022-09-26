@@ -25,6 +25,17 @@ Route::get('/', function () {
     return view('client.index');
 });
 
+Route::get('/product-detail', function () {
+    return view('client.products.product_details');
+});
+
+Route::get('/product-bycate', function () {
+    return view('client.products.product_ bycate');
+});
+
+
+
+
 // ->middleware(['auth'])->name('dashboard');
 
 // require __DIR__.'/auth.php';

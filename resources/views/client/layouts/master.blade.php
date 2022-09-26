@@ -11,7 +11,13 @@
 
         <!-- ========== MAIN CONTENT ========== -->
         @yield('main')
+
+        @yield('client.products.product_details')
+
+        @yield('client.products.product_by_cate')
         <!-- ========== END MAIN CONTENT ========== -->
+
+        
 
         <!-- ========== FOOTER ========== -->
         @include('client.layouts.footer')
