@@ -21,6 +21,10 @@ Route::get('/admin', function () {
     return view('admin.index');
 });
 
+Route::get('/admin/user', function () {
+    return view('admin.user.list');
+});
+
 Route::get('/', function () {
     return view('client.index');
 });
