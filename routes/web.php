@@ -20,9 +20,29 @@ use Illuminate\Support\Facades\Route;
 Route::get('/admin', function () {
     return view('admin.index');
 });
+Route::get('/admin/products-list', function () {
+    return view('admin.products.list');
+});
+Route::get('/admin/products-add', function () {
+    return view('admin.products.add');
+});
+Route::get('/admin/products-edit', function () {
+    return view('admin.products.edit');
+});
+
+Route::get('/blogs', function () {
+    return view('client.blogs.index');
+});
+Route::get('/blogs-detail', function () {
+    return view('client.blogs.detail');
+});
 
 Route::get('/admin/user', function () {
     return view('admin.user.list');
+});
+
+Route::get('/admin/products', function () {
+    return view('admin.products.list');
 });
 
 Route::get('/', function () {
@@ -36,6 +56,10 @@ Route::get('/product-detail', function () {
 Route::get('/product-bycate', function () {
     return view('client.products.product_ bycate');
 });
+Route::get('/wishlist', function () {
+    return view('client.products.wishlist');
+});
+
 
 Route::get('/cart', function () {
     return view('client.shop.cart');
