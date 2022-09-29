@@ -37,6 +37,14 @@ Route::get('/product-bycate', function () {
     return view('client.products.product_ bycate');
 });
 
+Route::get('/cart', function () {
+    return view('client.shop.cart');
+});
+
+Route::get('/checkout', function () {
+    return view('client.shop.checkout');
+});
+
 
 
 
