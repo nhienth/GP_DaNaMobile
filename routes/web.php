@@ -21,6 +21,24 @@ Route::get('/admin', function () {
     return view('admin.index');
 });
 
+
+Route::get('/admin/user', function () {
+    return view('admin.user.list');
+});
+
+Route::get('/admin/preview', function () {
+    return view('admin.preview.list');
+});
+
+Route::get('/admin/banner', function () {
+    return view('admin.banner.list');
+});
+
+Route::get('/admin/banner/add', function () {
+    return view('admin.banner.create');
+});
+
+
 Route::get('/', function () {
     return view('client.index');
 });
