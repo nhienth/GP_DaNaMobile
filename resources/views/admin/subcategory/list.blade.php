@@ -15,6 +15,7 @@
                             <thead>
                                 <tr>
                                     <th></th>
+                                    <th>Id</th>                                 
                                     <th>Tên danh mục</th>
                                     
                                 </tr>

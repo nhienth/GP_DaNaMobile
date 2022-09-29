@@ -27,6 +27,9 @@
     <!-- BEGIN: Content-->
 
     @yield('main')
+    
+  
+
 
     <!-- END: Content-->
 
