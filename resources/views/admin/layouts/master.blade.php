@@ -27,6 +27,9 @@
     <!-- BEGIN: Content-->
 
     @yield('main')
+    
+  
+
 
     <!-- END: Content-->
 
@@ -70,7 +73,9 @@
     <!-- END: Theme JS-->
 
     <!-- BEGIN: Page JS-->
+    
     <script src="{{asset('backend/app-assets/js/scripts/pages/dashboard-ecommerce.js')}}"></script>
+    <script src="{{asset('backend/app-assets/js/scripts/forms/form-file-uploader.js')}}"></script>
     <!-- END: Page JS-->
 
     <script>

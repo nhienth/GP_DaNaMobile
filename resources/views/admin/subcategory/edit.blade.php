@@ -1,5 +1,6 @@
 @extends('admin.layouts.master')
 @section('main')
+
 <h3 class="text-primary invoice-logo">Vuexy</h3>
 </div>
 <p class="card-text mb-25">Office 149, 450 South Brand Brooklyn</p>
@@ -35,6 +36,10 @@
 
 <div class="mb-1">
     <label class="form-label" for="largeInput"></label>
+    <input id="largeInput" class="form-control form-control-lg" type="text" placeholder="Nhập id danh mục" />
+</div>
+<div class="mb-1">
+    <label class="form-label" for="largeInput"></label>
     <input id="largeInput" class="form-control form-control-lg" type="text" placeholder="Nhập tên danh mục" />
 </div>
 
@@ -42,7 +47,7 @@
 <div class="col-12 px-0">
     <button type="button" class="btn btn-primary btn-sm btn-add-new" data-repeater-create>
         <i data-feather="plus" class="me-25"></i>
-        <span class="align-middle">Edit</span>
+        <span class="align-middle">Edit </span>
     </button>
 </div>
 </div>

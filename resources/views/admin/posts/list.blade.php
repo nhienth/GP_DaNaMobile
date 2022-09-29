@@ -15,8 +15,13 @@
                             <thead>
                                 <tr>
                                     <th></th>
-                                    <th>Tên danh mục</th>
-                                    
+                                    <th>Tiêu Đề</th>                             
+                                    <th>Tóm Tắt</th>
+                                    <th>Mô Tả</th>
+                                    <th>Ảnh</th>
+                                    <th>Danh Mục</th>
+                                    <th>Tác Giả</th>
+                                    <th>Trạng Thái</th>                                
                                 </tr>
                             </thead>
                         </table>
@@ -27,5 +32,4 @@
         </div>
     </div>
 </div>
-
 @endsection
