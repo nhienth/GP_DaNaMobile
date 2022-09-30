@@ -13,89 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-
-//  ---------------------------------------- ADMIN ---------------------------------------
-Route::get('/admin', function () {
-    return view('admin.index');
-});
-
-// Products
-Route::get('/admin/products-list', function () {
-    return view('admin.products.list');
-});
-
-Route::get('/admin/products', function () {
-    return view('admin.products.list');
-});
-
-Route::get('/admin/products-add', function () {
-    return view('admin.products.add');
-});
-Route::get('/admin/products-edit', function () {
-    return view('admin.products.edit');
-});
-
-// 
-
-Route::get('/blogs', function () {
-    return view('client.blogs.index');
-});
-Route::get('/blogs-detail', function () {
-    return view('client.blogs.detail');
-});
-
-Route::get('/admin/user', function () {
-    return view('admin.user.list');
-});
-
-//voucher
-Route::get('/admin/voucher', function () {
-    return view('admin.voucher.list');
-});
-
-Route::get('/admin/voucher/add', function () {
-    return view('admin.voucher.add');
-});
-
-Route::get('/admin/voucher/edit', function () {
-    return view('admin.voucher.edit');
-});
-
-//variation
-Route::get('/admin/varitation', function () {
-    return view('admin.varitation.list');
-});
-
-//contact
-Route::get('/admin/contact', function () {
-    return view('admin.contact.list');
-});
-
-
-
-
-Route::get('/admin/user', function () {
-    return view('admin.user.list');
-});
-
-Route::get('/admin/preview', function () {
-    return view('admin.preview.list');
-});
-
-Route::get('/admin/banner', function () {
-    return view('admin.banner.list');
-});
-
-Route::get('/admin/banner/add', function () {
-    return view('admin.banner.create');
-});
-
-// ----------------------------------------------------CLIENT------------------------------------------------------------
-
 Route::get('/', function () {
     return view('client.index');
 });
@@ -118,6 +35,115 @@ Route::get('/cart', function () {
 
 Route::get('/checkout', function () {
     return view('client.shop.checkout');
+});
+
+// -----------------------------------ADMIN-----------------------------
+Route::prefix('/admin')->group(function () {
+    Route::get('/', function () {
+        return view('admin.index');
+    });
+    Route::prefix('/cate')->group(function () {
+        Route::get('/list', function() {
+            return view('admin.category.list');
+        });
+        Route::get('/add', function() {
+            return view('admin.category.create');
+        });
+        Route::get('/edit', function() {
+            return view('admin.category.edit');
+        });
+    });
+
+    Route::prefix('/subcate')->group(function () {
+        Route::get('/list', function() {
+            return view('admin.subcategory.list');
+        });
+        Route::get('/add', function() {
+            return view('admin.subcategory.create');
+        });
+        Route::get('/edit', function() {
+            return view('admin.subcategory.edit');
+        });
+    });
+
+    Route::prefix('/product')->group(function () {
+        Route::get('/add', function() {
+            return view('admin.products.add');
+        });
+        Route::get('/list', function() {
+            return view('admin.products.list');
+        });
+        Route::get('/edit', function() {
+            return view('admin.products.edit');
+        });
+    });
+
+    Route::prefix('/variation')->group(function () {
+        Route::get('/add', function() {
+            return view('admin.variation.create');
+        });
+        Route::get('/list', function() {
+            return view('admin.variation.list');
+        });
+        Route::get('/edit', function() {
+            return view('admin.variation.edit');
+        });
+    });
+
+    Route::prefix('/voucher')->group(function () {
+        Route::get('/add', function() {
+            return view('admin.voucher.create');
+        });
+        Route::get('/list', function() {
+            return view('admin.voucher.list');
+        });
+        Route::get('/edit', function() {
+            return view('admin.voucher.edit');
+        });
+    });
+
+    Route::prefix('/post')->group(function () {
+        Route::get('/add', function() {
+            return view('admin.post.create');
+        });
+        Route::get('/list', function() {
+            return view('admin.post.list');
+        });
+        Route::get('/edit', function() {
+            return view('admin.post.edit');
+        });
+    });
+
+    Route::prefix('/banner')->group(function () {
+        Route::get('/add', function() {
+            return view('admin.banner.create');
+        });
+        Route::get('/list', function() {
+            return view('admin.banner.list');
+        });
+        Route::get('/edit', function() {
+            return view('admin.banner.edit');
+        });
+    });
+
+    Route::prefix('/preview')->group(function () {
+        Route::get('/list', function() {
+            return view('admin.preview.list');
+        });
+    });
+
+    Route::prefix('/contact')->group(function () {
+        Route::get('/list', function() {
+            return view('admin.contact.list');
+        });
+    });
+
+    Route::prefix('/user')->group(function () {
+        Route::get('/list', function() {
+            return view('admin.user.list');
+        });
+    });
+
 });
 
 
