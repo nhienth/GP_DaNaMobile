@@ -17,18 +17,29 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+
+//  ---------------------------------------- ADMIN ---------------------------------------
 Route::get('/admin', function () {
     return view('admin.index');
 });
+
+// Products
 Route::get('/admin/products-list', function () {
     return view('admin.products.list');
 });
+
+Route::get('/admin/products', function () {
+    return view('admin.products.list');
+});
+
 Route::get('/admin/products-add', function () {
     return view('admin.products.add');
 });
 Route::get('/admin/products-edit', function () {
     return view('admin.products.edit');
 });
+
+// 
 
 Route::get('/blogs', function () {
     return view('client.blogs.index');
@@ -64,9 +75,7 @@ Route::get('/admin/contact', function () {
     return view('admin.contact.list');
 });
 
-Route::get('/admin/products', function () {
-    return view('admin.products.list');
-});
+
 
 
 Route::get('/admin/user', function () {
@@ -85,6 +94,7 @@ Route::get('/admin/banner/add', function () {
     return view('admin.banner.create');
 });
 
+// ----------------------------------------------------CLIENT------------------------------------------------------------
 
 Route::get('/', function () {
     return view('client.index');
