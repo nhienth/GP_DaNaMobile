@@ -42,7 +42,7 @@ Route::prefix('/admin')->group(function () {
     Route::get('/', function () {
         return view('admin.index');
     });
-    Route::prefix('/cate')->group(function () {
+    Route::prefix('/categories')->group(function () {
         Route::get('/list', function() {
             return view('admin.category.list');
         });
@@ -80,7 +80,7 @@ Route::prefix('/admin')->group(function () {
 
     Route::prefix('/variation')->group(function () {
         Route::get('/add', function() {
-            return view('admin.variation.create');
+            return view('admin.variation.add');
         });
         Route::get('/list', function() {
             return view('admin.variation.list');
