@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,9 +43,7 @@ Route::prefix('/admin')->group(function () {
         return view('admin.index');
     });
     Route::prefix('/categories')->group(function () {
-        Route::get('/list', function() {
-            return view('admin.category.list');
-        });
+        Route::get('/list', [CategoryController::class, 'index']);
         Route::get('/add', function() {
             return view('admin.category.create');
         });
