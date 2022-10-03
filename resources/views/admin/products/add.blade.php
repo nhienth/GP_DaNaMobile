@@ -2,147 +2,117 @@
 @section('main')
 <!-- BEGIN: Content-->
 <div class="app-content content ">
-        <div class="content-overlay"></div>
-        <div class="header-navbar-shadow"></div>
-        <div class="content-wrapper container-xxl p-0">
-            <div class="content-header row">
-                <div class="content-header-left col-md-9 col-12 mb-2">
-                    <div class="row breadcrumbs-top">
-                        <div class="col-12">
-                            <h2 class="content-header-title float-start mb-0">Thêm sản phẩm</h2>
-                            <div class="breadcrumb-wrapper">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a>
-                                    </li>
-                                    <li class="breadcrumb-item"><a href="#">Pages</a>
-                                    </li>
-                                    <li class="breadcrumb-item"><a href="#">Blog</a>
-                                    </li>
-                                    <li class="breadcrumb-item active">Edit
-                                    </li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="content-header-right text-md-end col-md-3 col-12 d-md-block d-none">
-                    <div class="mb-1 breadcrumb-right">
-                        <div class="dropdown">
-                            <button class="btn-icon btn btn-primary btn-round btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="grid"></i></button>
-                            <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="app-todo.html"><i class="me-1" data-feather="check-square"></i><span class="align-middle">Todo</span></a><a class="dropdown-item" href="app-chat.html"><i class="me-1" data-feather="message-square"></i><span class="align-middle">Chat</span></a><a class="dropdown-item" href="app-email.html"><i class="me-1" data-feather="mail"></i><span class="align-middle">Email</span></a><a class="dropdown-item" href="app-calendar.html"><i class="me-1" data-feather="calendar"></i><span class="align-middle">Calendar</span></a></div>
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper container-xxl p-0">
+        <div class="content-header row">
+            <div class="content-header-left col-md-9 col-12 mb-2">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h2 class="content-header-title float-start mb-0">Quản lý sản phẩm</h2>
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Quản trị</a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">Sản phẩm</a>
+                                </li>
+                                <li class="breadcrumb-item active">Nhập sản phẩm mới
+                                </li>
+                            </ol>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="content-body">
-                <!-- Blog Edit -->
-                <div class="blog-edit-wrapper">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-start">
-                                        <div class="avatar me-75">
-                                            <img src="../../../app-assets/images/portrait/small/avatar-s-9.jpg" width="38" height="38" alt="Avatar" />
-                                        </div>
-                                        <div class="author-info">
-                                            <h6 class="mb-25">Chad Alexander</h6>
-                                            <p class="card-text">May 24, 2020</p>
-                                        </div>
-                                    </div>
-                                    <!-- Form -->
-                                    <form action="javascript:;" class="mt-2">
-                                        <div class="row">
-                                            <div class="col-md-6 col-12">
-                                                <div class="mb-2">
-                                                    <label class="form-label" for="blog-edit-title">Title</label>
-                                                    <input type="text" id="blog-edit-title" class="form-control" value="The Best Features Coming to iOS and Web design" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="mb-2">
-                                                    <label class="form-label" for="blog-edit-category">Category</label>
-                                                    <select id="blog-edit-category" class="select2 form-select" multiple>
-                                                        <option value="Fashion" selected>Fashion</option>
-                                                        <option value="Food">Food</option>
-                                                        <option value="Gaming" selected>Gaming</option>
-                                                        <option value="Quote">Quote</option>
-                                                        <option value="Video">Video</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="mb-2">
-                                                    <label class="form-label" for="blog-edit-slug">Slug</label>
-                                                    <input type="text" id="blog-edit-slug" class="form-control" value="the-best-features-coming-to-ios-and-web-design" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="mb-2">
-                                                    <label class="form-label" for="blog-edit-status">Status</label>
-                                                    <select class="form-select" id="blog-edit-status">
-                                                        <option value="Published">Published</option>
-                                                        <option value="Pending">Pending</option>
-                                                        <option value="Draft">Draft</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="mb-2">
-                                                    <label class="form-label">Content</label>
-                                                    <div id="blog-editor-wrapper">
-                                                        <div id="blog-editor-container">
-                                                            <div class="editor">
-                                                                <p>
-                                                                    Cupcake ipsum dolor sit. Amet dessert donut candy chocolate bar cotton dessert candy
-                                                                    chocolate. Candy muffin danish. Macaroon brownie jelly beans marzipan cheesecake oat cake.
-                                                                    Carrot cake macaroon chocolate cake. Jelly brownie jelly. Marzipan pie sweet roll.
-                                                                </p>
-                                                                <p><br /></p>
-                                                                <p>
-                                                                    Liquorice dragée cake chupa chups pie cotton candy jujubes bear claw sesame snaps. Fruitcake
-                                                                    chupa chups chocolate bonbon lemon drops croissant caramels lemon drops. Candy jelly cake
-                                                                    marshmallow jelly beans dragée macaroon. Gummies sugar plum fruitcake. Candy canes candy
-                                                                    cupcake caramels cotton candy jujubes fruitcake.
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 mb-2">
-                                                <div class="border rounded p-2">
-                                                    <h4 class="mb-1">Featured Image</h4>
-                                                    <div class="d-flex flex-column flex-md-row">
-                                                        <img src="../../../app-assets/images/slider/03.jpg" id="blog-feature-image" class="rounded me-2 mb-1 mb-md-0" width="170" height="110" alt="Blog Featured Image" />
-                                                        <div class="featured-info">
-                                                            <small class="text-muted">Required image resolution 800x400, image size 10mb.</small>
-                                                            <p class="my-50">
-                                                                <a href="#" id="blog-image-text">C:\fakepath\banner.jpg</a>
-                                                            </p>
-                                                            <div class="d-inline-block">
-                                                                <input class="form-control" type="file" id="blogCustomFile" accept="image/*" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 mt-50">
-                                                <button type="submit" class="btn btn-primary me-1">Thêm sản phẩm</button>
-                                                <button type="reset" class="btn btn-outline-secondary">Cancel</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                    <!--/ Form -->
-                                </div>
-                            </div>
-                        </div>
+            <div class="content-header-right text-md-end col-md-3 col-12 d-md-block d-none">
+                <div class="mb-1 breadcrumb-right">
+                    <div class="dropdown">
+                        <button class="btn-icon btn btn-primary btn-round btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="grid"></i></button>
+                        <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="app-todo.html"><i class="me-1" data-feather="check-square"></i><span class="align-middle">Todo</span></a><a class="dropdown-item" href="app-chat.html"><i class="me-1" data-feather="message-square"></i><span class="align-middle">Chat</span></a><a class="dropdown-item" href="app-email.html"><i class="me-1" data-feather="mail"></i><span class="align-middle">Email</span></a><a class="dropdown-item" href="app-calendar.html"><i class="me-1" data-feather="calendar"></i><span class="align-middle">Calendar</span></a></div>
                     </div>
                 </div>
-                <!--/ Blog Edit -->
-
             </div>
         </div>
+        <div class="content-body">
+            <!-- Validation -->
+            <section class="bs-validation">
+                <div class="row">
+                    <!-- Bootstrap Validation -->
+                    <div class="col-md-8 col-12" style="margin : 0 auto">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title fw-bolder">Thêm sản phẩm</h3>
+                            </div>
+                            <div class="card-body">
+                                <form class="needs-validation" novalidate>
+                                    <div class="mb-1">
+                                        <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Tên sản phẩm</label>
+
+                                        <input type="text" id="basic-addon-name" class="form-control" placeholder="Nhập tên sản phẩm" aria-label="Name" aria-describedby="basic-addon-name" required />
+                                        <div class="valid-feedback">Looks good!</div>
+                                        <div class="invalid-feedback">Please enter your name.</div>
+                                    </div>
+                                    
+                                    <div class="mb-1">
+                                        <label class="form-label fs-5 fw-bolder" for="select-country1">Danh mục sản phẩm</label>
+                                        <select class="form-select" id="select-country1" required>
+                                            <option value="">Select Country</option>
+                                            <option value="usa">USA</option>
+                                            <option value="uk">UK</option>
+                                            <option value="france">France</option>
+                                            <option value="australia">Australia</option>
+                                            <option value="spain">Spain</option>
+                                        </select>
+                                        <div class="valid-feedback">Looks good!</div>
+                                        <div class="invalid-feedback">Please select your country</div>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label for="customFile1" class="form-label fs-5 fw-bolder">Ảnh sản phẩm</label>
+                                        <input class="form-control" type="file" id="customFile1" required />
+                                    </div>
+                               
+
+                                    <div class="mb-1">
+                                        <label class="d-block form-label fs-5 fw-bolder" for="">Thông số sản phẩm</label>
+                                    </div>
+
+                                    <div class="mb-1 ms-2">
+                                        <label class="form-label fs-6 fw-bolder" for="basic-addon-name">Màn hình</label>
+                                        <input type="text" id="basic-addon-name" class="form-control" placeholder="Nhập thông số sản phẩm" aria-label="Name" aria-describedby="basic-addon-name" required />
+                                    </div>
+
+                                    <div class="mb-1 ms-2">
+                                        <label class="form-label fs-6 fw-bolder" for="basic-addon-name">Hệ điều hành</label>
+                                        <input type="text" id="basic-addon-name" class="form-control" placeholder="Nhập thông số sản phẩm" aria-label="Name" aria-describedby="basic-addon-name" required />
+                                    </div>
+
+                                    <div class="mb-1 ms-2">
+                                        <label class="form-label fs-6 fw-bolder" for="basic-addon-name">CPU</label>
+                                        <input type="text" id="basic-addon-name" class="form-control" placeholder="Nhập thông số sản phẩm" aria-label="Name" aria-describedby="basic-addon-name" required />
+                                    </div>
+
+                                    <div class="mb-1">
+                                        <label class="d-block form-label fs-5 fw-bolder" for="validationBioBootstrap">Mô tả</label>
+                                        <textarea class="form-control" id="validationBioBootstrap" name="validationBioBootstrap" rows="3" required></textarea>
+                                    </div>
+                                    
+                                    <button type="submit" class="btn btn-primary me-2">Thêm</button>
+                                    <button type="reset" class="btn btn-primary me-2">Nhập lại</button>
+                                    <button type="button" class="btn btn-primary">Danh sách</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Bootstrap Validation -->
+
+                    <!-- jQuery Validation -->
+                    
+                    <!-- /jQuery Validation -->
+                </div>
+            </section>
+            <!-- /Validation -->
+
+        </div>
     </div>
+</div>
     <!-- END: Content-->
 @endsection
