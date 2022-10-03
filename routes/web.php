@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use  App\Http\Controllers\SliderController;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,22 +57,9 @@ Route::prefix('/admin')->group(function () {
         });
     });
 
-    Route::prefix('/subcate')->group(function () {
-        Route::get('/list', function () {
-            return view('admin.subcategory.list');
-        });
-        Route::get('/add', function () {
-            return view('admin.subcategory.create');
-        });
-        Route::get('/edit', function () {
-            return view('admin.subcategory.edit');
-        });
-    });
-
     Route::prefix('/product')->group(function () {
-        Route::get('/add', function () {
-            return view('admin.products.add');
-        });
+
+        Route::get('/add', [ProductController::class, 'create']);
         Route::get('/list', function () {
             return view('admin.products.list');
         });
