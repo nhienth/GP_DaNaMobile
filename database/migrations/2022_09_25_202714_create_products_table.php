@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('product_name', 150);
-            $table->string('previewimg');
+            $table->string('product_img');
             $table->integer('product_view');
 
             $table->foreignId('category_id')
@@ -24,10 +24,6 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
-            $table->foreignId('subcategory_id')
-                ->constrained('subcategories')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
             
             $table->timestamps();
         });
