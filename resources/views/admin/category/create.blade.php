@@ -1,51 +1,89 @@
 @extends('admin.layouts.master')
 @section('main')
-
-<h3 class="text-primary invoice-logo">Vuexy</h3>
-</div>
-<p class="card-text mb-25">Office 149, 450 South Brand Brooklyn</p>
-<p class="card-text mb-25">San Diego County, CA 91905, USA</p>
-<p class="card-text mb-0">+1 (123) 456 7891, +44 (876) 543 2198</p>
-</div>
-<div class="invoice-number-date mt-md-0 mt-2">
-<div class="d-flex align-items-center justify-content-md-end mb-1">
-    <h4 class="invoice-title">Invoice</h4>
-    <div class="input-group input-group-merge invoice-edit-input-group">
-        <div class="input-group-text">
-            <i data-feather="hash"></i>
+<!-- BEGIN: Content-->
+<div class="app-content content ">
+        <div class="content-overlay"></div>
+        <div class="header-navbar-shadow"></div>
+        <div class="content-wrapper container-xxl p-0">
+            <div class="content-header row">
+                <div class="content-header-left col-md-9 col-12 mb-2">
+                    <div class="row breadcrumbs-top">
+                        <div class="col-12">
+                            <h2 class="content-header-title float-start mb-0">Thêm Danh mục</h2>
+                            <div class="breadcrumb-wrapper">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="index.html">Trang chủ</a>
+                                    </li>
+                                    <li class="breadcrumb-item"><a href="#">Danh mục</a>
+                                    </li>
+                                    <li class="breadcrumb-item active">Thêm mới
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-header-right text-md-end col-md-3 col-12 d-md-block d-none">
+                    <div class="mb-1 breadcrumb-right">
+                        <div class="dropdown">
+                            <button class="btn-icon btn btn-primary btn-round btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="grid"></i></button>
+                            <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="app-todo.html"><i class="me-1" data-feather="check-square"></i><span class="align-middle">Todo</span></a><a class="dropdown-item" href="app-chat.html"><i class="me-1" data-feather="message-square"></i><span class="align-middle">Chat</span></a><a class="dropdown-item" href="app-email.html"><i class="me-1" data-feather="mail"></i><span class="align-middle">Email</span></a><a class="dropdown-item" href="app-calendar.html"><i class="me-1" data-feather="calendar"></i><span class="align-middle">Calendar</span></a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-body">
+                <!-- Validation -->
+                <section class="bs-validation">
+                    <div class="row">
+                        <!-- Bootstrap Validation -->
+                        <div class="col-md-8 col-12" style="margin : 0 auto">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title fw-bolder">Thêm Danh mục</h3>
+                                </div>
+                                <div class="card-body">
+                                    <form class="needs-validation" novalidate method="POST" action="http://localhost:8000/admin/categories/add">
+                                        @csrf
+                                        <div class="mb-1">
+                                            <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Tên Danh mục</label>
+    
+                                            <input type="text" name="category_name" id="basic-addon-name" class="form-control" placeholder="Nhập tên Danh mục" aria-label="Name" aria-describedby="basic-addon-name" required />
+                                            <div class="valid-feedback">Looks good!</div>
+                                            <div class="invalid-feedback">Please enter your name.</div>
+                                        </div>
+                                        <div class="mb-1">
+                                            <label for="customFile1" class="form-label fs-5 fw-bolder">Ảnh sản phẩm</label>
+                                            <input class="form-control" type="file" id="customFile1" required name="category_image"/>
+                                        </div>
+                                        <div class="mb-1">
+                                            <label class="form-label fs-5 fw-bolder" for="select-country1">Danh mục</label>
+                                            <select class="form-select" id="select-country1" required name="parent_id">
+                                                <option value="0">Danh mục cha</option>
+                                                {!! $categorySelect !!}
+                                            </select>
+                                            <div class="valid-feedback">Looks good!</div>
+                                            <div class="invalid-feedback">Please select your country</div>
+                                        </div>
+                                        
+                                        <button type="submit" class="btn btn-primary me-2">Thêm</button>
+                                        <button type="reset" class="btn btn-primary me-2">Nhập lại</button>
+                                        <button type="button" class="btn btn-primary">Danh sách</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Bootstrap Validation -->
+    
+                        <!-- jQuery Validation -->
+                        
+                        <!-- /jQuery Validation -->
+                    </div>
+                </section>
+                <!-- /Validation -->
+    
+            </div>
         </div>
-        <input type="text" class="form-control invoice-edit-input" placeholder="53634" />
     </div>
-</div>
-<div class="d-flex align-items-center mb-1">
-    <span class="title">Date:</span>
-    <input type="text" class="form-control invoice-edit-input date-picker" />
-</div>
-<div class="d-flex align-items-center">
-    <span class="title">Due Date:</span>
-    <input type="text" class="form-control invoice-edit-input due-date-picker" />
-</div>
-</div>
-</div>
-</div>
-<!-- Header ends -->
-
-<hr class="invoice-spacing" />
-
-<!-- Address and Contact starts -->
-
-<div class="mb-1">
-    <label class="form-label" for="largeInput"></label>
-    <input id="largeInput" class="form-control form-control-lg" type="text" placeholder="Nhập tên danh mục" />
-</div>
-
-<div class="row mt-1">
-<div class="col-12 px-0">
-    <button type="button" class="btn btn-primary btn-sm btn-add-new" data-repeater-create>
-        <i data-feather="plus" class="me-25"></i>
-        <span class="align-middle">Add </span>
-    </button>
-</div>
-</div>
-
+    <!-- END: Content-->
 @endsection

@@ -23,7 +23,7 @@ Route::get('/', function () {
 Route::get('/product-detail', function () {
     return view('client.products.product_details');
 });
-
+    
 Route::get('/product-bycate', function () {
     return view('client.products.product_ bycate');
 });
@@ -47,9 +47,9 @@ Route::prefix('/admin')->group(function () {
     });
     Route::prefix('/categories')->group(function () {
         Route::get('/list', [CategoryController::class, 'index']);
-        Route::get('/add', function() {
-            return view('admin.category.create');
-        });
+        Route::get('/add', [CategoryController::class, 'create']);
+        Route::post('/add', [CategoryController::class, 'store']);
+
         Route::get('/edit', function() {
             return view('admin.category.edit');
         });

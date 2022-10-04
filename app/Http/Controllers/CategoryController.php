@@ -1,22 +1,24 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Auth;
-use Validator;
-use App\Models\Product;
-
+use App\Models\Category;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+    public $html = '';
     public function index()
     {
-        //
+        // $categorySelect = $this -> res(0);
+        // return view('admin.category.list',compact('categorySelect'));
+        $categories = Category::all();
+        return view('admin.category.list', ['categoryList' => $categories]);
     }
 
     /**
@@ -26,8 +28,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
-        return view('admin.products.add');
+        $categorySelect = $this -> res(0);
+        return view('admin.category.create',compact('categorySelect'));
     }
 
     /**
@@ -38,7 +40,17 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cate = new Category();
+        $categories = Category::all();
+        $cate -> category_name = $request['category_name'];
+        $cate -> category_image = $request['category_image'];
+        $cate -> parent_id = $request['parent_id'];
+        $cate ->save();
+        $categorySelect = $this -> res(0);
+        return $this->index();
+        // return redirect('/admin/category');
+        // return redirect('admin/categoies/list');
+        // return \Redirect::route('admin.categories.list')->with('status','Bạn đã thêm thành công');
     }
 
     /**
@@ -85,4 +97,16 @@ class ProductController extends Controller
     {
         //
     }
+
+    function res($id, $text = ''){
+        $data = Category::all();  
+            foreach($data as $value){
+                if($value['parent_id'] == $id)
+                {
+                    $this->html .='<option value="'.$value['id'].'">' .$text.$value['category_name'].'</option>';             
+                    $this->res($value['id'], $text.'--');
+                 }  
+         }
+         return $this->html;         
+       }
 }
