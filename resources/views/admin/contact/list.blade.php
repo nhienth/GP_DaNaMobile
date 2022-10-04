@@ -122,14 +122,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($listcontact as $contact)
                                     <tr data-dt-row="" data-dt-column="">
-                                        <td>ABC</td>
-                                        <td>ABC</td>
-                                        <td>ABC</td>
-                                        <td>ABC</td>
-                                        <td>ABC</td>
-                                        <td>ABC</td>
+                                        <td>{{$contact->id}}</td>
+                                        <td>{{$contact->name}}</td>
+                                        <td>{{$contact->subject}}</td>
+                                        <td>{{$contact->email}}</td>
+                                        <td>{{$contact->message}}</td>
+                                        <td></td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                             <div class="d-flex justify-content-between mx-2 row mb-1">

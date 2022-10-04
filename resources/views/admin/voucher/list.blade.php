@@ -85,16 +85,42 @@
                         <table class="user-list-table table">
                             <thead class="table-light">
                                 <tr>
-                                    <th></th>
-                                    <th>Name</th>
-                                    <th>Role</th>
-                                    <th>Plan</th>
-                                    <th>Billing</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
+                                    
+                                    <th>ID</th>
+                                    <th>Mã giảm giá</th>
+                                    <th>Loại hình</th>
+                                    <th>Giá trị</th>
+                                    <th>Mã sản phẩm</th>
+                                    <th>Trạng thái</th>
+                                    <th>Thao tác</th>
                                 </tr>
                             </thead>
+                           <tbody>
+                            @foreach ($vouchers á $vc)
+                            <tr>
+                                <td>{{++$i}}</td>
+                                <td>{{$vc->code}}</td>
+                                <td>{{$vc->type}}</td>
+                                <td>{{$vc->value}}</td>
+                                <td>{{$vc->product_id}}</td>
+                                <td>{{$vc->status}}</td>
+                                <td>
+                                    <form action="{{route('voucher.destroy',$vc->id)}}" $method="POST">
+                                        <a href="{{route('voucher.edit', $vc->id)}}" class="btn btn-info">Sửa</a>
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Xóa</button>
+                                </td>
+
+                            </tr>
+                            @endforeach
+                           </tbody>
                         </table>
+                    </div>
+                    <div class="card-header">
+                        <a href="{{route('voucher.add')}}" class="btn btn-success">Thêm voucher mới</a>
+                       
+                          @csrf
                     </div>
                     <!-- Modal to add new user starts-->
                     <div class="modal modal-slide-in new-user-modal fade" id="modals-slide-in">

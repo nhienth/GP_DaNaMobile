@@ -8,31 +8,20 @@
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-start mb-0">Blog Edit</h2>
+                            <h2 class="content-header-title float-start mb-0">Voucher</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a>
+                                    <li class="breadcrumb-item"><a href="index.html">Trang chủ</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="#">Pages</a>
+                                    <li class="breadcrumb-item"><a href="#">Voucher</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="#">Blog</a>
-                                    </li>
-                                    <li class="breadcrumb-item active">Edit
+                                    <li class="breadcrumb-item active">Thêm Voucher
                                     </li>
                                 </ol>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="content-header-right text-md-end col-md-3 col-12 d-md-block d-none">
-                    <div class="mb-1 breadcrumb-right">
-                        <div class="dropdown">
-                            <button class="btn-icon btn btn-primary btn-round btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="grid"></i></button>
-                            <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="app-todo.html"><i class="me-1" data-feather="check-square"></i><span class="align-middle">Todo</span></a><a class="dropdown-item" href="app-chat.html"><i class="me-1" data-feather="message-square"></i><span class="align-middle">Chat</span></a><a class="dropdown-item" href="app-email.html"><i class="me-1" data-feather="mail"></i><span class="align-middle">Email</span></a><a class="dropdown-item" href="app-calendar.html"><i class="me-1" data-feather="calendar"></i><span class="align-middle">Calendar</span></a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="content-body">
                 <!-- Blog Edit -->
                 <div class="blog-edit-wrapper">
@@ -50,8 +39,16 @@
                                         </div>
                                     </div>
                                     <!-- Form -->
-                                    <form action="javascript:;" class="mt-2">
+                                    
+                                    <form action="" class="mt-2">
                                         <div class="row">
+                                            <div class="form-group">
+                                                <a href="{{route('admin.voucher.list')}}" class="btn btn-primary float-end">Thêm Voucher</a>
+                                            </div>
+                                            <div class="card-body">
+                                                <form action="route{{('voucher.store')}}" method="POST">
+                                                @csrf
+                                                
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-2">
                                                     <label class="form-label" for="blog-edit-slug">ID</label>
@@ -60,69 +57,43 @@
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-2">
-                                                    <label class="form-label" for="blog-edit-title">Code</label>
+                                                    <label class="form-label" for="blog-edit-title">Mã giảm giá</label>
                                                     <input type="text" id="blog-edit-title" class="form-control" value="" />
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-2">
-                                                    <label class="form-label" for="blog-edit-category">type</label>
-                                                    <select class="form-select" id="blog-edit-status">
-                                                        <option value="Published">Published</option>
-                                                        <option value="Pending">Pending</option>
-                                                        <option value="Draft">Draft</option>
-                                                    </select>
+                                                    <label class="form-label" for="blog-edit-category">Loại Hình</label>  
+                                                    <input type="text" id="blog-edit-slug" class="form-control" value="" />                                             
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-2">
-                                                    <label class="form-label" for="blog-edit-slug">value</label>
+                                                    <label class="form-label" for="blog-edit-slug">Giá trị</label>
                                                     <input type="text" id="blog-edit-slug" class="form-control" value="" />
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-2">
-                                                    <label class="form-label" for="blog-edit-status">Product ID</label>
-                                                    <select class="form-select" id="blog-edit-status">
-                                                        <option value="Published">Published</option>
-                                                        <option value="Pending">Pending</option>
-                                                        <option value="Draft">Draft</option>
-                                                    </select>
+                                                    <label class="form-label" for="blog-edit-status">Mã sản phẩm</label>
+                                                    <input type="text" id="blog-edit-slug" class="form-control" value="" />
                                                 </div>
                                             </div>
                                            
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-2">
-                                                    <label class="form-label" for="blog-edit-status">Status</label>
-                                                    <select class="form-select" id="blog-edit-status">
-                                                        <option value="Published">Published</option>
-                                                        <option value="Pending">Pending</option>
-                                                        <option value="Draft">Draft</option>
-                                                    </select>
+                                                    <label class="form-label" for="blog-edit-status">Trạng thái</label>   
+                                                    <input type="text" id="blog-edit-slug" class="form-control" value="" />                                              
                                                 </div>
                                             </div>
-                                            <div class="col-12 mb-2">
-                                                <div class="border rounded p-2">
-                                                    <h4 class="mb-1">Featured Image</h4>
-                                                    <div class="d-flex flex-column flex-md-row">
-                                                        <img src="../../../app-assets/images/slider/03.jpg" id="blog-feature-image" class="rounded me-2 mb-1 mb-md-0" width="170" height="110" alt="Blog Featured Image" />
-                                                        <div class="featured-info">
-                                                            <small class="text-muted">Required image resolution 800x400, image size 10mb.</small>
-                                                            <p class="my-50">
-                                                                <a href="#" id="blog-image-text">C:\fakepath\banner.jpg</a>
-                                                            </p>
-                                                            <div class="d-inline-block">
-                                                                <input class="form-control" type="file" id="blogCustomFile" accept="image/*" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            
                                             <div class="col-12 mt-50">
                                                 <button type="submit" class="btn btn-primary me-1">Add</button>
                                                 <button type="reset" class="btn btn-outline-secondary">Cancel</button>
                                             </div>
                                         </div>
+                                    </form>
+                                </div>
                                     </form>
                                     <!--/ Form -->
                                 </div>

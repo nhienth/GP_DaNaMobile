@@ -92,7 +92,7 @@ Route::prefix('/admin')->group(function () {
 
     Route::prefix('/voucher')->group(function () {
         Route::get('/add', function() {
-            return view('admin.voucher.create');
+            return view('admin.voucher.add');
         });
         Route::get('/list', function() {
             return view('admin.voucher.list');
@@ -100,7 +100,8 @@ Route::prefix('/admin')->group(function () {
         Route::get('/edit', function() {
             return view('admin.voucher.edit');
         });
-    });
+     });
+    
 
     Route::prefix('/post')->group(function () {
         Route::get('/add', function() {
