@@ -25,6 +25,10 @@ class Product extends Model
         'product_view' => 0
     ];
 
+    public function category() {
+        return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
+
     public function specfications() {
         return $this->hasMany(ProductSpecificationsOptionsValue::class, 'product_id');
     }

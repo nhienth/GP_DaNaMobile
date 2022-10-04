@@ -98,7 +98,7 @@ class CategoryController extends Controller
         //
     }
 
-    function res($id, $text = ''){
+    public function res($id, $text = ''){
         $data = Category::all();  
             foreach($data as $value){
                 if($value['parent_id'] == $id)

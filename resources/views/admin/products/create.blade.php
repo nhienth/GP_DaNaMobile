@@ -43,31 +43,28 @@
                                 <h3 class="card-title fw-bolder">Thêm sản phẩm</h3>
                             </div>
                             <div class="card-body">
-                                <form class="needs-validation" novalidate>
+                                <form class="needs-validation" novalidate action="{{url('/admin/product/create')}}" method="POST" enctype="multipart/form-data">
+                                    @csrf
                                     <div class="mb-1">
                                         <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Tên sản phẩm</label>
 
-                                        <input type="text" id="basic-addon-name" class="form-control" placeholder="Nhập tên sản phẩm" aria-label="Name" aria-describedby="basic-addon-name" required />
+                                        <input type="text" id="basic-addon-name" class="form-control" placeholder="Nhập tên sản phẩm" aria-label="Name" name="product_name" aria-describedby="basic-addon-name" required />
                                         <div class="valid-feedback">Looks good!</div>
                                         <div class="invalid-feedback">Please enter your name.</div>
                                     </div>
                                     
                                     <div class="mb-1">
                                         <label class="form-label fs-5 fw-bolder" for="select-country1">Danh mục sản phẩm</label>
-                                        <select class="form-select" id="select-country1" required>
-                                            <option value="">Select Country</option>
-                                            <option value="usa">USA</option>
-                                            <option value="uk">UK</option>
-                                            <option value="france">France</option>
-                                            <option value="australia">Australia</option>
-                                            <option value="spain">Spain</option>
+                                        <select class="form-select" id="select-country1" name="category_id" required name="parent_id">
+                                            <option value="0">Danh mục sản phẩm</option>
+                                            {!! $categorySelect !!}
                                         </select>
                                         <div class="valid-feedback">Looks good!</div>
                                         <div class="invalid-feedback">Please select your country</div>
                                     </div>
                                     <div class="mb-2">
                                         <label for="customFile1" class="form-label fs-5 fw-bolder">Ảnh sản phẩm</label>
-                                        <input class="form-control" type="file" id="customFile1" required />
+                                        <input class="form-control" name="product_img" type="file" id="customFile1" required />
                                     </div>
                                
 
@@ -80,7 +77,7 @@
                                             <label class="form-label fs-6 fw-bolder" for="basic-addon-name">
                                                 {{$specfication->specification_name}}
                                             </label>
-                                            <input type="text" id="basic-addon-name" class="form-control" placeholder="Nhập thông số sản phẩm" name="{{$specfication->specification_name}}" aria-label="Name" aria-describedby="basic-addon-name" required />
+                                            <input type="text" id="basic-addon-name" class="form-control" placeholder="Nhập thông số sản phẩm" name="{{$specfication->id}}_value" aria-label="Name" aria-describedby="basic-addon-name" required />
                                         </div>
                                     @endforeach
 
