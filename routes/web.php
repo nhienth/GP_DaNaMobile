@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProductController;
 
@@ -22,7 +23,7 @@ Route::get('/', function () {
 Route::get('/product-detail', function () {
     return view('client.products.product_details');
 });
-
+    
 Route::get('/product-bycate', function () {
     return view('client.products.product_ bycate');
 });
@@ -45,12 +46,10 @@ Route::prefix('/admin')->group(function () {
         return view('admin.index');
     });
     Route::prefix('/categories')->group(function () {
-        Route::get('/list', function() {
-            return view('admin.category.list');
-        });
-        Route::get('/add', function() {
-            return view('admin.category.create');
-        });
+        Route::get('/list', [CategoryController::class, 'index']);
+        Route::get('/add', [CategoryController::class, 'create']);
+        Route::post('/add', [CategoryController::class, 'store']);
+
         Route::get('/edit', function() {
             return view('admin.category.edit');
         });
