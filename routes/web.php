@@ -53,6 +53,7 @@ Route::prefix('/admin')->group(function () {
         Route::get('/edit', function() {
             return view('admin.category.edit');
         });
+
     });
 
     Route::prefix('/product')->group(function () {
@@ -64,6 +65,16 @@ Route::prefix('/admin')->group(function () {
         Route::get('/edit', function() {
             return view('admin.products.edit');
         });
+        Route::get('/delete', function() {
+            $product = App\Models\Product::find(4);
+            $product->delete();
+            // $product->restore();
+            // dd($product);
+        });
+        Route::get('/restore', function() {
+            App\Models\Product::withTrashed()->where('id',3)->restore();
+        });
+
     });
 
     Route::prefix('/variation')->group(function () {
