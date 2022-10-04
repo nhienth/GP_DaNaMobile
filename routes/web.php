@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Models\Stocks;
+use App\Http\Controllers\StocksController;
+use App\Http\Controllers\VariationController;
+use App\Http\Controllers\PreviewController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -127,9 +130,8 @@ Route::prefix('/admin')->group(function () {
     });
 
     Route::prefix('/preview')->group(function () {
-        Route::get('/list', function() {
-            return view('admin.preview.list');
-        });
+        Route::get('/list',[PreviewController::class,'index']);
+        Route::get('/delete/{id}', [PreviewController::class, 'destroy']);
     });
 
     Route::prefix('/contact')->group(function () {
@@ -142,6 +144,10 @@ Route::prefix('/admin')->group(function () {
         Route::get('/list', function() {
             return view('admin.user.list');
         });
+    });
+    Route::prefix('/stocks')->group(function () {
+        Route::get('/list',[StocksController::class,'index']);
+        Route::get('/stockdetail/{id}',[VariationController::class,'show']);
     });
 
 });
