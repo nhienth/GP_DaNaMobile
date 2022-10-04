@@ -59,7 +59,7 @@ Route::prefix('/admin')->group(function () {
 
     Route::prefix('/product')->group(function () {
 
-        Route::get('/add', [ProductController::class, 'create']);
+        Route::get('/create', [ProductController::class, 'create']);
         Route::get('/list', function() {
             return view('admin.products.list');
         });

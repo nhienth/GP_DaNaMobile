@@ -1,14 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Auth;
-use Validator;
-use App\Models\Product;
-use App\Models\ProductSpecificationsOptions;
 
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class ProductSpecificationsOptionsValueController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,8 +24,6 @@ class ProductController extends Controller
     public function create()
     {
         //
-        $specfications = ProductSpecificationsOptions::all();
-        return view('admin.products.create', compact('specfications'));
     }
 
     /**
@@ -86,6 +80,5 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
-        
     }
 }

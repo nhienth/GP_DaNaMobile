@@ -75,20 +75,15 @@
                                         <label class="d-block form-label fs-5 fw-bolder" for="">Thông số sản phẩm</label>
                                     </div>
 
-                                    <div class="mb-1 ms-2">
-                                        <label class="form-label fs-6 fw-bolder" for="basic-addon-name">Màn hình</label>
-                                        <input type="text" id="basic-addon-name" class="form-control" placeholder="Nhập thông số sản phẩm" aria-label="Name" aria-describedby="basic-addon-name" required />
-                                    </div>
+                                    @foreach ($specfications as $specfication)
+                                        <div class="mb-1 ms-2">
+                                            <label class="form-label fs-6 fw-bolder" for="basic-addon-name">
+                                                {{$specfication->specification_name}}
+                                            </label>
+                                            <input type="text" id="basic-addon-name" class="form-control" placeholder="Nhập thông số sản phẩm" name="{{$specfication->specification_name}}" aria-label="Name" aria-describedby="basic-addon-name" required />
+                                        </div>
+                                    @endforeach
 
-                                    <div class="mb-1 ms-2">
-                                        <label class="form-label fs-6 fw-bolder" for="basic-addon-name">Hệ điều hành</label>
-                                        <input type="text" id="basic-addon-name" class="form-control" placeholder="Nhập thông số sản phẩm" aria-label="Name" aria-describedby="basic-addon-name" required />
-                                    </div>
-
-                                    <div class="mb-1 ms-2">
-                                        <label class="form-label fs-6 fw-bolder" for="basic-addon-name">CPU</label>
-                                        <input type="text" id="basic-addon-name" class="form-control" placeholder="Nhập thông số sản phẩm" aria-label="Name" aria-describedby="basic-addon-name" required />
-                                    </div>
 
                                     <div class="mb-1">
                                         <label class="d-block form-label fs-5 fw-bolder" for="validationBioBootstrap">Mô tả</label>
