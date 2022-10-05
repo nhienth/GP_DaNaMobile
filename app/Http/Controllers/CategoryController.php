@@ -15,10 +15,8 @@ class CategoryController extends Controller
     public $html = '';
     public function index()
     {
-        // $categorySelect = $this -> res(0);
-        // return view('admin.category.list',compact('categorySelect'));
         $categories = Category::all();
-        return view('admin.category.list', ['categoryList' => $categories]);
+        return view('admin.categories.list', ['categoryList' => $categories]);
     }
 
     /**
@@ -29,7 +27,7 @@ class CategoryController extends Controller
     public function create()
     {
         $categorySelect = $this -> res(0);
-        return view('admin.category.create',compact('categorySelect'));
+        return view('admin.categories.create',compact('categorySelect'));
     }
 
     /**
@@ -48,9 +46,6 @@ class CategoryController extends Controller
         $cate ->save();
         $categorySelect = $this -> res(0);
         return $this->index();
-        // return redirect('/admin/category');
-        // return redirect('admin/categoies/list');
-        // return \Redirect::route('admin.categories.list')->with('status','Bạn đã thêm thành công');
     }
 
     /**
@@ -59,45 +54,58 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
-    {
-        //
+    {  
+        $category = Category::find($id);
+        // $cate -> parent_id = $request['parent_id'];
+        $categorySelect = $this -> res_selected(0,$category -> parent_id, $id);
+        return view('admin.categories.edit',compact('categorySelect', 'category'));
+        
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+    function res_selected($i,$parent_id, $id, $text = ''){
+        $data = Category::all();  
+            foreach($data as $value){
+                if($value['parent_id'] == $i)
+                {
+                    if($value['id'] == $parent_id){                     
+                        if($value['id'] == $id)
+                        {
+                            $this->html .='<option value="'.$value['id'].'" style="display: none;">' .$text.$value['category_name'].'</option>';
+                             $this->res_selected($value['id'], $parent_id, $id,$text.'--');
+                        }
+                        else
+                        {
+                            $this->html .='<option value="'.$value['id'].'" selected>' .$text.$value['category_name'].'</option>';
+                            $this->res_selected($value['id'],$parent_id, $id, $text.'--');
+                            }                      
+                    }else{
+                        if($value['id']==$id)
+                        {
+                            $this->html .='<option value="'.$value['id'].'" style="display: none;">' .$text.$value['category_name'].'</option>';
+                             $this->res_selected($value['id'],$parent_id, $id, $text.'--');
+                        }
+                        else
+                        {
+                            $this->html .='<option value="'.$value['id'].'" >' .$text.$value['category_name'].'</option>';             
+                            $this->res_selected($value['id'], $parent_id, $id,$text.'--');
+                        }
+                        
+                    }
+                }
+         }
+         return $this->html;         
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+    function res_selected1($parent_id, $text = ''){
+        $data = Category::all();  
+            foreach($data as $value){
+                if($value['parent_id'] == $parent_id)
+                {
+                    $this->html .='<option value="'.$value['id'].'">' .$text.$value['category_name'].'</option>';             
+                    $this->res($value['id'], $text.'--');
+                 }  
+         }
+         return $this->html;         
     }
-
     function res($id, $text = ''){
         $data = Category::all();  
             foreach($data as $value){
@@ -108,5 +116,70 @@ class CategoryController extends Controller
                  }  
          }
          return $this->html;         
-       }
+    }
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $cate =  Category::find($id);
+        $cate -> category_name = $request['category_name'];
+        $cate -> parent_id = $request['parent_id'];
+        $cate ->save();
+        $categorySelect = $this -> res(0);
+
+        $categories = Category::all();
+        return view('admin.categories.list',compact('categorySelect'), ['categoryList' => $categories]);
+    }
+    
+    
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        // $category = Category::find($id);
+        // $category->delete();
+        // $this->deleteRes($id);
+        // return $this->index();
+        $category = Category::find($id);            
+        $categories = Category::all();
+        foreach ($categories as $key) {
+            if($key['parent_id'] == $id){
+                $cate = Category::find($key['id']);
+                $cate->delete();
+            }
+        }
+        $category->delete();
+        return $this->index();
+    }
+
+    public function deleteRes($id){
+        $category = Category::find($id);
+        $category->delete();
+        $categories = Category::all();
+        foreach ($categories as $key) {
+            if($key['parent_id'] == $id){
+                $cate = Category::find($categories['id']);
+                $cate->delete();
+            }
+        }
+        return $this->index();
+    }
+
+    
 }
