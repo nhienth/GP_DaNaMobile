@@ -131,31 +131,34 @@
                                                         <button class="dt-button buttons-print dropdown-item" tabindex="0" type="button">Print</button>
                                                     </div>
                                                 </div> --}}
-                                                <button type="button" class="dt-button add-new btn btn-primary" tabindex="0" data-bs-target="#modals-slide-in" aria-controls="DataTables_Table_0">
-                                                    <span>Thêm Sản phẩm mới</span>
-                                                </button>
+                                                <a href="{{route('slider.add')}}"><button type="button" class="dt-button add-new btn btn-primary" tabindex="0" data-bs-target="#modals-slide-in" aria-controls="DataTables_Table_0">
+                                                    <span>Thêm Slider mới</span>
+                                                </button></a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            @if (Session::has('success'))
+                                <h1 style="margin-left: 20px;color: green">{{Session::get('success')}}</h1>
+                            @endif
                             <table class="user-list-table table dataTable no-footer dtr-column text-center">
                                 <thead class="table-light">
                                     <tr>
-                                        <th>#</th>
                                         <th>Id slider</th>
                                         <th>Hình ảnh</th>
                                         <th colspan="2">Hành động</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr data-dt-row="" data-dt-column="">
-                                        <td>ABC</td>
-                                        <td>ABC</td>
-                                        <td>ABC</td>
-                                        <td>Sửa</td>
-                                        <td>Xoá</td>
-                                    </tr>
+                                        @foreach ($result as $slider )
+                                            <tr data-dt-row="" data-dt-column="">
+                                            <td>{{$slider->id}}</td>
+                                            <td><img src="{{asset('img/'.$slider->slider_img)}}" width="100px" height="100px" alt=""></td>
+                                            <td><a href="{{url('admin/slider/edit',[$slider->id])}}"><button type="button" class="btn btn-primary">Sửa</button></a></td>
+                                            <td><a href="{{url('admin/slider/delete',[$slider->id])}}"><button type="button" class="btn btn-primary">Xóa</button></a></td>
+                                            </tr>
+                                        @endforeach                               
                                 </tbody>
                             </table>
                             <div class="d-flex justify-content-between mx-2 row mb-1">

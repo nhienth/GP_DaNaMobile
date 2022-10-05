@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Auth;
 use Validator;
 use App\Models\Product;
@@ -27,7 +28,7 @@ class ProductController extends Controller
     public function create()
     {
         //
-        return view('admin.product.add');
+        return view('admin.products.add');
     }
 
     /**

@@ -2,26 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
 use Illuminate\Http\Request;
-use App\Models\Slider;
 
-class SliderController extends Controller
+class BannerController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    private $slider;
+    private $banner;
 
     public function __construct()
     {
-        $this->slider = new Slider();
+        $this->banner = new Banner();
     }
+
     public function index()
     {
-        $result = $this->slider::all();
-        return view('admin.sliders.list', compact('result'));
+        $result = $this->banner->all();
+        return view('admin.banners.list', compact('result'));
     }
 
     /**
@@ -31,7 +32,7 @@ class SliderController extends Controller
      */
     public function create()
     {
-        return view('admin.sliders.create');
+        return view('admin.banners.create');
     }
 
     /**
@@ -45,13 +46,11 @@ class SliderController extends Controller
         if ($request->has('file_img')) {
             $file = $request->file_img;
             $file_name = $file->getClientoriginalName();
-            // dd($file_name);
             $file->move(public_path('img'), $file_name);
         }
-        $request->merge(['slider_img' => $file_name]);
-        // dd($request->all());
-        if (Slider::create($request->all())) {
-            return redirect()->route('slider.list')->with('success', 'Thêm thành công');
+        $request->merge(['banner_img' => $file_name]);
+        if (Banner::create($request->all())) {
+            return redirect()->route('banner.list')->with('success', 'Thêm thành công');
         }
     }
 
@@ -74,8 +73,8 @@ class SliderController extends Controller
      */
     public function edit($id)
     {
-        $slider = $this->slider->find($id);
-        return view('admin.sliders.edit', compact('slider'));
+        $banner = $this->banner->find($id);
+        return view('admin.banners.edit', compact('banner'));
     }
 
     /**
@@ -92,10 +91,10 @@ class SliderController extends Controller
             $file_name = $file->getClientoriginalName();
             $file->move(public_path('img'), $file_name);
         }
-        $request->merge(['slider_img' => $file_name]);
-        $slider = Slider::find($id);
-        $slider->update($request->only('slider_img'));
-        return redirect()->route('slider.list');
+        $request->merge(['banner_img' => $file_name]);
+        $banner = Banner::find($id);
+        $banner->update($request->all());
+        return redirect()->route('banner.list')->with('success', 'Sửa thành công');
     }
 
     /**
@@ -106,8 +105,8 @@ class SliderController extends Controller
      */
     public function destroy($id)
     {
-        $slider = Slider::find($id);
-        $slider->delete();
-        return redirect()->route('slider.list');
+        $banner = Banner::find($id);
+        $banner->delete();
+        return redirect()->route('banner.list');
     }
 }
