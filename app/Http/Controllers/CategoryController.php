@@ -95,6 +95,7 @@ class CategoryController extends Controller
          }
          return $this->html;         
     }
+
     function res_selected1($parent_id, $text = ''){
         $data = Category::all();  
             foreach($data as $value){
@@ -106,7 +107,9 @@ class CategoryController extends Controller
          }
          return $this->html;         
     }
-    function res($id, $text = ''){
+
+
+    public function res($id, $text = ''){
         $data = Category::all();  
             foreach($data as $value){
                 if($value['parent_id'] == $id)
@@ -181,5 +184,4 @@ class CategoryController extends Controller
         return $this->index();
     }
 
-    
 }

@@ -15,13 +15,16 @@ return new class extends Migration
     {
         Schema::create('products_variations_options_value', function (Blueprint $table) {
             $table->id();
+            $table->string('variation_name', 100);
             $table->string('variation_value', 100);
-            
+
             $table->foreignId('products_variation_id')
                 ->constrained('products_variations_options')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            
+
+            $table->timestamp('deleted_at')->nullable();
+
             $table->timestamps();
         });
     }

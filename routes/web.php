@@ -45,7 +45,7 @@ Route::prefix('/admin')->group(function () {
     Route::get('/', function () {
         return view('admin.index');
     });
-    Route::prefix('/categories')->group(function () {
+    Route::prefix('/category')->group(function () {
         Route::get('/list', [CategoryController::class, 'index']);
         Route::get('/create', [CategoryController::class, 'create']);
         Route::post('/create', [CategoryController::class, 'store']);
@@ -57,22 +57,16 @@ Route::prefix('/admin')->group(function () {
 
     Route::prefix('/product')->group(function () {
 
-        Route::get('/add', [ProductController::class, 'create']);
-        Route::get('/list', function() {
-            return view('admin.products.list');
-        });
-        Route::get('/edit', function() {
-            return view('admin.products.edit');
-        });
-        Route::get('/delete', function() {
-            $product = App\Models\Product::find(4);
-            $product->delete();
-            // $product->restore();
-            // dd($product);
-        });
-        Route::get('/restore', function() {
-            App\Models\Product::withTrashed()->where('id',3)->restore();
-        });
+        Route::get('/list', [ProductController::class, 'index']); 
+
+        Route::get('/create', [ProductController::class, 'create']); 
+        Route::post('/create', [ProductController::class, 'store']); 
+
+        Route::get('/edit/{id}', [ProductController::class, 'edit']); 
+        Route::post('/update/{id}', [ProductController::class, 'update']); 
+
+        Route::get('/delete/{id}', [ProductController::class, 'destroy']);
+
 
     });
 
