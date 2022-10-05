@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\CategoryController;
+
 use Illuminate\Support\Facades\Auth;
 use Validator;
 use App\Models\Product;
+use App\Models\Category;
+use App\Models\ProductSpecificationsOptions;
+use App\Models\ProductSpecificationsOptionsValue;
 
 use Illuminate\Http\Request;
 
@@ -17,7 +22,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        $products = Product::with('category')->orderBy('products.id', 'desc')->get();
+
+        return view('admin.products.list', compact(['categories', 'products']));
     }
 
     /**
@@ -28,7 +36,10 @@ class ProductController extends Controller
     public function create()
     {
         //
-        return view('admin.products.add');
+        $cate = new CategoryController();
+        $categorySelect = $cate->res(0);
+        $specfications = ProductSpecificationsOptions::all();
+        return view('admin.products.create', compact(['specfications', 'categorySelect']));
     }
 
     /**
@@ -39,7 +50,33 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = new Product();
+        $product->product_name = $request->product_name;
+        $product->category_id = $request->category_id;
+
+        $imgpath = $_FILES['product_img']['name'];
+        $target_dir = "../public/images/admin/products/";
+        $target_file =  $target_dir . basename($imgpath);
+        move_uploaded_file($_FILES['product_img']['tmp_name'], $target_file);
+        $product->product_img = $imgpath;
+
+        $product->save();
+
+        $specfications = ProductSpecificationsOptions::all();
+        foreach ($specfications as $specfication) {
+            $nspecfication = new ProductSpecificationsOptionsValue();
+
+            $nspecfication_value = $specfication->id . "_value";
+            $nspecification_name = $specfication->specification_name;
+
+            $nspecfication->specification_name = $nspecification_name;
+            $nspecfication->specification_value = $request->$nspecfication_value;
+            $nspecfication->product_id = $product->id;
+
+            $nspecfication->save();
+        }
+
+        return redirect('/admin/product/list');
     }
 
     /**
@@ -61,7 +98,10 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cate = new CategoryController();
+        $categorySelect = $cate->res(0);
+        $product = Product::with('specfications')->where('products.id', $id)->first();
+        return view('admin.products.edit', compact(['product', 'categorySelect']));
     }
 
     /**
@@ -73,7 +113,33 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = Product::find($id);
+        $product->product_name = $request->product_name;
+        $product->category_id = $request->category_id;
+
+        $imgpath = $_FILES['product_img']['name'];
+        if ($imgpath != '') {
+            $target_dir = "../public/images/admin/products/";
+            $target_file =  $target_dir . basename($imgpath);
+            move_uploaded_file($_FILES['product_img']['tmp_name'], $target_file);
+            $product->product_img = $imgpath;
+        }
+
+        $product->save();
+
+        $specfication_options = ProductSpecificationsOptions::all();
+
+        foreach ($specfication_options as $specfication_option) {
+            $specfication = ProductSpecificationsOptionsValue::where('product_id', $id)
+                ->where('specification_name', 'LIKE', $specfication_option->specification_name)->first();
+
+            $nspecfication_value = $specfication->id . "_value";
+            $specfication->specification_value = $request->$nspecfication_value;
+
+            $specfication->save();
+        }
+
+        return redirect('/admin/product/list');
     }
 
     /**
@@ -84,6 +150,8 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::find($id);
+        $product->delete();
+        return redirect('/admin/product/list');
     }
 }
