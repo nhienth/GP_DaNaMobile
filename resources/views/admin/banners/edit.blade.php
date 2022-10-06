@@ -9,14 +9,14 @@
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-start mb-0">Quản lý sản phẩm</h2>
+                        <h2 class="content-header-title float-start mb-0">Quản lý slider</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="index.html">Quản trị</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="#">Sản phẩm</a>
+                                <li class="breadcrumb-item"><a href="#">Slider</a>
                                 </li>
-                                <li class="breadcrumb-item active">Nhập sản phẩm mới
+                                <li class="breadcrumb-item active">Sửa slider
                                 </li>
                             </ol>
                         </div>
@@ -40,56 +40,29 @@
                     <div class="col-md-8 col-12" style="margin : 0 auto">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title fw-bolder">Thêm sản phẩm</h3>
+                                <h3 class="card-title fw-bolder">Sửa slider</h3>
                             </div>
                             <div class="card-body">
-                                <form class="needs-validation" novalidate action="{{url('/admin/product/create')}}" method="POST" enctype="multipart/form-data">
-                                    @csrf
+                                <form class="needs-validation"  action="{{route('banner.edit_process',[$banner->id])}}" method="post" enctype="multipart/form-data">
                                     <div class="mb-1">
-                                        <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Tên sản phẩm</label>
+                                        <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Thêm Banner</label>
 
-                                        <input type="text" id="basic-addon-name" class="form-control" placeholder="Nhập tên sản phẩm" aria-label="Name" name="product_name" aria-describedby="basic-addon-name" required />
+                                        <input type="file" id="basic-addon-name" class="form-control"  aria-label="Name" aria-describedby="basic-addon-name" name="file_img" value="{{$banner->banner_img}}" required />
+                                        <img src="{{asset('img/'.$banner->banner_img)}}" width="100px" height="100px" alt="">
+
                                         <div class="valid-feedback">Looks good!</div>
                                         <div class="invalid-feedback">Please enter your name.</div>
                                     </div>
-                                    
                                     <div class="mb-1">
-                                        <label class="form-label fs-5 fw-bolder" for="select-country1">Danh mục sản phẩm</label>
-                                        <select class="form-select" id="select-country1" name="category_id" required name="parent_id">
-                                            <option value="0">Danh mục sản phẩm</option>
-                                            {!! $categorySelect !!}
-                                        </select>
+                                        <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Vị trí banner</label>
+                                        <input type="text" id="basic-addon-name" class="form-control"  aria-label="Name" aria-describedby="basic-addon-name" name="location" required value="{{$banner->location}}"/>
                                         <div class="valid-feedback">Looks good!</div>
-                                        <div class="invalid-feedback">Please select your country</div>
+                                        <div class="invalid-feedback">Please enter your name.</div>
                                     </div>
-                                    <div class="mb-2">
-                                        <label for="customFile1" class="form-label fs-5 fw-bolder">Ảnh sản phẩm</label>
-                                        <input class="form-control" name="product_img" type="file" id="customFile1" required />
-                                    </div>
-                               
-
-                                    <div class="mb-1">
-                                        <label class="d-block form-label fs-5 fw-bolder" for="">Thông số sản phẩm</label>
-                                    </div>
-
-                                    @foreach ($specfications as $specfication)
-                                        <div class="mb-1 ms-2">
-                                            <label class="form-label fs-6 fw-bolder" for="basic-addon-name">
-                                                {{$specfication->specification_name}}
-                                            </label>
-                                            <input type="text" id="basic-addon-name" class="form-control" placeholder="Nhập thông số sản phẩm" name="{{$specfication->id}}_value" aria-label="Name" aria-describedby="basic-addon-name" required />
-                                        </div>
-                                    @endforeach
-
-
-                                    <div class="mb-1">
-                                        <label class="d-block form-label fs-5 fw-bolder" for="validationBioBootstrap">Mô tả</label>
-                                        <textarea class="form-control" id="validationBioBootstrap" name="validationBioBootstrap" rows="3" required></textarea>
-                                    </div>
-                                    
                                     <button type="submit" class="btn btn-primary me-2">Thêm</button>
                                     <button type="reset" class="btn btn-primary me-2">Nhập lại</button>
-                                    <button type="button" class="btn btn-primary">Danh sách</button>
+                                    <a href="{{route('banner.list')}}"><button type="button" class="btn btn-primary">Danh sách</button></a>
+                                    @csrf
                                 </form>
                             </div>
                         </div>
