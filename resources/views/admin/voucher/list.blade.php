@@ -138,8 +138,8 @@
                                                     <button class="dt-button buttons-print dropdown-item" tabindex="0" type="button">Print</button>
                                                 </div>
                                             </div> --}}
-                                            <button type="button" class="dt-button add-new btn btn-primary" tabindex="0" data-bs-target="#modals-slide-in" aria-controls="DataTables_Table_0">
-                                                <span>Thêm Sản phẩm mới</span>
+                                            <a href=""></a><button type="button" class="dt-button add-new btn btn-primary" tabindex="0" data-bs-target="#modals-slide-in" aria-controls="DataTables_Table_0">
+                                                <span>Thêm Voucher mới</span>
                                             </button>
                                         </div>
                                     </div>
@@ -152,27 +152,26 @@
                                 <tr>
                                     
                                     <th>ID</th>
-                                    <th>Mã giảm giá</th>
+                                    <th>Code</th>
                                     <th>Loại hình</th>
-                                    <th>Giá trị</th>
-                                    <th>Mã sản phẩm</th>
+                                    <th>Giá trị</th> 
                                     <th>Trạng thái</th>
+                                    <th>Product ID</th>
                                     <th colspan="2">Actions</th>
                                 </tr>
                             </thead>
                            <tbody>
-                            @foreach ($voucherList as $vou)
+                            @foreach ($result as $voucher)
                             <tr data-dt-row="" data-dt-colum="">
-                                <td>{{$vou->id}}</td>
-                                <td>{{$vou->code}}</td>
-                                <td>{{$vou->type}}</td>
-                                <td>{{$vou->value}}</td>
-                                <td>{{$vou->product_id}}</td>
-                                <td>{{$vou->status}}</td>
-                                <td>Sửa</td>
-                                <td>Xóa</td>
-
-                            </tr>
+                                <td>{{$voucher->id}}</td>
+                                <td>{{$voucher->code}}</td>
+                                <td>{{$voucher->type}}</td>
+                                <td>{{$voucher->value}}</td>                            
+                                <td>{{$voucher->status}}</td>
+                                <td>{{$voucher->product_id}}</td>
+                                <td><a href="{{url('admin/voucher/edit',[$voucher->id])}}"><button type="button" class="btn btn-gradient-success"><i data-feather='edit'></i></button></a></td>
+                                <td><a href="{{url('admin/voucher/delete',[$voucher->id])}}"><button type="button" class="btn btn-gradient-danger"><i data-feather='trash-2'></i></button></a></td>                              
+                                </tr>
                             @endforeach
                            </tbody>
                         </table>

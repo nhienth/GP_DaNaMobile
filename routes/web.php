@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\VoucherController;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\Order_detailController;
+use App\Http\Controllers\OrderDetailsController;
 
 
  
@@ -142,13 +142,10 @@ Route::prefix('/admin')->group(function () {
         });
     });
 
-    Route::prefix('/order_details')->group(function () {
-        Route::get('/list', [Order_detailController::class, 'index']);
+    Route::prefix('/orderdetails')->group(function () {
+        Route::get('/list', [OrderDetailsController::class, 'index']);
         });
     
-   
-
-
     Route::prefix('/user')->group(function () {
         Route::get('/list', function() {
             return view('admin.user.list');
@@ -156,13 +153,6 @@ Route::prefix('/admin')->group(function () {
     });
    
     
-
-    
-
-
-
-
-
 
 // ->middleware(['auth'])->name('dashboard');
 

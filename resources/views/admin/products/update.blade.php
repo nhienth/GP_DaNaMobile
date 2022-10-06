@@ -97,7 +97,7 @@
                                     
                                     <button type="submit" class="btn btn-primary me-2">Cập nhật</button>
                                     <button type="reset" class="btn btn-primary me-2">Nhập lại</button>
-                                    <button type="button" class="btn btn-primary">Danh sách</button>
+                                    <a href="{{url('/admin/product/list')}}" class="btn btn-primary">Danh sách</a>
                                 </form>
                             </div>
                         </div>

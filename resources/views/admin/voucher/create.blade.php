@@ -43,7 +43,7 @@
                                     <h3 class="card-title fw-bolder">Thêm Voucher</h3>
                                 </div>
                                 <div class="card-body">
-                                    <form class="needs-validation" novalidate method="POST" action="http://localhost:8000/admin/categories/add">
+                                    <form class="needs-validation"  novalidate method="POST" action=>
                                         @csrf
                                         <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="basic-addon-name">ID</label>
@@ -73,13 +73,7 @@
                                             <div class="valid-feedback">Looks good!</div>
                                             <div class="invalid-feedback">Please enter value</div>
                                         </div>
-                                        <div class="mb-1">
-                                            <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Mã Sản Phẩm</label>
-    
-                                            <input type="text" name="category_name" id="basic-addon-name" class="form-control" placeholder="Nhập mã sản phẩm" aria-label="Name" aria-describedby="basic-addon-name" required />
-                                            <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please enter product Id.</div>
-                                        </div>
+                                        
                                         <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Trạng Thái</label>
     
@@ -87,8 +81,15 @@
                                             <div class="valid-feedback">Looks good!</div>
                                             <div class="invalid-feedback">Please enter status.</div>
                                         </div>
-                                        
+                                        <div class="mb-1">
+                                            <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Mã Sản Phẩm</label>
+    
+                                            <input type="text" name="category_name" id="basic-addon-name" class="form-control" placeholder="Nhập mã sản phẩm" aria-label="Name" aria-describedby="basic-addon-name" required />
+                                            <div class="valid-feedback">Looks good!</div>
+                                            <div class="invalid-feedback">Please enter product Id.</div>
+                                        </div>
                                         <button type="submit" class="btn btn-primary me-2">Thêm voucher</button>
+                                        <button type="submit" class="btn btn-primary me-2">Nhập lại voucher</button>
                                         <button type="button" class="btn btn-primary">Danh sách</button>
                                     </form>
                                 </div>

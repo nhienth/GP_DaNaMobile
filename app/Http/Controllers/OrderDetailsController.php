@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Order_details;
+use App\Models\OrderDetails;
 use Illuminate\Http\Request;
 
-class Order_detailsController extends Controller
+class OrderDetailsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +13,9 @@ class Order_detailsController extends Controller
      */
     public function index()
     {
-        $order_details = Order_details::all();
-        return view('admin.order_details.list', ['od' => $order_details]);
+        $orderdetails = OrderDetails::all();
+        return view('admin.orderdetails.list',['od'=>$orderdetails]);
+        
     }
 
     /**

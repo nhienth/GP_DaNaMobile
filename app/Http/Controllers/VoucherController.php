@@ -1,39 +1,67 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
 use App\Models\Voucher;
+use Illuminate\Http\Request;
 
 class VoucherController extends Controller
 {
-    public  $html ='';
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    private $voucher;
+    public function __construct()
+    {
+        $this->voucher = new Voucher();
+    }
     public function index()
     {
-    $vouchers = Voucher::all();
-    
-    return view('admin.voucher.list',['voucherList'=> $vouchers]);
-}
-public function create()
-{
-    $voucherSelect = $this -> res(0);
-    return view('admin.voucher.create', compact('voucherSelect'));
-}
+       $result = $this->voucher::all();
+       return view('admin.voucher.list', compact('result'));
+    }
 
-public function store(Requets $request)
-{
-    $vou = new Voucher();
-    $vouchers = Voucher::all();
-    $vou -> voucher_id = $request['vouchers_id'];
-    $vou -> voucher_code = $request['vouchers_code'];
-    $vou -> voucher_type = $request['vouchers_type'];
-    $vou -> voucher_value = $request['vouchers_value'];
-    $vou -> product_id = $request['product_id'];
-    $vou ->save();
-    $voucherSelect = $this ->res(0);
-    return $this->index();
-}
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+       return view('admin.voucher.create');
 
-public function show($id)
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+       
+        $vou = new Voucher();
+        $vouchers = Voucher::all();
+        $vou -> voucher_id = $request['vocher_id'];
+        $vou -> voucher_code = $request['vocher_code'];
+        $vou -> voucher_type = $request['vocher_type'];
+        $vou -> voucher_value = $request['vocher_value'];
+        $vou -> voucher_product_id = $request['vocher_product_id'];
+        $vou -> voucher_status = $request['voucher_status'];
+        $vou -> save();
+        
+        return redirect()->route('voucher.list')->with('success', 'Thêm thành công');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
     {
         //
     }
@@ -46,7 +74,9 @@ public function show($id)
      */
     public function edit($id)
     {
-        //
+       $voucher = $this->voucher->find($id);
+       return view('admin.voucher.edit',compact('banner'));
+
     }
 
     /**
@@ -56,9 +86,19 @@ public function show($id)
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($id)
+    public function update(Request $request, $id)
     {
-       //
+        $vou = Voucher::find($id);
+        $vou -> voucher_id = $request['vocher_id'];
+        $vou -> voucher_code = $request['vocher_code'];
+        $vou -> voucher_type = $request['vocher_type'];
+        $vou -> voucher_value = $request['vocher_value'];
+        $vou -> voucher_product_id = $request['vocher_product_id'];
+        $vou -> voucher_status = $request['voucher_status'];
+        $vou -> save();
+
+        return redirect()->route('voucher.list')->with('success', 'Sửa thành công');
+
     }
 
     /**
@@ -69,18 +109,9 @@ public function show($id)
      */
     public function destroy($id)
     {
-        //
+        $voucher = Voucher::find($id);
+        $voucher->delete();
+        return redirect()->route('voucher.list');
     }
-
-    function res($id, $text = ''){
-        $data = Voucher::all();  
-            foreach($data as $value){
-                if($value['product_id'] == $id)
-                {
-                    $this->html .='<option value="'.$value['id'].'">' .$text.$value['voucher_code'].'</option>';             
-                    $this->res($value['id'], $text.'--');
-                 }  
-         }
-         return $this->html;         
-       }
 }
+   

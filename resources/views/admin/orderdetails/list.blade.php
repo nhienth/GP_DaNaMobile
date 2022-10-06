@@ -13,12 +13,12 @@
                     <div class="content-header-left col-md-9 col-12 mb-2">
                         <div class="row breadcrumbs-top">
                             <div class="col-12">
-                                <h2 class="content-header-title float-start mb-0">Đơn hàng chi tiết</h2>
+                                <h2 class="content-header-title float-start mb-0">Đơn Hàng Chi Tiết</h2>
                                 <div class="breadcrumb-wrapper">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="index.html">Trang chủ</a>
                                         </li>
-                                        <li class="breadcrumb-item"><a href="#">Đơn hàng chi tiết</a>
+                                        <li class="breadcrumb-item"><a href="#">ơn Hàng Chi Tiết</a>
                                         </li>
                                         <li class="breadcrumb-item active">Danh sách
                                         </li>
@@ -86,9 +86,7 @@
                                                     <button class="dt-button buttons-print dropdown-item" tabindex="0" type="button">Print</button>
                                                 </div>
                                             </div> --}}
-                                            <button type="button" class="dt-button add-new btn btn-primary" tabindex="0" data-bs-target="#modals-slide-in" aria-controls="DataTables_Table_0">
-                                                <span>Đơn hàng chi tiết</span>
-                                            </button>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -100,20 +98,19 @@
                                     <th>ID</th>
                                     <th>Số lượng</th>
                                     <th>Tổng cộng</th>
-                                    <th>Order ID</th>
-                                    <th>Product ID</th>
+                                    <th>Mã đơn hàng</th>
+                                    <th>Mã sản phẩm</th>
                                     
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($od as $order_details)
+                                @foreach ($od as $orderdetails)
                                 <tr data-dt-row="" data-dt-column="">
-                                    <td>{{$order_details->id}}</td>
-                                    <td>{{$order_details->quantity}}</td>
-                                    <td>{{$order_details->total_amount}}</td>
-                                    <td>{{$order_details->order_id}}</td>
-                                    <td>{{$order_details->product_id}}</td>
-                                    
+                                    <td>{{$orderdetails->id}}</td>
+                                    <td>{{$orderdetails->quantity}}</td>
+                                    <td>{{$orderdetails->total_amount}}</td>
+                                    <td>{{$orderdetails->order_id}}</td>
+                                    <td>{{$orderdetails->product_id}}</td>
                                 </tr>
                                 @endforeach
                             </tbody>

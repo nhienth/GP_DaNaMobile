@@ -86,9 +86,7 @@
                                                     <button class="dt-button buttons-print dropdown-item" tabindex="0" type="button">Print</button>
                                                 </div>
                                             </div> --}}
-                                            <button type="button" class="dt-button add-new btn btn-primary" tabindex="0" data-bs-target="#modals-slide-in" aria-controls="DataTables_Table_0">
-                                                <span>Thêm Sản phẩm mới</span>
-                                            </button>
+                                           
                                         </div>
                                     </div>
                                 </div>
