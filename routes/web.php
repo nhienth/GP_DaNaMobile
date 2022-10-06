@@ -4,6 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\VoucherController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\Order_detailController;
+
+
+ 
 
 /*
 |--------------------------------------------------------------------------
@@ -88,18 +94,17 @@ Route::prefix('/admin')->group(function () {
             return view('admin.variation.edit');
         });
     });
-
+    
     Route::prefix('/voucher')->group(function () {
-        Route::get('/add', function() {
-            return view('admin.voucher.add');
-        });
-        Route::get('/list', function() {
-            return view('admin.voucher.list');
-        });
+        Route::get('/list', [VoucherController::class, 'index']);
+        Route::get('/add',  [VoucherController::class, 'create']);
+        Route::post('/add', [VoucherController::class, 'store']);
+
         Route::get('/edit', function() {
             return view('admin.voucher.edit');
         });
-     });
+
+    });
     
 
     Route::prefix('/post')->group(function () {
@@ -133,18 +138,28 @@ Route::prefix('/admin')->group(function () {
     });
 
     Route::prefix('/contact')->group(function () {
-        Route::get('/list', function() {
-            return view('admin.contact.list');
+        Route::get('/list', [ContactController::class, 'index']);
         });
     });
+
+    Route::prefix('/order_details')->group(function () {
+        Route::get('/list', [Order_detailController::class, 'index']);
+        });
+    
+   
+
 
     Route::prefix('/user')->group(function () {
         Route::get('/list', function() {
             return view('admin.user.list');
         });
     });
+   
+    
 
-});
+    
+
+
 
 
 

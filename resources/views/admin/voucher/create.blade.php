@@ -9,12 +9,12 @@
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-start mb-0">Thêm Danh mục</h2>
+                            <h2 class="content-header-title float-start mb-0">Thêm Voucher</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.html">Trang chủ</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="#">Danh mục</a>
+                                    <li class="breadcrumb-item"><a href="#">Voucher</a>
                                     </li>
                                     <li class="breadcrumb-item active">Thêm mới
                                     </li>
@@ -40,7 +40,7 @@
                         <div class="col-md-8 col-12" style="margin : 0 auto">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title fw-bolder">Sửa Voucher</h3>
+                                    <h3 class="card-title fw-bolder">Thêm Voucher</h3>
                                 </div>
                                 <div class="card-body">
                                     <form class="needs-validation" novalidate method="POST" action="http://localhost:8000/admin/categories/add">
@@ -88,7 +88,7 @@
                                             <div class="invalid-feedback">Please enter status.</div>
                                         </div>
                                         
-                                        <button type="submit" class="btn btn-primary me-2">Sửa voucher</button>
+                                        <button type="submit" class="btn btn-primary me-2">Thêm voucher</button>
                                         <button type="button" class="btn btn-primary">Danh sách</button>
                                     </form>
                                 </div>
