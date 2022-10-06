@@ -13,12 +13,12 @@
                     <div class="content-header-left col-md-9 col-12 mb-2">
                         <div class="row breadcrumbs-top">
                             <div class="col-12">
-                                <h2 class="content-header-title float-start mb-0">Liên hệ</h2>
+                                <h2 class="content-header-title float-start mb-0">Đơn Hàng Chi Tiết</h2>
                                 <div class="breadcrumb-wrapper">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="index.html">Trang chủ</a>
                                         </li>
-                                        <li class="breadcrumb-item"><a href="#">Liên hệ</a>
+                                        <li class="breadcrumb-item"><a href="#">Đơn Hàng Chi Tiết</a>
                                         </li>
                                         <li class="breadcrumb-item active">Danh sách
                                         </li>
@@ -86,7 +86,7 @@
                                                     <button class="dt-button buttons-print dropdown-item" tabindex="0" type="button">Print</button>
                                                 </div>
                                             </div> --}}
-                                           
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -96,22 +96,21 @@
                             <thead class="table-light ">
                                 <tr>
                                     <th>ID</th>
-                                    <th>Tên khách hàng</th>
-                                    <th>Tiêu đề</th>
-                                    <th>Email</th>
-                                    <th>Nội dung</th>
-                                    <th colspan="2">Hành động</th>
+                                    <th>Số lượng</th>
+                                    <th>Tổng cộng</th>
+                                    <th>Mã đơn hàng</th>
+                                    <th>Mã sản phẩm</th>
+                                    
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($cont as $contacts)
+                                @foreach ($order_details as $detail)
                                 <tr data-dt-row="" data-dt-column="">
-                                    <td>{{$contacts->id}}</td>
-                                    <td>{{$contacts->name}}</td>
-                                    <td>{{$contacts->subject}}</td>
-                                    <td>{{$contacts->email}}</td>
-                                    <td>{{$contacts->message}}</td>
-                                    <td><button type="submit" class="btn btn-primary me-2">Phản hồi</button></td>
+                                    <td>{{$detail->id}}</td>
+                                    <td>{{$detail->quantity}}</td>
+                                    <td>{{$detail->total_amount}}</td>
+                                    <td>{{$detail->order_id}}</td>
+                                    <td>{{$detail->product_id}}</td>
                                 </tr>
                                 @endforeach
                             </tbody>
