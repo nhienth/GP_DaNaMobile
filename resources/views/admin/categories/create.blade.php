@@ -43,7 +43,7 @@
                                     <h3 class="card-title fw-bolder">Thêm Danh mục</h3>
                                 </div>
                                 <div class="card-body">
-                                    <form class="needs-validation" novalidate method="POST" action="http://localhost:8000/admin/categories/create">
+                                    <form class="needs-validation" novalidate method="POST" action="http://localhost:8000/admin/category/create">
                                         @csrf
                                         <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Tên Danh mục</label>

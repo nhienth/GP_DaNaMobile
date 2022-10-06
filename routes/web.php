@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProductController;
 use App\Models\Slider\SliderModel;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\PostController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -97,15 +99,17 @@ Route::prefix('/admin')->group(function () {
     });
 
     Route::prefix('/post')->group(function () {
-        Route::get('/add', function() {
-            return view('admin.post.create');
-        });
-        Route::get('/list', function() {
-            return view('admin.post.list');
-        });
-        Route::get('/edit', function() {
-            return view('admin.post.edit');
-        });
+        Route::get('/list', [PostController::class, 'index']); 
+
+        Route::get('/create', [PostController::class, 'create']); 
+        Route::post('/create', [PostController::class, 'store']); 
+
+        Route::get('/edit/{id}', [PostController::class, 'edit']); 
+        Route::post('/update/{id}', [PostController::class, 'update']); 
+
+        Route::get('/details/{id}', [PostController::class, 'show']); 
+
+        Route::get('/delete/{id}', [PostController::class, 'destroy']);
     });
 
     Route::prefix('/banner')->group(function () {
