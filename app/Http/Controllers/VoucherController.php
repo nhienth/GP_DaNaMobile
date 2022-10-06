@@ -18,7 +18,7 @@ class VoucherController extends Controller
     }
     public function index()
     {
-       $result = $this->voucher::all();
+       $result = $this->voucher->all();
        return view('admin.voucher.list', compact('result'));
     }
 
@@ -75,7 +75,7 @@ class VoucherController extends Controller
     public function edit($id)
     {
        $voucher = $this->voucher->find($id);
-       return view('admin.voucher.edit',compact('banner'));
+       return view('admin.voucher.edit',compact('voucher'));
 
     }
 
@@ -89,11 +89,11 @@ class VoucherController extends Controller
     public function update(Request $request, $id)
     {
         $vou = Voucher::find($id);
-        $vou -> voucher_id = $request['vocher_id'];
-        $vou -> voucher_code = $request['vocher_code'];
-        $vou -> voucher_type = $request['vocher_type'];
-        $vou -> voucher_value = $request['vocher_value'];
-        $vou -> voucher_product_id = $request['vocher_product_id'];
+        $vou -> voucher_id = $request['voucher_id'];
+        $vou -> voucher_code = $request['voucher_code'];
+        $vou -> voucher_type = $request['voucher_type'];
+        $vou -> voucher_value = $request['voucher_value'];
+        $vou -> voucher_product_id = $request['voucher_product_id'];
         $vou -> voucher_status = $request['voucher_status'];
         $vou -> save();
 

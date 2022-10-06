@@ -10,13 +10,11 @@ class Voucher extends Model
 {
    use HasFactory;
    protected $table = "vouchers";
-   public $primaryKey = "id";
-   public $timestamps = true;
    protected $fillable = [
        'id',
        'code',
        'type',
-       'value',      
+       'value',    
        'status',
        'product_id',
        'deleted_at'

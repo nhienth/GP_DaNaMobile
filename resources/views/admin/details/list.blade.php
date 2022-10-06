@@ -18,7 +18,7 @@
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="index.html">Trang chủ</a>
                                         </li>
-                                        <li class="breadcrumb-item"><a href="#">ơn Hàng Chi Tiết</a>
+                                        <li class="breadcrumb-item"><a href="#">Đơn Hàng Chi Tiết</a>
                                         </li>
                                         <li class="breadcrumb-item active">Danh sách
                                         </li>
@@ -104,13 +104,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($od as $orderdetails)
+                                @foreach ($order_details as $detail)
                                 <tr data-dt-row="" data-dt-column="">
-                                    <td>{{$orderdetails->id}}</td>
-                                    <td>{{$orderdetails->quantity}}</td>
-                                    <td>{{$orderdetails->total_amount}}</td>
-                                    <td>{{$orderdetails->order_id}}</td>
-                                    <td>{{$orderdetails->product_id}}</td>
+                                    <td>{{$detail->id}}</td>
+                                    <td>{{$detail->quantity}}</td>
+                                    <td>{{$detail->total_amount}}</td>
+                                    <td>{{$detail->order_id}}</td>
+                                    <td>{{$detail->product_id}}</td>
                                 </tr>
                                 @endforeach
                             </tbody>

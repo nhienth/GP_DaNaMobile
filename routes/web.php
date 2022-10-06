@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\VoucherController;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\OrderDetailsController;
+use App\Http\Controllers\DetailsController;
 
 
  
@@ -96,16 +96,20 @@ Route::prefix('/admin')->group(function () {
     });
     
     Route::prefix('/voucher')->group(function () {
-        Route::get('/list', [VoucherController::class, 'index']);
+        Route::get('/list', [VoucherController::class, 'index'])->name('voucher.list');
         Route::get('/add',  [VoucherController::class, 'create']);
-        Route::post('/add', [VoucherController::class, 'store']);
+        Route::post('/add', [VoucherController::class, 'store'])->name('voucher.add');
 
-        Route::get('/edit', function() {
-            return view('admin.voucher.edit');
-        });
-
+        Route::get('/edit/{id}', [VoucherController::class, 'edit'])->name('voucher.edit');
+        Route::put('/update/{id}',[VoucherController::class,'update'])->name('voucher.update');
+            
     });
     
+    
+    Route::prefix('/details')->group(function () {
+        Route::get('/list',[DetailsController::class, 'index'])->name('details.show');
+                
+        });
 
     Route::prefix('/post')->group(function () {
         Route::get('/add', function() {
@@ -142,16 +146,16 @@ Route::prefix('/admin')->group(function () {
         });
     });
 
-    Route::prefix('/orderdetails')->group(function () {
-        Route::get('/list', [OrderDetailsController::class, 'index']);
-        });
-    
     Route::prefix('/user')->group(function () {
         Route::get('/list', function() {
             return view('admin.user.list');
         });
     });
-   
+    Route::controller(OrderController::class)->group(function () {
+        Route::get('/orders/{id}', 'show');
+        Route::post('/orders', 'store');
+        
+    });
     
 
 // ->middleware(['auth'])->name('dashboard');

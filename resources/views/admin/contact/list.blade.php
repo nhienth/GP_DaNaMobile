@@ -100,7 +100,7 @@
                                     <th>Tiêu đề</th>
                                     <th>Email</th>
                                     <th>Nội dung</th>
-                                    
+                                    <th colspan="2">Hành động</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -111,6 +111,7 @@
                                     <td>{{$contacts->subject}}</td>
                                     <td>{{$contacts->email}}</td>
                                     <td>{{$contacts->message}}</td>
+                                    <td><button type="submit" class="btn btn-primary me-2">Phản hồi</button></td>
                                 </tr>
                                 @endforeach
                             </tbody>

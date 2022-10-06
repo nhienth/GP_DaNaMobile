@@ -43,33 +43,49 @@
                                     <h3 class="card-title fw-bolder">Thêm Voucher</h3>
                                 </div>
                                 <div class="card-body">
-                                    <form class="needs-validation"  novalidate method="POST" action=>
-                                        @csrf
+                                    <form class="needs-validation" novalidate method="POST" action="{{route('voucher.add')}}">
+                                        @csrf                                                                                                         
                                         <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="basic-addon-name">ID</label>
     
-                                            <input type="text" name="category_name" id="basic-addon-name" class="form-control" placeholder="Nhập ID" aria-label="Name" aria-describedby="basic-addon-name" required />
+                                            <input value="" type="text" name="voucher_id" id="basic-addon-name" class="form-control" placeholder="Nhập ID" aria-label="Name" aria-describedby="basic-addon-name" required />
                                             <div class="valid-feedback">Looks good!</div>
                                             <div class="invalid-feedback">Please enter ID.</div>
                                         </div>
                                         <div class="mb-1">
-                                            <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Mã Giảm giá</label>
+                                            <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Mã Giảm Giá</label>
     
-                                            <input type="text" name="category_name" id="basic-addon-name" class="form-control" placeholder="Nhập mã giảm giá" aria-label="Name" aria-describedby="basic-addon-name" required />
+                                            <input value="" type="text" name="voucher_code" id="basic-addon-name" class="form-control" placeholder="Nhập mã giảm giá" aria-label="Name" aria-describedby="basic-addon-name" required />
                                             <div class="valid-feedback">Looks good!</div>
                                             <div class="invalid-feedback">Please enter Code.</div>
                                         </div>
                                         <div class="mb-1">
-                                            <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Loại Hình</label>
-    
-                                            <input type="text" name="category_name" id="basic-addon-name" class="form-control" placeholder="Nhập loại hình" aria-label="Name" aria-describedby="basic-addon-name" required />
-                                            <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please enter type.</div>
+                                            <label
+                                            class="form-label"
+                                            for="select-country1"
+                                            >Loại Hình</label
+                                        >
+                                        <select
+                                            class="form-select"
+                                            id="select-country1"
+                                            required
+                                        >
+                                            <option value="">
+                                               Nhập loại hình
+                                            </option>
+                                            <option value="usa">
+                                                Giảm Tiền
+                                            </option>
+                                            <option value="uk">
+                                                Giảm %
+                                            </option>
+                                           
+                                        </select>
                                         </div>
                                         <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Giá Trị</label>
     
-                                            <input type="text" name="category_name" id="basic-addon-name" class="form-control" placeholder="Nhập giá trị" aria-label="Name" aria-describedby="basic-addon-name" required />
+                                            <input value="" type="text" name="voucher_value" id="basic-addon-name" class="form-control" placeholder="Nhập giá trị" aria-label="Name" aria-describedby="basic-addon-name" required />
                                             <div class="valid-feedback">Looks good!</div>
                                             <div class="invalid-feedback">Please enter value</div>
                                         </div>
@@ -77,20 +93,20 @@
                                         <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Trạng Thái</label>
     
-                                            <input type="text" name="category_name" id="basic-addon-name" class="form-control" placeholder="Nhập trạng thái" aria-label="Name" aria-describedby="basic-addon-name" required />
+                                            <input value="" type="text" name="voucher_status" id="basic-addon-name" class="form-control" placeholder="Nhập trạng thái" aria-label="Name" aria-describedby="basic-addon-name" required />
                                             <div class="valid-feedback">Looks good!</div>
                                             <div class="invalid-feedback">Please enter status.</div>
                                         </div>
                                         <div class="mb-1">
-                                            <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Mã Sản Phẩm</label>
+                                            <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Mã Sản Phẩm </label>
     
-                                            <input type="text" name="category_name" id="basic-addon-name" class="form-control" placeholder="Nhập mã sản phẩm" aria-label="Name" aria-describedby="basic-addon-name" required />
+                                            <input value="" type="text" name="voucher_product_id" id="basic-addon-name" class="form-control" placeholder="Nhập mã sản phẩm" aria-label="Name" aria-describedby="basic-addon-name" required />
                                             <div class="valid-feedback">Looks good!</div>
                                             <div class="invalid-feedback">Please enter product Id.</div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary me-2">Thêm voucher</button>
-                                        <button type="submit" class="btn btn-primary me-2">Nhập lại voucher</button>
-                                        <button type="button" class="btn btn-primary">Danh sách</button>
+                                        <a href="{{route('voucher.add')}}"><button type="submit" class="btn btn-primary me-2">Thêm mới</button>
+                                        <button type="submit" class="btn btn-primary me-2">Nhập lại</button>
+                                        <a href="{{route('voucher.list')}}"></a><button type="button" class="btn btn-primary">Danh sách</button>
                                     </form>
                                 </div>
                             </div>
