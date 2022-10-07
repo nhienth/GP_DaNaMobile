@@ -76,6 +76,12 @@
         <script src="{{asset('client/assets/js/components/hs.go-to.js')}}"></script>
         <script src="{{asset('client/assets/js/components/hs.selectpicker.js')}}"></script>
 
+
+
+
+
+
+        
         <!-- JS Plugins Init. -->
         <script>
             $(window).on('load', function () {
@@ -178,5 +184,6 @@
                 $.HSCore.components.HSSelectPicker.init('.js-select');
             });
         </script>
+        
     </body>
 </html>

@@ -25,6 +25,8 @@ class ProductController extends Controller
         $categories = Category::all();
         $products = Product::with('category')->orderBy('products.id', 'desc')->get();
 
+        dd($products);
+
         return view('admin.products.list', compact(['categories', 'products']));
     }
 
@@ -77,6 +79,7 @@ class ProductController extends Controller
         }
 
         return redirect('/admin/product/list');
+       
     }
 
     /**
@@ -131,7 +134,11 @@ class ProductController extends Controller
 
         foreach ($specfication_options as $specfication_option) {
             $specfication = ProductSpecificationsOptionsValue::where('product_id', $id)
-                ->where('specification_name', 'LIKE', $specfication_option->specification_name)->first();
+            ->where('specification_name', 'LIKE', $specfication_option->specification_name)
+            ->first();
+            
+            $nspecfication_value = $specfication->id."_value";
+            $specfication -> specification_value = $request-> $nspecfication_value;
 
             $nspecfication_value = $specfication->id . "_value";
             $specfication->specification_value = $request->$nspecfication_value;

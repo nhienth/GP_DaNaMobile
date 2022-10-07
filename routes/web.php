@@ -7,6 +7,14 @@ use App\Http\Controllers\ProductController;
 use App\Models\Slider\SliderModel;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\PostController;
+
+use App\Http\Controllers\VoucherController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\DetailsController;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -48,7 +56,7 @@ Route::prefix('/admin')->group(function () {
     Route::get('/', function () {
         return view('admin.index');
     });
-    Route::prefix('/category')->group(function () {
+    Route::prefix('/categories')->group(function () {
         Route::get('/list', [CategoryController::class, 'index']);
         Route::get('/create', [CategoryController::class, 'create']);
         Route::post('/create', [CategoryController::class, 'store']);
@@ -83,27 +91,31 @@ Route::prefix('/admin')->group(function () {
     });
 
     Route::prefix('/voucher')->group(function () {
-        Route::get('/add', function () {
-            return view('admin.voucher.create');
-        });
-        Route::get('/list', function () {
-            return view('admin.voucher.list');
-        });
-        Route::get('/edit', function () {
-            return view('admin.voucher.edit');
-        });
+        Route::get('/list', [VoucherController::class, 'index'])->name('voucher.list');
+        Route::get('/add',  [VoucherController::class, 'create']);
+        Route::post('/add', [VoucherController::class, 'store'])->name('voucher.add');
+
+        Route::get('/edit/{id}', [VoucherController::class, 'edit'])->name('voucher.edit');
+        Route::put('/update/{id}', [VoucherController::class, 'update'])->name('voucher.update');
+    });
+
+
+    Route::prefix('/details')->group(function () {
+        Route::get('/list', [DetailsController::class, 'index'])->name('details.show');
     });
 
     Route::prefix('/post')->group(function () {
-        Route::get('/add', function () {
-            return view('admin.post.create');
-        });
-        Route::get('/list', function () {
-            return view('admin.post.list');
-        });
-        Route::get('/edit', function () {
-            return view('admin.post.edit');
-        });
+        Route::get('/list', [PostController::class, 'index']);
+
+        Route::get('/create', [PostController::class, 'create']);
+        Route::post('/create', [PostController::class, 'store']);
+
+        Route::get('/edit/{id}', [PostController::class, 'edit']);
+        Route::post('/update/{id}', [PostController::class, 'update']);
+
+        Route::get('/details/{id}', [PostController::class, 'show']);
+
+        Route::get('/delete/{id}', [PostController::class, 'destroy']);
     });
 
     Route::prefix('/banner')->group(function () {
@@ -125,10 +137,9 @@ Route::prefix('/admin')->group(function () {
     });
 
     Route::prefix('/contact')->group(function () {
-        Route::get('/list', function () {
-            return view('admin.contact.list');
-        });
+        Route::get('/list', [ContactController::class, 'index']);
     });
+
 
     Route::prefix('/user')->group(function () {
         Route::get('/list', function () {
@@ -154,7 +165,6 @@ Route::prefix('/admin')->group(function () {
         Route::get('/delete/{id}', [BannerController::class, 'destroy']);
     });
 });
-
 
 
 // ->middleware(['auth'])->name('dashboard');
