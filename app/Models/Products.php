@@ -36,11 +36,21 @@ class Products extends Model
         );
     }
 
-    public function specfications() {
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
+
+    public function specfications()
+    {
         return $this->hasMany(ProductSpecificationsOptionsValue::class, 'product_id');
     }
     public function combinations(){
         return $this->hasMany(Combinations::class,'product_id');
     }
 
+    public function voucher_product()
+    {
+        return $this->hasOne(Voucher::class, 'product_id', 'id');
+    }
 }

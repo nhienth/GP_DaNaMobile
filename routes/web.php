@@ -8,6 +8,10 @@ use App\Http\Controllers\PreviewController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProductController;
+use App\Models\Slider\SliderModel;
+use App\Http\Controllers\BannerController;
+use App\Http\Controllers\SliderController;
+use App\Http\Controllers\VoucherController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +31,7 @@ Route::get('/', function () {
 Route::get('/product-detail', function () {
     return view('client.products.product_details');
 });
-    
+
 Route::get('/product-bycate', function () {
     return view('client.products.product_ bycate');
 });
@@ -49,82 +53,62 @@ Route::prefix('/admin')->group(function () {
     Route::get('/', function () {
         return view('admin.index');
     });
-    Route::prefix('/categories')->group(function () {
+    Route::prefix('/category')->group(function () {
         Route::get('/list', [CategoryController::class, 'index']);
-        Route::get('/add', [CategoryController::class, 'create']);
-        Route::post('/add', [CategoryController::class, 'store']);
-
-        Route::get('/edit', function() {
-            return view('admin.category.edit');
-        });
-
+        Route::get('/create', [CategoryController::class, 'create']);
+        Route::post('/create', [CategoryController::class, 'store']);
+        Route::get('/update/{id}', [CategoryController::class, 'edit']);
+        Route::post('/update/{id}', [CategoryController::class, 'update']);
+        Route::get('/delete/{id}', [CategoryController::class, 'destroy']);
     });
 
     Route::prefix('/product')->group(function () {
 
-        Route::get('/create', [ProductController::class, 'create']);
-        Route::get('/list', function() {
-            return view('admin.products.list');
-        });
-        Route::get('/edit', function() {
-            return view('admin.products.edit');
-        });
-        Route::get('/delete', function() {
-            $product = App\Models\Product::find(4);
-            $product->delete();
-            // $product->restore();
-            // dd($product);
-        });
-        Route::get('/restore', function() {
-            App\Models\Product::withTrashed()->where('id',3)->restore();
-        });
+        Route::get('/list', [ProductController::class, 'index']);
 
+        Route::get('/create', [ProductController::class, 'create']);
+        Route::post('/create', [ProductController::class, 'store']);
+
+        Route::get('/edit/{id}', [ProductController::class, 'edit']);
+        Route::post('/update/{id}', [ProductController::class, 'update']);
+
+        Route::get('/delete/{id}', [ProductController::class, 'destroy']);
     });
 
     Route::prefix('/variation')->group(function () {
-        Route::get('/add', function() {
+        Route::get('/add', function () {
             return view('admin.variation.add');
         });
-        Route::get('/list', function() {
+        Route::get('/list', function () {
             return view('admin.variation.list');
         });
-        Route::get('/edit', function() {
+        Route::get('/edit', function () {
             return view('admin.variation.edit');
         });
     });
 
-    Route::prefix('/voucher')->group(function () {
-        Route::get('/add', function() {
-            return view('admin.voucher.create');
-        });
-        Route::get('/list', function() {
-            return view('admin.voucher.list');
-        });
-        Route::get('/edit', function() {
-            return view('admin.voucher.edit');
-        });
-    });
+
 
     Route::prefix('/post')->group(function () {
-        Route::get('/add', function() {
+        Route::get('/add', function () {
             return view('admin.post.create');
         });
-        Route::get('/list', function() {
+        Route::get('/list', function () {
             return view('admin.post.list');
         });
-        Route::get('/edit', function() {
+        Route::get('/edit', function () {
             return view('admin.post.edit');
         });
     });
 
     Route::prefix('/banner')->group(function () {
-        Route::get('/add', function() {
+        Route::get('/add', function () {
             return view('admin.banner.create');
         });
-        Route::get('/list', function() {
+        Route::get('/list', function () {
             return view('admin.banner.list');
         });
-        Route::get('/edit', function() {
+        Route::get('/edit', function () {
             return view('admin.banner.edit');
         });
     });
@@ -135,13 +119,13 @@ Route::prefix('/admin')->group(function () {
     });
 
     Route::prefix('/contact')->group(function () {
-        Route::get('/list', function() {
+        Route::get('/list', function () {
             return view('admin.contact.list');
         });
     });
 
     Route::prefix('/user')->group(function () {
-        Route::get('/list', function() {
+        Route::get('/list', function () {
             return view('admin.user.list');
         });
     });
@@ -150,12 +134,35 @@ Route::prefix('/admin')->group(function () {
         Route::get('/stock_detail/{id}',[StocksController::class,'show']);
     });
 
-});
+    Route::prefix('/slider')->group(function () {
+        Route::get('/list', [SliderController::class, 'index'])->name('slider.list');
+        Route::get('/add', [SliderController::class, 'create'])->name('slider.add');
+        Route::post('/add', [SliderController::class, 'store'])->name('slider.add_process');
+        Route::get('/edit/{id}', [SliderController::class, 'edit'])->name('slider.edit');
+        Route::post('/edit/{id}', [SliderController::class, 'update'])->name('slider.edit_process');
+        Route::get('/delete/{id}', [SliderController::class, 'destroy']);
+    });
 
+    Route::prefix('/banner')->group(function () {
+        Route::get('/list', [BannerController::class, 'index'])->name('banner.list');
+        Route::get('/add', [BannerController::class, 'create'])->name('banner.add');
+        Route::post('/add', [BannerController::class, 'store'])->name('banner.add_process');
+        Route::get('/edit/{id}', [BannerController::class, 'edit'])->name('banner.edit');
+        Route::post('/edit/{id}', [BannerController::class, 'update'])->name('banner.edit_process');
+        Route::get('/delete/{id}', [BannerController::class, 'destroy']);
+    });
+    Route::prefix('/voucher')->group(function () {
+        Route::get('/list', [VoucherController::class, 'index'])->name('voucher.list');
+        Route::get('/add',  [VoucherController::class, 'create']);
+        Route::post('/add', [VoucherController::class, 'store'])->name('voucher.add');
+        Route::get('/edit/{id}', [VoucherController::class, 'edit']);
+        Route::post('/update/{id}', [VoucherController::class, 'update']);
+        Route::get('/delete/{id}', [VoucherController::class, 'destroy']);
+    });
+});
 
 
 
 // ->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
-
+require __DIR__ . '/auth.php';

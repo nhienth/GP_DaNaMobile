@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class ProductSpecificationsOptionsValue extends Model
 {
     use HasFactory;
-    protected $table = 'product_spec_options_value';
+    protected $table = 'pro_spec_options_value';
 
     protected $fillable = [
+        'specification_name',
         'specification_value',
         'product_id',
     ];

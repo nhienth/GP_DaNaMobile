@@ -1,5 +1,6 @@
 @extends('admin.layouts.master')
 @section('main')
+<!-- BEGIN: Content-->
 <div class="app-content content ">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
@@ -8,16 +9,14 @@
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-start mb-0">Blog Edit</h2>
+                            <h2 class="content-header-title float-start mb-0">Sửa Voucher</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a>
+                                    <li class="breadcrumb-item"><a href="index.html">Trang chủ</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="#">Pages</a>
+                                    <li class="breadcrumb-item"><a href="#">Voucher</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="#">Blog</a>
-                                    </li>
-                                    <li class="breadcrumb-item active">Edit
+                                    <li class="breadcrumb-item active">Thêm mới
                                     </li>
                                 </ol>
                             </div>
@@ -34,106 +33,99 @@
                 </div>
             </div>
             <div class="content-body">
-                <!-- Blog Edit -->
-                <div class="blog-edit-wrapper">
+                <!-- Validation -->
+                <section class="bs-validation">
                     <div class="row">
-                        <div class="col-12">
+                        <!-- Bootstrap Validation -->
+                        <div class="col-md-8 col-12" style="margin : 0 auto">
                             <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title fw-bolder">Sửa Voucher</h3>
+                                </div>
                                 <div class="card-body">
-                                    <div class="d-flex align-items-start">
-                                        <div class="avatar me-75">
-                                            <img src="../../../app-assets/images/portrait/small/avatar-s-9.jpg" width="38" height="38" alt="Avatar" />
+                                    <form class="needs-validation" novalidate method="POST" action="{{url('admin/voucher/update',[$voucher->id])}}">
+                                        @csrf
+                                  
+                                            
+                                        
+                                        {{-- <div class="mb-1">
+                                            <label class="form-label fs-5 fw-bolder" for="basic-addon-name">ID</label>
+    
+                                            <input value="{{$voucher->id}}" type="text" name="voucher_id" id="basic-addon-name" class="form-control" placeholder="Nhập ID" aria-label="Name" aria-describedby="basic-addon-name" required />
+                                            <div class="valid-feedback">Looks good!</div>
+                                            <div class="invalid-feedback">Please enter ID.</div>
+                                        </div> --}}
+                                        <div class="mb-1">
+                                            <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Mã Giảm Giá</label>
+    
+                                            <input value="{{$voucher->code}}" type="text" name="voucher_code" id="basic-addon-name" class="form-control" placeholder="Nhập mã giảm giá" aria-label="Name" aria-describedby="basic-addon-name" required />
+                                            <div class="valid-feedback">Looks good!</div>
+                                            <div class="invalid-feedback">Please enter Code.</div>
                                         </div>
-                                        <div class="author-info">
-                                            <h6 class="mb-25">Chad Alexander</h6>
-                                            <p class="card-text">May 24, 2020</p>
-                                        </div>
-                                    </div>
-                                    <!-- Form -->
-                                    <form action="javascript:;" class="mt-2">
-                                        <div class="row">
-                                            <div class="col-md-6 col-12">
-                                                <div class="mb-2">
-                                                    <label class="form-label" for="blog-edit-slug">ID</label>
-                                                    <input type="text" id="blog-edit-slug" class="form-control" value="" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="mb-2">
-                                                    <label class="form-label" for="blog-edit-title">Code</label>
-                                                    <input type="text" id="blog-edit-title" class="form-control" value="" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="mb-2">
-                                                    <label class="form-label" for="blog-edit-category">type</label>
-                                                    <select class="form-select" id="blog-edit-status">
-                                                        <option value="Published">Published</option>
-                                                        <option value="Pending">Pending</option>
-                                                        <option value="Draft">Draft</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="mb-2">
-                                                    <label class="form-label" for="blog-edit-slug">value</label>
-                                                    <input type="text" id="blog-edit-slug" class="form-control" value="" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="mb-2">
-                                                    <label class="form-label" for="blog-edit-status">Product ID</label>
-                                                    <select class="form-select" id="blog-edit-status">
-                                                        <option value="Published">Published</option>
-                                                        <option value="Pending">Pending</option>
-                                                        <option value="Draft">Draft</option>
-                                                    </select>
-                                                </div>
-                                            </div>
+                                        <div class="mb-1">
+                                            <label
+                                            class="form-label"
+                                            for="select-country1"
+                                            >Loại Hình</label
+                                        >
+                                        <select
+                                            class="form-select"
+                                            id="select-country1" name="voucher_type"
+                                            required value="{{$voucher->type}}"
+                                        >
+                                            <option value="Giảm theo tiền">
+                                                Giảm Theo Tiền
+                                            </option>
+                                            <option value="Giảm theo %">
+                                                Giảm Theo %
+                                            </option>
                                            
-                                            <div class="col-md-6 col-12">
-                                                <div class="mb-2">
-                                                    <label class="form-label" for="blog-edit-status">Status</label>
-                                                    <select class="form-select" id="blog-edit-status">
-                                                        <option value="Published">Published</option>
-                                                        <option value="Pending">Pending</option>
-                                                        <option value="Draft">Draft</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 mb-2">
-                                                <div class="border rounded p-2">
-                                                    <h4 class="mb-1">Featured Image</h4>
-                                                    <div class="d-flex flex-column flex-md-row">
-                                                        <img src="../../../app-assets/images/slider/03.jpg" id="blog-feature-image" class="rounded me-2 mb-1 mb-md-0" width="170" height="110" alt="Blog Featured Image" />
-                                                        <div class="featured-info">
-                                                            <small class="text-muted">Required image resolution 800x400, image size 10mb.</small>
-                                                            <p class="my-50">
-                                                                <a href="#" id="blog-image-text">C:\fakepath\banner.jpg</a>
-                                                            </p>
-                                                            <div class="d-inline-block">
-                                                                <input class="form-control" type="file" id="blogCustomFile" accept="image/*" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 mt-50">
-                                                <button type="submit" class="btn btn-primary me-1">Edit</button>
-                                                <button type="reset" class="btn btn-outline-secondary">Cancel</button>
-                                            </div>
+                                        </select>
                                         </div>
+                                        <div class="mb-1">
+                                            <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Giá Trị</label>
+    
+                                            <input value="{{$voucher->value}}" type="text" name="voucher_value" id="basic-addon-name" class="form-control" placeholder="Nhập giá trị" aria-label="Name" aria-describedby="basic-addon-name" required />
+                                            <div class="valid-feedback">Looks good!</div>
+                                            <div class="invalid-feedback">Please enter value</div>
+                                        </div>
+                                        
+                                        <div class="mb-1">
+                                            <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Trạng Thái</label>
+    
+                                            <input value="{{$voucher->status}}" type="text" name="voucher_status" id="basic-addon-name" class="form-control" placeholder="Nhập trạng thái" aria-label="Name" aria-describedby="basic-addon-name" required />
+                                            <div class="valid-feedback">Looks good!</div>
+                                            <div class="invalid-feedback">Please enter status.</div>
+                                        </div>
+                                        <div class="mb-1">
+                                            <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Mã Sản Phẩm </label>
+                            
+                                            <select name="voucher_product_id"  class="form-select"
+                                            id="select-country1" > Chọn mã sản phẩm
+                                                @foreach ($result as  $rs)
+                                                <option  value="{{$rs->id}}"> {{$rs->product_name}}</option>
+                                                @endforeach
+                                            </select>
+                                            
+                                        </div>
+                                      <button type="submit" class="btn btn-primary me-2">Cập nhật</button>
+                                        <button type="submit" class="btn btn-primary me-2">Nhập lại</button>
+                                        <button type="button" class="btn btn-primary">Danh sách</button>
                                     </form>
-                                    <!--/ Form -->
                                 </div>
                             </div>
                         </div>
+                        <!-- /Bootstrap Validation -->
+    
+                        <!-- jQuery Validation -->
+                        
+                        <!-- /jQuery Validation -->
                     </div>
-                </div>
-                <!--/ Blog Edit -->
-
+                </section>
+                <!-- /Validation -->
+    
             </div>
         </div>
     </div>
+    <!-- END: Content-->
 @endsection
-
