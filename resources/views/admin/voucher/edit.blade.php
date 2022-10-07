@@ -43,18 +43,18 @@
                                     <h3 class="card-title fw-bolder">Sửa Voucher</h3>
                                 </div>
                                 <div class="card-body">
-                                    <form class="needs-validation" novalidate method="POST" action="{{route('voucher.edit',$voucher->id)}}">
+                                    <form class="needs-validation" novalidate method="POST" action="{{url('admin/voucher/update',[$voucher->id])}}">
                                         @csrf
-                                        @method('put')
+                                  
                                             
                                         
-                                        <div class="mb-1">
+                                        {{-- <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="basic-addon-name">ID</label>
     
                                             <input value="{{$voucher->id}}" type="text" name="voucher_id" id="basic-addon-name" class="form-control" placeholder="Nhập ID" aria-label="Name" aria-describedby="basic-addon-name" required />
                                             <div class="valid-feedback">Looks good!</div>
                                             <div class="invalid-feedback">Please enter ID.</div>
-                                        </div>
+                                        </div> --}}
                                         <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Mã Giảm Giá</label>
     
@@ -63,11 +63,24 @@
                                             <div class="invalid-feedback">Please enter Code.</div>
                                         </div>
                                         <div class="mb-1">
-                                            <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Loại Hình</label>
-    
-                                            <input value="{{$voucher->type}}" type="text" name="voucher_type" id="basic-addon-name" class="form-control" placeholder="Nhập loại hình" aria-label="Name" aria-describedby="basic-addon-name" required />
-                                            <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please enter type.</div>
+                                            <label
+                                            class="form-label"
+                                            for="select-country1"
+                                            >Loại Hình</label
+                                        >
+                                        <select
+                                            class="form-select"
+                                            id="select-country1" name="voucher_type"
+                                            required value="{{$voucher->type}}"
+                                        >
+                                            <option value="Giảm theo tiền">
+                                                Giảm Theo Tiền
+                                            </option>
+                                            <option value="Giảm theo %">
+                                                Giảm Theo %
+                                            </option>
+                                           
+                                        </select>
                                         </div>
                                         <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Giá Trị</label>
@@ -86,14 +99,18 @@
                                         </div>
                                         <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Mã Sản Phẩm </label>
-    
-                                            <input value="{{$voucher->product_id}}" type="text" name="voucher_product_id" id="basic-addon-name" class="form-control" placeholder="Nhập mã sản phẩm" aria-label="Name" aria-describedby="basic-addon-name" required />
-                                            <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please enter product Id.</div>
+                            
+                                            <select name="voucher_product_id"  class="form-select"
+                                            id="select-country1" > Chọn mã sản phẩm
+                                                @foreach ($result as  $rs)
+                                                <option  value="{{$rs->id}}"> {{$rs->product_name}}</option>
+                                                @endforeach
+                                            </select>
+                                            
                                         </div>
-                                        <a href="{{route('voucher.update/{id}')}}"><button type="submit" class="btn btn-primary me-2">Cập nhật</button>
-                                        <a href="{{route('voucher.edit/{id}')}}"><button type="submit" class="btn btn-primary me-2">Nhập lại</button>
-                                        <a href="{{route('voucher.list')}}"></a><button type="button" class="btn btn-primary">Danh sách</button>
+                                      <button type="submit" class="btn btn-primary me-2">Cập nhật</button>
+                                        <button type="submit" class="btn btn-primary me-2">Nhập lại</button>
+                                        <button type="button" class="btn btn-primary">Danh sách</button>
                                     </form>
                                 </div>
                             </div>

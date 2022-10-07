@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Voucher;
 use Illuminate\Http\Request;
+use App\Models\Product;
+use GuzzleHttp\Handler\Proxy;
 
 class VoucherController extends Controller
 {
@@ -18,8 +21,8 @@ class VoucherController extends Controller
     }
     public function index()
     {
-       $result = $this->voucher->all();
-       return view('admin.voucher.list', compact('result'));
+        $result = $this->voucher->all();
+        return view('admin.voucher.list', compact('result'));
     }
 
     /**
@@ -29,8 +32,18 @@ class VoucherController extends Controller
      */
     public function create()
     {
-       return view('admin.voucher.create');
+        $voucher = new Product();
+        $result = $voucher::all();
+        // foreach ($result as $rs) {
+        //     $product_id = $rs->voucher_product->product_id;
+        // }
+        // echo $product_id;
+        // $product = new Product();
+        // $result_product = $product::all();
 
+
+        // dd($result);
+        return view('admin.voucher.create', compact('result'));
     }
 
     /**
@@ -41,17 +54,19 @@ class VoucherController extends Controller
      */
     public function store(Request $request)
     {
-       
+
         $vou = new Voucher();
         $vouchers = Voucher::all();
-        $vou -> voucher_id = $request['vocher_id'];
-        $vou -> voucher_code = $request['vocher_code'];
-        $vou -> voucher_type = $request['vocher_type'];
-        $vou -> voucher_value = $request['vocher_value'];
-        $vou -> voucher_product_id = $request['vocher_product_id'];
-        $vou -> voucher_status = $request['voucher_status'];
-        $vou -> save();
-        
+        // $vou->voucher_id = $request['vocher_id'];
+        $vou->code = $request['voucher_code'];
+        $vou->type = $request['voucher_type'];
+        $vou->value = $request['voucher_value'];
+        $vou->product_id = $request['voucher_product_id'];
+        $vou->status = $request['voucher_status'];
+        $vou->save();
+        // if (Voucher::create($request->all())) {
+        //     return redirect()->route('voucher.list')->with('success', 'Thêm thành công');
+        // }
         return redirect()->route('voucher.list')->with('success', 'Thêm thành công');
     }
 
@@ -74,9 +89,9 @@ class VoucherController extends Controller
      */
     public function edit($id)
     {
-       $voucher = $this->voucher->find($id);
-       return view('admin.voucher.edit',compact('voucher'));
-
+        $voucher = $this->voucher->find($id);
+        $result = Product::all();
+        return view('admin.voucher.edit', compact('voucher', 'result'));
     }
 
     /**
@@ -89,16 +104,15 @@ class VoucherController extends Controller
     public function update(Request $request, $id)
     {
         $vou = Voucher::find($id);
-        $vou -> voucher_id = $request['voucher_id'];
-        $vou -> voucher_code = $request['voucher_code'];
-        $vou -> voucher_type = $request['voucher_type'];
-        $vou -> voucher_value = $request['voucher_value'];
-        $vou -> voucher_product_id = $request['voucher_product_id'];
-        $vou -> voucher_status = $request['voucher_status'];
-        $vou -> save();
+        // $vou->voucher_id = $request['voucher_id'];
+        $vou->code = $request['voucher_code'];
+        $vou->type = $request['voucher_type'];
+        $vou->value = $request['voucher_value'];
+        $vou->product_id = $request['voucher_product_id'];
+        $vou->status = $request['voucher_status'];
+        $vou->save();
 
         return redirect()->route('voucher.list')->with('success', 'Sửa thành công');
-
     }
 
     /**
@@ -114,4 +128,3 @@ class VoucherController extends Controller
         return redirect()->route('voucher.list');
     }
 }
-   

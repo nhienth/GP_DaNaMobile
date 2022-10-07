@@ -34,4 +34,9 @@ class Product extends Model
     {
         return $this->hasMany(ProductSpecificationsOptionsValue::class, 'product_id');
     }
+
+    public function voucher_product()
+    {
+        return $this->hasOne(Voucher::class, 'product_id', 'id');
+    }
 }

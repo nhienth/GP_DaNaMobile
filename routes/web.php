@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Models\Slider\SliderModel;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\VoucherController;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,17 +83,7 @@ Route::prefix('/admin')->group(function () {
         });
     });
 
-    Route::prefix('/voucher')->group(function () {
-        Route::get('/add', function () {
-            return view('admin.voucher.create');
-        });
-        Route::get('/list', function () {
-            return view('admin.voucher.list');
-        });
-        Route::get('/edit', function () {
-            return view('admin.voucher.edit');
-        });
-    });
+
 
     Route::prefix('/post')->group(function () {
         Route::get('/add', function () {
@@ -152,6 +143,14 @@ Route::prefix('/admin')->group(function () {
         Route::get('/edit/{id}', [BannerController::class, 'edit'])->name('banner.edit');
         Route::post('/edit/{id}', [BannerController::class, 'update'])->name('banner.edit_process');
         Route::get('/delete/{id}', [BannerController::class, 'destroy']);
+    });
+    Route::prefix('/voucher')->group(function () {
+        Route::get('/list', [VoucherController::class, 'index'])->name('voucher.list');
+        Route::get('/add',  [VoucherController::class, 'create']);
+        Route::post('/add', [VoucherController::class, 'store'])->name('voucher.add');
+        Route::get('/edit/{id}', [VoucherController::class, 'edit']);
+        Route::post('/update/{id}', [VoucherController::class, 'update']);
+        Route::get('/delete/{id}', [VoucherController::class, 'destroy']);
     });
 });
 
