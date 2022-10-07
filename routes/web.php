@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProductController;
 use App\Models\Slider\SliderModel;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\SliderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +26,7 @@ Route::get('/', function () {
 Route::get('/product-detail', function () {
     return view('client.products.product_details');
 });
-    
+
 Route::get('/product-bycate', function () {
     return view('client.products.product_ bycate');
 });
@@ -54,90 +55,86 @@ Route::prefix('/admin')->group(function () {
         Route::get('/update/{id}', [CategoryController::class, 'edit']);
         Route::post('/update/{id}', [CategoryController::class, 'update']);
         Route::get('/delete/{id}', [CategoryController::class, 'destroy']);
-
     });
 
     Route::prefix('/product')->group(function () {
 
-        Route::get('/list', [ProductController::class, 'index']); 
+        Route::get('/list', [ProductController::class, 'index']);
 
-        Route::get('/create', [ProductController::class, 'create']); 
-        Route::post('/create', [ProductController::class, 'store']); 
+        Route::get('/create', [ProductController::class, 'create']);
+        Route::post('/create', [ProductController::class, 'store']);
 
-        Route::get('/edit/{id}', [ProductController::class, 'edit']); 
-        Route::post('/update/{id}', [ProductController::class, 'update']); 
+        Route::get('/edit/{id}', [ProductController::class, 'edit']);
+        Route::post('/update/{id}', [ProductController::class, 'update']);
 
         Route::get('/delete/{id}', [ProductController::class, 'destroy']);
-
-
     });
 
     Route::prefix('/variation')->group(function () {
-        Route::get('/add', function() {
+        Route::get('/add', function () {
             return view('admin.variation.add');
         });
-        Route::get('/list', function() {
+        Route::get('/list', function () {
             return view('admin.variation.list');
         });
-        Route::get('/edit', function() {
+        Route::get('/edit', function () {
             return view('admin.variation.edit');
         });
     });
 
     Route::prefix('/voucher')->group(function () {
-        Route::get('/add', function() {
+        Route::get('/add', function () {
             return view('admin.voucher.create');
         });
-        Route::get('/list', function() {
+        Route::get('/list', function () {
             return view('admin.voucher.list');
         });
-        Route::get('/edit', function() {
+        Route::get('/edit', function () {
             return view('admin.voucher.edit');
         });
     });
 
     Route::prefix('/post')->group(function () {
-        Route::get('/add', function() {
+        Route::get('/add', function () {
             return view('admin.post.create');
         });
-        Route::get('/list', function() {
+        Route::get('/list', function () {
             return view('admin.post.list');
         });
-        Route::get('/edit', function() {
+        Route::get('/edit', function () {
             return view('admin.post.edit');
         });
     });
 
     Route::prefix('/banner')->group(function () {
-        Route::get('/add', function() {
+        Route::get('/add', function () {
             return view('admin.banner.create');
         });
-        Route::get('/list', function() {
+        Route::get('/list', function () {
             return view('admin.banner.list');
         });
-        Route::get('/edit', function() {
+        Route::get('/edit', function () {
             return view('admin.banner.edit');
         });
     });
 
     Route::prefix('/preview')->group(function () {
-        Route::get('/list', function() {
+        Route::get('/list', function () {
             return view('admin.preview.list');
         });
     });
 
     Route::prefix('/contact')->group(function () {
-        Route::get('/list', function() {
+        Route::get('/list', function () {
             return view('admin.contact.list');
         });
     });
 
     Route::prefix('/user')->group(function () {
-        Route::get('/list', function() {
+        Route::get('/list', function () {
             return view('admin.user.list');
         });
     });
-<<<<<<< HEAD
 
     Route::prefix('/slider')->group(function () {
         Route::get('/list', [SliderController::class, 'index'])->name('slider.list');
@@ -157,15 +154,9 @@ Route::prefix('/admin')->group(function () {
         Route::get('/delete/{id}', [BannerController::class, 'destroy']);
     });
 });
-=======
-
-});
-
->>>>>>> a0327c713055c9234b4bd9e3b5fd55dbfb596d53
 
 
 
 // ->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
-
+require __DIR__ . '/auth.php';
