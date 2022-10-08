@@ -24,6 +24,9 @@ return new class extends Migration
                 ->constrained('products_variations_options_value')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+
+            $table->timestamp('deleted_at')->nullable();
+
        
             $table->timestamps();
         });
