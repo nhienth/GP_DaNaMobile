@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -139,9 +140,14 @@ Route::prefix('/admin')->group(function () {
     });
 
     Route::prefix('/user')->group(function () {
-        Route::get('/list', function() {
-            return view('admin.user.list');
-        });
+        Route::get('/list',[UserController::class,'index']);
+        Route::get('/edit/{id}',[UserController::class,'edit']);
+        Route::put('/update/{id}', [UserController::class, 'update']);
+    });
+    Route::prefix('/order')->group(function () {
+        Route::get('/list',[OrderController::class,'index']);
+        Route::get('/edit/{id}',[OrderController::class,'edit']);
+        Route::put('/update/{id}', [OrderController::class, 'update']);
     });
 
 });
