@@ -23,6 +23,9 @@ return new class extends Migration
                 ->constrained('products_combinations')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+
+            $table->timestamp('deleted_at')->nullable();
+
             $table->timestamps();
         });
     }

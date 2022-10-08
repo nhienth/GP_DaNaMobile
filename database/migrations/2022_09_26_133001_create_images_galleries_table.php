@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('small');
             $table->string('medium');
             $table->string('large');
+            $table->timestamp('deleted_at')->nullable();
+
             $table->timestamps();
         });
     }
