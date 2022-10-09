@@ -15,9 +15,11 @@ return new class extends Migration
     {
         Schema::create('images_galleries', function (Blueprint $table) {
             $table->id();
-            $table->string('small');
+            $table->string('small')->nullable();
             $table->string('medium');
-            $table->string('large');
+            $table->string('large')->nullable();
+            $table->timestamp('deleted_at')->nullable();
+
             $table->timestamps();
         });
     }

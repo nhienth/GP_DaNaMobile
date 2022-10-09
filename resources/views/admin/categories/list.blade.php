@@ -79,14 +79,7 @@
                                         <div class="dt-buttons d-inline-flex mt-50">
                                             <button class="dt-button buttons-collection btn btn-outline-secondary dropdown-toggle me-2" 
                                             tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="true">Xuất</button>
-                                            {{-- <div class="dt-button-collection" style="top: 148.625px; left: 889.488px;">
-                                                <div role="menu">
-                                                    <button class="dt-button buttons-print dropdown-item" tabindex="0" type="button">Print</button>
-                                                    <button class="dt-button buttons-print dropdown-item" tabindex="0" type="button">Print</button>
-                                                    <button class="dt-button buttons-print dropdown-item" tabindex="0" type="button">Print</button>
-                                                </div>
-                                            </div> --}}
-                                            <a href="http://localhost:8000/admin/categories/create" style="color:white;"><button type="button" class="dt-button add-new btn btn-primary" tabindex="0" data-bs-target="#modals-slide-in" aria-controls="DataTables_Table_0">
+                                            <a href="{{url('admin/category/create')}}" style="color:white;"><button type="button" class="dt-button add-new btn btn-primary" tabindex="0" data-bs-target="#modals-slide-in" aria-controls="DataTables_Table_0">
                                                 Thêm Danh mục mới
                                             </button></a>
                                         </div>
@@ -107,15 +100,15 @@
                             </thead>
                             <tbody>
                                 <?php $i = 0 ?>
-                                @foreach ($categoryList as $item)
+                                @foreach ($categories as $category)
                                 <tr data-dt-row="" data-dt-column="">                                 
                                        <td>{{++$i}}</td>
-                                       <td>{{$item->id}}</td>
-                                       <td>{{$item->category_name}}</td>
-                                       <td>i{{$item->category_image}}</td>
-                                       <td>{{$item->parent_id}}</td>
-                                       <td><a href="http://localhost:8000/admin/categories/update/{{$item->id}}"><button type="button" class="btn btn-gradient-success"><i data-feather='edit'></i></button></a></td>
-                                       <td><a href="http://localhost:8000/admin/categories/delete/{{$item->id}}"><button type="button" class="btn btn-gradient-danger"><i data-feather='trash-2'></i></button></a></td>                              
+                                       <td>{{$category->id}}</td>
+                                       <td>{{$category->category_name}}</td>
+                                       <td>{{$category->category_image}}</td>
+                                       <td>{{$category->parent_cate}}</td>
+                                       <td><a href="http://localhost:8000/admin/category/update/{{$category->id}}"><button type="button" class="btn btn-gradient-success"><i data-feather='edit'></i></button></a></td>
+                                       <td><a href="http://localhost:8000/admin/category/delete/{{$category->id}}"><button type="button" class="btn btn-gradient-danger"><i data-feather='trash-2'></i></button></a></td>                              
                                 </tr>
                                 @endforeach
                             </tbody>

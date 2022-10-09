@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Products extends Model
+class Product extends Model
 {
     use HasFactory;
 
@@ -18,7 +18,9 @@ class Products extends Model
         'product_name',
         'product_img',
         'category_id',
-        'product_view'
+        'product_desc',
+        'product_view',
+        'product_status'
     ];
 
     protected $attributes = [
@@ -53,4 +55,24 @@ class Products extends Model
     {
         return $this->hasOne(Voucher::class, 'product_id', 'id');
     }
+
+    public function variations(){
+        return $this->hasMany(Variation_Option::class,'product_id');
+    }
+
+    public function variation_value()
+    {
+        return $this->hasManyThrough(
+            Variation_Option_Value::class,
+            Variation_Option::class,
+            'product_id', 
+            'products_variation_id',
+            'id', 
+            'id' 
+        );
+    }
+
+
+
+
 }

@@ -17,7 +17,13 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('admin.categories.list', ['categoryList' => $categories]);
+        foreach ($categories as $category) {
+            $parent_id = $category->parent_id;
+            $partenCateName = $this->getCategoryName($parent_id);
+            $category['parent_cate'] = $partenCateName;
+        }
+        return view('admin.categories.list', compact('categories'));
+
     }
 
     /**
@@ -62,6 +68,15 @@ class CategoryController extends Controller
         $categorySelect = $this->res_selected(0, $category->parent_id, $id);
         return view('admin.categories.edit', compact('categorySelect', 'category'));
     }
+
+    public function getCategoryName($id) {
+        if($id != 0) {
+            $category = Category::find($id);
+            return $category->category_name;
+        }
+        
+    }
+
     function res_selected($i, $parent_id, $id, $text = '')
     {
         $data = Category::all();
@@ -135,8 +150,11 @@ class CategoryController extends Controller
         $cate->save();
         $categorySelect = $this->res(0);
 
-        $categories = Category::all();
-        return view('admin.categories.list', compact('categorySelect'), ['categoryList' => $categories]);
+        return redirect('admin/category/list');
+
+
+        // $categories = Category::all();
+        // return view('admin.categories.list', compact('categorySelect'), ['categoryList' => $categories]);
     }
 
 

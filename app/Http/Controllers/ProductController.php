@@ -6,10 +6,10 @@ use App\Http\Controllers\CategoryController;
 
 use Illuminate\Support\Facades\Auth;
 use Validator;
-use App\Models\Product;
 use App\Models\Category;
 use App\Models\ProductSpecificationsOptions;
 use App\Models\ProductSpecificationsOptionsValue;
+use App\Models\Product;
 
 use Illuminate\Http\Request;
 
@@ -24,9 +24,6 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         $products = Product::with('category')->orderBy('products.id', 'desc')->get();
-
-        // dd($products);
-
         return view('admin.products.list', compact(['categories', 'products']));
     }
 

@@ -48,6 +48,7 @@ class SliderController extends Controller
             // dd($file_name);
             $file->move(public_path('img'), $file_name);
         }
+        
         $request->merge(['slider_img' => $file_name]);
         // dd($request->all());
         if (Slider::create($request->all())) {

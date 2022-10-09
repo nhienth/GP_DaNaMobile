@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\UserController;
 use App\Models\Stocks;
 use App\Http\Controllers\StocksController;
 use App\Http\Controllers\CombinationsController;
@@ -8,11 +10,15 @@ use App\Http\Controllers\PreviewController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\VariationController;
 use App\Models\Slider\SliderModel;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\SliderController;
+<<<<<<< HEAD
 use App\Http\Controllers\VoucherController;
 use App\Http\Controllers\OrderDetailsController;
+=======
+>>>>>>> 312ef52ae33d3476dac3eca5196464a85a933800
 
 /*
 |--------------------------------------------------------------------------
@@ -74,6 +80,11 @@ Route::prefix('/admin')->group(function () {
         Route::post('/update/{id}', [ProductController::class, 'update']);
 
         Route::get('/delete/{id}', [ProductController::class, 'destroy']);
+
+        Route::get('/addVariation/{id}', [VariationController::class, 'create'] );
+        Route::post('/addVariation', [VariationController::class, 'store'] );
+
+        Route::get('/test/{id}', [VariationController::class, 'test'] );
     });
 
     Route::prefix('/variation')->group(function () {
@@ -130,9 +141,14 @@ Route::prefix('/admin')->group(function () {
     });
 
     Route::prefix('/user')->group(function () {
-        Route::get('/list', function () {
-            return view('admin.user.list');
-        });
+        Route::get('/list',[UserController::class,'index']);
+        Route::get('/edit/{id}',[UserController::class,'edit']);
+        Route::put('/update/{id}', [UserController::class, 'update']);
+    });
+    Route::prefix('/order')->group(function () {
+        Route::get('/list',[OrderController::class,'index']);
+        Route::get('/edit/{id}',[OrderController::class,'edit']);
+        Route::put('/update/{id}', [OrderController::class, 'update']);
     });
     Route::prefix('/stocks')->group(function () {
         Route::get('/list',[StocksController::class,'index']);
