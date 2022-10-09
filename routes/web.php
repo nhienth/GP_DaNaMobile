@@ -8,10 +8,10 @@ use App\Http\Controllers\PreviewController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\VariationController;
 use App\Models\Slider\SliderModel;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\SliderController;
-use App\Http\Controllers\VoucherController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,6 +73,11 @@ Route::prefix('/admin')->group(function () {
         Route::post('/update/{id}', [ProductController::class, 'update']);
 
         Route::get('/delete/{id}', [ProductController::class, 'destroy']);
+
+        Route::get('/addVariation/{id}', [VariationController::class, 'create'] );
+        Route::post('/addVariation', [VariationController::class, 'store'] );
+
+        Route::get('/test/{id}', [VariationController::class, 'test'] );
     });
 
     Route::prefix('/variation')->group(function () {

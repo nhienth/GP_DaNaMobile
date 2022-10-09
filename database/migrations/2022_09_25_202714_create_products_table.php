@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('product_name', 150);
             $table->string('product_img');
             $table->integer('product_view');
+            $table->text('product_desc');
+            $table->boolean('product_status');
 
             $table->foreignId('category_id')
                 ->constrained('categories')

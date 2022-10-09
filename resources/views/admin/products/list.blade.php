@@ -112,7 +112,7 @@
                                             <td>{{$product->product_view}}</td>
                                             <td>Trạng thái</td>
                                             <td>
-                                                <a href=""><button type="button" class="btn btn-info"><i data-feather='plus'></i></button></a>
+                                                <a href="{{url('admin/product/addVariation',[$product->id])}}"><button type="button" class="btn btn-info"><i data-feather='plus'></i></button></a>
                                             </td>
                                             <td>
                                                 <a href="{{url('admin/product/edit', [$product->id])}}"><button type="button" class="btn btn-success"><i data-feather='edit'></i></button></a>
