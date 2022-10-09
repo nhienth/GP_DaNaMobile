@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Product extends Model
+class Products extends Model
 {
     use HasFactory;
 
@@ -24,13 +24,33 @@ class Product extends Model
     protected $attributes = [
         'product_view' => 0
     ];
+    public function stock()
+    {
+        return $this->hasOneThrough(
+            Stocks::class,
+            Combinations::class,
+            'product_id', 
+            'products_combinations_id',
+            'id', 
+            'id' 
+        );
+    }
 
-    public function category() {
+    public function category()
+    {
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
-    public function specfications() {
+    public function specfications()
+    {
         return $this->hasMany(ProductSpecificationsOptionsValue::class, 'product_id');
     }
+    public function combinations(){
+        return $this->hasMany(Combinations::class,'product_id');
+    }
 
+    public function voucher_product()
+    {
+        return $this->hasOne(Voucher::class, 'product_id', 'id');
+    }
 }

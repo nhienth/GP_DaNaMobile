@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -26,8 +27,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $categorySelect = $this -> res(0);
-        return view('admin.categories.create',compact('categorySelect'));
+        $categorySelect = $this->res(0);
+        return view('admin.categories.create', compact('categorySelect'));
     }
 
     /**
@@ -40,11 +41,11 @@ class CategoryController extends Controller
     {
         $cate = new Category();
         $categories = Category::all();
-        $cate -> category_name = $request['category_name'];
-        $cate -> category_image = $request['category_image'];
-        $cate -> parent_id = $request['parent_id'];
-        $cate ->save();
-        $categorySelect = $this -> res(0);
+        $cate->category_name = $request['category_name'];
+        $cate->category_image = $request['category_image'];
+        $cate->parent_id = $request['parent_id'];
+        $cate->save();
+        $categorySelect = $this->res(0);
         return $this->index();
     }
 
@@ -55,70 +56,62 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {  
+    {
         $category = Category::find($id);
         // $cate -> parent_id = $request['parent_id'];
-        $categorySelect = $this -> res_selected(0,$category -> parent_id, $id);
-        return view('admin.categories.edit',compact('categorySelect', 'category'));
-        
+        $categorySelect = $this->res_selected(0, $category->parent_id, $id);
+        return view('admin.categories.edit', compact('categorySelect', 'category'));
     }
-    function res_selected($i,$parent_id, $id, $text = ''){
-        $data = Category::all();  
-            foreach($data as $value){
-                if($value['parent_id'] == $i)
-                {
-                    if($value['id'] == $parent_id){                     
-                        if($value['id'] == $id)
-                        {
-                            $this->html .='<option value="'.$value['id'].'" style="display: none;">' .$text.$value['category_name'].'</option>';
-                             $this->res_selected($value['id'], $parent_id, $id,$text.'--');
-                        }
-                        else
-                        {
-                            $this->html .='<option value="'.$value['id'].'" selected>' .$text.$value['category_name'].'</option>';
-                            $this->res_selected($value['id'],$parent_id, $id, $text.'--');
-                            }                      
-                    }else{
-                        if($value['id']==$id)
-                        {
-                            $this->html .='<option value="'.$value['id'].'" style="display: none;">' .$text.$value['category_name'].'</option>';
-                             $this->res_selected($value['id'],$parent_id, $id, $text.'--');
-                        }
-                        else
-                        {
-                            $this->html .='<option value="'.$value['id'].'" >' .$text.$value['category_name'].'</option>';             
-                            $this->res_selected($value['id'], $parent_id, $id,$text.'--');
-                        }
-                        
+    function res_selected($i, $parent_id, $id, $text = '')
+    {
+        $data = Category::all();
+        foreach ($data as $value) {
+            if ($value['parent_id'] == $i) {
+                if ($value['id'] == $parent_id) {
+                    if ($value['id'] == $id) {
+                        $this->html .= '<option value="' . $value['id'] . '" style="display: none;">' . $text . $value['category_name'] . '</option>';
+                        $this->res_selected($value['id'], $parent_id, $id, $text . '--');
+                    } else {
+                        $this->html .= '<option value="' . $value['id'] . '" selected>' . $text . $value['category_name'] . '</option>';
+                        $this->res_selected($value['id'], $parent_id, $id, $text . '--');
+                    }
+                } else {
+                    if ($value['id'] == $id) {
+                        $this->html .= '<option value="' . $value['id'] . '" style="display: none;">' . $text . $value['category_name'] . '</option>';
+                        $this->res_selected($value['id'], $parent_id, $id, $text . '--');
+                    } else {
+                        $this->html .= '<option value="' . $value['id'] . '" >' . $text . $value['category_name'] . '</option>';
+                        $this->res_selected($value['id'], $parent_id, $id, $text . '--');
                     }
                 }
-         }
-         return $this->html;         
+            }
+        }
+        return $this->html;
     }
 
-    function res_selected1($parent_id, $text = ''){
-        $data = Category::all();  
-            foreach($data as $value){
-                if($value['parent_id'] == $parent_id)
-                {
-                    $this->html .='<option value="'.$value['id'].'">' .$text.$value['category_name'].'</option>';             
-                    $this->res($value['id'], $text.'--');
-                 }  
-         }
-         return $this->html;         
+    function res_selected1($parent_id, $text = '')
+    {
+        $data = Category::all();
+        foreach ($data as $value) {
+            if ($value['parent_id'] == $parent_id) {
+                $this->html .= '<option value="' . $value['id'] . '">' . $text . $value['category_name'] . '</option>';
+                $this->res($value['id'], $text . '--');
+            }
+        }
+        return $this->html;
     }
 
 
-    public function res($id, $text = ''){
-        $data = Category::all();  
-            foreach($data as $value){
-                if($value['parent_id'] == $id)
-                {
-                    $this->html .='<option value="'.$value['id'].'">' .$text.$value['category_name'].'</option>';             
-                    $this->res($value['id'], $text.'--');
-                 }  
-         }
-         return $this->html;         
+    public function res($id, $text = '')
+    {
+        $data = Category::all();
+        foreach ($data as $value) {
+            if ($value['parent_id'] == $id) {
+                $this->html .= '<option value="' . $value['id'] . '">' . $text . $value['category_name'] . '</option>';
+                $this->res($value['id'], $text . '--');
+            }
+        }
+        return $this->html;
     }
     /**
      * Show the form for editing the specified resource.
@@ -137,16 +130,16 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $cate =  Category::find($id);
-        $cate -> category_name = $request['category_name'];
-        $cate -> parent_id = $request['parent_id'];
-        $cate ->save();
-        $categorySelect = $this -> res(0);
+        $cate->category_name = $request['category_name'];
+        $cate->parent_id = $request['parent_id'];
+        $cate->save();
+        $categorySelect = $this->res(0);
 
         $categories = Category::all();
-        return view('admin.categories.list',compact('categorySelect'), ['categoryList' => $categories]);
+        return view('admin.categories.list', compact('categorySelect'), ['categoryList' => $categories]);
     }
-    
-    
+
+
     /**
      * Remove the specified resource from storage.
      *
@@ -159,10 +152,10 @@ class CategoryController extends Controller
         // $category->delete();
         // $this->deleteRes($id);
         // return $this->index();
-        $category = Category::find($id);            
+        $category = Category::find($id);
         $categories = Category::all();
         foreach ($categories as $key) {
-            if($key['parent_id'] == $id){
+            if ($key['parent_id'] == $id) {
                 $cate = Category::find($key['id']);
                 $cate->delete();
             }
@@ -171,17 +164,17 @@ class CategoryController extends Controller
         return $this->index();
     }
 
-    public function deleteRes($id){
+    public function deleteRes($id)
+    {
         $category = Category::find($id);
         $category->delete();
         $categories = Category::all();
         foreach ($categories as $key) {
-            if($key['parent_id'] == $id){
+            if ($key['parent_id'] == $id) {
                 $cate = Category::find($categories['id']);
                 $cate->delete();
             }
         }
         return $this->index();
     }
-
 }

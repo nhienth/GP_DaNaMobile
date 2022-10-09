@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Details;
+use App\Models\OrderDetails;
 use Illuminate\Http\Request;
 
-class DetailsController extends Controller
+
+class OrderDetailsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +14,7 @@ class DetailsController extends Controller
      */
     public function index()
     {
-        $order_details = Order_detail::all();
-        return view('admin.details.list',['details' => $order_details]);
+        //
     }
 
     /**
@@ -46,7 +46,10 @@ class DetailsController extends Controller
      */
     public function show($id)
     {
-        //
+        
+        $order = OrderDetails::find($id);
+        dd($order);
+        return view('admin.order.detail', compact('order'));
     }
 
     /**
