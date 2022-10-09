@@ -81,42 +81,53 @@
                                 <thead class="table-light">
                                     <tr>
                                         <th>#</th>
+                                        <th>Mã đơn hàng</th>
+                                        <th>Số lượng đơn hàng</th>
                                         <th>Mã khách hàng</th>
-                                        <th>Tên</th>
+                                        <th>Tạm tính</th>
+                                        <th>Voucher</th>
+                                        <th>Tổng tiền</th>
+                                        <th>Mã phương thức thanh toán</th>
+                                        <th>Trạng thái</th>
+                                        <th>Tên khách hàng</th>
                                         <th>Mail</th>
-                                        <th>Mật khẩu</th>
-                                        <th>Chức năng</th>
-                                        <th>Trạng thái</th>  
-                                        <th>Hành động</th>
+                                        <th>Số điện thoại</th>
+                                        <th>Địa chỉ</th>
+                                        <th>Ghi chú</th>    
+                                        <th colspan="2">Hành động</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($alluser as $key)
+                                    @foreach($allorder as $key)
                                     <tr data-dt-row="" data-dt-column="">
                                         <td></td>
                                         <td>{{$key->id}}</td>
-                                        <td>{{$key->fullname}}</td>
-                                        <td>{{$key->email}}</td>
-                                        <td>{{$key->password}}</td>
-                                        <td>
-                                            <?php
-                                            if($key["role"]==0){
-                                                echo "Admin";
-                                            }else {
-                                                echo "Khách hàng";
-                                            }
-                                            ?>
-                                        </td>
+                                        <td>{{$key->order_number}}</td>
+                                        <td>{{$key->user_id}}</td>
+                                        <td>{{$key->sub_total}}</td>
+                                        <td>{{$key->voucher}}</td>
+                                        <td>{{$key->total_amount}}</td>
+                                        <td>{{$key->payment_id}}</td>
                                         <td>
                                             <?php
                                             if($key["status"]==0){
-                                                echo "Hoạt động";
+                                                echo "Đang xử lý";
+                                            }else if($key["status"]==1){
+                                                echo "Đang giao hàng";
+                                            }else if($key["status"]==2){
+                                                echo "Đã giao hàng";
                                             }else {
-                                                echo "Vô hiệu hóa";
+                                                echo "Đã hủy hàng";
                                             }
                                             ?>
                                         </td>
-                                        <td><a href="{{url('admin/user/edit',[$key->id])}}"><button type="button" class="btn btn-gradient-success"><i data-feather='edit'></i></button></a></td>
+                                        <td>{{$key->full_name}}</td>
+                                        <td>{{$key->email}}</td>
+                                        <td>{{$key->phone}}</td>
+                                        <td>{{$key->address}}</td>
+                                        <td>{{$key->note}}</td>
+                                        <td>Xem chi tiết</td>
+                                        <td><a href="{{url('admin/order/edit',[$key->id])}}"><button type="button" class="btn btn-gradient-success"><i data-feather='edit'></i></button></a></td>
                                     </tr>
                                     @endforeach
                                 </tbody>
