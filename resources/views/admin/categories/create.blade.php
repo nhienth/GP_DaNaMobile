@@ -43,7 +43,7 @@
                                     <h3 class="card-title fw-bolder">Thêm Danh mục</h3>
                                 </div>
                                 <div class="card-body">
-                                    <form class="needs-validation" novalidate method="POST" action="http://localhost:8000/admin/categories/create">
+                                    <form class="needs-validation" novalidate method="POST" action="http://localhost:8000/admin/category/create">
                                         @csrf
                                         <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Tên Danh mục</label>
@@ -68,7 +68,7 @@
                                         
                                         <button type="submit" class="btn btn-primary me-2">Thêm</button>
                                         <button type="reset" class="btn btn-primary me-2">Nhập lại</button>
-                                        <a href="http://localhost:8000/admin/categories/list"><button type="button" class="btn btn-primary">Danh sách</button></a>
+                                        <a href="http://localhost:8000/admin/category/list"><button type="button" class="btn btn-primary">Danh sách</button></a>
                                     </form>
                                 </div>
                             </div>

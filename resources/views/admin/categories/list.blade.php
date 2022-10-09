@@ -86,7 +86,7 @@
                                                     <button class="dt-button buttons-print dropdown-item" tabindex="0" type="button">Print</button>
                                                 </div>
                                             </div> --}}
-                                            <a href="http://localhost:8000/admin/categories/create" style="color:white;"><button type="button" class="dt-button add-new btn btn-primary" tabindex="0" data-bs-target="#modals-slide-in" aria-controls="DataTables_Table_0">
+                                            <a href="http://localhost:8000/admin/category/create" style="color:white;"><button type="button" class="dt-button add-new btn btn-primary" tabindex="0" data-bs-target="#modals-slide-in" aria-controls="DataTables_Table_0">
                                                 Thêm Danh mục mới
                                             </button></a>
                                         </div>
@@ -114,8 +114,8 @@
                                        <td>{{$item->category_name}}</td>
                                        <td>i{{$item->category_image}}</td>
                                        <td>{{$item->parent_id}}</td>
-                                       <td><a href="http://localhost:8000/admin/categories/update/{{$item->id}}"><button type="button" class="btn btn-gradient-success"><i data-feather='edit'></i></button></a></td>
-                                       <td><a href="http://localhost:8000/admin/categories/delete/{{$item->id}}"><button type="button" class="btn btn-gradient-danger"><i data-feather='trash-2'></i></button></a></td>                              
+                                       <td><a href="http://localhost:8000/admin/category/update/{{$item->id}}"><button type="button" class="btn btn-gradient-success"><i data-feather='edit'></i></button></a></td>
+                                       <td><a href="http://localhost:8000/admin/category/delete/{{$item->id}}"><button type="button" class="btn btn-gradient-danger"><i data-feather='trash-2'></i></button></a></td>                              
                                 </tr>
                                 @endforeach
                             </tbody>
