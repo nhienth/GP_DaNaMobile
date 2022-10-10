@@ -41,7 +41,7 @@
             <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/product/list"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Invoice">Sản phẩm</span></a></li>
             <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/variation/list"><i data-feather="square"></i><span class="menu-title text-truncate" data-i18n="Modal Examples">Biến thể</span></a>
             <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/preview/list"><i data-feather="grid"></i><span class="menu-title text-truncate" data-i18n="Kanban">Bình luận</span></a></li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/orders/list"><i data-feather="user"></i><span class="menu-title text-truncate" data-i18n="User">Đơn hàng</span></a></li>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/order/list"><i data-feather="user"></i><span class="menu-title text-truncate" data-i18n="User">Đơn hàng</span></a></li>
             <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/stocks/list"><i data-feather="user"></i><span class="menu-title text-truncate" data-i18n="User">Kho hàng</span></a></li>
             <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/user/list"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Pages">Tài khoản</span></a></li>
             <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/contact/list"><i data-feather="check-square"></i><span class="menu-title text-truncate" data-i18n="Todo">Liên hệ</span></a></li>
@@ -51,7 +51,7 @@
             
             <li class=" navigation-header"><span data-i18n="User Interface">Bài viết</span><i data-feather="more-horizontal"></i></li></li>
             
-            <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/post"><i data-feather="calendar"></i><span class="menu-title text-truncate" data-i18n="Calendar">Bài viết</span></a></li>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/post/list"><i data-feather="calendar"></i><span class="menu-title text-truncate" data-i18n="Calendar">Bài viết</span></a></li>
         </ul>
     </div>
 </div>

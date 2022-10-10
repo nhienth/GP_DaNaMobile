@@ -10,23 +10,6 @@
             <div class="content-body">
                 <!-- users list start -->
                 <section class="app-user-list">
-                    <div class="content-header-left col-md-9 col-12 mb-2">
-                        <div class="row breadcrumbs-top">
-                            <div class="col-12">
-                                <h2 class="content-header-title float-start mb-0">Quản lý sản phẩm</h2>
-                                <div class="breadcrumb-wrapper">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="index.html">Quản trị</a>
-                                        </li>
-                                        <li class="breadcrumb-item"><a href="#">Sản phẩm</a>
-                                        </li>
-                                        <li class="breadcrumb-item active">Danh sách sản phẩm
-                                        </li>
-                                    </ol>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <!-- list and filter start -->
                     <div class="card">
                         <div class="card-body border-bottom">
@@ -79,10 +62,16 @@
                                             <div class="dt-buttons d-inline-flex mt-50">
                                                 <button class="dt-button buttons-collection btn btn-outline-secondary dropdown-toggle me-2" 
                                                 tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="true">Xuất</button>
-            
-                                                <a type="button" href="{{url('/admin/product/create')}}" class="dt-button add-new btn btn-primary" tabindex="0" data-bs-target="#modals-slide-in" aria-controls="DataTables_Table_0">
+                                                {{-- <div class="dt-button-collection" style="top: 148.625px; left: 889.488px;">
+                                                    <div role="menu">
+                                                        <button class="dt-button buttons-print dropdown-item" tabindex="0" type="button">Print</button>
+                                                        <button class="dt-button buttons-print dropdown-item" tabindex="0" type="button">Print</button>
+                                                        <button class="dt-button buttons-print dropdown-item" tabindex="0" type="button">Print</button>
+                                                    </div>
+                                                </div> --}}
+                                                <!-- <button type="button" class="dt-button add-new btn btn-primary" tabindex="0" data-bs-target="#modals-slide-in" aria-controls="DataTables_Table_0">
                                                     <span>Thêm Sản phẩm mới</span>
-                                                </a>
+                                                </button> -->
                                             </div>
                                         </div>
                                     </div>
@@ -92,35 +81,54 @@
                                 <thead class="table-light">
                                     <tr>
                                         <th>#</th>
-                                        <th>Tên Sản phẩm</th>
-                                        <th>Danh mục</th>
-                                        <th>Ảnh</th>
-                                        <th>Lượt xem</th>
+                                        <th>Mã đơn hàng</th>
+                                        <th>Số lượng đơn hàng</th>
+                                        <th>Mã khách hàng</th>
+                                        <th>Tạm tính</th>
+                                        <th>Voucher</th>
+                                        <th>Tổng tiền</th>
+                                        <th>Mã phương thức thanh toán</th>
                                         <th>Trạng thái</th>
-                                        <th>Thêm biến thể</th>
+                                        <th>Tên khách hàng</th>
+                                        <th>Mail</th>
+                                        <th>Số điện thoại</th>
+                                        <th>Địa chỉ</th>
+                                        <th>Ghi chú</th>    
                                         <th colspan="2">Hành động</th>
                                     </tr>
                                 </thead>
-
                                 <tbody>
-                                    @foreach ($products as $product)
-                                        <tr data-dt-row="" data-dt-column="">
-                                            <td></td>
-                                            <td>{{$product->product_name}}</td>
-                                            <td>{{$product->category->category_name}}</td>
-                                            <td><img class="rounded" src="{{asset('images/admin/products/'.$product->product_img)}}" width="100px" height="100px" style="display:block; margin: 0 auto;"></td>
-                                            <td>{{$product->product_view}}</td>
-                                            <td>Trạng thái</td>
-                                            <td>
-                                                <a href="{{url('admin/product/addVariation',[$product->id])}}"><button type="button" class="btn btn-info"><i data-feather='plus'></i></button></a>
-                                            </td>
-                                            <td>
-                                                <a href="{{url('admin/product/edit', [$product->id])}}"><button type="button" class="btn btn-success"><i data-feather='edit'></i></button></a>
-                                            </td>
-                                            <td>
-                                                <a href="{{url('admin/product/delete', [$product->id])}}"><button type="button" class="btn btn-danger"><i data-feather='trash-2'></i></button></a>
-                                            </td>
-                                        </tr>
+                                    @foreach($allorder as $key)
+                                    <tr data-dt-row="" data-dt-column="">
+                                        <td></td>
+                                        <td>{{$key->id}}</td>
+                                        <td>{{$key->order_number}}</td>
+                                        <td>{{$key->user_id}}</td>
+                                        <td>{{$key->sub_total}}</td>
+                                        <td>{{$key->voucher}}</td>
+                                        <td>{{$key->total_amount}}</td>
+                                        <td>{{$key->payment_id}}</td>
+                                        <td>
+                                            <?php
+                                            if($key["status"]==0){
+                                                echo "Đang xử lý";
+                                            }else if($key["status"]==1){
+                                                echo "Đang giao hàng";
+                                            }else if($key["status"]==2){
+                                                echo "Đã giao hàng";
+                                            }else {
+                                                echo "Đã hủy hàng";
+                                            }
+                                            ?>
+                                        </td>
+                                        <td>{{$key->full_name}}</td>
+                                        <td>{{$key->email}}</td>
+                                        <td>{{$key->phone}}</td>
+                                        <td>{{$key->address}}</td>
+                                        <td>{{$key->note}}</td>
+                                        <td><a href="{{url('admin/order/details',[$order->id])}}">Xem chi tiết</a></td> 
+                                        <td><a href="{{url('admin/order/edit',[$key->id])}}"><button type="button" class="btn btn-gradient-success"><i data-feather='edit'></i></button></a></td>
+                                    </tr>
                                     @endforeach
                                 </tbody>
                             </table>
@@ -142,9 +150,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Modal to add new user starts-->
-                        
-                        <!-- Modal to add new user Ends-->
                     </div>
                     <!-- list and filter end -->
                 </section>

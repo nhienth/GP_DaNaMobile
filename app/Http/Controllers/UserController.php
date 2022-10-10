@@ -1,29 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use  App\Models\User;
 use Illuminate\Http\Request;
-use App\Models\Preview;
-use App\Models\Product;
 
-class PreviewController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
     public function index()
     {
-        // $allpreview = Preview::countComment();
-        // $allpreview =  Products::with(['preview'])->get();
-        // dd($allreview);
-        // return view('admin.preview.list',compact('allpreview'));
-        $cmt = new Preview;
-        $cmts = $cmt->countComment();
-        $allpreview =  Product::with(['preview'])->get();
-        return view('admin.preview.list',compact('allpreview',['cmtsList' => $cmts]));
+        $alluser = User::all();
+        return view('admin.user.list')->with(compact('alluser'));
     }
 
     /**
@@ -45,9 +36,19 @@ class PreviewController extends Controller
      */
     public function show($id)
     {
-        $detail = Preview::with(['product', 'user'])->where('product_reviews.product_id',$id)->get();
-        // dd($detail);
-        return view('admin.preview.detail')->with(compact('detail'));
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $user = User::find($id);
+        return view('admin.user.edit')->with(compact('user'));
     }
 
     /**
@@ -60,6 +61,15 @@ class PreviewController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $user = User::find($id);
+        $user ->id = $request->id;
+        $user ->role = $request->role;
+        $user ->status = $request->status;
+
+        $user->save();
+        // dd($order);
+        return redirect('admin/user/list')->with('status','Bạn đã cập nhật thành công');
+        
     }
 
     /**
@@ -70,11 +80,6 @@ class PreviewController extends Controller
      */
     public function destroy($id)
     {
-        $preview = Preview::find($id);
-        $preview->delete();
-        return redirect('admin/preview/list')->with('status','Bạn đã Xóa thành công');
+        //
     }
-
-    
-
 }
