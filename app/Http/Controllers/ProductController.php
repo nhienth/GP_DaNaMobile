@@ -6,7 +6,7 @@ use App\Http\Controllers\CategoryController;
 
 use Illuminate\Support\Facades\Auth;
 use Validator;
-use App\Models\Product;
+use App\Models\Products;
 use App\Models\Category;
 use App\Models\ProductSpecificationsOptions;
 use App\Models\ProductSpecificationsOptionsValue;
@@ -23,7 +23,7 @@ class ProductController extends Controller
     public function index()
     {
         $categories = Category::all();
-        $products = Product::with('category')->orderBy('products.id', 'desc')->get();
+        $products = Products::with('category')->orderBy('products.id', 'desc')->get();
 
         // dd($products);
 
@@ -52,7 +52,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $product = new Product();
+        $product = new Products();
         $product->product_name = $request->product_name;
         $product->category_id = $request->category_id;
 
@@ -102,7 +102,7 @@ class ProductController extends Controller
     {
         $cate = new CategoryController();
         $categorySelect = $cate->res(0);
-        $product = Product::with('specfications')->where('products.id', $id)->first();
+        $product = Products::with('specfications')->where('products.id', $id)->first();
         return view('admin.products.edit', compact(['product', 'categorySelect']));
     }
 
@@ -115,7 +115,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product = Product::find($id);
+        $product = Products::find($id);
         $product->product_name = $request->product_name;
         $product->category_id = $request->category_id;
 
@@ -156,7 +156,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product = Product::find($id);
+        $product = Products::find($id);
         $product->delete();
         return redirect('/admin/product/list');
     }

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use App\Models\Preview;
 class Products extends Model
 {
     use HasFactory;
@@ -47,6 +48,10 @@ class Products extends Model
     }
     public function combinations(){
         return $this->hasMany(Combinations::class,'product_id');
+    }
+
+    public function preview(){
+        return $this->hasMany(Preview::class,'product_id');
     }
 
     public function voucher_product()
