@@ -104,15 +104,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($order_details as $detail)
+                                @foreach ($order as $item)
                                 <tr data-dt-row="" data-dt-column="">
-                                    <td>{{$detail->id}}</td>
-                                    <td>{{$detail->quantity}}</td>
-                                    <td>{{$detail->total_amount}}</td>
-                                    <td>{{$detail->order_id}}</td>
-                                    <td>{{$detail->product_id}}</td>
+                                    <td>{{$item->id}}</td>
+                                    <td>{{$item->quantity}}</td>
+                                    <td>{{$item->total_amount}}</td>
+                                    <td>{{$item->product_id}}</td>
+                                    <td>{{$item->order_id}}</td>
+                                   
                                 </tr>
                                 @endforeach
+                                
+                              
                             </tbody>
                         </table>
                         <div class="d-flex justify-content-between mx-2 row mb-1">

@@ -14,6 +14,8 @@ use App\Http\Controllers\VariationController;
 use App\Models\Slider\SliderModel;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\VoucherController;
+use App\Http\Controllers\OrderDetailsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -98,30 +100,31 @@ Route::prefix('/admin')->group(function () {
 
     Route::prefix('/post')->group(function () {
         Route::get('/add', function () {
-            return view('admin.post.create');
+            return view('admin.posts.create');
         });
         Route::get('/list', function () {
-            return view('admin.post.list');
+            return view('admin.posts.list');
         });
         Route::get('/edit', function () {
-            return view('admin.post.edit');
+            return view('admin.posts.edit');
         });
     });
 
-    Route::prefix('/banner')->group(function () {
-        Route::get('/add', function () {
-            return view('admin.banner.create');
-        });
-        Route::get('/list', function () {
-            return view('admin.banner.list');
-        });
-        Route::get('/edit', function () {
-            return view('admin.banner.edit');
-        });
-    });
+    // Route::prefix('/banner')->group(function () {
+    //     Route::get('/add', function () {
+    //         return view('admin.banner.create');
+    //     });
+    //     Route::get('/list', function () {
+    //         return view('admin.banner.list');
+    //     });
+    //     Route::get('/edit', function () {
+    //         return view('admin.banner.edit');
+    //     });
+    // });
 
     Route::prefix('/preview')->group(function () {
         Route::get('/list',[PreviewController::class,'index']);
+        Route::get('/detail/{id}',[PreviewController::class,'show']);
         Route::get('/delete/{id}', [PreviewController::class, 'destroy']);
     });
 
@@ -129,6 +132,10 @@ Route::prefix('/admin')->group(function () {
         Route::get('/list', function () {
             return view('admin.contact.list');
         });
+    });
+
+    Route::prefix('/order')->group(function  (){
+        Route::get('/details/{id}', [OrderDetailsController::class,'show']);
     });
 
     Route::prefix('/user')->group(function () {
@@ -173,7 +180,7 @@ Route::prefix('/admin')->group(function () {
     });
 });
 
-
+    
 
 // ->middleware(['auth'])->name('dashboard');
 

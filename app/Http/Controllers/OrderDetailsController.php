@@ -1,13 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\OrderDetails;
 use Illuminate\Http\Request;
 
-use App\Models\Stocks;
-use App\Models\Combinations;
 
-class StockdetailController extends Controller
+class OrderDetailsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,6 +13,16 @@ class StockdetailController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
     {
         //
     }
@@ -38,9 +46,21 @@ class StockdetailController extends Controller
      */
     public function show($id)
     {
-        $sto_detail = Stocks::find($id);
-        $combi = Stocks::with('combinations')->where('id', $id)->first();
-        return view('admin.stocks.stockdetail')->with(compact('sto_detail','combi'));
+        
+        $order = OrderDetails::find($id);
+        dd($order);
+        return view('admin.order.detail', compact('order'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
     }
 
     /**

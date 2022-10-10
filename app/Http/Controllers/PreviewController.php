@@ -13,6 +13,7 @@ class PreviewController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $previews = Preview::with('product')
@@ -42,7 +43,9 @@ class PreviewController extends Controller
      */
     public function show($id)
     {
-        //
+        $detail = Preview::with(['product', 'user'])->where('product_reviews.product_id',$id)->get();
+        // dd($detail);
+        return view('admin.preview.detail')->with(compact('detail'));
     }
 
     /**
@@ -69,4 +72,7 @@ class PreviewController extends Controller
         $preview->delete();
         return redirect('admin/preview/list')->with('status','Bạn đã Xóa thành công');
     }
+
+    
+
 }
