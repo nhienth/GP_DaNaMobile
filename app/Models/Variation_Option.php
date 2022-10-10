@@ -23,6 +23,11 @@ class Variation_Option extends Model
         return $this->belongsTo(Product::class, 'product_id', 'id');
     }
 
+    public function variation_values()
+    {
+        return $this->hasMany(Variation_Option_Value::class, 'products_variation_id');
+    }
+
 
 
 }

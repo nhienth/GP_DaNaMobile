@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Preview;
+use DB;
 
 class PreviewController extends Controller
 {
@@ -12,11 +13,15 @@ class PreviewController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        $allreview = Preview::all();
-        // dd($allreview);
-        return view('admin.preview.list',compact('allreview'));
+        $previews = Preview::with('product')
+            ->select('product_id', DB::raw('count(*) as total'))
+            ->groupBy('product_id')
+            ->get();
+    
+        return view('admin.preview.list',compact('previews'));
     }
 
     /**
@@ -38,7 +43,9 @@ class PreviewController extends Controller
      */
     public function show($id)
     {
-        //
+        $detail = Preview::with(['product', 'user'])->where('product_reviews.product_id',$id)->get();
+        // dd($detail);
+        return view('admin.preview.detail')->with(compact('detail'));
     }
 
     /**
@@ -65,4 +72,7 @@ class PreviewController extends Controller
         $preview->delete();
         return redirect('admin/preview/list')->with('status','Bạn đã Xóa thành công');
     }
+
+    
+
 }

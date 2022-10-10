@@ -51,6 +51,10 @@ class Product extends Model
         return $this->hasMany(Combinations::class,'product_id');
     }
 
+    public function preview(){
+        return $this->hasMany(Preview::class,'product_id');
+    }
+
     public function voucher_product()
     {
         return $this->hasOne(Voucher::class, 'product_id', 'id');
