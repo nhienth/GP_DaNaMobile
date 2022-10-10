@@ -95,7 +95,7 @@
                                     <tr data-dt-row="" data-dt-column="">
                                         <td></td>
                                         <td>{{$key->id}}</td>
-                                        <td>{{$key->fullname}}</td>
+                                        <td>{{$key->name}}</td>
                                         <td>{{$key->email}}</td>
                                         <td>{{$key->password}}</td>
                                         <td>

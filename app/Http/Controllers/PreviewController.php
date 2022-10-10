@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Preview;
+use DB;
 
 class PreviewController extends Controller
 {
@@ -14,9 +15,12 @@ class PreviewController extends Controller
      */
     public function index()
     {
-        $allreview = Preview::all();
-        // dd($allreview);
-        return view('admin.preview.list',compact('allreview'));
+        $previews = Preview::with('product')
+            ->select('product_id', DB::raw('count(*) as total'))
+            ->groupBy('product_id')
+            ->get();
+    
+        return view('admin.preview.list',compact('previews'));
     }
 
     /**

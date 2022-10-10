@@ -68,34 +68,26 @@
                                 <thead class="table-light">
                                     <tr>
                                         <th>#</th>
-                                        <th>Mã đánh giá</th>
-                                        <th>Đánh giá sao</th>
-                                        <th>Đánh giá</th>
-                                        <th>Trạng thái</th>
-                                        <th>Mã khách hàng</th>
-                                        <th>Mã sản phẩm</th>
+                                        <th>Tên sản phẩm</th>
+                                        <th>Số bình luận</th>
                                         <th>Ngày đánh giá</th>
                                         <th>Ngày cập nhật</th>
-                                        <th>Ngày xóa</th>
-                                        <th colspan="2">Hành động</th>
+                                        <th>Chi tiết</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($allreview as $key)
+                                    @foreach($previews as $preview)
+                                     
                                     <tr data-dt-row="" data-dt-column="">
                                         <td></td>
-                                        <td>{{$key->id}}</td>
-                                        <td>{{$key->rate}}</td>
-                                        <td>{{$key->review}}</td>
-                                        <td>{{$key->status}}</td>
-                                        <td>{{$key->user_id}}</td>
-                                        <td>{{$key->product_id}}</td>
-                                        <td>{{$key->created_at}}</td>
-                                        <td>{{$key->updated_at}}</td>
-                                        <td>{{$key->deleted_at}}</td>
-                                        <td><a href="http://">Chi tiết</a></td>
-                                        <td><a href="http://127.0.0.1:8000/admin/preview/delete/{{$key->id}}">Xóa</a></td>
+                                        <td>{{$preview->product->product_name}}</td>
+                                        <td>{{$preview->total}}</td>
+                                        <td>{{$preview->created_at}}</td>
+                                        <td>{{$preview->updated_at}}</td>
+                                        <td><a href=""><button type="button" class="btn btn-gradient-info"><i data-feather='eye'></i></button></a></td>
                                     </tr>
+                                      
+                                
                                     @endforeach
                                 </tbody>
                             </table>
