@@ -49,7 +49,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $product = new Products();
+        $product = new Product();
         $product->product_name = $request->product_name;
         $product->category_id = $request->category_id;
 

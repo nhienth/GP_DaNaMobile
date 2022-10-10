@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\OrderDetail;
+
 class Order extends Model
 {
     public $timestamps = false;
@@ -13,4 +15,10 @@ class Order extends Model
     ];
     protected $primaryKey = 'id';
     protected $table = 'orders';
+
+    public function orderdetail(){
+        return $this->hasMany(OrderDetail::class, 'order_id');
+    }
 }
+
+

@@ -70,8 +70,8 @@
                                         <th>#</th>
                                         <th>Tên sản phẩm</th>
                                         <th>Số bình luận</th>
-                                        <th>Ngày đánh giá</th>
-                                        <th>Ngày cập nhật</th>
+                                        <th>Bình luận cũ nhất</th>
+                                        <th>Bình luận mới nhất</th>
                                         <th>Chi tiết</th>
                                     </tr>
                                 </thead>
@@ -82,9 +82,10 @@
                                         <td></td>
                                         <td>{{$preview->product->product_name}}</td>
                                         <td>{{$preview->total}}</td>
-                                        <td>{{$preview->created_at}}</td>
-                                        <td>{{$preview->updated_at}}</td>
-                                        <td><a href=""><button type="button" class="btn btn-gradient-info"><i data-feather='eye'></i></button></a></td>
+                                        <td>{{$preview->mindate}}</td>
+                                        <td>{{$preview->maxdate}}</td>
+                                        <td><a href="http://127.0.0.1:8000/admin/preview/detail/{{$preview->product->id}}">Chi tiết</a></td>
+                                        <td><a href="{{url('admin/preview/detail', [$preview->id])}}"><button type="button" class="btn btn-gradient-info"><i data-feather='eye'></i></button></a></td>
                                     </tr>
                                       
                                 

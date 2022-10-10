@@ -145,6 +145,7 @@ Route::prefix('/admin')->group(function () {
     });
     Route::prefix('/order')->group(function () {
         Route::get('/list',[OrderController::class,'index']);
+        Route::get('/details/{id}', [OrderDetailsController::class,'show']);
         Route::get('/edit/{id}',[OrderController::class,'edit']);
         Route::put('/update/{id}', [OrderController::class, 'update']);
     });

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 
-use App\Models\Products;
+use App\Models\Product;
 use App\Models\User;
 
 
@@ -22,7 +22,7 @@ class Preview extends Model
     ];
 
     public function product(){
-        return $this->belongsTo(Products::class,'product_id');
+        return $this->belongsTo(Product::class,'product_id');
     }
 
     public function user(){

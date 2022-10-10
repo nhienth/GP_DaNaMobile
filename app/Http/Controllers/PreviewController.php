@@ -16,11 +16,15 @@ class PreviewController extends Controller
 
     public function index()
     {
+        
         $previews = Preview::with('product')
-            ->select('product_id', DB::raw('count(*) as total'))
+            // ->select('product_id', DB::raw('count(*) as total'),DB::raw('DATE(created_at) as date)'))
+            // ->groupBy('product_id')
+            ->select(DB::raw('product_id, max(created_at) as maxdate, min(created_at) as mindate'),DB::raw('count(*) as total'))
             ->groupBy('product_id')
+               //->orderBy('paper_update', 'desc')
             ->get();
-    
+        // dd($previews);
         return view('admin.preview.list',compact('previews'));
     }
 
