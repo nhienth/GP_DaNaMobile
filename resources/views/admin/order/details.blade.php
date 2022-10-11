@@ -95,7 +95,7 @@
                         <table class="user-list-table table dataTable no-footer dtr-column text-center" >
                             <thead class="table-light ">
                                 <tr>
-                                    <th>ID</th>
+                                    <th>#</th>
                                     <th>Số lượng</th>
                                     <th>Tổng cộng</th>
                                     <th>Mã đơn hàng</th>
@@ -104,14 +104,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($order as $item)
+                                @foreach ($details as $item)
                                 <tr data-dt-row="" data-dt-column="">
                                     <td>{{$item->id}}</td>
                                     <td>{{$item->quantity}}</td>
                                     <td>{{$item->total_amount}}</td>
-                                    <td>{{$item->product_id}}</td>
-                                    <td>{{$item->order_id}}</td>
-                                   
+                                    <td>{{$item->product->product_id}}</td>
+                                    <td>{{$item->order->order_id}}</td>                                  
                                 </tr>
                                 @endforeach
                                 

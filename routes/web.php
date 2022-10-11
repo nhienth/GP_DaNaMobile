@@ -15,6 +15,7 @@ use App\Models\Slider\SliderModel;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\VoucherController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\OrderDetailsController;
 
 /*
@@ -129,14 +130,11 @@ Route::prefix('/admin')->group(function () {
     });
 
     Route::prefix('/contact')->group(function () {
-        Route::get('/list', function () {
-            return view('admin.contact.list');
-        });
+       Route::get('/list', [ContactController::class, 'index']);
     });
 
-    Route::prefix('/order')->group(function  (){
-        Route::get('/details/{id}', [OrderDetailsController::class,'show']);
-    });
+
+   
 
     Route::prefix('/user')->group(function () {
         Route::get('/list',[UserController::class,'index']);
@@ -147,12 +145,16 @@ Route::prefix('/admin')->group(function () {
         Route::get('/list',[OrderController::class,'index']);
         Route::get('/edit/{id}',[OrderController::class,'edit']);
         Route::put('/update/{id}', [OrderController::class, 'update']);
+        Route::get('/details/{id}',[OrderDetailsController::class, 'show']);
     });
+
+    
+    
     Route::prefix('/stocks')->group(function () {
         Route::get('/list',[StocksController::class,'index']);
         Route::get('/stock_detail/{id}',[StocksController::class,'show']);
     });
-
+});
     Route::prefix('/slider')->group(function () {
         Route::get('/list', [SliderController::class, 'index'])->name('slider.list');
         Route::get('/add', [SliderController::class, 'create'])->name('slider.add');
@@ -178,7 +180,7 @@ Route::prefix('/admin')->group(function () {
         Route::post('/update/{id}', [VoucherController::class, 'update']);
         Route::get('/delete/{id}', [VoucherController::class, 'destroy']);
     });
-});
+
 
     
 

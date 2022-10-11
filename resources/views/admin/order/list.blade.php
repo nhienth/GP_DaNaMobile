@@ -126,7 +126,7 @@
                                         <td>{{$key->phone}}</td>
                                         <td>{{$key->address}}</td>
                                         <td>{{$key->note}}</td>
-                                        <td><a href="{{url('admin/order/details',[$order->id])}}">Xem chi tiết</a></td> 
+                                        <td><a href="{{url('admin/order/details',[$key->id])}}">Xem chi tiết</a></td> 
                                         <td><a href="{{url('admin/order/edit',[$key->id])}}"><button type="button" class="btn btn-gradient-success"><i data-feather='edit'></i></button></a></td>
                                     </tr>
                                     @endforeach
