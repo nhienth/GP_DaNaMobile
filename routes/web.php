@@ -1,9 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\HomeController;
+
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
-use App\Models\Stocks;
 use App\Http\Controllers\StocksController;
 use App\Http\Controllers\CombinationsController;
 use App\Http\Controllers\PreviewController;
@@ -16,6 +18,7 @@ use App\Http\Controllers\BannerController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\VoucherController;
 use App\Http\Controllers\OrderDetailsController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,9 +31,7 @@ use App\Http\Controllers\OrderDetailsController;
 |
 */
 
-Route::get('/', function () {
-    return view('client.index');
-});
+Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/product-detail', function () {
     return view('client.products.product_details');
@@ -178,6 +179,14 @@ Route::prefix('/admin')->group(function () {
         Route::get('/edit/{id}', [VoucherController::class, 'edit']);
         Route::post('/update/{id}', [VoucherController::class, 'update']);
         Route::get('/delete/{id}', [VoucherController::class, 'destroy']);
+    });
+    Route::prefix('/payment')->group(function () {
+        Route::get('/list', [PaymentController::class, 'index'])->name('payment.list');
+        Route::get('/create',  [PaymentController::class, 'create']);
+        Route::post('/create', [PaymentController::class, 'store'])->name('Payment.create');
+        Route::get('/edit/{id}', [PaymentController::class, 'edit']);
+        Route::post('/update/{id}', [PaymentController::class, 'update']);
+        Route::get('/delete/{id}', [PaymentController::class, 'destroy']);
     });
 });
 

@@ -25,7 +25,7 @@
                                 </g>
                             </g>
                         </svg></span>
-                    <h2 class="brand-text">Vuexy</h2>
+                    <h2 class="brand-text">DaNaMobile</h2>
                 </a></li>
             <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pe-0" data-bs-toggle="collapse"><i class="d-block d-xl-none text-primary toggle-icon font-medium-4" data-feather="x"></i><i class="d-none d-xl-block collapse-toggle-icon font-medium-4  text-primary" data-feather="disc" data-ticon="disc"></i></a></li>
         </ul>
@@ -35,23 +35,24 @@
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
             <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Dashboards</span></a></li>
             
-            <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Admin</span><i data-feather="more-horizontal"></i></li>
+            <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Chức năng</span><i data-feather="more-horizontal"></i></li>
 
-            <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/category/list"><i data-feather="message-square"></i><span class="menu-title text-truncate" data-i18n="Chat">Danh mục</span></a></li>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/category/list"><i data-feather="align-justify"></i><span class="menu-title text-truncate" data-i18n="align-justify">Danh mục</span></a></li>
             <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/product/list"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Invoice">Sản phẩm</span></a></li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/variation/list"><i data-feather="square"></i><span class="menu-title text-truncate" data-i18n="Modal Examples">Biến thể</span></a>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/preview/list"><i data-feather="grid"></i><span class="menu-title text-truncate" data-i18n="Kanban">Bình luận</span></a></li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/order/list"><i data-feather="user"></i><span class="menu-title text-truncate" data-i18n="User">Đơn hàng</span></a></li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/stocks/list"><i data-feather="user"></i><span class="menu-title text-truncate" data-i18n="User">Kho hàng</span></a></li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/user/list"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Pages">Tài khoản</span></a></li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/contact/list"><i data-feather="check-square"></i><span class="menu-title text-truncate" data-i18n="Todo">Liên hệ</span></a></li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/slider/list"><i data-feather="save"></i><span class="menu-title text-truncate" data-i18n="File Manager">Slider</span></a></li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/banner/list"><i data-feather="mail"></i><span class="menu-title text-truncate" data-i18n="Email">Banner</span></a></li>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/variation/list"><i data-feather="grid"></i><span class="menu-title text-truncate" data-i18n="grid">Biến thể</span></a>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/preview/list"><i data-feather="edit-2"></i><span class="menu-title text-truncate" data-i18n="edit-2">Bình luận</span></a></li>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/order/list"><i data-feather="shopping-cart"></i><span class="menu-title text-truncate" data-i18n="shopping-cart">Đơn hàng</span></a></li>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/stocks/list"><i data-feather="shopping-bag"></i><span class="menu-title text-truncate" data-i18n="shopping-cart">Kho hàng</span></a></li>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/user/list"><i data-feather="user"></i><span class="menu-title text-truncate" data-i18n="user">Tài khoản</span></a></li>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/contact/list"><i data-feather="twitch"></i><span class="menu-title text-truncate" data-i18n="twitch">Liên hệ</span></a></li>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/slider/list"><i data-feather="columns"></i><span class="menu-title text-truncate" data-i18n="columns">Slider</span></a></li>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/banner/list"><i data-feather="copy"></i><span class="menu-title text-truncate" data-i18n="copy">Banner</span></a></li>
             <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/voucher/list"><i data-feather="square"></i><span class="menu-title text-truncate" data-i18n="Modal Examples">Phiếu mua hàng</span></a></li>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/payment/list"><i data-feather="credit-card"></i><span class="menu-title text-truncate" data-i18n="credit-card">Phương thức thanh toán</span></a></li>
             
             <li class=" navigation-header"><span data-i18n="User Interface">Bài viết</span><i data-feather="more-horizontal"></i></li></li>
             
-            <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/post/list"><i data-feather="calendar"></i><span class="menu-title text-truncate" data-i18n="Calendar">Bài viết</span></a></li>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/post/list"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="file-text">Bài viết</span></a></li>
         </ul>
     </div>
 </div>

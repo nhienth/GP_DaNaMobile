@@ -10,13 +10,29 @@
             <div class="content-body">
                 <!-- users list start -->
                 <section class="app-user-list">
-                    <div class="row">
-                        
+                <div class="content-header row">
+                        <div class="content-header-left col-md-9 col-12 mb-2">
+                            <div class="row breadcrumbs-top">
+                                <div class="col-12">
+                                    <h2 class="content-header-title float-start mb-0">Đánh giá bình luận</h2>
+                                    <div class="breadcrumb-wrapper">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/admin">Trang chủ</a>
+                                            </li>
+                                            <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/admin/preview/list">Bình luận</a>
+                                            </li>
+                                            <li class="breadcrumb-item active">Chi tiết
+                                            </li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <!-- list and filter start -->
                     <div class="card">
                         <div class="card-body border-bottom">
-                            <h4 class="card-title">Chi tiết Kho hàng</h4>
+                            <h4 class="card-title">Tìm kiếm và lọc</h4>
                         </div>
                         <div class="card-datatable table-responsive pt-0">
                             <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
@@ -85,7 +101,7 @@
                                         <td>{{$stockdetail->review}}</td>
                                         <td>{{$stockdetail->user->name}}</td>
                                         <td>{{$stockdetail->created_at}}</td>
-                                        <td><a href="http://127.0.0.1:8000/admin/preview/delete/{{$stockdetail->id}}">Xóa</a></td>
+                                        <td><a href="http://127.0.0.1:8000/admin/preview/delete/{{$stockdetail->id}}"><button type="button" class="btn btn-gradient-danger"><i data-feather='trash-2'></i></button></a></td>
                                     </tr>
                                     @endforeach
                                 </tbody>

@@ -10,14 +10,29 @@
             <div class="content-body">
                 <!-- users list start -->
                 <section class="app-user-list">
-                    <div class="row">
-                        
+                    <div class="content-header row">
+                        <div class="content-header-left col-md-9 col-12 mb-2">
+                            <div class="row breadcrumbs-top">
+                                <div class="col-12">
+                                    <h2 class="content-header-title float-start mb-0">Kho hàng</h2>
+                                    <div class="breadcrumb-wrapper">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="index.html">Trang chủ</a>
+                                            </li>
+                                            <li class="breadcrumb-item"><a href="#">Kho hàng</a>
+                                            </li>
+                                            <li class="breadcrumb-item active">Danh sách
+                                            </li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <!-- list and filter start -->
                     <div class="card">
                         <div class="card-body border-bottom">
                             <h4 class="card-title">Kho hàng</h4>
-                            <!-- <div class="row">
+                            <div class="row">
                                 <div class="col-md-4 user_role">
                                     <label class="form-label" for="UserRole">Vai trò</label>
                                     <select id="UserRole" class="form-select text-capitalize mb-md-0 mb-2">
@@ -33,7 +48,7 @@
                                     <label class="form-label" for="FilterTransaction">Trạng thái</label>
                                     <select id="FilterTransaction" class="form-select text-capitalize mb-md-0 mb-2xx"><option value=""> Select Status </option></select>
                                 </div>
-                            </div> -->
+                            </div>
                         </div>
                         <div class="card-datatable table-responsive pt-0">
                             <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
@@ -105,11 +120,11 @@
                                     <tr data-dt-row="" data-dt-column="">
                                         <td></td>
                                         <td>{{$product->product_name}}</td>
-                                        <td>{{$product->product_img}}</td>
+                                        <td><img class="rounded" src="{{asset('images/admin/products/'.$product->product_img)}}" width="100px" height="100px" style="display:block; margin: 0 auto;"></td>
                                         <td>{{$total_stock}}</td>
                                         <td>{{$total_price}}</td>
                                
-                                        <td><a href="http://127.0.0.1:8000/admin/stocks/stock_detail/{{$product->id}}">Chi tiết</a></td>
+                                        <td><a href="http://127.0.0.1:8000/admin/stocks/stock_detail/{{$product->id}}"><button type="button" class="btn btn-gradient-info"><i data-feather='eye'></i></button></a></td>
                                         <!-- <td><a href="{{url('admin/stocks/stock_detail', [$product->id])}}">Chi tiết</a></td> -->
 
                                     </tr>

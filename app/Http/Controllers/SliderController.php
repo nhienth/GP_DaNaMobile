@@ -46,7 +46,7 @@ class SliderController extends Controller
             $file = $request->file_img;
             $file_name = $file->getClientoriginalName();
             // dd($file_name);
-            $file->move(public_path('img'), $file_name);
+            $file->move(public_path('images/slider'), $file_name);
         }
         
         $request->merge(['slider_img' => $file_name]);
@@ -91,7 +91,7 @@ class SliderController extends Controller
         if ($request->has('file_img')) {
             $file = $request->file_img;
             $file_name = $file->getClientoriginalName();
-            $file->move(public_path('img'), $file_name);
+            $file->move(public_path('images/slider'), $file_name);
         }
         $request->merge(['slider_img' => $file_name]);
         $slider = Slider::find($id);
