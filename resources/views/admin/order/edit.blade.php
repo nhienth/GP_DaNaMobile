@@ -12,9 +12,9 @@
                         <h2 class="content-header-title float-start mb-0">Quản lý Đơn hàng</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Quản trị</a>
+                                <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/admin">Quản trị</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="#">Đơn hàng</a>
+                                <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/admin/order/list">Đơn hàng</a>
                                 </li>
                                 <li class="breadcrumb-item active">Cập nhật Đơn hàng
                                 </li>

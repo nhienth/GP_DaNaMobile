@@ -10,10 +10,30 @@
             <div class="content-body">
                 <!-- users list start -->
                 <section class="app-user-list">
+                <section class="app-user-list">
+                    <div class="content-header row">
+                        <div class="content-header-left col-md-9 col-12 mb-2">
+                            <div class="row breadcrumbs-top">
+                                <div class="col-12">
+                                    <h2 class="content-header-title float-start mb-0">Đơn hàng</h2>
+                                    <div class="breadcrumb-wrapper">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/admin">Trang chủ</a>
+                                            </li>
+                                            <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/admin/order/list">Đơn hàng</a>
+                                            </li>
+                                            <li class="breadcrumb-item active">Danh sách
+                                            </li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <!-- list and filter start -->
                     <div class="card">
                         <div class="card-body border-bottom">
-                            <h4 class="card-title">Tìm kiếm và Lọc</h4>
+                            <h4 class="card-title">Đơn hàng</h4>
                             <div class="row">
                                 <div class="col-md-4 user_role">
                                     <label class="form-label" for="UserRole">Vai trò</label>
@@ -121,6 +141,7 @@
                                             }
                                             ?>
                                         </td>
+<<<<<<< HEAD
                                         <td>{{$order->full_name}}</td>
                                         <td>{{$order->email}}</td>
                                         <td>{{$order->phone}}</td>
@@ -128,6 +149,11 @@
                                         <td>{{$order->note}}</td>
                                         <td><a href="{{ url('admin/order/details',[$order->id])}}">Xem chi tiết</a></td> 
                                         <td><a href="{{ url('admin/order/edit',[$order->id])}}"><button type="button" class="btn btn-gradient-success"><i data-feather='edit'></i></button></a></td>
+=======
+                                        <td>{{$key->full_name}}</td>
+                                        <td><a href="{{url('admin/order/details',[$key->id])}}"><button type="button" class="btn btn-gradient-info"><i data-feather='eye'></i></button></a></td> 
+                                        <td><a href="{{url('admin/order/edit',[$key->id])}}"><button type="button" class="btn btn-gradient-success"><i data-feather='edit'></i></button></a></td>
+>>>>>>> f372680433b1c0cd1744857063152199fd986cfa
                                     </tr>
                                     @endforeach
                                 </tbody>

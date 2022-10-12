@@ -10,10 +10,29 @@
             <div class="content-body">
                 <!-- users list start -->
                 <section class="app-user-list">
+                    <div class="content-header row">
+                        <div class="content-header-left col-md-9 col-12 mb-2">
+                            <div class="row breadcrumbs-top">
+                                <div class="col-12">
+                                    <h2 class="content-header-title float-start mb-0">Đánh giá bình luận</h2>
+                                    <div class="breadcrumb-wrapper">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/admin">Trang chủ</a>
+                                            </li>
+                                            <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/admin/preview/list">Đánh giá bình luận</a>
+                                            </li>
+                                            <li class="breadcrumb-item active">Danh sách
+                                            </li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <!-- list and filter start -->
                     <div class="card">
                         <div class="card-body border-bottom">
-                            <h4 class="card-title">Quản lý đánh giá</h4>
+                            <h4 class="card-title">Tìm kiếm và lọc</h4>
                             <div class="row">
                                 <div class="col-md-4 user_role">
                                     <label class="form-label" for="UserRole">Role</label>
@@ -84,11 +103,9 @@
                                         <td>{{$preview->total}}</td>
                                         <td>{{$preview->mindate}}</td>
                                         <td>{{$preview->maxdate}}</td>
-                                        <td><a href="http://127.0.0.1:8000/admin/preview/detail/{{$preview->product->id}}">Chi tiết</a></td>
-                                        <td><a href="{{url('admin/preview/detail', [$preview->id])}}"><button type="button" class="btn btn-gradient-info"><i data-feather='eye'></i></button></a></td>
+                                        <td><a href="{{url('admin/preview/detail',[$preview->product->id])}}"><button type="button" class="btn btn-gradient-info"><i data-feather='eye'></i></button></a></td>
                                     </tr>
                                       
-                                
                                     @endforeach
                                 </tbody>
                             </table>

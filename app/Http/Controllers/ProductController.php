@@ -59,6 +59,7 @@ class ProductController extends Controller
         move_uploaded_file($_FILES['product_img']['tmp_name'], $target_file);
         $product->product_img = $imgpath;
 
+        $product->product_status = $request->product_status;
         $product->save();
 
         $specfications = ProductSpecificationsOptions::all();
@@ -99,7 +100,7 @@ class ProductController extends Controller
     {
         $cate = new CategoryController();
         $categorySelect = $cate->res(0);
-        $product = Products::with('specfications')->where('products.id', $id)->first();
+        $product = Product::with('specfications')->where('products.id', $id)->first();
         return view('admin.products.edit', compact(['product', 'categorySelect']));
     }
 
@@ -112,7 +113,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product = Products::find($id);
+        $product = Product::find($id);
         $product->product_name = $request->product_name;
         $product->category_id = $request->category_id;
 
@@ -153,7 +154,9 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product = Products::find($id);
+        // $path = '../public/images/admin/products/';
+        $product = Product::find($id);
+        // unlink($path.$product->product_img);
         $product->delete();
         return redirect('/admin/product/list');
     }

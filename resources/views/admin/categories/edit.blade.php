@@ -12,9 +12,9 @@
                             <h2 class="content-header-title float-start mb-0">Cập nhật Danh mục</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Trang chủ</a>
+                                    <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/admin/">Trang chủ</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="#">Danh mục</a>
+                                    <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/admin/category/list">Danh mục</a>
                                     </li>
                                     <li class="breadcrumb-item active">Cập nhật
                                     </li>

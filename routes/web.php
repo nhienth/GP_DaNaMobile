@@ -1,22 +1,26 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\HomeController;
+use App\Models\Slider\SliderModel;
+
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
-use App\Models\Stocks;
 use App\Http\Controllers\StocksController;
 use App\Http\Controllers\CombinationsController;
 use App\Http\Controllers\PreviewController;
 use App\Http\Controllers\CategoryController;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\VariationController;
-use App\Models\Slider\SliderModel;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\VoucherController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\OrderDetailsController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,9 +33,7 @@ use App\Http\Controllers\OrderDetailsController;
 |
 */
 
-Route::get('/', function () {
-    return view('client.index');
-});
+Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/product-detail', function () {
     return view('client.products.product_details');
@@ -100,15 +102,17 @@ Route::prefix('/admin')->group(function () {
 
 
     Route::prefix('/post')->group(function () {
-        Route::get('/add', function () {
-            return view('admin.posts.create');
-        });
-        Route::get('/list', function () {
-            return view('admin.posts.list');
-        });
-        Route::get('/edit', function () {
-            return view('admin.posts.edit');
-        });
+        Route::get('/list', [PostController::class, 'index']); 
+
+        Route::get('/create', [PostController::class, 'create']); 
+        Route::post('/create', [PostController::class, 'store']); 
+
+        Route::get('/edit/{id}', [PostController::class, 'edit']); 
+        Route::post('/update/{id}', [PostController::class, 'update']); 
+
+        Route::get('/details/{id}', [PostController::class, 'show']); 
+
+        Route::get('/delete/{id}', [PostController::class, 'destroy']);
     });
 
     // Route::prefix('/banner')->group(function () {
@@ -181,7 +185,19 @@ Route::prefix('/admin')->group(function () {
         Route::post('/update/{id}', [VoucherController::class, 'update']);
         Route::get('/delete/{id}', [VoucherController::class, 'destroy']);
     });
+<<<<<<< HEAD
 
+=======
+    Route::prefix('/payment')->group(function () {
+        Route::get('/list', [PaymentController::class, 'index'])->name('payment.list');
+        Route::get('/create',  [PaymentController::class, 'create']);
+        Route::post('/create', [PaymentController::class, 'store'])->name('Payment.create');
+        Route::get('/edit/{id}', [PaymentController::class, 'edit']);
+        Route::post('/update/{id}', [PaymentController::class, 'update']);
+        Route::get('/delete/{id}', [PaymentController::class, 'destroy']);
+    });
+});
+>>>>>>> f372680433b1c0cd1744857063152199fd986cfa
 
     
 
