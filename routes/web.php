@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
+use App\Models\Slider\SliderModel;
 
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
@@ -10,10 +12,9 @@ use App\Http\Controllers\StocksController;
 use App\Http\Controllers\CombinationsController;
 use App\Http\Controllers\PreviewController;
 use App\Http\Controllers\CategoryController;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\VariationController;
-use App\Models\Slider\SliderModel;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\VoucherController;
@@ -100,15 +101,17 @@ Route::prefix('/admin')->group(function () {
 
 
     Route::prefix('/post')->group(function () {
-        Route::get('/add', function () {
-            return view('admin.posts.create');
-        });
-        Route::get('/list', function () {
-            return view('admin.posts.list');
-        });
-        Route::get('/edit', function () {
-            return view('admin.posts.edit');
-        });
+        Route::get('/list', [PostController::class, 'index']); 
+
+        Route::get('/create', [PostController::class, 'create']); 
+        Route::post('/create', [PostController::class, 'store']); 
+
+        Route::get('/edit/{id}', [PostController::class, 'edit']); 
+        Route::post('/update/{id}', [PostController::class, 'update']); 
+
+        Route::get('/details/{id}', [PostController::class, 'show']); 
+
+        Route::get('/delete/{id}', [PostController::class, 'destroy']);
     });
 
     // Route::prefix('/banner')->group(function () {
