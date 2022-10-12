@@ -95,26 +95,23 @@
                         <table class="user-list-table table dataTable no-footer dtr-column text-center" >
                             <thead class="table-light ">
                                 <tr>
-                                    <th>#</th>
-                                    <th>Số lượng</th>
-                                    <th>Tổng cộng</th>
+                                    <th>ID</th>
+                                    <th>Số lượng </th>
+                                    <th>Tổng Tiền</th>
                                     <th>Mã đơn hàng</th>
-                                    <th>Mã sản phẩm</th>
-                                    
+                                    <th>Mã sản phẩm</th>                                  
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($details as $item)
+                         @foreach ($order as $item)
                                 <tr data-dt-row="" data-dt-column="">
-                                    <td>{{$item->id}}</td>
-                                    <td>{{$item->quantity}}</td>
-                                    <td>{{$item->total_amount}}</td>
-                                    <td>{{$item->product->product_id}}</td>
-                                    <td>{{$item->order->order_id}}</td>                                  
+                                    <td>{{$item->id}}</td> 
+                                    <td>{{$item->quantity}}</td>  
+                                    <td>{{$item->total_amount}}</td> 
+                                    <td>{{$item->order->order_number}}</td> 
+                                    <td>{{$item->product->product_name}}</td>                                                
                                 </tr>
-                                @endforeach
-                                
-                              
+                               @endforeach                                                      
                             </tbody>
                         </table>
                         <div class="d-flex justify-content-between mx-2 row mb-1">

@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 use App\Models\OrderDetails;
 use Illuminate\Http\Request;
+use App\Models\Order;
+use App\Models\Product;
+
+
 
 
 class OrderDetailsController extends Controller
@@ -14,7 +18,7 @@ class OrderDetailsController extends Controller
      */
     public function index()
     {
-        //
+       //
     }
 
     /**
@@ -45,9 +49,10 @@ class OrderDetailsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        $details = OrderDetails::find($id);
-        return view('admin.order.details', compact('details'));
+    {   
+        $order = orderDetails::where('order_id','=',$id)->get();  
+        //dd($id);
+        return view('admin.order.details',compact('order'));
     }
 
     /**

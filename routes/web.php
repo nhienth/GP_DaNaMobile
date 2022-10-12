@@ -141,13 +141,14 @@ Route::prefix('/admin')->group(function () {
         Route::get('/edit/{id}',[UserController::class,'edit']);
         Route::put('/update/{id}', [UserController::class, 'update']);
     });
+
+
     Route::prefix('/order')->group(function () {
         Route::get('/list',[OrderController::class,'index']);
+        Route::get('/details/{id}', [OrderDetailsController::class,'show']);
         Route::get('/edit/{id}',[OrderController::class,'edit']);
-        Route::put('/update/{id}', [OrderController::class, 'update']);
-        Route::get('/details/{id}',[OrderDetailsController::class, 'show']);
+        Route::put('/update/{id}', [OrderController::class, 'update']);  
     });
-
     
     
     Route::prefix('/stocks')->group(function () {
