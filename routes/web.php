@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProductController;
-use App\Models\Slider\SliderModel;
+use App\Modeltts\Slider\SliderModel;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\PostController;
 
