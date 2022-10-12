@@ -6,10 +6,10 @@ use App\Http\Controllers\CategoryController;
 
 use Illuminate\Support\Facades\Auth;
 use Validator;
-use App\Models\Product;
 use App\Models\Category;
 use App\Models\ProductSpecificationsOptions;
 use App\Models\ProductSpecificationsOptionsValue;
+use App\Models\Product;
 
 use Illuminate\Http\Request;
 
@@ -24,9 +24,6 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         $products = Product::with('category')->orderBy('products.id', 'desc')->get();
-
-        dd($products);
-
         return view('admin.products.list', compact(['categories', 'products']));
     }
 
@@ -79,7 +76,6 @@ class ProductController extends Controller
         }
 
         return redirect('/admin/product/list');
-       
     }
 
     /**
@@ -103,7 +99,7 @@ class ProductController extends Controller
     {
         $cate = new CategoryController();
         $categorySelect = $cate->res(0);
-        $product = Product::with('specfications')->where('products.id', $id)->first();
+        $product = Products::with('specfications')->where('products.id', $id)->first();
         return view('admin.products.edit', compact(['product', 'categorySelect']));
     }
 
@@ -116,7 +112,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product = Product::find($id);
+        $product = Products::find($id);
         $product->product_name = $request->product_name;
         $product->category_id = $request->category_id;
 
@@ -134,11 +130,11 @@ class ProductController extends Controller
 
         foreach ($specfication_options as $specfication_option) {
             $specfication = ProductSpecificationsOptionsValue::where('product_id', $id)
-            ->where('specification_name', 'LIKE', $specfication_option->specification_name)
-            ->first();
-            
-            $nspecfication_value = $specfication->id."_value";
-            $specfication -> specification_value = $request-> $nspecfication_value;
+                ->where('specification_name', 'LIKE', $specfication_option->specification_name)
+                ->first();
+
+            $nspecfication_value = $specfication->id . "_value";
+            $specfication->specification_value = $request->$nspecfication_value;
 
             $nspecfication_value = $specfication->id . "_value";
             $specfication->specification_value = $request->$nspecfication_value;
@@ -157,7 +153,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product = Product::find($id);
+        $product = Products::find($id);
         $product->delete();
         return redirect('/admin/product/list');
     }

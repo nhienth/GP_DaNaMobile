@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Combinations;
+use App\Models\Stocks;
+use App\Models\Products;
 
-class ProductSpecificationsOptionsController extends Controller
+class CombinationsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -12,16 +15,6 @@ class ProductSpecificationsOptionsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
     {
         //
     }
@@ -45,18 +38,7 @@ class ProductSpecificationsOptionsController extends Controller
      */
     public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        
     }
 
     /**

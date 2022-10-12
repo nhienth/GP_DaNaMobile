@@ -1,10 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use  App\Models\Order;
+use  App\Models\OrderDetails;
+use  App\Models\OrderDetail;
 use Illuminate\Http\Request;
 
-class ProductSpecificationsOptionsController extends Controller
+use App\Http\Controllers\UserController;
+
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,16 +18,8 @@ class ProductSpecificationsOptionsController extends Controller
     public function index()
     {
         //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $allorder = Order::all();
+        return view('admin.order.list')->with(compact('allorder'));
     }
 
     /**
@@ -34,7 +30,15 @@ class ProductSpecificationsOptionsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $order = new Order();
+        $order->status = $request -> status;
+        $order->save();
+
+        return redirect('/admin/order/list');
+
+        $slider = Slider::find($id);
+        $slider->update($request->only('slider_img'));
+        return redirect()->route('slider.list');
     }
 
     /**
@@ -45,10 +49,12 @@ class ProductSpecificationsOptionsController extends Controller
      */
     public function show($id)
     {
-        //
+        $order_detail = OrderDetails::find($id);
+        // dd($order);
+        return view('admin.order.details', compact('order_detail'));
     }
 
-    /**
+        /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -56,7 +62,8 @@ class ProductSpecificationsOptionsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $order = Order::find($id);
+        return view('admin.order.edit')->with(compact('order'));
     }
 
     /**
@@ -68,7 +75,13 @@ class ProductSpecificationsOptionsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $order = Order::find($id);
+        $order ->id = $request->id;
+        $order ->status = $request->status;
+
+        $order->save();
+        // dd($order);
+        return redirect('admin/order/list')->with('status','Bạn đã cập nhật thành công');
     }
 
     /**

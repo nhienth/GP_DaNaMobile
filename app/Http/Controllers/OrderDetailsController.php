@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\OrderDetails;
 use Illuminate\Http\Request;
 
-class ProductSpecificationsOptionsController extends Controller
+
+class OrderDetailsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -45,7 +46,9 @@ class ProductSpecificationsOptionsController extends Controller
      */
     public function show($id)
     {
-        //
+        $order = OrderDetails::find($id);
+        // dd($order);
+        return view('admin.order.details', compact('order'));
     }
 
     /**

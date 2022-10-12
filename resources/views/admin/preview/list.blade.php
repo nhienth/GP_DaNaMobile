@@ -10,68 +10,6 @@
             <div class="content-body">
                 <!-- users list start -->
                 <section class="app-user-list">
-                    <div class="row">
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card">
-                                <div class="card-body d-flex align-items-center justify-content-between">
-                                    <div>
-                                        <h3 class="fw-bolder mb-75">21,459</h3>
-                                        <span>Total Users</span>
-                                    </div>
-                                    <div class="avatar bg-light-primary p-50">
-                                        <span class="avatar-content">
-                                            <i data-feather="user" class="font-medium-4"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card">
-                                <div class="card-body d-flex align-items-center justify-content-between">
-                                    <div>
-                                        <h3 class="fw-bolder mb-75">4,567</h3>
-                                        <span>Paid Users</span>
-                                    </div>
-                                    <div class="avatar bg-light-danger p-50">
-                                        <span class="avatar-content">
-                                            <i data-feather="user-plus" class="font-medium-4"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card">
-                                <div class="card-body d-flex align-items-center justify-content-between">
-                                    <div>
-                                        <h3 class="fw-bolder mb-75">19,860</h3>
-                                        <span>Active Users</span>
-                                    </div>
-                                    <div class="avatar bg-light-success p-50">
-                                        <span class="avatar-content">
-                                            <i data-feather="user-check" class="font-medium-4"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card">
-                                <div class="card-body d-flex align-items-center justify-content-between">
-                                    <div>
-                                        <h3 class="fw-bolder mb-75">237</h3>
-                                        <span>Pending Users</span>
-                                    </div>
-                                    <div class="avatar bg-light-warning p-50">
-                                        <span class="avatar-content">
-                                            <i data-feather="user-x" class="font-medium-4"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <!-- list and filter start -->
                     <div class="card">
                         <div class="card-body border-bottom">
@@ -130,24 +68,28 @@
                                 <thead class="table-light">
                                     <tr>
                                         <th>#</th>
-                                        <th>Sản phẩm</th>
-                                        <th>Đánh giá trung bình</th>
+                                        <th>Tên sản phẩm</th>
                                         <th>Số bình luận</th>
-                                        <th>Mới nhất</th>
-                                        <th>Cũ nhất</th>
+                                        <th>Bình luận cũ nhất</th>
+                                        <th>Bình luận mới nhất</th>
                                         <th>Chi tiết</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($previews as $preview)
+                                     
                                     <tr data-dt-row="" data-dt-column="">
-                                        <td>ABC</td>
-                                        <td>ABC</td>
-                                        <td>ABC</td>
-                                        <td>ABC</td>
-                                        <td>ABC</td>
-                                        <td>ABC</td>
-                                        <td>ABC</td>
+                                        <td></td>
+                                        <td>{{$preview->product->product_name}}</td>
+                                        <td>{{$preview->total}}</td>
+                                        <td>{{$preview->mindate}}</td>
+                                        <td>{{$preview->maxdate}}</td>
+                                        <td><a href="http://127.0.0.1:8000/admin/preview/detail/{{$preview->product->id}}">Chi tiết</a></td>
+                                        <td><a href="{{url('admin/preview/detail', [$preview->id])}}"><button type="button" class="btn btn-gradient-info"><i data-feather='eye'></i></button></a></td>
                                     </tr>
+                                      
+                                
+                                    @endforeach
                                 </tbody>
                             </table>
                             <div class="d-flex justify-content-between mx-2 row mb-1">

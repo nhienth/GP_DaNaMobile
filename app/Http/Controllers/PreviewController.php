@@ -1,30 +1,31 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Details;
-use Illuminate\Http\Request;
 
-class DetailsController extends Controller
+use Illuminate\Http\Request;
+use App\Models\Preview;
+use DB;
+
+class PreviewController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        $order_details = Order_detail::all();
-        return view('admin.details.list',['details' => $order_details]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        
+        $previews = Preview::with('product')
+            // ->select('product_id', DB::raw('count(*) as total'),DB::raw('DATE(created_at) as date)'))
+            // ->groupBy('product_id')
+            ->select(DB::raw('product_id, max(created_at) as maxdate, min(created_at) as mindate'),DB::raw('count(*) as total'))
+            ->groupBy('product_id')
+               //->orderBy('paper_update', 'desc')
+            ->get();
+        // dd($previews);
+        return view('admin.preview.list',compact('previews'));
     }
 
     /**
@@ -46,18 +47,9 @@ class DetailsController extends Controller
      */
     public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        $detail = Preview::with(['product', 'user'])->where('product_reviews.product_id',$id)->get();
+        // dd($detail);
+        return view('admin.preview.detail')->with(compact('detail'));
     }
 
     /**
@@ -80,6 +72,11 @@ class DetailsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $preview = Preview::find($id);
+        $preview->delete();
+        return redirect('admin/preview/list')->with('status','Bạn đã Xóa thành công');
     }
+
+    
+
 }

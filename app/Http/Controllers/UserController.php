@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use  App\Models\User;
 use Illuminate\Http\Request;
 
-class ProductSpecificationsOptionsController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,17 +13,8 @@ class ProductSpecificationsOptionsController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $alluser = User::all();
+        return view('admin.user.list')->with(compact('alluser'));
     }
 
     /**
@@ -56,7 +47,8 @@ class ProductSpecificationsOptionsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('admin.user.edit')->with(compact('user'));
     }
 
     /**
@@ -69,6 +61,15 @@ class ProductSpecificationsOptionsController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $user = User::find($id);
+        $user ->id = $request->id;
+        $user ->role = $request->role;
+        $user ->status = $request->status;
+
+        $user->save();
+        // dd($order);
+        return redirect('admin/user/list')->with('status','Bạn đã cập nhật thành công');
+        
     }
 
     /**

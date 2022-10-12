@@ -45,13 +45,13 @@
                                 <div class="card-body">
                                     <form class="needs-validation" novalidate method="POST" action="{{route('voucher.add')}}">
                                         @csrf                                                                                                         
-                                        <div class="mb-1">
+                                        {{-- <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="basic-addon-name">ID</label>
     
                                             <input value="" type="text" name="voucher_id" id="basic-addon-name" class="form-control" placeholder="Nhập ID" aria-label="Name" aria-describedby="basic-addon-name" required />
                                             <div class="valid-feedback">Looks good!</div>
                                             <div class="invalid-feedback">Please enter ID.</div>
-                                        </div>
+                                        </div> --}}
                                         <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Mã Giảm Giá</label>
     
@@ -67,17 +67,14 @@
                                         >
                                         <select
                                             class="form-select"
-                                            id="select-country1"
+                                            id="select-country1" name="voucher_type"
                                             required
                                         >
-                                            <option value="">
-                                               Nhập loại hình
+                                            <option value="Giảm theo tiền">
+                                                Giảm Theo Tiền
                                             </option>
-                                            <option value="usa">
-                                                Giảm Tiền
-                                            </option>
-                                            <option value="uk">
-                                                Giảm %
+                                            <option value="Giảm theo %">
+                                                Giảm Theo %
                                             </option>
                                            
                                         </select>
@@ -99,14 +96,23 @@
                                         </div>
                                         <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Mã Sản Phẩm </label>
-    
-                                            <input value="" type="text" name="voucher_product_id" id="basic-addon-name" class="form-control" placeholder="Nhập mã sản phẩm" aria-label="Name" aria-describedby="basic-addon-name" required />
+                            
+                                            <select name="voucher_product_id"  class="form-select"
+                                            id="select-country1" > Chọn mã sản phẩm
+                                                @foreach ($result as  $rs)
+                                                <option  value="{{$rs->id}}"> {{$rs->product_name}}</option>
+                                                @endforeach
+                                            </select>
+                                            
+                                          
+                                     
+                                            {{-- <input value="" type="text" name="voucher_product_id" id="basic-addon-name" class="form-control" placeholder="Nhập mã sản phẩm" aria-label="Name" aria-describedby="basic-addon-name" required />
                                             <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please enter product Id.</div>
+                                            <div class="invalid-feedback">Please enter product Id.</div> --}}
                                         </div>
                                         <a href="{{route('voucher.add')}}"><button type="submit" class="btn btn-primary me-2">Thêm mới</button>
                                         <button type="submit" class="btn btn-primary me-2">Nhập lại</button>
-                                        <a href="{{route('voucher.list')}}"></a><button type="button" class="btn btn-primary">Danh sách</button>
+                                        <a href="{{route('voucher.list')}}"><button type="button" class="btn btn-primary">Danh sách</button></a>
                                     </form>
                                 </div>
                             </div>
