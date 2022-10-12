@@ -48,7 +48,7 @@
                                         <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Thêm Banner</label>
 
                                         <input type="file" id="basic-addon-name" class="form-control"  aria-label="Name" aria-describedby="basic-addon-name" name="file_img" value="{{$banner->banner_img}}" required />
-                                        <img src="{{asset('img/'.$banner->banner_img)}}" width="100px" height="100px" alt="">
+                                        <img src="{{asset('images/banner/'.$banner->banner_img)}}" width="100px" height="100px" alt="">
 
                                         <div class="valid-feedback">Looks good!</div>
                                         <div class="invalid-feedback">Please enter your name.</div>

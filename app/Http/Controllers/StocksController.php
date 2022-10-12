@@ -18,21 +18,6 @@ class StocksController extends Controller
     {
         // $allstocks = Stocks::all();
         $products_stocks = Product::with(['combinations', 'stock'])->get();
-        // dd($products_stocks);
-        // foreach ($products_stocks as $products_stock) {
-        //     foreach ($products_stock->combinations as $value) {
-        //         print_r($value->combination_string);
-        //     }
-        // }
-
-        // $stocks = Products::with('stock')->get();
-
-        // dd($products_stocks);
-
-        // $stocks = Stocks::with('product')->get();
-        // foreach ($stocks as $stock) {
-        //     print_r($stock->product->id);
-        // }
 
         return view('admin.stocks.list')->with(compact('products_stocks'));
     }

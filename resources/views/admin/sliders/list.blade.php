@@ -154,7 +154,7 @@
                                         @foreach ($result as $slider )
                                             <tr data-dt-row="" data-dt-column="">
                                             <td>{{$slider->id}}</td>
-                                            <td><img src="{{asset('img/'.$slider->slider_img)}}" width="100px" height="100px" alt=""></td>
+                                            <td><img src="{{asset('images/slider/'.$slider->slider_img)}}" width="100px" height="100px" alt=""></td>
                                             <td><a href="{{url('admin/slider/edit',[$slider->id])}}"><button type="button" class="btn btn-primary">Sửa</button></a></td>
                                             <td><a href="{{url('admin/slider/delete',[$slider->id])}}"><button type="button" class="btn btn-primary">Xóa</button></a></td>
                                             </tr>

@@ -3,7 +3,8 @@
 <main id="content" role="main">
     <!-- Slider Section -->
     <div class="mb-5">
-        <div class="bg-img-hero" style="background-image: url({{asset('client/assets/img/1920X422/img1.jpg')}}">
+        @foreach($slider as $sliders)
+        <div class="bg-img-hero" style="background-image: url({{asset('img/'.$sliders->slider_img)}}">
             <div class="container min-height-420 overflow-hidden">
                 <div class="js-slick-carousel u-slick"
                     data-pagi-classes="text-center position-absolute right-0 bottom-0 left-0 u-slick__pagination u-slick__pagination--long justify-content-start mb-3 mb-md-4 offset-xl-3 pl-2 pb-1">
@@ -12,7 +13,7 @@
                             <div class="offset-xl-3 col-xl-4 col-6 mt-md-8">
                                 <h1 class="font-size-64 text-lh-57 font-weight-light"
                                     data-scs-animation-in="fadeInUp">
-                                    THE NEW <span class="d-block font-size-55">STANDARD</span>
+                                    THE NEW STANDARD
                                 </h1>
                                 <h6 class="font-size-15 font-weight-bold mb-3"
                                     data-scs-animation-in="fadeInUp"
@@ -39,7 +40,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="js-slide bg-img-hero-center" data-animation-delay="0">
+                    <!-- <div class="js-slide bg-img-hero-center" data-animation-delay="0">
                         <div class="row min-height-420 py-7 py-md-0">
                             <div class="offset-xl-3 col-xl-4 col-6 mt-md-8">
                                 <h1 class="font-size-64 text-lh-57 font-weight-light"
@@ -102,10 +103,11 @@
                                 <img class="img-fluid" src="{{asset('client/assets/img/416X420/img3.png')}}" alt="Image Description">
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
+        @endforeach
     </div>
     <!-- End Slider Section -->
     <div class="container">

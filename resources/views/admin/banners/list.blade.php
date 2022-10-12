@@ -75,7 +75,7 @@
                     <!-- list and filter start -->
                     <div class="card">
                         <div class="card-body border-bottom">
-                            <h4 class="card-title">Tìm kiếm và Lọc</h4>
+                            <h4 class="card-title">Tìm kiếm và lọc</h4>
                             <div class="row">
                                 <div class="col-md-4 user_role">
                                     <label class="form-label" for="UserRole">Vai trò</label>
@@ -155,7 +155,7 @@
                                         @foreach ($result as $banner )
                                             <tr data-dt-row="" data-dt-column="">
                                             <td>{{$banner->id}}</td>
-                                            <td><img src="{{asset('img/'.$banner->banner_img)}}" width="100px" height="100px" alt=""></td>
+                                            <td><img src="{{asset('images/banner/'.$banner->banner_img)}}" width="100px" height="100px" alt=""></td>
                                             <td>{{$banner->location}}</td>
                                             <td><a href="{{url('admin/banner/edit',[$banner->id])}}"><button type="button" class="btn btn-primary">Sửa</button></a></td>
                                             <td><a href="{{url('admin/banner/delete',[$banner->id])}}"><button type="button" class="btn btn-primary">Xóa</button></a></td>

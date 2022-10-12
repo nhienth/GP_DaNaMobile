@@ -46,7 +46,7 @@ class BannerController extends Controller
         if ($request->has('file_img')) {
             $file = $request->file_img;
             $file_name = $file->getClientoriginalName();
-            $file->move(public_path('img'), $file_name);
+            $file->move(public_path('images/banner'), $file_name);
         }
         $request->merge(['banner_img' => $file_name]);
         if (Banner::create($request->all())) {
@@ -89,7 +89,7 @@ class BannerController extends Controller
         if ($request->has('file_img')) {
             $file = $request->file_img;
             $file_name = $file->getClientoriginalName();
-            $file->move(public_path('img'), $file_name);
+            $file->move(public_path('images/banner'), $file_name);
         }
         $request->merge(['banner_img' => $file_name]);
         $banner = Banner::find($id);
