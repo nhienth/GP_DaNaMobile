@@ -10,27 +10,13 @@
             <div class="content-body">
                 <!-- users list start -->
                 <section class="app-user-list">
+                    <div class="row">
+                        
+                    </div>
                     <!-- list and filter start -->
                     <div class="card">
                         <div class="card-body border-bottom">
-                            <h4 class="card-title">Tìm kiếm và Lọc</h4>
-                            <div class="row">
-                                <div class="col-md-4 user_role">
-                                    <label class="form-label" for="UserRole">Vai trò</label>
-                                    <select id="UserRole" class="form-select text-capitalize mb-md-0 mb-2">
-                                        <option value=""> Select Role </option>
-                                        <option value="' + d + '" class="text-capitalize">' + d + '</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-4 user_plan">
-                                    <label class="form-label" for="UserPlan">Kế hoạch</label>
-                                    <select id="UserPlan" class="form-select text-capitalize mb-md-0 mb-2"><option value=""> Select Plan </option></select>
-                                </div>
-                                <div class="col-md-4 user_status">
-                                    <label class="form-label" for="FilterTransaction">Trạng thái</label>
-                                    <select id="FilterTransaction" class="form-select text-capitalize mb-md-0 mb-2xx"><option value=""> Select Status </option></select>
-                                </div>
-                            </div>
+                            <h4 class="card-title">Chi tiết Kho hàng</h4>
                         </div>
                         <div class="card-datatable table-responsive pt-0">
                             <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
@@ -81,41 +67,25 @@
                                 <thead class="table-light">
                                     <tr>
                                         <th>#</th>
-                                        <th>Mã đơn hàng</th>
-                                        <th>Số lượng đơn hàng</th>
-                                        <th>Tạm tính</th>
-                                        <th>Tổng tiền</th>
-                                        <th>Phương thức thanh toán</th>
-                                        <th>Trạng thái</th>
-                                        <th>Tên khách hàng</th>
-                                        <th colspan="2">Hành động</th>
+                                        <th>Mã</th>
+                                        <th>Tên sản phẩm</th>
+                                        <th>Nội dung bình luận</th>
+                                        <th>Người bình luận</th>
+                                        <th>Ngày bình luận</th>
+                                        <th>Chức năng</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($allorder as $key)
+                                    @foreach($detail as $stockdetail)
+
                                     <tr data-dt-row="" data-dt-column="">
                                         <td></td>
-                                        <td>{{$key->id}}</td>
-                                        <td>{{$key->order_number}}</td>
-                                        <td>{{$key->sub_total}}</td>
-                                        <td>{{$key->total_amount}}</td>
-                                        <td>{{$key->payment_id}}</td>
-                                        <td>
-                                            <?php
-                                            if($key["status"]==0){
-                                                echo "Đang xử lý";
-                                            }else if($key["status"]==1){
-                                                echo "Đang giao hàng";
-                                            }else if($key["status"]==2){
-                                                echo "Đã giao hàng";
-                                            }else {
-                                                echo "Đã hủy hàng";
-                                            }
-                                            ?>
-                                        </td>
-                                        <td>{{$key->full_name}}</td>
-                                        <td><a href="{{url('admin/order/details',[$key->id])}}">Xem chi tiết</a></td> 
-                                        <td><a href="{{url('admin/order/edit',[$key->id])}}"><button type="button" class="btn btn-gradient-success"><i data-feather='edit'></i></button></a></td>
+                                        <td>{{$stockdetail->id}}</td>
+                                        <td>{{$stockdetail->product->product_name}}</td>
+                                        <td>{{$stockdetail->review}}</td>
+                                        <td>{{$stockdetail->user->name}}</td>
+                                        <td>{{$stockdetail->created_at}}</td>
+                                        <td><a href="http://127.0.0.1:8000/admin/preview/delete/{{$stockdetail->id}}">Xóa</a></td>
                                     </tr>
                                     @endforeach
                                 </tbody>

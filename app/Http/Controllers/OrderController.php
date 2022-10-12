@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use  App\Models\Order;
+use  App\Models\OrderDetails;
+use  App\Models\OrderDetail;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\UserController;
@@ -29,17 +31,7 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $order = new Order();
-        $order->order_number = $request -> order_number;
-        $order->sub_total = $request -> sub_total;
-        $order->voucher = $request -> voucher;
-        $order->total_amount = $request -> total_amount;
-        $order->payment_id = $request -> payment_id;
         $order->status = $request -> status;
-        $order->full_name = $request -> full_name;
-        $order->email = $request -> email;
-        $order->phone = $request -> phone;
-        $order->address = $request -> address;
-        $order->note = $request -> note;
         $order->save();
 
         return redirect('/admin/order/list');
@@ -57,7 +49,9 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+        $order_detail = OrderDetails::find($id);
+        // dd($order);
+        return view('admin.order.details', compact('order_detail'));
     }
 
         /**

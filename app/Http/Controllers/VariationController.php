@@ -21,6 +21,20 @@ class VariationController extends Controller
         //
     }
 
+    
+    /**
+     * Show the form for creating a new resource.
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function test($id)
+    {
+        $product = Product::find($id);
+        $variations = Variation_Option::with('variation_values')->get();
+        dd($variations);
+        // return view('admin.variation.create', compact(['product', 'variations']));
+    }
+
     /**
      * Show the form for creating a new resource.
      * @param  int  $id
@@ -41,16 +55,21 @@ class VariationController extends Controller
      */
     public function store(Request $request)
     {
-        $product = Product::with(['variations', 'variation_value'])->where('products.id',$request->product_id )->first();
-        dd($product);
+        $product = Product::with('variations')->where('products.id',$request->product_id )->first();
+     
+    
         $variations = Variation::all();
-        foreach ($variations as $variation) {
-            $variation_option = new Variation_Option();
-            
-            $variation_option->variation_name =  $variation->variation_name;
-            $variation_option->product_id =  $request->product_id;
 
-            $variation_option->save();
+        dd($product);
+        foreach ($variations as $variation) {
+            if($variation->product_id != $request->product_id) {
+                $variation_option = new Variation_Option();
+            
+                $variation_option->variation_name =  $variation->variation_name;
+                $variation_option->product_id =  $request->product_id;
+    
+                $variation_option->save();
+            }
 
             $variation_option_value = new Variation_Option_Value();
 
@@ -63,6 +82,8 @@ class VariationController extends Controller
 
             $variation_option_value->save();
         }
+      
+      
 
         // $product_variations_value = Product::with(['variations', 'variation_value'])
         //     ->where('products_variations_options.product_id', $request->product_id)

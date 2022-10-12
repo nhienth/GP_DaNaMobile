@@ -46,10 +46,9 @@ class OrderDetailsController extends Controller
      */
     public function show($id)
     {
-        
         $order = OrderDetails::find($id);
-        dd($order);
-        return view('admin.order.detail', compact('order'));
+        // dd($order);
+        return view('admin.order.details', compact('order'));
     }
 
     /**
