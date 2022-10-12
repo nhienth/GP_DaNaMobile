@@ -14,11 +14,8 @@ use App\Http\Controllers\VariationController;
 use App\Models\Slider\SliderModel;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\SliderController;
-<<<<<<< HEAD
 use App\Http\Controllers\VoucherController;
 use App\Http\Controllers\OrderDetailsController;
-=======
->>>>>>> 312ef52ae33d3476dac3eca5196464a85a933800
 
 /*
 |--------------------------------------------------------------------------
