@@ -136,9 +136,6 @@ Route::prefix('/admin')->group(function () {
        Route::get('/list', [ContactController::class, 'index']);
     });
 
-
-   
-
     Route::prefix('/user')->group(function () {
         Route::get('/list',[UserController::class,'index']);
         Route::get('/edit/{id}',[UserController::class,'edit']);
@@ -158,7 +155,7 @@ Route::prefix('/admin')->group(function () {
         Route::get('/list',[StocksController::class,'index']);
         Route::get('/stock_detail/{id}',[StocksController::class,'show']);
     });
-});
+
     Route::prefix('/slider')->group(function () {
         Route::get('/list', [SliderController::class, 'index'])->name('slider.list');
         Route::get('/create', [SliderController::class, 'create'])->name('slider.create');
@@ -194,6 +191,8 @@ Route::prefix('/admin')->group(function () {
         Route::get('/delete/{id}', [PaymentController::class, 'destroy']);
     });
 
+});
+   
 
     
 
