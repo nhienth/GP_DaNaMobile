@@ -19,12 +19,13 @@ return new class extends Migration
             $table->string('type', 50);
             $table->float('value');
             $table->boolean('status');
-
             $table->foreignId('product_id')
                 ->constrained('products')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
+         
         });
     }
 

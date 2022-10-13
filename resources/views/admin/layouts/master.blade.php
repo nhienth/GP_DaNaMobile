@@ -78,6 +78,9 @@
     <script src="{{asset('backend/app-assets/js/scripts/forms/form-file-uploader.js')}}"></script>
     <!-- END: Page JS-->
 
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+
     <script>
         $(window).on('load', function() {
             if (feather) {
@@ -88,6 +91,18 @@
             }
         })
     </script>
+
+        <script src="{{asset('client/assets/js/jquery-3.6.0.min.js')}}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+        
+        
+
+        <script>
+            $(document).ready(function() {
+                $("#mySummernote").summernote();
+                $('.dropdown-toggle').dropdown();
+            });
+        </script>
 </body>
 <!-- END: Body-->
 

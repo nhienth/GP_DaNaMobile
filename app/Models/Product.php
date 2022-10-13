@@ -18,19 +18,61 @@ class Product extends Model
         'product_name',
         'product_img',
         'category_id',
-        'product_view'
+        'product_desc',
+        'product_view',
+        'product_status'
     ];
 
     protected $attributes = [
         'product_view' => 0
     ];
+    public function stock()
+    {
+        return $this->hasOneThrough(
+            Stocks::class,
+            Combinations::class,
+            'product_id', 
+            'products_combinations_id',
+            'id', 
+            'id' 
+        );
+    }
 
-    public function category() {
+    public function category()
+    {
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
-    public function specfications() {
+    public function specfications()
+    {
         return $this->hasMany(ProductSpecificationsOptionsValue::class, 'product_id');
     }
+    public function combinations(){
+        return $this->hasMany(Combinations::class,'product_id');
+    }
+
+    public function voucher_product()
+    {
+        return $this->hasOne(Voucher::class, 'product_id', 'id');
+    }
+
+    public function variations(){
+        return $this->hasMany(Variation_Option::class,'product_id');
+    }
+
+    public function variation_value()
+    {
+        return $this->hasManyThrough(
+            Variation_Option_Value::class,
+            Variation_Option::class,
+            'product_id', 
+            'products_variation_id',
+            'id', 
+            'id' 
+        );
+    }
+
+
+
 
 }

@@ -46,14 +46,13 @@
                                     <form class="needs-validation" novalidate method="POST" action="http://localhost:8000/admin/category/create">
                                         @csrf
                                         <div class="mb-1">
-                                            <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Tên Danh mục</label>
+                                            <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Tên danh mục</label>
     
                                             <input type="text" name="category_name" id="basic-addon-name" class="form-control" placeholder="Nhập tên Danh mục" aria-label="Name" aria-describedby="basic-addon-name" required />
-                                            <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please enter your name.</div>
+                                    
                                         </div>
                                         <div class="mb-1">
-                                            <label for="customFile1" class="form-label fs-5 fw-bolder">Ảnh sản phẩm</label>
+                                            <label for="customFile1" class="form-label fs-5 fw-bolder">Ảnh danh mục</label>
                                             <input class="form-control" type="file" id="customFile1" required name="category_image"/>
                                         </div>
                                         <div class="mb-1">
