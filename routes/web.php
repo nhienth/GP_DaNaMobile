@@ -185,9 +185,7 @@ Route::prefix('/admin')->group(function () {
         Route::post('/update/{id}', [VoucherController::class, 'update']);
         Route::get('/delete/{id}', [VoucherController::class, 'destroy']);
     });
-<<<<<<< HEAD
 
-=======
     Route::prefix('/payment')->group(function () {
         Route::get('/list', [PaymentController::class, 'index'])->name('payment.list');
         Route::get('/create',  [PaymentController::class, 'create']);
@@ -196,8 +194,7 @@ Route::prefix('/admin')->group(function () {
         Route::post('/update/{id}', [PaymentController::class, 'update']);
         Route::get('/delete/{id}', [PaymentController::class, 'destroy']);
     });
-});
->>>>>>> f372680433b1c0cd1744857063152199fd986cfa
+
 
     
 

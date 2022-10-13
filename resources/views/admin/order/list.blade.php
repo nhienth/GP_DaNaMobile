@@ -141,7 +141,6 @@
                                             }
                                             ?>
                                         </td>
-<<<<<<< HEAD
                                         <td>{{$order->full_name}}</td>
                                         <td>{{$order->email}}</td>
                                         <td>{{$order->phone}}</td>
@@ -149,11 +148,6 @@
                                         <td>{{$order->note}}</td>
                                         <td><a href="{{ url('admin/order/details',[$order->id])}}">Xem chi tiết</a></td> 
                                         <td><a href="{{ url('admin/order/edit',[$order->id])}}"><button type="button" class="btn btn-gradient-success"><i data-feather='edit'></i></button></a></td>
-=======
-                                        <td>{{$key->full_name}}</td>
-                                        <td><a href="{{url('admin/order/details',[$key->id])}}"><button type="button" class="btn btn-gradient-info"><i data-feather='eye'></i></button></a></td> 
-                                        <td><a href="{{url('admin/order/edit',[$key->id])}}"><button type="button" class="btn btn-gradient-success"><i data-feather='edit'></i></button></a></td>
->>>>>>> f372680433b1c0cd1744857063152199fd986cfa
                                     </tr>
                                     @endforeach
                                 </tbody>

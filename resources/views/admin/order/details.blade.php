@@ -108,8 +108,8 @@
                                     <td>{{$item->id}}</td> 
                                     <td>{{$item->quantity}}</td>  
                                     <td>{{$item->total_amount}}</td> 
-                                    <td>{{$item->order->order_number}}</td> 
-                                    <td>{{$item->product->product_name}}</td>                                                
+                                    <td>{{$item->order->id}}</td> 
+                                    <td>{{$item->product->id}}</td>                                                
                                 </tr>
                                @endforeach                                                      
                             </tbody>
