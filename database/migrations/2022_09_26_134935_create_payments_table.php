@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('payment_name', 50);
             $table->integer('payment_status');
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

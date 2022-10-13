@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('slider', function (Blueprint $table) {
             $table->id();
             $table->string('slider_img', 255);
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }
