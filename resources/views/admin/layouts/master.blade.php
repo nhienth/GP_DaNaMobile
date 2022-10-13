@@ -99,7 +99,9 @@
 
         <script>
             $(document).ready(function() {
-                $("#mySummernote").summernote();
+                $("#mySummernote").summernote({
+                    height: 300
+                });
                 $('.dropdown-toggle').dropdown();
             });
         </script>

@@ -102,39 +102,37 @@
                                         <th>#</th>
                                         <th>Mã đơn hàng</th>
                                         <th>Số lượng đơn hàng</th>
-                                        <th>Tạm tính</th>
                                         <th>Tổng tiền</th>
-                                        <th>Phương thức thanh toán</th>
+                                        <th>Mã phương thức thanh toán</th>
                                         <th>Trạng thái</th>
                                         <th>Tên khách hàng</th>
                                         <th colspan="2">Hành động</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($allorder as $key)
+                                    @foreach($orders as $order)
                                     <tr data-dt-row="" data-dt-column="">
                                         <td></td>
-                                        <td>{{$key->id}}</td>
-                                        <td>{{$key->order_number}}</td>
-                                        <td>{{$key->sub_total}}</td>
-                                        <td>{{$key->total_amount}}</td>
-                                        <td>{{$key->payment_id}}</td>
+                                        <td>{{$order->id}}</td>
+                                        <td>{{$order->order_number}}</td>
+                                        <td>{{$order->sub_total}}</td>
+                                        <td>{{$order->payment_id}}</td>
                                         <td>
                                             <?php
-                                            if($key["status"]==0){
+                                            if($order["status"]==0){
                                                 echo "Đang xử lý";
-                                            }else if($key["status"]==1){
+                                            }else if($order["status"]==1){
                                                 echo "Đang giao hàng";
-                                            }else if($key["status"]==2){
+                                            }else if($order["status"]==2){
                                                 echo "Đã giao hàng";
                                             }else {
                                                 echo "Đã hủy hàng";
                                             }
                                             ?>
                                         </td>
-                                        <td>{{$key->full_name}}</td>
-                                        <td><a href="{{url('admin/order/details',[$key->id])}}"><button type="button" class="btn btn-gradient-info"><i data-feather='eye'></i></button></a></td> 
-                                        <td><a href="{{url('admin/order/edit',[$key->id])}}"><button type="button" class="btn btn-gradient-success"><i data-feather='edit'></i></button></a></td>
+                                        <td>{{$order->full_name}}</td>
+                                        <td><a href="{{ url('admin/order/details',[$order->id])}}">Xem chi tiết</a></td> 
+                                        <td><a href="{{ url('admin/order/edit',[$order->id])}}"><button type="button" class="btn btn-gradient-success"><i data-feather='edit'></i></button></a></td>
                                     </tr>
                                     @endforeach
                                 </tbody>

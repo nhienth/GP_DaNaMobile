@@ -75,8 +75,8 @@
                                 </div>
                             </div>
                         </div>
-                        <table class="user-list-table table dataTable no-footer dtr-column text-center" >
-                            <thead class="table-light ">
+                        <table class="w-100 user-list-table table dataTable no-footer dtr-column text-center" style="overflow: hidden;display: block;">
+                            <thead class="table-light">
                                 <tr>
                                     <th>#</th>
                                     <th>Tiêu đề</th>
@@ -94,14 +94,16 @@
                                 @foreach ($posts as $post)
                                 <tr data-dt-row="" data-dt-column="">                                 
                                        <td>{{++$i}}</td>
-                                       <td>{{$post->title}}</td>
+                                       <td>
+                                            <span style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;">{{$post->title}}</span>
+                                        </td>
                                  
                                         <td>
                                            <span style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;">{{$post->summary}}</span>
                                         </td>
 
-                                        <td>
-                                            <span style="display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;overflow: hidden;">{{$post->content}}</span>
+                                        <td  class="w-10">
+                                            <span style="display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;overflow: hidden;">,<?php echo $post->content ?></span>
                                         </td>
                                        <td>{{$post->category->category_name}}</td>
                                        <td><img class="rounded" src="{{asset('images/post/'.$post->post_img)}}" width="100px" height="100px" style="display:block; margin: 0 auto;"></td>

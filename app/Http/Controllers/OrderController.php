@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 use  App\Models\Order;
 use  App\Models\OrderDetails;
-use  App\Models\OrderDetail;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\UserController;
@@ -17,9 +16,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
-        $allorder = Order::all();
-        return view('admin.order.list')->with(compact('allorder'));
+        $orders = Order::all();
+        
+        return view('admin.order.list',compact('orders'));
     }
 
     /**
@@ -49,9 +48,7 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        $order_detail = OrderDetails::find($id);
-        // dd($order);
-        return view('admin.order.details', compact('order_detail'));
+      //
     }
 
         /**
@@ -63,7 +60,7 @@ class OrderController extends Controller
     public function edit($id)
     {
         $order = Order::find($id);
-        return view('admin.order.edit')->with(compact('order'));
+        return view('admin.order.edit',compact('order'));
     }
 
     /**

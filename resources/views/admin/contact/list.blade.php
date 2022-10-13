@@ -104,13 +104,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($cont as $contacts)
+                                @foreach ($result as $contact)
                                 <tr data-dt-row="" data-dt-column="">
-                                    <td>{{$contacts->id}}</td>
-                                    <td>{{$contacts->name}}</td>
-                                    <td>{{$contacts->subject}}</td>
-                                    <td>{{$contacts->email}}</td>
-                                    <td>{{$contacts->message}}</td>
+                                    <td>{{$contact->id}}</td>
+                                    <td>{{$contact->name}}</td>
+                                    <td>{{$contact->subject}}</td>
+                                    <td>{{$contact->email}}</td>
+                                    <td>{{$contact->message}}</td>
                                     <td><button type="submit" class="btn btn-primary me-2">Phản hồi</button></td>
                                 </tr>
                                 @endforeach

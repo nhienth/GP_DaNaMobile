@@ -9,14 +9,14 @@
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-start mb-0">Quản lý bài viết</h2>
+                        <h2 class="content-header-title float-start mb-0">Bài viết</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Quản trị</a>
+                                <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/admin">Trang chủ</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="#">Bài viết</a>
+                                <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/admin/post/list">Bài viết</a>
                                 </li>
-                                <li class="breadcrumb-item active">Thêm bài viết mới
+                                <li class="breadcrumb-item active">Thêm mới
                                 </li>
                             </ol>
                         </div>
