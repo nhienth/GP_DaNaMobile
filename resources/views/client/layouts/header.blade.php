@@ -757,7 +757,7 @@
 
                                 <!-- Featured Brands -->
                                 <li class="nav-item u-header__nav-item">
-                                    <a class="nav-link u-header__nav-link" href="#" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Bài viết</a>
+                                    <a class="nav-link u-header__nav-link" href="http://127.0.0.1:8000/client/blogs" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Bài viết</a>
                                 </li>
                                 <!-- End Featured Brands -->
 

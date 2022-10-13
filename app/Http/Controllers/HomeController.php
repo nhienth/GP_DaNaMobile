@@ -27,9 +27,9 @@ class HomeController extends Controller
         $slider = Slider::all();
         $banner = Banner::find(1);
         $product = Product::all();
-        $products_stocks = Product::with(['combinations', 'stock'])->get();
+        $product = Product::with(['combinations', 'stock'])->orderBy('id','DESC')->paginate(1);
 
-        return view('client.index')->with(compact('categories','slider','banner','products_stocks'));
+        return view('client.index')->with(compact('categories','slider','banner','product'));
     }
 
     public function getCategoryName($id) {

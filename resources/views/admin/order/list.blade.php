@@ -10,7 +10,6 @@
             <div class="content-body">
                 <!-- users list start -->
                 <section class="app-user-list">
-                <section class="app-user-list">
                     <div class="content-header row">
                         <div class="content-header-left col-md-9 col-12 mb-2">
                             <div class="row breadcrumbs-top">

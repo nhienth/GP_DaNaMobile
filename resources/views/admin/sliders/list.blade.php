@@ -10,63 +10,20 @@
             <div class="content-body">
                 <!-- users list start -->
                 <section class="app-user-list">
-                    <div class="row">
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card">
-                                <div class="card-body d-flex align-items-center justify-content-between">
-                                    <div>
-                                        <h3 class="fw-bolder mb-75">21,459</h3>
-                                        <span>Total Users</span>
-                                    </div>
-                                    <div class="avatar bg-light-primary p-50">
-                                        <span class="avatar-content">
-                                            <i data-feather="user" class="font-medium-4"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card">
-                                <div class="card-body d-flex align-items-center justify-content-between">
-                                    <div>
-                                        <h3 class="fw-bolder mb-75">4,567</h3>
-                                        <span>Paid Users</span>
-                                    </div>
-                                    <div class="avatar bg-light-danger p-50">
-                                        <span class="avatar-content">
-                                            <i data-feather="user-plus" class="font-medium-4"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card">
-                                <div class="card-body d-flex align-items-center justify-content-between">
-                                    <div>
-                                        <h3 class="fw-bolder mb-75">19,860</h3>
-                                        <span>Active Users</span>
-                                    </div>
-                                    <div class="avatar bg-light-success p-50">
-                                        <span class="avatar-content">
-                                            <i data-feather="user-check" class="font-medium-4"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card">
-                                <div class="card-body d-flex align-items-center justify-content-between">
-                                    <div>
-                                        <h3 class="fw-bolder mb-75">237</h3>
-                                        <span>Pending Users</span>
-                                    </div>
-                                    <div class="avatar bg-light-warning p-50">
-                                        <span class="avatar-content">
-                                            <i data-feather="user-x" class="font-medium-4"></i>
-                                        </span>
+                    <div class="content-header row">
+                        <div class="content-header-left col-md-9 col-12 mb-2">
+                            <div class="row breadcrumbs-top">
+                                <div class="col-12">
+                                    <h2 class="content-header-title float-start mb-0">Slider</h2>
+                                    <div class="breadcrumb-wrapper">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/admin">Trang chủ</a>
+                                            </li>
+                                            <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/admin/slider/list">Slider</a>
+                                            </li>
+                                            <li class="breadcrumb-item active">Danh sách
+                                            </li>
+                                        </ol>
                                     </div>
                                 </div>
                             </div>
@@ -131,7 +88,7 @@
                                                         <button class="dt-button buttons-print dropdown-item" tabindex="0" type="button">Print</button>
                                                     </div>
                                                 </div> --}}
-                                                <a href="{{route('slider.add')}}"><button type="button" class="dt-button add-new btn btn-primary" tabindex="0" data-bs-target="#modals-slide-in" aria-controls="DataTables_Table_0">
+                                                <a href="{{route('slider.create')}}"><button type="button" class="dt-button add-new btn btn-primary" tabindex="0" data-bs-target="#modals-slide-in" aria-controls="DataTables_Table_0">
                                                     <span>Thêm Slider mới</span>
                                                 </button></a>
                                             </div>
