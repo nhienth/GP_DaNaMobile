@@ -141,7 +141,7 @@
                                             }
                                             ?>
                                         </td>
-                                        <td>{{$order->full_name}}</td>
+                                        <td>{{$order->fullname}}</td>
                                         <td>{{$order->email}}</td>
                                         <td>{{$order->phone}}</td>
                                         <td>{{$order->address}}</td>
