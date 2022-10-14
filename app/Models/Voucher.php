@@ -21,7 +21,6 @@ class Voucher extends Model
         'value',
         'status',
         'product_id',
-        'deleted_at'
     ];
     use SoftDeletes;
     public function voucher_product()
