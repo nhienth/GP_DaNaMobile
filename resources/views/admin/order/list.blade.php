@@ -10,7 +10,6 @@
             <div class="content-body">
                 <!-- users list start -->
                 <section class="app-user-list">
-                <section class="app-user-list">
                     <div class="content-header row">
                         <div class="content-header-left col-md-9 col-12 mb-2">
                             <div class="row breadcrumbs-top">
@@ -103,17 +102,15 @@
                                         <th>#</th>
                                         <th>Mã đơn hàng</th>
                                         <th>Số lượng đơn hàng</th>
-                                        <th>Mã khách hàng</th>
-                                        <th>Tạm tính</th>
-                                        <th>Voucher</th>
                                         <th>Tổng tiền</th>
                                         <th>Mã phương thức thanh toán</th>
                                         <th>Trạng thái</th>
                                         <th>Tên khách hàng</th>
-                                        <th>Mail</th>
+                                        <th>Email</th>
                                         <th>Số điện thoại</th>
                                         <th>Địa chỉ</th>
-                                        <th>Ghi chú</th>    
+                                        <th>Ghi chú</th>
+
                                         <th colspan="2">Hành động</th>
                                     </tr>
                                 </thead>
@@ -123,10 +120,7 @@
                                         <td></td>
                                         <td>{{$order->id}}</td>
                                         <td>{{$order->order_number}}</td>
-                                        <td>{{$order->user_id}}</td>
                                         <td>{{$order->sub_total}}</td>
-                                        <td>{{$order->voucher}}</td>
-                                        <td>{{$order->total_amount}}</td>
                                         <td>{{$order->payment_id}}</td>
                                         <td>
                                             <?php

@@ -112,7 +112,7 @@
                                       <td>{{$item->order->email}}</td> 
                                       <td>{{$item->order->phone}}</td>                                           
                                       <td>{{$item->order->address}}</td> 
-                                      <td>{{$item->time}}</td> 
+                                      <td></td> 
                                 </tr>
                             @endforeach                                                           
                                 </tr>                                                                              

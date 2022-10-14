@@ -84,7 +84,7 @@
 
                                     <div class="mb-1">
                                         <label class="d-block form-label fs-5 fw-bolder" for="validationBioBootstrap">Mô tả</label>
-                                        <textarea class="form-control" id="validationBioBootstrap" name="validationBioBootstrap" rows="3" required></textarea>
+                                        <textarea class="form-control" id="validationBioBootstrap" name="product_status" rows="3" required></textarea>
                                     </div>
                                     
                                     <button type="submit" class="btn btn-primary me-2">Thêm</button>

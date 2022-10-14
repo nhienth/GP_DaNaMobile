@@ -43,7 +43,7 @@
                                 <h3 class="card-title fw-bolder">Thêm banner</h3>
                             </div>
                             <div class="card-body">
-                                <form class="needs-validation"  action="{{route('banner.add_process')}}" method="post" enctype="multipart/form-data" >
+                                <form class="needs-validation"  action="{{route('banner.create_process')}}" method="post" enctype="multipart/form-data" >
                                     <div class="mb-1">
                                         <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Thêm banner</label>
 

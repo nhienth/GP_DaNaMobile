@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
-use App\Models\Slider\SliderModel;
 
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
@@ -81,15 +80,15 @@ Route::prefix('/admin')->group(function () {
 
         Route::get('/delete/{id}', [ProductController::class, 'destroy']);
 
-        Route::get('/addVariation/{id}', [VariationController::class, 'create'] );
-        Route::post('/addVariation', [VariationController::class, 'store'] );
+        Route::get('/createVariation/{id}', [VariationController::class, 'create'] );
+        Route::post('/createVariation', [VariationController::class, 'store'] );
 
         Route::get('/test/{id}', [VariationController::class, 'test'] );
     });
 
     Route::prefix('/variation')->group(function () {
-        Route::get('/add', function () {
-            return view('admin.variation.add');
+        Route::get('/create', function () {
+            return view('admin.variation.create');
         });
         Route::get('/list', function () {
             return view('admin.variation.list');
@@ -116,7 +115,7 @@ Route::prefix('/admin')->group(function () {
     });
 
     // Route::prefix('/banner')->group(function () {
-    //     Route::get('/add', function () {
+    //     Route::get('/create', function () {
     //         return view('admin.banner.create');
     //     });
     //     Route::get('/list', function () {
@@ -162,8 +161,8 @@ Route::prefix('/admin')->group(function () {
 });
     Route::prefix('/slider')->group(function () {
         Route::get('/list', [SliderController::class, 'index'])->name('slider.list');
-        Route::get('/add', [SliderController::class, 'create'])->name('slider.add');
-        Route::post('/add', [SliderController::class, 'store'])->name('slider.add_process');
+        Route::get('/create', [SliderController::class, 'create'])->name('slider.create');
+        Route::post('/create', [SliderController::class, 'store'])->name('slider.create_process');
         Route::get('/edit/{id}', [SliderController::class, 'edit'])->name('slider.edit');
         Route::post('/edit/{id}', [SliderController::class, 'update'])->name('slider.edit_process');
         Route::get('/delete/{id}', [SliderController::class, 'destroy']);
@@ -171,16 +170,16 @@ Route::prefix('/admin')->group(function () {
 
     Route::prefix('/banner')->group(function () {
         Route::get('/list', [BannerController::class, 'index'])->name('banner.list');
-        Route::get('/add', [BannerController::class, 'create'])->name('banner.add');
-        Route::post('/add', [BannerController::class, 'store'])->name('banner.add_process');
+        Route::get('/create', [BannerController::class, 'create'])->name('banner.create');
+        Route::post('/create', [BannerController::class, 'store'])->name('banner.create_process');
         Route::get('/edit/{id}', [BannerController::class, 'edit'])->name('banner.edit');
         Route::post('/edit/{id}', [BannerController::class, 'update'])->name('banner.edit_process');
         Route::get('/delete/{id}', [BannerController::class, 'destroy']);
     });
     Route::prefix('/voucher')->group(function () {
         Route::get('/list', [VoucherController::class, 'index'])->name('voucher.list');
-        Route::get('/add',  [VoucherController::class, 'create']);
-        Route::post('/add', [VoucherController::class, 'store'])->name('voucher.add');
+        Route::get('/create',  [VoucherController::class, 'create']);
+        Route::post('/create', [VoucherController::class, 'store'])->name('voucher.create');
         Route::get('/edit/{id}', [VoucherController::class, 'edit']);
         Route::post('/update/{id}', [VoucherController::class, 'update']);
         Route::get('/delete/{id}', [VoucherController::class, 'destroy']);
