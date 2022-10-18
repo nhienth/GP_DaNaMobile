@@ -10,10 +10,29 @@
             <div class="content-body">
                 <!-- users list start -->
                 <section class="app-user-list">
+                    <div class="content-header row">
+                        <div class="content-header-left col-md-9 col-12 mb-2">
+                            <div class="row breadcrumbs-top">
+                                <div class="col-12">
+                                    <h2 class="content-header-title float-start mb-0">Đơn hàng</h2>
+                                    <div class="breadcrumb-wrapper">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/admin">Trang chủ</a>
+                                            </li>
+                                            <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/admin/order/list">Đơn hàng</a>
+                                            </li>
+                                            <li class="breadcrumb-item active">Danh sách
+                                            </li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <!-- list and filter start -->
                     <div class="card">
                         <div class="card-body border-bottom">
-                            <h4 class="card-title">Tìm kiếm và Lọc</h4>
+                            <h4 class="card-title">Đơn hàng</h4>
                             <div class="row">
                                 <div class="col-md-4 user_role">
                                     <label class="form-label" for="UserRole">Vai trò</label>
@@ -83,51 +102,37 @@
                                         <th>#</th>
                                         <th>Mã đơn hàng</th>
                                         <th>Số lượng đơn hàng</th>
-                                        <th>Mã khách hàng</th>
-                                        <th>Tạm tính</th>
-                                        <th>Voucher</th>
                                         <th>Tổng tiền</th>
                                         <th>Mã phương thức thanh toán</th>
                                         <th>Trạng thái</th>
                                         <th>Tên khách hàng</th>
-                                        <th>Mail</th>
-                                        <th>Số điện thoại</th>
-                                        <th>Địa chỉ</th>
-                                        <th>Ghi chú</th>    
                                         <th colspan="2">Hành động</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($allorder as $key)
+                                    @foreach($orders as $order)
                                     <tr data-dt-row="" data-dt-column="">
                                         <td></td>
-                                        <td>{{$key->id}}</td>
-                                        <td>{{$key->order_number}}</td>
-                                        <td>{{$key->user_id}}</td>
-                                        <td>{{$key->sub_total}}</td>
-                                        <td>{{$key->voucher}}</td>
-                                        <td>{{$key->total_amount}}</td>
-                                        <td>{{$key->payment_id}}</td>
+                                        <td>{{$order->id}}</td>
+                                        <td>{{$order->order_number}}</td>
+                                        <td>{{$order->sub_total}}</td>
+                                        <td>{{$order->payment_id}}</td>
                                         <td>
                                             <?php
-                                            if($key["status"]==0){
+                                            if($order["status"]==0){
                                                 echo "Đang xử lý";
-                                            }else if($key["status"]==1){
+                                            }else if($order["status"]==1){
                                                 echo "Đang giao hàng";
-                                            }else if($key["status"]==2){
+                                            }else if($order["status"]==2){
                                                 echo "Đã giao hàng";
                                             }else {
                                                 echo "Đã hủy hàng";
                                             }
                                             ?>
                                         </td>
-                                        <td>{{$key->full_name}}</td>
-                                        <td>{{$key->email}}</td>
-                                        <td>{{$key->phone}}</td>
-                                        <td>{{$key->address}}</td>
-                                        <td>{{$key->note}}</td>
-                                        <td><a href="{{url('admin/order/details',[$order->id])}}">Xem chi tiết</a></td> 
-                                        <td><a href="{{url('admin/order/edit',[$key->id])}}"><button type="button" class="btn btn-gradient-success"><i data-feather='edit'></i></button></a></td>
+                                        <td>{{$order->full_name}}</td>
+                                        <td><a href="{{ url('admin/order/details',[$order->id])}}">Xem chi tiết</a></td> 
+                                        <td><a href="{{ url('admin/order/edit',[$order->id])}}"><button type="button" class="btn btn-gradient-success"><i data-feather='edit'></i></button></a></td>
                                     </tr>
                                     @endforeach
                                 </tbody>

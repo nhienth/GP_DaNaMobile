@@ -16,7 +16,7 @@
                                     </li>
                                     <li class="breadcrumb-item"><a href="#">Voucher</a>
                                     </li>
-                                    <li class="breadcrumb-item active">Thêm mới
+                                    <li class="breadcrumb-item active">Cập nhật
                                     </li>
                                 </ol>
                             </div>

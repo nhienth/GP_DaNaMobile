@@ -51,10 +51,11 @@ class CategoryController extends Controller
         $cate->category_image = $request['category_image'];
         $cate->parent_id = $request['parent_id'];
         $cate->save();
+
+        // Category::create($request->all());
         $categorySelect = $this->res(0);
         return $this->index();
     }
-
     /**
      * Display the specified resource.
      *
@@ -74,7 +75,6 @@ class CategoryController extends Controller
             $category = Category::find($id);
             return $category->category_name;
         }
-        
     }
 
     function res_selected($i, $parent_id, $id, $text = '')

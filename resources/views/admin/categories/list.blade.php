@@ -16,9 +16,9 @@
                                 <h2 class="content-header-title float-start mb-0">Danh mục</h2>
                                 <div class="breadcrumb-wrapper">
                                     <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="index.html">Trang chủ</a>
+                                        <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/admin/">Trang chủ</a>
                                         </li>
-                                        <li class="breadcrumb-item"><a href="#">Danh mục</a>
+                                        <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/admin/category/list">Danh mục</a>
                                         </li>
                                         <li class="breadcrumb-item active">Danh sách
                                         </li>
@@ -106,7 +106,11 @@
                                        <td>{{$category->id}}</td>
                                        <td>{{$category->category_name}}</td>
                                        <td>{{$category->category_image}}</td>
-                                       <td>{{$category->parent_cate}}</td>
+                                       <?php if($category->parent_cate ==0 ){ ?>
+                                            <td>Danh mục cha</td>
+                                       <?php }else{ ?>
+                                        <td>{{$category->parent_cate}}</td>
+                                      <?php } ?>
                                        <td><a href="http://localhost:8000/admin/category/update/{{$category->id}}"><button type="button" class="btn btn-gradient-success"><i data-feather='edit'></i></button></a></td>
                                        <td><a href="http://localhost:8000/admin/category/delete/{{$category->id}}"><button type="button" class="btn btn-gradient-danger"><i data-feather='trash-2'></i></button></a></td>                              
                                 </tr>

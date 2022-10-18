@@ -1,17 +1,22 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Models\Contact;
 
 class ContactController extends Controller
 {
    
+    private $contact;
+    public function __construct()
+    {
+        $this->contact = new Contact();
+    }
     public function index()
     {
-
-    $contacts = Contact::all();
-    return view('admin.contact.list',['cont' => $contacts]);
+        $result = $this->contact->all();
+        return view('admin.contact.list', compact('result'));
     }
 
 

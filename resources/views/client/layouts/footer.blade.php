@@ -150,7 +150,7 @@
                 </ul>
             </div>
             <div class="col-wd-3 d-none d-wd-block">
-                <a href="../shop/shop.html" class="d-block"><img class="img-fluid" src="{{asset('client/assets/img/330X360/img1.jpg')}}" alt="Image Description"></a>
+                <a href="../shop/shop.html" class="d-block"><img class="img-fluid" src="{{asset('images/banner/'.$banner->banner_img)}}" alt="Image Description"></a>
             </div>
         </div>
     </div>

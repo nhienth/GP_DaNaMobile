@@ -59,6 +59,7 @@ class ProductController extends Controller
         move_uploaded_file($_FILES['product_img']['tmp_name'], $target_file);
         $product->product_img = $imgpath;
 
+        $product->product_status = $request->product_status;
         $product->save();
 
         $specfications = ProductSpecificationsOptions::all();
@@ -153,7 +154,9 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
+        // $path = '../public/images/admin/products/';
         $product = Product::find($id);
+        // unlink($path.$product->product_img);
         $product->delete();
         return redirect('/admin/product/list');
     }

@@ -96,26 +96,22 @@
                             <thead class="table-light ">
                                 <tr>
                                     <th>ID</th>
-                                    <th>Số lượng</th>
-                                    <th>Tổng cộng</th>
+                                    <th>Số lượng </th>
+                                    <th>Tổng Tiền</th>
                                     <th>Mã đơn hàng</th>
-                                    <th>Mã sản phẩm</th>
-                                    
+                                    <th>Mã sản phẩm</th>                                  
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($order as $item)
+                         @foreach ($order as $item)
                                 <tr data-dt-row="" data-dt-column="">
-                                    <td>{{$item->id}}</td>
-                                    <td>{{$item->quantity}}</td>
-                                    <td>{{$item->total_amount}}</td>
-                                    <td>{{$item->product_id}}</td>
-                                    <td>{{$item->order_id}}</td>
-                                   
+                                    <td>{{$item->id}}</td> 
+                                    <td>{{$item->quantity}}</td>  
+                                    <td>{{$item->total_amount}}</td> 
+                                    <td>{{$item->order->id}}</td> 
+                                    <td>{{$item->product->id}}</td>                                                
                                 </tr>
-                                @endforeach
-                                
-                              
+                               @endforeach                                                      
                             </tbody>
                         </table>
                         <div class="d-flex justify-content-between mx-2 row mb-1">

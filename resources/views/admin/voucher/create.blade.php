@@ -43,7 +43,7 @@
                                     <h3 class="card-title fw-bolder">Thêm Voucher</h3>
                                 </div>
                                 <div class="card-body">
-                                    <form class="needs-validation" novalidate method="POST" action="{{route('voucher.add')}}">
+                                    <form class="needs-validation" novalidate method="POST" action="{{route('voucher.create')}}">
                                         @csrf                                                                                                         
                                         {{-- <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="basic-addon-name">ID</label>
@@ -110,7 +110,7 @@
                                             <div class="valid-feedback">Looks good!</div>
                                             <div class="invalid-feedback">Please enter product Id.</div> --}}
                                         </div>
-                                        <a href="{{route('voucher.add')}}"><button type="submit" class="btn btn-primary me-2">Thêm mới</button>
+                                        <a href="{{route('voucher.create')}}"><button type="submit" class="btn btn-primary me-2">Thêm mới</button>
                                         <button type="submit" class="btn btn-primary me-2">Nhập lại</button>
                                         <a href="{{route('voucher.list')}}"><button type="button" class="btn btn-primary">Danh sách</button></a>
                                     </form>
