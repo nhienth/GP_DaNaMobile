@@ -16,7 +16,7 @@ class SliderController extends Controller
 
     public function __construct()
     {
-        $this->slider = new Slider();
+        $this->slider = new Slider();$this->middleware('auth');
     }
     public function index()
     {

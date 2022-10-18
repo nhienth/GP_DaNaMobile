@@ -55,6 +55,8 @@ Route::get('/checkout', function () {
 });
 
 // -----------------------------------ADMIN-----------------------------
+// Auth::routes();
+
 Route::prefix('/admin')->group(function () {
     Route::get('/', function () {
         return view('admin.index');
@@ -198,4 +200,4 @@ Route::prefix('/admin')->group(function () {
 
 // ->middleware(['auth'])->name('dashboard');
 
-require __DIR__ . '/auth.php';
+// require __DIR__ . '/auth.php';
