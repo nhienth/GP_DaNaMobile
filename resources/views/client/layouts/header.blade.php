@@ -6,7 +6,7 @@
             <div class="container">
                 <div class="d-flex align-items-center">
                     <div class="topbar-left">
-                        <a href="#" class="text-gray-110 font-size-13 hover-on-dark">Chào mừng bạn đến với cửa hàng điện thoại DaNa - Mobile</a>
+                        <a href="#" class="text-gray-110 font-size-13 hover-on-dark">Chào mừng bạn đến với Shop thiết bị điện thoại di động DaNa-Mobile</a>
                     </div>
                     <div class="topbar-right ml-auto">
                         <ul class="list-inline mb-0">
@@ -44,6 +44,32 @@
                                 </div>
                             </li>
                             <li class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border">
+                                @if (Route::has('login'))
+                                    <a href="#" class="" data-bs-toggle="dropdown">
+                                    @auth
+                                        <span class="d-none d-lg-inline-flex">{{ Auth::user()->name }}</span>
+                                    </a>
+                                    <!-- <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+                                        <a href="#" class="dropdown-item">Thông tin của tôi</a>
+                                        <a href="#" class="dropdown-item">Cài đặt</a> -->
+                                        <a>
+                                            <form method="POST" action="{{ route('logout') }}" class="dropdown-item">
+                                                @csrf
+                                                <x-responsive-nav-link :href="route('logout')"
+                                                        onclick="event.preventDefault();
+                                                                    this.closest('form').submit();">
+                                                    {{ __('Đăng xuất') }}
+                                                </x-responsive-nav-link>
+                                            </form>
+                                        </a>
+                                        @else
+                                            <i class="ec ec-user mr-1"></i><a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Đăng nhập</a>
+                                            @if (Route::has('register'))
+                                                <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Đăng ký</a>
+                                            @endif
+                                        @endauth
+                                    <!-- </div> -->
+                                @endif
                                 <!-- Account Sidebar Toggle Button -->
                                 @if (Route::has('login'))
                                 <!-- <a id="sidebarNavToggler" href="javascript:;" role="button" class="u-header-topbar__nav-link"
