@@ -56,32 +56,57 @@ class VariationController extends Controller
     public function store(Request $request)
     {
         $product = Product::with('variations')->where('products.id',$request->product_id )->first();
-     
     
         $variations = Variation::all();
 
-        dd($product);
-        foreach ($variations as $variation) {
-            if($variation->product_id != $request->product_id) {
+        $checkProductVariation = $product->variations;
+  
+        if(count($checkProductVariation) == 0) {
+            foreach ($variations as $variation) {
+                
                 $variation_option = new Variation_Option();
             
                 $variation_option->variation_name =  $variation->variation_name;
                 $variation_option->product_id =  $request->product_id;
     
                 $variation_option->save();
+    
+                $variation_option_value = new Variation_Option_Value();
+    
+                $variation_option_value->variation_name = $variation->variation_name;
+                $inputRequestValue = $variation->id . "_value";
+    
+                $variation_option_value->variation_value = $request->$inputRequestValue;
+                
+                $variation_option_value->products_variation_id = $variation_option->id;
+    
+                $variation_option_value->save();
+            }
+        }else {
+            foreach ($variations as $variation) {
+                $id = '';
+                foreach ($product->variations as $pvariation) {
+                    if($pvariation->variation_name == $variation->variation_name) {
+                        $id = $pvariation->id;
+                    }
+                }
+                
+                $variation_option_value = new Variation_Option_Value();
+
+                $variation_option_value->variation_name = $variation->variation_name;
+                $inputRequestValue = $variation->id . "_value";
+
+                $variation_option_value->variation_value = $request->$inputRequestValue;
+                
+                $variation_option_value->products_variation_id = $id;
+
+                $variation_option_value->save();
+
             }
 
-            $variation_option_value = new Variation_Option_Value();
-
-            $variation_option_value->variation_name = $variation->variation_name;
-            $inputRequestValue = $variation->id . "_value";
-
-            $variation_option_value->variation_value = $request->$inputRequestValue;
-            
-            $variation_option_value->products_variation_id = $variation_option->id;
-
-            $variation_option_value->save();
         }
+
+   
       
       
 

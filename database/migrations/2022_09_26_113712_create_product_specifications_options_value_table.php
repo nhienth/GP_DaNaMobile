@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('pro_spec_options_value', function (Blueprint $table) {
             $table->id();
-            $table->string('specification_value');
+            $table->string('specification_name', 100);
+            $table->string('specification_value', 100);
 
             $table->foreignId('product_id')
                 ->constrained('products')
