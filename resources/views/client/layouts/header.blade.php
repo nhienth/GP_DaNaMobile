@@ -44,32 +44,6 @@
                                 </div>
                             </li>
                             <li class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border">
-                                @if (Route::has('login'))
-                                    <a href="#" class="" data-bs-toggle="dropdown">
-                                    @auth
-                                        <span class="d-none d-lg-inline-flex">{{ Auth::user()->name }}</span>
-                                    </a>
-                                    <!-- <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
-                                        <a href="#" class="dropdown-item">Thông tin của tôi</a>
-                                        <a href="#" class="dropdown-item">Cài đặt</a> -->
-                                        <a>
-                                            <form method="POST" action="{{ route('logout') }}" class="dropdown-item">
-                                                @csrf
-                                                <x-responsive-nav-link :href="route('logout')"
-                                                        onclick="event.preventDefault();
-                                                                    this.closest('form').submit();">
-                                                    {{ __('Đăng xuất') }}
-                                                </x-responsive-nav-link>
-                                            </form>
-                                        </a>
-                                        @else
-                                            <i class="ec ec-user mr-1"></i><a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Đăng nhập</a>
-                                            @if (Route::has('register'))
-                                                <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Đăng ký</a>
-                                            @endif
-                                        @endauth
-                                    <!-- </div> -->
-                                @endif
                                 <!-- Account Sidebar Toggle Button -->
                                 @if (Route::has('login'))
                                 <!-- <a id="sidebarNavToggler" href="javascript:;" role="button" class="u-header-topbar__nav-link"
@@ -85,25 +59,24 @@
                                     data-unfold-duration="500">  -->
                                     @auth
                                     <div class="user-nav d-sm-flex d-none"><span class="user-name fw-bolder">{{ Auth::user()->name }}</span></div>
-                                    <a>
-                                        <form method="POST" action="{{ route('logout') }}" class="dropdown-item">
-                                            @csrf
-                                            <x-responsive-nav-link :href="route('logout')"
-                                                    onclick="event.preventDefault();
-                                                                this.closest('form').submit();">
-                                                <i class="me-50" data-feather="power"></i>
-                                                {{ __('Đăng xuất') }}
-                                            </x-responsive-nav-link>
-                                        </form>
-                                    </a>
+                                        <a>
+                                            <form method="POST" action="{{ route('logout') }}" class="dropdown-item">
+                                                @csrf
+                                                <x-responsive-nav-link :href="route('logout')"
+                                                        onclick="event.preventDefault();
+                                                                    this.closest('form').submit();">
+                                                    <i class="me-50" data-feather="power"></i>
+                                                    {{ __('Đăng xuất') }}
+                                                </x-responsive-nav-link>
+                                            </form>
+                                        </a>
                                     </div>
-                                </li>
                                 @else
                                     <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline"><span class="text-gray-50"></span>Đăng nhập</a>
                                     @if (Route::has('register'))
                                         <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline"><i class="ec ec-user mr-1"></i>Đăng ký</a>
                                     @endif
-                                    </a>
+                                    <!-- </a> -->
                                     @endauth
                                 @endif
                                 <!-- End Account Sidebar Toggle Button -->
