@@ -58,8 +58,9 @@ class ProductController extends Controller
         $target_file =  $target_dir . basename($imgpath);
         move_uploaded_file($_FILES['product_img']['tmp_name'], $target_file);
         $product->product_img = $imgpath;
+        $product->product_desc = '';
 
-        $product->product_status = $request->product_status;
+        $product->product_status = 0;
         $product->save();
 
         $specfications = ProductSpecificationsOptions::all();

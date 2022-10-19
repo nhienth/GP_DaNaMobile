@@ -34,15 +34,6 @@ class VoucherController extends Controller
     {
         $voucher = new Product();
         $result = $voucher::all();
-        // foreach ($result as $rs) {
-        //     $product_id = $rs->voucher_product->product_id;
-        // }
-        // echo $product_id;
-        // $product = new Product();
-        // $result_product = $product::all();
-
-
-        // dd($result);
         return view('admin.voucher.create', compact('result'));
     }
 

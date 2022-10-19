@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('banner_img', 255);
             $table->string('location', 255);
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

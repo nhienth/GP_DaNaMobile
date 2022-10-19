@@ -80,25 +80,11 @@ Route::prefix('/admin')->group(function () {
 
         Route::get('/delete/{id}', [ProductController::class, 'destroy']);
 
-        Route::get('/createVariation/{id}', [VariationController::class, 'create'] );
-        Route::post('/createVariation', [VariationController::class, 'store'] );
+        Route::get('/addVariation/{id}', [VariationController::class, 'create'] );
+        Route::post('/addVariation', [VariationController::class, 'store'] );
 
         Route::get('/test/{id}', [VariationController::class, 'test'] );
     });
-
-    Route::prefix('/variation')->group(function () {
-        Route::get('/create', function () {
-            return view('admin.variation.create');
-        });
-        Route::get('/list', function () {
-            return view('admin.variation.list');
-        });
-        Route::get('/edit', function () {
-            return view('admin.variation.edit');
-        });
-    });
-
-
 
     Route::prefix('/post')->group(function () {
         Route::get('/list', [PostController::class, 'index']); 
@@ -114,18 +100,6 @@ Route::prefix('/admin')->group(function () {
         Route::get('/delete/{id}', [PostController::class, 'destroy']);
     });
 
-    // Route::prefix('/banner')->group(function () {
-    //     Route::get('/create', function () {
-    //         return view('admin.banner.create');
-    //     });
-    //     Route::get('/list', function () {
-    //         return view('admin.banner.list');
-    //     });
-    //     Route::get('/edit', function () {
-    //         return view('admin.banner.edit');
-    //     });
-    // });
-
     Route::prefix('/preview')->group(function () {
         Route::get('/list',[PreviewController::class,'index']);
         Route::get('/detail/{id}',[PreviewController::class,'show']);
@@ -135,9 +109,6 @@ Route::prefix('/admin')->group(function () {
     Route::prefix('/contact')->group(function () {
        Route::get('/list', [ContactController::class, 'index']);
     });
-
-
-   
 
     Route::prefix('/user')->group(function () {
         Route::get('/list',[UserController::class,'index']);
@@ -195,6 +166,9 @@ Route::prefix('/admin')->group(function () {
     });
 
 });
+   
+
+    
 
 // ->middleware(['auth'])->name('dashboard');
 

@@ -92,28 +92,87 @@
                                 </div>
                             </div>
                         </div>
+
+                        <br><br>
                         <table class="user-list-table table dataTable no-footer dtr-column text-center" >
+                            <h3>Thông tin người mua</h3>
+                            <thead class="table-light ">
+                                <tr>
+                                    <th>Tên khách hàng</th>
+                                    <th>Email </th>
+                                    <th>Số điện thoại</th>
+                                    <th>Địa chỉ</th>
+                                    <th>Ngày đặt hàng</th>                                  
+                                </tr>
+                            </thead>
+                            <tbody>                   
+                                @foreach ($order as $item)
+                                <tr data-dt-row="" data-dt-column="">
+                                      <td>{{$item->order->fullname}}</td>  
+                                      <td>{{$item->order->email}}</td> 
+                                      <td>{{$item->order->phone}}</td>                                           
+                                      <td>{{$item->order->address}}</td> 
+                                      <td></td> 
+                                </tr>
+                            @endforeach                                                           
+                                </tr>                                                                              
+                            </tbody>
+                        </table>
+
+                        <br><br><br><br><br>
+
+                        <table class="user-list-table table dataTable no-footer dtr-column text-center" >
+                            <h3>Thông tin vận chuyển</h3>
+                            <thead class="table-light ">
+                                <tr>
+                                    <th>Tên người nhận</th>
+                                    <th>Địa chỉ nhận</th>
+                                    <th>Số điện thoại</th>
+                                    <th>Phương thức giao hàng</th>
+                                    <th>Ghi chú</th>                                  
+                                </tr>
+                            </thead>
+                            <tbody>                    
+                                @foreach ($order as $item)
+                                <tr data-dt-row="" data-dt-column="">
+                                      <td>{{$item->order->fullname}}</td>  
+                                      <td>{{$item->order->address}}</td> 
+                                      <td>{{$item->order->phone}}</td>                                           
+                                      <td></td> 
+                                      <td>{{$item->order->note}}</td> 
+                                </tr>
+                            @endforeach                                                                                
+                                </tr>                                                                         
+                            </tbody>
+                        </table>
+
+                        <br><br><br><br><br>
+
+                        <table class="user-list-table table dataTable no-footer dtr-column text-center" >
+                            <h3>Chi tiết đơn hàng</h3>
                             <thead class="table-light ">
                                 <tr>
                                     <th>ID</th>
-                                    <th>Số lượng </th>
-                                    <th>Tổng Tiền</th>
                                     <th>Mã đơn hàng</th>
-                                    <th>Mã sản phẩm</th>                                  
+                                    <th>Tên sản phẩm</th>  
+                                    <th>Số lượng </th>
+                                    <th>Tổng tiền</th>                                
                                 </tr>
                             </thead>
                             <tbody>
-                         @foreach ($order as $item)
+                            @foreach ($order as $item)
                                 <tr data-dt-row="" data-dt-column="">
-                                    <td>{{$item->id}}</td> 
-                                    <td>{{$item->quantity}}</td>  
-                                    <td>{{$item->total_amount}}</td> 
-                                    <td>{{$item->order->id}}</td> 
-                                    <td>{{$item->product->id}}</td>                                                
+                                      <td>{{$item->id}}</td>                                             
+                                      <td>{{$item->order->id}}</td> 
+                                      <td>{{$item->product->product_name}}</td> 
+                                      <td>{{$item->quantity}}</td> 
+                                      <td>{{$item->total_amount}}</td>
                                 </tr>
-                               @endforeach                                                      
+                            @endforeach                                       
                             </tbody>
                         </table>
+
+                        
                         <div class="d-flex justify-content-between mx-2 row mb-1">
                             <div class="col-sm-12 col-md-6">
                                 <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Hiển thị 0 đến 0 của 0 mục</div>
