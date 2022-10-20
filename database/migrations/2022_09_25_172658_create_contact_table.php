@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('subject');
             $table->string('email', 100);
             $table->text('message');
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }
