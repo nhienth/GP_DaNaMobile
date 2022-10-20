@@ -206,7 +206,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user">
                     <a class="dropdown-item" href="page-profile.html"><i class="me-80" data-feather="user"></i> Thông tin cá nhân</a>
-                    <a class="dropdown-item" href="page-account-settings-account.html"><i class="me-50" data-feather="settings"></i> Cài đặt</a>
+                    <a class="dropdown-item" href=""><i class="me-50" data-feather="settings"></i>Đổi mật khẩu</a>
                     <!-- <a class="dropdown-item" href="app-email.html"><i class="me-50" data-feather="mail"></i> Inbox</a>
                     <a class="dropdown-item" href="app-todo.html"><i class="me-50" data-feather="check-square"></i> Task</a>
                     <a class="dropdown-item" href="app-chat.html"><i class="me-50" data-feather="message-square"></i> Chats</a> -->
