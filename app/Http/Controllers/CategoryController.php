@@ -128,6 +128,21 @@ class CategoryController extends Controller
         }
         return $this->html;
     }
+
+    public function res_selected_category($id, $text = ''){
+        $data = Category::all();
+        // dd($id, $text);
+        foreach ($data as $value) {
+            if($value['id'] == $id) {
+                $this->html .= '<option value="' . $value['id'] . '" selected>' . $text . $value['category_name'] . '</option>';
+                $this->res($value['id'], $text . '--');
+            }else{
+                $this->html .= '<option value="' . $value['id'] . '">' . $text . $value['category_name'] . '</option>';
+                $this->res($value['id'], $text . '--');
+            }
+        }
+        return $this->html;
+    }
     /**
      * Show the form for editing the specified resource.
      *
