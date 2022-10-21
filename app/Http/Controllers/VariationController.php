@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 
 class VariationController extends Controller
 {
+
+    // Main Variation
     /**
      * Display a listing of the resource.
      *
@@ -18,10 +20,43 @@ class VariationController extends Controller
      */
     public function index()
     {
-        //
+        $variations = Variation::all();
+        // $result = $variation::all();
+        return view('admin.variation_main.list', compact('variations'));
     }
 
-    
+    public function create_main(){
+        return view('admin.variation_main.create');
+    }
+
+    public function store_main(Request $request){
+        $variation = new Variation();
+        $variation->variation_name = $request['variation_name'];
+        $variation->save();
+        return redirect()->route('variation_main.list');
+    }
+
+    public function edit_main($id)
+    {
+        $variation = Variation::find($id);
+        return view('admin.variation_main.edit', compact('variation'));
+    }
+
+    public function update_main(Request $request, $id)
+    {
+        $variation = Variation::find($id);
+        $variation->variation_name = $request['variation_name'];
+        $variation->save();
+
+        return redirect()->route('variation_main.list')->with('success', 'Sửa thành công');
+    }
+
+    public function destroy_main($id)
+    {
+        $variation = Variation::find($id);
+        $variation->delete();
+        return redirect()->route('variation_main.list');
+    }
     /**
      * Show the form for creating a new resource.
      * @param  int  $id
@@ -56,34 +91,57 @@ class VariationController extends Controller
     public function store(Request $request)
     {
         $product = Product::with('variations')->where('products.id',$request->product_id )->first();
-     
     
         $variations = Variation::all();
 
-        dd($product);
-        foreach ($variations as $variation) {
-            if($variation->product_id != $request->product_id) {
+        $checkProductVariation = $product->variations;
+  
+        if(count($checkProductVariation) == 0) {
+            foreach ($variations as $variation) {
+                
                 $variation_option = new Variation_Option();
             
                 $variation_option->variation_name =  $variation->variation_name;
                 $variation_option->product_id =  $request->product_id;
     
                 $variation_option->save();
+    
+                $variation_option_value = new Variation_Option_Value();
+    
+                $variation_option_value->variation_name = $variation->variation_name;
+                $inputRequestValue = $variation->id . "_value";
+    
+                $variation_option_value->variation_value = $request->$inputRequestValue;
+                
+                $variation_option_value->products_variation_id = $variation_option->id;
+    
+                $variation_option_value->save();
+            }
+        }else {
+            foreach ($variations as $variation) {
+                $id = '';
+                foreach ($product->variations as $pvariation) {
+                    if($pvariation->variation_name == $variation->variation_name) {
+                        $id = $pvariation->id;
+                    }
+                }
+                
+                $variation_option_value = new Variation_Option_Value();
+
+                $variation_option_value->variation_name = $variation->variation_name;
+                $inputRequestValue = $variation->id . "_value";
+
+                $variation_option_value->variation_value = $request->$inputRequestValue;
+                
+                $variation_option_value->products_variation_id = $id;
+
+                $variation_option_value->save();
+
             }
 
-            $variation_option_value = new Variation_Option_Value();
-
-            $variation_option_value->variation_name = $variation->variation_name;
-            $inputRequestValue = $variation->id . "_value";
-
-            $variation_option_value->variation_value = $request->$inputRequestValue;
-            
-            $variation_option_value->products_variation_id = $variation_option->id;
-
-            $variation_option_value->save();
         }
-      
-      
+
+   
 
         // $product_variations_value = Product::with(['variations', 'variation_value'])
         //     ->where('products_variations_options.product_id', $request->product_id)

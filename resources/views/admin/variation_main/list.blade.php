@@ -9,24 +9,68 @@
         <div class="content-body">
             <!-- users list start -->
             <section class="app-user-list">
-                <div class="content-header row">
-                    <div class="content-header-left col-md-9 col-12 mb-2">
-                        <div class="row breadcrumbs-top">
-                            <div class="col-12">
-                                <h2 class="content-header-title float-start mb-0">Danh mục</h2>
-                                <div class="breadcrumb-wrapper">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/admin/">Trang chủ</a>
-                                        </li>
-                                        <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/admin/category/list">Danh mục</a>
-                                        </li>
-                                        <li class="breadcrumb-item active">Danh sách
-                                        </li>
-                                    </ol>
+                <div class="row">
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card">
+                            <div class="card-body d-flex align-items-center justify-content-between">
+                                <div>
+                                    <h3 class="fw-bolder mb-75">21,459</h3>
+                                    <span>Total Users</span>
+                                </div>
+                                <div class="avatar bg-light-primary p-50">
+                                    <span class="avatar-content">
+                                        <i data-feather="user" class="font-medium-4"></i>
+                                    </span>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card">
+                            <div class="card-body d-flex align-items-center justify-content-between">
+                                <div>
+                                    <h3 class="fw-bolder mb-75">4,567</h3>
+                                    <span>Paid Users</span>
+                                </div>
+                                <div class="avatar bg-light-danger p-50">
+                                    <span class="avatar-content">
+                                        <i data-feather="user-plus" class="font-medium-4"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card">
+                            <div class="card-body d-flex align-items-center justify-content-between">
+                                <div>
+                                    <h3 class="fw-bolder mb-75">19,860</h3>
+                                    <span>Active Users</span>
+                                </div>
+                                <div class="avatar bg-light-success p-50">
+                                    <span class="avatar-content">
+                                        <i data-feather="user-check" class="font-medium-4"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card">
+                            <div class="card-body d-flex align-items-center justify-content-between">
+                                <div>
+                                    <h3 class="fw-bolder mb-75">237</h3>
+                                    <span>Pending Users</span>
+                                </div>
+                                <div class="avatar bg-light-warning p-50">
+                                    <span class="avatar-content">
+                                        <i data-feather="user-x" class="font-medium-4"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- list and filter start -->
                 <div class="card">
                     <div class="card-body border-bottom">
@@ -79,9 +123,16 @@
                                         <div class="dt-buttons d-inline-flex mt-50">
                                             <button class="dt-button buttons-collection btn btn-outline-secondary dropdown-toggle me-2" 
                                             tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="true">Xuất</button>
-                                            <a href="{{url('admin/category/create')}}" style="color:white;"><button type="button" class="dt-button add-new btn btn-primary" tabindex="0" data-bs-target="#modals-slide-in" aria-controls="DataTables_Table_0">
-                                                Thêm Danh mục mới
-                                            </button></a>
+                                            {{-- <div class="dt-button-collection" style="top: 148.625px; left: 889.488px;">
+                                                <div role="menu">
+                                                    <button class="dt-button buttons-print dropdown-item" tabindex="0" type="button">Print</button>
+                                                    <button class="dt-button buttons-print dropdown-item" tabindex="0" type="button">Print</button>
+                                                    <button class="dt-button buttons-print dropdown-item" tabindex="0" type="button">Print</button>
+                                                </div>
+                                            </div> --}}
+                                            <button type="button" class="dt-button add-new btn btn-primary" tabindex="0" data-bs-target="#modals-slide-in" aria-controls="DataTables_Table_0">
+                                               <a href="{{url('admin/variation_main/create')}}" style="color: white;">Thêm kiểu Biến thể mới</a>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -91,30 +142,27 @@
                             <thead class="table-light ">
                                 <tr>
                                     <th>#</th>
-                                    <th>Mã Danh mục</th>
-                                    <th>Tên Danh mục</th>
-                                    <th>Hình ảnh</th>
-                                    <th>Danh mục cha</th>
-                                    <th colspan="2">Hành động</th>
+                                    <th>Mã Biến thể</th>
+                                    <th>Tên Biến thể</th>
+                                    <th colspan="2" style="width=20%;">Hành động</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php $i = 0 ?>
-                                @foreach ($categories as $category)
-                                <tr data-dt-row="" data-dt-column="">                                 
-                                       <td>{{++$i}}</td>
-                                       <td>{{$category->id}}</td>
-                                       <td>{{$category->category_name}}</td>
-                                       <td>{{$category->category_image}}</td>
-                                       <?php if($category->parent_cate ==0 ){ ?>
-                                            <td>Danh mục cha</td>
-                                       <?php }else{ ?>
-                                        <td>{{$category->parent_cate}}</td>
-                                      <?php } ?>
-                                       <td><a href="http://localhost:8000/admin/category/update/{{$category->id}}"><button type="button" class="btn btn-gradient-success"><i data-feather='edit'></i></button></a></td>
-                                       <td><a href="http://localhost:8000/admin/category/delete/{{$category->id}}"><button type="button" class="btn btn-gradient-danger"><i data-feather='trash-2'></i></button></a></td>                              
-                                </tr>
-                                @endforeach
+                                <?php foreach ($variations as $variation) { $i++;?>
+                                    <tr data-dt-row="" data-dt-column="">
+                                        <td><?=$i?></td>
+                                        <td>{{$variation->id}}</td>
+                                        <td>{{$variation->variation_name}}</td>
+                                        <td style="width:10% !important;">
+                                            <a href="{{url('admin/variation_main/edit', [$variation->id])}}"><button type="button" class="btn btn-success"><i data-feather='edit'></i></button></a>
+                                        </td>
+                                        <td style="width:10% !important;">
+                                            <a href="{{url('admin/variation_main/delete', [$variation->id])}}"><button type="button" class="btn btn-danger"><i data-feather='trash-2'></i></button></a>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                                
                             </tbody>
                         </table>
                         <div class="d-flex justify-content-between mx-2 row mb-1">

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('role');
             $table->boolean('status');
             $table->rememberToken();
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }
