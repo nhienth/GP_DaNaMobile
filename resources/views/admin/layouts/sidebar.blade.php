@@ -53,8 +53,8 @@
 
             <li class=" nav-item"><a class="d-flex align-items-center" href=""><i data-feather="grid"></i><span class="menu-title text-truncate" data-i18n="grid">Biến thể</span></a>
                 <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                    <li><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/variation/list"><i data-feather="list"></i><span class="menu-title text-truncate" data-i18n="list">Danh sách</span></a></li>
-                    <li><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/variation/create"><i data-feather="plus-square"></i><span class="menu-title text-truncate" data-i18n="plus-square">Thêm biến thể</span></a>
+                    <li><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/variation_main/list"><i data-feather="list"></i><span class="menu-title text-truncate" data-i18n="list">Danh sách</span></a></li>
+                    <li><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/variation_main/create"><i data-feather="plus-square"></i><span class="menu-title text-truncate" data-i18n="plus-square">Thêm biến thể</span></a>
                 </ul> 
             </li>
             <li class=" nav-item"><a class="d-flex align-items-center" href=""><i data-feather='cpu'></i><span class="menu-title text-truncate" data-i18n="grid">Thông số</span></a>

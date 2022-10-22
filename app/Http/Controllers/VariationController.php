@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 
 class VariationController extends Controller
 {
+
+    // Main Variation
     /**
      * Display a listing of the resource.
      *
@@ -18,10 +20,43 @@ class VariationController extends Controller
      */
     public function index()
     {
-        //
+        $variations = Variation::all();
+        // $result = $variation::all();
+        return view('admin.variation_main.list', compact('variations'));
     }
 
-    
+    public function create_main(){
+        return view('admin.variation_main.create');
+    }
+
+    public function store_main(Request $request){
+        $variation = new Variation();
+        $variation->variation_name = $request['variation_name'];
+        $variation->save();
+        return redirect()->route('variation_main.list');
+    }
+
+    public function edit_main($id)
+    {
+        $variation = Variation::find($id);
+        return view('admin.variation_main.edit', compact('variation'));
+    }
+
+    public function update_main(Request $request, $id)
+    {
+        $variation = Variation::find($id);
+        $variation->variation_name = $request['variation_name'];
+        $variation->save();
+
+        return redirect()->route('variation_main.list')->with('success', 'Sửa thành công');
+    }
+
+    public function destroy_main($id)
+    {
+        $variation = Variation::find($id);
+        $variation->delete();
+        return redirect()->route('variation_main.list');
+    }
     /**
      * Show the form for creating a new resource.
      * @param  int  $id
@@ -106,7 +141,8 @@ class VariationController extends Controller
 
         }
 
- 
+   
+
         // $product_variations_value = Product::with(['variations', 'variation_value'])
         //     ->where('products_variations_options.product_id', $request->product_id)
         //     ->get();
