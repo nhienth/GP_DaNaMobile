@@ -55,7 +55,7 @@ class PostController extends Controller
         $post->status = 0;
         $post->save();
 
-        return redirect('/admin/post/list');
+        return redirect('/admin/post/list')->with('messenger','Thêm bài viết thành công');
 
     }
 
@@ -115,7 +115,7 @@ class PostController extends Controller
         $post->status = 0;
         $post->save();
 
-        return redirect('/admin/post/list');
+        return redirect('/admin/post/list')->with('messenger','Cập nhật bài viết thành công');
 
         
     }
@@ -130,6 +130,6 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $post->delete();
-        return redirect('/admin/post/list');
+        return redirect('/admin/post/list')->with('messenger','Bài viết đã bị xóa');
     }
 }
