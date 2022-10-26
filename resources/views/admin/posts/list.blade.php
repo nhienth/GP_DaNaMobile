@@ -100,7 +100,7 @@
                                 <tr data-dt-row="" data-dt-column="">                                 
                                        <td>{{++$i}}</td>
                                        <td>
-                                            <span style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;">{{$post->title}}</span>
+                                            <span style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;width: 50px">{{$post->title}}</span>
                                         </td>
                                  
                                         <td>
@@ -108,14 +108,13 @@
                                         </td>
 
                                         <td  class="w-10">
-                                            <span style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;width: 200px"><?php echo $post->content ?></span>
+                                            <span style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;width: 150px"><?php echo $post->content ?></span>
                                         </td>
                                        <td>{{$post->category->category_name}}</td>
                                        <td><img class="rounded" src="{{asset('images/post/'.$post->post_img)}}" width="100px" height="100px" style="display:block; margin: 0 auto;"></td>
                                        <td>{{$post->status}}</td>
                                        <td>{{$post->added_by}}</td>
                                        <td><a href="http://localhost:8000/admin/post/details/{{$post->id}}"><button type="button" class="btn btn-gradient-info"><i data-feather='eye'></i></button></a></td>
-
                                        <td><a href="http://localhost:8000/admin/post/edit/{{$post->id}}"><button type="button" class="btn btn-gradient-success"><i data-feather='edit'></i></button></a></td>
                                        <td><a href="http://localhost:8000/admin/post/delete/{{$post->id}}"><button type="button" class="btn btn-gradient-danger"><i data-feather='trash-2'></i></button></a></td>                              
                                 </tr>
@@ -127,7 +126,8 @@
                                 <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Hiển thị 0 đến 0 của 0 mục</div>
                             </div>
                             <div class="col-sm-12 col-md-6">
-                                <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+                                {{$posts->links()}}
+                                <!-- <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
                                     <ul class="pagination">
                                         <li class="paginate_button page-item previous disabled" id="DataTables_Table_0_previous">
                                             <a href=""></a>
@@ -136,7 +136,7 @@
                                             <a href=""></a>
                                         </li>
                                     </ul>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>

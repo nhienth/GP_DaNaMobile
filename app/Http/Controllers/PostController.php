@@ -15,7 +15,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('category')->get();
+        $posts = Post::with('category')->orderBy('posts.created_at','DESC')->paginate(5);
         // dd($posts);
         return view('admin.posts.list', compact('posts'));
     }
