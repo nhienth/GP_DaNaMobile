@@ -50,7 +50,6 @@
                                         <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Mã khách hàng</label>
                                         <input type="text" id="basic-addon-name" class="form-control" value="{{$user->id}}" readonly placeholder="" aria-label="Name" name="title" aria-describedby="basic-addon-name" required />
                                     </div>
-
                                     <div class="mb-1">
                                         <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Chức năng</label>
                                         <select class="form-control" name="role">
