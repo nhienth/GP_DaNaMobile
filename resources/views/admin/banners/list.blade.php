@@ -97,7 +97,9 @@
                                 </div>
                             </div>
                             @if (Session::has('success'))
-                                <h1 style="margin-left: 20px;color: green">{{Session::get('success')}}</h1>
+                            <div class="text-secondary font-weight-bold text-xs">
+                                <h2 class="btn btn-info w-30">{{Session::get('success')}}</h2>
+                            </div>
                             @endif
                             <table class="user-list-table table dataTable no-footer dtr-column text-center">
                                 <thead class="table-light">

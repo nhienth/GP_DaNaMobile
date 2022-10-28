@@ -149,9 +149,11 @@
                     </li>
                 </ul>
             </div>
+            @foreach($banner as $banners)
             <div class="col-wd-3 d-none d-wd-block">
-                <a href="../shop/shop.html" class="d-block"><img class="img-fluid" src="{{asset('images/banner/'.$banner->banner_img)}}" alt="Image Description"></a>
+                <a href="../shop/shop.html" class="d-block"><img class="img-fluid" src="{{asset('images/banner/'.$banners->banner_img)}}" alt="Image Description" style="width:100%"></a>
             </div>
+            @endforeach
         </div>
     </div>
     <!-- End Footer-top-widget -->

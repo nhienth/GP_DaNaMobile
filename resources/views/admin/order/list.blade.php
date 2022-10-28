@@ -106,11 +106,6 @@
                                         <th>Mã phương thức thanh toán</th>
                                         <th>Trạng thái</th>
                                         <th>Tên khách hàng</th>
-                                        <th>Email</th>
-                                        <th>Số điện thoại</th>
-                                        <th>Địa chỉ</th>
-                                        <th>Ghi chú</th>
-
                                         <th colspan="2">Hành động</th>
                                     </tr>
                                 </thead>
@@ -136,10 +131,6 @@
                                             ?>
                                         </td>
                                         <td>{{$order->fullname}}</td>
-                                        <td>{{$order->email}}</td>
-                                        <td>{{$order->phone}}</td>
-                                        <td>{{$order->address}}</td>
-                                        <td>{{$order->note}}</td>
                                         <td><a href="{{ url('admin/order/details',[$order->id])}}">Xem chi tiết</a></td> 
                                         <td><a href="{{ url('admin/order/edit',[$order->id])}}"><button type="button" class="btn btn-gradient-success"><i data-feather='edit'></i></button></a></td>
                                     </tr>

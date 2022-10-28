@@ -129,16 +129,7 @@
                                     <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Hiển thị 0 đến 0 của 0 mục</div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
-                                    <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
-                                        <ul class="pagination">
-                                            <li class="paginate_button page-item previous disabled" id="DataTables_Table_0_previous">
-                                                <a href=""></a>
-                                            </li>
-                                            <li class="paginate_button page-item next disabled" id="DataTables_Table_0_next">
-                                                <a href=""></a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    {{$products->links()}}
                                 </div>
                             </div>
                         </div>

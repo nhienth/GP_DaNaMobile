@@ -102,6 +102,7 @@
                                         <td>{{$preview->product->product_name}}</td>
                                         <td>{{$preview->total}}</td>
                                         <td>{{$preview->mindate}}</td>
+                                        <!-- ->format('d/m/Y') -->
                                         <td>{{$preview->maxdate}}</td>
                                         <td><a href="{{url('admin/preview/detail',[$preview->product->id])}}"><button type="button" class="btn btn-gradient-info"><i data-feather='eye'></i></button></a></td>
                                     </tr>
