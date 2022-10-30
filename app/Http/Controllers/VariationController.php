@@ -21,7 +21,6 @@ class VariationController extends Controller
     public function index()
     {
         $variations = Variation::all();
-        // $result = $variation::all();
         return view('admin.variation_main.list', compact('variations'));
     }
 

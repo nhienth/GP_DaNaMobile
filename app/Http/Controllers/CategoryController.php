@@ -25,7 +25,14 @@ class CategoryController extends Controller
         return view('admin.categories.list', compact('categories'));
 
     }
-
+    public function getCategoryName($id) {
+        if($id != 0) {
+            $category = Category::find($id);
+            return $category->category_name;
+        }else{
+            return 'Danh mục cha';
+        }
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -68,13 +75,6 @@ class CategoryController extends Controller
         // $cate -> parent_id = $request['parent_id'];
         $categorySelect = $this->res_selected(0, $category->parent_id, $id);
         return view('admin.categories.edit', compact('categorySelect', 'category'));
-    }
-
-    public function getCategoryName($id) {
-        if($id != 0) {
-            $category = Category::find($id);
-            return $category->category_name;
-        }
     }
 
     function res_selected($i, $parent_id, $id, $text = '')
@@ -187,14 +187,21 @@ class CategoryController extends Controller
         // return $this->index();
         $category = Category::find($id);
         $categories = Category::all();
+        $i = 0;
         foreach ($categories as $key) {
-            if ($key['parent_id'] == $id) {
-                $cate = Category::find($key['id']);
-                $cate->delete();
+            // dd($key['parent_id']);
+            if ( $key['parent_id'] == $id) {
+                $i++;
             }
         }
+        if ( $i != 0) {
+            return $this->index()->with('message' , ' thêm sản phẩm thành công' );
+        }else{
         $category->delete();
-        return $this->index();
+        return $this->index()->with('success', 'Thêm thành công');
+        }
+        
+       
     }
 
     public function deleteRes($id)

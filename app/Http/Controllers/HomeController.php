@@ -16,20 +16,25 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public $html = '';
+
     public function index()
     {
-        $categories = Category::all();
-        foreach ($categories as $category) {
-            $parent_id = $category->parent_id;
-            $partenCateName = $this->getCategoryName($parent_id);
-            $category['parent_cate'] = $partenCateName;
-        }
+        // $categories = Category::all();
+        // foreach ($categories as $category) {
+        //     $parent_id = $category->parent_id;
+        //     $partenCateName = $this->getCategoryName($parent_id);
+        //     $category['parent_cate'] = $partenCateName;
+        // }
+
+       $categories = Category::all();
+        $categorySelect = $this->res(0);
         $slider = Slider::all();
         $banner = Banner::find(1);
         $product = Product::all();
         $product = Product::with(['combinations', 'stock'])->orderBy('id','DESC')->paginate(1);
 
-        return view('client.index')->with(compact('categories','slider','banner','product'));
+        return view('client.index')->with(compact('categories','slider','banner','product', 'categorySelect'));
     }
 
     public function getCategoryName($id) {
@@ -39,7 +44,59 @@ class HomeController extends Controller
         }
         
     }
+    public function res($id, $text = '')
+    {
+        $data = Category::all();
+        foreach ($data as $value) {          
+            if ($value['parent_id'] == $id) {    
+                $this->html .= '<li class="nav-item hs-has-mega-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut" data-position="left">
+                <a id="basicMegaMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false">'.$value['category_name'] . '</a>';
+                $this->res_sub($value['id'], $value['id']);
+                $this->html .= '</li>';
+            }else{
+                $this->html .= '</li>';
+            }
+        }
+        return $this->html;
+    }
 
+    public function res_sub($id, $id_parent)
+    {
+        $count = 0;
+        $data_sub = Category::all();
+        $category = Category::find($id_parent);
+        foreach ($data_sub as $value_sub) {
+            if ($value_sub['parent_id'] == $id) {  
+                $count++;
+             }
+           
+        }
+        if($count > 0){
+        $this->html .= '<div class="hs-mega-menu vmm-tfw u-header__sub-menu" aria-labelledby="basicMegaMenu">
+                                    <div class="vmm-bg">
+                                        <img class="img-fluid" src="../../assets/img/500X400/img1.png" alt="">
+                                    </div>
+                                    <div class="row u-header__mega-menu-wrapper">
+                                        <div class="col mb-3 mb-sm-0">
+                                            <span class="u-header__sub-menu-title">'.$category->category_name.'</span>
+                                            <ul class="u-header__sub-menu-nav-group mb-3">';   
+        foreach ($data_sub as $value_sub) {
+            if ($value_sub['parent_id'] == $id) {  
+                        
+                                            $this->html .= '<li><a class="nav-link u-header__sub-menu-nav-link" href="#">'.$value_sub['category_name'].'</a></li>';    
+                   
+            }
+           
+        }
+        $this->html .= '                   
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>';   
+        }
+        return $this->html;
+     
+    }
     /**
      * Show the form for creating a new resource.
      *

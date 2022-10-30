@@ -595,14 +595,8 @@
                                         <nav class="js-mega-menu navbar navbar-expand-xl u-header__navbar u-header__navbar--no-space hs-menu-initialized">
                                             <div id="navBar" class="collapse navbar-collapse u-header__navbar-collapse">
                                                 <ul class="navbar-nav u-header__navbar-nav">
-                                                    @foreach($categories as $category)
-                                                        <li class="nav-item u-header__nav-item"
-                                                            data-event="hover"
-                                                            data-position="left">
-                                                            <a href="#" class="nav-link u-header__nav-link font-weight-bold">{{$category->category_name}}</a>
-                                                        </li>
-                                                    @endforeach                               
                                                     <!-- Nav Item MegaMenu -->
+                                                        {!! $categorySelect !!}
                                                     <li class="nav-item hs-has-mega-menu u-header__nav-item"
                                                         data-event="hover"
                                                         data-animation-in="slideInUp"
@@ -613,7 +607,7 @@
                                                         <!-- Nav Item - Mega Menu -->
                                                         <div class="hs-mega-menu vmm-tfw u-header__sub-menu" aria-labelledby="basicMegaMenu">
                                                             <div class="vmm-bg">
-                                                                <img class="img-fluid" src="../../assets/img/500X400/img1.png" alt="Image Description">
+                                                                <img class="img-fluid" src="../../assets/img/500X400/img1.png" alt="">
                                                             </div>
                                                             <div class="row u-header__mega-menu-wrapper">
                                                                 <div class="col mb-3 mb-sm-0">
@@ -633,18 +627,19 @@
                                                                         </li>
                                                                     </ul>
                                                                 </div>
-
-                                                                <div class="col mb-3 mb-sm-0">
-                                                                    <span class="u-header__sub-menu-title">Office & Stationery</span>
-                                                                    <ul class="u-header__sub-menu-nav-group">
-                                                                        <li><a class="nav-link u-header__sub-menu-nav-link" href="#">All Office & Stationery</a></li>
-                                                                    </ul>
-                                                                </div>
                                                             </div>
                                                         </div>
                                                         <!-- End Nav Item - Mega Menu -->
                                                     </li>
                                                     <!-- End Nav Item MegaMenu-->
+                                                    @foreach($categories as $category)
+                                                        <li class="nav-item u-header__nav-item"
+                                                            data-event="hover"
+                                                            data-position="left">
+                                                            <a href="#" class="nav-link u-header__nav-link font-weight-bold">{{$category->category_name}}</a>
+                                                        </li>
+                                                    @endforeach                               
+                                                    
                                                 </ul>
                                             </div>
                                         </nav>
