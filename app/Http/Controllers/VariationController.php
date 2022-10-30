@@ -129,19 +129,9 @@ class VariationController extends Controller
                     }
                 }
 
-                $inputRequestValue = $variation->id . "_value";
-
-                $newValue = $request->$inputRequestValue;
-
-                foreach ($productVariationsValues->variation_value as $productt) {
-
-                    if($productt->variation_value == $newValue) {
-                        echo '<i>'.$newValue.'</i>';
-                    }else {
-                        echo '<b>'.$newValue.'</b>';
-                    }
-                }
-
+                $rom = $request->variation_rom;
+                print_r($rom);
+            
                 // $variation_option_value = new Variation_Option_Value();
 
                 // $variation_option_value->variation_name = $variation->variation_name;
@@ -149,12 +139,12 @@ class VariationController extends Controller
 
                 // $variation_option_value->variation_value = $request->$inputRequestValue;
                 
-                // $variation_option_value->products_variation_id = $id;
+                // $variation_option_value->products_variation_id =$id;
 
                 // $variation_option_value->save();
-
-
+                
             }
+
 
         }
 
