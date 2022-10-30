@@ -20,6 +20,7 @@ use App\Http\Controllers\VoucherController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\OrderDetailsController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\SpecificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -85,7 +86,25 @@ Route::prefix('/admin')->group(function () {
 
         Route::get('/test/{id}', [VariationController::class, 'test'] );
     });
+    Route::prefix('/specification')->group(function () {
+        Route::get('/list', [SpecificationController::class, 'index'])->name('specification.list');
+        Route::get('/create', [SpecificationController::class, 'create'])->name('specification.create');
+        Route::post('/create', [SpecificationController::class, 'store'])->name('specification.create_process');
+        Route::get('/update/{id}', [SpecificationController::class, 'edit'])->name('specification.edit');
+        Route::post('/update/{id}', [SpecificationController::class, 'update'])->name('specification.edit_process');
+        Route::get('/delete/{id}', [SpecificationController::class, 'destroy']);
+    });
+    Route::prefix('/variation_main')->group(function () {
+        Route::get('/list', [VariationController::class, 'index'])->name('variation_main.list'); 
 
+        Route::get('/create', [VariationController::class, 'create_main'])->name('variation_main.create'); 
+        Route::post('/create', [VariationController::class, 'store_main'])->name('variation_main.create_process'); 
+
+        Route::get('/edit/{id}', [VariationController::class, 'edit_main'])->name('variation_main.edit'); 
+        Route::post('/update/{id}', [VariationController::class, 'update_main'])->name('variation_main.edit_process'); 
+
+        Route::get('/delete/{id}', [VariationController::class, 'destroy_main']);
+    });
     Route::prefix('/post')->group(function () {
         Route::get('/list', [PostController::class, 'index']); 
 
@@ -167,9 +186,6 @@ Route::prefix('/admin')->group(function () {
 
 });
    
-
-    
-
 // ->middleware(['auth'])->name('dashboard');
 
 require __DIR__ . '/auth.php';

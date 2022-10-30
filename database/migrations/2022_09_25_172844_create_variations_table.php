@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('variations', function (Blueprint $table) {
             $table->id();
             $table->string('variation_name', 50);
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

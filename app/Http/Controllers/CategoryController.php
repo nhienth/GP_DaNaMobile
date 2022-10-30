@@ -51,10 +51,11 @@ class CategoryController extends Controller
         $cate->category_image = $request['category_image'];
         $cate->parent_id = $request['parent_id'];
         $cate->save();
+
+        // Category::create($request->all());
         $categorySelect = $this->res(0);
         return $this->index();
     }
-
     /**
      * Display the specified resource.
      *
@@ -74,7 +75,6 @@ class CategoryController extends Controller
             $category = Category::find($id);
             return $category->category_name;
         }
-        
     }
 
     function res_selected($i, $parent_id, $id, $text = '')
@@ -122,6 +122,21 @@ class CategoryController extends Controller
         $data = Category::all();
         foreach ($data as $value) {
             if ($value['parent_id'] == $id) {
+                $this->html .= '<option value="' . $value['id'] . '">' . $text . $value['category_name'] . '</option>';
+                $this->res($value['id'], $text . '--');
+            }
+        }
+        return $this->html;
+    }
+
+    public function res_selected_category($id, $text = ''){
+        $data = Category::all();
+        // dd($id, $text);
+        foreach ($data as $value) {
+            if($value['id'] == $id) {
+                $this->html .= '<option value="' . $value['id'] . '" selected>' . $text . $value['category_name'] . '</option>';
+                $this->res($value['id'], $text . '--');
+            }else{
                 $this->html .= '<option value="' . $value['id'] . '">' . $text . $value['category_name'] . '</option>';
                 $this->res($value['id'], $text . '--');
             }

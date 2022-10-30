@@ -24,10 +24,10 @@ class HomeController extends Controller
             $partenCateName = $this->getCategoryName($parent_id);
             $category['parent_cate'] = $partenCateName;
         }
-        $slider = Slider::all();
-        $banner = Banner::find(1);
-        $product = Product::all();
-        $product = Product::with(['combinations', 'stock'])->orderBy('id','DESC')->paginate(1);
+        $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
+        $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
+        // $product = Product::all();
+        $product = Product::with(['combinations', 'stock'])->get();
 
         return view('client.index')->with(compact('categories','slider','banner','product'));
     }
