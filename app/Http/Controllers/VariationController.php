@@ -129,7 +129,6 @@ class VariationController extends Controller
                 }
 
                 $rom = $request->variation_rom;
-                print_r($rom);
             
                 // $variation_option_value = new Variation_Option_Value();
 

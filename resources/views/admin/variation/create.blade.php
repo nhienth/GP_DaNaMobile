@@ -70,10 +70,7 @@
                                                         <option value="256GB">256GB</option>
                                                         <option value="512GB">512GB</option>
                                                         <option value="1TB">1TB</option>
-                                                    </optgroup>
-                                          
-                                           
-                                                    
+                                                    </optgroup>                                                   
                                                 </select>
                                             </div>
                              
