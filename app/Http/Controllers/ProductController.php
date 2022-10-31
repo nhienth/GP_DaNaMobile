@@ -63,18 +63,23 @@ class ProductController extends Controller
         $product->product_status = 0;
         $product->save();
 
+        $cateIdSeleted = $request->specification_cate;
+
         $specfications = ProductSpecificationsOptions::all();
         foreach ($specfications as $specfication) {
-            $nspecfication = new ProductSpecificationsOptionsValue();
+            if($specfication->category_id == $cateIdSeleted) {
+                $nspecfication = new ProductSpecificationsOptionsValue();
 
-            $nspecfication_value = $specfication->id . "_value";
-            $nspecification_name = $specfication->specification_name;
-
-            $nspecfication->specification_name = $nspecification_name;
-            $nspecfication->specification_value = $request->$nspecfication_value;
-            $nspecfication->product_id = $product->id;
-
-            $nspecfication->save();
+                $nspecfication_value = $specfication->id . "_value";
+                $nspecification_name = $specfication->specification_name;
+    
+                $nspecfication->specification_name = $nspecification_name;
+                $nspecfication->specification_value = $request->$nspecfication_value;
+                $nspecfication->product_id = $product->id;
+    
+                $nspecfication->save();
+            }
+         
         }
 
         return redirect('/admin/product/list');
