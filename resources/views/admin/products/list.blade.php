@@ -33,11 +33,22 @@
                             <h4 class="card-title">Tìm kiếm và Lọc</h4>
                             <div class="row">
                                 <div class="col-md-4 user_role">
-                                    <label class="form-label" for="UserRole">Vai trò</label>
-                                    <select id="UserRole" class="form-select text-capitalize mb-md-0 mb-2">
+                                    <label class="form-label" for="UserRole">Tìm kiếm theo danh mục</label>
+                                    <form action="{{ route('search') }}" method="GET">
+                                        @csrf
+                                        <select name="key_cate_id" class="form-select text-capitalize mb-md-0 mb-2" id="" onchange="this.form.submit()"
+                                            class="sorting">
+                                            <option value="">Tất cả sản phẩm</option>
+                                            @foreach ($categories as $category)
+                                                <option data-id="{{ $category->id }}" value="{{ $category->id }}">
+                                                    {{ $category->category_name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </form>
+                                    <!-- <select id="UserRole" class="form-select text-capitalize mb-md-0 mb-2">
                                         <option value=""> Select Role </option>
                                         <option value="' + d + '" class="text-capitalize">' + d + '</option>
-                                    </select>
+                                    </select> -->
                                 </div>
                                 <div class="col-md-4 user_plan">
                                     <label class="form-label" for="UserPlan">Kế hoạch</label>

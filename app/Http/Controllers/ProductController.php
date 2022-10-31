@@ -15,6 +15,19 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    public function search(){
+        $keywords = $_GET['key_cate_id'];
+        $categories = Category::all();
+        $products = Product::where('category_id','=',$keywords)->paginate(5);
+        if(count($products)!=0){
+            return view('admin.products.list')->with(compact('products','categories'));
+        }
+        else if (count($products)==0){
+            $products = Product::with('category')->orderBy('products.id', 'desc')->paginate(5);
+            return view('admin.products.list')->with(compact('products','categories'));
+        }
+        
+    }
     /**
      * Display a listing of the resource.
      *
