@@ -25,7 +25,7 @@ class Checklogin
         {
             //Phân quyền khi đăng nhập
             //Nếu là 1 thì là Admin
-            if(Auth::user()->role == '0')
+            if(Auth::user()->role == '1')
             {
                 return $next($request);
             }

@@ -33,11 +33,24 @@
                             <h4 class="card-title">Tìm kiếm và Lọc</h4>
                             <div class="row">
                                 <div class="col-md-4 user_role">
-                                    <label class="form-label" for="UserRole">Vai trò</label>
-                                    <select id="UserRole" class="form-select text-capitalize mb-md-0 mb-2">
+                                    <label class="form-label" for="UserRole">Tìm kiếm theo danh mục</label>
+                                    <form action="{{ route('search') }}" method="GET">
+                                        @csrf
+                                        <select name="key_cate_id" class="form-select text-capitalize mb-md-0 mb-2" id="cate" onchange="this.form.submit()"
+                                            class="sorting">
+                                            <option value="">Danh mục</option>
+                                            <option value="0">Tất cả sản phẩm</option>
+
+                                            @foreach ($categories as $category)
+                                                <option data-id="{{ $category->id }}" value="{{ $category->id }}">
+                                                    {{ $category->category_name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </form>
+                                    <!-- <select id="UserRole" class="form-select text-capitalize mb-md-0 mb-2">
                                         <option value=""> Select Role </option>
                                         <option value="' + d + '" class="text-capitalize">' + d + '</option>
-                                    </select>
+                                    </select> -->
                                 </div>
                                 <div class="col-md-4 user_plan">
                                     <label class="form-label" for="UserPlan">Kế hoạch</label>
@@ -129,16 +142,7 @@
                                     <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Hiển thị 0 đến 0 của 0 mục</div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
-                                    <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
-                                        <ul class="pagination">
-                                            <li class="paginate_button page-item previous disabled" id="DataTables_Table_0_previous">
-                                                <a href=""></a>
-                                            </li>
-                                            <li class="paginate_button page-item next disabled" id="DataTables_Table_0_next">
-                                                <a href=""></a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    {{$products->links()}}
                                 </div>
                             </div>
                         </div>
