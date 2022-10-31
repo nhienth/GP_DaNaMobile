@@ -27,12 +27,22 @@ class HomeController extends Controller
         //     $category['parent_cate'] = $partenCateName;
         // }
 
-       $categories = Category::all();
-        $categorySelect = $this->res(0);
-        $slider = Slider::all();
-        $banner = Banner::find(1);
-        $product = Product::all();
-        $product = Product::with(['combinations', 'stock'])->orderBy('id','DESC')->paginate(1);
+    //    $categories = Category::all();
+    //     $categorySelect = $this->res(0);
+    //     $slider = Slider::all();
+    //     $banner = Banner::find(1);
+    //     $product = Product::all();
+    //     $product = Product::with(['combinations', 'stock'])->orderBy('id','DESC')->paginate(1);
+        $categories = Category::all();
+        foreach ($categories as $category) {
+            $parent_id = $category->parent_id;
+            $partenCateName = $this->getCategoryName($parent_id);
+            $category['parent_cate'] = $partenCateName;
+        }
+        $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
+        $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
+        // $product = Product::all();
+        $product = Product::with(['combinations', 'stock'])->get();
 
         return view('client.index')->with(compact('categories','slider','banner','product', 'categorySelect'));
     }

@@ -106,7 +106,7 @@
                                 </tr>
                             </thead>
                             <tbody>                   
-                                @foreach ($order as $item)
+                                @foreach ($detail as $item)
                                 <tr data-dt-row="" data-dt-column="">
                                       <td>{{$item->order->fullname}}</td>  
                                       <td>{{$item->order->email}}</td> 
@@ -119,7 +119,7 @@
                             </tbody>
                         </table>
 
-                        <br><br><br><br><br>
+                        <br><br><br>
 
                         <table class="user-list-table table dataTable no-footer dtr-column text-center" >
                             <h3>Thông tin vận chuyển</h3>
@@ -133,7 +133,7 @@
                                 </tr>
                             </thead>
                             <tbody>                    
-                                @foreach ($order as $item)
+                                @foreach ($detail as $item)
                                 <tr data-dt-row="" data-dt-column="">
                                       <td>{{$item->order->fullname}}</td>  
                                       <td>{{$item->order->address}}</td> 
@@ -146,7 +146,7 @@
                             </tbody>
                         </table>
 
-                        <br><br><br><br><br>
+                        <br><br><br>
 
                         <table class="user-list-table table dataTable no-footer dtr-column text-center" >
                             <h3>Chi tiết đơn hàng</h3>
@@ -160,7 +160,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            @foreach ($order as $item)
+                            @foreach ($detail as $item)
                                 <tr data-dt-row="" data-dt-column="">
                                       <td>{{$item->id}}</td>                                             
                                       <td>{{$item->order->id}}</td> 

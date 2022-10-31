@@ -61,8 +61,8 @@
 
                                     <div class="mb-1">
                                         <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Nội dung bài viết</label>
+                                        <textarea name="content" class="form-control" id="mySummernote"  rows="9">{{$post->content}}</textarea>
 
-                                        <input type="text" id="basic-addon-name" class="form-control" value="{{$post->content}}" placeholder="Nhập tên bài viết" aria-label="Name" name="content" aria-describedby="basic-addon-name" required />
                                     </div>
 
                                     <div class="mb-2">

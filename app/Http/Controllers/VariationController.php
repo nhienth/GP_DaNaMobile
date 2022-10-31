@@ -90,8 +90,11 @@ class VariationController extends Controller
     public function store(Request $request)
     {
         $product = Product::with('variations')->where('products.id',$request->product_id )->first();
+
+        $productVariationsValues = Product::with('variation_value')->where('products.id',$request->product_id )->first();
     
         $variations = Variation::all();
+
 
         $checkProductVariation = $product->variations;
   
@@ -124,19 +127,23 @@ class VariationController extends Controller
                         $id = $pvariation->id;
                     }
                 }
+
+                $rom = $request->variation_rom;
+                print_r($rom);
+            
+                // $variation_option_value = new Variation_Option_Value();
+
+                // $variation_option_value->variation_name = $variation->variation_name;
+                // $inputRequestValue = $variation->id . "_value";
+
+                // $variation_option_value->variation_value = $request->$inputRequestValue;
                 
-                $variation_option_value = new Variation_Option_Value();
+                // $variation_option_value->products_variation_id =$id;
 
-                $variation_option_value->variation_name = $variation->variation_name;
-                $inputRequestValue = $variation->id . "_value";
-
-                $variation_option_value->variation_value = $request->$inputRequestValue;
+                // $variation_option_value->save();
                 
-                $variation_option_value->products_variation_id = $id;
-
-                $variation_option_value->save();
-
             }
+
 
         }
 

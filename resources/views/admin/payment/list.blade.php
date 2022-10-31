@@ -91,8 +91,8 @@
                         <table class="user-list-table table dataTable no-footer dtr-column text-center" >
                             <thead class="table-light ">
                                 <tr>
-                                    <th>Phương thức thanh toán</th>
-                                    <th>Nội dung</th>
+                                    <th>Tên tài khoản</th>
+                                    <th>Số tài khoản</th>
                                     <th>Ngày thêm mới</th>
                                     <th>Ngày cập nhật</th>
                                     <th colspan="2">Hành động</th>

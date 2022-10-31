@@ -186,9 +186,6 @@ Route::prefix('/admin')->group(function () {
 
 });
    
-
-    
-
 // ->middleware(['auth'])->name('dashboard');
 
 require __DIR__ . '/auth.php';

@@ -213,6 +213,8 @@ class CategoryController extends Controller
             if ($key['parent_id'] == $id) {
                 $cate = Category::find($categories['id']);
                 $cate->delete();
+            }else{
+                echo '<script type="text/javascript> alert("Bạn không thể xoá sản phẩm cha!") </script>';
             }
         }
         return $this->index();
