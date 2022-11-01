@@ -16,4 +16,6 @@ class Variation_Option_Value extends Model
         'variation_value',
         'products_variation_id'
     ];
+
+    
 }

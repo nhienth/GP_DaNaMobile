@@ -57,7 +57,9 @@
                                             <label class="form-label fs-6 fw-bolder" for="basic-addon-name">
                                                 {{$variation->variation_name}}
                                             </label>
-                                            <input type="text" id="basic-addon-name" class="form-control" placeholder="Nhập giá trị biến thể" name="{{$variation->id}}_value" aria-label="Name" aria-describedby="basic-addon-name" required />
+
+                                            <input type="text" id="basic-addon-name" class="form-control" placeholder="Nhập giá trị biến thể" name="{{$variation->id}}_value" aria-label="Name" aria-describedby="basic-addon-name" required /> 
+                            
                                         </div>
                                     @endforeach
                                     

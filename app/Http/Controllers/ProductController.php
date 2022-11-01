@@ -15,6 +15,19 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    public function search(){
+        $keywords = $_GET['key_cate_id'];
+        $categories = Category::all();
+        $products = Product::where('category_id','=',$keywords)->paginate(5);
+        if(count($products)!=0){
+            return view('admin.products.list')->with(compact('products','categories'));
+        }
+        else if (count($products)==0){
+            $products = Product::with('category')->orderBy('products.id', 'desc')->paginate(5);
+            return view('admin.products.list')->with(compact('products','categories'));
+        }
+        
+    }
     /**
      * Display a listing of the resource.
      *
@@ -63,18 +76,23 @@ class ProductController extends Controller
         $product->product_status = 0;
         $product->save();
 
+        $cateIdSeleted = $request->specification_cate;
+
         $specfications = ProductSpecificationsOptions::all();
         foreach ($specfications as $specfication) {
-            $nspecfication = new ProductSpecificationsOptionsValue();
+            if($specfication->category_id == $cateIdSeleted) {
+                $nspecfication = new ProductSpecificationsOptionsValue();
 
-            $nspecfication_value = $specfication->id . "_value";
-            $nspecification_name = $specfication->specification_name;
-
-            $nspecfication->specification_name = $nspecification_name;
-            $nspecfication->specification_value = $request->$nspecfication_value;
-            $nspecfication->product_id = $product->id;
-
-            $nspecfication->save();
+                $nspecfication_value = $specfication->id . "_value";
+                $nspecification_name = $specfication->specification_name;
+    
+                $nspecfication->specification_name = $nspecification_name;
+                $nspecfication->specification_value = $request->$nspecfication_value;
+                $nspecfication->product_id = $product->id;
+    
+                $nspecfication->save();
+            }
+         
         }
 
         return redirect('/admin/product/list');
