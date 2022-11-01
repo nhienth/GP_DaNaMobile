@@ -60,13 +60,15 @@ Route::prefix('/admin')->group(function () {
     Route::get('/', function () {
         return view('admin.index');
     });
+
+
     Route::prefix('/category')->group(function () {
         Route::get('/list', [CategoryController::class, 'index']);
         Route::get('/create', [CategoryController::class, 'create']);
-        Route::post('/create', [CategoryController::class, 'store']);
-        Route::get('/update/{id}', [CategoryController::class, 'edit']);
+        Route::post('/create',  [CategoryController::class, 'store']);
+        Route::get('/update/{id}',[CategoryController::class, 'edit']);
         Route::post('/update/{id}', [CategoryController::class, 'update']);
-        Route::get('/delete/{id}', [CategoryController::class, 'destroy']);
+        Route::get('/delete/{id}',    [CategoryController::class, 'destroy']);
     });
 
     Route::prefix('/product')->group(function () {
