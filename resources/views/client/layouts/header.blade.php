@@ -40,7 +40,7 @@
                                         @csrf
                                         <div id="userlogin" class="dropdown-menu dropdown-unfold "
                                             style="text-align:center" aria-labelledby="Userclient">
-                                            <a href="http://" class="dropdown-item">Thông tin cá nhân</a>
+                                            <a href="" class="dropdown-item">Thông tin cá nhân</a>
                                             <a href="http://" class="dropdown-item">Đổi mật khẩu</a>
                                             <hr>
                                             <a href="route('logout')"

@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Slider;
 use App\Models\Banner;
 use App\Models\Product;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -27,9 +28,10 @@ class HomeController extends Controller
         $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
         $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
         // $product = Product::all();
+        $user = User::all();
         $product = Product::with(['combinations', 'stock'])->get();
 
-        return view('client.index')->with(compact('categories','slider','banner','product'));
+        return view('client.index')->with(compact('categories','slider','banner','product','user'));
     }
 
     public function getCategoryName($id) {
