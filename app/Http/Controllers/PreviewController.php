@@ -10,7 +10,7 @@ use App\Models\Preview;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
-
+use App\Http\Middleware\checklogin;
 use DB;
 
 class PreviewController extends Controller
@@ -53,12 +53,7 @@ class PreviewController extends Controller
     public function preview(Request $request, $id)
     {
         $previews = new Preview();
-        // $previews->rate = 5;
-        if ($request->rate_status > 0 ) {
-            $previews->status = $request->rate_status;
-        } else {
-            $previews->status = 5;
-        }
+        $previews->rate = 5;
         $previews->review = $request->review;
         $previews->status = 1;
         $previews->user_id = Auth::user()->id;     

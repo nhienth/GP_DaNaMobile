@@ -74,7 +74,7 @@ Route::prefix('/')->group(function () {
     
  
     Route::get('/product_details/{id}',[PreviewController::class,'product_details']);
-    Route::post('preview/{id}',[PreviewController::class,'preview'])->name('preview');
+    Route::post('preview/{id}',[PreviewController::class,'preview'])->name('preview')->middleware('auth');;
   
     Route::get('/product-bycate', function () {
         return view('client.products.product_ bycate');
