@@ -1,4 +1,20 @@
 {{-- Begin header --}}
+<?php
+use App\Models\Category;
+use App\Models\Slider;
+use App\Models\Product;
+use App\Models\User;
+
+
+$categories = Category::all();
+$cate = new Category();
+
+$slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
+
+
+
+
+?>
 <header id="header" class="u-header u-header-left-aligned-nav">
     <div class="u-header__section">
         <!-- Topbar -->
