@@ -4,153 +4,47 @@
                 <div class="row">
                     <div class="col-xl-9 col-wd">
                         <div class="min-width-1100-wd">
+                            @foreach ($posts as $post)
+                                
                             <article class="card mb-13 border-0">
                                 <div class="row">
                                     <div class="col-lg-4 mb-5 mb-lg-0">
-                                        <a href="../blog/single-blog-post.html" class="d-block"><img class="img-fluid min-height-250 object-fit-cover" src="../../assets/img/1500X730/img1.jpg" alt="Image Description"></a>
+                                        <a href="http://localhost:8000/post/details/{{$post->id}}" class="d-block"><img class="img-fluid min-height-250 object-fit-cover" src="{{asset('images/post/'.$post->post_img)}}" alt="Image Description"></a>
                                     </div>
                                     <div class="col-lg-8">
                                         <div class="card-body p-0">
-                                            <h4 class="mb-3"><a href="../blog/single-blog-post.html">Robot Wars – Post with Gallery</a></h4>
+                                            <h4 class="mb-3"><a href="http://localhost:8000/post/details/{{$post->id}}">{{$post->title}}</a></h4>
                                             <div class="mb-3 pb-3 border-bottom">
                                                 <div class="list-group list-group-horizontal flex-wrap list-group-borderless align-items-center mx-n0dot5">
-                                                    <a href="../blog/single-blog-post.html" class="mx-0dot5 text-gray-5">Design,</a>
-                                                    <a href="../blog/single-blog-post.html" class="mx-0dot5 text-gray-5"> Technology,</a>
-                                                    <a href="../blog/single-blog-post.html" class="mx-0dot5 text-gray-5"> News,</a>
-                                                    <a href="../blog/single-blog-post.html" class="mx-0dot5 text-gray-5"> Videos</a>
+                                                    <a href="http://localhost:8000/post/details/{{$post->id}}" class="mx-0dot5 text-gray-5">{{$post->category->category_name}}</a>
+                                                  
                                                     <span class="mx-2 font-size-n5 mt-1 text-gray-5"><i class="fas fa-circle"></i></span>
-                                                    <a href="../blog/single-blog-post.html" class="mx-0dot5 text-gray-5">March 4, 2016</a>
+                                                    <a href="http://localhost:8000/post/details/{{$post->id}}" class="mx-0dot5 text-gray-5">{{$post->created_at->format('d/m/Y')}}</a>
                                                 </div>
                                             </div>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt, erat in malesuada aliquam, est erat faucibus purus, eget viverra nulla sem vitae neque. Quisque id sodales libero. In nec enim nisi, in ultricies quam. Sed lacinia feugiat velit, cursus molestie lectus.</p>
+                                            <p>{{$post->summary}}</p>
                                             <div class="flex-horizontal-center">
-                                                <a href="../blog/single-blog-post.html" class="btn btn-soft-secondary-w mb-md-0 font-weight-normal px-5 px-md-4 px-lg-5">Read More</a>
-                                                <a href="../blog/single-blog-post.html" class="font-size-12 text-gray-5 ml-4"><i class="far fa-comment"></i> 3</a>
+                                                <a href="http://localhost:8000/post/details/{{$post->id}}" class="btn btn-soft-secondary-w mb-md-0 font-weight-normal px-5 px-md-4 px-lg-5">Read More</a>
+                                                <a href="http://localhost:8000/post/details/{{$post->id}}" class="font-size-12 text-gray-5 ml-4"><i class="far fa-comment"></i> 3</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </article>
-                            <article class="card mb-13 border-0">
-                                <div class="row">
-                                    <div class="col-lg-4 mb-5 mb-lg-0">
-                                        <a href="../blog/single-blog-post.html" class="d-block"><img class="img-fluid min-height-250 object-fit-cover" src="../../assets/img/1500X730/img3.jpg" alt="Image Description"></a>
-                                    </div>
-                                    <div class="col-lg-8">
-                                        <div class="card-body p-0">
-                                            <h4 class="mb-3"><a href="../blog/single-blog-post.html">Robot Wars – Now Closed – Post with Audio</a></h4>
-                                            <div class="mb-3 pb-3 border-bottom">
-                                                <div class="list-group list-group-horizontal flex-wrap list-group-borderless align-items-center mx-n0dot5">
-                                                    <a href="../blog/single-blog-post.html" class="mx-0dot5 text-gray-5">Design,</a>
-                                                    <a href="../blog/single-blog-post.html" class="mx-0dot5 text-gray-5"> Technology,</a>
-                                                    <a href="../blog/single-blog-post.html" class="mx-0dot5 text-gray-5"> News,</a>
-                                                    <a href="../blog/single-blog-post.html" class="mx-0dot5 text-gray-5"> Audio</a>
-                                                    <span class="mx-2 font-size-n5 mt-1 text-gray-5"><i class="fas fa-circle"></i></span>
-                                                    <a href="../blog/single-blog-post.html" class="mx-0dot5 text-gray-5">March 4, 2016</a>
-                                                </div>
-                                            </div>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt, erat in malesuada aliquam, est erat faucibus purus, eget viverra nulla sem vitae neque. Quisque id sodales libero. In nec enim nisi, in ultricies quam. Sed lacinia feugiat velit, cursus molestie lectus.</p>
-                                            <div class="flex-horizontal-center">
-                                                <a href="../blog/single-blog-post.html" class="btn btn-soft-secondary-w mb-md-0 font-weight-normal px-5 px-md-4 px-lg-5">Read More</a>
-                                                <a href="../blog/single-blog-post.html" class="font-size-12 text-gray-5 ml-4"><i class="far fa-comment"></i> Leave a comment</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="card mb-13 border-0">
-                                <div class="row">
-                                    <div class="col-lg-4 mb-5 mb-lg-0">
-                                        <a href="../blog/single-blog-post.html" class="d-block"><img class="img-fluid min-height-250 object-fit-cover" src="../../assets/img/1500X730/img5.jpg" alt="Image Description"></a>
-                                    </div>
-                                    <div class="col-lg-8">
-                                        <div class="card-body p-0">
-                                            <h4 class="mb-3"><a href="../blog/single-blog-post.html">Robot Wars – Now Closed – Post with Video</a></h4>
-                                            <div class="mb-3 pb-3 border-bottom">
-                                                <div class="list-group list-group-horizontal flex-wrap list-group-borderless align-items-center mx-n0dot5">
-                                                    <a href="../blog/single-blog-post.html" class="mx-0dot5 text-gray-5">Design,</a>
-                                                    <a href="../blog/single-blog-post.html" class="mx-0dot5 text-gray-5"> Technology,</a>
-                                                    <a href="../blog/single-blog-post.html" class="mx-0dot5 text-gray-5"> News,</a>
-                                                    <a href="../blog/single-blog-post.html" class="mx-0dot5 text-gray-5"> Video</a>
-                                                    <span class="mx-2 font-size-n5 mt-1 text-gray-5"><i class="fas fa-circle"></i></span>
-                                                    <a href="../blog/single-blog-post.html" class="mx-0dot5 text-gray-5">March 4, 2016</a>
-                                                </div>
-                                            </div>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt, erat in malesuada aliquam, est erat faucibus purus, eget viverra nulla sem vitae neque. Quisque id sodales libero. In nec enim nisi, in ultricies quam. Sed lacinia feugiat velit, cursus molestie lectus.</p>
-                                            <div class="flex-horizontal-center">
-                                                <a href="../blog/single-blog-post.html" class="btn btn-soft-secondary-w mb-md-0 font-weight-normal px-5 px-md-4 px-lg-5">Read More</a>
-                                                <a href="../blog/single-blog-post.html" class="font-size-12 text-gray-5 ml-4"><i class="far fa-comment"></i> Leave a comment</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="card mb-13 border-0">
-                                <div class="row">
-                                    <div class="col-lg-4 d-none d-lg-block">
-                                        <a href="../blog/single-blog-post.html" class="d-block position-relative">
-                                            <img class="img-fluid" src="https://placehold.it/340x250/DDD/DDD/" alt="Image Description">
-                                            <i class="fa fa-paragraph font-size-24 position-absolute-center text-white"></i>
-                                        </a>
-                                    </div>
-                                    <div class="col-lg-8">
-                                        <div class="card-body p-0">
-                                        <h4 class="mb-3"><a href="../blog/single-blog-post.html">Announcement – Post without Image</a></h4>
-                                        <div class="mb-3 pb-3 border-bottom">
-                                            <div class="list-group list-group-horizontal flex-wrap list-group-borderless align-items-center mx-n0dot5">
-                                                <a href="../blog/single-blog-post.html" class="mx-0dot5 text-gray-5">Design,</a>
-                                                <a href="../blog/single-blog-post.html" class="mx-0dot5 text-gray-5"> Technology,</a>
-                                                <a href="../blog/single-blog-post.html" class="mx-0dot5 text-gray-5"> News,</a>
-                                                <a href="../blog/single-blog-post.html" class="mx-0dot5 text-gray-5"> Image</a>
-                                                <span class="mx-2 font-size-n5 mt-1 text-gray-5"><i class="fas fa-circle"></i></span>
-                                                <a href="../blog/single-blog-post.html" class="mx-0dot5 text-gray-5">March 4, 2016</a>
-                                            </div>
-                                        </div>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt, erat in malesuada aliquam, est erat faucibus purus, eget viverra nulla sem vitae neque. Quisque id sodales libero. In nec enim nisi, in ultricies quam. Sed lacinia feugiat velit, cursus molestie lectus.</p>
-                                        <div class="flex-horizontal-center">
-                                            <a href="../blog/single-blog-post.html" class="btn btn-soft-secondary-w mb-md-0 font-weight-normal px-5 px-md-4 px-lg-5">Read More</a>
-                                            <a href="../blog/single-blog-post.html" class="font-size-12 text-gray-5 ml-4"><i class="far fa-comment"></i> Leave a comment</a>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="card mb-13 border-0">
-                                <div class="row">
-                                    <div class="col-lg-4 mb-5 mb-lg-0">
-                                        <a href="../blog/single-blog-post.html" class="d-block"><img class="img-fluid min-height-250 object-fit-cover" src="../../assets/img/1500X730/img6.jpg" alt="Image Description"></a>
-                                    </div>
-                                    <div class="col-lg-8">
-                                        <div class="card-body p-0">
-                                            <h4 class="mb-3"><a href="../blog/single-blog-post.html">Robot Wars – Now Closed</a></h4>
-                                            <div class="mb-3 pb-3 border-bottom">
-                                                <div class="list-group list-group-horizontal flex-wrap list-group-borderless align-items-center mx-n0dot5">
-                                                    <a href="../blog/single-blog-post.html" class="mx-0dot5 text-gray-5">Design,</a>
-                                                    <a href="../blog/single-blog-post.html" class="mx-0dot5 text-gray-5"> Technology,</a>
-                                                    <a href="../blog/single-blog-post.html" class="mx-0dot5 text-gray-5"> News,</a>
-                                                    <a href="../blog/single-blog-post.html" class="mx-0dot5 text-gray-5"> Image</a>
-                                                    <span class="mx-2 font-size-n5 mt-1 text-gray-5"><i class="fas fa-circle"></i></span>
-                                                    <a href="../blog/single-blog-post.html" class="mx-0dot5 text-gray-5">March 4, 2016</a>
-                                                </div>
-                                            </div>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt, erat in malesuada aliquam, est erat faucibus purus, eget viverra nulla sem vitae neque. Quisque id sodales libero. In nec enim nisi, in ultricies quam. Sed lacinia feugiat velit, cursus molestie lectus.</p>
-                                            <div class="flex-horizontal-center">
-                                                <a href="../blog/single-blog-post.html" class="btn btn-soft-secondary-w mb-md-0 font-weight-normal px-5 px-md-4 px-lg-5">Read More</a>
-                                                <a href="../blog/single-blog-post.html" class="font-size-12 text-gray-5 ml-4"><i class="far fa-comment"></i> Leave a comment</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
+                            @endforeach
+                            
+                            
+                            
+                            
                         </div>
                     </div>
                     <div class="col-xl-3 col-wd">
                         <aside class="mb-7">
-                            <form class="">
+                            <form class="" action="{{url('post/search')}}" method="get">
                                 <div class="d-flex align-items-center">
                                     <label class="sr-only" for="signupSrEmail">Search Electro blog</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control px-4" name="search" id="signupSrEmail" placeholder="Search..." aria-label="Search Electro blog">
+                                        <input type="text" class="form-control px-4" name="keyword" id="signupSrEmail" placeholder="Search..." aria-label="Search Electro blog">
                                     </div>
                                     <button type="submit" class="btn btn-primary text-nowrap ml-3 d-none">
                                         <span class="fas fa-search font-size-1 mr-2"></span> Search

@@ -23,6 +23,7 @@ use App\Http\Controllers\OrderDetailsController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SpecificationController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -59,6 +60,29 @@ Route::prefix('/')->group(function () {
         Route::post('create/{id}', [AddressControll::class, 'store']);
 
     });
+
+
+    Route::prefix('/post')->group(function () {
+
+        // lay tat ca bai viet theo danh muc
+
+        Route::get('/list/{id}', [PostController::class, 'getPostById']);
+
+
+        Route::get('/posts/', [PostController::class, 'getAllPost']);
+
+        Route::get('/tt/', function () {
+            
+            return view('client.blogs.index');
+        });
+
+        Route::get('/details/{id}', [PostController::class, 'showclient']);
+
+        Route::get('/search/', [PostController::class, 'search']);
+    
+
+    });
+    
 
 
     Route::get('/product-detail', function () {
