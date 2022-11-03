@@ -2,8 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Models\Slider;
+use App\Models\Banner;
 use App\Models\Preview;
+use App\Models\Category;
+use App\Models\Product;
+use App\Models\User;
+
 use DB;
 
 class PreviewController extends Controller
@@ -28,6 +35,38 @@ class PreviewController extends Controller
         return view('admin.preview.list',compact('previews'));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function product_details($id)
+    {   
+        $products = Product::find($id);
+        $categories = Category::all();
+        $previews = Preview::all();
+        $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
+        $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
+        return view('client.products.product_details',compact('categories' ,'slider','banner','products','previews'));
+    }
+
+    public function preview(Request $request, $id)
+    {
+        $previews = new Preview();
+        // $previews->rate = 5;
+        if ($request->rate_status > 0 ) {
+            $previews->status = $request->rate_status;
+        } else {
+            $previews->status = 5;
+        }
+        $previews->review = $request->review;
+        $previews->status = 1;
+        $previews->user_id = Auth::user()->id;     
+        $previews->product_id = $id; 
+       
+        $previews->save();
+        return back();
+    }
     /**
      * Store a newly created resource in storage.
      *

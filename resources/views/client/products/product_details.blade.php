@@ -694,13 +694,11 @@
                             </div>
                             <!-- End Review Rating -->
                            @foreach ($previews as $preview)
-                            <p class="text-gray-90">{{$preview->preview->preview_review}}</p>
-
+                            <p class="text-gray-90">{{$preview->review}}</p>
                             <!-- Reviewer -->
-                            <div class="mb-2">
-                               
-                                <strong>{{$preview->user->name}}</strong>
-                                <span class="font-size-13 text-gray-23">- {{$preview->create_at}}</span>
+                            <div class="mb-2">                              
+                                <strong style="color:black">{{$preview->user->name}}</strong>
+                                <span class="font-size-13 text-gray-23">- {{$preview->created_at->format('d/m/Y')}}</span>
                             </div>
                             @endforeach
                             <!-- End Reviewer -->

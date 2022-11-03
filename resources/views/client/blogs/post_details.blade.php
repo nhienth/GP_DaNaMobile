@@ -5,32 +5,27 @@
                     <div class="col-xl-9 col-wd">
                         <div class="min-width-1100-wd">
                             <article class="card mb-8 border-0">
-                                <img class="img-fluid" src="{{asset('/images/post/' . $post->post_img)}}" alt="Image Description">
                                 <div class="card-body pt-5 pb-0 px-0">
                                     <div class="d-block d-md-flex flex-center-between mb-4 mb-md-0">
-                                        <h4 class="mb-md-3 mb-1">{{$post->title}}</h4>
+                                        <h2 class="mb-md-3 mb-1 text-black">{{$post->title}}</h2>
                                         <a href="#" class="font-size-12 text-gray-5 ml-md-4"><i class="far fa-comment"></i> Leave a comment</a>
                                     </div>
                                     <div class="mb-3 pb-3 border-bottom">
                                         <div class="list-group list-group-horizontal flex-wrap list-group-borderless align-items-center mx-n0dot5">
-                                            <a href="../blog/single-blog-post.html" class="mx-0dot5 text-gray-5">Design,</a>
-                                            <a href="../blog/single-blog-post.html" class="mx-0dot5 text-gray-5"> Technology,</a>
-                                            <a href="../blog/single-blog-post.html" class="mx-0dot5 text-gray-5"> News,</a>
-                                            <a href="../blog/single-blog-post.html" class="mx-0dot5 text-gray-5"> Image</a>
+                                            <a href="http://localhost:8000/post/details/{{$post->id}}" class="mx-0dot5 text-gray-5">{{$post->category->category_name}}</a>
+                                                  
                                             <span class="mx-2 font-size-n5 mt-1 text-gray-5"><i class="fas fa-circle"></i></span>
-                                            <a href="../blog/single-blog-post.html" class="mx-0dot5 text-gray-5">March 4, 2016</a>
+                                            <a href="http://localhost:8000/post/details/{{$post->id}}" class="mx-0dot5 text-gray-5">{{$post->created_at->format('d/m/Y')}}</a>
                                         </div>
                                     </div>
-                                    <p><strong>{{$post->summary}}</strong></p>
-                                    <p>{{$post->content}}</p>
-                                   
+                                
                                     <div class="row">
-                                        <div class="col-md-6">
+
+                                        <?php
                                             
-                                        </div>
-                                        <div class="col-md-6">
-                                            
-                                        </div>
+                                            echo $post->content;    
+                                        ?>
+                                        
                                     </div>
                                 </div>
                             </article>

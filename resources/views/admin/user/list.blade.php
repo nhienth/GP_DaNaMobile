@@ -116,10 +116,10 @@
                                         <td>{{$key->id}}</td>
                                         <td>{{$key->name}}</td>
                                         <td>{{$key->email}}</td>
-                                        <td>{{$key->password}}</td>
+                                        <td><input type="password" name="" id="" value="{{$key->password}}" disabled></td>
                                         <td>
                                             <?php
-                                            if($key["role"]==0){
+                                            if($key["role"]==1){
                                                 echo "Admin";
                                             }else {
                                                 echo "Khách hàng";

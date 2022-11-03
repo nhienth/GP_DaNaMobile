@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AddressControll;
 
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
@@ -34,30 +35,64 @@ use App\Http\Controllers\SpecificationController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
+// -----------------------------------CLIENT-----------------------------
+Route::prefix('/')->group(function () {
+    Route::get('', [HomeController::class, 'index']);
 
-Route::get('/product_details/{id}', [HomeController::class,'product_details']);
-Route::post('/preview/{id}',[HomeController::class, 'preview'])->name('preview');
+    Route::prefix('/')->group(function () {
+        Route::get('contact', [ContactController::class, 'create']);
+        
+    });
 
-Route::get('/post', [HomeController::class,'post']);
-Route::get('/post/{id}', [HomeController::class, 'post_details']);
+    Route::prefix('/user')->group(function () {
+        Route::get('/{id}', [UserController::class, 'show']);
+        Route::get('/update/{id}', [UserController::class, 'edit']);
+        Route::post('/update/{id}', [UserController::class, 'update']);
+        Route::get('showaddress/{id}', [AddressControll::class, 'show']);
+        Route::get('create/{id}', [AddressControll::class, 'create']);
+        Route::post('create/{id}', [AddressControll::class, 'store']);
+
+    });
 
 
-Route::get('/product-bycate', function () {
-    return view('client.products.product_ bycate');
+    Route::prefix('/post')->group(function () {
+
+        // lay tat ca bai viet theo danh muc
+
+        Route::get('/list/{id}', [PostController::class, 'getPostById']);
+        Route::get('/posts/', [PostController::class, 'getAllPost']);
+        Route::get('/tt/', function () {
+            
+            return view('client.blogs.index');
+        });
+
+        Route::get('/details/{id}', [PostController::class, 'showclient']);
+        Route::get('/search/', [PostController::class, 'search']);
+    
+
+    });
+    
+ 
+    Route::get('/product_details/{id}',[PreviewController::class,'product_details']);
+    Route::post('preview/{id}',[PreviewController::class,'preview'])->name('preview');
+  
+    Route::get('/product-bycate', function () {
+        return view('client.products.product_ bycate');
+    });
+    Route::get('/wishlist', function () {
+        return view('client.products.wishlist');
+    });
+
+
+    Route::get('/cart', function () {
+        return view('client.shop.cart');
+    });
+
+    Route::get('/checkout', function () {
+        return view('client.shop.checkout');
+    });
 });
-Route::get('/wishlist', function () {
-    return view('client.products.wishlist');
-});
 
-
-Route::get('/cart', function () {
-    return view('client.shop.cart');
-});
-
-Route::get('/checkout', function () {
-    return view('client.shop.checkout');
-});
 
 // -----------------------------------ADMIN-----------------------------
 Route::prefix('/admin')->group(function () {
@@ -187,7 +222,6 @@ Route::prefix('/admin')->group(function () {
         Route::post('/update/{id}', [PaymentController::class, 'update']);
         Route::get('/delete/{id}', [PaymentController::class, 'destroy']);
     });
-
 });
    
 // ->middleware(['auth'])->name('dashboard');
