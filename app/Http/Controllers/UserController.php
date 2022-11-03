@@ -6,6 +6,9 @@ use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Slider;
 use  App\Models\User;
+use  App\Models\User_addresses;
+use   App\Models\DB;
+
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -44,6 +47,11 @@ class UserController extends Controller
         $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
         $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
         $user = User::find($id);
+        // $user =DB::table('users')
+        //         ->join('user_addresses','users.id', '=', 'user_addresses.id')
+        //         ->select('users.id','users.title','users.body','user.user_name', 'user_addresses.completeAddress','user_addresses.phoneNumber')
+        //         ->get();
+        // dd($user);
         return view('client.user.show')->with(compact('categories','slider','banner','user'));
     }
 

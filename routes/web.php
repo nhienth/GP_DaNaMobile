@@ -34,38 +34,54 @@ use App\Http\Controllers\SpecificationController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
+// -----------------------------------CLIENT-----------------------------
+Route::prefix('/')->group(function () {
+    Route::get('', [HomeController::class, 'index']);
 
-Route::get('/contact', [ContactController::class, 'create']);
+    Route::prefix('/')->group(function () {
 
-Route::get('/showuser/{id}', [UserController::class, 'show']);
-Route::get('/userupdate/{id}', [UserController::class, 'edit']);
-Route::post('/userupdate/{id}', [UserController::class, 'update']);
+        Route::get('contact', [ContactController::class, 'create']);
+        
+    });
 
-Route::get('/showaddress/{id}', [AddressControll::class, 'show']);
-Route::get('/createaddress', [AddressControll::class, 'create']);
-Route::post('/createaddress', [AddressControll::class, 'store']);
+    Route::prefix('/user')->group(function () {
+
+        Route::get('/{id}', [UserController::class, 'show']);
+
+        Route::get('/update/{id}', [UserController::class, 'edit']);
+
+        Route::post('/update/{id}', [UserController::class, 'update']);
+
+        Route::get('showaddress/{id}', [AddressControll::class, 'show']);
+
+        Route::get('create/{id}', [AddressControll::class, 'create']);
+
+        Route::post('create/{id}', [AddressControll::class, 'store']);
+
+    });
 
 
-Route::get('/product-detail', function () {
-    return view('client.products.product_details');
+    Route::get('/product-detail', function () {
+        return view('client.products.product_details');
+    });
+
+    Route::get('/product-bycate', function () {
+        return view('client.products.product_ bycate');
+    });
+    Route::get('/wishlist', function () {
+        return view('client.products.wishlist');
+    });
+
+
+    Route::get('/cart', function () {
+        return view('client.shop.cart');
+    });
+
+    Route::get('/checkout', function () {
+        return view('client.shop.checkout');
+    });
 });
 
-Route::get('/product-bycate', function () {
-    return view('client.products.product_ bycate');
-});
-Route::get('/wishlist', function () {
-    return view('client.products.wishlist');
-});
-
-
-Route::get('/cart', function () {
-    return view('client.shop.cart');
-});
-
-Route::get('/checkout', function () {
-    return view('client.shop.checkout');
-});
 
 // -----------------------------------ADMIN-----------------------------
 // Auth::routes();

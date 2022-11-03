@@ -11,7 +11,7 @@
                 <div class="pb-7 mb-7">
                     <!-- Title -->
                     <div class="border-bottom border-color-1 mb-5">
-                        <h3 class="section-title mb-0 pb-2 font-size-25">Thông tin tài khoản</h3>
+                        <h3 class="section-title mb-0 pb-2 font-size-25">Cập nhật tài khoản</h3>
                     </div>
                     <!-- End Title -->
 

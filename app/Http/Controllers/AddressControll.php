@@ -18,7 +18,7 @@ class AddressControll extends Controller
      */
     public function index()
     {
-        
+        $users = User_addresses::with('user')->where('user_addresses.user_id',$id)->get();
     }
 
     /**
@@ -27,12 +27,13 @@ class AddressControll extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create($id, Request $request )
     {
         $categories = Category::all();
         $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
         $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
-        return view('client.user_address.create')->with(compact('categories','slider','banner'));
+        $user = User_addresses::with('user')->where('user_addresses.user_id',$id)->find($id);
+        return view('client.user_address.create')->with(compact('categories','slider','banner','user'));
     }
 
     /**
@@ -46,6 +47,7 @@ class AddressControll extends Controller
         $address = new User_addresses();
         $address->completeAddress = $request -> completeAddress;
         $address->phoneNumber = $request -> phoneNumber;
+        $address->user_id = $request -> user_id;
         $address->save();
 
         return redirect('client.user_address.show')->with('messenger','Thêm bài viết thành công');
@@ -62,8 +64,10 @@ class AddressControll extends Controller
         $categories = Category::all();
         $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
         $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
-        $user = User::with('user_addresses')->find($id);
-        return view('client.user_address.show')->with(compact('categories','slider','banner','user'));
+        // $user = User::with('user_addresses')->find($id);
+        $users = User_addresses::with('user')->where('user_addresses.user_id',$id)->get();
+        // dd($users);
+        return view('client.user_address.show')->with(compact('categories','slider','banner','users'));
     }
 
     /**

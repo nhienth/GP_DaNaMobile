@@ -16,7 +16,8 @@
                     <!-- End Title -->
 
                     <!-- Billing Form -->
-                    <form class="needs-validation" novalidate action="{{url('/createaddress')}}" method="POST" enctype="multipart/form-data">
+                    <form action=""></form>
+                    <form  action="{{url('/createaddress')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
@@ -40,6 +41,17 @@
                                         <span class="text-danger">*</span>
                                     </label>
                                     <input type="number" class="form-control" name="phoneNumber" placeholder="" value="" data-msg="Vui lòng nhập số điện thoại." data-error-class="u-has-error" data-success-class="u-has-success">
+                                </div>
+                                <!-- End Input -->
+                            </div>
+                            <div class="col-md-12">
+                                <!-- Input -->
+                                <div class="js-form-message mb-6">
+                                    <label class="form-label">
+                                        Tên 
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="number" class="form-control" name="" placeholder="" value="{{ $user->user_id }}" data-msg="Vui lòng nhập số điện thoại." data-error-class="u-has-error" data-success-class="u-has-success">
                                 </div>
                                 <!-- End Input -->
                             </div>

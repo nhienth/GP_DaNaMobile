@@ -14,7 +14,6 @@
                         <h3 class="section-title mb-0 pb-2 font-size-25">Thông tin tài khoản</h3>
                     </div>
                     <!-- End Title -->
-
                     <!-- Billing Form -->
                     <div class="row">
                         <div class="col-md-6">
@@ -24,51 +23,12 @@
                                     Họ và tên
                                     <span class="text-danger">*</span>
                                 </label>
-                                <input type="text" class="form-control" name="" placeholder="" value="{{ $user->name }}" data-msg="Please enter your frist name." data-error-class="u-has-error" data-success-class="u-has-success" autocomplete="off" disabled>
+                                <input type="text" class="form-control" name="" placeholder="" value="{{ $user->name }}" data-msg="Please enter your name." data-error-class="u-has-error" data-success-class="u-has-success" autocomplete="off" disabled>
                                 
                             </div>
                             <!-- End Input -->
                         </div>
-
                         <div class="col-md-6">
-                            <!-- Input -->
-                            <div class="js-form-message mb-6">
-                                <label class="form-label">
-                                    Địa chỉ Email
-                                    <span class="text-danger">*</span>
-                                </label>
-                                <input type="email" class="form-control" name="" placeholder="" value="{{ $user->email }}"  data-msg="Please enter your last name." data-error-class="u-has-error" data-success-class="u-has-success" disabled>
-                            </div>
-                            <!-- End Input -->
-                        </div>
-
-                        <div class="w-100"></div>
-
-                        <div class="col-md-12">
-                            <!-- Input -->
-                            <div class="js-form-message mb-6">
-                                <label class="form-label">
-                                    Password
-                                    <span class="text-danger">*</span>
-                                </label>
-                                <input type="password" class="form-control" name="companyName" placeholder="" value="{{ $user->password }}" data-msg="Please enter a company name." data-error-class="u-has-error" data-success-class="u-has-success" disabled>
-                            </div>
-                            <!-- End Input -->
-                        </div>
-
-                        <div class="col-md-8">
-                            <!-- Input -->
-                            <div class="js-form-message mb-6">
-                                <label class="form-label">
-                                    Địa chỉ của tôi
-                                    <span class="text-danger">*</span>
-                                </label>
-                                <a href="{{url('client/addresses',[$user->id])}}"><button type="button" class="btn btn-gradient-info">Xem địa chỉ</button></a>
-                            </div>
-                            <!-- End Input -->
-                        </div>
-
-                        <div class="col-md-4">
                             <!-- Input -->
                             <div class="js-form-message mb-6">
                                 <label class="form-label">
@@ -87,6 +47,33 @@
                             </div>
                             <!-- End Input -->
                         </div>
+                        <div class="col-md-12">
+                            <!-- Input -->
+                            <div class="js-form-message mb-6">
+                                <label class="form-label">
+                                    Địa chỉ Email
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input type="email" class="form-control" name="" placeholder="" value="{{ $user->email }}"  data-msg="Please enter your last name." data-error-class="u-has-error" data-success-class="u-has-success" disabled>
+                            </div>
+                            <!-- End Input -->
+                        </div>
+
+                        <div class="w-100"></div>
+
+                        <div class="col-md-12">
+                            <!-- Input -->
+                            <div class="js-form-message mb-6">
+                                <label class="form-label">
+                                    Địa chỉ của tôi
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <a href="{{url('/showaddress',[$user->id])}}"><button type="button" class="btn btn-gradient-info">Xem địa chỉ</button></a>
+                            </div>
+                            <!-- End Input -->
+                        </div>
+
+                        
                         
                         <div class="col-md-4 ">
                         <a href="{{url('/userupdate',[$user->id])}}"><button type="button" class="btn btn-outline-primary">Chỉnh sửa</button></a>
