@@ -13,17 +13,7 @@ class Combinations extends Model
     protected $fillable = [
         'combination_string','sku','price','avilableStock','product_id'
     ];
-    // public function stock()
-    // {
-    //     return $this->hasOneThrough(
-    //         Stocks::class,
-    //         Combinations::class,
-    //         'product_id', 
-    //         'products_combinations_id',
-    //         'id', 
-    //         'id' 
-    //     );
-    // }
+
 
     public function product(){
         return $this->belongsTo(Product::class,'product_id');
@@ -32,6 +22,8 @@ class Combinations extends Model
     public function stock(){
         return $this->hasOne(Stocks::class,'products_combinations_id', 'id');
     }
+
+    
 
 
 }

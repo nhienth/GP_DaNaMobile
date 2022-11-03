@@ -55,6 +55,9 @@ Route::get('/checkout', function () {
     return view('client.shop.checkout');
 });
 
+Route::get('/nproduct/list', [ProductController::class, 'nindex']);
+Route::get('/nproduct/detail/{id}', [ProductController::class, 'ndetail']);
+
 // -----------------------------------ADMIN-----------------------------
 Route::prefix('/admin')->group(function () {
     Route::get('/', function () {
@@ -85,6 +88,7 @@ Route::prefix('/admin')->group(function () {
         Route::post('/addVariation', [VariationController::class, 'store'] );
 
         Route::get('/test/{id}', [VariationController::class, 'test'] );
+        Route::get('/listProVar/{id}', [ProductController::class, 'getAllVariation'] );
     });
     Route::prefix('/specification')->group(function () {
         Route::get('/list', [SpecificationController::class, 'index'])->name('specification.list');

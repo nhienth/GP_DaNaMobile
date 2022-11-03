@@ -53,14 +53,13 @@
                                     <input type="hidden" name="product_id" value="{{$product->id}}">
 
                                     @foreach ($variations as $variation)
-                                        <div class="mb-1 ms-2">
-                                            <label class="form-label fs-6 fw-bolder" for="basic-addon-name">
-                                                {{$variation->variation_name}}
-                                            </label>
+                                    <div class="mb-1">
+                                        <label class="form-label fs-6 fw-bolder" for="basic-addon-name">
+                                            {{$variation->variation_name}}
+                                        </label>
+                                        <input type="text" id="basic-addon-name" class="form-control" placeholder="Nhập giá trị biến thể" name="{{$variation->id}}_value" aria-label="Name" aria-describedby="basic-addon-name" required /> 
 
-                                            <input type="text" id="basic-addon-name" class="form-control" placeholder="Nhập giá trị biến thể" name="{{$variation->id}}_value" aria-label="Name" aria-describedby="basic-addon-name" required /> 
-                            
-                                        </div>
+                                    </div>
                                     @endforeach
                                     
                                     <button type="submit" class="btn btn-primary me-2">Thêm</button>

@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Variation;
 use App\Models\Variation_Option;
 use App\Models\Variation_Option_Value;
+use App\Models\Combinations;
 
 use Illuminate\Http\Request;
 
@@ -22,6 +23,7 @@ class VariationController extends Controller
     {
         $variations = Variation::all();
         // $result = $variation::all();
+
         return view('admin.variation_main.list', compact('variations'));
     }
 
@@ -96,6 +98,8 @@ class VariationController extends Controller
     
         $variations = Variation::all();
 
+        $combination_string = '';
+
 
         $checkProductVariation = $product->variations;
   
@@ -117,6 +121,8 @@ class VariationController extends Controller
                 $variation_option_value->variation_value = $request->$inputRequestValue;
                 
                 $variation_option_value->products_variation_id = $variation_option->id;
+
+                $combination_string =$combination_string. ' '.$request->$inputRequestValue;
     
                 $variation_option_value->save();
             }
@@ -138,20 +144,27 @@ class VariationController extends Controller
                 
                 $variation_option_value->products_variation_id =$id;
 
+                $combination_string =$combination_string. ' '.$request->$inputRequestValue;
+
                 $variation_option_value->save();
                 
             }
 
-
         }
 
-   
+        $newCombination = new Combinations();
 
-        // $product_variations_value = Product::with(['variations', 'variation_value'])
-        //     ->where('products_variations_options.product_id', $request->product_id)
-        //     ->get();
+        $newCombination -> combination_string = $combination_string;
+        $newCombination -> sku = 'avd';
+        $newCombination -> price = 11;
+        $newCombination -> avilableStock = 11;
+        $newCombination ->product_id =  $request->product_id;
 
-        // dd($product_variations_value);
+
+        $newCombination->save();
+
+        dd($newCombination);
+
     }
 
     /**
