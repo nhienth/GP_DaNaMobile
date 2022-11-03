@@ -12,7 +12,7 @@
                     <div class="js-slide bg-img-hero-center">
                         <div class="row min-height-420 py-7 py-md-0">
                             <div class="offset-xl-3 col-xl-4 col-6 mt-md-8">
-                                <h1 class="font-size-64 text-lh-57 font-weight-light"
+                                <h1 class="font-size-64 text-lh-57 font-weadd aight-light"
                                     data-scs-animation-in="fadeInUp">
                                     {{$products->product_name}}
                                 </h1>

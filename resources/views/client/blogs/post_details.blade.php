@@ -5,10 +5,10 @@
                     <div class="col-xl-9 col-wd">
                         <div class="min-width-1100-wd">
                             <article class="card mb-8 border-0">
-                                <img class="img-fluid" src="../../assets/img/1500X730/img6.jpg" alt="Image Description">
+                                <img class="img-fluid" src="{{asset('/images/post/' . $post->post_img)}}" alt="Image Description">
                                 <div class="card-body pt-5 pb-0 px-0">
                                     <div class="d-block d-md-flex flex-center-between mb-4 mb-md-0">
-                                        <h4 class="mb-md-3 mb-1">Robot Wars – Now Closed</h4>
+                                        <h4 class="mb-md-3 mb-1">{{$post->title}}</h4>
                                         <a href="#" class="font-size-12 text-gray-5 ml-md-4"><i class="far fa-comment"></i> Leave a comment</a>
                                     </div>
                                     <div class="mb-3 pb-3 border-bottom">
@@ -21,19 +21,15 @@
                                             <a href="../blog/single-blog-post.html" class="mx-0dot5 text-gray-5">March 4, 2016</a>
                                         </div>
                                     </div>
-                                    <p><strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt, erat in malesuada aliquam, est erat faucibus purus, eget viverra nulla sem vitae neque. Quisque id sodales libero. In nec enim nisi, in ultricies quam. Sed lacinia feugiat velit, cursus molestie lectus mollis et.</strong></p>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt, erat in malesuada aliquam, est erat faucibus purus, eget viverra nulla sem vitae neque. Quisque id sodales libero. In nec enim nisi, in ultricies quam. Sed lacinia feugiat velit, cursus molestie lectus.</p>
-                                    <p>Mauris tempus erat laoreet turpis lobortis, eu tincidunt erat fermentum. Aliquam non tincidunt urna. Integer tincidunt nec nisl vitae ullamcorper. Proin sed ultrices erat. Praesent varius ultrices massa at faucibus. Aenean dignissim, orci sed faucibus pharetra, dui mi dignissim tortor, sit amet condimentum mi ligula sit amet augue. Pellentesque vitae eros eget enim mollis placerat.</p>
+                                    <p><strong>{{$post->summary}}</strong></p>
+                                    <p>{{$post->content}}</p>
+                                   
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <p>Mauris tempus erat laoreet turpis lobortis, eu tincidunt erat fermentum.</p>
-                                            <p>Aliquam non tincidunt urna. Integer tincidunt nec nisl vitae ullamcorper. Proin sed ultrices erat. Praesent varius ultrices massa at faucibus. Aenean dignissim, orci sed faucibus pharetra, dui mi dignissim tortor, sit amet condimentum mi ligula sit amet augue. Pellentesque vitae eros eget enim mollis placerat.</p>
+                                            
                                         </div>
                                         <div class="col-md-6">
-                                            <blockquote>
-                                                <p>Pellentesque sodales augue eget ultricies ultricies. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur sagittis ultrices condimentum.</p>
-                                                <p>Pellentesque ullamcorper libero in enim pellentesque lobortis. Praesent ut dui ac metus iaculis scelerisque at eget metus.</p>
-                                            </blockquote>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -42,11 +38,11 @@
                                 <!-- Review -->
                                 <div class="d-block d-md-flex media">
                                     <div class="u-xl-avatar mb-4 mb-md-0 mr-md-4">
-                                        <img class="img-fluid" src="../../assets/img/100X100/img17.jpg" alt="Image Description">
+                                        <img class="img-fluid" src="{{asset('/images/post/' . $post->post_img)}}" alt="Image Description">
                                     </div>
                                     <div class="media-body">
-                                        <h3 class="font-size-18 mb-3"><a href="../blog/single-blog-post.html">Jane Smith</a></h3>
-                                        <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis diam erat. Duis velit lectus, posuere a blandit sit amet, tempor at lorem. Donec ultricies, lorem sed ultrices interdum, leo metus luctus sem, vel vulputate diam ipsum sed lorem.</p>
+                                        <h3 class="font-size-18 mb-3"><a href="../blog/single-blog-post.html">{{$post->title}}</a></h3>
+                                        <p class="mb-0">{{$post->summary}}</p>
                                     </div>
                                 </div>
                                 <!-- End Review -->
@@ -68,7 +64,7 @@
                                         <!-- Review -->
                                         <div class="d-block d-md-flex media">
                                             <div class="u-xl-avatar mr-md-4 mb-4 mb-md-0">
-                                                <img class="img-fluid rounded-circle" src="../../assets/img/100X100/img19.jpg" alt="Image Description">
+                                                <img class="img-fluid rounded-circle" src="{{asset('/client/assets/img/100X100/img19.jpg')}}" alt="Image Description">
                                             </div>
                                             <div class="media-body">
                                                 <p>Fusce vitae nibh mi. Integer posuere, libero et ullamcorper facilisis, enim eros tincidunt orci, eget vestibulum sapien nisi ut leo. Cras finibus vel est ut mollis. Donec luctus condimentum ante et euismod.</p>
@@ -211,7 +207,7 @@
                             <article class="mb-4">
                                 <div class="media">
                                     <div class="width-75 height-75 mr-3">
-                                        <img class="img-fluid object-fit-cover" src="../../assets/img/1500X730/img1.jpg" alt="Image Description">
+                                        <img class="img-fluid object-fit-cover" src="../../assets/img/ig1.jpg" alt="Image Description">
                                     </div>
                                     <div class="media-body">
                                         <h4 class="font-size-14 mb-1"><a href="../blog/single-blog-post.html" class="text-gray-39">Robot Wars – Post with Gallery</a></h4>
@@ -222,7 +218,7 @@
                             <article class="mb-4">
                                 <div class="media">
                                     <div class="width-75 height-75 mr-3">
-                                        <img class="img-fluid object-fit-cover" src="../../assets/img/1500X730/img4.jpg" alt="Image Description">
+                                        <img class="img-fluid object-fit-cover" src="../../assets/img/ig4.jpg" alt="Image Description">
                                     </div>
                                     <div class="media-body">
                                         <h4 class="font-size-14 mb-1"><a href="../blog/single-blog-post.html" class="text-gray-39">Robot Wars – Now Closed – Post with Audio</a></h4>
@@ -233,7 +229,7 @@
                             <article class="mb-4">
                                 <div class="media">
                                     <div class="width-75 height-75 mr-3">
-                                        <img class="img-fluid object-fit-cover" src="../../assets/img/1500X730/img5.jpg" alt="Image Description">
+                                        <img class="img-fluid object-fit-cover" src="../../assets/img/ig5.jpg" alt="Image Description">
                                     </div>
                                     <div class="media-body">
                                         <h4 class="font-size-14 mb-1"><a href="../blog/single-blog-post.html" class="text-gray-39">Robot Wars – Now Closed – Post with Video</a></h4>
@@ -256,7 +252,7 @@
                             <article class="mb-4">
                                 <div class="media">
                                     <div class="width-75 height-75 mr-3">
-                                        <img class="img-fluid object-fit-cover" src="../../assets/img/1500X730/img6.jpg" alt="Image Description">
+                                        <img class="img-fluid object-fit-cover" src="../../assets/img/ig6.jpg" alt="Image Description">
                                     </div>
                                     <div class="media-body">
                                         <h4 class="font-size-14 mb-1"><a href="../blog/single-blog-post.html" class="text-gray-39">Robot Wars – Now Closed</a></h4>

@@ -22,6 +22,7 @@ use App\Http\Controllers\OrderDetailsController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SpecificationController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,9 +36,12 @@ use App\Http\Controllers\SpecificationController;
 
 Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/product-detail', function () {
-    return view('client.products.product_details');
-});
+Route::get('/product_details/{id}', [HomeController::class,'product_details']);
+Route::post('/preview/{id}',[HomeController::class, 'preview'])->name('preview');
+
+Route::get('/post', [HomeController::class,'post']);
+Route::get('/post/{id}', [HomeController::class, 'post_details']);
+
 
 Route::get('/product-bycate', function () {
     return view('client.products.product_ bycate');

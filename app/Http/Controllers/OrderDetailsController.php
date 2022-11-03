@@ -50,10 +50,7 @@ class OrderDetailsController extends Controller
     public function show($id)
     {             
         $detail = OrderDetails::with('product' , 'order')->where('order_details.order_id', $id)->get();
-        //dd($detail);
         return view('admin.order.details',compact('detail'));
-
-        // dd($detail);
     }
     /**
      * Show the form for editing the specified resource.
