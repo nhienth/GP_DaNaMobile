@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Slider;
-use  App\Models\User;
+use App\Models\User;
+use App\Models\User_addresses;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class AddressControll extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +18,21 @@ class UserController extends Controller
      */
     public function index()
     {
-        $alluser = User::all();
-        return view('admin.user.list')->with(compact('alluser'));
+        
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function create(Request $request)
+    {
+        $categories = Category::all();
+        $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
+        $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
+        return view('client.user_address.create')->with(compact('categories','slider','banner'));
     }
 
     /**
@@ -29,7 +43,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $address = new User_addresses();
+        $address->completeAddress = $request -> completeAddress;
+        $address->phoneNumber = $request -> phoneNumber;
+        $address->save();
+
+        return redirect('client.user_address.show')->with('messenger','Thêm bài viết thành công');
     }
 
     /**
@@ -43,23 +62,8 @@ class UserController extends Controller
         $categories = Category::all();
         $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
         $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
-        $user = User::find($id);
-        return view('client.user.show')->with(compact('categories','slider','banner','user'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $categories = Category::all();
-        $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
-        $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
-        $user = User::find($id);
-        return view('client.user.edit')->with(compact('categories','slider','banner','user'));
+        $user = User::with('user_addresses')->find($id);
+        return view('client.user_address.show')->with(compact('categories','slider','banner','user'));
     }
 
     /**
@@ -72,15 +76,6 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $user = User::find($id);
-        $user ->id = $request->id;
-        $user ->name = $request->name;
-        $user ->email = $request->email;
-
-        $user->save();
-        // dd($order);
-        return redirect('client/user/show')->with('status','Bạn đã cập nhật thành công');
-        
     }
 
     /**

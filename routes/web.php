@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AddressControll;
 
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
@@ -34,6 +35,17 @@ use App\Http\Controllers\SpecificationController;
 */
 
 Route::get('/', [HomeController::class, 'index']);
+
+Route::get('/contact', [ContactController::class, 'create']);
+
+Route::get('/showuser/{id}', [UserController::class, 'show']);
+Route::get('/userupdate/{id}', [UserController::class, 'edit']);
+Route::post('/userupdate/{id}', [UserController::class, 'update']);
+
+Route::get('/showaddress/{id}', [AddressControll::class, 'show']);
+Route::get('/createaddress', [AddressControll::class, 'create']);
+Route::post('/createaddress', [AddressControll::class, 'store']);
+
 
 Route::get('/product-detail', function () {
     return view('client.products.product_details');
