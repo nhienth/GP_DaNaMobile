@@ -52,11 +52,13 @@ Route::prefix('/')->group(function () {
 
         Route::post('/update/{id}', [UserController::class, 'update']);
 
-        Route::get('showaddress/{id}', [AddressControll::class, 'show']);
+        Route::get('/showaddress/{id}', [AddressControll::class, 'show']);
 
-        Route::get('create/{id}', [AddressControll::class, 'create']);
+        Route::get('/createaddress/{user_id}', [AddressControll::class, 'create']);
 
-        Route::post('create/{id}', [AddressControll::class, 'store']);
+        Route::post('/createaddress', [AddressControll::class, 'store']);
+
+        Route::get('/delete/{id}', [AddressControll::class, 'destroy']);
 
     });
 

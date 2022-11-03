@@ -7,7 +7,8 @@ use App\Models\Category;
 use App\Models\Slider;
 use  App\Models\User;
 use  App\Models\User_addresses;
-use   App\Models\DB;
+
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
@@ -87,7 +88,7 @@ class UserController extends Controller
 
         $user->save();
         // dd($order);
-        return redirect('client/user/show')->with('status','Bạn đã cập nhật thành công');
+        return  redirect('/user/'.Auth::user()->id)->with('status','Bạn đã cập nhật thành công');
         
     }
 

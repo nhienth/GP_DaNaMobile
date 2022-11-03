@@ -8,6 +8,8 @@ use App\Models\Slider;
 use App\Models\User;
 use App\Models\User_addresses;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class AddressControll extends Controller
 {
@@ -27,13 +29,14 @@ class AddressControll extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function create($id, Request $request )
+    public function create( Request $request )
     {
+        
         $categories = Category::all();
         $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
         $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
-        $user = User_addresses::with('user')->where('user_addresses.user_id',$id)->find($id);
-        return view('client.user_address.create')->with(compact('categories','slider','banner','user'));
+        // $user = User_addresses::with('user')->where('user_addresses.user_id',$user_id)->find($user_id);
+        return view('client.user_address.create')->with(compact('categories','slider','banner')); 
     }
 
     /**
@@ -47,10 +50,10 @@ class AddressControll extends Controller
         $address = new User_addresses();
         $address->completeAddress = $request -> completeAddress;
         $address->phoneNumber = $request -> phoneNumber;
-        $address->user_id = $request -> user_id;
+        $address->user_id = Auth::user()->id;
         $address->save();
 
-        return redirect('client.user_address.show')->with('messenger','Thêm bài viết thành công');
+        return redirect('/user/showaddress/'.Auth::user()->id)->with('messenger','Thêm địa chỉ thành công');
     }
 
     /**
@@ -90,6 +93,9 @@ class AddressControll extends Controller
      */
     public function destroy($id)
     {
-        //
+        Auth::user()->id;
+        $address = User_addresses::find($id);
+        $address->delete();
+        return redirect('/user/showaddress/'.Auth::user()->id)->with('messenger','Xóa địa chỉ thành công');
     }
 }

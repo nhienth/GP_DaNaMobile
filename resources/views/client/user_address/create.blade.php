@@ -5,7 +5,8 @@
         <h1 class="text-center" style="color:black;">Thông tin tài khoản</h1>
     </div>
     <!-- Accordion -->
-    <form class="js-validate" novalidate="novalidate" style="color: black;">
+    <form class="js-validate" novalidate="novalidate" style="color: black;" action="{{url('user/createaddress')}}" method="POST" enctype="multipart/form-data">
+        @csrf
         <div class="row">
             <div class="col-lg-7 order-lg-1">
                 <div class="pb-7 mb-7">
@@ -16,9 +17,6 @@
                     <!-- End Title -->
 
                     <!-- Billing Form -->
-                    <form action=""></form>
-                    <form  action="{{url('/createaddress')}}" method="POST" enctype="multipart/form-data">
-                        @csrf
                         <div class="row">
                             <div class="col-md-6">
                                 <!-- Input -->
@@ -51,7 +49,7 @@
                                         Tên 
                                         <span class="text-danger">*</span>
                                     </label>
-                                    <input type="number" class="form-control" name="" placeholder="" value="{{ $user->user_id }}" data-msg="Vui lòng nhập số điện thoại." data-error-class="u-has-error" data-success-class="u-has-success">
+                                    <input type="text" class="form-control" name="" placeholder="{{ Auth::user()->name }}" value="{{ Auth::user()->name }}" data-msg="Vui lòng nhập số điện thoại." data-error-class="u-has-error" data-success-class="u-has-success" disabled>
                                 </div>
                                 <!-- End Input -->
                             </div>
@@ -60,8 +58,6 @@
                                 <button type="submit" class="btn btn-outline-primary">Thêm</button>
                             </div>
                         </div>
-                    </form>
-
                     <!-- End Billing Form -->
                 </div>
             </div>

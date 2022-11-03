@@ -5,7 +5,8 @@
         <h1 class="text-center" style="color:black;">Thông tin tài khoản</h1>
     </div>
     <!-- Accordion -->
-    <form class="js-validate" novalidate="novalidate" style="color: black;">
+    <form class="js-validate" novalidate="novalidate" style="color: black;" action="{{url('/user/update', [$user->id])}}" method="POST" enctype="multipart/form-data">
+        @csrf
         <div class="row">
             <div class="col-lg-7 order-lg-1">
                 <div class="pb-7 mb-7">
@@ -17,8 +18,7 @@
 
                     <!-- Billing Form -->
                     <div class="row">
-                        <form class="needs-validation" novalidate action="{{url('/userupdate', [$user->id])}}" method="POST" enctype="multipart/form-data">
-                            @csrf
+                    
                             <div class="col-md-12">
                                 <!-- Input -->
                                 <div class="js-form-message mb-6">
@@ -67,9 +67,7 @@
                             <div class="col-md-8 ">
                                 <button type="submit" class="btn btn-outline-primary">Cập nhật</button>
                             </div>
-                        </form>
                     </div>
-
                     <!-- End Billing Form -->
                 </div>
             </div>
