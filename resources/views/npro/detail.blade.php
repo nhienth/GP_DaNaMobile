@@ -1,5 +1,5 @@
 <h1>{{$product->product_name}}</h1>
-<h2>Gia : </h2>
+<h2 id="price_product">Gia : </h2>
 
 @foreach ($product->combinations as $productt)
 <input type="hidden" name="combination_string" value="{{$productt->combination_string}}">
@@ -40,5 +40,30 @@
 </div>
 
 <script>
+    var variSeleted;
+    let arr = ['a', 'b'];
+
+    let productsCombination = document.getElementsByName('combination_string')
+
+    function changeVariation(va) {
+        if(va.name == "Bộ nhớ") {
+            arr[1] = va.value;
+        }else {
+            arr[0] = va.value;
+        }
+
+        variSeleted = arr.join(' ');
+
+        productsCombination.forEach(pro => {
+            if(variSeleted == pro.value.trim()) {
+                document.getElementById('price_product').innerHTML = `Gia : ${pro.nextElementSibling.value}` ;
+            }
+        });
+
+    }
+
+
+  
+
 
 </script>
