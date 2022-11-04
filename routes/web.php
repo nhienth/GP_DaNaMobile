@@ -39,9 +39,9 @@ use App\Http\Controllers\SpecificationController;
 Route::prefix('/')->group(function () {
     Route::get('', [HomeController::class, 'index']);
 
-    Route::prefix('/')->group(function () {
+    Route::prefix('/contact')->group(function () {
 
-        Route::get('contact', [ContactController::class, 'create']);
+        Route::get('/', [ContactController::class, 'create']);
         
     });
 
