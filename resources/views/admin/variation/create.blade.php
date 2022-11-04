@@ -54,32 +54,14 @@
 
                                     @foreach ($variations as $variation)
                                         <div class="mb-1 ms-2">
-                                            @if ($variation->variation_name !== 'Bộ nhớ')
                                             <label class="form-label fs-6 fw-bolder" for="basic-addon-name">
                                                 {{$variation->variation_name}}
                                                 </label>
-                                                <input type="text" id="basic-addon-name" class="form-control" placeholder="Nhập giá trị biến thể" name="{{$variation->id}}_value" aria-label="Name" aria-describedby="basic-addon-name" required /> 
-                                            @else
-                                            <div class="mb-1">
-                                                <label class="form-label fs-6 fw-bolder" for="select2-multiple">{{$variation->variation_name}}</label>
-                                                <select class="select2 form-select" name="variation_rom[]" id="select2-multiple" multiple>
-                                                    <optgroup label="Chọn bộ nhớ">
-                                                        <option value="32GB">32GB</option>
-                                                        <option value="64GB">64GB</option>
-                                                        <option value="128GB">128GB</option>
-                                                        <option value="256GB">256GB</option>
-                                                        <option value="512GB">512GB</option>
-                                                        <option value="1TB">1TB</option>
-                                                    </optgroup>                                                   
-                                                </select>
-                                            </div>
-                             
-                                            @endif
-                                   
-                            
+                                            </label>
+
+                                            <input type="text" id="basic-addon-name" class="form-control" placeholder="Nhập giá trị biến thể" name="{{$variation->id}}_value" aria-label="Name" aria-describedby="basic-addon-name" required />                            
                                         </div>
-                                    @endforeach
-                                    
+                                    @endforeach                                   
                                     <button type="submit" class="btn btn-primary me-2">Thêm</button>
                                     <button type="reset" class="btn btn-primary me-2">Nhập lại</button>
                                     <a href="{{url('/admin/product/list')}}" class="btn btn-primary">Danh sách</a>

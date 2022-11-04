@@ -130,21 +130,22 @@ class VariationController extends Controller
 
                 $rom = $request->variation_rom;
             
-                // $variation_option_value = new Variation_Option_Value();
+                $variation_option_value = new Variation_Option_Value();
 
-                // $variation_option_value->variation_name = $variation->variation_name;
-                // $inputRequestValue = $variation->id . "_value";
+                $variation_option_value->variation_name = $variation->variation_name;
+                $inputRequestValue = $variation->id . "_value";
 
-                // $variation_option_value->variation_value = $request->$inputRequestValue;
+                $variation_option_value->variation_value = $request->$inputRequestValue;
                 
-                // $variation_option_value->products_variation_id =$id;
+                $variation_option_value->products_variation_id =$id;
 
-                // $variation_option_value->save();
+                $variation_option_value->save();
                 
             }
 
 
         }
+        return redirect('/admin/product/list');
 
    
 
@@ -155,6 +156,13 @@ class VariationController extends Controller
         // dd($product_variations_value);
     }
 
+
+    // View list Variation by Product
+    public function viewList(Request $request, $id){
+        $list_Variations = Product::with('variation_value')->where('products.id',$id )->first();
+        dd( $list_Variations );
+        // $variation_option_value = Variation::with('variation_values')->where('')
+    }
     /**
      * Display the specified resource.
      *

@@ -84,6 +84,8 @@ Route::prefix('/admin')->group(function () {
         Route::get('/addVariation/{id}', [VariationController::class, 'create'] );
         Route::post('/addVariation', [VariationController::class, 'store'] );
 
+        Route::get('/listVariation/{id}', [VariationController::class, 'viewList'] );
+
         Route::get('/test/{id}', [VariationController::class, 'test'] );
     });
     Route::prefix('/specification')->group(function () {

@@ -115,7 +115,7 @@
                                                 <a href="{{url('admin/product/addVariation',[$product->id])}}"><button type="button" class="btn btn-info"><i data-feather='plus'></i></button></a>
                                             </td>
                                             <td>
-                                                <a href="{{url('admin/product/edit', [$product->id])}}"><button type="button" class="btn btn-success"><i data-feather='edit'></i></button></a>
+                                                <a href="{{url('admin/product/listVariation', [$product->id])}}"><button type="button" class="btn btn-success"><i data-feather='eye'></i></button></a>
                                             </td>
                                             <td>
                                                 <a href="{{url('admin/product/delete', [$product->id])}}"><button type="button" class="btn btn-danger"><i data-feather='trash-2'></i></button></a>
