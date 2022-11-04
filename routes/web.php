@@ -71,16 +71,16 @@ Route::prefix('/')->group(function () {
         Route::get('/list/{id}', [PostController::class, 'getPostById']);
 
 
-        Route::get('/posts/', [PostController::class, 'getAllPost']);
+        Route::get('/posts', [PostController::class, 'getAllPost']);
 
-        Route::get('/tt/', function () {
+        Route::get('/tt', function () {
             
             return view('client.blogs.index');
         });
 
         Route::get('/details/{id}', [PostController::class, 'showclient']);
 
-        Route::get('/search/', [PostController::class, 'search']);
+        Route::get('/search', [PostController::class, 'search']);
     
 
     });
