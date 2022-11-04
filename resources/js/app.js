@@ -4,6 +4,6 @@ import Alpine from "alpinejs";
 
 window.Alpine = Alpine;
 
-window.toastr = require('toastr');
+window.toastr = require("toastr");
 
 Alpine.start();
