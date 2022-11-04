@@ -55,6 +55,9 @@ Route::get('/checkout', function () {
     return view('client.shop.checkout');
 });
 
+Route::get('/nproduct/list', [ProductController::class, 'nindex']);
+Route::get('/nproduct/detail/{id}', [ProductController::class, 'ndetail']);
+
 // -----------------------------------ADMIN-----------------------------
 Route::prefix('/admin')->group(function () {
     Route::get('/', function () {
@@ -70,7 +73,7 @@ Route::prefix('/admin')->group(function () {
     });
 
     Route::prefix('/product')->group(function () {
-
+        Route::get('/searchproduct', [ProductController::class, 'search'])->name('search');
         Route::get('/list', [ProductController::class, 'index']);
 
         Route::get('/create', [ProductController::class, 'create']);
@@ -87,6 +90,7 @@ Route::prefix('/admin')->group(function () {
         Route::get('/listVariation/{id}', [VariationController::class, 'viewList'] );
 
         Route::get('/test/{id}', [VariationController::class, 'test'] );
+        Route::get('/listProVar/{id}', [ProductController::class, 'getAllVariation'] );
     });
     Route::prefix('/specification')->group(function () {
         Route::get('/list', [SpecificationController::class, 'index'])->name('specification.list');

@@ -10,11 +10,25 @@ use App\Models\Category;
 use App\Models\ProductSpecificationsOptions;
 use App\Models\ProductSpecificationsOptionsValue;
 use App\Models\Product;
+use App\Models\Combinations;
 
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    public function search(){
+        $keywords = $_GET['key_cate_id'];
+        $categories = Category::all();
+        $products = Product::where('category_id','=',$keywords)->paginate(5);
+        if(count($products)!=0){
+            return view('admin.products.list')->with(compact('products','categories'));
+        }
+        else if (count($products)==0){
+            $products = Product::with('category')->orderBy('products.id', 'desc')->paginate(5);
+            return view('admin.products.list')->with(compact('products','categories'));
+        }
+        
+    }
     /**
      * Display a listing of the resource.
      *
@@ -165,5 +179,48 @@ class ProductController extends Controller
         // unlink($path.$product->product_img);
         $product->delete();
         return redirect('/admin/product/list');
+    }
+
+    
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getAllVariation($id)
+    {
+        $product = Product::with('combinations')->where('products.id', $id)->first();
+   
+       
+        return view('admin.products.variations', compact('product'));
+    }
+
+        /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function nindex()
+    {
+        // $categories = Category::all();
+        $products = Product::all();
+        return view('npro.list', compact('products'));
+    }
+
+     /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function ndetail($id)
+    {
+        $product = Product::with(['category', 'variations', 'variation_value', 'combinations'])
+        ->where('products.id', $id)->first();
+
+                
+        return view('npro.detail', compact(['product']));
+
     }
 }

@@ -47,4 +47,7 @@
 <link rel="stylesheet" type="text/css" href="{{asset('backend/assets/css/style.css')}}">
 <!-- END: Custom CSS-->
 
+<!-- toastr -->
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet" /> -->
+
 <!-- END: Head-->
