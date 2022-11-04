@@ -42,6 +42,7 @@ class HomeController extends Controller
         
     }
 
+   
     /**
      * Show the form for creating a new resource.
      *
@@ -49,7 +50,7 @@ class HomeController extends Controller
      */
     public function create()
     {
-        //
+       //
     }
 
     /**
@@ -58,9 +59,9 @@ class HomeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        //   
     }
 
     /**

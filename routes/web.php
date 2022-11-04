@@ -46,11 +46,8 @@ Route::prefix('/')->group(function () {
     });
 
     Route::prefix('/user')->group(function () {
-
         Route::get('/{id}', [UserController::class, 'show']);
-
         Route::get('/update/{id}', [UserController::class, 'edit']);
-
         Route::post('/update/{id}', [UserController::class, 'update']);
 
         Route::get('/showaddress/{id}', [AddressControll::class, 'show']);
@@ -85,12 +82,10 @@ Route::prefix('/')->group(function () {
 
     });
     
-
-
-    Route::get('/product-detail', function () {
-        return view('client.products.product_details');
-    });
-
+ 
+    Route::get('/product_details/{id}',[PreviewController::class,'product_details']);
+    Route::post('preview/{id}',[PreviewController::class,'preview'])->name('preview')->middleware('auth');;
+  
     Route::get('/product-bycate', function () {
         return view('client.products.product_ bycate');
     });

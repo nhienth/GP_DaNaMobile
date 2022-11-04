@@ -1,5 +1,5 @@
 @extends('client.layouts.master')
-@section('main')
+@section('main')<br><br><br><br><br><br>
 <div class="container">
                 <div class="row">
                     <div class="col-xl-9 col-wd">
@@ -8,6 +8,7 @@
                                 
                             <article class="card mb-13 border-0">
                                 <div class="row">
+                                    @foreach ($allPost as $post) 
                                     <div class="col-lg-4 mb-5 mb-lg-0">
                                         <a href="http://localhost:8000/post/details/{{$post->id}}" class="d-block"><img class="img-fluid min-height-250 object-fit-cover" src="{{asset('images/post/'.$post->post_img)}}" alt="Image Description"></a>
                                     </div>
@@ -74,7 +75,7 @@
                             <article class="mb-4">
                                 <div class="media">
                                     <div class="width-75 height-75 mr-3">
-                                        <img class="img-fluid object-fit-cover" src="../../assets/img/1500X730/img1.jpg" alt="Image Description">
+                                        <img class="img-fluid object-fit-cover" src="{{asset('/client/assets/img/1500X730/img1.jpg')}}" alt="Image Description">
                                     </div>
                                     <div class="media-body">
                                         <h4 class="font-size-14 mb-1"><a href="../blog/single-blog-post.html" class="text-gray-39">Robot Wars – Post with Gallery</a></h4>
@@ -85,7 +86,7 @@
                             <article class="mb-4">
                                 <div class="media">
                                     <div class="width-75 height-75 mr-3">
-                                        <img class="img-fluid object-fit-cover" src="../../assets/img/1500X730/img4.jpg" alt="Image Description">
+                                        <img class="img-fluid object-fit-cover" src="{{asset('/client/assets/img/1500X730/img4.jpg')}}" alt="Image Description">
                                     </div>
                                     <div class="media-body">
                                         <h4 class="font-size-14 mb-1"><a href="../blog/single-blog-post.html" class="text-gray-39">Robot Wars – Now Closed – Post with Audio</a></h4>
@@ -96,7 +97,7 @@
                             <article class="mb-4">
                                 <div class="media">
                                     <div class="width-75 height-75 mr-3">
-                                        <img class="img-fluid object-fit-cover" src="../../assets/img/1500X730/img5.jpg" alt="Image Description">
+                                        <img class="img-fluid object-fit-cover" src="{{asset('/client/assets/img/1500X730/img5.jpg')}}" alt="Image Description">
                                     </div>
                                     <div class="media-body">
                                         <h4 class="font-size-14 mb-1"><a href="../blog/single-blog-post.html" class="text-gray-39">Robot Wars – Now Closed – Post with Video</a></h4>
@@ -119,7 +120,7 @@
                             <article class="mb-4">
                                 <div class="media">
                                     <div class="width-75 height-75 mr-3">
-                                        <img class="img-fluid object-fit-cover" src="../../assets/img/1500X730/img6.jpg" alt="Image Description">
+                                        <img class="img-fluid object-fit-cover" src="{{asset('/client/assets/img/1500X730/img6.jpg')}}" alt="Image Description">
                                     </div>
                                     <div class="media-body">
                                         <h4 class="font-size-14 mb-1"><a href="../blog/single-blog-post.html" class="text-gray-39">Robot Wars – Now Closed</a></h4>
@@ -174,32 +175,32 @@
                             }]'>
                             <div class="js-slide">
                                 <a href="#" class="link-hover__brand">
-                                    <img class="img-fluid m-auto max-height-50" src="../../assets/img/200X60/img1.png" alt="Image Description">
+                                    <img class="img-fluid m-auto max-height-50" src="{{asset('/client/assets/img/200X60/img1.png')}}" alt="Image Description">
                                 </a>
                             </div>
                             <div class="js-slide">
                                 <a href="#" class="link-hover__brand">
-                                    <img class="img-fluid m-auto max-height-50" src="../../assets/img/200X60/img2.png" alt="Image Description">
+                                    <img class="img-fluid m-auto max-height-50" src="{{asset('/client/assets/img/200X60/img2.png')}}" alt="Image Description">
                                 </a>
                             </div>
                             <div class="js-slide">
                                 <a href="#" class="link-hover__brand">
-                                    <img class="img-fluid m-auto max-height-50" src="../../assets/img/200X60/img3.png" alt="Image Description">
+                                    <img class="img-fluid m-auto max-height-50" src="{{asset('/client/assets/img/200X60/img3.png')}}" alt="Image Description">
                                 </a>
                             </div>
                             <div class="js-slide">
                                 <a href="#" class="link-hover__brand">
-                                    <img class="img-fluid m-auto max-height-50" src="../../assets/img/200X60/img4.png" alt="Image Description">
+                                    <img class="img-fluid m-auto max-height-50" src="{{asset('/client/assets/img/200X60/img4.png')}}" alt="Image Description">
                                 </a>
                             </div>
                             <div class="js-slide">
                                 <a href="#" class="link-hover__brand">
-                                    <img class="img-fluid m-auto max-height-50" src="../../assets/img/200X60/img5.png" alt="Image Description">
+                                    <img class="img-fluid m-auto max-height-50" src="{{asset('/client/assets/img/200X60/img5.png')}}" alt="Image Description">
                                 </a>
                             </div>
                             <div class="js-slide">
                                 <a href="#" class="link-hover__brand">
-                                    <img class="img-fluid m-auto max-height-50" src="../../assets/img/200X60/img6.png" alt="Image Description">
+                                    <img class="img-fluid m-auto max-height-50" src="{{asset('/client/assets/img/200X60/img6.png')}}" alt="Image Description">
                                 </a>
                             </div>
                         </div>
