@@ -110,25 +110,8 @@ class ProductController extends Controller
             $product_gallery->product_id = $product->id;
             $product_gallery->save();
             echo '<script> console.log(1) </script>';
-        }
-                // if (file_exists($upload_file)) {
-                //     echo 'File đã tồn tại';
-                // } else {
-                // if (move_uploaded_file($tmp_name[$i], $upload_file)) {
-                //     echo "\n<p>" . $name[$i] . "</p>\n";
-                //     echo "\n<p>" . $ext[$i] . "</p>\n";
-                //     echo "\n<p>" . $size[$i] . " kB</p>\n";
-                //     echo "\n<p>" . $upload_file . "</p>\n";
-                    
-                    // @mysqli_connect('localhost', 'root', '', 'danamobile');
-                    // @mysqli_query($conn, "INSERT INTO `images_galleries` VALUES (null,'{$name[$i]}','{$size[$i]}','$upload_dir','$date',0)") or
-                    // die("Bi loi them du lieu" . mysqli_error($conn));
-                    // @mysqli_close($conn);
-                // } else
-                //     echo 'loi';
-                // }
-             //End khoi cau lenh up file va them vao CSDL;
-       
+        }       
+        
         $cateIdSeleted = $request->specification_cate;
 
         $specfications = ProductSpecificationsOptions::all();
