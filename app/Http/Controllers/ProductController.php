@@ -11,23 +11,22 @@ use App\Models\ProductSpecificationsOptions;
 use App\Models\ProductSpecificationsOptionsValue;
 use App\Models\Product;
 use App\Models\Combinations;
-
+use GuzzleHttp\RetryMiddleware;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function search(){
+    public function search()
+    {
         $keywords = $_GET['key_cate_id'];
         $categories = Category::all();
-        $products = Product::where('category_id','=',$keywords)->paginate(5);
-        if(count($products)!=0){
-            return view('admin.products.list')->with(compact('products','categories'));
-        }
-        else if (count($products)==0){
+        $products = Product::where('category_id', '=', $keywords)->paginate(5);
+        if (count($products) != 0) {
+            return view('admin.products.list')->with(compact('products', 'categories'));
+        } else if (count($products) == 0) {
             $products = Product::with('category')->orderBy('products.id', 'desc')->paginate(5);
-            return view('admin.products.list')->with(compact('products','categories'));
+            return view('admin.products.list')->with(compact('products', 'categories'));
         }
-        
     }
     /**
      * Display a listing of the resource.
@@ -81,19 +80,18 @@ class ProductController extends Controller
 
         $specfications = ProductSpecificationsOptions::all();
         foreach ($specfications as $specfication) {
-            if($specfication->category_id == $cateIdSeleted) {
+            if ($specfication->category_id == $cateIdSeleted) {
                 $nspecfication = new ProductSpecificationsOptionsValue();
 
                 $nspecfication_value = $specfication->id . "_value";
                 $nspecification_name = $specfication->specification_name;
-    
+
                 $nspecfication->specification_name = $nspecification_name;
                 $nspecfication->specification_value = $request->$nspecfication_value;
                 $nspecfication->product_id = $product->id;
-    
+
                 $nspecfication->save();
             }
-         
         }
 
         return redirect('/admin/product/list');
@@ -181,7 +179,7 @@ class ProductController extends Controller
         return redirect('/admin/product/list');
     }
 
-    
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -191,12 +189,12 @@ class ProductController extends Controller
     public function getAllVariation($id)
     {
         $product = Product::with('combinations')->where('products.id', $id)->first();
-   
-    //    dd($product);
+
+        //    dd($product);
         return view('admin.products.variations', compact('product'));
     }
 
-        /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -208,7 +206,7 @@ class ProductController extends Controller
         return view('npro.list', compact('products'));
     }
 
-     /**
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -217,10 +215,20 @@ class ProductController extends Controller
     public function ndetail($id)
     {
         $product = Product::with(['category', 'variations', 'variation_value', 'combinations'])
-        ->where('products.id', $id)->first();
-
-                
+            ->where('products.id', $id)->first();
         return view('npro.detail', compact(['product']));
+    }
 
+    public function deleteVariation($id, Request $request)
+    {
+        $del = Combinations::find($id);
+        $idproduct = $del->product_id;
+        $del->delete();
+        return $this->getAllVariation($idproduct);
+    }
+    public function editAllVariation($id)
+    {
+        $detailVar = Combinations::find($id);
+        return view('admin.variation.edit', compact('detailVar'));
     }
 }
