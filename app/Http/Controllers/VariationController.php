@@ -153,21 +153,21 @@ class VariationController extends Controller
             }
 
         }
-        return redirect('/admin/product/list');
+       
 
         $newCombination = new Combinations();
 
         $newCombination -> combination_string = $combination_string;
-        $newCombination -> sku = 'avd';
-        $newCombination -> price = 11;
-        $newCombination -> avilableStock = 11;
+        $newCombination -> sku = $request->sku;
+        $newCombination -> price = $request->price;
+        $newCombination -> avilableStock = $request->avilableStock;
         $newCombination ->product_id =  $request->product_id;
 
 
         $newCombination->save();
 
-        dd($newCombination);
-
+        // dd($newCombination);
+        return redirect('/admin/product/list');
     }
 
 

@@ -74,6 +74,7 @@ Route::prefix('/admin')->group(function () {
 
     Route::prefix('/product')->group(function () {
         Route::get('/searchproduct', [ProductController::class, 'search'])->name('search');
+        
         Route::get('/list', [ProductController::class, 'index']);
 
         Route::get('/create', [ProductController::class, 'create']);

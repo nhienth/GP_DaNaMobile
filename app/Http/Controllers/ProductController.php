@@ -192,7 +192,7 @@ class ProductController extends Controller
     {
         $product = Product::with('combinations')->where('products.id', $id)->first();
    
-       
+    //    dd($product);
         return view('admin.products.variations', compact('product'));
     }
 

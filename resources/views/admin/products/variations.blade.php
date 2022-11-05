@@ -93,25 +93,23 @@
                                         <th>Ảnh</th>
                                         <th>Giá</th>
                                         <th>Số lượng</th>
-                                        <th>Thêm biến thể</th>
                                         <th colspan="2">Hành động</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
+                                    <?php $i=0; ?>
                                     @foreach ($product->combinations as $productVariation)
+                                    <?php  $i++ ?>
                                         <tr data-dt-row="" data-dt-column="">
-                                            <td></td>
+                                            <td><?php echo $i ?></td>
                                             <td>{{$product->product_name}}</td>
                                             <td>{{$productVariation->combination_string}}</td>
                                             <td><img class="rounded" src="{{asset('images/admin/products/'.$product->product_img)}}" width="100px" height="100px" style="display:block; margin: 0 auto;"></td>
                                             <td>{{$productVariation->price}}</td>
                                             <td>{{$productVariation->avilableStock}}</td>
                                             <td>
-                                                <a href="{{url('admin/product/addVariation',[$product->id])}}"><button type="button" class="btn btn-info"><i data-feather='plus'></i></button></a>
-                                            </td>
-                                            <td>
-                                                <a href="{{url('admin/product/listProVar', [$product->id])}}"><button type="button" class="btn btn-success"><i data-feather='eye'></i></button></a>
+                                                <a href="{{url('admin/product/listProVar', [$product->id])}}"><button type="button" class="btn btn-success"><i data-feather='edit'></i></button></a>
                                             </td>
                                             <td>
                                                 <a href="{{url('admin/product/delete', [$product->id])}}"><button type="button" class="btn btn-danger"><i data-feather='trash-2'></i></button></a>

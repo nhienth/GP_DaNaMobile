@@ -27,8 +27,8 @@ class HomeController extends Controller
         //     $category['parent_cate'] = $partenCateName;
         // }
 
-    //    $categories = Category::all();
-    //     $categorySelect = $this->res(0);
+       $categories = Category::all();
+        $categorySelect = $this->res(0);
     //     $slider = Slider::all();
     //     $banner = Banner::find(1);
     //     $product = Product::all();

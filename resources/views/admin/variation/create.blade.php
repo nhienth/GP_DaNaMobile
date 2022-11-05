@@ -53,17 +53,6 @@
                                     <input type="hidden" name="product_id" value="{{$product->id}}">
 
                                     @foreach ($variations as $variation)
-<<<<<<< HEAD
-                                        <div class="mb-1 ms-2">
-                                            <label class="form-label fs-6 fw-bolder" for="basic-addon-name">
-                                                {{$variation->variation_name}}
-                                                </label>
-                                            </label>
-
-                                            <input type="text" id="basic-addon-name" class="form-control" placeholder="Nhập giá trị biến thể" name="{{$variation->id}}_value" aria-label="Name" aria-describedby="basic-addon-name" required />                            
-                                        </div>
-                                    @endforeach                                   
-=======
                                     <div class="mb-1">
                                         <label class="form-label fs-6 fw-bolder" for="basic-addon-name">
                                             {{$variation->variation_name}}
@@ -73,7 +62,24 @@
                                     </div>
                                     @endforeach
                                     
->>>>>>> 06aa62d51adf7b1050e389227b2ae215ece78d12
+                                    <div class="mb-2">
+                                        <label for="customFile1" class="form-label fs-5 fw-bolder">Ảnh sản phẩm</label>
+                                        <input class="form-control" name="combination_image" type="file" id="customFile1" required />
+                                    </div>
+                                    <div class="mb-2">
+                                        <label for="customFile1" class="form-label fs-5 fw-bolder">Mã SKU</label>
+                                        <input class="form-control" name="sku" type="text" id="customFile1" required />
+                                    </div>
+                                    <div class="mb-2">
+                                        <label for="customFile1" class="form-label fs-5 fw-bolder">Giá</label>
+                                        <input class="form-control" name="price" type="number" id="customFile1" required />
+                                    </div>
+                                    <div class="mb-2">
+                                        <label for="customFile1" class="form-label fs-5 fw-bolder">Số lượng</label>
+                                        <input class="form-control" name="avilableStock" type="number" id="customFile1" required />
+                                    </div>
+
+
                                     <button type="submit" class="btn btn-primary me-2">Thêm</button>
                                     <button type="reset" class="btn btn-primary me-2">Nhập lại</button>
                                     <a href="{{url('/admin/product/list')}}" class="btn btn-primary">Danh sách</a>
