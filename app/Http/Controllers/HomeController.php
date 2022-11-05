@@ -8,7 +8,7 @@ use App\Models\Category;
 use App\Models\Slider;
 use App\Models\Banner;
 use App\Models\Product;
-
+use App\Models\Combinations;
 class HomeController extends Controller
 {
     /**
@@ -20,19 +20,8 @@ class HomeController extends Controller
 
     public function index()
     {
-        // $categories = Category::all();
-        // foreach ($categories as $category) {
-        //     $parent_id = $category->parent_id;
-        //     $partenCateName = $this->getCategoryName($parent_id);
-        //     $category['parent_cate'] = $partenCateName;
-        // }
-
        $categories = Category::all();
         $categorySelect = $this->res(0);
-    //     $slider = Slider::all();
-    //     $banner = Banner::find(1);
-    //     $product = Product::all();
-    //     $product = Product::with(['combinations', 'stock'])->orderBy('id','DESC')->paginate(1);
         $categories = Category::all();
         foreach ($categories as $category) {
             $parent_id = $category->parent_id;
@@ -42,9 +31,26 @@ class HomeController extends Controller
         $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
         $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
         // $product = Product::all();
-        $product = Product::with(['combinations', 'stock'])->get();
+        $productsld = Product::with('combinations','category')->orderBy('products.id', 'desc')->take(8)
+        ->get();
+        // $productsld = Combinations::with(['product'])->orderBy('products_combinations.product_id', 'desc')->paginate(5);
+        // dd($productsld);
+        $priceArr = [];
+        $minPrice = 0;
+        foreach ($productsld as $product) {
+          foreach ($product->combinations as $productCombi) {
+            array_push($priceArr, $productCombi->price);
+          
+        }
+            $minPrice = min($priceArr);
 
-        return view('client.index')->with(compact('categories','slider','banner','product', 'categorySelect'));
+            $priceArr = [];
+
+            $product['minprice'] = $minPrice;
+
+        }
+
+        return view('client.index')->with(compact('categories','slider','banner','productsld', 'categorySelect'));
     }
 
     public function getCategoryName($id) {
