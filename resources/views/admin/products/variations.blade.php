@@ -112,7 +112,7 @@
                                             <td>{{$productVariation->price}}</td>
                                             <td>{{$productVariation->avilableStock}}</td>
                                             <td>
-                                                <a href="{{url('admin/product/listProVar', [$productVariation->id])}}"><button type="button" class="btn btn-success"><i data-feather='edit'></i></button></a>
+                                                <a href="{{url('admin/product/editProVar', [$productVariation->id])}}"><button type="button" class="btn btn-success"><i data-feather='edit'></i></button></a>
                                             </td>
                                             <td>
                                                 <a href="{{url('admin/product/deleteProvar', [$productVariation->id])}}"><button type="button" class="btn btn-danger"><i data-feather='trash-2'></i></button></a>

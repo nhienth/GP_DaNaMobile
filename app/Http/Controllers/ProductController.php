@@ -281,6 +281,8 @@ class ProductController extends Controller
     public function editAllVariation($id)
     {
         $detailVar = Combinations::find($id);
-        return view('admin.variation.edit', compact('detailVar'));
+        $product = Product::with('combinations')->where('products.id', $id)->first();
+        $variation = ProductSpecificationsOptions::find($id);
+        return view('admin.variation.edit', compact('detailVar', 'product', 'variation'));
     }
 }

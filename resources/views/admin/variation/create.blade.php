@@ -63,7 +63,7 @@
                                     @endforeach
                                     
                                     <div class="mb-2">
-                                        <label for="customFile1" class="form-label fs-5 fw-bolder">Ảnh sản phẩm</label>
+                                        <label for="customFile1" class="form-label fs-5 fw-bolder">Ảnh biến thể sản phẩm</label>
                                         <input class="form-control" name="combination_image" type="file" id="customFile1" required />
                                     </div>
                                     <div class="mb-2">
