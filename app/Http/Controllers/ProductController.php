@@ -19,7 +19,6 @@ class ProductController extends Controller
 {
     public function search()
     {
-        
         $keywords = $_GET['key_cate_id'];
         $categories = Category::all();
         $products = Product::where('category_id', '=', $keywords)->paginate(5);
