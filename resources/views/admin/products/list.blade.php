@@ -39,7 +39,6 @@
                                     @csrf
                                     <select name="key_cate_id" class="form-select text-capitalize mb-md-0 mb-2"
                                         id="cate" onchange="this.form.submit()" class="sorting">
-                                        <option value="">Danh mục</option>
                                         <option value="0">Tất cả sản phẩm</option>
 
                                         @foreach ($categories as $category)
@@ -67,7 +66,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-datatable table-responsive pt-0">
+                    {{-- <div class="card-datatable table-responsive pt-0"> --}}
+                    <div class="card-datatable pt-0">
                         <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
                             <div
                                 class="f-flex justify-content-between align-items-center header-actions mx-2 row mt-75">

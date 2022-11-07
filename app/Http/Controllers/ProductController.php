@@ -11,23 +11,23 @@ use App\Models\ProductSpecificationsOptions;
 use App\Models\ProductSpecificationsOptionsValue;
 use App\Models\Product;
 use App\Models\Combinations;
+use App\Models\Image_Gallery;
 
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function search(){
+    public function search()
+    {
         $keywords = $_GET['key_cate_id'];
         $categories = Category::all();
-        $products = Product::where('category_id','=',$keywords)->paginate(5);
-        if(count($products)!=0){
-            return view('admin.products.list')->with(compact('products','categories'));
-        }
-        else if (count($products)==0){
+        $products = Product::where('category_id', '=', $keywords)->paginate(5);
+        if (count($products) != 0) {
+            return view('admin.products.list')->with(compact('products', 'categories'));
+        } else if (count($products) == 0) {
             $products = Product::with('category')->orderBy('products.id', 'desc')->paginate(5);
-            return view('admin.products.list')->with(compact('products','categories'));
+            return view('admin.products.list')->with(compact('products', 'categories'));
         }
-        
     }
     /**
      * Display a listing of the resource.
@@ -64,6 +64,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $product = new Product();
+
         $product->product_name = $request->product_name;
         $product->category_id = $request->category_id;
 
@@ -73,27 +74,76 @@ class ProductController extends Controller
         move_uploaded_file($_FILES['product_img']['tmp_name'], $target_file);
         $product->product_img = $imgpath;
         $product->product_desc = '';
-
         $product->product_status = 0;
         $product->save();
+
+
+        $name = array();
+        $tmp_name = array();
+        $error = array();
+        $ext = array();
+        $size = array();
+        foreach ($_FILES['product_img_gallery']['name'] as $file) {
+            $name[] = $file;
+        }
+        foreach ($_FILES['product_img_gallery']['tmp_name'] as $file) {
+            $tmp_name[] = $file;
+        }
+        foreach ($_FILES['product_img_gallery']['error'] as $file) {
+            $error[] = $file;
+        }
+        foreach ($_FILES['product_img_gallery']['type'] as $file) {
+            $ext[] = $file;
+        }
+        foreach ($_FILES['product_img_gallery']['size'] as $file) {
+            $size[] = round($file / 1024, 2);
+        } //Phần này lấy giá trị ra từng mảng nhỏ
+        for ($i = 0; $i < count($name); $i++) {
+            $product_gallery = new Image_Gallery();
+            $temp = preg_split('/[\/\\\\]+/', $name[$i]);
+            $filename = $temp[count($temp) - 1];
+            $upload_dir = "../public/images/admin/products/";
+            $upload_file = $upload_dir . $filename;
+            move_uploaded_file($tmp_name[$i], $upload_file);
+            $product_gallery->medium = $filename;
+            $product_gallery->product_id = $product->id;
+            $product_gallery->save();
+            echo '<script> console.log(1) </script>';
+        }
+        // if (file_exists($upload_file)) {
+        //     echo 'File đã tồn tại';
+        // } else {
+        // if (move_uploaded_file($tmp_name[$i], $upload_file)) {
+        //     echo "\n<p>" . $name[$i] . "</p>\n";
+        //     echo "\n<p>" . $ext[$i] . "</p>\n";
+        //     echo "\n<p>" . $size[$i] . " kB</p>\n";
+        //     echo "\n<p>" . $upload_file . "</p>\n";
+
+        // @mysqli_connect('localhost', 'root', '', 'danamobile');
+        // @mysqli_query($conn, "INSERT INTO `images_galleries` VALUES (null,'{$name[$i]}','{$size[$i]}','$upload_dir','$date',0)") or
+        // die("Bi loi them du lieu" . mysqli_error($conn));
+        // @mysqli_close($conn);
+        // } else
+        //     echo 'loi';
+        // }
+        //End khoi cau lenh up file va them vao CSDL;
 
         $cateIdSeleted = $request->specification_cate;
 
         $specfications = ProductSpecificationsOptions::all();
         foreach ($specfications as $specfication) {
-            if($specfication->category_id == $cateIdSeleted) {
+            if ($specfication->category_id == $cateIdSeleted) {
                 $nspecfication = new ProductSpecificationsOptionsValue();
 
                 $nspecfication_value = $specfication->id . "_value";
                 $nspecification_name = $specfication->specification_name;
-    
+
                 $nspecfication->specification_name = $nspecification_name;
                 $nspecfication->specification_value = $request->$nspecfication_value;
                 $nspecfication->product_id = $product->id;
-    
+
                 $nspecfication->save();
             }
-         
         }
 
         return redirect('/admin/product/list');
@@ -181,7 +231,7 @@ class ProductController extends Controller
         return redirect('/admin/product/list');
     }
 
-    
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -191,12 +241,12 @@ class ProductController extends Controller
     public function getAllVariation($id)
     {
         $product = Product::with('combinations')->where('products.id', $id)->first();
-   
-       
+
+        //    dd($product);
         return view('admin.products.variations', compact('product'));
     }
 
-        /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -208,7 +258,7 @@ class ProductController extends Controller
         return view('npro.list', compact('products'));
     }
 
-     /**
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -218,8 +268,22 @@ class ProductController extends Controller
     {
         $product = Product::with(['category', 'variations', 'variation_value', 'combinations'])
         ->where('products.id', $id)->first();
-
+        
         return view('npro.detail', compact(['product']));
+    }
 
+    public function deleteVariation($id, Request $request)
+    {
+        $del = Combinations::find($id);
+        $idproduct = $del->product_id;
+        $del->delete();
+        return $this->getAllVariation($idproduct);
+    }
+    public function editAllVariation($id)
+    {
+        $detailVar = Combinations::find($id);
+        $product = Product::with('combinations')->where('products.id', $id)->first();
+        $variation = ProductSpecificationsOptions::find($id);
+        return view('admin.variation.edit', compact('detailVar', 'product', 'variation'));
     }
 }

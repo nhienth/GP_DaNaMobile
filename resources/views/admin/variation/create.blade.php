@@ -62,6 +62,24 @@
                                     </div>
                                     @endforeach
                                     
+                                    <div class="mb-2">
+                                        <label for="customFile1" class="form-label fs-5 fw-bolder">Ảnh biến thể sản phẩm</label>
+                                        <input class="form-control" name="combination_image" type="file" id="customFile1" required />
+                                    </div>
+                                    <div class="mb-2">
+                                        <label for="customFile1" class="form-label fs-5 fw-bolder">Mã SKU</label>
+                                        <input class="form-control" name="sku" type="text" id="customFile1" required />
+                                    </div>
+                                    <div class="mb-2">
+                                        <label for="customFile1" class="form-label fs-5 fw-bolder">Giá</label>
+                                        <input class="form-control" name="price" type="number" id="customFile1" required />
+                                    </div>
+                                    <div class="mb-2">
+                                        <label for="customFile1" class="form-label fs-5 fw-bolder">Số lượng</label>
+                                        <input class="form-control" name="avilableStock" type="number" id="customFile1" required />
+                                    </div>
+
+
                                     <button type="submit" class="btn btn-primary me-2">Thêm</button>
                                     <button type="reset" class="btn btn-primary me-2">Nhập lại</button>
                                     <a href="{{url('/admin/product/list')}}" class="btn btn-primary">Danh sách</a>

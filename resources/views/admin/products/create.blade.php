@@ -67,7 +67,10 @@
                                         <input class="form-control" name="product_img" type="file" id="customFile1" required />
                                     </div>
                                
-
+                                    <div class="mb-2">
+                                        <label for="customFile1" class="form-label fs-5 fw-bolder">Thư viện ảnh</label>
+                                        <input class="form-control" name="product_img_gallery[]" type="file" id="customFile1" required multiple="true" />
+                                    </div>
                                     <div class="mb-1">
                                         <label class="d-block form-label fs-5 fw-bolder" for="">Thông số sản phẩm</label>
                                     </div>

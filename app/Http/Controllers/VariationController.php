@@ -134,6 +134,8 @@ class VariationController extends Controller
                         $id = $pvariation->id;
                     }
                 }
+
+                $rom = $request->variation_rom;
             
                 $variation_option_value = new Variation_Option_Value();
 
@@ -151,22 +153,30 @@ class VariationController extends Controller
             }
 
         }
+       
 
         $newCombination = new Combinations();
 
         $newCombination -> combination_string = $combination_string;
-        $newCombination -> sku = 'avd';
-        $newCombination -> price = 11;
-        $newCombination -> avilableStock = 11;
+        $newCombination -> sku = $request->sku;
+        $newCombination -> price = $request->price;
+        $newCombination -> avilableStock = $request->avilableStock;
         $newCombination ->product_id =  $request->product_id;
 
 
         $newCombination->save();
 
-        dd($newCombination);
-
+        // dd($newCombination);
+        return redirect('/admin/product/list');
     }
 
+
+    // View list Variation by Product
+    public function viewList(Request $request, $id){
+        $list_Variations = Product::with('variation_value')->where('products.id',$id )->first();
+        dd( $list_Variations );
+        // $variation_option_value = Variation::with('variation_values')->where('')
+    }
     /**
      * Display the specified resource.
      *
