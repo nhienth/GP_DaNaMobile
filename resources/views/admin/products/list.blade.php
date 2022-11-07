@@ -39,6 +39,7 @@
                                     @csrf
                                     <select name="key_cate_id" class="form-select text-capitalize mb-md-0 mb-2"
                                         id="cate" onchange="this.form.submit()" class="sorting">
+                                        <option value="0">Danh mục</option>
                                         <option value="0">Tất cả sản phẩm</option>
 
                                         @foreach ($categories as $category)
@@ -129,6 +130,46 @@
                             </thead>
 
                             <tbody>
+
+                                <!-- phân trang -->
+                                <?php
+                                    
+                                    // Phân trang sản phẩm
+                                    $conn = mysqli_connect("localhost", "root", "","danamobile");
+                                        if (! $conn) {
+
+                                        die("Connection failed" . mysqli_connect_error());
+                                    }
+                                    
+                                    else {
+                                    
+                                        mysqli_select_db($conn, "products");
+                                    
+                                    }
+
+                                    $per_page_record = 5;
+        
+                                    if (isset($_GET["page"])) {
+        
+                                        $page  = $_GET["page"];
+                                
+                                    }
+                                
+                                    else {
+                                
+                                        $page=1;
+                                
+                                    }
+                                
+                                    $start_from = ($page-1) * $per_page_record;
+                                
+                                    $query = "SELECT * FROM products LIMIT $start_from, $per_page_record";
+                                
+                                    $rs_result = mysqli_query ($conn, $query);
+                                
+                                ?>
+                                    <!-- kết phân trang -->
+
                                 @foreach ($products as $product)
                                 <tr data-dt-row="" data-dt-column="">
                                     <td></td>
@@ -157,19 +198,68 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <div class="d-flex justify-content-between mx-2 row mb-1">
-                            <div class="col-sm-12 col-md-6">
-                                <div class="dataTables_info" id="DataTables_Table_0_info" role="status"
-                                    aria-live="polite">Hiển thị 0 đến 0 của 0 mục</div>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                {{$products->links()}}
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Modal to add new user starts-->
+                        
+                        <!-- Phân trang -->
+                        <nav aria-label="Page navigation example" style="text-align: center">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <?php
 
-                    <!-- Modal to add new user Ends-->
+                                        $query = "SELECT COUNT(*) FROM products";
+
+                                        $rs_result = mysqli_query($conn, $query);
+
+                                        $row = mysqli_fetch_row($rs_result);
+
+                                        $total_records = $row[0];
+
+                                        echo "</br>";
+
+                                        $total_pages = ceil($total_records / $per_page_record);
+
+                                        // number of pages required
+
+                                        $pagLink = "";
+
+                                        if($page>=2){
+
+                                            echo "<a href='http://127.0.0.1:8000/admin/product/list?list&page=".($page-1)."'>  Prev </a>";
+
+                                        }
+
+                                        for ($i=1; $i<=$total_pages; $i++) {
+
+                                            if ($i == $page) {
+
+                                                $pagLink .= "<a class = 'active' href='http://127.0.0.1:8000/admin/product/list?list&page=".$i."'>".$i." </a>";
+
+                                            }
+
+                                            else  {
+
+                                                $pagLink .= "<a href='http://127.0.0.1:8000/admin/product/list?list&page=".$i."'>".$i." </a>";
+
+                                            }
+
+                                        };
+
+                                        echo $pagLink;
+
+                                        if($page<$total_pages){
+
+                                            echo "<a href='http://127.0.0.1:8000/admin/product/list?list&page=".($page+1)."'>  Next </a>";
+
+                                        }
+
+                                    ?>
+                                    <br>
+                                    <br>
+                                    <input id="page" type="number" min="1" max="<?php echo $total_pages?>" placeholder="<?php echo $page."/".$total_pages; ?>" required>
+                                </li>
+                            </ul>       
+                        </nav>
+                        <!-- kết phân trang -->
+                    </div>
                 </div>
                 <!-- list and filter end -->
             </section>
