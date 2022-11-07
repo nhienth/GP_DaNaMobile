@@ -97,11 +97,14 @@
                                     </tr>
                                 </thead>
 
+                                <input type="hidden" name="productId" value="{{$product->id}}">
+
                                 <tbody>
                                     <?php $i=0; ?>
                                     @foreach ($product->combinations as $productVariation)
                                     <?php  $i++ ?>
                                         <tr data-dt-row="" data-dt-column="">
+                                            
                                             <td><?php echo $i ?></td>
                                             <td>{{$product->product_name}}</td>
                                             <td>{{$productVariation->combination_string}}</td>
@@ -109,10 +112,10 @@
                                             <td>{{$productVariation->price}}</td>
                                             <td>{{$productVariation->avilableStock}}</td>
                                             <td>
-                                                <a href="{{url('admin/product/listProVar', [$product->id])}}"><button type="button" class="btn btn-success"><i data-feather='edit'></i></button></a>
+                                                <a href="{{url('admin/product/editProVar', [$productVariation->id])}}"><button type="button" class="btn btn-success"><i data-feather='edit'></i></button></a>
                                             </td>
                                             <td>
-                                                <a href="{{url('admin/product/delete', [$product->id])}}"><button type="button" class="btn btn-danger"><i data-feather='trash-2'></i></button></a>
+                                                <a href="{{url('admin/product/deleteProvar', [$productVariation->id])}}"><button type="button" class="btn btn-danger"><i data-feather='trash-2'></i></button></a>
                                             </td>
                                         </tr>
                                     @endforeach

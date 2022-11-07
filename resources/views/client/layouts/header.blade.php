@@ -632,13 +632,6 @@
                                                         <!-- End Nav Item - Mega Menu -->
                                                     </li>
                                                     <!-- End Nav Item MegaMenu-->
-                                                    @foreach($categories as $category)
-                                                        {{-- <li class="nav-item u-header__nav-item"
-                                                            data-event="hover"
-                                                            data-position="left">
-                                                            <a href="#" class="nav-link u-header__nav-link font-weight-bold">{{$category->category_name}}</a>
-                                                        </li> --}}
-                                                    @endforeach                               
                                                     
                                                 </ul>
                                             </div>

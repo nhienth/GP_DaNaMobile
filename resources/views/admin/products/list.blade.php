@@ -66,11 +66,13 @@
                             </div>
                             <div class="col-md-4 user_status">
                                 <label class="form-label" for="FilterTransaction">Trạng thái</label>
-                                <select id="FilterTransaction" class="form-select text-capitalize mb-md-0 mb-2xx">
-                                    <option value="0"> Tất Cả Trạng Thái </option>
-                                    <option value="1"> Đang hoạt động </option>
-                                    <option value="0"> Vô Hiệu hoá </option>
-                                </select>
+                                <form action="{{route('filter_status')}}" method="get">
+                                    <select name="status_selected" id="status" class="form-select text-capitalize mb-md-0 mb-2xx" onchange="this.form.submit()">
+                                        <option value="2"> Tất Cả Trạng Thái </option>
+                                        <option value="1"> Đang hoạt động </option>
+                                        <option value="0"> Vô Hiệu hoá </option>
+                                    </select>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -107,10 +109,7 @@
                                             </div>
                                         </div>
                                         <div class="dt-buttons d-inline-flex mt-50">
-                                            <button
-                                                class="dt-button buttons-collection btn btn-outline-secondary dropdown-toggle me-2"
-                                                tabindex="0" aria-controls="DataTables_Table_0" type="button"
-                                                aria-haspopup="true">Xuất</button>
+
 
                                             <a type="button" href="{{url('/admin/product/create')}}"
                                                 class="dt-button add-new btn btn-primary" tabindex="0"
@@ -146,7 +145,13 @@
                                             src="{{asset('images/admin/products/'.$product->product_img)}}"
                                             width="100px" height="100px" style="display:block; margin: 0 auto;"></td>
                                     <td>{{$product->product_view}}</td>
-                                    <td>Trạng thái</td>
+                                    <td>
+                                        <?php if($product->product_status == 1){ ?>
+                                            <span class="badge rounded-pill badge-light-success me-1">Đang hoạt động</span>
+                                        <?php } else { ?>
+                                            <span class="badge rounded-pill badge-light-warning me-1"> Vô hiệu hoá</span>
+                                        <?php } ?>
+                                    </td>
                                     <td>
                                         <a href="{{url('admin/product/addVariation',[$product->id])}}"><button
                                                 type="button" class="btn btn-info"><i
