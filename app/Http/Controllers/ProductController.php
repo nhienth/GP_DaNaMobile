@@ -219,7 +219,6 @@ class ProductController extends Controller
         $product = Product::with(['category', 'variations', 'variation_value', 'combinations'])
         ->where('products.id', $id)->first();
 
-                
         return view('npro.detail', compact(['product']));
 
     }
