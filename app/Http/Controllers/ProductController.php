@@ -30,6 +30,22 @@ class ProductController extends Controller
         }
         
     }
+
+    public function filter_view(){
+        $keywords = $_GET['view_selected'];
+        $categories = Category::all();
+        $products = Product::all();
+        if($keywords == 1){
+            $products = Product::with('category')->orderBy('products.product_view', 'desc')->paginate(5);
+            return view('admin.products.list')->with(compact('products','categories'));
+        }else if($keywords == 2){
+            $products = Product::with('category')->orderBy('products.product_view', 'asc')->paginate(5);
+            return view('admin.products.list')->with(compact('products','categories'));
+        }else{
+            $products = Product::with('category')->orderBy('products.id', 'asc')->paginate(5);
+            return view('admin.products.list')->with(compact('products','categories'));
+        }
+    }
     /**
      * Display a listing of the resource.
      *

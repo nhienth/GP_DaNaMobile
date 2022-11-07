@@ -53,15 +53,23 @@
                                     </select> -->
                             </div>
                             <div class="col-md-4 user_plan">
-                                <label class="form-label" for="UserPlan">Kế hoạch</label>
-                                <select id="UserPlan" class="form-select text-capitalize mb-md-0 mb-2">
-                                    <option value=""> Select Plan </option>
-                                </select>
+                                <label class="form-label" for="UserPlan">Lượt xem</label>
+                                <form action="{{route('filter_view')}}" method="get">
+                                    @csrf
+                                    <select id="view" name="view_selected" class="form-select text-capitalize mb-md-0 mb-2"
+                                    onchange="this.form.submit()">
+                                        <option value="0"> Mặc định </option>
+                                        <option value="1">  Giảm dần </option>
+                                        <option value="2">  Tăng dần </option>
+                                    </select>
+                                </form>
                             </div>
                             <div class="col-md-4 user_status">
                                 <label class="form-label" for="FilterTransaction">Trạng thái</label>
                                 <select id="FilterTransaction" class="form-select text-capitalize mb-md-0 mb-2xx">
-                                    <option value=""> Select Status </option>
+                                    <option value="0"> Tất Cả Trạng Thái </option>
+                                    <option value="1"> Đang hoạt động </option>
+                                    <option value="0"> Vô Hiệu hoá </option>
                                 </select>
                             </div>
                         </div>
