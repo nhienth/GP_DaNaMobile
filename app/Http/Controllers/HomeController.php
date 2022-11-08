@@ -20,9 +20,9 @@ class HomeController extends Controller
 
     public function index()
     {
-       $categories = Category::all();
-        $categorySelect = $this->res(0);
         $categories = Category::all();
+        $categorySelect = $this->res(0);
+        $categorylist = Category::orderBy('categories.created_at','DESC')->paginate(4);
         foreach ($categories as $category) {
             $parent_id = $category->parent_id;
             $partenCateName = $this->getCategoryName($parent_id);
@@ -50,7 +50,7 @@ class HomeController extends Controller
 
         }
 
-        return view('client.index')->with(compact('categories','slider','banner','productsld', 'categorySelect'));
+        return view('client.index')->with(compact('categories', 'categorylist', 'slider','banner','productsld', 'categorySelect'));
     }
 
     public function getCategoryName($id) {
