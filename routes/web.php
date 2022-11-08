@@ -60,6 +60,7 @@ Route::get('/nproduct/detail/{id}', [ProductController::class, 'ndetail']);
 Route::get('/product/detail/{id}', [ProductController::class, 'productDetail']);
 
 // -----------------------------------ADMIN-----------------------------
+
 Route::prefix('/admin')->group(function () {
     Route::get('/', function () {
         return view('admin.index');
@@ -81,13 +82,13 @@ Route::prefix('/admin')->group(function () {
 
         Route::get('/list', [ProductController::class, 'index'])->name('product.list');
 
-        Route::get('/create', [ProductController::class, 'create']);
-        Route::post('/create', [ProductController::class, 'store']);
+            Route::get('/list', [ProductController::class, 'index']);
 
-        Route::get('/edit/{id}', [ProductController::class, 'edit']);
-        Route::post('/update/{id}', [ProductController::class, 'update']);
+            Route::get('/create', [ProductController::class, 'create']);
+            Route::post('/create', [ProductController::class, 'store']);
 
-        Route::get('/delete/{id}', [ProductController::class, 'destroy']);
+            Route::get('/edit/{id}', [ProductController::class, 'edit']);
+            Route::post('/update/{id}', [ProductController::class, 'update']);
 
         Route::get('/addVariation/{id}', [VariationController::class, 'create']);
         Route::post('/addVariation', [VariationController::class, 'store']);
@@ -119,6 +120,7 @@ Route::prefix('/admin')->group(function () {
 
         Route::get('/delete/{id}', [VariationController::class, 'destroy_main']);
     });
+  
     Route::prefix('/post')->group(function () {
         Route::get('/list', [PostController::class, 'index']);
 
@@ -130,8 +132,8 @@ Route::prefix('/admin')->group(function () {
 
         Route::get('/details/{id}', [PostController::class, 'show']);
 
-        Route::get('/delete/{id}', [PostController::class, 'destroy']);
-    });
+            Route::get('/delete/{id}', [PostController::class, 'destroy']);
+        });
 
     Route::prefix('/preview')->group(function () {
         Route::get('/list', [PreviewController::class, 'index']);
@@ -163,31 +165,32 @@ Route::prefix('/admin')->group(function () {
         Route::get('/stock_detail/{id}', [StocksController::class, 'show']);
     });
 
-    Route::prefix('/slider')->group(function () {
-        Route::get('/list', [SliderController::class, 'index'])->name('slider.list');
-        Route::get('/create', [SliderController::class, 'create'])->name('slider.create');
-        Route::post('/create', [SliderController::class, 'store'])->name('slider.create_process');
-        Route::get('/edit/{id}', [SliderController::class, 'edit'])->name('slider.edit');
-        Route::post('/edit/{id}', [SliderController::class, 'update'])->name('slider.edit_process');
-        Route::get('/delete/{id}', [SliderController::class, 'destroy']);
-    });
+        Route::prefix('/slider')->group(function () {
+            Route::get('/list', [SliderController::class, 'index'])->name('slider.list');
+            Route::get('/create', [SliderController::class, 'create'])->name('slider.create');
+            Route::post('/create', [SliderController::class, 'store'])->name('slider.create_process');
+            Route::get('/edit/{id}', [SliderController::class, 'edit'])->name('slider.edit');
+            Route::post('/edit/{id}', [SliderController::class, 'update'])->name('slider.edit_process');
+            Route::get('/delete/{id}', [SliderController::class, 'destroy']);
+        });
 
-    Route::prefix('/banner')->group(function () {
-        Route::get('/list', [BannerController::class, 'index'])->name('banner.list');
-        Route::get('/create', [BannerController::class, 'create'])->name('banner.create');
-        Route::post('/create', [BannerController::class, 'store'])->name('banner.create_process');
-        Route::get('/edit/{id}', [BannerController::class, 'edit'])->name('banner.edit');
-        Route::post('/edit/{id}', [BannerController::class, 'update'])->name('banner.edit_process');
-        Route::get('/delete/{id}', [BannerController::class, 'destroy']);
-    });
-    Route::prefix('/voucher')->group(function () {
-        Route::get('/list', [VoucherController::class, 'index'])->name('voucher.list');
-        Route::get('/create',  [VoucherController::class, 'create']);
-        Route::post('/create', [VoucherController::class, 'store'])->name('voucher.create');
-        Route::get('/edit/{id}', [VoucherController::class, 'edit']);
-        Route::post('/update/{id}', [VoucherController::class, 'update']);
-        Route::get('/delete/{id}', [VoucherController::class, 'destroy']);
-    });
+        Route::prefix('/banner')->group(function () {
+            Route::get('/list', [BannerController::class, 'index'])->name('banner.list');
+            Route::get('/create', [BannerController::class, 'create'])->name('banner.create');
+            Route::post('/create', [BannerController::class, 'store'])->name('banner.create_process');
+            Route::get('/edit/{id}', [BannerController::class, 'edit'])->name('banner.edit');
+            Route::post('/edit/{id}', [BannerController::class, 'update'])->name('banner.edit_process');
+            Route::get('/delete/{id}', [BannerController::class, 'destroy']);
+        });
+        Route::prefix('/voucher')->group(function () {
+            Route::get('/list', [VoucherController::class, 'index'])->name('voucher.list');
+            Route::get('/create',  [VoucherController::class, 'create']);
+            Route::post('/create', [VoucherController::class, 'store'])->name('voucher.create');
+            Route::get('/edit/{id}', [VoucherController::class, 'edit']);
+            Route::post('/update/{id}', [VoucherController::class, 'update']);
+            Route::get('/delete/{id}', [VoucherController::class, 'destroy']);
+        });
+
 
     Route::prefix('/payment')->group(function () {
         Route::get('/list', [PaymentController::class, 'index'])->name('payment.list');
@@ -200,5 +203,6 @@ Route::prefix('/admin')->group(function () {
 });
 
 // ->middleware(['auth'])->name('dashboard');
+
 
 require __DIR__ . '/auth.php';

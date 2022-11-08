@@ -18,61 +18,67 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
             <div class="container">
                 <div class="d-flex align-items-center">
                     <div class="topbar-left">
-                        <a href="#" class="text-gray-110 font-size-13 hover-on-dark">Welcome to Worldwide Electronics
-                            Store</a>
+                        <a href="#" class="text-gray-110 font-size-13 hover-on-dark">Chào mừng bạn đến với Shop thiết bị
+                            điện thoại di động DaNa-Mobile</a>
+
                     </div>
                     <div class="topbar-right ml-auto">
                         <ul class="list-inline mb-0">
                             <li
                                 class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border">
                                 <a href="../home/contact-v2.html" class="u-header-topbar__nav-link"><i
-                                        class="ec ec-map-pointer mr-1"></i> Store Locator</a>
+                                        class="ec ec-map-pointer mr-1"></i>Địa chỉ cửa hàng</a>
+
                             </li>
                             <li
                                 class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border">
                                 <a href="../shop/track-your-order.html" class="u-header-topbar__nav-link"><i
-                                        class="ec ec-transport mr-1"></i> Track Your Order</a>
-                            </li>
-                            <li
-                                class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border u-header-topbar__nav-item-no-border u-header-topbar__nav-item-border-single">
-                                <div class="d-flex align-items-center">
-                                    <!-- Language -->
-                                    <div class="position-relative">
-                                        <a id="languageDropdownInvoker"
-                                            class="dropdown-nav-link dropdown-toggle d-flex align-items-center u-header-topbar__nav-link font-weight-normal"
-                                            href="javascript:;" role="button" aria-controls="languageDropdown"
-                                            aria-haspopup="true" aria-expanded="false" data-unfold-event="hover"
-                                            data-unfold-target="#languageDropdown" data-unfold-type="css-animation"
-                                            data-unfold-duration="300" data-unfold-delay="300"
-                                            data-unfold-hide-on-scroll="true" data-unfold-animation-in="slideInUp"
-                                            data-unfold-animation-out="fadeOut">
-                                            <span class="d-inline-block d-sm-none">US</span>
-                                            <span class="d-none d-sm-inline-flex align-items-center"><i
-                                                    class="ec ec-dollar mr-1"></i> Dollar (US)</span>
-                                        </a>
 
-                                        <div id="languageDropdown" class="dropdown-menu dropdown-unfold"
-                                            aria-labelledby="languageDropdownInvoker">
-                                            <a class="dropdown-item active" href="#">English</a>
-                                            <a class="dropdown-item" href="#">Deutsch</a>
-                                            <a class="dropdown-item" href="#">Español‎</a>
-                                        </div>
-                                    </div>
-                                    <!-- End Language -->
-                                </div>
+                                        class="ec ec-transport mr-1"></i> Đơn hàng của bạn</a>
                             </li>
-                            <li
-                                class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border">
+                            |
+                            <li class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar nav-item-border">
                                 <!-- Account Sidebar Toggle Button -->
-                                <a id="sidebarNavToggler" href="javascript:;" role="button"
-                                    class="u-header-topbar__nav-link" aria-controls="sidebarContent"
-                                    aria-haspopup="true" aria-expanded="false" data-unfold-event="click"
-                                    data-unfold-hide-on-scroll="false" data-unfold-target="#sidebarContent"
-                                    data-unfold-type="css-animation" data-unfold-animation-in="fadeInRight"
-                                    data-unfold-animation-out="fadeOutRight" data-unfold-duration="500">
-                                    <i class="ec ec-user mr-1"></i> Register <span class="text-gray-50">or</span> Sign
-                                    in
-                                </a>
+                                @if (Route::has('login'))
+                                @auth
+                                <div class="position-relative">
+                                    <a id="Userclient"
+                                        class="dropdown-nav-link dropdown-toggle d-flex align-items-center u-header-topbar__nav-link font-weight-normal"
+                                        href="javascript:;" role="button" aria-controls="userlogin" aria-haspopup="true"
+                                        aria-expanded="false" data-unfold-event="hover" data-unfold-target="#userlogin"
+                                        data-unfold-type="css-animation" data-unfold-duration="300"
+                                        data-unfold-delay="300" data-unfold-hide-on-scroll="true"
+                                        data-unfold-animation-in="slideInUp" data-unfold-animation-out="fadeOut">
+                                        <span class="user-name fw-bolder">{{ Auth::user()->name }}</span>
+                                    </a>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <div id="userlogin" class="dropdown-menu dropdown-unfold "
+                                            style="text-align:center" aria-labelledby="Userclient">
+                                            <a href="http://" class="dropdown-item">Thông tin cá nhân</a>
+                                            <a href="http://" class="dropdown-item">Đổi mật khẩu</a>
+                                            <hr>
+                                            <a href="route('logout')"
+                                                onclick="event.preventDefault(); this.closest('form').submit();">
+                                                {{ __('Đăng xuất') }}
+                                            </a>
+
+                                        </div>
+                                    </form>
+                                </div>
+
+                                @else
+                                <a href="{{ route('login') }}"
+                                    class="text-sm text-gray-700 dark:text-gray-500 underline">
+                                    <i class="ec ec-user mr-1"></i>Đăng nhập</a>
+                                @if (Route::has('register'))
+                                <a href="{{ route('register') }}"
+                                    class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">
+                                    <i class="ec ec-user mr-1"></i>Đăng ký</a>
+                                @endif
+                                @endauth
+                                @endif
+
                                 <!-- End Account Sidebar Toggle Button -->
                             </li>
                         </ul>
@@ -93,13 +99,12 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                             <!-- Logo -->
                             <a class="order-1 order-xl-0 navbar-brand u-header__navbar-brand u-header__navbar-brand-center"
                                 href="../home/index.html" aria-label="DaNaMobile">
-                                <svg version="1.1" x="0px" y="0px" width="175.748px" height="42.52px"
-                                    viewBox="0 0 175.748 42.52" enable-background="new 0 0 175.748 42.52"
-                                    style="margin-bottom: 0;">
-                                    <ellipse class="ellipse-bg" fill-rule="evenodd" clip-rule="evenodd" fill="#FDD700"
-                                        cx="170.05" cy="36.341" rx="5.32" ry="5.367"></ellipse>
-                                    <path fill-rule="evenodd" clip-rule="evenodd" fill="#333E48"
-                                        d="M30.514,0.71c-0.034,0.003-0.066,0.008-0.056,0.056
+
+                                <img src="{{asset('images/logo/dana.png')}}" alt="" width="300px" height="60px">
+                                <!-- <svg version="1.1" x="0px" y="0px" width="175.748px" height="42.52px" viewBox="0 0 175.748 42.52" enable-background="new 0 0 175.748 42.52" style="margin-bottom: 0;">
+                                    <ellipse class="ellipse-bg" fill-rule="evenodd" clip-rule="evenodd" fill="#FDD700" cx="170.05" cy="36.341" rx="5.32" ry="5.367"></ellipse>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" fill="#333E48" d="M30.514,0.71c-0.034,0.003-0.066,0.008-0.056,0.056
+
                                         C30.263,0.995,29.876,1.181,29.79,1.5c-0.148,0.548,0,1.568,0,2.427v36.459c0.265,0.221,0.506,0.465,0.725,0.734h6.187
                                         c0.2-0.25,0.423-0.477,0.669-0.678V1.387C37.124,1.185,36.9,0.959,36.701,0.71H30.514z M117.517,12.731
                                         c-0.232-0.189-0.439-0.64-0.781-0.734c-0.754-0.209-2.039,0-3.121,0h-3.176V4.435c-0.232-0.189-0.439-0.639-0.781-0.733
@@ -136,9 +141,8 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                                         c5.976-0.568,9.574-3.936,11.816-8.354c-0.141-0.271-0.221-0.604-0.336-0.902C92.929,31.364,90.843,30.485,88.812,29.55z">
                                     </path>
                                 </svg>
-                            </a>
-                            <!-- End Logo -->
-
+                            </a> -->
+                                <!-- End Logo-->
 
                         </nav>
                         <!-- End Nav -->
@@ -175,7 +179,9 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                                                         style="margin-bottom: 0;">
                                                         <ellipse class="ellipse-bg" fill-rule="evenodd"
                                                             clip-rule="evenodd" fill="#FDD700" cx="170.05" cy="36.341"
-                                                            rx="5.32" ry="5.367"></ellipse>
+                                                            rx="5.32" ry="5.367">
+                                                        </ellipse>
+
                                                         <path fill-rule="evenodd" clip-rule="evenodd" fill="#333E48"
                                                             d="M30.514,0.71c-0.034,0.003-0.066,0.008-0.056,0.056
                                                             C30.263,0.995,29.876,1.181,29.79,1.5c-0.148,0.548,0,1.568,0,2.427v36.459c0.265,0.221,0.506,0.465,0.725,0.734h6.187
@@ -229,14 +235,19 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                                                     <!-- Top 100 Offers -->
                                                     <li class="">
                                                         <a class="u-header-collapse__nav-link font-weight-bold"
-                                                            href="#">Top 100 Offers</a>
+
+                                                            href="#">Top
+                                                            100 Offers</a>
+
                                                     </li>
                                                     <!-- End Top 100 Offers -->
 
                                                     <!-- New Arrivals -->
                                                     <li class="">
                                                         <a class="u-header-collapse__nav-link font-weight-bold"
-                                                            href="#">New Arrivals</a>
+                                                            href="#">New
+                                                            Arrivals</a>
+
                                                     </li>
                                                     <!-- End New Arrivals -->
 
@@ -276,7 +287,10 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                                                                         href="#">Software</a></li>
                                                                 <li><span
                                                                         class="u-header-sidebar__sub-menu-title">Office
-                                                                        & Stationery</span></li>
+
+                                                                        &
+                                                                        Stationery</span></li>
+
                                                                 <li><a class="u-header-collapse__submenu-nav-link"
                                                                         href="#">All Office & Stationery</a></li>
                                                                 <li><a class="u-header-collapse__submenu-nav-link"
@@ -301,7 +315,10 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                                                             <ul class="u-header-collapse__nav-list">
                                                                 <li><span
                                                                         class="u-header-sidebar__sub-menu-title">Cameras
-                                                                        & Photography</span></li>
+
+                                                                        &
+                                                                        Photography</span></li>
+
                                                                 <li class=""><a
                                                                         class="u-header-collapse__submenu-nav-link"
                                                                         href="#">Lenses</a></li>
@@ -321,7 +338,10 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                                                                         class="u-header-collapse__submenu-nav-link"
                                                                         href="#">Software</a></li>
                                                                 <li><span class="u-header-sidebar__sub-menu-title">Audio
-                                                                        & Video</span></li>
+
+                                                                        &
+                                                                        Video</span></li>
+
                                                                 <li><a class="u-header-collapse__submenu-nav-link"
                                                                         href="#">All Audio & Video</a></li>
                                                                 <li><a class="u-header-collapse__submenu-nav-link"
@@ -348,7 +368,10 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                                                             <ul class="u-header-collapse__nav-list">
                                                                 <li><span
                                                                         class="u-header-sidebar__sub-menu-title">Mobiles
-                                                                        & Tablets</span></li>
+
+                                                                        &
+                                                                        Tablets</span></li>
+
                                                                 <li><a class="u-header-collapse__submenu-nav-link"
                                                                         href="#">All Mobile Phones</a></li>
                                                                 <li><a class="u-header-collapse__submenu-nav-link"
@@ -387,7 +410,10 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                                                             <ul class="u-header-collapse__nav-list">
                                                                 <li><span
                                                                         class="u-header-sidebar__sub-menu-title">Movies
-                                                                        & TV Shows</span></li>
+
+                                                                        &
+                                                                        TV Shows</span></li>
+
                                                                 <li><a class="u-header-collapse__submenu-nav-link"
                                                                         href="#">All Movies & TV Shows</a></li>
                                                                 <li><a class="u-header-collapse__submenu-nav-link"
@@ -429,7 +455,10 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                                                             data-parent="#headerSidebarContent">
                                                             <ul class="u-header-collapse__nav-list">
                                                                 <li><span class="u-header-sidebar__sub-menu-title">Audio
-                                                                        & Video</span></li>
+
+                                                                        &
+                                                                        Video</span></li>
+
                                                                 <li><a class="u-header-collapse__submenu-nav-link"
                                                                         href="#">All Audio & Video</a></li>
                                                                 <li><a class="u-header-collapse__submenu-nav-link"
@@ -511,7 +540,10 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                                                                 <li><a class="u-header-collapse__submenu-nav-link"
                                                                         href="#">Lubricants</a></li>
                                                                 <li><span class="u-header-sidebar__sub-menu-title">Shop
-                                                                        for Bike</span></li>
+
+                                                                        for
+                                                                        Bike</span></li>
+
                                                                 <li><a class="u-header-collapse__submenu-nav-link"
                                                                         href="#">Helmets & Gloves</a></li>
                                                                 <li><a class="u-header-collapse__submenu-nav-link"
@@ -723,7 +755,10 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                                                         </li>
                                                         <li class="px-2 col">
                                                             <h5 class="text-blue font-size-14 font-weight-bold">
-                                                                Widescreen NX Mini F1 SMART NX</h5>
+
+                                                                Widescreen
+                                                                NX Mini F1 SMART NX</h5>
+
                                                             <span class="font-size-14">1 × $685.00</span>
                                                         </li>
                                                         <li class="px-2 col-auto">
@@ -762,14 +797,16 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                             <!-- Card -->
                             <div class="card border-0">
                                 <div class="card-header card-collapse border-0" id="basicsHeadingOne">
+
                                     <button type="button" id="js-header-btn"
+
                                         class="btn-link btn-remove-focus btn-block d-flex card-btn py-3 text-lh-1 px-4 shadow-none btn-primary rounded-top-lg border-0 font-weight-bold text-gray-90"
                                         data-toggle="collapse" data-target="#basicsCollapseOne" aria-expanded="true"
                                         aria-controls="basicsCollapseOne">
-                                        <span class="ml-0 text-gray-90 mr-2">
+                                        <span class="ml-0 text-gray-90-cate mr-2">
                                             <span class="fa fa-list-ul"></span>
                                         </span>
-                                        <span class="pl-1 text-gray-90">Danh mục</span>
+                                        <span class="pl-1 text-gray-90-cate">Danh mục</span>
                                     </button>
                                 </div>
                                 <div id="basicsCollapseOne" class="collapse show vertical-menu"
@@ -779,6 +816,15 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                                             class="js-mega-menu navbar navbar-expand-xl u-header__navbar u-header__navbar--no-space hs-menu-initialized">
                                             <div id="navBar" class="collapse navbar-collapse u-header__navbar-collapse">
                                                 <ul class="navbar-nav u-header__navbar-nav">
+
+                                                    @foreach($categories as $category)
+                                                    <li class="nav-item u-header__nav-item" data-event="hover"
+                                                        data-position="left">
+                                                        <a href="#"
+                                                            class="nav-link u-header__nav-link font-weight-bold">{{$category->category_name}}</a>
+                                                    </li>
+                                                    @endforeach
+
                                                     <!-- Nav Item MegaMenu -->
                                                     {!! $categorySelect !!}
                                                     <li class="nav-item hs-has-mega-menu u-header__nav-item"
@@ -794,7 +840,10 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                                                             aria-labelledby="basicMegaMenu">
                                                             <div class="vmm-bg">
                                                                 <img class="img-fluid"
-                                                                    src="../../assets/img/500X400/img1.png" alt="">
+
+                                                                    src="../../assets/img/500X400/img1.png"
+                                                                    alt="Image Description">
+
                                                             </div>
                                                             <div class="row u-header__mega-menu-wrapper">
                                                                 <div class="col mb-3 mb-sm-0">
@@ -806,12 +855,18 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                                                                         </li>
                                                                         <li><a class="nav-link u-header__sub-menu-nav-link"
                                                                                 href="#">Laptops, Desktops &
-                                                                                Monitors</a></li>
+
+                                                                                Monitors</a>
+                                                                        </li>
+
                                                                         <li><a class="nav-link u-header__sub-menu-nav-link"
                                                                                 href="#">Printers & Ink</a></li>
                                                                         <li><a class="nav-link u-header__sub-menu-nav-link"
                                                                                 href="#">Networking & Internet
-                                                                                Devices</a></li>
+
+                                                                                Devices</a>
+                                                                        </li>
+
                                                                         <li><a class="nav-link u-header__sub-menu-nav-link"
                                                                                 href="#">Computer Accessories</a></li>
                                                                         <li><a class="nav-link u-header__sub-menu-nav-link"
@@ -827,6 +882,18 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                                                                         </li>
                                                                     </ul>
                                                                 </div>
+
+
+                                                                <div class="col mb-3 mb-sm-0">
+                                                                    <span class="u-header__sub-menu-title">Office &
+                                                                        Stationery</span>
+                                                                    <ul class="u-header__sub-menu-nav-group">
+                                                                        <li><a class="nav-link u-header__sub-menu-nav-link"
+                                                                                href="#">All Office & Stationery</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+
                                                             </div>
                                                         </div>
                                                         <!-- End Nav Item - Mega Menu -->
@@ -901,7 +968,10 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                                                             class="nav-link u-header__sub-menu-nav-link">FAQ</a></li>
                                                     <li><a href="store-directory.html"
                                                             class="nav-link u-header__sub-menu-nav-link">Store
-                                                            Directory</a></li>
+
+                                                            Directory</a>
+                                                    </li>
+
                                                     <li><a href="terms-and-conditions.html"
                                                             class="nav-link u-header__sub-menu-nav-link">Terms and
                                                             Conditions</a></li>
@@ -920,7 +990,10 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                                                             Extended</a></li>
                                                     <li><a href="../shop/shop-list-view.html"
                                                             class="nav-link u-header__sub-menu-nav-link">Shop List
-                                                            View</a></li>
+
+                                                            View</a>
+                                                    </li>
+
                                                     <li><a href="../shop/shop-list-view-small.html"
                                                             class="nav-link u-header__sub-menu-nav-link">Shop List View
                                                             Small</a></li>
@@ -929,7 +1002,10 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                                                             Sidebar</a></li>
                                                     <li><a href="../shop/shop-full-width.html"
                                                             class="nav-link u-header__sub-menu-nav-link">Shop Full
-                                                            width</a></li>
+
+                                                            width</a>
+                                                    </li>
+
                                                     <li><a href="../shop/shop-right-sidebar.html"
                                                             class="nav-link u-header__sub-menu-nav-link">Shop Right
                                                             Sidebar</a></li>
@@ -997,7 +1073,10 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                                                     </li>
                                                     <li><a href="../blog/blog-full-width.html"
                                                             class="nav-link u-header__sub-menu-nav-link">Blog Full
-                                                            Width</a></li>
+
+                                                            Width</a>
+                                                    </li>
+
                                                     <li><a href="../blog/single-blog-post.html"
                                                             class="nav-link u-header__sub-menu-nav-link">Single Blog
                                                             Post</a></li>

@@ -17,7 +17,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/dashboard';
+    public const HOME = '/';
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
@@ -49,4 +49,20 @@ class RouteServiceProvider extends ServiceProvider
             return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
         });
     }
+
+    // protected $middlewareGroups = [
+    //     'web' => [
+    //         \App\Http\Middleware\EncryptCookies::class,
+    //         \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+    //         \Illuminate\Session\Middleware\StartSession::class,
+    //         \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+    //         \App\Http\Middleware\VerifyCsrfToken::class,
+    //         \Illuminate\Routing\Middleware\SubstituteBindings::class,
+    //     ],
+     
+    //     'api' => [
+    //         'throttle:api',
+    //         \Illuminate\Routing\Middleware\SubstituteBindings::class,
+    //     ],
+    // ];
 }
