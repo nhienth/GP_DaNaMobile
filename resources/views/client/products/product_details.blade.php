@@ -648,7 +648,8 @@
                             <div class="col-md-6">
                                 <h3 class="font-size-18 mb-5">Add a review</h3>
                                 <!-- Form -->
-                                <form class="js-validate">
+                                <form class="js-validate" action="{{route('preview',$products->id)}}" method="POST" enctype="multipart/form-data">
+                                    @csrf
                                     <div class="row align-items-center mb-4">
                                         <div class="col-md-4 col-lg-3">
                                             <label for="rating" class="form-label mb-0">Your Review</label>
@@ -670,34 +671,11 @@
                                             <label for="descriptionTextarea" class="form-label">Your Review</label>
                                         </div>
                                         <div class="col-md-8 col-lg-9">
-                                            <textarea class="form-control" rows="3" id="descriptionTextarea"
+                                            <textarea name="review" class="form-control" rows="3" id="descriptionTextarea"
                                                 data-msg="Please enter your message." data-error-class="u-has-error"
                                                 data-success-class="u-has-success"></textarea>
                                         </div>
-                                    </div>
-                                    <div class="js-form-message form-group mb-3 row">
-                                        <div class="col-md-4 col-lg-3">
-                                            <label for="inputName" class="form-label">Name <span
-                                                    class="text-danger">*</span></label>
-                                        </div>
-                                        <div class="col-md-8 col-lg-9">
-                                            <input type="text" class="form-control" name="name" id="inputName"
-                                                aria-label="Alex Hecker" required data-msg="Please enter your name."
-                                                data-error-class="u-has-error" data-success-class="u-has-success">
-                                        </div>
-                                    </div>
-                                    <div class="js-form-message form-group mb-3 row">
-                                        <div class="col-md-4 col-lg-3">
-                                            <label for="emailAddress" class="form-label">Email <span
-                                                    class="text-danger">*</span></label>
-                                        </div>
-                                        <div class="col-md-8 col-lg-9">
-                                            <input type="email" class="form-control" name="emailAddress"
-                                                id="emailAddress" aria-label="alexhecker@pixeel.com" required
-                                                data-msg="Please enter a valid email address."
-                                                data-error-class="u-has-error" data-success-class="u-has-success">
-                                        </div>
-                                    </div>
+                                    </div>                                                      
                                     <div class="row">
                                         <div class="offset-md-4 offset-lg-3 col-auto">
                                             <button type="submit"
@@ -723,16 +701,14 @@
                                 </div>
                             </div>
                             <!-- End Review Rating -->
-
-                            <p class="text-gray-90">Fusce vitae nibh mi. Integer posuere, libero et ullamcorper
-                                facilisis, enim eros tincidunt orci, eget vestibulum sapien nisi ut leo. Cras finibus
-                                vel est ut mollis. Donec luctus condimentum ante et euismod.</p>
-
+                           @foreach ($previews as $preview)
+                            <p class="text-gray-90">{{$preview->review}}</p>
                             <!-- Reviewer -->
-                            <div class="mb-2">
-                                <strong>John Doe</strong>
-                                <span class="font-size-13 text-gray-23">- April 3, 2019</span>
+                            <div class="mb-2">                              
+                                <strong style="color:black">{{$preview->user->name}}</strong>
+                                <span class="font-size-13 text-gray-23">- {{$preview->created_at->format('d/m/Y')}}</span>
                             </div>
+                            @endforeach
                             <!-- End Reviewer -->
                         </div>
                         <!-- End Review -->
@@ -1087,6 +1063,7 @@
         <!-- End Brand Carousel -->
     </div>
 </main>
+
 @endsection
 
 <script>
@@ -1136,3 +1113,4 @@
     }, 2000);
 
 </script>
+

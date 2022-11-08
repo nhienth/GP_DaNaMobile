@@ -1,7 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Banner;
+use App\Models\Category;
+use App\Models\Slider;
 use  App\Models\User;
+use  App\Models\User_addresses;
+
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -36,7 +44,16 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $categories = Category::all();
+        $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
+        $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
+        $user = User::find($id);
+        // $user =DB::table('users')
+        //         ->join('user_addresses','users.id', '=', 'user_addresses.id')
+        //         ->select('users.id','users.title','users.body','user.user_name', 'user_addresses.completeAddress','user_addresses.phoneNumber')
+        //         ->get();
+        // dd($user);
+        return view('client.user.show')->with(compact('categories','slider','banner','user'));
     }
 
     /**
@@ -47,8 +64,11 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        $categories = Category::all();
+        $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
+        $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
         $user = User::find($id);
-        return view('admin.user.edit')->with(compact('user'));
+        return view('client.user.edit')->with(compact('categories','slider','banner','user'));
     }
 
     /**
@@ -63,12 +83,12 @@ class UserController extends Controller
         //
         $user = User::find($id);
         $user ->id = $request->id;
-        $user ->role = $request->role;
-        $user ->status = $request->status;
+        $user ->name = $request->name;
+        $user ->email = $request->email;
 
         $user->save();
         // dd($order);
-        return redirect('admin/user/list')->with('status','Bạn đã cập nhật thành công');
+        return  redirect('/user/'.Auth::user()->id)->with('status','Bạn đã cập nhật thành công');
         
     }
 

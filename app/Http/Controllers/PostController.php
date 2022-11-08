@@ -19,6 +19,51 @@ class PostController extends Controller
         // dd($posts);
         return view('admin.posts.list', compact('posts'));
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getAllPost()
+    {
+        $posts = Post::with('category')->orderBy('posts.created_at','DESC')->get();
+        // dd($posts);
+        return view('client.blogs.index', compact('posts'));
+    }
+
+    public function showclient($id)
+    {
+        
+        $post = Post::find($id);
+        return view('client.blogs.detail', compact('post'));
+        
+    }
+
+     /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $kyw = $request->keyword;
+   
+
+        $posts = Post::with(['category'])
+            ->where('posts.title', 'LIKE', '%'.$kyw.'%')
+            ->orWhere('posts.summary', 'LIKE', '%'.$kyw.'%')
+            ->orderBy('posts.id', 'desc')
+            ->get();
+
+
+        return view('client.blogs.index', compact('posts'));
+      
+
+    }
+
+    
     /**
      * Show the form for creating a new resource.
      *

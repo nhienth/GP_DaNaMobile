@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AddressControll;
 
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
@@ -22,6 +23,7 @@ use App\Http\Controllers\OrderDetailsController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SpecificationController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,27 +35,48 @@ use App\Http\Controllers\SpecificationController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
+// -----------------------------------CLIENT-----------------------------
+Route::prefix('/')->group(function () {
+    Route::get('', [HomeController::class, 'index']);
 
-Route::get('/product-detail', function () {
-    return view('client.products.product_details');
-});
-
-Route::get('/product-bycate', function () {
-    return view('client.products.product_ bycate');
-});
-Route::get('/wishlist', function () {
-    return view('client.products.wishlist');
-});
+    Route::prefix('/contact')->group(function () {
 
 
-Route::get('/cart', function () {
-    return view('client.shop.cart');
-});
+        Route::get('/', [ContactController::class, 'create']);
+        
+    });
 
-Route::get('/checkout', function () {
-    return view('client.shop.checkout');
-});
+    Route::prefix('/user')->group(function () {
+        Route::get('/{id}', [UserController::class, 'show']);
+        Route::get('/update/{id}', [UserController::class, 'edit']);
+        Route::post('/update/{id}', [UserController::class, 'update']);
+
+        Route::get('/showaddress/{id}', [AddressControll::class, 'show']);
+
+        Route::get('/createaddress/{user_id}', [AddressControll::class, 'create']);
+
+        Route::post('/createaddress', [AddressControll::class, 'store']);
+
+        Route::get('/delete/{id}', [AddressControll::class, 'destroy']);
+
+    });
+
+
+    Route::prefix('/post')->group(function () {
+
+        // lay tat ca bai viet theo danh muc
+
+        Route::get('/list/{id}', [PostController::class, 'getPostById']);
+
+
+        Route::get('/posts', [PostController::class, 'getAllPost']);
+
+        Route::get('/tt', function () {
+            
+            return view('client.blogs.index');
+        });
+
+        Route::get('/details/{id}', [PostController::class, 'showclient']);
 
 Route::get('/nproduct/list', [ProductController::class, 'nindex']);
 Route::get('/nproduct/detail/{id}', [ProductController::class, 'ndetail']);
@@ -152,6 +175,9 @@ Route::prefix('/admin')->group(function () {
     });
 
 
+        Route::get('/search', [PostController::class, 'search']);
+    
+
     Route::prefix('/order')->group(function () {
         Route::get('/list', [OrderController::class, 'index']);
         Route::get('/details/{id}', [OrderDetailsController::class, 'show']);
@@ -192,17 +218,11 @@ Route::prefix('/admin')->group(function () {
         });
 
 
-    Route::prefix('/payment')->group(function () {
-        Route::get('/list', [PaymentController::class, 'index'])->name('payment.list');
-        Route::get('/create',  [PaymentController::class, 'create']);
-        Route::post('/create', [PaymentController::class, 'store'])->name('Payment.create');
-        Route::get('/edit/{id}', [PaymentController::class, 'edit']);
-        Route::post('/update/{id}', [PaymentController::class, 'update']);
-        Route::get('/delete/{id}', [PaymentController::class, 'destroy']);
-    });
-});
 
-// ->middleware(['auth'])->name('dashboard');
+    Route::get('/checkout', function () {
+        return view('client.shop.checkout');
+    });
+
 
 
 require __DIR__ . '/auth.php';

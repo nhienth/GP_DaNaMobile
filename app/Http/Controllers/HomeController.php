@@ -8,7 +8,9 @@ use App\Models\Category;
 use App\Models\Slider;
 use App\Models\Banner;
 use App\Models\Product;
+use App\Models\User;
 use App\Models\Combinations;
+
 class HomeController extends Controller
 {
     /**
@@ -31,6 +33,7 @@ class HomeController extends Controller
         $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
         $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
         // $product = Product::all();
+
         $productsld = Product::with('combinations','category')->orderBy('products.id', 'desc')
             ->take(8)
             ->get();
@@ -54,6 +57,7 @@ class HomeController extends Controller
         }
 
         return view('client.index')->with(compact('categories', 'categorylist', 'slider','banner','productsld', 'categorySelect'));
+
     }
 
     public function getCategoryName($id) {
@@ -78,6 +82,7 @@ class HomeController extends Controller
         }
         return $this->html;
     }
+
 
     public function res_sub($id, $id_parent)
     {
@@ -116,6 +121,7 @@ class HomeController extends Controller
         return $this->html;
      
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -123,7 +129,7 @@ class HomeController extends Controller
      */
     public function create()
     {
-        //
+       //
     }
 
     /**
@@ -132,9 +138,9 @@ class HomeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        //   
     }
 
     /**

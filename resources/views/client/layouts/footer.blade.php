@@ -1,8 +1,12 @@
 {{-- Begin Footer --}}
-<?php 
+
+<?php
+
+
 
 use App\Models\Banner;
 $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
+
 
 ?>
 <footer>

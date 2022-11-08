@@ -11,6 +11,22 @@ $categorySelect = $cate->res(0);
 $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
 ?>
 {{-- Begin header --}}
+<?php
+use App\Models\Category;
+use App\Models\Slider;
+use App\Models\Product;
+use App\Models\User;
+
+
+$categories = Category::all();
+$cate = new Category();
+
+$slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
+
+
+
+
+?>
 <header id="header" class="u-header u-header-left-aligned-nav">
     <div class="u-header__section">
         <!-- Topbar -->
@@ -55,7 +71,8 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                                         @csrf
                                         <div id="userlogin" class="dropdown-menu dropdown-unfold "
                                             style="text-align:center" aria-labelledby="Userclient">
-                                            <a href="http://" class="dropdown-item">Thông tin cá nhân</a>
+                                            <a href="" class="dropdown-item">Thông tin cá nhân</a>
+
                                             <a href="http://" class="dropdown-item">Đổi mật khẩu</a>
                                             <hr>
                                             <a href="route('logout')"
@@ -143,6 +160,7 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                                 </svg>
                             </a> -->
                                 <!-- End Logo-->
+
 
                         </nav>
                         <!-- End Nav -->
@@ -455,7 +473,6 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                                                             data-parent="#headerSidebarContent">
                                                             <ul class="u-header-collapse__nav-list">
                                                                 <li><span class="u-header-sidebar__sub-menu-title">Audio
-
                                                                         &
                                                                         Video</span></li>
 
@@ -797,6 +814,7 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                             <!-- Card -->
                             <div class="card border-0">
                                 <div class="card-header card-collapse border-0" id="basicsHeadingOne">
+
 
                                     <button type="button" id="js-header-btn"
 
