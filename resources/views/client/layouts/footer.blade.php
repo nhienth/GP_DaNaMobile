@@ -1,14 +1,4 @@
-{{-- Begin Footer --}}
 
-<?php
-
-
-
-use App\Models\Banner;
-$banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
-
-
-?>
 <footer>
     <!-- Footer-top-widget -->
     <div class="container d-none d-lg-block mb-3">
