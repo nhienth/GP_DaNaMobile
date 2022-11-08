@@ -56,7 +56,7 @@
                                 <h5 class="cart-item-price">$374.90</h5>
                             </div>
                         </div>
-                        <div class="list-item align-items-center"><img class="d-block rounded me-1" src="{{asset('backend/app-assets/images/pages/eCommerce/7.png')}}')}}" alt="donuts" width="62">
+                        <div class="list-item align-items-center"><img class="d-block rounded me-1" src="{{asset('backend/app-assets/images/pages/eCommerce/7.png')}}" alt="donuts" width="62">
                             <div class="list-item-body flex-grow-1"><i class="ficon cart-item-remove" data-feather="x"></i>
                                 <div class="media-heading">
                                     <h6 class="cart-item-title"><a class="text-body" href="app-ecommerce-details.html"> Google Home Mini</a></h6><small class="cart-item-by">By Google</small>

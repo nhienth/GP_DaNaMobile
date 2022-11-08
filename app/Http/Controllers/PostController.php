@@ -101,8 +101,7 @@ class PostController extends Controller
         $post->status = 0;
         $post->save();
 
-        return redirect('/admin/post/list')->with('messenger','Thêm bài viết thành công');
-
+        return redirect('/admin/post/list')->with('success','Thêm bài viết thành công');
     }
 
     /**
