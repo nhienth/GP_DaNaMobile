@@ -69,7 +69,7 @@ class ProductController extends Controller
         $product->category_id = $request->category_id;
 
         $imgpath = $_FILES['product_img']['name'];
-        $target_dir = "../public/images/admin/products/";
+        $target_dir = "../public/images/products/";
         $target_file =  $target_dir . basename($imgpath);
         move_uploaded_file($_FILES['product_img']['tmp_name'], $target_file);
         $product->product_img = $imgpath;
@@ -102,7 +102,7 @@ class ProductController extends Controller
             $product_gallery = new Image_Gallery();
             $temp = preg_split('/[\/\\\\]+/', $name[$i]);
             $filename = $temp[count($temp) - 1];
-            $upload_dir = "../public/images/admin/products/";
+            $upload_dir = "../public/images/products/";
             $upload_file = $upload_dir . $filename;
             move_uploaded_file($tmp_name[$i], $upload_file);
             $product_gallery->medium = $filename;
@@ -110,23 +110,6 @@ class ProductController extends Controller
             $product_gallery->save();
             echo '<script> console.log(1) </script>';
         }
-        // if (file_exists($upload_file)) {
-        //     echo 'File đã tồn tại';
-        // } else {
-        // if (move_uploaded_file($tmp_name[$i], $upload_file)) {
-        //     echo "\n<p>" . $name[$i] . "</p>\n";
-        //     echo "\n<p>" . $ext[$i] . "</p>\n";
-        //     echo "\n<p>" . $size[$i] . " kB</p>\n";
-        //     echo "\n<p>" . $upload_file . "</p>\n";
-
-        // @mysqli_connect('localhost', 'root', '', 'danamobile');
-        // @mysqli_query($conn, "INSERT INTO `images_galleries` VALUES (null,'{$name[$i]}','{$size[$i]}','$upload_dir','$date',0)") or
-        // die("Bi loi them du lieu" . mysqli_error($conn));
-        // @mysqli_close($conn);
-        // } else
-        //     echo 'loi';
-        // }
-        //End khoi cau lenh up file va them vao CSDL;
 
         $cateIdSeleted = $request->specification_cate;
 
@@ -189,7 +172,7 @@ class ProductController extends Controller
 
         $imgpath = $_FILES['product_img']['name'];
         if ($imgpath != '') {
-            $target_dir = "../public/images/admin/products/";
+            $target_dir = "../public/images/products/";
             $target_file =  $target_dir . basename($imgpath);
             move_uploaded_file($_FILES['product_img']['tmp_name'], $target_file);
             $product->product_img = $imgpath;

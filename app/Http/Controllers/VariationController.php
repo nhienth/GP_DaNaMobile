@@ -160,7 +160,7 @@ class VariationController extends Controller
 
         $newCombination -> combination_string = $combination_string;
         $file_name = $request->combination_image->getClientoriginalName();
-        $request->combination_image->move(public_path('images/admin/products'), $file_name);
+        $request->combination_image->move(public_path('images/products'), $file_name);
         $newCombination -> combination_image = $file_name;
 
         $isIssetImg = false;

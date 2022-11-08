@@ -29,7 +29,7 @@
                             </div>
                             <div class="col-xl-5 col-6  d-flex align-items-center" data-scs-animation-in="zoomIn"
                                 data-scs-animation-delay="500">
-                                <img class="img-fluid" src="{{asset('images/admin/products/'.$products->product_img)}}"
+                                <img class="img-fluid" src="{{asset('images/products/'.$products->product_img)}}"
                                     width="265px" alt="Image Description">
                             </div>
                         </div>
@@ -260,7 +260,7 @@
                                                     <div class="mb-2">
                                                         <a href="../shop/single-product-fullwidth.html"
                                                             class="d-block text-center"><img class="img-fluid"
-                                                                src="{{asset('images/admin/products/'.$productsss->product_img)}}"
+                                                                src="{{asset('images/products/'.$productsss->product_img)}}"
                                                                 alt="Image Description"></a>
                                                     </div>
                                                     <div class="flex-center-between mb-1">

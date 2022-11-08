@@ -36,7 +36,7 @@
                         @foreach ($product->images as $productImage)
 
                         <div class="js-slide">
-                            <img class="img-fluid" src="{{asset('images/admin/products/'.$productImage->medium)}}"
+                            <img class="img-fluid" src="{{asset('images/products/'.$productImage->medium)}}"
                                 alt="Image Description">
                         </div>
                         @endforeach
@@ -52,7 +52,7 @@
                         @foreach ($product->images as $productImage)
                         <div class="js-slide combi-image-js" name="combi-image-js" style="cursor: pointer;">
                             <input type="hidden" name="js-name-combiImg" value="{{$productImage->medium}}">
-                            <img class="img-fluid" src="{{asset('images/admin/products/'.$productImage->medium)}}"
+                            <img class="img-fluid" src="{{asset('images/products/'.$productImage->medium)}}"
                                 alt="Image Description">
                         </div>
                         @endforeach

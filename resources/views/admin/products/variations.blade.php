@@ -124,7 +124,7 @@
                                     <td>{{$product->product_name}}</td>
                                     <td>{{$productVariation->combination_string}}</td>
                                     <td><img class="rounded"
-                                            src="{{asset('images/admin/products/'.$productVariation->combination_image)}}"
+                                            src="{{asset('images/products/'.$productVariation->combination_image)}}"
                                             width="100px" height="100px" style="display:block; margin: 0 auto;"></td>
                                     <td>{{$productVariation->price}}</td>
                                     <td>{{$productVariation->avilableStock}}</td>
