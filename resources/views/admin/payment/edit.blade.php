@@ -46,15 +46,15 @@
                                 <form class="needs-validation" novalidate action="{{url('/admin/payment/update', [$payment->id])}}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="mb-1">
-                                        <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Tên phương thức thanh toán</label>
+                                        <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Tên tài khoản ngân hàng</label>
 
-                                        <input type="text" id="basic-addon-name" class="form-control" placeholder="Nhập phương thức thanh toán" value="{{$payment->payment_name}}" aria-label="Name" name="payment_name" aria-describedby="basic-addon-name" required />
+                                        <input type="text" id="basic-addon-name" class="form-control" placeholder="Nhập tên tài khoản ngân hàng" value="{{$payment->payment_name}}" aria-label="Name" name="payment_name" aria-describedby="basic-addon-name" required />
                                     </div>
 
                                     <div class="mb-1">
-                                        <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Ghi chú</label>
+                                        <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Số tài khoản</label>
 
-                                        <input type="text" id="basic-addon-name" class="form-control" placeholder="Nhập ghi chú" value="{{$payment->payment_status}}" aria-label="Name" name="payment_status" aria-describedby="basic-addon-name" required />
+                                        <input type="text" id="basic-addon-name" class="form-control" placeholder="Nhập số tài khoản" value="{{$payment->payment_status}}" aria-label="Name" name="payment_status" aria-describedby="basic-addon-name" required />
                                     </div>
 
                                     <button type="submit" class="btn btn-primary me-2">Cập nhật</button>

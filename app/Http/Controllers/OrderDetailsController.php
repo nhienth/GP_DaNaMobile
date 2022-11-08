@@ -41,7 +41,6 @@ class OrderDetailsController extends Controller
     {
         //
     }
-
     /**
      * Display the specified resource.
      *
@@ -49,12 +48,13 @@ class OrderDetailsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {   
-        $order = orderDetails::where('order_id','=',$id)->get();  
-        //dd($id);
-        return view('admin.order.details',compact('order'));
-    }
+    {             
+        $detail = OrderDetails::with('product' , 'order')->where('order_details.order_id', $id)->get();
+        //dd($detail);
+        return view('admin.order.details',compact('detail'));
 
+        // dd($detail);
+    }
     /**
      * Show the form for editing the specified resource.
      *

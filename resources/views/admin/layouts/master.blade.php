@@ -49,6 +49,8 @@
     <!-- BEGIN: Page Vendor JS-->
     <script src="{{asset('backend/app-assets/vendors/js/charts/apexcharts.min.js')}}"></script>
     <script src="{{asset('backend/app-assets/vendors/js/extensions/toastr.min.js')}}"></script>
+    <script src="{{asset('backend/app-assets/vendors/js/forms/select/select2.full.min.js')}}"></script>
+
 
     <script src="{{asset('backend/app-assets/vendors/js/forms/select/select2.full.min.js')}}"></script>
     <script src="{{asset('backend/app-assets/vendors/js/tables/datatable/jquery.dataTables.min.js')}}"></script>
@@ -76,6 +78,8 @@
     
     <script src="{{asset('backend/app-assets/js/scripts/pages/dashboard-ecommerce.js')}}"></script>
     <script src="{{asset('backend/app-assets/js/scripts/forms/form-file-uploader.js')}}"></script>
+    <script src="{{asset('backend/app-assets/js/scripts/forms/form-select2.js')}}"></script>
+
     <!-- END: Page JS-->
 
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
@@ -105,6 +109,21 @@
                 $('.dropdown-toggle').dropdown();
             });
         </script>
+
+ <!-- toastr js 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            toastr.options.timeOut = 10000;
+            @if (Session::has('error'))
+                toastr.error('{{ Session::get('error') }}');
+            @elseif(Session::has('success'))
+                toastr.success('{{ Session::get('success') }}');
+            @endif
+        });
+
+    </script> -->
 </body>
 <!-- END: Body-->
 

@@ -15,7 +15,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('category')->get();
+        $posts = Post::with('category')->orderBy('posts.created_at','DESC')->paginate(5);
         // dd($posts);
         return view('admin.posts.list', compact('posts'));
     }
@@ -55,8 +55,7 @@ class PostController extends Controller
         $post->status = 0;
         $post->save();
 
-        return redirect('/admin/post/list');
-
+        return redirect('/admin/post/list')->with('success','Thêm bài viết thành công');
     }
 
     /**
@@ -115,7 +114,7 @@ class PostController extends Controller
         $post->status = 0;
         $post->save();
 
-        return redirect('/admin/post/list');
+        return redirect('/admin/post/list')->with('messenger','Cập nhật bài viết thành công');
 
         
     }
@@ -130,6 +129,6 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $post->delete();
-        return redirect('/admin/post/list');
+        return redirect('/admin/post/list')->with('messenger','Bài viết đã bị xóa');
     }
 }
