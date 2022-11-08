@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Http\Controllers\CategoryController;
 use App\Models\Post;
+use App\Models\Preview;
+use App\Http\Controllers\PreviewController;
 
 use Illuminate\Http\Request;
 
@@ -36,7 +38,8 @@ class PostController extends Controller
     {
         
         $post = Post::find($id);
-        return view('client.blogs.detail', compact('post'));
+        $previews = Preview::all();
+        return view('client.blogs.details', compact('post','previews'));
         
     }
 
@@ -61,9 +64,7 @@ class PostController extends Controller
         return view('client.blogs.index', compact('posts'));
       
 
-    }
-
-    
+    }    
     /**
      * Show the form for creating a new resource.
      *

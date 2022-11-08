@@ -68,7 +68,7 @@
                                     Địa chỉ của tôi
                                     <span class="text-danger">*</span>
                                 </label>
-                                <a href="{{url('/showaddress',[$user->id])}}"><button type="button" class="btn btn-gradient-info">Xem địa chỉ</button></a>
+                                <a href="{{url('/user/showaddress',[$user->id])}}"><button type="button" class="btn btn-gradient-info">Xem địa chỉ</button></a>
                             </div>
                             <!-- End Input -->
                         </div>
@@ -76,7 +76,7 @@
                         
                         
                         <div class="col-md-4 ">
-                        <a href="{{url('/userupdate',[$user->id])}}"><button type="button" class="btn btn-outline-primary">Chỉnh sửa</button></a>
+                        <a href="{{url('user/update',[$user->id])}}"><button type="button" class="btn btn-outline-primary">Chỉnh sửa</button></a>
                         </div>
                     </div>
                     <!-- End Billing Form -->

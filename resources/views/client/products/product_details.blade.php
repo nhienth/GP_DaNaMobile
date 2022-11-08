@@ -515,7 +515,7 @@
                     <div class="tab-pane fade" id="Jpills-four-example1" role="tabpanel"
                         aria-labelledby="Jpills-four-example1-tab">
                         <div class="row mb-8">
-                            <div class="col-md-6">
+                            <div class="col-md-6" style="color:black">
                                 <div class="mb-3">
                                     <h3 class="font-size-18 mb-6">Based on 3 reviews</h3>
                                     <h2 class="font-size-30 font-weight-bold text-lh-1 mb-0">4.3</h2>
@@ -637,7 +637,7 @@
                                 </ul>
                                 <!-- End Ratings -->
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6" style="color:black">
                                 <h3 class="font-size-18 mb-5">Add a review</h3>
                                 <!-- Form -->
                                 <form class="js-validate" action="{{route('preview',$products->id)}}" method="POST" enctype="multipart/form-data">
@@ -646,16 +646,15 @@
                                         <div class="col-md-4 col-lg-3">
                                             <label for="rating" class="form-label mb-0">Your Review</label>
                                         </div>
-                                        <div class="col-md-8 col-lg-9">
-                                            <a href="#" class="d-block">
-                                                <div class="text-warning text-ls-n2 font-size-16">
-                                                    <small class="far fa-star text-muted"></small>
-                                                    <small class="far fa-star text-muted"></small>
-                                                    <small class="far fa-star text-muted"></small>
-                                                    <small class="far fa-star text-muted"></small>
-                                                    <small class="far fa-star text-muted"></small>
-                                                </div>
-                                            </a>
+                                        <div class="col-md-8 col-lg-9" id="list_start"> 
+                                            <style>
+                                                .list_start.rating_active{
+                                                    color: #ffc107;
+                                                }
+                                            </style>                                                                                   
+                                                    @for ($i = 1; $i <= 5; $i++)
+                                                    <i class="far fa-star text-muted" data-key={{$i}}></i>
+                                                    @endfor                                               
                                         </div>
                                     </div>
                                     <div class="js-form-message form-group mb-3 row">
@@ -681,6 +680,7 @@
                         </div>
                         <!-- Review -->
                         <div class="border-bottom border-color-1 pb-4 mb-4">
+                            @foreach ($previews as $preview)
                             <!-- Review Rating -->
                             <div
                                 class="d-flex justify-content-between align-items-center text-secondary font-size-1 mb-2">
@@ -692,8 +692,11 @@
                                     <small class="far fa-star text-muted"></small>
                                 </div>
                             </div>
-                            <!-- End Review Rating -->
-                           @foreach ($previews as $preview)
+                            <!-- End Review Rating -->                       
+                           <?php
+                           for ($i = 0; $i < $preview->status; $i++){
+                               echo '<i class="fa fa-star"></i>';
+                           }?>
                             <p class="text-gray-90">{{$preview->review}}</p>
                             <!-- Reviewer -->
                             <div class="mb-2">                              
@@ -702,61 +705,7 @@
                             </div>
                             @endforeach
                             <!-- End Reviewer -->
-                        </div>
-                        <!-- End Review -->
-                        <!-- Review -->
-                        <div class="border-bottom border-color-1 pb-4 mb-4">
-                            <!-- Review Rating -->
-                            <div
-                                class="d-flex justify-content-between align-items-center text-secondary font-size-1 mb-2">
-                                <div class="text-warning text-ls-n2 font-size-16" style="width: 80px;">
-                                    <small class="fas fa-star"></small>
-                                    <small class="fas fa-star"></small>
-                                    <small class="fas fa-star"></small>
-                                    <small class="fas fa-star"></small>
-                                    <small class="fas fa-star"></small>
-                                </div>
-                            </div>
-                            <!-- End Review Rating -->
-
-                            <p class="text-gray-90">Pellentesque habitant morbi tristique senectus et netus et malesuada
-                                fames ac turpis egestas. Suspendisse eget facilisis odio. Duis sodales augue eu
-                                tincidunt faucibus. Etiam justo ligula, placerat ac augue id, volutpat porta dui.</p>
-
-                            <!-- Reviewer -->
-                            <div class="mb-2">
-                                <strong>Anna Kowalsky</strong>
-                                <span class="font-size-13 text-gray-23">- April 3, 2019</span>
-                            </div>
-                            <!-- End Reviewer -->
-                        </div>
-                        <!-- End Review -->
-                        <!-- Review -->
-                        <div class="pb-4">
-                            <!-- Review Rating -->
-                            <div
-                                class="d-flex justify-content-between align-items-center text-secondary font-size-1 mb-2">
-                                <div class="text-warning text-ls-n2 font-size-16" style="width: 80px;">
-                                    <small class="fas fa-star"></small>
-                                    <small class="fas fa-star"></small>
-                                    <small class="fas fa-star"></small>
-                                    <small class="fas fa-star"></small>
-                                    <small class="far fa-star text-muted"></small>
-                                </div>
-                            </div>
-                            <!-- End Review Rating -->
-
-                            <p class="text-gray-90">Sed id tincidunt sapien. Pellentesque cursus accumsan tellus, nec
-                                ultricies nulla sollicitudin eget. Donec feugiat orci vestibulum porttitor sagittis.</p>
-
-                            <!-- Reviewer -->
-                            <div class="mb-2">
-                                <strong>Peter Wargner</strong>
-                                <span class="font-size-13 text-gray-23">- April 3, 2019</span>
-                            </div>
-                            <!-- End Reviewer -->
-                        </div>
-                        <!-- End Review -->
+                        </div>                                          
                     </div>
                 </div>
             </div>
@@ -1057,3 +1006,39 @@
 </main>
 
 @endsection
+
+@push('script')
+    <script>
+        $(function (){
+            let listStart = $(".list_start .fa");
+            listStart.mouseover( function () {
+                let $this = $(this);
+                let number = $this.attr('data-key');
+                listStart.removeClass('rating_active');
+                $.each(listStart, function(key,value){
+                    if  (key + 1 <= number)
+                    {
+                        $(this).addClass('rating_active')
+                    }
+                });
+            });
+                $("js_rating_product").click(function (e) {
+                    event.preventDefault();
+                    let content = $("#ra_content").val();
+                    let number  = $("#number_rating").val();
+                    let url = $(this).attr('href');
+                    if ( content && number)
+                    {
+                        $.ajax({
+                            url: list_start;
+                            type: 'POST';
+                            data: {
+                                number : number;
+                                r_content = content;    
+                            }
+                        });
+                    }
+                        });
+                    });          
+    </script>
+@endpush

@@ -10,6 +10,7 @@ use App\Models\Preview;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Post;
 use App\Http\Middleware\checklogin;
 use DB;
 
@@ -40,6 +41,8 @@ class PreviewController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    //previewProduct
     public function product_details($id)
     {   
         $products = Product::find($id);
@@ -59,6 +62,32 @@ class PreviewController extends Controller
         $previews->user_id = Auth::user()->id;     
         $previews->product_id = $id; 
        
+        $previews->save();
+        return back();
+    }
+
+
+
+    //previewPost
+    public function showclient($id)
+    {
+        
+        $post = Post::find($id);
+        $previews = Preview::all();
+        return view('client.blogs.details', compact('post','previews'));
+        
+    }
+    public function previewPost(Request $request, $id)
+    {
+       
+        $previews = new Preview();
+        $previews->rate = 5;
+        $previews->review = $request->review;
+        $previews->status = 1;
+        $previews->user_id = Auth::user()->id;     
+        $previews->product_id = $id; 
+        // dd($previews);
+
         $previews->save();
         return back();
     }

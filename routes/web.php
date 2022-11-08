@@ -67,16 +67,18 @@ Route::prefix('/')->group(function () {
         });
 
         Route::get('/details/{id}', [PostController::class, 'showclient']);
+        //preview post  
+          
+        Route::get('/previewPost/{id}',[PreviewController::class,'previewPost'])->name('post_review')->middleware('auth');
         Route::get('/search/', [PostController::class, 'search']);
-        //preview post
-    
+        
     
 
     });
     
     //preview product
     Route::get('/product_details/{id}',[PreviewController::class,'product_details']);
-    Route::post('preview/{id}',[PreviewController::class,'preview'])->name('preview')->middleware('auth');;     
+    Route::post('preview/{id}',[PreviewController::class,'preview'])->name('preview')->middleware('auth');  
     Route::get('/product-bycate', function () {
         return view('client.products.product_ bycate');
     });

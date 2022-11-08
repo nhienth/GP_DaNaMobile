@@ -18,56 +18,71 @@
         </div>
     </div>
     <!-- End breadcrumb -->
-
     <div class="container">
         <div class="mb-5">
-            <h1 class="text-center" style="color:black">Liên hệ</h1>
+            <h1 class="text-center" style="color:black;">Liên hệ</h1>
         </div>
         <!-- Accordion -->
-        <div id="shopCartAccordion" class="accordion rounded mb-5">
-            <!-- Card -->
-            <div class="card border-0">
-                <div id="shopCartHeadingOne" class="alert alert-primary mb-0" role="alert">
-                    Liên hệ với admin? <a href="#" class="alert-link" data-toggle="collapse" data-target="#shopCartOne" aria-expanded="false" aria-controls="shopCartOne">Nhấn vào đây để đăng nhập</a>
-                </div>
-            </div>
-            <!-- End Card -->
-        </div>
-        <!-- End Accordion -->
-
-        <form class="js-validate" novalidate="novalidate">
+        <form class="js-validate" novalidate="novalidate" style="color: black;">
             <div class="row">
-                <div class="col-lg-5 order-lg-2 mb- mb-lg-0">
-                    <div class="pl-lg-3 ">
-                        <!-- Title -->
-                        <div class="border-bottom border-color-1 mb-5">
-                            <h3 class="section-title mb-0 pb-2 font-size-25" style="color:black">Nội dung liên hệ</h3>
-                        </div>
-                        <!-- Input -->
-                        <div class="js-form-message mb-6">
-                            <label class="form-label" style="color:black">
-                                Nội dung
-                            </label>
+                <div class="col-lg-7 order-lg-1">
+                    <div class="pb-12 mb-7">
+                        <!-- Billing Form -->
+                        <div class="row">
+    
+                            <div class="col-md-12">
+                                <!-- Input -->
+                                <div class="js-form-message mb-3">
+                                    <label class="form-label">
+                                        Họ và tên
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text" class="form-control" name="" placeholder="" value="" data-msg="Please enter your frist name." data-error-class="u-has-error" data-success-class="u-has-success" autocomplete="off">
+                                </div>
+                                <!-- End Input -->
+                            </div>
+                            <div class="col-md-12">
+                                <!-- Input -->
+                                <div class="js-form-message mb-6">
+                                    <label class="form-label">
+                                        Địa chỉ email
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="email" class="form-control" name="" placeholder="" value=""  data-msg="Please enter your last name." data-error-class="u-has-error" data-success-class="u-has-success">
+                                </div>
+                                <!-- End Input -->
+                            </div>
 
-                            <form class="needs-validation" novalidate action="{{url('contact')}}" method="POST" enctype="multipart/form-data">
-                                <div class="input-group">
-                                    <input class="form-control p-4" rows="4" name="text" placeholder="Vui lòng điền họ và tên." style="color: black;"></input>
+                            <div class="col-md-12">
+                                <!-- Input -->
+                                <div class="js-form-message mb-6">
+                                    <label class="form-label">
+                                        Tiêu đề
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text" class="form-control" name="" placeholder="" value=""  data-msg="Please enter your last name." data-error-class="u-has-error" data-success-class="u-has-success">
                                 </div>
-                                
-                                <div class="input-group">
-                                    <input class="form-control p-4" rows="4" name="text" placeholder="Vui lòng điền Email." style="color: black;"></input>
-                                </div>
-                                
-                                <div class="input-group">
-                                    <textarea class="form-control p-5" rows="4" name="text" placeholder="Vui lòng điền vào form liên hệ này !" style="color: black;"></textarea>
-                                </div>
-                                <div >
-                                <button type="submit" class="btn btn-primary me-2">Gửi</button>
-                                </div>
-                            </form>
+                                <!-- End Input -->
+                            </div>
 
+                            <div class="col-md-12">
+                                <!-- Input -->
+                                <div class="js-form-message mb-6">
+                                    <label class="form-label">
+                                        Nội dung liên hệ
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <textarea class="form-control" name="" id="" cols="30" rows="10"></textarea>
+                                </div>
+                                <!-- End Input -->
+                            </div>
+    
+                            <div class="col-md-6">
+                                <a href=""><button type="button" class="btn btn-outline-primary">Gửi</button></a>
+                            </div>
+    
                         </div>
-                        <!-- End Input -->
+                        <!-- End Billing Form -->
                     </div>
                 </div>
             </div>
