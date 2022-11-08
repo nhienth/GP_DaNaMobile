@@ -77,11 +77,11 @@
 
                                     @foreach ($specfications as $specfication)
                                         <div class="show-{{$specfication->category_id}} mb-1 ms-2 show-spec" style="display: none">
-                                            <label class="form-label fs-6 fw-bolder" for="basic-addon-name">
+                                            <label class="form-label fs-6 fw-bolder" for="basic-addon-name1">
                                                 {{$specfication->specification_name}}
                                             </label>
                                            
-                                            <input type="text" id="basic-addon-name" class="form-control" placeholder="Nhập thông số sản phẩm" name="{{$specfication->id}}_value" aria-label="Name" aria-describedby="basic-addon-name" required />
+                                            <input type="text" id="basic-addon-name1" class="form-control" placeholder="Nhập thông số sản phẩm" name="{{$specfication->id}}_value" aria-label="Name" aria-describedby="basic-addon-name" required />
                                         </div>
                                     @endforeach
                                     <input type="hidden" id="specification_cate" name="specification_cate" value="">

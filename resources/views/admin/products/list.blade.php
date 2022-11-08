@@ -132,7 +132,7 @@
                                     <th>Lượt xem</th>
                                     <th>Trạng thái</th>
                                     <th>Thêm biến thể</th>
-                                    <th colspan="2">Hành động</th>
+                                    <th colspan="3">Hành động</th>
                                 </tr>
                             </thead>
 
@@ -197,6 +197,11 @@
                                         <a href="{{url('admin/product/addVariation',[$product->id])}}"><button
                                                 type="button" class="btn btn-info"><i
                                                     data-feather='plus'></i></button></a>
+                                    </td>
+                                    <td>
+                                        <a href="{{url('admin/product/edit', [$product->id])}}"><button
+                                                type="button" class="btn btn-warning"><i
+                                                    data-feather='edit'></i></button></a>
                                     </td>
                                     <td>
                                         <a href="{{url('admin/product/listProVar', [$product->id])}}"><button
