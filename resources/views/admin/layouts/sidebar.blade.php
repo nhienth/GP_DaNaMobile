@@ -37,7 +37,9 @@
             
             <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Chức năng</span><i data-feather="more-horizontal"></i></li>
 
+
             <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/category/list"><i data-feather="align-justify"></i><span class="menu-title text-truncate" data-i18n="align-justify">Danh mục</span></a>
+
                 <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                     <li><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/category/list"><i data-feather="list"></i><span class="menu-title text-truncate" data-i18n="list">Danh sách</span></a></li>
                     <li><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/category/create"><i data-feather="plus-square"></i><span class="menu-title text-truncate" data-i18n="plus-square">Thêm danh mục</span></a>
@@ -45,6 +47,7 @@
             </li>
 
             <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/product/list"><i data-feather="gift"></i><span class="menu-title text-truncate" data-i18n="gift">Sản phẩm</span></a>
+
                 <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                     <li><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/product/list"><i data-feather="list"></i><span class="menu-title text-truncate" data-i18n="list">Danh sách</span></a></li>
                     <li><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/product/create"><i data-feather="plus-square"></i><span class="menu-title text-truncate" data-i18n="plus-square">Thêm sản phẩm</span></a>
@@ -52,6 +55,7 @@
             </li>
 
             <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/variation/list"><i data-feather="grid"></i><span class="menu-title text-truncate" data-i18n="grid">Biến thể</span></a>
+
                 <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                     <li><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/variation_main/list"><i data-feather="list"></i><span class="menu-title text-truncate" data-i18n="list">Danh sách</span></a></li>
                     <li><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/variation_main/create"><i data-feather="plus-square"></i><span class="menu-title text-truncate" data-i18n="plus-square">Thêm biến thể</span></a>
@@ -73,14 +77,18 @@
             
             <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/contact/list"><i data-feather="twitch"></i><span class="menu-title text-truncate" data-i18n="twitch">Liên hệ</span></a></li>
             
+
             <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/slider/list"><i data-feather="columns"></i><span class="menu-title text-truncate" data-i18n="columns">Slider</span></a>
+
                 <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                     <li><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/slider/list"><i data-feather="list"></i><span class="menu-title text-truncate" data-i18n="list">Danh sách</span></a></li>
                     <li><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/slider/create"><i data-feather="plus-square"></i><span class="menu-title text-truncate" data-i18n="plus-square">Thêm slider</span></a>
                 </ul> 
             </li>
             
+
             <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/banner/list"><i data-feather="copy"></i><span class="menu-title text-truncate" data-i18n="copy">Banner</span></a>
+
                 <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                     <li><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/banner/list"><i data-feather="list"></i><span class="menu-title text-truncate" data-i18n="list">Danh sách</span></a></li>
                     <li><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/banner/create"><i data-feather="plus-square"></i><span class="menu-title text-truncate" data-i18n="plus-square">Thêm banner</span></a>
@@ -88,6 +96,7 @@
             </li>
             
             <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/voucher/list"><i data-feather="square"></i><span class="menu-title text-truncate" data-i18n="Modal Examples">Phiếu mua hàng</span></a>
+
                 <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                     <li><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/voucher/list"><i data-feather="list"></i><span class="menu-title text-truncate" data-i18n="list">Danh sách</span></a></li>
                     <li><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/voucher/create"><i data-feather="plus-square"></i><span class="menu-title text-truncate" data-i18n="plus-square">Thêm voucher</span></a>
@@ -95,6 +104,7 @@
             </li>
             
             <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/payment/list"><i data-feather="credit-card"></i><span class="menu-title text-truncate" data-i18n="credit-card">Phương thức thanh toán</span></a>
+
                 <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                     <li><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/payment/list"><i data-feather="list"></i><span class="menu-title text-truncate" data-i18n="list">Danh sách</span></a></li>
                     <li><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/payment/create"><i data-feather="plus-square"></i><span class="menu-title text-truncate" data-i18n="plus-square">Thêm phương thức thanh toán</span></a>
@@ -105,6 +115,7 @@
             <li class=" navigation-header"><span data-i18n="User Interface">Bài viết</span><i data-feather="more-horizontal"></i></li>
             
             <li class=" nav-item"><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/post/list"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="file-text">Bài viết</span></a>
+
                 <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                     <li><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/post/list"><i data-feather="list"></i><span class="menu-title text-truncate" data-i18n="list">Danh sách</span></a></li>
                     <li><a class="d-flex align-items-center" href="http://127.0.0.1:8000/admin/post/create"><i data-feather="plus-square"></i><span class="menu-title text-truncate" data-i18n="plus-square">Thêm bài viết</span></a>

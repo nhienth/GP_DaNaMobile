@@ -64,6 +64,10 @@ class Product extends Model
         return $this->hasMany(Variation_Option::class,'product_id');
     }
 
+    public function images(){
+        return $this->hasMany(Image_Gallery::class,'product_id');
+    }
+
     public function variation_value()
     {
         return $this->hasManyThrough(

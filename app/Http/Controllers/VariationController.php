@@ -6,6 +6,8 @@ use App\Models\Product;
 use App\Models\Variation;
 use App\Models\Variation_Option;
 use App\Models\Variation_Option_Value;
+use App\Models\Combinations;
+use App\Models\Image_Gallery;
 
 use Illuminate\Http\Request;
 
@@ -22,6 +24,7 @@ class VariationController extends Controller
     {
         $variations = Variation::all();
         // $result = $variation::all();
+
         return view('admin.variation_main.list', compact('variations'));
     }
 
@@ -90,11 +93,13 @@ class VariationController extends Controller
      */
     public function store(Request $request)
     {
-        $product = Product::with('variations')->where('products.id',$request->product_id )->first();
+        $product = Product::with(['variations', 'images'])->where('products.id',$request->product_id )->first();
 
         $productVariationsValues = Product::with('variation_value')->where('products.id',$request->product_id )->first();
     
         $variations = Variation::all();
+
+        $combination_string = '';
 
 
         $checkProductVariation = $product->variations;
@@ -117,6 +122,8 @@ class VariationController extends Controller
                 $variation_option_value->variation_value = $request->$inputRequestValue;
                 
                 $variation_option_value->products_variation_id = $variation_option->id;
+
+                $combination_string =$combination_string. ' '.$request->$inputRequestValue;
     
                 $variation_option_value->save();
             }
@@ -128,6 +135,8 @@ class VariationController extends Controller
                         $id = $pvariation->id;
                     }
                 }
+
+                $rom = $request->variation_rom;
             
                 $variation_option_value = new Variation_Option_Value();
 
@@ -138,22 +147,59 @@ class VariationController extends Controller
                 
                 $variation_option_value->products_variation_id =$id;
 
+                $combination_string =$combination_string. ' '.$request->$inputRequestValue;
+
                 $variation_option_value->save();
                 
             }
 
+        }
+       
+
+        $newCombination = new Combinations();
+
+        $newCombination -> combination_string = $combination_string;
+        $file_name = $request->combination_image->getClientoriginalName();
+        $request->combination_image->move(public_path('images/products'), $file_name);
+        $newCombination -> combination_image = $file_name;
+
+        $isIssetImg = false;
+
+        foreach ($product->images as $productImage) {
+            if($productImage->medium == $file_name) {
+                $isIssetImg = true;
+                break;
+            }
+        }
+
+        if(!$isIssetImg) {
+            $newImgPro = new Image_Gallery();
+
+            $newImgPro -> medium = $file_name;
+            $newImgPro -> product_id =  $request->product_id;
+
+            $newImgPro -> save();
 
         }
 
-   
+        $newCombination -> sku = $request->sku;
+        $newCombination -> price = $request->price;
+        $newCombination -> avilableStock = $request->avilableStock;
+        $newCombination ->product_id =  $request->product_id;
 
-        // $product_variations_value = Product::with(['variations', 'variation_value'])
-        //     ->where('products_variations_options.product_id', $request->product_id)
-        //     ->get();
 
-        // dd($product_variations_value);
+        $newCombination->save();
+
+        return redirect('/admin/product/list');
     }
 
+
+    // View list Variation by Product
+    public function viewList(Request $request, $id){
+        $list_Variations = Product::with('variation_value')->where('products.id',$id )->first();
+        dd( $list_Variations );
+        // $variation_option_value = Variation::with('variation_values')->where('')
+    }
     /**
      * Display the specified resource.
      *
