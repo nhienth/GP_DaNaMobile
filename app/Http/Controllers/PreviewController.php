@@ -11,7 +11,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
 use App\Http\Middleware\checklogin;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class PreviewController extends Controller
 {
@@ -23,16 +23,16 @@ class PreviewController extends Controller
 
     public function index()
     {
-        
+
         $previews = Preview::with('product')
             // ->select('product_id', DB::raw('count(*) as total'),DB::raw('DATE(created_at) as date)'))
             // ->groupBy('product_id')
-            ->select(DB::raw('product_id, max(created_at) as maxdate, min(created_at) as mindate'),DB::raw('count(*) as total'))
+            ->select(DB::raw('product_id, max(created_at) as maxdate, min(created_at) as mindate'), DB::raw('count(*) as total'))
             ->groupBy('product_id')
-               //->orderBy('paper_update', 'desc')
+            //->orderBy('paper_update', 'desc')
             ->get();
         // dd($previews);
-        return view('admin.preview.list',compact('previews'));
+        return view('admin.preview.list', compact('previews'));
     }
 
     /**
@@ -41,13 +41,13 @@ class PreviewController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function product_details($id)
-    {   
+    {
         $products = Product::find($id);
         $categories = Category::all();
         $previews = Preview::all();
-        $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
-        $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
-        return view('client.products.product_details',compact('categories' ,'slider','banner','products','previews'));
+        $slider = Slider::first()->orderBy('slider.created_at', 'DESC')->paginate(1);
+        $banner = Banner::first()->orderBy('banner.created_at', 'DESC')->paginate(1);
+        return view('client.products.product_details', compact('categories', 'slider', 'banner', 'products', 'previews'));
     }
 
     public function preview(Request $request, $id)
@@ -56,9 +56,9 @@ class PreviewController extends Controller
         $previews->rate = 5;
         $previews->review = $request->review;
         $previews->status = 1;
-        $previews->user_id = Auth::user()->id;     
-        $previews->product_id = $id; 
-       
+        $previews->user_id = Auth::user()->id;
+        $previews->product_id = $id;
+
         $previews->save();
         return back();
     }
@@ -81,7 +81,7 @@ class PreviewController extends Controller
      */
     public function show($id)
     {
-        $detail = Preview::with(['product', 'user'])->where('product_reviews.product_id',$id)->get();
+        $detail = Preview::with(['product', 'user'])->where('product_reviews.product_id', $id)->get();
         // dd($detail);
         return view('admin.preview.detail')->with(compact('detail'));
     }
@@ -108,9 +108,6 @@ class PreviewController extends Controller
     {
         $preview = Preview::find($id);
         $preview->delete();
-        return redirect('admin/preview/list')->with('status','Bạn đã Xóa thành công');
+        return redirect('admin/preview/list')->with('status', 'Bạn đã Xóa thành công');
     }
-
-    
-
 }

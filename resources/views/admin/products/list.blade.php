@@ -226,6 +226,7 @@
                             <ul class="pagination">
                                 <li class="page-item">
                                     <?php
+
                                         // $query = "SELECT COUNT(*) FROM products";
 
                                         // $rs_result = mysqli_query($conn, $query);

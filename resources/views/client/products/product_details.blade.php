@@ -133,7 +133,7 @@
 
                                         <input type="radio" class="js-change-variation" name="{{$item->variation_name}}"
                                             id="{{$item->variation_value}}" value="{{$item->variation_value}}">
-                                        <label for="{{$item->variation_value}}">{{$item->variation_value}}</label>
+                                        <label class="text-black" for="{{$item->variation_value}}">{{$item->variation_value}}</label>
 
                                         @endif
 
@@ -648,7 +648,7 @@
                             <div class="col-md-6">
                                 <h3 class="font-size-18 mb-5">Add a review</h3>
                                 <!-- Form -->
-                                <form class="js-validate" action="{{route('preview',$products->id)}}" method="POST" enctype="multipart/form-data">
+                                <form class="js-validate" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="row align-items-center mb-4">
                                         <div class="col-md-4 col-lg-3">
@@ -701,14 +701,14 @@
                                 </div>
                             </div>
                             <!-- End Review Rating -->
-                           @foreach ($previews as $preview)
+                           {{-- @foreach ($previews as $preview)
                             <p class="text-gray-90">{{$preview->review}}</p>
                             <!-- Reviewer -->
                             <div class="mb-2">                              
                                 <strong style="color:black">{{$preview->user->name}}</strong>
                                 <span class="font-size-13 text-gray-23">- {{$preview->created_at->format('d/m/Y')}}</span>
                             </div>
-                            @endforeach
+                            @endforeach --}}
                             <!-- End Reviewer -->
                         </div>
                         <!-- End Review -->

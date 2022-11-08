@@ -4,7 +4,6 @@
                 <div class="row">
                     <div class="col-xl-9 col-wd">
                         <div class="min-width-1100-wd">
-                            @foreach ($posts as $post)
                                 
                             <article class="card mb-13 border-0">
                                 <div class="row">
@@ -30,12 +29,9 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endforeach
                                 </div>
                             </article>
-                            @endforeach
-                            
-                            
-                            
                             
                         </div>
                     </div>

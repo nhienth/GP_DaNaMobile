@@ -1,4 +1,14 @@
 
+<<<<<<< HEAD
+=======
+$categories = Category::all();
+$cate = new HomeController();
+$categorySelect = $cate->res(0);
+$slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
+?>
+{{-- Begin header --}}
+
+>>>>>>> 6f875c1d2edc2ad06f0ecd8315081ccb0b2e97f3
 <header id="header" class="u-header u-header-left-aligned-nav">
     <div class="u-header__section">
         <!-- Topbar -->
