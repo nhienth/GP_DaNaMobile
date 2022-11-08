@@ -36,6 +36,7 @@ use App\Http\Controllers\SpecificationController;
 */
 
 // -----------------------------------CLIENT-----------------------------
+Route::get('/product/detail/{id}', [ProductController::class, 'productDetail']);
 Route::prefix('/')->group(function () {
     Route::get('', [HomeController::class, 'index']);
 
@@ -43,7 +44,6 @@ Route::prefix('/')->group(function () {
 
 
         Route::get('/', [ContactController::class, 'create']);
-        
     });
 
     Route::prefix('/user')->group(function () {
@@ -58,10 +58,7 @@ Route::prefix('/')->group(function () {
         Route::post('/createaddress', [AddressControll::class, 'store']);
 
         Route::get('/delete/{id}', [AddressControll::class, 'destroy']);
-
     });
-
-
     Route::prefix('/post')->group(function () {
 
         // lay tat ca bai viet theo danh muc
@@ -72,18 +69,27 @@ Route::prefix('/')->group(function () {
         Route::get('/posts', [PostController::class, 'getAllPost']);
 
         Route::get('/tt', function () {
-            
+
             return view('client.blogs.index');
         });
 
         Route::get('/details/{id}', [PostController::class, 'showclient']);
 
-Route::get('/nproduct/list', [ProductController::class, 'nindex']);
-Route::get('/nproduct/detail/{id}', [ProductController::class, 'ndetail']);
-Route::get('/product/detail/{id}', [ProductController::class, 'productDetail']);
+        Route::get('/nproduct/detail/{id}', [ProductController::class, 'ndetail']);
+        Route::get('/product/detail/{id}', [ProductController::class, 'productDetail']);
+        Route::get('/nproduct/list', [ProductController::class, 'nindex']);
+    });
+
+    Route::get('/checkout', function () {
+        return view('client.shop.checkout');
+    });
+});
+
+
+
 
 // -----------------------------------ADMIN-----------------------------
-
+// Route::middleware(['isAdmin'])->group(function () {
 Route::prefix('/admin')->group(function () {
     Route::get('/', function () {
         return view('admin.index');
@@ -105,13 +111,13 @@ Route::prefix('/admin')->group(function () {
 
         Route::get('/list', [ProductController::class, 'index'])->name('product.list');
 
-            Route::get('/list', [ProductController::class, 'index']);
+        Route::get('/list', [ProductController::class, 'index']);
 
-            Route::get('/create', [ProductController::class, 'create']);
-            Route::post('/create', [ProductController::class, 'store']);
+        Route::get('/create', [ProductController::class, 'create']);
+        Route::post('/create', [ProductController::class, 'store']);
 
-            Route::get('/edit/{id}', [ProductController::class, 'edit']);
-            Route::post('/update/{id}', [ProductController::class, 'update']);
+        Route::get('/edit/{id}', [ProductController::class, 'edit']);
+        Route::post('/update/{id}', [ProductController::class, 'update']);
 
         Route::get('/addVariation/{id}', [VariationController::class, 'create']);
         Route::post('/addVariation', [VariationController::class, 'store']);
@@ -143,7 +149,7 @@ Route::prefix('/admin')->group(function () {
 
         Route::get('/delete/{id}', [VariationController::class, 'destroy_main']);
     });
-  
+
     Route::prefix('/post')->group(function () {
         Route::get('/list', [PostController::class, 'index']);
 
@@ -155,8 +161,8 @@ Route::prefix('/admin')->group(function () {
 
         Route::get('/details/{id}', [PostController::class, 'show']);
 
-            Route::get('/delete/{id}', [PostController::class, 'destroy']);
-        });
+        Route::get('/delete/{id}', [PostController::class, 'destroy']);
+    });
 
     Route::prefix('/preview')->group(function () {
         Route::get('/list', [PreviewController::class, 'index']);
@@ -175,8 +181,8 @@ Route::prefix('/admin')->group(function () {
     });
 
 
-        Route::get('/search', [PostController::class, 'search']);
-    
+    Route::get('/search', [PostController::class, 'search']);
+
 
     Route::prefix('/order')->group(function () {
         Route::get('/list', [OrderController::class, 'index']);
@@ -191,38 +197,32 @@ Route::prefix('/admin')->group(function () {
         Route::get('/stock_detail/{id}', [StocksController::class, 'show']);
     });
 
-        Route::prefix('/slider')->group(function () {
-            Route::get('/list', [SliderController::class, 'index'])->name('slider.list');
-            Route::get('/create', [SliderController::class, 'create'])->name('slider.create');
-            Route::post('/create', [SliderController::class, 'store'])->name('slider.create_process');
-            Route::get('/edit/{id}', [SliderController::class, 'edit'])->name('slider.edit');
-            Route::post('/edit/{id}', [SliderController::class, 'update'])->name('slider.edit_process');
-            Route::get('/delete/{id}', [SliderController::class, 'destroy']);
-        });
-
-        Route::prefix('/banner')->group(function () {
-            Route::get('/list', [BannerController::class, 'index'])->name('banner.list');
-            Route::get('/create', [BannerController::class, 'create'])->name('banner.create');
-            Route::post('/create', [BannerController::class, 'store'])->name('banner.create_process');
-            Route::get('/edit/{id}', [BannerController::class, 'edit'])->name('banner.edit');
-            Route::post('/edit/{id}', [BannerController::class, 'update'])->name('banner.edit_process');
-            Route::get('/delete/{id}', [BannerController::class, 'destroy']);
-        });
-        Route::prefix('/voucher')->group(function () {
-            Route::get('/list', [VoucherController::class, 'index'])->name('voucher.list');
-            Route::get('/create',  [VoucherController::class, 'create']);
-            Route::post('/create', [VoucherController::class, 'store'])->name('voucher.create');
-            Route::get('/edit/{id}', [VoucherController::class, 'edit']);
-            Route::post('/update/{id}', [VoucherController::class, 'update']);
-            Route::get('/delete/{id}', [VoucherController::class, 'destroy']);
-        });
-
-
-
-    Route::get('/checkout', function () {
-        return view('client.shop.checkout');
+    Route::prefix('/slider')->group(function () {
+        Route::get('/list', [SliderController::class, 'index'])->name('slider.list');
+        Route::get('/create', [SliderController::class, 'create'])->name('slider.create');
+        Route::post('/create', [SliderController::class, 'store'])->name('slider.create_process');
+        Route::get('/edit/{id}', [SliderController::class, 'edit'])->name('slider.edit');
+        Route::post('/edit/{id}', [SliderController::class, 'update'])->name('slider.edit_process');
+        Route::get('/delete/{id}', [SliderController::class, 'destroy']);
     });
 
+    Route::prefix('/banner')->group(function () {
+        Route::get('/list', [BannerController::class, 'index'])->name('banner.list');
+        Route::get('/create', [BannerController::class, 'create'])->name('banner.create');
+        Route::post('/create', [BannerController::class, 'store'])->name('banner.create_process');
+        Route::get('/edit/{id}', [BannerController::class, 'edit'])->name('banner.edit');
+        Route::post('/edit/{id}', [BannerController::class, 'update'])->name('banner.edit_process');
+        Route::get('/delete/{id}', [BannerController::class, 'destroy']);
+    });
+    Route::prefix('/voucher')->group(function () {
+        Route::get('/list', [VoucherController::class, 'index'])->name('voucher.list');
+        Route::get('/create',  [VoucherController::class, 'create']);
+        Route::post('/create', [VoucherController::class, 'store'])->name('voucher.create');
+        Route::get('/edit/{id}', [VoucherController::class, 'edit']);
+        Route::post('/update/{id}', [VoucherController::class, 'update']);
+        Route::get('/delete/{id}', [VoucherController::class, 'destroy']);
+    });
+});
+// <!-- }); -->
 
-
-require __DIR__ . '/auth.php';
+// require __DIR__ . '/auth.php';
