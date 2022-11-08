@@ -268,8 +268,24 @@ class ProductController extends Controller
     {
         $product = Product::with(['category', 'variations', 'variation_value', 'combinations'])
         ->where('products.id', $id)->first();
-        
+
         return view('npro.detail', compact(['product']));
+    }
+
+     /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function productDetail($id)
+    {
+        $product = Product::with(['category', 'variations', 'variation_value', 'combinations', 'images', 'specfications'])
+        ->where('products.id', $id)->first();
+
+        // dd($product);
+
+        return view('client.products.product_details', compact(['product']));
     }
 
     public function deleteVariation($id, Request $request)

@@ -31,10 +31,10 @@ class HomeController extends Controller
         $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
         $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
         // $product = Product::all();
-        $productsld = Product::with('combinations','category')->orderBy('products.id', 'desc')->take(8)
-        ->get();
-        // $productsld = Combinations::with(['product'])->orderBy('products_combinations.product_id', 'desc')->paginate(5);
-        // dd($productsld);
+        $productsld = Product::with('combinations','category')->orderBy('products.id', 'desc')
+            ->take(8)
+            ->get();
+
         $priceArr = [];
         $minPrice = 0;
         foreach ($productsld as $product) {

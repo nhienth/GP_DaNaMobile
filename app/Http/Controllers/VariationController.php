@@ -7,6 +7,7 @@ use App\Models\Variation;
 use App\Models\Variation_Option;
 use App\Models\Variation_Option_Value;
 use App\Models\Combinations;
+use App\Models\Image_Gallery;
 
 use Illuminate\Http\Request;
 
@@ -92,7 +93,7 @@ class VariationController extends Controller
      */
     public function store(Request $request)
     {
-        $product = Product::with('variations')->where('products.id',$request->product_id )->first();
+        $product = Product::with(['variations', 'images'])->where('products.id',$request->product_id )->first();
 
         $productVariationsValues = Product::with('variation_value')->where('products.id',$request->product_id )->first();
     
@@ -158,6 +159,29 @@ class VariationController extends Controller
         $newCombination = new Combinations();
 
         $newCombination -> combination_string = $combination_string;
+        $file_name = $request->combination_image->getClientoriginalName();
+        $request->combination_image->move(public_path('images/admin/products'), $file_name);
+        $newCombination -> combination_image = $file_name;
+
+        $isIssetImg = false;
+
+        foreach ($product->images as $productImage) {
+            if($productImage->medium == $file_name) {
+                $isIssetImg = true;
+                break;
+            }
+        }
+
+        if(!$isIssetImg) {
+            $newImgPro = new Image_Gallery();
+
+            $newImgPro -> medium = $file_name;
+            $newImgPro -> product_id =  $request->product_id;
+
+            $newImgPro -> save();
+
+        }
+
         $newCombination -> sku = $request->sku;
         $newCombination -> price = $request->price;
         $newCombination -> avilableStock = $request->avilableStock;
@@ -166,7 +190,6 @@ class VariationController extends Controller
 
         $newCombination->save();
 
-        // dd($newCombination);
         return redirect('/admin/product/list');
     }
 
