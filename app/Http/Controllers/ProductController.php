@@ -29,6 +29,34 @@ class ProductController extends Controller
             return view('admin.products.list')->with(compact('products', 'categories'));
         }
     }
+
+    public function filter_view(){
+        $keywords = $_GET['view_selected'];
+        $categories = Category::all();
+        $products = Product::all();
+        if($keywords == 1){
+            $products = Product::with('category')->orderBy('products.product_view', 'desc')->paginate(5);
+            return view('admin.products.list')->with(compact('products','categories'));
+        }else if($keywords == 2){
+            $products = Product::with('category')->orderBy('products.product_view', 'asc')->paginate(5);
+            return view('admin.products.list')->with(compact('products','categories'));
+        }else{
+            $products = Product::with('category')->orderBy('products.id', 'asc')->paginate(5);
+            return view('admin.products.list')->with(compact('products','categories'));
+        }
+    }
+
+    public function filter_status(){
+        $keywords = $_GET['status_selected'];
+        $categories = Category::all();
+        $products = Product::where('product_status', '=', $keywords)->paginate(5);
+        if($keywords != 2){
+            return view('admin.products.list')->with(compact('products','categories'));
+        }else{
+            $products = Product::with('category')->paginate(5);
+            return view('admin.products.list')->with(compact('products','categories'));
+        }
+    }
     /**
      * Display a listing of the resource.
      *
@@ -68,16 +96,17 @@ class ProductController extends Controller
         $product->product_name = $request->product_name;
         $product->category_id = $request->category_id;
 
+        // Ảnh đại diện
         $imgpath = $_FILES['product_img']['name'];
-        $target_dir = "../public/images/admin/products/";
+        $target_dir = "../public/images/products/";
         $target_file =  $target_dir . basename($imgpath);
         move_uploaded_file($_FILES['product_img']['tmp_name'], $target_file);
         $product->product_img = $imgpath;
         $product->product_desc = '';
-        $product->product_status = 0;
+        $product->product_status = 1;
         $product->save();
 
-
+        // Thư viện ảnh
         $name = array();
         $tmp_name = array();
         $error = array();
@@ -97,37 +126,21 @@ class ProductController extends Controller
         }
         foreach ($_FILES['product_img_gallery']['size'] as $file) {
             $size[] = round($file / 1024, 2);
-        } //Phần này lấy giá trị ra từng mảng nhỏ
+        } 
+        //Phần này lấy giá trị ra từng mảng nhỏ
         for ($i = 0; $i < count($name); $i++) {
             $product_gallery = new Image_Gallery();
             $temp = preg_split('/[\/\\\\]+/', $name[$i]);
             $filename = $temp[count($temp) - 1];
-            $upload_dir = "../public/images/admin/products/";
+            $upload_dir = "../public/images/products/";
             $upload_file = $upload_dir . $filename;
             move_uploaded_file($tmp_name[$i], $upload_file);
             $product_gallery->medium = $filename;
             $product_gallery->product_id = $product->id;
             $product_gallery->save();
-            echo '<script> console.log(1) </script>';
-        }
-        // if (file_exists($upload_file)) {
-        //     echo 'File đã tồn tại';
-        // } else {
-        // if (move_uploaded_file($tmp_name[$i], $upload_file)) {
-        //     echo "\n<p>" . $name[$i] . "</p>\n";
-        //     echo "\n<p>" . $ext[$i] . "</p>\n";
-        //     echo "\n<p>" . $size[$i] . " kB</p>\n";
-        //     echo "\n<p>" . $upload_file . "</p>\n";
-
-        // @mysqli_connect('localhost', 'root', '', 'danamobile');
-        // @mysqli_query($conn, "INSERT INTO `images_galleries` VALUES (null,'{$name[$i]}','{$size[$i]}','$upload_dir','$date',0)") or
-        // die("Bi loi them du lieu" . mysqli_error($conn));
-        // @mysqli_close($conn);
-        // } else
-        //     echo 'loi';
-        // }
-        //End khoi cau lenh up file va them vao CSDL;
-
+            
+        }       
+        
         $cateIdSeleted = $request->specification_cate;
 
         $specfications = ProductSpecificationsOptions::all();
@@ -189,7 +202,7 @@ class ProductController extends Controller
 
         $imgpath = $_FILES['product_img']['name'];
         if ($imgpath != '') {
-            $target_dir = "../public/images/admin/products/";
+            $target_dir = "../public/images/products/";
             $target_file =  $target_dir . basename($imgpath);
             move_uploaded_file($_FILES['product_img']['tmp_name'], $target_file);
             $product->product_img = $imgpath;
@@ -267,8 +280,25 @@ class ProductController extends Controller
     public function ndetail($id)
     {
         $product = Product::with(['category', 'variations', 'variation_value', 'combinations'])
-            ->where('products.id', $id)->first();
+        ->where('products.id', $id)->first();
+
         return view('npro.detail', compact(['product']));
+    }
+
+     /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function productDetail($id)
+    {
+        $product = Product::with(['category', 'variations', 'variation_value', 'combinations', 'images', 'specfications'])
+        ->where('products.id', $id)->first();
+
+        // dd($product);
+
+        return view('client.products.product_details', compact(['product']));
     }
 
     public function deleteVariation($id, Request $request)

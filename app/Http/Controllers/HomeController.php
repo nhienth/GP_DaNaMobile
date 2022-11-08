@@ -8,6 +8,8 @@ use App\Models\Category;
 use App\Models\Slider;
 use App\Models\Banner;
 use App\Models\Product;
+use App\Models\User;
+use App\Models\Combinations;
 
 class HomeController extends Controller
 {
@@ -20,20 +22,9 @@ class HomeController extends Controller
 
     public function index()
     {
-        // $categories = Category::all();
-        // foreach ($categories as $category) {
-        //     $parent_id = $category->parent_id;
-        //     $partenCateName = $this->getCategoryName($parent_id);
-        //     $category['parent_cate'] = $partenCateName;
-        // }
-
-       $categories = Category::all();
-        $categorySelect = $this->res(0);
-    //     $slider = Slider::all();
-    //     $banner = Banner::find(1);
-    //     $product = Product::all();
-    //     $product = Product::with(['combinations', 'stock'])->orderBy('id','DESC')->paginate(1);
         $categories = Category::all();
+        $categorySelect = $this->res(0);
+        $categorylist = Category::orderBy('categories.created_at','DESC')->paginate(4);
         foreach ($categories as $category) {
             $parent_id = $category->parent_id;
             $partenCateName = $this->getCategoryName($parent_id);
@@ -42,9 +33,31 @@ class HomeController extends Controller
         $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
         $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
         // $product = Product::all();
-        $product = Product::with(['combinations', 'stock'])->get();
 
-        return view('client.index')->with(compact('categories','slider','banner','product', 'categorySelect'));
+        $productsld = Product::with('combinations','category')->orderBy('products.id', 'desc')
+            ->take(8)
+            ->get();
+
+        $priceArr = [];
+        $minPrice = 0;
+        $maxPrice = 0;
+        foreach ($productsld as $product) {
+          foreach ($product->combinations as $productCombi) {
+            array_push($priceArr, $productCombi->price);
+          
+        }
+            $minPrice = min($priceArr);
+            $maxPrice = max($priceArr);
+
+            $priceArr = [];
+
+            $product['minprice'] = $minPrice;
+            $product['maxprice'] = $maxPrice;
+
+        }
+
+        return view('client.index')->with(compact('categories', 'categorylist', 'slider','banner','productsld', 'categorySelect'));
+
     }
 
     public function getCategoryName($id) {
@@ -69,6 +82,7 @@ class HomeController extends Controller
         }
         return $this->html;
     }
+
 
     public function res_sub($id, $id_parent)
     {
@@ -107,6 +121,7 @@ class HomeController extends Controller
         return $this->html;
      
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -114,7 +129,7 @@ class HomeController extends Controller
      */
     public function create()
     {
-        //
+       //
     }
 
     /**
@@ -123,9 +138,9 @@ class HomeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        //   
     }
 
     /**

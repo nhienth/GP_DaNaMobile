@@ -8,14 +8,13 @@
             <div class="my-md-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-3 flex-nowrap flex-xl-wrap overflow-auto overflow-xl-visble">
-                        <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="../home/index.html">Home</a>
+                        <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="../home/index.html">Trang
+                                chủ</a>
                         </li>
                         <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a
-                                href="../shop/shop.html">Accessories</a></li>
-                        <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a
-                                href="../shop/shop.html">Headphones</a></li>
-                        <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1 active" aria-current="page">Ultra
-                            Wireless S50 Headphones S50 with Bluetooth</li>
+                                href="../shop/shop.html">{{$product->category->category_name}}</a></li>
+                        <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1 active" aria-current="page">
+                            {{$product->product_name}}</li>
                     </ol>
                 </nav>
             </div>
@@ -33,59 +32,39 @@
                         data-arrow-left-classes="fas fa-arrow-left u-slick__arrow-classic-inner u-slick__arrow-classic-inner--left ml-lg-2 ml-xl-4"
                         data-arrow-right-classes="fas fa-arrow-right u-slick__arrow-classic-inner u-slick__arrow-classic-inner--right mr-lg-2 mr-xl-4"
                         data-nav-for="#sliderSyncingThumb">
+
+                        @foreach ($product->images as $productImage)
+
                         <div class="js-slide">
-                            <img class="img-fluid" src="{{asset('client/assets/img/720X660/img1.jpg')}}"
+                            <img class="img-fluid" src="{{asset('images/products/'.$productImage->medium)}}"
                                 alt="Image Description">
                         </div>
-                        <div class="js-slide">
-                            <img class="img-fluid" src="{{asset('client/assets/img/720X660/img2.jpg')}}"
-                                alt="Image Description">
-                        </div>
-                        <div class="js-slide">
-                            <img class="img-fluid" src="{{asset('client/assets/img/720X660/img3.jpg')}}"
-                                alt="Image Description">
-                        </div>
-                        <div class="js-slide">
-                            <img class="img-fluid" src="{{asset('client/assets/img/720X660/img4.jpg')}}"
-                                alt="Image Description">
-                        </div>
-                        <div class="js-slide">
-                            <img class="img-fluid" src="{{asset('client/assets/img/720X660/img5.jpg')}}"
-                                alt="Image Description">
-                        </div>
+                        @endforeach
+
+
+
                     </div>
 
                     <div id="sliderSyncingThumb"
                         class="js-slick-carousel u-slick u-slick--slider-syncing u-slick--slider-syncing-size u-slick--gutters-1 u-slick--transform-off"
                         data-infinite="true" data-slides-show="5" data-is-thumbs="true"
                         data-nav-for="#sliderSyncingNav">
-                        <div class="js-slide" style="cursor: pointer;">
-                            <img class="img-fluid" src="{{asset('client/assets/img/720X660/img1.jpg')}}"
+                        @foreach ($product->images as $productImage)
+                        <div class="js-slide combi-image-js" name="combi-image-js" style="cursor: pointer;">
+                            <input type="hidden" name="js-name-combiImg" value="{{$productImage->medium}}">
+                            <img class="img-fluid" src="{{asset('images/products/'.$productImage->medium)}}"
                                 alt="Image Description">
                         </div>
-                        <div class="js-slide" style="cursor: pointer;">
-                            <img class="img-fluid" src="{{asset('client/assets/img/720X660/img2.jpg')}}"
-                                alt="Image Description">
-                        </div>
-                        <div class="js-slide" style="cursor: pointer;">
-                            <img class="img-fluid" src="{{asset('client/assets/img/720X660/img3.jpg')}}"
-                                alt="Image Description">
-                        </div>
-                        <div class="js-slide" style="cursor: pointer;">
-                            <img class="img-fluid" src="{{asset('client/assets/img/720X660/img4.jpg')}}"
-                                alt="Image Description">
-                        </div>
-                        <div class="js-slide" style="cursor: pointer;">
-                            <img class="img-fluid" src="{{asset('client/assets/img/720X660/img5.jpg')}}"
-                                alt="Image Description">
-                        </div>
+                        @endforeach
+
                     </div>
                 </div>
                 <div class="col-md-7 mb-md-6 mb-lg-0">
                     <div class="mb-2">
                         <div class="border-bottom mb-3 pb-md-1 pb-3">
-                            <a href="#" class="font-size-12 text-gray-5 mb-2 d-inline-block">Headphones</a>
-                            <h2 class="font-size-25 text-lh-1dot2">Ultra Wireless S50 Headphones S50 with Bluetooth</h2>
+                            <a href="#"
+                                class="font-size-12 text-gray-5 mb-2 d-inline-block">{{$product->category->category_name}}</a>
+                            <h2 class="font-size-25 text-lh-1dot2">{{$product->product_name}}</h2>
                             <div class="mb-2">
                                 <a class="d-inline-flex align-items-center small font-size-15 text-lh-1" href="#">
                                     <div class="text-warning mr-2">
@@ -114,33 +93,62 @@
                         </div>
                         <div class="mb-2">
                             <ul class="font-size-14 pl-3 ml-1 text-gray-110">
-                                <li>4.5 inch HD Touch Screen (1280 x 720)</li>
-                                <li>Android 4.4 KitKat OS</li>
-                                <li>1.4 GHz Quad Core™ Processor</li>
-                                <li>20 MP Electro and 28 megapixel CMOS rear camera</li>
+                                @foreach ($product->specfications as $productSpec)
+                                <li>{{$product->specification_name}} : {{$product->specification_value}}</li>
+                                @endforeach
                             </ul>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.
-                        </p>
+
                         <p><strong>SKU</strong>: FW511948218</p>
                         <div class="mb-4">
                             <div class="d-flex align-items-baseline">
-                                <ins class="font-size-36 text-decoration-none">$1,999.00</ins>
-                                <del class="font-size-20 ml-2 text-gray-6">$2,299.00</del>
+                                {{-- <ins class="font-size-36 text-decoration-none">$1,999.00</ins>
+                                <del class="font-size-20 ml-2 text-gray-6">$2,299.00</del> --}}
+                                <span id="price_product" class="font-size-36 text-decoration-none">$1,999.00</span>
                             </div>
                         </div>
                         <div class="border-top border-bottom py-3 mb-4">
+                            @foreach ($product->combinations as $productCombi)
+                            <input type="hidden" name="combination_string"
+                                value="{{$productCombi->combination_string}}">
+                            <input type="hidden" name="price" value="{{$productCombi->price}}">
+                            <input type="hidden" name="combination_image" value="{{$productCombi->combination_image}}">
+
+                            @endforeach
                             <div class="d-flex align-items-center">
-                                <h6 class="font-size-14 mb-0">Color</h6>
-                                <!-- Select -->
-                                <select class="js-select selectpicker dropdown-select ml-3"
-                                    data-style="btn-sm bg-white font-weight-normal py-2 border">
-                                    <option value="one" selected>White with Gold</option>
-                                    <option value="two">Red</option>
-                                    <option value="three">Green</option>
-                                    <option value="four">Blue</option>
-                                </select>
-                                <!-- End Select -->
+
+                                <div>
+                                    @foreach ($product->variations as $variation)
+                                    <div>
+
+                                        <label for="">{{$variation->variation_name}}</label>
+                                        @php
+                                        $variationsIsset = [];
+                                        @endphp
+
+                                        @foreach ($product->variation_value as $item)
+                                        @if ($variation->variation_name === $item->variation_name)
+
+                                        @if (!in_array($item->variation_value, $variationsIsset))
+
+                                        <input type="radio" class="js-change-variation" name="{{$item->variation_name}}"
+                                            id="{{$item->variation_value}}" value="{{$item->variation_value}}">
+                                        <label for="{{$item->variation_value}}">{{$item->variation_value}}</label>
+
+                                        @endif
+
+                                        @php
+                                        $variationsIsset[] = $item->variation_value;
+                                        @endphp
+
+
+                                        @endif
+                                        @endforeach
+                                    </div>
+
+                                    @endforeach
+
+                                </div>
                             </div>
                         </div>
                         <div class="d-md-flex align-items-end mb-3">
@@ -640,7 +648,8 @@
                             <div class="col-md-6">
                                 <h3 class="font-size-18 mb-5">Add a review</h3>
                                 <!-- Form -->
-                                <form class="js-validate">
+                                <form class="js-validate" action="{{route('preview',$products->id)}}" method="POST" enctype="multipart/form-data">
+                                    @csrf
                                     <div class="row align-items-center mb-4">
                                         <div class="col-md-4 col-lg-3">
                                             <label for="rating" class="form-label mb-0">Your Review</label>
@@ -662,34 +671,11 @@
                                             <label for="descriptionTextarea" class="form-label">Your Review</label>
                                         </div>
                                         <div class="col-md-8 col-lg-9">
-                                            <textarea class="form-control" rows="3" id="descriptionTextarea"
+                                            <textarea name="review" class="form-control" rows="3" id="descriptionTextarea"
                                                 data-msg="Please enter your message." data-error-class="u-has-error"
                                                 data-success-class="u-has-success"></textarea>
                                         </div>
-                                    </div>
-                                    <div class="js-form-message form-group mb-3 row">
-                                        <div class="col-md-4 col-lg-3">
-                                            <label for="inputName" class="form-label">Name <span
-                                                    class="text-danger">*</span></label>
-                                        </div>
-                                        <div class="col-md-8 col-lg-9">
-                                            <input type="text" class="form-control" name="name" id="inputName"
-                                                aria-label="Alex Hecker" required data-msg="Please enter your name."
-                                                data-error-class="u-has-error" data-success-class="u-has-success">
-                                        </div>
-                                    </div>
-                                    <div class="js-form-message form-group mb-3 row">
-                                        <div class="col-md-4 col-lg-3">
-                                            <label for="emailAddress" class="form-label">Email <span
-                                                    class="text-danger">*</span></label>
-                                        </div>
-                                        <div class="col-md-8 col-lg-9">
-                                            <input type="email" class="form-control" name="emailAddress"
-                                                id="emailAddress" aria-label="alexhecker@pixeel.com" required
-                                                data-msg="Please enter a valid email address."
-                                                data-error-class="u-has-error" data-success-class="u-has-success">
-                                        </div>
-                                    </div>
+                                    </div>                                                      
                                     <div class="row">
                                         <div class="offset-md-4 offset-lg-3 col-auto">
                                             <button type="submit"
@@ -715,16 +701,14 @@
                                 </div>
                             </div>
                             <!-- End Review Rating -->
-
-                            <p class="text-gray-90">Fusce vitae nibh mi. Integer posuere, libero et ullamcorper
-                                facilisis, enim eros tincidunt orci, eget vestibulum sapien nisi ut leo. Cras finibus
-                                vel est ut mollis. Donec luctus condimentum ante et euismod.</p>
-
+                           @foreach ($previews as $preview)
+                            <p class="text-gray-90">{{$preview->review}}</p>
                             <!-- Reviewer -->
-                            <div class="mb-2">
-                                <strong>John Doe</strong>
-                                <span class="font-size-13 text-gray-23">- April 3, 2019</span>
+                            <div class="mb-2">                              
+                                <strong style="color:black">{{$preview->user->name}}</strong>
+                                <span class="font-size-13 text-gray-23">- {{$preview->created_at->format('d/m/Y')}}</span>
                             </div>
+                            @endforeach
                             <!-- End Reviewer -->
                         </div>
                         <!-- End Review -->
@@ -1079,4 +1063,54 @@
         <!-- End Brand Carousel -->
     </div>
 </main>
+
 @endsection
+
+<script>
+    setTimeout(() => {
+        let variSeleted;
+        let arr = ['a', 'b'];
+        let arrImgInput = [];
+        let priceHtml = document.getElementById("price_product");
+
+
+        let combiImageList = document.querySelectorAll('.combi-image-js');
+            combiImageList.forEach(combiImage => {
+                arrImgInput.push(combiImage.firstElementChild);
+            });
+
+
+
+        let productsCombination = document.getElementsByName('combination_string')
+        let radioList = document.querySelectorAll(".js-change-variation");
+            radioList.forEach(element => {
+                element.addEventListener("change", function () {
+                if (this.name == "Bộ nhớ") {
+                    arr[1] = this.value;
+                } else {
+                    arr[0] = this.value;
+                }
+
+                variSeleted = arr.join(" ");
+
+                productsCombination.forEach((pro) => {
+                    if (variSeleted == pro.value.trim()) {
+                        priceHtml.innerHTML = `$${pro.nextElementSibling.value}`;
+
+                        let imgCombi = pro.nextElementSibling.nextElementSibling;
+
+                        arrImgInput.forEach(imgInput => {
+                            if(imgInput.value === imgCombi.value) {
+                                imgInput.parentElement.click();
+                                
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    
+    }, 2000);
+
+</script>
+

@@ -54,8 +54,8 @@
                                     <div class="mb-1">
                                         <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Chức năng</label>
                                         <select class="form-control" name="role">
-                                            <option value="0">Admin</option>
-                                            <option value="1">Khách hàng</option>
+                                            <option value="0">Khách hàng</option>
+                                            <option value="1">Admin</option>
 
                                         </select>
                                     </div>

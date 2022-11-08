@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AddressControll;
 
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
@@ -22,6 +23,7 @@ use App\Http\Controllers\OrderDetailsController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SpecificationController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,32 +35,55 @@ use App\Http\Controllers\SpecificationController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
+// -----------------------------------CLIENT-----------------------------
+Route::prefix('/')->group(function () {
+    Route::get('', [HomeController::class, 'index']);
 
-Route::get('/product-detail', function () {
-    return view('client.products.product_details');
-});
-
-Route::get('/product-bycate', function () {
-    return view('client.products.product_ bycate');
-});
-Route::get('/wishlist', function () {
-    return view('client.products.wishlist');
-});
+    Route::prefix('/contact')->group(function () {
 
 
-Route::get('/cart', function () {
-    return view('client.shop.cart');
-});
+        Route::get('/', [ContactController::class, 'create']);
+        
+    });
 
-Route::get('/checkout', function () {
-    return view('client.shop.checkout');
-});
+    Route::prefix('/user')->group(function () {
+        Route::get('/{id}', [UserController::class, 'show']);
+        Route::get('/update/{id}', [UserController::class, 'edit']);
+        Route::post('/update/{id}', [UserController::class, 'update']);
+
+        Route::get('/showaddress/{id}', [AddressControll::class, 'show']);
+
+        Route::get('/createaddress/{user_id}', [AddressControll::class, 'create']);
+
+        Route::post('/createaddress', [AddressControll::class, 'store']);
+
+        Route::get('/delete/{id}', [AddressControll::class, 'destroy']);
+
+    });
+
+
+    Route::prefix('/post')->group(function () {
+
+        // lay tat ca bai viet theo danh muc
+
+        Route::get('/list/{id}', [PostController::class, 'getPostById']);
+
+
+        Route::get('/posts', [PostController::class, 'getAllPost']);
+
+        Route::get('/tt', function () {
+            
+            return view('client.blogs.index');
+        });
+
+        Route::get('/details/{id}', [PostController::class, 'showclient']);
 
 Route::get('/nproduct/list', [ProductController::class, 'nindex']);
 Route::get('/nproduct/detail/{id}', [ProductController::class, 'ndetail']);
+Route::get('/product/detail/{id}', [ProductController::class, 'productDetail']);
 
 // -----------------------------------ADMIN-----------------------------
+
 Route::prefix('/admin')->group(function () {
     Route::get('/', function () {
         return view('admin.index');
@@ -74,16 +99,19 @@ Route::prefix('/admin')->group(function () {
 
     Route::prefix('/product')->group(function () {
         Route::get('/searchproduct', [ProductController::class, 'search'])->name('search');
+        Route::get('/filter_view', [ProductController::class, 'filter_view'])->name('filter_view');
+        Route::get('/filter_status', [ProductController::class, 'filter_status'])->name('filter_status');
+        // Route::get('/list', [ProductController::class, 'index']);
 
         Route::get('/list', [ProductController::class, 'index'])->name('product.list');
 
-        Route::get('/create', [ProductController::class, 'create']);
-        Route::post('/create', [ProductController::class, 'store']);
+            Route::get('/list', [ProductController::class, 'index']);
 
-        Route::get('/edit/{id}', [ProductController::class, 'edit']);
-        Route::post('/update/{id}', [ProductController::class, 'update']);
+            Route::get('/create', [ProductController::class, 'create']);
+            Route::post('/create', [ProductController::class, 'store']);
 
-        Route::get('/delete/{id}', [ProductController::class, 'destroy']);
+            Route::get('/edit/{id}', [ProductController::class, 'edit']);
+            Route::post('/update/{id}', [ProductController::class, 'update']);
 
         Route::get('/addVariation/{id}', [VariationController::class, 'create']);
         Route::post('/addVariation', [VariationController::class, 'store']);
@@ -115,6 +143,7 @@ Route::prefix('/admin')->group(function () {
 
         Route::get('/delete/{id}', [VariationController::class, 'destroy_main']);
     });
+  
     Route::prefix('/post')->group(function () {
         Route::get('/list', [PostController::class, 'index']);
 
@@ -126,8 +155,8 @@ Route::prefix('/admin')->group(function () {
 
         Route::get('/details/{id}', [PostController::class, 'show']);
 
-        Route::get('/delete/{id}', [PostController::class, 'destroy']);
-    });
+            Route::get('/delete/{id}', [PostController::class, 'destroy']);
+        });
 
     Route::prefix('/preview')->group(function () {
         Route::get('/list', [PreviewController::class, 'index']);
@@ -146,6 +175,9 @@ Route::prefix('/admin')->group(function () {
     });
 
 
+        Route::get('/search', [PostController::class, 'search']);
+    
+
     Route::prefix('/order')->group(function () {
         Route::get('/list', [OrderController::class, 'index']);
         Route::get('/details/{id}', [OrderDetailsController::class, 'show']);
@@ -159,42 +191,38 @@ Route::prefix('/admin')->group(function () {
         Route::get('/stock_detail/{id}', [StocksController::class, 'show']);
     });
 
-    Route::prefix('/slider')->group(function () {
-        Route::get('/list', [SliderController::class, 'index'])->name('slider.list');
-        Route::get('/create', [SliderController::class, 'create'])->name('slider.create');
-        Route::post('/create', [SliderController::class, 'store'])->name('slider.create_process');
-        Route::get('/edit/{id}', [SliderController::class, 'edit'])->name('slider.edit');
-        Route::post('/edit/{id}', [SliderController::class, 'update'])->name('slider.edit_process');
-        Route::get('/delete/{id}', [SliderController::class, 'destroy']);
+        Route::prefix('/slider')->group(function () {
+            Route::get('/list', [SliderController::class, 'index'])->name('slider.list');
+            Route::get('/create', [SliderController::class, 'create'])->name('slider.create');
+            Route::post('/create', [SliderController::class, 'store'])->name('slider.create_process');
+            Route::get('/edit/{id}', [SliderController::class, 'edit'])->name('slider.edit');
+            Route::post('/edit/{id}', [SliderController::class, 'update'])->name('slider.edit_process');
+            Route::get('/delete/{id}', [SliderController::class, 'destroy']);
+        });
+
+        Route::prefix('/banner')->group(function () {
+            Route::get('/list', [BannerController::class, 'index'])->name('banner.list');
+            Route::get('/create', [BannerController::class, 'create'])->name('banner.create');
+            Route::post('/create', [BannerController::class, 'store'])->name('banner.create_process');
+            Route::get('/edit/{id}', [BannerController::class, 'edit'])->name('banner.edit');
+            Route::post('/edit/{id}', [BannerController::class, 'update'])->name('banner.edit_process');
+            Route::get('/delete/{id}', [BannerController::class, 'destroy']);
+        });
+        Route::prefix('/voucher')->group(function () {
+            Route::get('/list', [VoucherController::class, 'index'])->name('voucher.list');
+            Route::get('/create',  [VoucherController::class, 'create']);
+            Route::post('/create', [VoucherController::class, 'store'])->name('voucher.create');
+            Route::get('/edit/{id}', [VoucherController::class, 'edit']);
+            Route::post('/update/{id}', [VoucherController::class, 'update']);
+            Route::get('/delete/{id}', [VoucherController::class, 'destroy']);
+        });
+
+
+
+    Route::get('/checkout', function () {
+        return view('client.shop.checkout');
     });
 
-    Route::prefix('/banner')->group(function () {
-        Route::get('/list', [BannerController::class, 'index'])->name('banner.list');
-        Route::get('/create', [BannerController::class, 'create'])->name('banner.create');
-        Route::post('/create', [BannerController::class, 'store'])->name('banner.create_process');
-        Route::get('/edit/{id}', [BannerController::class, 'edit'])->name('banner.edit');
-        Route::post('/edit/{id}', [BannerController::class, 'update'])->name('banner.edit_process');
-        Route::get('/delete/{id}', [BannerController::class, 'destroy']);
-    });
-    Route::prefix('/voucher')->group(function () {
-        Route::get('/list', [VoucherController::class, 'index'])->name('voucher.list');
-        Route::get('/create',  [VoucherController::class, 'create']);
-        Route::post('/create', [VoucherController::class, 'store'])->name('voucher.create');
-        Route::get('/edit/{id}', [VoucherController::class, 'edit']);
-        Route::post('/update/{id}', [VoucherController::class, 'update']);
-        Route::get('/delete/{id}', [VoucherController::class, 'destroy']);
-    });
 
-    Route::prefix('/payment')->group(function () {
-        Route::get('/list', [PaymentController::class, 'index'])->name('payment.list');
-        Route::get('/create',  [PaymentController::class, 'create']);
-        Route::post('/create', [PaymentController::class, 'store'])->name('Payment.create');
-        Route::get('/edit/{id}', [PaymentController::class, 'edit']);
-        Route::post('/update/{id}', [PaymentController::class, 'update']);
-        Route::get('/delete/{id}', [PaymentController::class, 'destroy']);
-    });
-});
-
-// ->middleware(['auth'])->name('dashboard');
 
 require __DIR__ . '/auth.php';
