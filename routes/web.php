@@ -57,6 +57,7 @@ Route::get('/checkout', function () {
 
 Route::get('/nproduct/list', [ProductController::class, 'nindex']);
 Route::get('/nproduct/detail/{id}', [ProductController::class, 'ndetail']);
+Route::get('/product/detail/{id}', [ProductController::class, 'productDetail']);
 
 // -----------------------------------ADMIN-----------------------------
 Route::prefix('/admin')->group(function () {

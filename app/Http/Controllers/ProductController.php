@@ -98,7 +98,7 @@ class ProductController extends Controller
 
         // Ảnh đại diện
         $imgpath = $_FILES['product_img']['name'];
-        $target_dir = "../public/images/admin/products/";
+        $target_dir = "../public/images/products/";
         $target_file =  $target_dir . basename($imgpath);
         move_uploaded_file($_FILES['product_img']['tmp_name'], $target_file);
         $product->product_img = $imgpath;
@@ -132,7 +132,7 @@ class ProductController extends Controller
             $product_gallery = new Image_Gallery();
             $temp = preg_split('/[\/\\\\]+/', $name[$i]);
             $filename = $temp[count($temp) - 1];
-            $upload_dir = "../public/images/admin/products/";
+            $upload_dir = "../public/images/products/";
             $upload_file = $upload_dir . $filename;
             move_uploaded_file($tmp_name[$i], $upload_file);
             $product_gallery->medium = $filename;
@@ -202,7 +202,7 @@ class ProductController extends Controller
 
         $imgpath = $_FILES['product_img']['name'];
         if ($imgpath != '') {
-            $target_dir = "../public/images/admin/products/";
+            $target_dir = "../public/images/products/";
             $target_file =  $target_dir . basename($imgpath);
             move_uploaded_file($_FILES['product_img']['tmp_name'], $target_file);
             $product->product_img = $imgpath;
@@ -281,8 +281,24 @@ class ProductController extends Controller
     {
         $product = Product::with(['category', 'variations', 'variation_value', 'combinations'])
         ->where('products.id', $id)->first();
-        
+
         return view('npro.detail', compact(['product']));
+    }
+
+     /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function productDetail($id)
+    {
+        $product = Product::with(['category', 'variations', 'variation_value', 'combinations', 'images', 'specfications'])
+        ->where('products.id', $id)->first();
+
+        // dd($product);
+
+        return view('client.products.product_details', compact(['product']));
     }
 
     public function deleteVariation($id, Request $request)

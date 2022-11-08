@@ -20,9 +20,9 @@ class HomeController extends Controller
 
     public function index()
     {
-       $categories = Category::all();
-        $categorySelect = $this->res(0);
         $categories = Category::all();
+        $categorySelect = $this->res(0);
+        $categorylist = Category::orderBy('categories.created_at','DESC')->paginate(4);
         foreach ($categories as $category) {
             $parent_id = $category->parent_id;
             $partenCateName = $this->getCategoryName($parent_id);
@@ -31,10 +31,10 @@ class HomeController extends Controller
         $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
         $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
         // $product = Product::all();
-        $productsld = Product::with('combinations','category')->orderBy('products.id', 'desc')->take(8)
-        ->get();
-        // $productsld = Combinations::with(['product'])->orderBy('products_combinations.product_id', 'desc')->paginate(5);
-        // dd($productsld);
+        $productsld = Product::with('combinations','category')->orderBy('products.id', 'desc')
+            ->take(8)
+            ->get();
+
         $priceArr = [];
         $minPrice = 0;
         $maxPrice = 0;
@@ -53,7 +53,7 @@ class HomeController extends Controller
 
         }
 
-        return view('client.index')->with(compact('categories','slider','banner','productsld', 'categorySelect'));
+        return view('client.index')->with(compact('categories', 'categorylist', 'slider','banner','productsld', 'categorySelect'));
     }
 
     public function getCategoryName($id) {
