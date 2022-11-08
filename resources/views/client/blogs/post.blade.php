@@ -13,19 +13,19 @@
                                     </div>
                                     <div class="col-lg-8">
                                         <div class="card-body p-0">
-                                            <h4 class="mb-3"><a href="http://localhost:8000/post/details/{{$post->id}}">{{$post->title}}</a></h4>
+                                            <h4 class="mb-3"><a href="http://localhost:8000/blogs/details/{{$post->id}}">{{$post->title}}</a></h4>
                                             <div class="mb-3 pb-3 border-bottom">
                                                 <div class="list-group list-group-horizontal flex-wrap list-group-borderless align-items-center mx-n0dot5">
-                                                    <a href="http://localhost:8000/post/details/{{$post->id}}" class="mx-0dot5 text-gray-5">{{$post->category->category_name}}</a>
+                                                    <a href="http://localhost:8000/blogs/details/{{$post->id}}" class="mx-0dot5 text-gray-5">{{$post->category->category_name}}</a>
                                                   
                                                     <span class="mx-2 font-size-n5 mt-1 text-gray-5"><i class="fas fa-circle"></i></span>
-                                                    <a href="http://localhost:8000/post/details/{{$post->id}}" class="mx-0dot5 text-gray-5">{{$post->created_at->format('d/m/Y')}}</a>
+                                                    <a href="http://localhost:8000/blogs/details/{{$post->id}}" class="mx-0dot5 text-gray-5">{{$post->created_at->format('d/m/Y')}}</a>
                                                 </div>
                                             </div>
                                             <p>{{$post->summary}}</p>
                                             <div class="flex-horizontal-center">
-                                                <a href="http://localhost:8000/post/details/{{$post->id}}" class="btn btn-soft-secondary-w mb-md-0 font-weight-normal px-5 px-md-4 px-lg-5">Read More</a>
-                                                <a href="http://localhost:8000/post/details/{{$post->id}}" class="font-size-12 text-gray-5 ml-4"><i class="far fa-comment"></i> 3</a>
+                                                <a href="http://localhost:8000/blogs/details/{{$post->id}}" class="btn btn-soft-secondary-w mb-md-0 font-weight-normal px-5 px-md-4 px-lg-5">Xem thêm</a>
+                                                <a href="http://localhost:8000/blogs/details/{{$post->id}}" class="font-size-12 text-gray-5 ml-4"><i class="far fa-comment"></i> 3</a>
                                             </div>
                                         </div>
                                     </div>

@@ -58,6 +58,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <a href="{{ route('register') }}" class="px-2 py-2 mr-md-1 rounded"><span class="ion-logo-facebook mr-2"></span>Bạn chưa có tài khoản ?</a>
                             </form>
                             <p class="w-100 text-center">&mdash; Hoặc đăng nhập với &mdash;</p>
                             <div class="social d-flex text-center">

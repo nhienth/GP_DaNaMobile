@@ -259,32 +259,6 @@ class ProductController extends Controller
         return view('admin.products.variations', compact('product'));
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function nindex()
-    {
-        // $categories = Category::all();
-        $products = Product::all();
-        return view('npro.list', compact('products'));
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function ndetail($id)
-    {
-        $product = Product::with(['category', 'variations', 'variation_value', 'combinations'])
-        ->where('products.id', $id)->first();
-
-        return view('npro.detail', compact(['product']));
-    }
-
      /**
      * Remove the specified resource from storage.
      *

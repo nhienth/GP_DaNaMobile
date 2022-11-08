@@ -25,7 +25,7 @@
     <div class="container">
         <!-- Single Product Body -->
         <div class="mb-xl-14 mb-6">
-            <div class="row">
+            <div class="row" style="color: black">
                 <div class="col-md-5 mb-4 mb-md-0">
                     <div id="sliderSyncingNav" class="js-slick-carousel u-slick mb-2" data-infinite="true"
                         data-arrows-classes="d-none d-lg-inline-block u-slick__arrow-classic u-slick__arrow-centered--y rounded-circle"
@@ -77,19 +77,24 @@
                                     <span class="text-secondary font-size-13">(3 customer reviews)</span>
                                 </a>
                             </div>
-                            <div class="d-md-flex align-items-center">
-                                <a href="#" class="max-width-150 ml-n2 mb-2 mb-md-0 d-block"><img class="img-fluid"
-                                        src="{{asset('client/assets/img/200X60/img1.png')}}"
-                                        alt="Image Description"></a>
-                                <div class="ml-md-3 text-gray-9 font-size-14">Availability: <span
-                                        class="text-green font-weight-bold">26 in stock</span></div>
-                            </div>
                         </div>
                         <div class="flex-horizontal-center flex-wrap mb-4">
                             <a href="#" class="text-gray-6 font-size-13 mr-2"><i
                                     class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
                             <a href="#" class="text-gray-6 font-size-13 ml-2"><i
                                     class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
+                        </div>
+                        <div class="description">
+                            <h3>Khuyến mãi</h3>
+                            Tặng: Cường lực - Ốp lưng - Tai nghe khi mua BHV (Nếu trong hộp chưa có)
+                            Giảm: 100K áp dụng HSSV mua BHV tại 42 phố Vọng <br>
+                            Mua: Dán cường lực 21D full màn chỉ 30K <br>
+                            Giảm 100K khi mua BHV và đặt hàng tại:  <br>
+                            <ul>
+                                <li>Hà Nội: 097.120.6688</li>
+                                <li>Tp.HCM: 0965.123.123</li>
+                                <li>Đà Nẵng: 096.123.9797</li>
+                            </ul>
                         </div>
                         <div class="mb-2">
                             <ul class="font-size-14 pl-3 ml-1 text-gray-110">
@@ -121,7 +126,7 @@
                                     @foreach ($product->variations as $variation)
                                     <div>
 
-                                        <label for="">{{$variation->variation_name}}</label>
+                                        <label for="">{{$variation->variation_name}} :</label>
                                         @php
                                         $variationsIsset = [];
                                         @endphp
@@ -178,7 +183,7 @@
                             </div>
                             <div class="ml-md-3">
                                 <a href="#" class="btn px-5 btn-primary-dark transition-3d-hover"><i
-                                        class="ec ec-add-to-cart mr-2 font-size-20"></i> Add to Cart</a>
+                                        class="ec ec-add-to-cart mr-2 font-size-20"></i>Thêm vào giỏ hàng</a>
                             </div>
                         </div>
                     </div>
@@ -194,22 +199,18 @@
                     <li class="nav-item flex-shrink-0 flex-xl-shrink-1 z-index-2">
                         <a class="nav-link active" id="Jpills-one-example1-tab" data-toggle="pill"
                             href="#Jpills-one-example1" role="tab" aria-controls="Jpills-one-example1"
-                            aria-selected="true">Accessories</a>
+                            aria-selected="true">Sản phẩm cùng loại</a>
                     </li>
                     <li class="nav-item flex-shrink-0 flex-xl-shrink-1 z-index-2">
                         <a class="nav-link" id="Jpills-two-example1-tab" data-toggle="pill" href="#Jpills-two-example1"
-                            role="tab" aria-controls="Jpills-two-example1" aria-selected="false">Description</a>
+                            role="tab" aria-controls="Jpills-two-example1" aria-selected="false">Sản phẩm bán chạy</a>
                     </li>
                     <li class="nav-item flex-shrink-0 flex-xl-shrink-1 z-index-2">
                         <a class="nav-link" id="Jpills-three-example1-tab" data-toggle="pill"
                             href="#Jpills-three-example1" role="tab" aria-controls="Jpills-three-example1"
-                            aria-selected="false">Specification</a>
+                            aria-selected="false">Sản phẩm sale</a>
                     </li>
-                    <li class="nav-item flex-shrink-0 flex-xl-shrink-1 z-index-2">
-                        <a class="nav-link" id="Jpills-four-example1-tab" data-toggle="pill"
-                            href="#Jpills-four-example1" role="tab" aria-controls="Jpills-four-example1"
-                            aria-selected="false">Reviews</a>
-                    </li>
+                    
                 </ul>
             </div>
             <!-- Tab Content -->
@@ -841,6 +842,7 @@
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="product-item__footer">
                                 <div class="border-top pt-2 flex-center-between flex-wrap">
                                     <a href="../shop/compare.html" class="text-gray-6 font-size-13"><i
