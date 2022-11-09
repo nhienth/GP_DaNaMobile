@@ -203,12 +203,12 @@
                     </li>
                     <li class="nav-item flex-shrink-0 flex-xl-shrink-1 z-index-2">
                         <a class="nav-link" id="Jpills-two-example1-tab" data-toggle="pill" href="#Jpills-two-example1"
-                            role="tab" aria-controls="Jpills-two-example1" aria-selected="false">Sản phẩm bán chạy</a>
+                            role="tab" aria-controls="Jpills-two-example1" aria-selected="false">Mô tả</a>
                     </li>
                     <li class="nav-item flex-shrink-0 flex-xl-shrink-1 z-index-2">
                         <a class="nav-link" id="Jpills-three-example1-tab" data-toggle="pill"
                             href="#Jpills-three-example1" role="tab" aria-controls="Jpills-three-example1"
-                            aria-selected="false">Sản phẩm sale</a>
+                            aria-selected="false">Thông số sản phẩm</a>
                     </li>
                     
                 </ul>
