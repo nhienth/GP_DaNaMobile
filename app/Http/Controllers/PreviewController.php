@@ -47,7 +47,7 @@ class PreviewController extends Controller
     {   
         $products = Product::find($id);
         $categories = Category::all();
-        $previews = Preview::all();
+        $previews = Preview::find($id);
         $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
         $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
         return view('client.products.product_details',compact('categories' ,'slider','banner','products','previews'));
@@ -56,9 +56,9 @@ class PreviewController extends Controller
     public function preview(Request $request, $id)
     {
         $previews = new Preview();
-        $previews->rate = 5;
+        $previews->rate = $request->rating;
         $previews->review = $request->review;
-        $previews->status = 1;
+        $previews->status = $request->status;
         $previews->user_id = Auth::user()->id;     
         $previews->product_id = $id; 
        
@@ -77,6 +77,7 @@ class PreviewController extends Controller
         return view('client.blogs.details', compact('post','previews'));
         
     }
+
     public function previewPost(Request $request, $id)
     {
        
