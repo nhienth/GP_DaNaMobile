@@ -447,5 +447,5 @@ $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
     let btnCate = document.getElementById('js-header-btn');
     setTimeout(() => {
         btnCate.click();
-    }, 3500);
+    }, 1500);
 </script>

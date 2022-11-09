@@ -187,7 +187,7 @@
                                     <td>{{$product->product_name}}</td>
                                     <td>{{$product->category->category_name}}</td>
                                     <td><img class="rounded"
-                                            src="{{asset('images/admin/products/'.$product->product_img)}}"
+                                            src="{{asset('images/products/'.$product->product_img)}}"
                                             width="100px" height="100px" style="display:block; margin: 0 auto;"></td>
                                     <td>{{$product->product_view}}</td>
                                     <td>
@@ -226,12 +226,6 @@
                             <ul class="pagination">
                                 <li class="page-item">
                                     <?php
-
-                            <!-- Phân trang -->
-                            <nav aria-label="Page navigation example" style="text-align: center">
-                                <ul class="pagination">
-                                    <li class="page-item">
-                                        <?php
 
                                         // $query = "SELECT COUNT(*) FROM products";
 

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Http\Controllers\CategoryController;
 use App\Models\Post;
 
@@ -15,7 +16,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('category')->orderBy('posts.created_at','DESC')->paginate(5);
+        $posts = Post::with('category')->orderBy('posts.created_at', 'DESC')->paginate(5);
         // dd($posts);
         return view('admin.posts.list', compact('posts'));
     }
@@ -27,20 +28,19 @@ class PostController extends Controller
      */
     public function getAllPost()
     {
-        $posts = Post::with('category')->orderBy('posts.created_at','DESC')->get();
+        $allPost = Post::with('category')->orderBy('posts.created_at', 'DESC')->get();
         // dd($posts);
-        return view('client.blogs.index', compact('posts'));
+        return view('client.blogs.post', compact('allPost'));
     }
 
     public function showclient($id)
     {
-        
+
         $post = Post::find($id);
         return view('client.blogs.detail', compact('post'));
-        
     }
 
-     /**
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -49,21 +49,19 @@ class PostController extends Controller
     public function search(Request $request)
     {
         $kyw = $request->keyword;
-   
+
 
         $posts = Post::with(['category'])
-            ->where('posts.title', 'LIKE', '%'.$kyw.'%')
-            ->orWhere('posts.summary', 'LIKE', '%'.$kyw.'%')
+            ->where('posts.title', 'LIKE', '%' . $kyw . '%')
+            ->orWhere('posts.summary', 'LIKE', '%' . $kyw . '%')
             ->orderBy('posts.id', 'desc')
             ->get();
 
 
         return view('client.blogs.index', compact('posts'));
-      
-
     }
 
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -75,7 +73,6 @@ class PostController extends Controller
         $cate = new CategoryController();
         $categorySelect = $cate->res(0);
         return view('admin.posts.create', compact('categorySelect'));
-
     }
 
     /**
@@ -87,20 +84,20 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $post = new Post();
-        $post->title = $request -> title;
-        $post->summary = $request -> summary;
-        $post->content = $request -> content;
+        $post->title = $request->title;
+        $post->summary = $request->summary;
+        $post->content = $request->content;
         $imgpath = $_FILES['post_img']['name'];
         $target_dir = "../public/images/post/";
         $target_file =  $target_dir . basename($imgpath);
         move_uploaded_file($_FILES['post_img']['tmp_name'], $target_file);
         $post->post_img = $imgpath;
-        $post->category_id = $request -> category_id;
+        $post->category_id = $request->category_id;
         $post->added_by = 0;
         $post->status = 0;
         $post->save();
 
-        return redirect('/admin/post/list')->with('success','Thêm bài viết thành công');
+        return redirect('/admin/post/list')->with('success', 'Thêm bài viết thành công');
     }
 
     /**
@@ -111,10 +108,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        
+
         $post = Post::find($id);
         return view('admin.posts.details', compact('post'));
-        
     }
 
     /**
@@ -140,28 +136,26 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $post = Post::find($id);
-        $post->title = $request -> title;
-        $post->summary = $request -> summary;
-        $post->content = $request -> content;
+        $post->title = $request->title;
+        $post->summary = $request->summary;
+        $post->content = $request->content;
 
         $imgpath = $_FILES['post_img']['name'];
-        if($imgpath != '') {
+        if ($imgpath != '') {
             $target_dir = "../public/images/post/";
             $target_file =  $target_dir . basename($imgpath);
             move_uploaded_file($_FILES['post_img']['tmp_name'], $target_file);
             $post->post_img = $imgpath;
         }
-      
-        $post->category_id = $request -> category_id;
+
+        $post->category_id = $request->category_id;
         $post->added_by = 0;
         $post->status = 0;
         $post->save();
 
-        return redirect('/admin/post/list')->with('messenger','Cập nhật bài viết thành công');
-
-        
+        return redirect('/admin/post/list')->with('messenger', 'Cập nhật bài viết thành công');
     }
 
     /**
@@ -174,6 +168,6 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $post->delete();
-        return redirect('/admin/post/list')->with('messenger','Bài viết đã bị xóa');
+        return redirect('/admin/post/list')->with('messenger', 'Bài viết đã bị xóa');
     }
 }
