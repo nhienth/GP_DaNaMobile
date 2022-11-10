@@ -77,7 +77,7 @@
                                     <h4 class="section-title mb-0 pb-3 font-size-25" style="color: black">Leave a Reply</h4>
                                 </div>
                                 <p class="text-gray-90"> You need to login for comments<span class="text-dark" style="color: red">*</span></p>
-                                <form class="js-validate" action="{{route('post_preview',$post->id)}}"  method="POST" novalidate="novalidate">
+                                <form class="js-validate" action="{{route('post_review',$post->id)}}"  method="POST" novalidate="novalidate">
                                     @csrf
                                     @if (Auth::check())
                                     <div class="js-form-message mb-4" style="color: black">

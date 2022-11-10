@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\PostReview;
+use App\Models\Post;
+use App\Models\User;
 use App\Http\Middleware\checklogin;
 use DB;
 class PostReviewController extends Controller
@@ -29,7 +31,7 @@ class PostReviewController extends Controller
         
     }
 
-    public function previewPost(Request $request, $id)
+    public function reviewPost(Request $request, $id)
     {
         $previews = new PostReview();
         $previews->review = $request->review;

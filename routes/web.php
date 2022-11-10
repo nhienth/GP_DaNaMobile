@@ -74,18 +74,18 @@ Route::prefix('/')->group(function () {
         
     });
 
-    //previewPost
+    //reviewPost
 Route::get('/details/{id}',[PostReviewController::class,'showclient']);
-Route::post('/preview/{id}',[PostReviewController::class,'previewPost'])->name('post_preview');
+Route::post('/review/{id}',[PostReviewController::class,'reviewPost'])->name('post_review')->middleware('auth');
 });
 
 
 Route::get('/nproduct/list', [ProductController::class, 'nindex']);
 Route::get('/nproduct/detail/{id}', [ProductController::class, 'ndetail']);
 Route::get('/product/detail/{id}', [ProductController::class, 'productDetail']);
+//preview
 
-Route::get('/product_details/{id}',[PreviewController::class,'product_details']);
-Route::post('/preview/{id}',[PreviewController::class,'preview']);
+Route::post('/preview/{id}',[PreviewController::class,'preview'])->name('preview')->middleware('auth');
 
 // -----------------------------------ADMIN-----------------------------
 
