@@ -43,55 +43,32 @@ class PreviewController extends Controller
      */
 
     //previewProduct
-    public function product_details($id)
-    {   
-        $products = Product::find($id);
-        $categories = Category::all();
-        $previews = Preview::find($id);
-        $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
-        $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
-        return view('client.products.product_details',compact('categories' ,'slider','banner','products','previews'));
-    }
+    // public function product_details($id)
+    // {   
+    //     $products = Product::find($id);
+    //     $categories = Category::all();
+    //     $previews = Preview::find($id);
+    //     $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
+    //     $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
+    //     return view('client.products.product_details',compact('categories' ,'slider','banner','products','previews'));
+    // }
 
-    public function preview(Request $request, $id)
-    {
-        $previews = new Preview();
-        $previews->rate = $request->rating;
-        $previews->review = $request->review;
-        $previews->status = $request->status;
-        $previews->user_id = Auth::user()->id;     
-        $previews->product_id = $id; 
+    // public function preview(Request $request, $id)
+    // {
+    //     $previews = new Preview();
+    //     $previews->rate = $request->rating;
+    //     $previews->review = $request->review;
+    //     $previews->status = $request->status;
+    //     $previews->user_id = Auth::user()->id;     
+    //     $previews->product_id = $id; 
        
-        $previews->save();
-        return back();
-    }
+    //     $previews->save();
+    //     return back();
+    // }
 
 
 
-    //previewPost
-    public function showclient($id)
-    {
-        
-        $post = Post::find($id);
-        $previews = Preview::all();
-        return view('client.blogs.details', compact('post','previews'));
-        
-    }
-
-    public function previewPost(Request $request, $id)
-    {
-       
-        $previews = new Preview();
-        $previews->rate = 5;
-        $previews->review = $request->review;
-        $previews->status = 1;
-        $previews->user_id = Auth::user()->id;     
-        $previews->product_id = $id; 
-        // dd($previews);
-
-        $previews->save();
-        return back();
-    }
+    
     /**
      * Store a newly created resource in storage.
      *

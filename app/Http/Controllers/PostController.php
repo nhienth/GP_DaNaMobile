@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\CategoryController;
 use App\Models\Post;
 use App\Models\Preview;
+use App\Models\PostReview;
 use App\Http\Controllers\PreviewController;
 
 use Illuminate\Http\Request;
@@ -18,6 +19,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::with('category')->orderBy('posts.created_at','DESC')->paginate(5);
+      
         // dd($posts);
         return view('admin.posts.list', compact('posts'));
     }
@@ -38,7 +40,7 @@ class PostController extends Controller
     {
         
         $post = Post::find($id);
-        $previews = Preview::all();
+        $previews = PostReview::where('posts_id',$id)->get();
         return view('client.blogs.details', compact('post','previews'));
         
     }

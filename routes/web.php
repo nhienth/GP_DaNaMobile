@@ -22,6 +22,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\OrderDetailsController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SpecificationController;
+use App\Http\Controllers\PostReviewController;
 
 
 /*
@@ -73,15 +74,17 @@ Route::prefix('/')->group(function () {
         
     });
 
+    //previewPost
+Route::get('/details/{id}',[PostReviewController::class,'showclient']);
+Route::post('/preview/{id}',[PostReviewController::class,'previewPost'])->name('post_preview');
+});
+
 
 Route::get('/nproduct/list', [ProductController::class, 'nindex']);
 Route::get('/nproduct/detail/{id}', [ProductController::class, 'ndetail']);
 Route::get('/product/detail/{id}', [ProductController::class, 'productDetail']);
 
-//preview
-Route::get('/product_details/{id}',[PreviewController::class,'product_details']);
-Route::post('/preview/{id}',[PreviewController::class,'preview'])->name('preview');
-});
+
 
 // -----------------------------------ADMIN-----------------------------
 
