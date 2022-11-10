@@ -819,15 +819,6 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                                             class="js-mega-menu navbar navbar-expand-xl u-header__navbar u-header__navbar--no-space hs-menu-initialized">
                                             <div id="navBar" class="collapse navbar-collapse u-header__navbar-collapse">
                                                 <ul class="navbar-nav u-header__navbar-nav">
-
-                                                    @foreach($categories as $category)
-                                                    <li class="nav-item u-header__nav-item" data-event="hover"
-                                                        data-position="left">
-                                                        <a href="#"
-                                                            class="nav-link u-header__nav-link font-weight-bold">{{$category->category_name}}</a>
-                                                    </li>
-                                                    @endforeach
-
                                                     <!-- Nav Item MegaMenu -->
                                                     {!! $categorySelect !!}
                                                     <li class="nav-item hs-has-mega-menu u-header__nav-item"

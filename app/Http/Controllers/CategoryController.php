@@ -55,13 +55,21 @@ class CategoryController extends Controller
         $cate = new Category();
         $categories = Category::all();
         $cate->category_name = $request['category_name'];
-        $cate->category_image = $request['category_image'];
+        $imgpath = $_FILES['category_image']['name'];
+        if ($imgpath != '') {
+            $target_dir = "../public/images/categories/";
+            $target_file =  $target_dir . basename($imgpath);
+            move_uploaded_file($_FILES['category_image']['tmp_name'], $target_file);
+            $cate->category_image = $imgpath;
+        }
+
         $cate->parent_id = $request['parent_id'];
         $cate->save();
 
         // Category::create($request->all());
         $categorySelect = $this->res(0);
         return $this->index();
+        //return redirect('/admin/categories/list', compact('categories'));
     }
     /**
      * Display the specified resource.
@@ -160,12 +168,22 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $cate =  Category::find($id);
-        $cate->category_name = $request['category_name'];
-        $cate->parent_id = $request['parent_id'];
+        $cate->category_name = $request->category_name;
+        $cate->parent_id = $request->parent_id;
+
+        $imgpath = $_FILES['category_image']['name'];
+
+        if ($imgpath != '') {
+            $target_dir = "../public/images/categories/";
+            $target_file =  $target_dir . basename($imgpath);
+            move_uploaded_file($_FILES['category_image']['tmp_name'], $target_file);
+            $cate->category_image = $imgpath;
+        }
+
         $cate->save();
         $categorySelect = $this->res(0);
 
-        return redirect('admin/category/list');
+        return $this->index();
 
 
         // $categories = Category::all();
@@ -195,6 +213,7 @@ class CategoryController extends Controller
             }
         }
         if ( $i != 0) {
+            
             return $this->index()->with('message' , ' thêm sản phẩm thành công' );
         }else{
         $category->delete();
