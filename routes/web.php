@@ -84,7 +84,8 @@ Route::get('/nproduct/list', [ProductController::class, 'nindex']);
 Route::get('/nproduct/detail/{id}', [ProductController::class, 'ndetail']);
 Route::get('/product/detail/{id}', [ProductController::class, 'productDetail']);
 
-
+Route::get('/product_details/{id}',[PreviewController::class,'product_details']);
+Route::post('/preview/{id}',[PreviewController::class,'preview']);
 
 // -----------------------------------ADMIN-----------------------------
 
