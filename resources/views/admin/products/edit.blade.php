@@ -120,8 +120,9 @@
                                     <div class="mb-1">
                                         <label class="d-block form-label fs-5 fw-bolder" for="validationBioBootstrap">Mô
                                             tả</label>
-                                        <textarea class="form-control" id="validationBioBootstrap"
-                                            name="validationBioBootstrap" rows="3" required></textarea>
+                                        <textarea name="product_desc" class="form-control" id="mySummernote" rows="9">
+                                        {{$product->product_desc}}
+                                        </textarea>
                                     </div>
 
                                     <button type="submit" class="btn btn-primary me-2">Cập nhật</button>

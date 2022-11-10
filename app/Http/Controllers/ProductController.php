@@ -102,7 +102,7 @@ class ProductController extends Controller
         $target_file =  $target_dir . basename($imgpath);
         move_uploaded_file($_FILES['product_img']['tmp_name'], $target_file);
         $product->product_img = $imgpath;
-        $product->product_desc = '';
+        $product->product_desc = $request->product_desc;
         $product->product_status = 1;
         $product->save();
 
@@ -210,7 +210,7 @@ class ProductController extends Controller
 
         $product->save();
 
-        $specfication_options = ProductSpecificationsOptions::all();
+        $specfication_options = ProductSpecificationsOptions::where('category_id', $product->category_id)->get();
 
         foreach ($specfication_options as $specfication_option) {
             $specfication = ProductSpecificationsOptionsValue::where('product_id', $id)
@@ -270,9 +270,12 @@ class ProductController extends Controller
         $product = Product::with(['category', 'variations', 'variation_value', 'combinations', 'images', 'specfications'])
         ->where('products.id', $id)->first();
 
-        // dd($product);
+        $similarProducts = Product::with(['category'])
+        ->where('products.category_id', $product->category_id)
+        ->where('products.id', '!=', $id)
+        ->get();
 
-        return view('client.products.product_details', compact(['product']));
+        return view('client.products.product_details', compact(['product', 'similarProducts']));
     }
 
     public function deleteVariation($id, Request $request)
