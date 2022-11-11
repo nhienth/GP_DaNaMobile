@@ -5,36 +5,27 @@
                     <div class="col-xl-9 col-wd">
                         <div class="min-width-1100-wd">
                             <article class="card mb-8 border-0">
-                                <img class="img-fluid" src="../../assets/img/1500X730/img6.jpg" alt="Image Description">
                                 <div class="card-body pt-5 pb-0 px-0">
                                     <div class="d-block d-md-flex flex-center-between mb-4 mb-md-0">
-                                        <h4 class="mb-md-3 mb-1">Robot Wars – Now Closed</h4>
+                                        <h2 class="mb-md-3 mb-1 text-black">{{$post->title}}</h2>
                                         <a href="#" class="font-size-12 text-gray-5 ml-md-4"><i class="far fa-comment"></i> Leave a comment</a>
                                     </div>
                                     <div class="mb-3 pb-3 border-bottom">
                                         <div class="list-group list-group-horizontal flex-wrap list-group-borderless align-items-center mx-n0dot5">
-                                            <a href="../blog/single-blog-post.html" class="mx-0dot5 text-gray-5">Design,</a>
-                                            <a href="../blog/single-blog-post.html" class="mx-0dot5 text-gray-5"> Technology,</a>
-                                            <a href="../blog/single-blog-post.html" class="mx-0dot5 text-gray-5"> News,</a>
-                                            <a href="../blog/single-blog-post.html" class="mx-0dot5 text-gray-5"> Image</a>
+                                            <a href="http://localhost:8000/post/details/{{$post->id}}" class="mx-0dot5 text-gray-5">{{$post->category->category_name}}</a>
+                                                  
                                             <span class="mx-2 font-size-n5 mt-1 text-gray-5"><i class="fas fa-circle"></i></span>
-                                            <a href="../blog/single-blog-post.html" class="mx-0dot5 text-gray-5">March 4, 2016</a>
+                                            <a href="http://localhost:8000/post/details/{{$post->id}}" class="mx-0dot5 text-gray-5">{{$post->created_at->format('d/m/Y')}}</a>
                                         </div>
                                     </div>
-                                    <p><strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt, erat in malesuada aliquam, est erat faucibus purus, eget viverra nulla sem vitae neque. Quisque id sodales libero. In nec enim nisi, in ultricies quam. Sed lacinia feugiat velit, cursus molestie lectus mollis et.</strong></p>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt, erat in malesuada aliquam, est erat faucibus purus, eget viverra nulla sem vitae neque. Quisque id sodales libero. In nec enim nisi, in ultricies quam. Sed lacinia feugiat velit, cursus molestie lectus.</p>
-                                    <p>Mauris tempus erat laoreet turpis lobortis, eu tincidunt erat fermentum. Aliquam non tincidunt urna. Integer tincidunt nec nisl vitae ullamcorper. Proin sed ultrices erat. Praesent varius ultrices massa at faucibus. Aenean dignissim, orci sed faucibus pharetra, dui mi dignissim tortor, sit amet condimentum mi ligula sit amet augue. Pellentesque vitae eros eget enim mollis placerat.</p>
+                                
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <p>Mauris tempus erat laoreet turpis lobortis, eu tincidunt erat fermentum.</p>
-                                            <p>Aliquam non tincidunt urna. Integer tincidunt nec nisl vitae ullamcorper. Proin sed ultrices erat. Praesent varius ultrices massa at faucibus. Aenean dignissim, orci sed faucibus pharetra, dui mi dignissim tortor, sit amet condimentum mi ligula sit amet augue. Pellentesque vitae eros eget enim mollis placerat.</p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <blockquote>
-                                                <p>Pellentesque sodales augue eget ultricies ultricies. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur sagittis ultrices condimentum.</p>
-                                                <p>Pellentesque ullamcorper libero in enim pellentesque lobortis. Praesent ut dui ac metus iaculis scelerisque at eget metus.</p>
-                                            </blockquote>
-                                        </div>
+
+                                        <?php
+                                            
+                                            echo $post->content;    
+                                        ?>
+                                        
                                     </div>
                                 </div>
                             </article>
@@ -42,11 +33,11 @@
                                 <!-- Review -->
                                 <div class="d-block d-md-flex media">
                                     <div class="u-xl-avatar mb-4 mb-md-0 mr-md-4">
-                                        <img class="img-fluid" src="../../assets/img/100X100/img17.jpg" alt="Image Description">
+                                        <img class="img-fluid" src="{{asset('/images/post/' . $post->post_img)}}" alt="Image Description">
                                     </div>
                                     <div class="media-body">
-                                        <h3 class="font-size-18 mb-3"><a href="../blog/single-blog-post.html">Jane Smith</a></h3>
-                                        <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis diam erat. Duis velit lectus, posuere a blandit sit amet, tempor at lorem. Donec ultricies, lorem sed ultrices interdum, leo metus luctus sem, vel vulputate diam ipsum sed lorem.</p>
+                                        <h3 class="font-size-18 mb-3"><a href="../blog/single-blog-post.html">{{$post->title}}</a></h3>
+                                        <p class="mb-0">{{$post->summary}}</p>
                                     </div>
                                 </div>
                                 <!-- End Review -->
@@ -59,16 +50,16 @@
                                     <a class="nav-link text-gray-27 px-0" href="../blog/single-blog-post.html">Announcement – Post without Image <span class="ml-1">→</span></a>
                                 </li>
                             </ul>
-                            <div class="mb-10">
+                            <div class="mb-10" style="color: black">
                                 <div class="border-bottom border-color-1 mb-10">
-                                    <h4 class="section-title mb-0 pb-3 font-size-25">3 Comments</h4>
+                                    <h4 class="section-title mb-0 pb-3 font-size-25">Bình luận</h4>
                                 </div>
                                 <ol class="nav">
                                     <li class="w-100 border-bottom pb-6 mb-6 border-color-1">
                                         <!-- Review -->
                                         <div class="d-block d-md-flex media">
                                             <div class="u-xl-avatar mr-md-4 mb-4 mb-md-0">
-                                                <img class="img-fluid rounded-circle" src="../../assets/img/100X100/img19.jpg" alt="Image Description">
+                                                <img class="img-fluid rounded-circle" src="{{asset('/client/assets/img/100X100/img19.jpg')}}" alt="Image Description">
                                             </div>
                                             <div class="media-body">
                                                 <p>Fusce vitae nibh mi. Integer posuere, libero et ullamcorper facilisis, enim eros tincidunt orci, eget vestibulum sapien nisi ut leo. Cras finibus vel est ut mollis. Donec luctus condimentum ante et euismod.</p>
@@ -117,15 +108,15 @@
                                     </li>
                                 </ol>
                             </div>
-                            <div class="mb-10">
+                            <div class="mb-10" style="color: black">
                                 <div class="border-bottom border-color-1 mb-6">
-                                    <h4 class="section-title mb-0 pb-3 font-size-25">Leave a Reply</h4>
+                                    <h4 class="section-title mb-0 pb-3 font-size-25">Viết bình luận</h4>
                                 </div>
-                                <p class="text-gray-90">Your email address will not be published. Required fields are marked <span class="text-dark">*</span></p>
+                                <p class="text-gray-90">Địa chỉ email của bạn sẽ không được hiển thị <span class="text-dark">*</span></p>
                                 <form class="js-validate" novalidate="novalidate">
                                     <div class="js-form-message mb-4">
                                         <label class="form-label">
-                                            Comment
+                                            Bình luận
                                         </label>
 
                                         <div class="input-group">
@@ -137,7 +128,7 @@
                                             <!-- Input -->
                                             <div class="js-form-message mb-4">
                                                 <label class="form-label">
-                                                    Name
+                                                    Họ và tên
                                                     <span class="text-danger">*</span>
                                                 </label>
                                                 <input type="text" class="form-control" name="Name" placeholder="" aria-label="" required="" data-msg="Please enter your name." data-error-class="u-has-error" data-success-class="u-has-success" autocomplete="off">
@@ -149,26 +140,16 @@
                                             <!-- Input -->
                                             <div class="js-form-message mb-4">
                                                 <label class="form-label">
-                                                    Email address
+                                                    Địa chỉ Email
                                                     <span class="text-danger">*</span>
                                                 </label>
                                                 <input type="email" class="form-control" name="emailAddress" placeholder="" aria-label="" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
                                             </div>
                                             <!-- End Input -->
                                         </div>
-                                        <div class="col-md-12">
-                                            <!-- Input -->
-                                            <div class="js-form-message mb-4">
-                                                <label class="form-label">
-                                                    Website
-                                                </label>
-                                                <input type="text" class="form-control" name="website" placeholder="" aria-label="" data-msg="Please enter website name." data-error-class="u-has-error" data-success-class="u-has-success">
-                                            </div>
-                                            <!-- End Input -->
-                                        </div>
                                     </div>
                                     <div class="mb-3">
-                                        <button type="submit" class="btn btn-primary-dark-w px-5">Post Comment</button>
+                                        <button type="submit" class="btn btn-primary-dark-w px-5">Bình luận</button>
                                     </div>
                                 </form>
                             </div>
@@ -211,7 +192,7 @@
                             <article class="mb-4">
                                 <div class="media">
                                     <div class="width-75 height-75 mr-3">
-                                        <img class="img-fluid object-fit-cover" src="../../assets/img/1500X730/img1.jpg" alt="Image Description">
+                                        <img class="img-fluid object-fit-cover" src="../../assets/img/ig1.jpg" alt="Image Description">
                                     </div>
                                     <div class="media-body">
                                         <h4 class="font-size-14 mb-1"><a href="../blog/single-blog-post.html" class="text-gray-39">Robot Wars – Post with Gallery</a></h4>
@@ -222,7 +203,7 @@
                             <article class="mb-4">
                                 <div class="media">
                                     <div class="width-75 height-75 mr-3">
-                                        <img class="img-fluid object-fit-cover" src="../../assets/img/1500X730/img4.jpg" alt="Image Description">
+                                        <img class="img-fluid object-fit-cover" src="../../assets/img/ig4.jpg" alt="Image Description">
                                     </div>
                                     <div class="media-body">
                                         <h4 class="font-size-14 mb-1"><a href="../blog/single-blog-post.html" class="text-gray-39">Robot Wars – Now Closed – Post with Audio</a></h4>
@@ -233,7 +214,7 @@
                             <article class="mb-4">
                                 <div class="media">
                                     <div class="width-75 height-75 mr-3">
-                                        <img class="img-fluid object-fit-cover" src="../../assets/img/1500X730/img5.jpg" alt="Image Description">
+                                        <img class="img-fluid object-fit-cover" src="../../assets/img/ig5.jpg" alt="Image Description">
                                     </div>
                                     <div class="media-body">
                                         <h4 class="font-size-14 mb-1"><a href="../blog/single-blog-post.html" class="text-gray-39">Robot Wars – Now Closed – Post with Video</a></h4>
@@ -256,7 +237,7 @@
                             <article class="mb-4">
                                 <div class="media">
                                     <div class="width-75 height-75 mr-3">
-                                        <img class="img-fluid object-fit-cover" src="../../assets/img/1500X730/img6.jpg" alt="Image Description">
+                                        <img class="img-fluid object-fit-cover" src="../../assets/img/ig6.jpg" alt="Image Description">
                                     </div>
                                     <div class="media-body">
                                         <h4 class="font-size-14 mb-1"><a href="../blog/single-blog-post.html" class="text-gray-39">Robot Wars – Now Closed</a></h4>

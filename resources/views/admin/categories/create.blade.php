@@ -43,13 +43,12 @@
                                     <h3 class="card-title fw-bolder">Thêm Danh mục</h3>
                                 </div>
                                 <div class="card-body">
-                                    <form class="needs-validation" novalidate method="POST" action="http://localhost:8000/admin/category/create">
+                                    <form class="needs-validation" novalidate method="POST" 
+                                    action="{{url('/admin/category/create')}}" enctype="multipart/form-data">
                                         @csrf
                                         <div class="mb-1">
-                                            <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Tên danh mục</label>
-    
-                                            <input type="text" name="category_name" id="basic-addon-name" class="form-control" placeholder="Nhập tên Danh mục" aria-label="Name" aria-describedby="basic-addon-name" required />
-                                    
+                                            <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Tên danh mục</label>   
+                                            <input type="text" name="category_name" id="basic-addon-name" class="form-control" placeholder="Nhập tên Danh mục" aria-label="Name" aria-describedby="basic-addon-name" required />                  
                                         </div>
                                         <div class="mb-1">
                                             <label for="customFile1" class="form-label fs-5 fw-bolder">Ảnh danh mục</label>
@@ -67,7 +66,7 @@
                                         
                                         <button type="submit" class="btn btn-primary me-2">Thêm</button>
                                         <button type="reset" class="btn btn-primary me-2">Nhập lại</button>
-                                        <a href="http://localhost:8000/admin/category/list"><button type="button" class="btn btn-primary">Danh sách</button></a>
+                                        <a href="{{url('/admin/category/list')}}"><button type="button" class="btn btn-primary">Danh sách</button></a>
                                     </form>
                                 </div>
                             </div>

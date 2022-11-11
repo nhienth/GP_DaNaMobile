@@ -25,7 +25,14 @@ class CategoryController extends Controller
         return view('admin.categories.list', compact('categories'));
 
     }
-
+    public function getCategoryName($id) {
+        if($id != 0) {
+            $category = Category::find($id);
+            return $category->category_name;
+        }else{
+            return 'Danh mục cha';
+        }
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -48,13 +55,21 @@ class CategoryController extends Controller
         $cate = new Category();
         $categories = Category::all();
         $cate->category_name = $request['category_name'];
-        $cate->category_image = $request['category_image'];
+        $imgpath = $_FILES['category_image']['name'];
+        if ($imgpath != '') {
+            $target_dir = "../public/images/categories/";
+            $target_file =  $target_dir . basename($imgpath);
+            move_uploaded_file($_FILES['category_image']['tmp_name'], $target_file);
+            $cate->category_image = $imgpath;
+        }
+
         $cate->parent_id = $request['parent_id'];
         $cate->save();
 
         // Category::create($request->all());
         $categorySelect = $this->res(0);
         return $this->index();
+        //return redirect('/admin/categories/list', compact('categories'));
     }
     /**
      * Display the specified resource.
@@ -68,13 +83,6 @@ class CategoryController extends Controller
         // $cate -> parent_id = $request['parent_id'];
         $categorySelect = $this->res_selected(0, $category->parent_id, $id);
         return view('admin.categories.edit', compact('categorySelect', 'category'));
-    }
-
-    public function getCategoryName($id) {
-        if($id != 0) {
-            $category = Category::find($id);
-            return $category->category_name;
-        }
     }
 
     function res_selected($i, $parent_id, $id, $text = '')
@@ -160,12 +168,22 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $cate =  Category::find($id);
-        $cate->category_name = $request['category_name'];
-        $cate->parent_id = $request['parent_id'];
+        $cate->category_name = $request->category_name;
+        $cate->parent_id = $request->parent_id;
+
+        $imgpath = $_FILES['category_image']['name'];
+
+        if ($imgpath != '') {
+            $target_dir = "../public/images/categories/";
+            $target_file =  $target_dir . basename($imgpath);
+            move_uploaded_file($_FILES['category_image']['tmp_name'], $target_file);
+            $cate->category_image = $imgpath;
+        }
+
         $cate->save();
         $categorySelect = $this->res(0);
 
-        return redirect('admin/category/list');
+        return $this->index();
 
 
         // $categories = Category::all();
@@ -187,14 +205,22 @@ class CategoryController extends Controller
         // return $this->index();
         $category = Category::find($id);
         $categories = Category::all();
+        $i = 0;
         foreach ($categories as $key) {
-            if ($key['parent_id'] == $id) {
-                $cate = Category::find($key['id']);
-                $cate->delete();
+            // dd($key['parent_id']);
+            if ( $key['parent_id'] == $id) {
+                $i++;
             }
         }
+        if ( $i != 0) {
+            
+            return $this->index()->with('message' , ' thêm sản phẩm thành công' );
+        }else{
         $category->delete();
-        return $this->index();
+        return $this->index()->with('success', 'Thêm thành công');
+        }
+        
+       
     }
 
     public function deleteRes($id)
@@ -206,6 +232,8 @@ class CategoryController extends Controller
             if ($key['parent_id'] == $id) {
                 $cate = Category::find($categories['id']);
                 $cate->delete();
+            }else{
+                echo '<script type="text/javascript> alert("Bạn không thể xoá sản phẩm cha!") </script>';
             }
         }
         return $this->index();

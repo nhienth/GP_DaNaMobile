@@ -20,7 +20,8 @@ class Product extends Model
         'category_id',
         'product_desc',
         'product_view',
-        'product_status'
+        'product_status',
+        'product_purchases'
     ];
 
     protected $attributes = [
@@ -62,6 +63,10 @@ class Product extends Model
 
     public function variations(){
         return $this->hasMany(Variation_Option::class,'product_id');
+    }
+
+    public function images(){
+        return $this->hasMany(Image_Gallery::class,'product_id');
     }
 
     public function variation_value()
