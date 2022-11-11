@@ -44,7 +44,7 @@ class PreviewController extends Controller
     {
         $products = Product::find($id);
         $categories = Category::all();
-        $previews = Preview::all();
+        $previews = Preview::where('product_id',$id)->get();
         $slider = Slider::first()->orderBy('slider.created_at', 'DESC')->paginate(1);
         $banner = Banner::first()->orderBy('banner.created_at', 'DESC')->paginate(1);
         return view('client.products.product_details', compact('categories', 'slider', 'banner', 'products', 'previews'));

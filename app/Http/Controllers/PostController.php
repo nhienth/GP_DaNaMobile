@@ -37,7 +37,7 @@ class PostController extends Controller
     {
 
         $post = Post::find($id);
-        $previews = PostReview::all();
+        $previews = PostReview::where('posts_id',$id)->get();
         return view('client.blogs.detail', compact('post','previews'));
     }
 
