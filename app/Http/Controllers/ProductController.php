@@ -10,6 +10,9 @@ use App\Models\Category;
 use App\Models\ProductSpecificationsOptions;
 use App\Models\ProductSpecificationsOptionsValue;
 use App\Models\Product;
+use App\Models\Preview;
+use App\Models\Banner;
+use App\Models\Slider;
 use App\Models\Combinations;
 use App\Models\Image_Gallery;
 
@@ -267,6 +270,9 @@ class ProductController extends Controller
      */
     public function productDetail($id)
     {
+        $previews = Preview::all();
+        $slider = Slider::first()->orderBy('slider.created_at', 'DESC')->paginate(1);
+        $banner = Banner::first()->orderBy('banner.created_at', 'DESC')->paginate(1);
         $product = Product::with(['category', 'variations', 'variation_value', 'combinations', 'images', 'specfications'])
         ->where('products.id', $id)->first();
 
@@ -275,7 +281,7 @@ class ProductController extends Controller
         ->where('products.id', '!=', $id)
         ->get();
 
-        return view('client.products.product_details', compact(['product', 'similarProducts']));
+        return view('client.products.product_details', compact(['product', 'similarProducts','previews','banner','slider']));
     }
 
     public function deleteVariation($id, Request $request)

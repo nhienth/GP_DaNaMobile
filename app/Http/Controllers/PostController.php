@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\CategoryController;
 use App\Models\Post;
-
+use App\Models\PostReview;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -37,7 +37,8 @@ class PostController extends Controller
     {
 
         $post = Post::find($id);
-        return view('client.blogs.detail', compact('post'));
+        $previews = PostReview::where('posts_id',$id)->get();
+        return view('client.blogs.detail', compact('post','previews'));
     }
 
     /**

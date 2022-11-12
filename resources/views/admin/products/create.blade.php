@@ -67,7 +67,6 @@
                                         <div class="valid-feedback">Looks good!</div>
                                         <div class="invalid-feedback">Please enter your name.</div>
                                     </div>
-
                                     <div class="mb-1">
                                         <label class="form-label fs-5 fw-bolder" for="select-country1">Danh mục sản
                                             phẩm</label>

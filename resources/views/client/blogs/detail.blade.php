@@ -17,15 +17,11 @@
                                             <span class="mx-2 font-size-n5 mt-1 text-gray-5"><i class="fas fa-circle"></i></span>
                                             <a href="http://localhost:8000/post/details/{{$post->id}}" class="mx-0dot5 text-gray-5">{{$post->created_at->format('d/m/Y')}}</a>
                                         </div>
-                                    </div>
-                                
+                                    </div>                              
                                     <div class="row">
-
-                                        <?php
-                                            
+                                        <?php                                           
                                             echo $post->content;    
-                                        ?>
-                                        
+                                        ?>                                        
                                     </div>
                                 </div>
                             </article>
@@ -50,109 +46,54 @@
                                     <a class="nav-link text-gray-27 px-0" href="../blog/single-blog-post.html">Announcement – Post without Image <span class="ml-1">→</span></a>
                                 </li>
                             </ul>
-                            <div class="mb-10" style="color: black">
-                                <div class="border-bottom border-color-1 mb-10">
-                                    <h4 class="section-title mb-0 pb-3 font-size-25">Bình luận</h4>
+                            <div class="mb-10">
+                                <div class="border-bottom border-color-1 mb-10" style="color: black">
+                                    <h4 class="section-title mb-0 pb-3 font-size-25">3 Comments</h4>
                                 </div>
                                 <ol class="nav">
                                     <li class="w-100 border-bottom pb-6 mb-6 border-color-1">
                                         <!-- Review -->
-                                        <div class="d-block d-md-flex media">
+                                        @foreach ($previews as $item)
+                                        <div class="d-block d-md-flex media" >
                                             <div class="u-xl-avatar mr-md-4 mb-4 mb-md-0">
-                                                <img class="img-fluid rounded-circle" src="{{asset('/client/assets/img/100X100/img19.jpg')}}" alt="Image Description">
-                                            </div>
+                                                <img class="img-fluid rounded-circle" src="{{asset('/images/user/default.jpg')}}" alt="Image Description" width="50px">
+                                            </div>                                         
                                             <div class="media-body">
-                                                <p>Fusce vitae nibh mi. Integer posuere, libero et ullamcorper facilisis, enim eros tincidunt orci, eget vestibulum sapien nisi ut leo. Cras finibus vel est ut mollis. Donec luctus condimentum ante et euismod.</p>
+                                                <p>{{$item->review}}</p>                                             
                                                 <div class="d-flex">
-                                                    <h4 class="font-size-14 font-weight-bold mr-2"><a href="../blog/single-blog-post.html" class="">John Doe</a></h4>
-                                                    <span><a href="../blog/single-blog-post.html" class="text-gray-23">March 16, 2016</a></span>
-                                                    <a href="#" class="text-blue ml-auto">Reply</a>
-                                                </div>
-                                            </div>
+                                                    <h4 class="font-size-14 font-weight-bold mr-2"><a href="../blog/single-blog-post.html" class="">{{$item->user->name}}</a></h4>
+                                                    <span><a href="../blog/single-blog-post.html" class="text-gray-23">{{$item->created_at->format('d/m/Y')}}</a></span>
+                                                    <a href="#" id="{{$item->id}}" class="text-blue ml-auto">Reply</a>
+                                                </div>                                       
+                                            </div>                                                                          
                                         </div>
+                                        @endforeach
                                         <!-- End Review -->
-                                    </li>
-                                    <li class="w-100 border-bottom pb-6 mb-6 border-color-1">
-                                        <!-- Review -->
-                                        <div class="d-block d-md-flex media">
-                                            <div class="u-xl-avatar mr-md-4 mb-4 mb-md-0">
-                                                <img class="img-fluid rounded-circle" src="../../assets/img/100X100/img18.jpg" alt="Image Description">
-                                            </div>
-                                            <div class="media-body">
-                                                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse eget facilisis odio. Duis sodales augue eu tincidunt faucibus.</p>
-                                                <div class="d-flex">
-                                                    <h4 class="font-size-14 font-weight-bold mr-2"><a href="../blog/single-blog-post.html" class="">Anna Kowalsky</a></h4>
-                                                    <span><a href="../blog/single-blog-post.html" class="text-gray-23">March 16, 2016</a></span>
-                                                    <a href="#" class="text-blue ml-auto">Reply</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End Review -->
-                                    </li>
-                                    <li class="w-100">
-                                        <!-- Review -->
-                                        <div class="d-block d-md-flex media">
-                                            <div class="u-xl-avatar mr-md-4 mb-4 mb-md-0">
-                                                <img class="img-fluid rounded-circle" src="../../assets/img/100X100/img20.jpg" alt="Image Description">
-                                            </div>
-                                            <div class="media-body">
-                                                <p>Sed id tincidunt sapien. Pellentesque cursus accumsan tellus, nec ultricies nulla sollicitudin eget. Donec feugiat orci vestibulum porttitor sagittis.</p>
-                                                <div class="d-flex">
-                                                    <h4 class="font-size-14 font-weight-bold mr-2"><a href="../blog/single-blog-post.html" class="">Peter Wargner</a></h4>
-                                                    <span><a href="../blog/single-blog-post.html" class="text-gray-23">March 16, 2016</a></span>
-                                                    <a href="#" class="text-blue ml-auto">Reply</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End Review -->
-                                    </li>
+                                    </li><br>
                                 </ol>
                             </div>
-                            <div class="mb-10" style="color: black">
+                            <div class="mb-10">
                                 <div class="border-bottom border-color-1 mb-6">
-                                    <h4 class="section-title mb-0 pb-3 font-size-25">Viết bình luận</h4>
+                                    <h4 class="section-title mb-0 pb-3 font-size-25" style="color: black">Leave a Reply</h4>
                                 </div>
-                                <p class="text-gray-90">Địa chỉ email của bạn sẽ không được hiển thị <span class="text-dark">*</span></p>
-                                <form class="js-validate" novalidate="novalidate">
-                                    <div class="js-form-message mb-4">
+                                <p class="text-gray-90"> You need to login for comments<span class="text-dark" style="color: red">*</span></p>
+                                <form class="js-validate" action="{{route('post_review',$post->id)}}"  method="POST" novalidate="novalidate">
+                                    @csrf
+                                    @if (Auth::check())
+                                    <div class="js-form-message mb-4" style="color: black">
                                         <label class="form-label">
-                                            Bình luận
+                                            Comment
                                         </label>
-
                                         <div class="input-group">
-                                            <textarea class="form-control p-5" rows="4" name="text" placeholder=""></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <!-- Input -->
-                                            <div class="js-form-message mb-4">
-                                                <label class="form-label">
-                                                    Họ và tên
-                                                    <span class="text-danger">*</span>
-                                                </label>
-                                                <input type="text" class="form-control" name="Name" placeholder="" aria-label="" required="" data-msg="Please enter your name." data-error-class="u-has-error" data-success-class="u-has-success" autocomplete="off">
-                                            </div>
-                                            <!-- End Input -->
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <!-- Input -->
-                                            <div class="js-form-message mb-4">
-                                                <label class="form-label">
-                                                    Địa chỉ Email
-                                                    <span class="text-danger">*</span>
-                                                </label>
-                                                <input type="email" class="form-control" name="emailAddress" placeholder="" aria-label="" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
-                                            </div>
-                                            <!-- End Input -->
+                                            <textarea class="form-control p-5" rows="4" name="review" placeholder=""></textarea>
                                         </div>
                                     </div>
                                     <div class="mb-3">
-                                        <button type="submit" class="btn btn-primary-dark-w px-5">Bình luận</button>
+                                        <button type="submit" class="btn btn-primary-dark-w px-5">Post Comment</button>
                                     </div>
+                                    @endif
                                 </form>
-                            </div>
+                            </div>                
                         </div>
                     </div>
                     <div class="col-xl-3 col-wd">
@@ -309,3 +250,4 @@
                 <!-- End Brand Carousel -->
             </div>
 @endsection
+
