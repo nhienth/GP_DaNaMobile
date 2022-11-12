@@ -154,97 +154,83 @@ Route::middleware(['auth','isAdmin'])->group(function () {
             Route::get('/delete/{id}', [PostController::class, 'destroy']);
         });
 
-            Route::prefix('/product')->group(function () {
-                Route::get('/searchproduct', [ProductController::class, 'search'])->name('search');
-                Route::get('/filter_view', [ProductController::class, 'filter_view'])->name('filter_view');
-                Route::get('/filter_status', [ProductController::class, 'filter_status'])->name('filter_status');
-                // Route::get('/list', [ProductController::class, 'index']);
+        Route::prefix('/product')->group(function () {
+            Route::get('/searchproduct', [ProductController::class, 'search'])->name('search');
+            Route::get('/filter_view', [ProductController::class, 'filter_view'])->name('filter_view');
+            Route::get('/filter_status', [ProductController::class, 'filter_status'])->name('filter_status');
+            // Route::get('/list', [ProductController::class, 'index']);
 
-                Route::get('/list', [ProductController::class, 'index'])->name('product.list');
+            Route::get('/list', [ProductController::class, 'index'])->name('product.list');
 
-                    Route::get('/list', [ProductController::class, 'index']);
+            Route::get('/list', [ProductController::class, 'index']);
 
-                    Route::get('/create', [ProductController::class, 'create']);
-                    Route::post('/create', [ProductController::class, 'store']);
+            Route::get('/create', [ProductController::class, 'create']);
+            Route::post('/create', [ProductController::class, 'store']);
 
-                    Route::get('/edit/{id}', [ProductController::class, 'edit']);
-                    Route::post('/update/{id}', [ProductController::class, 'update']);
+            Route::get('/edit/{id}', [ProductController::class, 'edit']);
+            Route::post('/update/{id}', [ProductController::class, 'update']);
 
-                Route::get('/addVariation/{id}', [VariationController::class, 'create']);
-                Route::post('/addVariation', [VariationController::class, 'store']);
+            Route::get('/addVariation/{id}', [VariationController::class, 'create']);
+            Route::post('/addVariation', [VariationController::class, 'store']);
 
-                Route::get('/listVariation/{id}', [VariationController::class, 'viewList']);
+            Route::get('/listVariation/{id}', [VariationController::class, 'viewList']);
 
-                Route::get('/test/{id}', [VariationController::class, 'test']);
-                Route::get('/listProVar/{id}', [ProductController::class, 'getAllVariation'])->name('combination.list');
-                Route::get('/editProVar/{id}', [ProductController::class, 'editAllVariation']);
-                Route::post('/editProVar/{id}', [ProductController::class, 'editDoneVariation']);
-                Route::get('/deleteProvar/{id}', [ProductController::class, 'deleteVariation']);
-            });
-            Route::prefix('/specification')->group(function () {
-                Route::get('/list', [SpecificationController::class, 'index'])->name('specification.list');
-                Route::get('/create', [SpecificationController::class, 'create'])->name('specification.create');
-                Route::post('/create', [SpecificationController::class, 'store'])->name('specification.create_process');
-                Route::get('/update/{id}', [SpecificationController::class, 'edit'])->name('specification.edit');
-                Route::post('/update/{id}', [SpecificationController::class, 'update'])->name('specification.edit_process');
-                Route::get('/delete/{id}', [SpecificationController::class, 'destroy']);
-            });
-            Route::prefix('/variation_main')->group(function () {
-                Route::get('/list', [VariationController::class, 'index'])->name('variation_main.list');
+            Route::get('/test/{id}', [VariationController::class, 'test']);
+            Route::get('/listProVar/{id}', [ProductController::class, 'getAllVariation'])->name('combination.list');
+            Route::get('/editProVar/{id}', [ProductController::class, 'editAllVariation']);
+            Route::post('/editProVar/{id}', [ProductController::class, 'editDoneVariation']);
+            Route::get('/deleteProvar/{id}', [ProductController::class, 'deleteVariation']);
+        });
+        Route::prefix('/specification')->group(function () {
+            Route::get('/list', [SpecificationController::class, 'index'])->name('specification.list');
+            Route::get('/create', [SpecificationController::class, 'create'])->name('specification.create');
+            Route::post('/create', [SpecificationController::class, 'store'])->name('specification.create_process');
+            Route::get('/update/{id}', [SpecificationController::class, 'edit'])->name('specification.edit');
+            Route::post('/update/{id}', [SpecificationController::class, 'update'])->name('specification.edit_process');
+            Route::get('/delete/{id}', [SpecificationController::class, 'destroy']);
+        });
+        Route::prefix('/variation_main')->group(function () {
+            Route::get('/list', [VariationController::class, 'index'])->name('variation_main.list');
 
-                Route::get('/create', [VariationController::class, 'create_main'])->name('variation_main.create');
-                Route::post('/create', [VariationController::class, 'store_main'])->name('variation_main.create_process');
+            Route::get('/create', [VariationController::class, 'create_main'])->name('variation_main.create');
+            Route::post('/create', [VariationController::class, 'store_main'])->name('variation_main.create_process');
 
-                Route::get('/edit/{id}', [VariationController::class, 'edit_main'])->name('variation_main.edit');
-                Route::post('/update/{id}', [VariationController::class, 'update_main'])->name('variation_main.edit_process');
+            Route::get('/edit/{id}', [VariationController::class, 'edit_main'])->name('variation_main.edit');
+            Route::post('/update/{id}', [VariationController::class, 'update_main'])->name('variation_main.edit_process');
 
-                Route::get('/delete/{id}', [VariationController::class, 'destroy_main']);
-            });
+            Route::get('/delete/{id}', [VariationController::class, 'destroy_main']);
+        });
+    
+        Route::prefix('/preview')->group(function () {
+            Route::get('/list', [PreviewController::class, 'index']);
+            Route::get('/detail/{id}', [PreviewController::class, 'show']);
+            Route::get('/delete/{id}', [PreviewController::class, 'destroy']);
+        });
+
+        Route::prefix('/contact')->group(function () {
+            Route::get('/list', [ContactController::class, 'index']);
+        });
+
+        Route::prefix('/user')->group(function () {
+            Route::get('/list', [UserController::class, 'index']);
+            Route::get('/edit/{id}', [UserController::class, 'edit']);
+            Route::put('/update/{id}', [UserController::class, 'update']);
+        });
+
+        Route::get('/search', [PostController::class, 'search']);
         
-            Route::prefix('/post')->group(function () {
-                Route::get('/list', [PostController::class, 'index']);
-
-                Route::get('/create', [PostController::class, 'create']);
-                Route::post('/create', [PostController::class, 'store']);
-
-                Route::get('/edit/{id}', [PostController::class, 'edit']);
-                Route::post('/update/{id}', [PostController::class, 'update']);
-
-                Route::get('/details/{id}', [PostController::class, 'show']);
-
-                    Route::get('/delete/{id}', [PostController::class, 'destroy']);
-            });
-
-            Route::prefix('/preview')->group(function () {
-                Route::get('/list', [PreviewController::class, 'index']);
-                Route::get('/detail/{id}', [PreviewController::class, 'show']);
-                Route::get('/delete/{id}', [PreviewController::class, 'destroy']);
-            });
-
-            Route::prefix('/contact')->group(function () {
-                Route::get('/list', [ContactController::class, 'index']);
-            });
-
-            Route::prefix('/user')->group(function () {
-                Route::get('/list', [UserController::class, 'index']);
-                Route::get('/edit/{id}', [UserController::class, 'edit']);
-                Route::put('/update/{id}', [UserController::class, 'update']);
-            });
-
-            Route::get('/search', [PostController::class, 'search']);
-            
-            Route::prefix('/order')->group(function () {
-                Route::get('/list', [OrderController::class, 'index']);
-                Route::get('/details/{id}', [OrderDetailsController::class, 'show']);
-                Route::get('/edit/{id}', [OrderController::class, 'edit']);
-                Route::put('/update/{id}', [OrderController::class, 'update']);
-            });
+        Route::prefix('/order')->group(function () {
+            Route::get('/list', [OrderController::class, 'index']);
+            Route::get('/details/{id}', [OrderDetailsController::class, 'show']);
+            Route::get('/edit/{id}', [OrderController::class, 'edit']);
+            Route::put('/update/{id}', [OrderController::class, 'update']);
+        });
 
 
-            Route::prefix('/stocks')->group(function () {
-                Route::get('/list', [StocksController::class, 'index']);
-                Route::get('/stock_detail/{id}', [StocksController::class, 'show']);
-            });
+        Route::prefix('/stocks')->group(function () {
+            Route::get('/list', [StocksController::class, 'index']);
+            Route::get('/stock_detail/{id}', [StocksController::class, 'show']);
+        });
 
         Route::prefix('/slider')->group(function () {
             Route::get('/list', [SliderController::class, 'index'])->name('slider.list');
@@ -263,6 +249,7 @@ Route::middleware(['auth','isAdmin'])->group(function () {
             Route::post('/edit/{id}', [BannerController::class, 'update'])->name('banner.edit_process');
             Route::get('/delete/{id}', [BannerController::class, 'destroy']);
         });
+        
         Route::prefix('/voucher')->group(function () {
             Route::get('/list', [VoucherController::class, 'index'])->name('voucher.list');
             Route::get('/create',  [VoucherController::class, 'create']);

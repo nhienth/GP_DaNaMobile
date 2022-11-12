@@ -1,28 +1,51 @@
-<x-guest-layout>
-        <div class="mb-4 text-sm text-gray-600">
-            {{ __('Đây là một khu vực an toàn của ứng dụng. Vui lòng xác nhận mật khẩu của bạn trước khi tiếp tục.') }}
-        </div>
+<x-guest-layout >
+    <div class="img-layout" style="background-image: url('{{asset('form/images/background.jpg')}}'); background-size: cover; background-repeat: no-repeat; background-position: center center;height:760px">
+        <section class="ftco-section">
+            
+            <div class="container">
+                <x-slot name="logo">
+                    <a href="/">
+                        <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                    </a>
+                </x-slot>
+                
+                <!-- Validation Errors -->
+                <x-auth-validation-errors class="mb-4" :errors="$errors" />
+                <div class="row justify-content-center">
+                    <div class="col-md-6 text-center mb-5">
+                        <div class="mb-4 text-sm text-gray-600" style="color: aliceblue">
+                            {{ __('Đây là một khu vực an toàn của ứng dụng. Vui lòng xác nhận mật khẩu của bạn trước khi tiếp tục.') }}
+                        </div>
+                        <h2 class="heading-section">Xác nhận mật khẩu</h2>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="login-wrap p-0">
+                            <!-- <h3 class="mb-4 text-center">Have an account?</h3> -->
+                            <form class="signin-form" method="POST" action="{{ route('password.confirm') }}">
+                                @csrf
+                                <!-- Mật khẩu -->
+                                <x-input-label for="password" :value="__('Mật khẩu')" />
+                                <div class="form-group">
+                                    <input id="password" type="password" class="form-control" placeholder="Mời nhập mật khẩu"  name="password" required autocomplete="current-password">
+                                    <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                </div>
+                                <!-- Đăng nhập -->
+                                <div class="form-group">
+                                    <div class="flex items-center justify-end mt-4">
+                                        <x-primary-button class="form-control btn btn-primary submit px-3">
+                                            {{ __('Xác nhận mật khẩu') }}
+                                        </x-primary-button>
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('password.confirm') }}">
-            @csrf
-
-            <!-- Password -->
-            <div>
-                <x-input-label for="password" :value="__('Password')" />
-
-                <x-text-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <div class="flex justify-end mt-4">
-                <x-primary-button>
-                    {{ __('Confirm') }}
-                </x-primary-button>
-            </div>
-        </form>
+        </section>
+    </div>
 </x-guest-layout>
+
