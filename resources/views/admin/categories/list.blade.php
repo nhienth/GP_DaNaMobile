@@ -105,14 +105,16 @@
                                        <td>{{++$i}}</td>
                                        <td>{{$category->id}}</td>
                                        <td>{{$category->category_name}}</td>
-                                       <td>{{$category->category_image}}</td>
+                                       <td><img class="rounded"
+                                        src="{{asset('images/categories/'.$category->category_image)}}"
+                                        width="100px" height="100px" style="display:block; margin: 0 auto;"></td>
                                        <?php if($category->parent_cate ==0 ){ ?>
                                             <td>Danh mục cha</td>
                                        <?php }else{ ?>
                                         <td>{{$category->parent_cate}}</td>
                                       <?php } ?>
-                                       <td><a href="http://localhost:8000/admin/category/update/{{$category->id}}"><button type="button" class="btn btn-gradient-success"><i data-feather='edit'></i></button></a></td>
-                                       <td><a href="http://localhost:8000/admin/category/delete/{{$category->id}}"><button type="button" class="btn btn-gradient-danger"><i data-feather='trash-2'></i></button></a></td>                              
+                                       <td><a href="{{url('admin/category/update', [$category->id])}}"><button type="button" class="btn btn-gradient-success"><i data-feather='edit'></i></button></a></td>
+                                       <td><a href="{{url('admin/category/delete', [$category->id])}}"><button type="button" class="btn btn-gradient-danger"><i data-feather='trash-2'></i></button></a></td>                              
                                 </tr>
                                 @endforeach
                             </tbody>

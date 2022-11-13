@@ -20,7 +20,8 @@ class Product extends Model
         'category_id',
         'product_desc',
         'product_view',
-        'product_status'
+        'product_status',
+        'product_purchases'
     ];
 
     protected $attributes = [

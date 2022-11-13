@@ -12,11 +12,11 @@
                         <h2 class="content-header-title float-start mb-0">Quản lý banner</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Quản trị</a>
+                                <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/admin">Quản trị</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="#">Banner</a>
+                                <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/admin/banner/list">Banner</a>
                                 </li>
-                                <li class="breadcrumb-item active">Nhập banner
+                                <li class="breadcrumb-item active">Thêm banner
                                 </li>
                             </ol>
                         </div>
@@ -52,7 +52,7 @@
                                         <div class="invalid-feedback">Please enter your name.</div>
                                     </div>
                                     <div class="mb-1">
-                                        <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Vị trí banner</label>
+                                        <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Link quảng cáo</label>
                                         <input type="text" id="basic-addon-name" class="form-control"  aria-label="Name" aria-describedby="basic-addon-name" name="location" required />
                                         <div class="valid-feedback">Looks good!</div>
                                         <div class="invalid-feedback">Please enter your name.</div>

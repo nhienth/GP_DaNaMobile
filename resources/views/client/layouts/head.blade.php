@@ -1,14 +1,14 @@
 {{-- Begin head --}}
 
 <!-- Title -->
-<title>Home-v1 | Electro - Responsive Website Template</title>
+<title>DaNa Mobile</title>
 
 <!-- Required Meta Tags Always Come First -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Favicon -->
-<link rel="shortcut icon" href="{{asset('favicon.png')}}">
+<link rel="shortcut icon" href="{{asset('images/logo/logo.png')}}">
 
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap" rel="stylesheet">

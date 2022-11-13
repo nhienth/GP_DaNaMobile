@@ -11,7 +11,7 @@ class Combinations extends Model
     protected $table = 'products_combinations';
     
     protected $fillable = [
-        'combination_string','sku','price','avilableStock','product_id'
+        'combination_string','sku','price','avilableStock','product_id', 'purchases'
     ];
 
 

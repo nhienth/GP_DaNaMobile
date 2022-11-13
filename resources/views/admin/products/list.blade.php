@@ -146,37 +146,37 @@
 
                                     <!-- phân trang -->
                                     <?php
-                                    // $conn = mysqli_connect("localhost", "root", "","danamobile");
-                                    //     if (! $conn) {
+                                    $conn = mysqli_connect("localhost", "root", "","danamobile");
+                                        if (! $conn) {
 
-                                    //     die("Connection failed" . mysqli_connect_error());
-                                    // }
+                                        die("Connection failed" . mysqli_connect_error());
+                                    }
                                     
-                                    // else {
+                                    else {
                                     
-                                    //     mysqli_select_db($conn, "products");
+                                        mysqli_select_db($conn, "products");
                                     
-                                    // }
+                                    }
 
-                                    // $per_page_record = 5;
+                                    $per_page_record = 5;
         
-                                    // if (isset($_GET["page"])) {
+                                    if (isset($_GET["page"])) {
         
-                                    //     $page  = $_GET["page"];
+                                        $page  = $_GET["page"];
                                 
-                                    // }
+                                    }
                                 
-                                    // else {
+                                    else {
                                 
-                                    //     $page=1;
+                                        $page=1;
                                 
-                                    // }
+                                    }
                                 
-                                    // $start_from = ($page-1) * $per_page_record;
+                                    $start_from = ($page-1) * $per_page_record;
                                 
-                                    // $query = "SELECT * FROM products LIMIT $start_from, $per_page_record";
+                                    $query = "SELECT * FROM products LIMIT $start_from, $per_page_record";
                                 
-                                    // $rs_result = mysqli_query ($conn, $query);
+                                    $rs_result = mysqli_query ($conn, $query);
                                 
                                 ?>
                                     <!-- kết phân trang -->
@@ -227,51 +227,51 @@
                                 <li class="page-item">
                                     <?php
 
-                                        // $query = "SELECT COUNT(*) FROM products";
+                                        $query = "SELECT COUNT(*) FROM products";
 
-                                        // $rs_result = mysqli_query($conn, $query);
+                                        $rs_result = mysqli_query($conn, $query);
 
-                                        // $row = mysqli_fetch_row($rs_result);
+                                        $row = mysqli_fetch_row($rs_result);
 
-                                        // $total_records = $row[0];
+                                        $total_records = $row[0];
 
-                                        // echo "</br>";
+                                        echo "</br>";
 
-                                        // $total_pages = ceil($total_records / $per_page_record);
+                                        $total_pages = ceil($total_records / $per_page_record);
 
                                         // number of pages required
 
-                                        // $pagLink = "";
+                                        $pagLink = "";
 
-                                        // if($page>=2){
+                                        if($page>=2){
 
-                                        //     echo "<a href='http://127.0.0.1:8000/admin/product/list?list&page=".($page-1)."'>  Prev </a>";
+                                            echo "<a href='http://127.0.0.1:8000/admin/product/list?list&page=".($page-1)."'>  Prev </a>";
 
-                                        // }
+                                        }
 
-                                        // for ($i=1; $i<=$total_pages; $i++) {
+                                        for ($i=1; $i<=$total_pages; $i++) {
 
-                                        //     if ($i == $page) {
+                                            if ($i == $page) {
 
-                                        //         $pagLink .= "<a class = 'active' href='http://127.0.0.1:8000/admin/product/list?list&page=".$i."'>".$i." </a>";
+                                                $pagLink .= "<a class = 'active' href='http://127.0.0.1:8000/admin/product/list?list&page=".$i."'>".$i." </a>";
 
-                                        //     }
+                                            }
 
-                                        //     else  {
+                                            else  {
 
-                                        //         $pagLink .= "<a href='http://127.0.0.1:8000/admin/product/list?list&page=".$i."'>".$i." </a>";
+                                                $pagLink .= "<a href='http://127.0.0.1:8000/admin/product/list?list&page=".$i."'>".$i." </a>";
 
-                                        //     }
+                                            }
 
-                                        // };
+                                        };
 
-                                        // echo $pagLink;
+                                        echo $pagLink;
 
-                                        // if($page<$total_pages){
+                                        if($page<$total_pages){
 
-                                        //     echo "<a href='http://127.0.0.1:8000/admin/product/list?list&page=".($page+1)."'>  Next </a>";
+                                            echo "<a href='http://127.0.0.1:8000/admin/product/list?list&page=".($page+1)."'>  Next </a>";
 
-                                        // }
+                                        }
 
                                     ?>
                                         <?php

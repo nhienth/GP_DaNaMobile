@@ -56,9 +56,9 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                                         @csrf
                                         <div id="userlogin" class="dropdown-menu dropdown-unfold "
                                             style="text-align:center" aria-labelledby="Userclient">
-                                            <a href="" class="dropdown-item">Thông tin cá nhân</a>
+                                            <a href="http://127.0.0.1:8000/user/{{ Auth::user()->id }}" class="dropdown-item">Thông tin cá nhân</a>
 
-                                            <a href="http://" class="dropdown-item">Đổi mật khẩu</a>
+                                            <a href="http://127.0.0.1:8000/user/{{ Auth::user()->id }}" class="dropdown-item">Đổi mật khẩu</a>
                                             <hr>
                                             <a href="route('logout')"
                                                 onclick="event.preventDefault(); this.closest('form').submit();">
@@ -100,7 +100,7 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                             class="navbar navbar-expand u-header__navbar py-0 justify-content-xl-between max-width-270 min-width-270">
                             <!-- Logo -->
                             <a class="order-1 order-xl-0 navbar-brand u-header__navbar-brand u-header__navbar-brand-center"
-                                href="../home/index.html" aria-label="DaNaMobile">
+                                href="{{url('/')}}" aria-label="DaNaMobile">
 
                                 <img src="{{asset('images/logo/dana.png')}}" alt="" width="300px" height="60px">
                                 <!-- <svg version="1.1" x="0px" y="0px" width="175.748px" height="42.52px" viewBox="0 0 175.748 42.52" enable-background="new 0 0 175.748 42.52" style="margin-bottom: 0;">
@@ -638,17 +638,17 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                             <div class="input-group">
                                 <input type="email"
                                     class="form-control py-2 pl-5 font-size-15 border-right-0 height-40 border-width-2 rounded-left-pill border-primary"
-                                    name="email" id="searchproduct-item" placeholder="Search for Products"
+                                    name="email" id="searchproduct-item" placeholder="Tìm kiếm Sản Phẩm"
                                     aria-label="Search for Products" aria-describedby="searchProduct1" required>
                                 <div class="input-group-append">
                                     <!-- Select -->
                                     <select
                                         class="js-select selectpicker dropdown-select custom-search-categories-select"
                                         data-style="btn height-40 text-gray-60 font-weight-normal border-top border-bottom border-left-0 rounded-0 border-primary border-width-2 pl-0 pr-5 py-2">
-                                        <option value="one" selected>All Categories</option>
-                                        <option value="two">Two</option>
+                                        <option value="one" selected>Sản phẩm</option>
+                                        {{-- <option value="two">Two</option>
                                         <option value="three">Three</option>
-                                        <option value="four">Four</option>
+                                        <option value="four">Four</option> --}}
                                     </select>
                                     <!-- End Select -->
                                     <button class="btn btn-primary height-40 py-2 px-3 rounded-right-pill" type="button"
@@ -819,88 +819,8 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                                             class="js-mega-menu navbar navbar-expand-xl u-header__navbar u-header__navbar--no-space hs-menu-initialized">
                                             <div id="navBar" class="collapse navbar-collapse u-header__navbar-collapse">
                                                 <ul class="navbar-nav u-header__navbar-nav">
-
-                                                    @foreach($categories as $category)
-                                                    <li class="nav-item u-header__nav-item" data-event="hover"
-                                                        data-position="left">
-                                                        <a href="#"
-                                                            class="nav-link u-header__nav-link font-weight-bold">{{$category->category_name}}</a>
-                                                    </li>
-                                                    @endforeach
-
                                                     <!-- Nav Item MegaMenu -->
                                                     {!! $categorySelect !!}
-                                                    <li class="nav-item hs-has-mega-menu u-header__nav-item"
-                                                        data-event="hover" data-animation-in="slideInUp"
-                                                        data-animation-out="fadeOut" data-position="left">
-                                                        <a id="basicMegaMenu"
-                                                            class="nav-link u-header__nav-link u-header__nav-link-toggle"
-                                                            href="javascript:;" aria-haspopup="true"
-                                                            aria-expanded="false">Computers & Accessories</a>
-
-                                                        <!-- Nav Item - Mega Menu -->
-                                                        <div class="hs-mega-menu vmm-tfw u-header__sub-menu"
-                                                            aria-labelledby="basicMegaMenu">
-                                                            <div class="vmm-bg">
-                                                                <img class="img-fluid"
-
-                                                                    src="../../assets/img/500X400/img1.png"
-                                                                    alt="Image Description">
-
-                                                            </div>
-                                                            <div class="row u-header__mega-menu-wrapper">
-                                                                <div class="col mb-3 mb-sm-0">
-                                                                    <span class="u-header__sub-menu-title">Computers &
-                                                                        Accessories</span>
-                                                                    <ul class="u-header__sub-menu-nav-group mb-3">
-                                                                        <li><a class="nav-link u-header__sub-menu-nav-link"
-                                                                                href="#">All Computers & Accessories</a>
-                                                                        </li>
-                                                                        <li><a class="nav-link u-header__sub-menu-nav-link"
-                                                                                href="#">Laptops, Desktops &
-
-                                                                                Monitors</a>
-                                                                        </li>
-
-                                                                        <li><a class="nav-link u-header__sub-menu-nav-link"
-                                                                                href="#">Printers & Ink</a></li>
-                                                                        <li><a class="nav-link u-header__sub-menu-nav-link"
-                                                                                href="#">Networking & Internet
-
-                                                                                Devices</a>
-                                                                        </li>
-
-                                                                        <li><a class="nav-link u-header__sub-menu-nav-link"
-                                                                                href="#">Computer Accessories</a></li>
-                                                                        <li><a class="nav-link u-header__sub-menu-nav-link"
-                                                                                href="#">Software</a></li>
-                                                                        <li>
-                                                                            <a class="nav-link u-header__sub-menu-nav-link u-nav-divider border-top pt-2 flex-column align-items-start"
-                                                                                href="#">
-                                                                                <div class="">All Electronics</div>
-                                                                                <div
-                                                                                    class="u-nav-subtext font-size-11 text-gray-30">
-                                                                                    Discover more products</div>
-                                                                            </a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-
-
-                                                                <div class="col mb-3 mb-sm-0">
-                                                                    <span class="u-header__sub-menu-title">Office &
-                                                                        Stationery</span>
-                                                                    <ul class="u-header__sub-menu-nav-group">
-                                                                        <li><a class="nav-link u-header__sub-menu-nav-link"
-                                                                                href="#">All Office & Stationery</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                        <!-- End Nav Item - Mega Menu -->
-                                                    </li>
                                                     <!-- End Nav Item MegaMenu-->
 
                                                 </ul>

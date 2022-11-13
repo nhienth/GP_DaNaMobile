@@ -12,9 +12,9 @@
                         <h2 class="content-header-title float-start mb-0">Quản lý slider</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Quản trị</a>
+                                <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/admin">Quản trị</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="#">Slider</a>
+                                <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/admin/banner/list">Slider</a>
                                 </li>
                                 <li class="breadcrumb-item active">Sửa slider
                                 </li>
@@ -47,14 +47,14 @@
                                     <div class="mb-1">
                                         <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Thêm Banner</label>
 
-                                        <input type="file" id="basic-addon-name" class="form-control"  aria-label="Name" aria-describedby="basic-addon-name" name="file_img" value="{{$banner->banner_img}}" required />
+                                        <input type="file" id="basic-addon-name" class="form-control"  aria-label="Name" aria-describedby="basic-addon-name" name="file_img" value="{{$banner->banner_img}}"/>
                                         <img src="{{asset('images/banner/'.$banner->banner_img)}}" width="100px" height="100px" alt="">
 
                                         <div class="valid-feedback">Looks good!</div>
                                         <div class="invalid-feedback">Please enter your name.</div>
                                     </div>
                                     <div class="mb-1">
-                                        <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Vị trí banner</label>
+                                        <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Link quảng cáo</label>
                                         <input type="text" id="basic-addon-name" class="form-control"  aria-label="Name" aria-describedby="basic-addon-name" name="location" required value="{{$banner->location}}"/>
                                         <div class="valid-feedback">Looks good!</div>
                                         <div class="invalid-feedback">Please enter your name.</div>

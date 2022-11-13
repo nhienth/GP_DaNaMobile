@@ -40,14 +40,22 @@ class PreviewController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function product_details($id)
+    public function productReview($id)
     {
         $products = Product::find($id);
         $categories = Category::all();
-        $previews = Preview::all();
+        $previews = Preview::where('product_id',$id)->get();
         $slider = Slider::first()->orderBy('slider.created_at', 'DESC')->paginate(1);
         $banner = Banner::first()->orderBy('banner.created_at', 'DESC')->paginate(1);
-        return view('client.products.product_details', compact('categories', 'slider', 'banner', 'products', 'previews'));
+        $product = Product::with(['category', 'variations', 'variation_value', 'combinations', 'images', 'specfications'])
+        ->where('products.id', $id)->first();
+
+        $similarProducts = Product::with(['category'])
+        ->where('products.category_id', $product->category_id)
+        ->where('products.id', '!=', $id)
+        ->get();
+        
+        return view('client.products.product_details', compact('categories', 'slider', 'banner', 'products', 'previews','product', 'similarProducts'));
     }
 
     public function preview(Request $request, $id)

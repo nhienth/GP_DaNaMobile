@@ -43,7 +43,7 @@
                                     <h3 class="card-title fw-bolder">Cập nhật Danh mục</h3>
                                 </div>
                                 <div class="card-body">
-                                    <form class="needs-validation" novalidate method="POST" action="http://localhost:8000/admin/category/update/{{$category->id}}">
+                                    <form class="needs-validation" novalidate method="POST" action="{{url('admin/category/update', [$category->id])}}" enctype="multipart/form-data">
                                         @csrf
                                         <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Tên Danh mục</label>
@@ -52,8 +52,13 @@
                                             <div class="invalid-feedback">Please enter your name.</div>
                                         </div>
                                         <div class="mb-1">
+                                            <img class="rounded" src="{{asset('/images/categories/'.$category->category_image)}}"
+                                                width="80%" height="400px"
+                                                style="object-fit:cover; display:block; margin: 0 auto;">
+                                        </div>
+                                        <div class="mb-1">
                                             <label for="customFile1" class="form-label fs-5 fw-bolder">Ảnh sản phẩm</label>
-                                            <input class="form-control" type="file" id="customFile1" required name="category_image" value="{{$category->category_name}}"/>
+                                            <input class="form-control" type="file" id="customFile1" required name="category_image"/>
                                         </div>
                                         <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="select-country1">Danh mục</label>
