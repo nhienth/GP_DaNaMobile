@@ -60,11 +60,11 @@ Route::prefix('/')->group(function () {
     });
     Route::prefix('/blogs')->group(function () {
 
+        Route::get('/', [PostController::class, 'getAllPost']);
+
         // lay tat ca bai viet theo danh muc
 
         Route::get('/list/{id}', [PostController::class, 'getPostById']);
-
-        Route::get('/', [PostController::class, 'getAllPost']);
 
         Route::get('/details/{id}', [PostController::class, 'showclient']);
 

@@ -106,7 +106,7 @@
                                     <tr>
                                         <th>Id banner</th>
                                         <th>Hình ảnh</th>
-                                        <th>Vị trí</th>
+                                        <th>Link quảng cáo</th>
                                         <th colspan="2">Hành động</th>
                                     </tr>
                                 </thead>

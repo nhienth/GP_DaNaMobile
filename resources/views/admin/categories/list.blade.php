@@ -113,7 +113,7 @@
                                        <?php }else{ ?>
                                         <td>{{$category->parent_cate}}</td>
                                       <?php } ?>
-                                       <td><a href="{{url('admin/category/edit', [$category->id])}}"><button type="button" class="btn btn-gradient-success"><i data-feather='edit'></i></button></a></td>
+                                       <td><a href="{{url('admin/category/update', [$category->id])}}"><button type="button" class="btn btn-gradient-success"><i data-feather='edit'></i></button></a></td>
                                        <td><a href="{{url('admin/category/delete', [$category->id])}}"><button type="button" class="btn btn-gradient-danger"><i data-feather='trash-2'></i></button></a></td>                              
                                 </tr>
                                 @endforeach
