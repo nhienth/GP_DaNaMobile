@@ -76,7 +76,7 @@
                                 <div class="border-bottom border-color-1 mb-6">
                                     <h4 class="section-title mb-0 pb-3 font-size-25" style="color: black">Leave a Reply</h4>
                                 </div>
-                                <p class="text-gray-90"> You need to login for comments<span class="text-dark" style="color: red">*</span></p>
+                                <p class="hidden">Bạn cần đăng nhập để đánh giá bài viết<span class="text-dark" style="color: red">*</span></p>
                                 <form class="js-validate" action="{{route('post_review',$post->id)}}"  method="POST" novalidate="novalidate">
                                     @csrf
                                     @if (Auth::check())

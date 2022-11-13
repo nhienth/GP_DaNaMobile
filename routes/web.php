@@ -22,6 +22,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\OrderDetailsController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SpecificationController;
+use App\Http\Controllers\PostReviewController;
 
 
 /*
@@ -37,6 +38,9 @@ use App\Http\Controllers\SpecificationController;
 
 // -----------------------------------CLIENT-----------------------------
 Route::get('/product/detail/{id}', [ProductController::class, 'productDetail']);
+//review product
+Route::post('/preview/{id}',[PreviewController::class,'productReview'])->name('preview');
+
 Route::prefix('/')->group(function () {
     Route::get('', [HomeController::class, 'index']);
 
@@ -67,8 +71,11 @@ Route::prefix('/')->group(function () {
         Route::get('/list/{id}', [PostController::class, 'getPostById']);
 
         Route::get('/details/{id}', [PostController::class, 'showclient']);
-
     });
+    //review post
+    Route::get('/detail/{id}',[PostReviewController::class,'showclient']);
+    Route::post('/review/{id}',[PostReviewController::class,'reviewPost'])->name('post_review');
+    
 
     Route::get('/checkout', function () {
         return view('client.shop.checkout');
