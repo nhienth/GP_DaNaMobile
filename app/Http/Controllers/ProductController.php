@@ -312,10 +312,11 @@ class ProductController extends Controller
             $cart[$id]['quantity']++;
         } else {
             $cart[$id] = [
-                "name" => $name,
+                "name" => $name . $product->combination_string,
                 "quantity" => 1,
                 "price" => $product->price,
-                "image" => $product->image
+                "image" => $product->combination_image,
+                ""
             ];
         }
         session()->put('cart', $cart);

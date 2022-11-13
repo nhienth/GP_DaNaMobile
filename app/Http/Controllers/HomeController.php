@@ -10,7 +10,7 @@ use App\Models\Banner;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Combinations;
-
+use DB;
 class HomeController extends Controller
 {
     /**
@@ -24,7 +24,9 @@ class HomeController extends Controller
     {
         $categories = Category::all();
         $categorySelect = $this->res(0);
-        $categorylist = Category::orderBy('categories.created_at','DESC')->paginate(4);
+        //$categorylist = Category::orderBy('categories.created_at','DESC')->paginate(4);
+        $categorylist = Category::where('parent_id', '!=', '0')->orderBy('categories.created_at','DESC')->paginate(4);
+
         foreach ($categories as $category) {
             $parent_id = $category->parent_id;
             $partenCateName = $this->getCategoryName($parent_id);
@@ -32,8 +34,8 @@ class HomeController extends Controller
         }
         $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
         $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
-        // $product = Product::all();
-
+        $bannerlist = Banner::all();
+        // all sản phẩm
         $productsld = Product::with('combinations','category')->orderBy('products.id', 'desc')
             ->take(8)
             ->get();
@@ -45,7 +47,7 @@ class HomeController extends Controller
           foreach ($product->combinations as $productCombi) {
             array_push($priceArr, $productCombi->price);
           
-        }
+            }
             $minPrice = min($priceArr);
             $maxPrice = max($priceArr);
 
@@ -56,7 +58,51 @@ class HomeController extends Controller
 
         }
 
-        return view('client.index')->with(compact('categories', 'categorylist', 'slider','banner','productsld', 'categorySelect'));
+        // sản phẩm theo lượt xem
+        $view_product = Product::with('combinations','category')->orderBy('products.product_view', 'DESC')
+        ->limit(8)
+        ->get();//hiển thị theo lượt xem
+        $priceArr = [];
+        $minPrice = 0;
+        $maxPrice = 0;
+        foreach ($view_product as $product) {
+          foreach ($product->combinations as $productCombi) {
+            array_push($priceArr, $productCombi->price);
+          
+            }
+            $minPrice = min($priceArr);
+            $maxPrice = max($priceArr);
+
+            $priceArr = [];
+
+            $product['minprice'] = $minPrice;
+            $product['maxprice'] = $maxPrice;
+
+        }
+        // random
+        $random = Product::with('combinations','category')->orderBy(DB::raw('RAND()'))
+        ->limit(3)
+        ->get();//random ngẫu nhiên 5 bài
+        $priceArr = [];
+        $minPrice = 0;
+        $maxPrice = 0;
+        foreach ($random as $product) {
+          foreach ($product->combinations as $productCombi) {
+            array_push($priceArr, $productCombi->price);
+          
+            }
+            $minPrice = min($priceArr);
+            $maxPrice = max($priceArr);
+
+            $priceArr = [];
+
+            $product['minprice'] = $minPrice;
+            $product['maxprice'] = $maxPrice;
+
+        }
+        
+
+        return view('client.index')->with(compact('categories', 'categorylist', 'view_product', 'slider', 'banner', 'bannerlist', 'productsld', 'random', 'categorySelect'));
 
     }
 
@@ -83,6 +129,51 @@ class HomeController extends Controller
         return $this->html;
     }
 
+    // public function res_all_children($id){
+    //     $data = Category::all();
+    //     foreach ($data as $value){
+    //         if()
+    //     }
+    // }
+    // public function list($id, $text = '')
+    // {
+    //     $data = Category::all();
+    //     foreach ($data as $list) {          
+    //         if ($list['parent_id'] == $id) { 
+    //             $this->html .= '<div class="col-md-6 mb-4 mb-xl-0 col-xl-3">
+    //                                 <a href="../shop/shop.html" class="d-black text-gray-90">
+    //                                     <div class="min-height-132 py-1 d-flex bg-gray-1 align-items-center">
+    //                                         <div class="col-6 col-xl-5 col-wd-6 pr-0">
+                                                
+    //                                         </div>
+    //                                         <div class="col-6 col-xl-7 col-wd-6">
+    //                                             <div class="mb-2 pb-1 font-size-18 font-weight-light text-ls-n1 text-lh-23">
+    //                                                 .$list['getCategoryName'] .
+    //                                             </div>
+    //                                             <div class="link text-gray-90 font-weight-bold font-size-15" href="#">
+    //                                                 Xem sản phẩm
+    //                                                 <span class="link__icon ml-1">
+    //                                                     <span class="link__icon-inner"><i
+    //                                                             class="ec ec-arrow-right-categproes"></i></span>
+    //                                                 </span>
+    //                                             </div>
+    //                                         </div>
+    //                                     </div>
+    //                                 </a>
+    //                             </div>'
+                                            
+    //                                         ;   
+    //             $this->html .= '<li class="nav-item hs-has-mega-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut" data-position="left">
+    //             <a id="basicMegaMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false">'.$list['category_name'] . '</a>';
+    //             $this->res_sub($list['id'], $list['id']);
+    //             $this->html .= '</li>';
+    //         }else{
+    //             $this->html .= '</li>';
+    //         }
+    //     }
+    //     return $this->html;
+    // }
+
 
     public function res_sub($id, $id_parent)
     {
@@ -107,16 +198,16 @@ class HomeController extends Controller
         foreach ($data_sub as $value_sub) {
             if ($value_sub['parent_id'] == $id) {  
                         
-                                            $this->html .= '<li><a class="nav-link u-header__sub-menu-nav-link" href="#">'.$value_sub['category_name'].'</a></li>';    
+                $this->html .= '<li><a class="nav-link u-header__sub-menu-nav-link" href="#">'.$value_sub['category_name'].'</a></li>';    
                    
             }
            
         }
         $this->html .= '                   
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>';   
+                        </ul>
+                    </div>
+                </div>
+            </div>';   
         }
         return $this->html;
      

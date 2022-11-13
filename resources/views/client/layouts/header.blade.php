@@ -56,9 +56,9 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                                         @csrf
                                         <div id="userlogin" class="dropdown-menu dropdown-unfold "
                                             style="text-align:center" aria-labelledby="Userclient">
-                                            <a href="" class="dropdown-item">Thông tin cá nhân</a>
+                                            <a href="http://127.0.0.1:8000/user/{{ Auth::user()->id }}" class="dropdown-item">Thông tin cá nhân</a>
 
-                                            <a href="http://" class="dropdown-item">Đổi mật khẩu</a>
+                                            <a href="http://127.0.0.1:8000/user/{{ Auth::user()->id }}" class="dropdown-item">Đổi mật khẩu</a>
                                             <hr>
                                             <a href="route('logout')"
                                                 onclick="event.preventDefault(); this.closest('form').submit();">
@@ -821,77 +821,6 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                                                 <ul class="navbar-nav u-header__navbar-nav">
                                                     <!-- Nav Item MegaMenu -->
                                                     {!! $categorySelect !!}
-                                                    <li class="nav-item hs-has-mega-menu u-header__nav-item"
-                                                        data-event="hover" data-animation-in="slideInUp"
-                                                        data-animation-out="fadeOut" data-position="left">
-                                                        <a id="basicMegaMenu"
-                                                            class="nav-link u-header__nav-link u-header__nav-link-toggle"
-                                                            href="javascript:;" aria-haspopup="true"
-                                                            aria-expanded="false">Computers & Accessories</a>
-
-                                                        <!-- Nav Item - Mega Menu -->
-                                                        <div class="hs-mega-menu vmm-tfw u-header__sub-menu"
-                                                            aria-labelledby="basicMegaMenu">
-                                                            <div class="vmm-bg">
-                                                                <img class="img-fluid"
-
-                                                                    src="../../assets/img/500X400/img1.png"
-                                                                    alt="Image Description">
-
-                                                            </div>
-                                                            <div class="row u-header__mega-menu-wrapper">
-                                                                <div class="col mb-3 mb-sm-0">
-                                                                    <span class="u-header__sub-menu-title">Computers &
-                                                                        Accessories</span>
-                                                                    <ul class="u-header__sub-menu-nav-group mb-3">
-                                                                        <li><a class="nav-link u-header__sub-menu-nav-link"
-                                                                                href="#">All Computers & Accessories</a>
-                                                                        </li>
-                                                                        <li><a class="nav-link u-header__sub-menu-nav-link"
-                                                                                href="#">Laptops, Desktops &
-
-                                                                                Monitors</a>
-                                                                        </li>
-
-                                                                        <li><a class="nav-link u-header__sub-menu-nav-link"
-                                                                                href="#">Printers & Ink</a></li>
-                                                                        <li><a class="nav-link u-header__sub-menu-nav-link"
-                                                                                href="#">Networking & Internet
-
-                                                                                Devices</a>
-                                                                        </li>
-
-                                                                        <li><a class="nav-link u-header__sub-menu-nav-link"
-                                                                                href="#">Computer Accessories</a></li>
-                                                                        <li><a class="nav-link u-header__sub-menu-nav-link"
-                                                                                href="#">Software</a></li>
-                                                                        <li>
-                                                                            <a class="nav-link u-header__sub-menu-nav-link u-nav-divider border-top pt-2 flex-column align-items-start"
-                                                                                href="#">
-                                                                                <div class="">All Electronics</div>
-                                                                                <div
-                                                                                    class="u-nav-subtext font-size-11 text-gray-30">
-                                                                                    Discover more products</div>
-                                                                            </a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-
-
-                                                                <div class="col mb-3 mb-sm-0">
-                                                                    <span class="u-header__sub-menu-title">Office &
-                                                                        Stationery</span>
-                                                                    <ul class="u-header__sub-menu-nav-group">
-                                                                        <li><a class="nav-link u-header__sub-menu-nav-link"
-                                                                                href="#">All Office & Stationery</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                        <!-- End Nav Item - Mega Menu -->
-                                                    </li>
                                                     <!-- End Nav Item MegaMenu-->
 
                                                 </ul>

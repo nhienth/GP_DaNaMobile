@@ -37,11 +37,13 @@
                     </thead>
                     <tbody>
                         @php
-                            $total = 0
+                            $total = 0;
+                            // session()->forget('cart');
+                            // session()->flush();
                         @endphp
-                         @foreach((array) session('cart') as $id => $details)
+                         {{-- @foreach((array) session('cart') as $id => $details)
                          @php $total += $details['price'] * $details['quantity'] @endphp
-                        @endforeach
+                        @endforeach --}}
                         @if (session('cart'))
                         @foreach (session('cart') as $id => $details )
                         <tr class="">
@@ -49,7 +51,7 @@
                                 <a href="#" class="text-gray-32 font-size-26">×</a>
                             </td>
                             <td class="d-none d-md-table-cell">
-                                <a href="#"><img class="img-fluid max-width-100 p-1 border border-color-1" src="{{asset('images/'.$details['image'])}}" alt="Image Description"></a>
+                                <a href="#"><img class="img-fluid max-width-100 p-1 border border-color-1" src="{{asset('images/products/'.$details['image'])}}" alt="Image Description"></a>
                             </td>
 
                             <td data-title="Product">
@@ -62,11 +64,12 @@
 
                             <td data-title="Quantity">
                                 <span class="sr-only">{{$details['quantity']}}</span>
+                             
                                 <!-- Quantity -->
                                 <div class="border rounded-pill py-1 width-122 w-xl-80 px-3 border-color-1">
                                     <div class="js-quantity row align-items-center">
                                         <div class="col">
-                                            <input class="js-result form-control h-auto border-0 rounded p-0 shadow-none" type="text" value="1">
+                                            <input class="js-result form-control h-auto border-0 rounded p-0 shadow-none" type="text" value="{{$details['quantity']}}">
                                         </div>
                                         <div class="col-auto pr-1">
                                             <a class="js-minus btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0" href="javascript:;">
@@ -82,7 +85,7 @@
                             </td>
                             
                             <td data-title="Total">
-                                <span class="">{{$total}}</span>
+                                <span class="">{{$details['quantity'] * $details['price']}}</span>
                             </td>
                         </tr>
                         @endforeach

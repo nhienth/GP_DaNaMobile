@@ -25,7 +25,7 @@
 
         <!-- ========== SECONDARY CONTENTS ========== -->
         <!-- Account Sidebar Navigation -->
-        @include('client.layouts.sidebar')
+        {{-- @include('client.layouts.sidebar') --}}
         <!-- End Account Sidebar Navigation -->
         <!-- ========== END SECONDARY CONTENTS ========== -->
 
