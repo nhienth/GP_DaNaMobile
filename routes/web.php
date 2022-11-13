@@ -17,6 +17,7 @@ use App\Http\Controllers\VariationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\VoucherController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\OrderDetailsController;
@@ -42,10 +43,14 @@ Route::prefix('/')->group(function () {
     Route::get('', [HomeController::class, 'index']);
 
     Route::prefix('/contact')->group(function () {
-
-
         Route::get('/', [ContactController::class, 'create']);
-        
+    });
+
+    Route::prefix('/cart')->group(function () {
+        Route::get('/', function () {
+            return view('client.shop.cart');
+        });
+        Route::get('/add/{id}', [ProductController::class, 'addToCart'])->name('cart.add');
     });
 
     Route::prefix('/user')->group(function () {
@@ -55,7 +60,6 @@ Route::prefix('/')->group(function () {
         Route::get('showaddress/{id}', [AddressControll::class, 'show']);
         Route::get('create/{id}', [AddressControll::class, 'create']);
         Route::post('create/{id}', [AddressControll::class, 'store']);
-
     });
 
 
@@ -66,17 +70,16 @@ Route::prefix('/')->group(function () {
         Route::get('/list/{id}', [PostController::class, 'getPostById']);
         Route::get('/posts/', [PostController::class, 'getAllPost']);
         Route::get('/tt/', function () {
-            
+
             return view('client.blogs.index');
         });
 
         Route::get('/details/{id}', [PostController::class, 'showclient']);
-        
     });
 
     //reviewPost
-Route::get('/details/{id}',[PostReviewController::class,'showclient']);
-Route::post('/review/{id}',[PostReviewController::class,'reviewPost'])->name('post_review')->middleware('auth');
+    Route::get('/details/{id}', [PostReviewController::class, 'showclient']);
+    Route::post('/review/{id}', [PostReviewController::class, 'reviewPost'])->name('post_review')->middleware('auth');
 });
 
 
@@ -85,7 +88,7 @@ Route::get('/nproduct/detail/{id}', [ProductController::class, 'ndetail']);
 Route::get('/product/detail/{id}', [ProductController::class, 'productDetail']);
 
 //preview
-Route::post('/preview/{id}',[PreviewController::class,'preview'])->name('preview')->middleware('auth');
+Route::post('/preview/{id}', [PreviewController::class, 'preview'])->name('preview')->middleware('auth');
 
 // -----------------------------------ADMIN-----------------------------
 
@@ -148,7 +151,7 @@ Route::prefix('/admin')->group(function () {
 
         Route::get('/delete/{id}', [VariationController::class, 'destroy_main']);
     });
-  
+
     Route::prefix('/post')->group(function () {
         Route::get('/list', [PostController::class, 'index']);
 
@@ -160,8 +163,8 @@ Route::prefix('/admin')->group(function () {
 
         Route::get('/details/{id}', [PostController::class, 'show']);
 
-            Route::get('/delete/{id}', [PostController::class, 'destroy']);
-        });
+        Route::get('/delete/{id}', [PostController::class, 'destroy']);
+    });
 
     Route::prefix('/preview')->group(function () {
         Route::get('/list', [PreviewController::class, 'index']);
@@ -180,8 +183,8 @@ Route::prefix('/admin')->group(function () {
     });
 
 
-        Route::get('/search', [PostController::class, 'search']);
-    
+    Route::get('/search', [PostController::class, 'search']);
+
 
     Route::prefix('/order')->group(function () {
         Route::get('/list', [OrderController::class, 'index']);
@@ -196,31 +199,31 @@ Route::prefix('/admin')->group(function () {
         Route::get('/stock_detail/{id}', [StocksController::class, 'show']);
     });
 
-        Route::prefix('/slider')->group(function () {
-            Route::get('/list', [SliderController::class, 'index'])->name('slider.list');
-            Route::get('/create', [SliderController::class, 'create'])->name('slider.create');
-            Route::post('/create', [SliderController::class, 'store'])->name('slider.create_process');
-            Route::get('/edit/{id}', [SliderController::class, 'edit'])->name('slider.edit');
-            Route::post('/edit/{id}', [SliderController::class, 'update'])->name('slider.edit_process');
-            Route::get('/delete/{id}', [SliderController::class, 'destroy']);
-        });
+    Route::prefix('/slider')->group(function () {
+        Route::get('/list', [SliderController::class, 'index'])->name('slider.list');
+        Route::get('/create', [SliderController::class, 'create'])->name('slider.create');
+        Route::post('/create', [SliderController::class, 'store'])->name('slider.create_process');
+        Route::get('/edit/{id}', [SliderController::class, 'edit'])->name('slider.edit');
+        Route::post('/edit/{id}', [SliderController::class, 'update'])->name('slider.edit_process');
+        Route::get('/delete/{id}', [SliderController::class, 'destroy']);
+    });
 
-        Route::prefix('/banner')->group(function () {
-            Route::get('/list', [BannerController::class, 'index'])->name('banner.list');
-            Route::get('/create', [BannerController::class, 'create'])->name('banner.create');
-            Route::post('/create', [BannerController::class, 'store'])->name('banner.create_process');
-            Route::get('/edit/{id}', [BannerController::class, 'edit'])->name('banner.edit');
-            Route::post('/edit/{id}', [BannerController::class, 'update'])->name('banner.edit_process');
-            Route::get('/delete/{id}', [BannerController::class, 'destroy']);
-        });
-        Route::prefix('/voucher')->group(function () {
-            Route::get('/list', [VoucherController::class, 'index'])->name('voucher.list');
-            Route::get('/create',  [VoucherController::class, 'create']);
-            Route::post('/create', [VoucherController::class, 'store'])->name('voucher.create');
-            Route::get('/edit/{id}', [VoucherController::class, 'edit']);
-            Route::post('/update/{id}', [VoucherController::class, 'update']);
-            Route::get('/delete/{id}', [VoucherController::class, 'destroy']);
-        });
+    Route::prefix('/banner')->group(function () {
+        Route::get('/list', [BannerController::class, 'index'])->name('banner.list');
+        Route::get('/create', [BannerController::class, 'create'])->name('banner.create');
+        Route::post('/create', [BannerController::class, 'store'])->name('banner.create_process');
+        Route::get('/edit/{id}', [BannerController::class, 'edit'])->name('banner.edit');
+        Route::post('/edit/{id}', [BannerController::class, 'update'])->name('banner.edit_process');
+        Route::get('/delete/{id}', [BannerController::class, 'destroy']);
+    });
+    Route::prefix('/voucher')->group(function () {
+        Route::get('/list', [VoucherController::class, 'index'])->name('voucher.list');
+        Route::get('/create',  [VoucherController::class, 'create']);
+        Route::post('/create', [VoucherController::class, 'store'])->name('voucher.create');
+        Route::get('/edit/{id}', [VoucherController::class, 'edit']);
+        Route::post('/update/{id}', [VoucherController::class, 'update']);
+        Route::get('/delete/{id}', [VoucherController::class, 'destroy']);
+    });
 
 
 

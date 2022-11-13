@@ -33,31 +33,33 @@ class ProductController extends Controller
         }
     }
 
-    public function filter_view(){
+    public function filter_view()
+    {
         $keywords = $_GET['view_selected'];
         $categories = Category::all();
         $products = Product::all();
-        if($keywords == 1){
+        if ($keywords == 1) {
             $products = Product::with('category')->orderBy('products.product_view', 'desc')->paginate(5);
-            return view('admin.products.list')->with(compact('products','categories'));
-        }else if($keywords == 2){
+            return view('admin.products.list')->with(compact('products', 'categories'));
+        } else if ($keywords == 2) {
             $products = Product::with('category')->orderBy('products.product_view', 'asc')->paginate(5);
-            return view('admin.products.list')->with(compact('products','categories'));
-        }else{
+            return view('admin.products.list')->with(compact('products', 'categories'));
+        } else {
             $products = Product::with('category')->orderBy('products.id', 'asc')->paginate(5);
-            return view('admin.products.list')->with(compact('products','categories'));
+            return view('admin.products.list')->with(compact('products', 'categories'));
         }
     }
 
-    public function filter_status(){
+    public function filter_status()
+    {
         $keywords = $_GET['status_selected'];
         $categories = Category::all();
         $products = Product::where('product_status', '=', $keywords)->paginate(5);
-        if($keywords != 2){
-            return view('admin.products.list')->with(compact('products','categories'));
-        }else{
+        if ($keywords != 2) {
+            return view('admin.products.list')->with(compact('products', 'categories'));
+        } else {
             $products = Product::with('category')->paginate(5);
-            return view('admin.products.list')->with(compact('products','categories'));
+            return view('admin.products.list')->with(compact('products', 'categories'));
         }
     }
     /**
@@ -129,7 +131,7 @@ class ProductController extends Controller
         }
         foreach ($_FILES['product_img_gallery']['size'] as $file) {
             $size[] = round($file / 1024, 2);
-        } 
+        }
         //Phần này lấy giá trị ra từng mảng nhỏ
         for ($i = 0; $i < count($name); $i++) {
             $product_gallery = new Image_Gallery();
@@ -141,9 +143,8 @@ class ProductController extends Controller
             $product_gallery->medium = $filename;
             $product_gallery->product_id = $product->id;
             $product_gallery->save();
-            
-        }       
-        
+        }
+
         $cateIdSeleted = $request->specification_cate;
 
         $specfications = ProductSpecificationsOptions::all();
@@ -262,7 +263,7 @@ class ProductController extends Controller
         return view('admin.products.variations', compact('product'));
     }
 
-     /**
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -274,14 +275,14 @@ class ProductController extends Controller
         $slider = Slider::first()->orderBy('slider.created_at', 'DESC')->paginate(1);
         $banner = Banner::first()->orderBy('banner.created_at', 'DESC')->paginate(1);
         $product = Product::with(['category', 'variations', 'variation_value', 'combinations', 'images', 'specfications'])
-        ->where('products.id', $id)->first();
+            ->where('products.id', $id)->first();
 
         $similarProducts = Product::with(['category'])
-        ->where('products.category_id', $product->category_id)
-        ->where('products.id', '!=', $id)
-        ->get();
+            ->where('products.category_id', $product->category_id)
+            ->where('products.id', '!=', $id)
+            ->get();
 
-        return view('client.products.product_details', compact(['product', 'similarProducts','previews','banner','slider']));
+        return view('client.products.product_details', compact(['product', 'similarProducts', 'previews', 'banner', 'slider']));
     }
 
     public function deleteVariation($id, Request $request)
@@ -297,5 +298,28 @@ class ProductController extends Controller
         $product = Product::with('combinations')->where('products.id', $id)->first();
         $variation = ProductSpecificationsOptions::find($id);
         return view('admin.variation.edit', compact('detailVar', 'product', 'variation'));
+    }
+
+    public function addToCart($id)
+    {
+        $product = Combinations::find($id);
+
+        $product_name_id = $product->product_id;
+        $productName = Product::find($product_name_id);
+        $name = $productName->product_name;
+        $cart = session()->get('cart', []);
+        if (isset($cart[$id])) {
+            $cart[$id]['quantity']++;
+        } else {
+            $cart[$id] = [
+                "name" => $name,
+                "quantity" => 1,
+                "price" => $product->price,
+                "image" => $product->image
+            ];
+        }
+        session()->put('cart', $cart);
+        return view('client.shop.cart')->with('success', 'Product added to cart');
+        // dd($name);
     }
 }
