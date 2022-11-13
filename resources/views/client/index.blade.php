@@ -649,80 +649,20 @@
                             href="#Tpills-one-example1" role="tab" aria-controls="Tpills-one-example1"
                             aria-selected="true">
                             <div class="d-md-flex justify-content-md-center align-items-md-center">
-                                Best Deals
+                                Tốt nhất
                             </div>
                         </a>
                     </li>
+                    @foreach($categorylist as $category)
                     <li class="nav-item flex-shrink-0 flex-lg-shrink-1">
                         <a class="nav-link " id="Tpills-two-example1-tab" data-toggle="pill" href="#Tpills-two-example1"
                             role="tab" aria-controls="Tpills-two-example1" aria-selected="false">
                             <div class="d-md-flex justify-content-md-center align-items-md-center">
-                                TV & Video
+                                {{$category->category_name}}
                             </div>
                         </a>
                     </li>
-                    <li class="nav-item flex-shrink-0 flex-lg-shrink-1">
-                        <a class="nav-link " id="Tpills-three-example1-tab" data-toggle="pill"
-                            href="#Tpills-three-example1" role="tab" aria-controls="Tpills-three-example1"
-                            aria-selected="false">
-                            <div class="d-md-flex justify-content-md-center align-items-md-center">
-                                Cameras
-                            </div>
-                        </a>
-                    </li>
-                    <li class="nav-item flex-shrink-0 flex-lg-shrink-1">
-                        <a class="nav-link " id="Tpills-four-example1-tab" data-toggle="pill"
-                            href="#Tpills-four-example1" role="tab" aria-controls="Tpills-four-example1"
-                            aria-selected="false">
-                            <div class="d-md-flex justify-content-md-center align-items-md-center">
-                                Audio
-                            </div>
-                        </a>
-                    </li>
-                    <li class="nav-item flex-shrink-0 flex-lg-shrink-1">
-                        <a class="nav-link " id="Tpills-five-example1-tab" data-toggle="pill"
-                            href="#Tpills-five-example1" role="tab" aria-controls="Tpills-five-example1"
-                            aria-selected="false">
-                            <div class="d-md-flex justify-content-md-center align-items-md-center">
-                                Smartphones
-                            </div>
-                        </a>
-                    </li>
-                    <li class="nav-item flex-shrink-0 flex-lg-shrink-1">
-                        <a class="nav-link " id="Tpills-six-example1-tab" data-toggle="pill" href="#Tpills-six-example1"
-                            role="tab" aria-controls="Tpills-six-example1" aria-selected="false">
-                            <div class="d-md-flex justify-content-md-center align-items-md-center">
-                                GPS & Navi
-                            </div>
-                        </a>
-                    </li>
-                    <li class="nav-item flex-shrink-0 flex-lg-shrink-1">
-                        <a class="nav-link " id="Tpills-seven-example1-tab" data-toggle="pill"
-                            href="#Tpills-seven-example1" role="tab" aria-controls="Tpills-seven-example1"
-                            aria-selected="false">
-                            <div class="d-md-flex justify-content-md-center align-items-md-center">
-                                Computers
-                            </div>
-                        </a>
-                    </li>
-                    <li class="nav-item flex-shrink-0 flex-lg-shrink-1">
-                        <a class="nav-link " id="Tpills-eight-example1-tab" data-toggle="pill"
-                            href="#Tpills-eight-example1" role="tab" aria-controls="Tpills-eight-example1"
-                            aria-selected="false">
-                            <div class="d-md-flex justify-content-md-center align-items-md-center">
-                                Portable Audio
-                            </div>
-                        </a>
-                    </li>
-                    <li class="nav-item flex-shrink-0 flex-lg-shrink-1">
-                        <a class="nav-link " id="Tpills-nine-example1-tab" data-toggle="pill"
-                            href="#Tpills-nine-example1" role="tab" aria-controls="Tpills-nine-example1"
-                            aria-selected="false">
-                            <div class="d-md-flex justify-content-md-center align-items-md-center">
-                                Accessories
-                            </div>
-                        </a>
-                    </li>
+                    @endforeach
                 </ul>
             </div>
             <!-- End Nav Classic -->

@@ -24,7 +24,9 @@ class HomeController extends Controller
     {
         $categories = Category::all();
         $categorySelect = $this->res(0);
-        $categorylist = Category::orderBy('categories.created_at','DESC')->paginate(4);
+        //$categorylist = Category::orderBy('categories.created_at','DESC')->paginate(4);
+        $categorylist = Category::where('parent_id', '!=', '0')->orderBy('categories.created_at','DESC')->paginate(4);
+
         foreach ($categories as $category) {
             $parent_id = $category->parent_id;
             $partenCateName = $this->getCategoryName($parent_id);
@@ -127,6 +129,12 @@ class HomeController extends Controller
         return $this->html;
     }
 
+    // public function res_all_children($id){
+    //     $data = Category::all();
+    //     foreach ($data as $value){
+    //         if()
+    //     }
+    // }
     // public function list($id, $text = '')
     // {
     //     $data = Category::all();
