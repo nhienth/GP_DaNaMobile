@@ -16,16 +16,17 @@ $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
             <div class="col-wd-3 col-lg-4">
                 <div class="widget-column">
                     <div class="border-bottom border-color-1 mb-5">
-                        <h3 class="section-title section-title__sm mb-0 pb-2 font-size-18" style="color: black">Sản phẩm gợi ý</h3>
+                        <h3 class="section-title section-title__sm mb-0 pb-2 font-size-18" style="color: black">Sản phẩm
+                            gợi ý</h3>
                     </div>
                     <ul class="list-unstyled products-group">
                         @foreach ($random as $randoms)
-                            
+
                         <li class="product-item product-item__list row no-gutters mb-6 remove-divider">
                             <div class="col-auto">
-                                <a href=""
-                                    class="d-block width-75 text-center"><img class="img-fluid"
-                                        src="{{asset('images/products/'.$randoms->product_img)}}" alt="Image Description"></a>
+                                <a href="" class="d-block width-75 text-center"><img class="img-fluid"
+                                        src="{{asset('images/products/'.$randoms->product_img)}}"
+                                        alt="Image Description"></a>
                             </div>
                             <div class="col pl-4 d-flex flex-column">
                                 <h5 class="product-item__title mb-0"><a href="../shop/single-product-fullwidth.html"
@@ -43,7 +44,8 @@ $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
             </div>
             <div class="col-wd-3 col-lg-4">
                 <div class="border-bottom border-color-1 mb-5">
-                    <h3 class="section-title section-title__sm mb-0 pb-2 font-size-18" style="color: black">Sản phẩm đang giảm giá</h3>
+                    <h3 class="section-title section-title__sm mb-0 pb-2 font-size-18" style="color: black">Sản phẩm
+                        đang giảm giá</h3>
                 </div>
                 <ul class="list-unstyled products-group">
                     <li class="product-item product-item__list row no-gutters mb-6 remove-divider">
@@ -96,7 +98,8 @@ $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
             </div>
             <div class="col-wd-3 col-lg-4">
                 <div class="border-bottom border-color-1 mb-5">
-                    <h3 class="section-title section-title__sm mb-0 pb-2 font-size-18" style="color: black">Sản phẩm đánh giá hàng đầu</h3>
+                    <h3 class="section-title section-title__sm mb-0 pb-2 font-size-18" style="color: black">Sản phẩm
+                        đánh giá hàng đầu</h3>
                 </div>
                 <ul class="list-unstyled products-group">
                     <li class="product-item product-item__list row no-gutters mb-6 remove-divider">
@@ -185,7 +188,8 @@ $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
                             <h2 class="font-size-20 mb-0 ml-3">Đăng nhập để được nhiều ưu đãi</h2>
                         </div>
                         <div class="col my-4 my-md-0">
-                            <h5 class="font-size-15 ml-4 mb-0">... và nhận được nhiều phiếu giảm giá <strong>Free ship</strong></h5>
+                            <h5 class="font-size-15 ml-4 mb-0">... và nhận được nhiều phiếu giảm giá <strong>Free
+                                    ship</strong></h5>
                         </div>
                     </div>
                 </div>
@@ -217,7 +221,7 @@ $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
                 <div class="col-lg-5">
                     <div class="mb-6">
                         <a href="#" class="d-inline-block">
-                                <img src="{{asset('images/logo/dana.png')}}" alt="" srcset="" style="width:300px">
+                            <img src="{{asset('images/logo/dana.png')}}" alt="" srcset="" style="width:300px">
                         </a>
                     </div>
                     <div class="mb-4">
@@ -319,15 +323,19 @@ $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
                             <h6 class="mb-3 font-weight-bold">Chăm sóc khách hàng</h6>
                             <!-- List Group -->
                             <ul class="list-group list-group-flush list-group-borderless mb-0 list-group-transparent">
-                                <li><a class="list-group-item list-group-item-action" href="http://127.0.0.1:8000/user/{{ Auth::user()->id }}">Tài khoản của tôi</a></li>
+                                <li><a class="list-group-item list-group-item-action"
+                                        href="http://127.0.0.1:8000/user/{{ Auth::user()->id }}">Tài khoản của tôi</a>
+                                </li>
                                 <li><a class="list-group-item list-group-item-action"
                                         href="../shop/track-your-order.html">Giỏ hàng</a></li>
-                                <li><a class="list-group-item list-group-item-action" href="../shop/wishlist.html">Sản phẩm yêu thích</a></li>
+                                <li><a class="list-group-item list-group-item-action" href="../shop/wishlist.html">Sản
+                                        phẩm yêu thích</a></li>
                                 <li><a class="list-group-item list-group-item-action"
                                         href="http://127.0.0.1:8000/contact">Dịch vụ khách hàng</a></li>
                                 <li><a class="list-group-item list-group-item-action"
                                         href="http://127.0.0.1:8000/contact">Trao đổi</a></li>
-                                <li><a class="list-group-item list-group-item-action" href="http://127.0.0.1:8000/contact">FAQs</a>
+                                <li><a class="list-group-item list-group-item-action"
+                                        href="http://127.0.0.1:8000/contact">FAQs</a>
                                 </li>
                                 <li><a class="list-group-item list-group-item-action"
                                         href="http://127.0.0.1:8000/contact">Hổ trợ sản phẩm</a></li>
@@ -344,7 +352,8 @@ $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
     <div class="bg-gray-14 py-2">
         <div class="container">
             <div class="flex-center-between d-block d-md-flex" style="color: black">
-                <div class="mb-3 mb-md-0">© <a href="#" class="font-weight-bold text-gray-90">DaNa-Mobile</a> - Đã đăng ký bản quyền</div>
+                <div class="mb-3 mb-md-0">© <a href="#" class="font-weight-bold text-gray-90">DaNa-Mobile</a> - Đã đăng
+                    ký bản quyền</div>
                 <div class="text-md-right">
                     <span class="d-inline-block bg-white border rounded p-1">
                         <img class="max-width-5" style="height:30px" src="{{asset('images/user/bao.jpg')}}"
