@@ -109,11 +109,13 @@
                         </div>
                         <div class="border-top border-bottom py-3 mb-4">
                             @foreach ($product->combinations as $productCombi)
+                            <div>
                             <input type="hidden" name="combination_string"
                                 value="{{$productCombi->combination_string}}">
                             <input type="hidden" name="price" value="{{$productCombi->price}}">
                             <input type="hidden" name="combination_image" value="{{$productCombi->combination_image}}">
-
+                            <input type="hidden" name="productCombi_Id" value="{{$productCombi->id}}"/>
+                            </div>
                             @endforeach
                             <div class="d-flex align-items-center">
 
@@ -177,7 +179,7 @@
                                 <!-- End Quantity -->
                             </div>
                             <div class="ml-md-3">
-                                <a href="#" class="btn px-5 btn-primary-dark transition-3d-hover"><i
+                                <a href="{{url('cart/add/'.$productCombi->id)}}" class="btn px-5 btn-primary-dark transition-3d-hover" id="addtocart"><i
                                         class="ec ec-add-to-cart mr-2 font-size-20"></i> Add to Cart</a>
                             </div>
                         </div>
@@ -847,6 +849,7 @@
         let arr = ['a', 'b'];
         let arrImgInput = [];
         let priceHtml = document.getElementById("price_product");
+        let addCartButton = document.getElementById("addtocart");
 
 
         let combiImageList = document.querySelectorAll('.combi-image-js');
@@ -870,6 +873,9 @@
                 productsCombination.forEach((pro) => {
                     if (variSeleted == pro.value.trim()) {
                         priceHtml.innerHTML = `$${pro.nextElementSibling.value}`;
+                        let combiId = pro.parentElement.lastElementChild.value;
+                        addCartButton.href=`http://127.0.0.1:8000/cart/add/${combiId}`;
+                        
 
                         let imgCombi = pro.nextElementSibling.nextElementSibling;
 
