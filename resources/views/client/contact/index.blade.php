@@ -24,68 +24,62 @@
         </div>
         <!-- Accordion -->
         <form class="js-validate" novalidate="novalidate" style="color: black;">
+            <!-- Billing Form -->
             <div class="row">
-                <div class="col-lg-7 order-lg-1">
-                    <div class="pb-12 mb-7">
-                        <!-- Billing Form -->
-                        <div class="row">
-    
-                            <div class="col-md-12">
-                                <!-- Input -->
-                                <div class="js-form-message mb-3">
-                                    <label class="form-label">
-                                        Họ và tên
-                                        <span class="text-danger">*</span>
-                                    </label>
-                                    <input type="text" class="form-control" name="" placeholder="" value="" data-msg="Please enter your frist name." data-error-class="u-has-error" data-success-class="u-has-success" autocomplete="off">
-                                </div>
-                                <!-- End Input -->
-                            </div>
-                            <div class="col-md-12">
-                                <!-- Input -->
-                                <div class="js-form-message mb-6">
-                                    <label class="form-label">
-                                        Địa chỉ email
-                                        <span class="text-danger">*</span>
-                                    </label>
-                                    <input type="email" class="form-control" name="" placeholder="" value=""  data-msg="Please enter your last name." data-error-class="u-has-error" data-success-class="u-has-success">
-                                </div>
-                                <!-- End Input -->
-                            </div>
-
-                            <div class="col-md-12">
-                                <!-- Input -->
-                                <div class="js-form-message mb-6">
-                                    <label class="form-label">
-                                        Tiêu đề
-                                        <span class="text-danger">*</span>
-                                    </label>
-                                    <input type="text" class="form-control" name="" placeholder="" value=""  data-msg="Please enter your last name." data-error-class="u-has-error" data-success-class="u-has-success">
-                                </div>
-                                <!-- End Input -->
-                            </div>
-
-                            <div class="col-md-12">
-                                <!-- Input -->
-                                <div class="js-form-message mb-6">
-                                    <label class="form-label">
-                                        Nội dung liên hệ
-                                        <span class="text-danger">*</span>
-                                    </label>
-                                    <textarea class="form-control" name="" id="" cols="30" rows="10"></textarea>
-                                </div>
-                                <!-- End Input -->
-                            </div>
-    
-                            <div class="col-md-6">
-                                <a href=""><button type="button" class="btn btn-outline-primary">Gửi</button></a>
-                            </div>
-    
-                        </div>
-                        <!-- End Billing Form -->
+                <div class="col-md-12">
+                    <!-- Input -->
+                    <div class="js-form-message mb-3">
+                        <label class="form-label">
+                            Họ và tên
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" class="form-control" name="" placeholder="" value="" data-msg="Please enter your frist name." data-error-class="u-has-error" data-success-class="u-has-success" autocomplete="off">
                     </div>
+                    <!-- End Input -->
                 </div>
+                
+                <div class="col-md-12">
+                    <!-- Input -->
+                    <div class="js-form-message mb-6">
+                        <label class="form-label">
+                            Địa chỉ email
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input type="email" class="form-control" name="" placeholder="" value=""  data-msg="Please enter your last name." data-error-class="u-has-error" data-success-class="u-has-success">
+                    </div>
+                    <!-- End Input -->
+                </div>
+
+                <div class="col-md-12">
+                    <!-- Input -->
+                    <div class="js-form-message mb-6">
+                        <label class="form-label">
+                            Tiêu đề
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" class="form-control" name="" placeholder="" value=""  data-msg="Please enter your last name." data-error-class="u-has-error" data-success-class="u-has-success">
+                    </div>
+                    <!-- End Input -->
+                </div>
+
+                <div class="col-md-12">
+                    <!-- Input -->
+                    <div class="js-form-message mb-6">
+                        <label class="form-label">
+                            Nội dung liên hệ
+                            <span class="text-danger">*</span>
+                        </label>
+                        <textarea class="form-control" name="" id="" cols="30" rows="10"></textarea>
+                    </div>
+                    <!-- End Input -->
+                </div>
+
+                <div class="col-md-6">
+                    <a href=""><button type="button" class="btn btn-outline-primary">Gửi</button></a>
+                </div>
+
             </div>
+            <!-- End Billing Form -->
         </form>
     </div>
 </main>

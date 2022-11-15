@@ -36,13 +36,19 @@ use App\Http\Controllers\SpecificationController;
 */
 
 // -----------------------------------CLIENT-----------------------------
-Route::get('/product/detail/{id}', [ProductController::class, 'productDetail']);
+// Route::get('/product/detail/{id}', [ProductController::class, 'productDetail']);
 Route::prefix('/')->group(function () {
     Route::get('', [HomeController::class, 'index']);
 
     Route::prefix('/contact')->group(function () {
 
         Route::get('/', [ContactController::class, 'create']);
+    });
+
+    Route::prefix('/product')->group(function () {
+
+        Route::get('/detail/{id}', [ProductController::class, 'productDetail']);
+    
     });
 
     Route::prefix('/user')->group(function () {
@@ -64,7 +70,7 @@ Route::prefix('/')->group(function () {
 
         // lay tat ca bai viet theo danh muc
 
-        Route::get('/list/{id}', [PostController::class, 'getPostById']);
+        // Route::get('/list/{id}', [PostController::class, 'getPostById']);
 
         Route::get('/details/{id}', [PostController::class, 'showclient']);
 

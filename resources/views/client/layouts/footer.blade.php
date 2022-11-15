@@ -10,170 +10,6 @@ $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
 
 ?>
 <footer>
-    <!-- Footer-top-widget -->
-    <div class="container d-none d-lg-block mb-3">
-        <div class="row">
-            <div class="col-wd-3 col-lg-4">
-                <div class="widget-column">
-                    <div class="border-bottom border-color-1 mb-5">
-                        <h3 class="section-title section-title__sm mb-0 pb-2 font-size-18" style="color: black">Sản phẩm gợi ý</h3>
-                    </div>
-                    <ul class="list-unstyled products-group">
-                        @foreach ($random as $randoms)
-                            
-                        <li class="product-item product-item__list row no-gutters mb-6 remove-divider">
-                            <div class="col-auto">
-                                <a href=""
-                                    class="d-block width-75 text-center"><img class="img-fluid"
-                                        src="{{asset('images/products/'.$randoms->product_img)}}" alt="Image Description"></a>
-                            </div>
-                            <div class="col pl-4 d-flex flex-column">
-                                <h5 class="product-item__title mb-0"><a href="../shop/single-product-fullwidth.html"
-                                        class="text-blue font-weight-bold">{{ $randoms->product_name }}</a></h5>
-                                <div class="prodcut-price mt-auto" style="color: black">
-                                    <div class="font-size-15">{{$randoms->minprice}}đ</div>
-                                </div>
-                            </div>
-                        </li>
-
-                        @endforeach
-
-                    </ul>
-                </div>
-            </div>
-            <div class="col-wd-3 col-lg-4">
-                <div class="border-bottom border-color-1 mb-5">
-                    <h3 class="section-title section-title__sm mb-0 pb-2 font-size-18" style="color: black">Sản phẩm đang giảm giá</h3>
-                </div>
-                <ul class="list-unstyled products-group">
-                    <li class="product-item product-item__list row no-gutters mb-6 remove-divider">
-                        <div class="col-auto">
-                            <a href="../shop/single-product-fullwidth.html" class="d-block width-75 text-center"><img
-                                    class="img-fluid" src="{{asset('client/assets/img/75X75/img4.jpg')}}"
-                                    alt="Image Description"></a>
-                        </div>
-                        <div class="col pl-4 d-flex flex-column">
-                            <h5 class="product-item__title mb-0"><a href="../shop/single-product-fullwidth.html"
-                                    class="text-blue font-weight-bold">Yellow Earphones Waterproof with Bluetooth</a>
-                            </h5>
-                            <div class="prodcut-price mt-auto flex-horizontal-center">
-                                <ins class="font-size-15 text-decoration-none">$110.00</ins>
-                                <del class="font-size-12 text-gray-9 ml-2">$250.00</del>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="product-item product-item__list row no-gutters mb-6 remove-divider">
-                        <div class="col-auto">
-                            <a href="../shop/single-product-fullwidth.html" class="d-block width-75 text-center"><img
-                                    class="img-fluid" src="{{asset('client/assets/img/75X75/img5.jpg')}}"
-                                    alt="Image Description"></a>
-                        </div>
-                        <div class="col pl-4 d-flex flex-column">
-                            <h5 class="product-item__title mb-0"><a href="../shop/single-product-fullwidth.html"
-                                    class="text-blue font-weight-bold">Camera C430W 4k Waterproof</a></h5>
-                            <div class="prodcut-price mt-auto flex-horizontal-center">
-                                <ins class="font-size-15 text-decoration-none">$899.00</ins>
-                                <del class="font-size-12 text-gray-9 ml-2">$1200.00</del>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="product-item product-item__list row no-gutters mb-6 remove-divider">
-                        <div class="col-auto">
-                            <a href="../shop/single-product-fullwidth.html" class="d-block width-75 text-center"><img
-                                    class="img-fluid" src="{{asset('client/assets/img/75X75/img6.jpg')}}"
-                                    alt="Image Description"></a>
-                        </div>
-                        <div class="col pl-4 d-flex flex-column">
-                            <h5 class="product-item__title mb-0"><a href="../shop/single-product-fullwidth.html"
-                                    class="text-blue font-weight-bold">Smartphone 6S 32GB LTE</a></h5>
-                            <div class="prodcut-price mt-auto flex-horizontal-center">
-                                <ins class="font-size-15 text-decoration-none">$2100.00</ins>
-                                <del class="font-size-12 text-gray-9 ml-2">$3299.00</del>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-wd-3 col-lg-4">
-                <div class="border-bottom border-color-1 mb-5">
-                    <h3 class="section-title section-title__sm mb-0 pb-2 font-size-18" style="color: black">Sản phẩm đánh giá hàng đầu</h3>
-                </div>
-                <ul class="list-unstyled products-group">
-                    <li class="product-item product-item__list row no-gutters mb-6 remove-divider">
-                        <div class="col-auto">
-                            <a href="../shop/single-product-fullwidth.html" class="d-block width-75 text-center"><img
-                                    class="img-fluid" src="{{asset('client/assets/img/75X75/img7.jpg')}}"
-                                    alt="Image Description"></a>
-                        </div>
-                        <div class="col pl-4 d-flex flex-column">
-                            <h5 class="product-item__title mb-0"><a href="../shop/single-product-fullwidth.html"
-                                    class="text-blue font-weight-bold">Smartwatch 2.0 LTE Wifi Waterproof</a></h5>
-                            <div class="text-warning mb-2">
-                                <small class="fas fa-star"></small>
-                                <small class="fas fa-star"></small>
-                                <small class="fas fa-star"></small>
-                                <small class="fas fa-star"></small>
-                                <small class="fas fa-star"></small>
-                            </div>
-                            <div class="prodcut-price mt-auto">
-                                <div class="font-size-15">$725.00</div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="product-item product-item__list row no-gutters mb-6 remove-divider">
-                        <div class="col-auto">
-                            <a href="../shop/single-product-fullwidth.html" class="d-block width-75 text-center"><img
-                                    class="img-fluid" src="{{asset('client/assets/img/75X75/img8.jpg')}}"
-                                    alt="Image Description"></a>
-                        </div>
-                        <div class="col pl-4 d-flex flex-column">
-                            <h5 class="product-item__title mb-0"><a href="../shop/single-product-fullwidth.html"
-                                    class="text-blue font-weight-bold">22Mps Camera 6200U with 500GB SDcard</a></h5>
-                            <div class="text-warning mb-2">
-                                <small class="fas fa-star"></small>
-                                <small class="fas fa-star"></small>
-                                <small class="fas fa-star"></small>
-                                <small class="fas fa-star"></small>
-                                <small class="far fa-star text-muted"></small>
-                            </div>
-                            <div class="prodcut-price mt-auto">
-                                <div class="font-size-15">$2999.00</div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="product-item product-item__list row no-gutters mb-6 remove-divider">
-                        <div class="col-auto">
-                            <a href="../shop/single-product-fullwidth.html" class="d-block width-75 text-center"><img
-                                    class="img-fluid" src="{{asset('client/assets/img/75X75/img9.jpg')}}"
-                                    alt="Image Description"></a>
-                        </div>
-                        <div class="col pl-4 d-flex flex-column">
-                            <h5 class="product-item__title mb-0"><a href="../shop/single-product-fullwidth.html"
-                                    class="text-blue font-weight-bold">Full Color LaserJet Pro M452dn</a></h5>
-                            <div class="text-warning mb-2">
-                                <small class="fas fa-star"></small>
-                                <small class="fas fa-star"></small>
-                                <small class="fas fa-star"></small>
-                                <small class="fas fa-star"></small>
-                                <small class="far fa-star text-muted"></small>
-                            </div>
-                            <div class="prodcut-price mt-auto">
-                                <div class="font-size-15">$439.00</div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            @foreach($banner as $banners)
-            <div class="col-wd-3 d-none d-wd-block">
-                <a href="{{$banners->location}}" class="d-block"><img class="img-fluid"
-                        src="{{asset('images/banner/'.$banners->banner_img)}}" alt="Image Description"
-                        style="width:100%"></a>
-            </div>
-            @endforeach
-        </div>
-    </div>
-    <!-- End Footer-top-widget -->
     <!-- Footer-newsletter -->
     <div class="bg-primary py-3">
         <div class="container">
@@ -319,7 +155,17 @@ $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
                             <h6 class="mb-3 font-weight-bold">Chăm sóc khách hàng</h6>
                             <!-- List Group -->
                             <ul class="list-group list-group-flush list-group-borderless mb-0 list-group-transparent">
-                                <li><a class="list-group-item list-group-item-action" href="http://127.0.0.1:8000/user/{{ Auth::user()->id }}">Tài khoản của tôi</a></li>
+                                @if (Route::has('login'))
+                                @auth
+
+                                    <li><a class="list-group-item list-group-item-action" href="http://127.0.0.1:8000/user/{{ Auth::user()->id }}">Tài khoản của tôi</a></li>
+                                
+                                    @else
+
+                                    <li><a class="list-group-item list-group-item-action" href="{{ route('login') }}">Tài khoản của tôi</a></li>
+                                
+                                    @endauth
+                                @endif
                                 <li><a class="list-group-item list-group-item-action"
                                         href="../shop/track-your-order.html">Giỏ hàng</a></li>
                                 <li><a class="list-group-item list-group-item-action" href="../shop/wishlist.html">Sản phẩm yêu thích</a></li>

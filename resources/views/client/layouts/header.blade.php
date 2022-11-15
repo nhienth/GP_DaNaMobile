@@ -41,44 +41,44 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                             <li class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar nav-item-border">
                                 <!-- Account Sidebar Toggle Button -->
                                 @if (Route::has('login'))
-                                @auth
-                                <div class="position-relative">
-                                    <a id="Userclient"
-                                        class="dropdown-nav-link dropdown-toggle d-flex align-items-center u-header-topbar__nav-link font-weight-normal"
-                                        href="javascript:;" role="button" aria-controls="userlogin" aria-haspopup="true"
-                                        aria-expanded="false" data-unfold-event="hover" data-unfold-target="#userlogin"
-                                        data-unfold-type="css-animation" data-unfold-duration="300"
-                                        data-unfold-delay="300" data-unfold-hide-on-scroll="true"
-                                        data-unfold-animation-in="slideInUp" data-unfold-animation-out="fadeOut">
-                                        <span class="user-name fw-bolder">{{ Auth::user()->name }}</span>
-                                    </a>
-                                    <form method="POST" action="{{ route('logout') }}">
-                                        @csrf
-                                        <div id="userlogin" class="dropdown-menu dropdown-unfold "
-                                            style="text-align:center" aria-labelledby="Userclient">
-                                            <a href="http://127.0.0.1:8000/user/{{ Auth::user()->id }}" class="dropdown-item">Thông tin cá nhân</a>
-
-                                            <a href="http://127.0.0.1:8000/user/{{ Auth::user()->id }}" class="dropdown-item">Đổi mật khẩu</a>
-                                            <hr>
-                                            <a href="route('logout')"
-                                                onclick="event.preventDefault(); this.closest('form').submit();">
-                                                {{ __('Đăng xuất') }}
+                                    @auth
+                                        <div class="position-relative">
+                                            <a id="Userclient"
+                                                class="dropdown-nav-link dropdown-toggle d-flex align-items-center u-header-topbar__nav-link font-weight-normal"
+                                                href="javascript:;" role="button" aria-controls="userlogin" aria-haspopup="true"
+                                                aria-expanded="false" data-unfold-event="hover" data-unfold-target="#userlogin"
+                                                data-unfold-type="css-animation" data-unfold-duration="300"
+                                                data-unfold-delay="300" data-unfold-hide-on-scroll="true"
+                                                data-unfold-animation-in="slideInUp" data-unfold-animation-out="fadeOut">
+                                                <span class="user-name fw-bolder">{{ Auth::user()->name }}</span>
                                             </a>
+                                            <form method="POST" action="{{ route('logout') }}">
+                                                @csrf
+                                                <div id="userlogin" class="dropdown-menu dropdown-unfold "
+                                                    style="text-align:center" aria-labelledby="Userclient">
+                                                    <a href="http://127.0.0.1:8000/user/{{ Auth::user()->id }}" class="dropdown-item">Thông tin cá nhân</a>
 
+                                                    <a href="http://127.0.0.1:8000/user/{{ Auth::user()->id }}" class="dropdown-item">Đổi mật khẩu</a>
+                                                    <hr>
+                                                    <a href="route('logout')"
+                                                        onclick="event.preventDefault(); this.closest('form').submit();">
+                                                        {{ __('Đăng xuất') }}
+                                                    </a>
+
+                                                </div>
+                                            </form>
                                         </div>
-                                    </form>
-                                </div>
 
-                                @else
-                                <a href="{{ route('login') }}"
-                                    class="text-sm text-gray-700 dark:text-gray-500 underline">
-                                    <i class="ec ec-user mr-1"></i>Đăng nhập</a>
-                                @if (Route::has('register'))
-                                <a href="{{ route('register') }}"
-                                    class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">
-                                    <i class="ec ec-user mr-1"></i>Đăng ký</a>
-                                @endif
-                                @endauth
+                                        @else
+                                            <a href="{{ route('login') }}"
+                                            class="text-sm text-gray-700 dark:text-gray-500 underline">
+                                            <i class="ec ec-user mr-1"></i>Đăng nhập</a>
+                                            @if (Route::has('register'))
+                                                <a href="{{ route('register') }}"
+                                                class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">
+                                                <i class="ec ec-user mr-1"></i>Đăng ký</a>
+                                            @endif
+                                    @endauth
                                 @endif
 
                                 <!-- End Account Sidebar Toggle Button -->
