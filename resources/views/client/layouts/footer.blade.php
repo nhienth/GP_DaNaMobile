@@ -6,6 +6,7 @@
 
 use App\Models\Banner;
 $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
+$random = [];
 
 
 ?>
@@ -21,7 +22,8 @@ $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
                             <h2 class="font-size-20 mb-0 ml-3">Đăng nhập để được nhiều ưu đãi</h2>
                         </div>
                         <div class="col my-4 my-md-0">
-                            <h5 class="font-size-15 ml-4 mb-0">... và nhận được nhiều phiếu giảm giá <strong>Free ship</strong></h5>
+                            <h5 class="font-size-15 ml-4 mb-0">... và nhận được nhiều phiếu giảm giá <strong>Free
+                                    ship</strong></h5>
                         </div>
                     </div>
                 </div>
@@ -53,7 +55,7 @@ $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
                 <div class="col-lg-5">
                     <div class="mb-6">
                         <a href="#" class="d-inline-block">
-                                <img src="{{asset('images/logo/dana.png')}}" alt="" srcset="" style="width:300px">
+                            <img src="{{asset('images/logo/dana.png')}}" alt="" srcset="" style="width:300px">
                         </a>
                     </div>
                     <div class="mb-4">
@@ -155,6 +157,7 @@ $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
                             <h6 class="mb-3 font-weight-bold">Chăm sóc khách hàng</h6>
                             <!-- List Group -->
                             <ul class="list-group list-group-flush list-group-borderless mb-0 list-group-transparent">
+<<<<<<< HEAD
                                 @if (Route::has('login'))
                                 @auth
 
@@ -166,14 +169,21 @@ $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
                                 
                                     @endauth
                                 @endif
+=======
+                                <li><a class="list-group-item list-group-item-action"
+                                        href="http://127.0.0.1:8000/user/{{ Auth::user()->id }}">Tài khoản của tôi</a>
+                                </li>
+>>>>>>> 2bfd3c8e219174f9b80008add0663132dace4830
                                 <li><a class="list-group-item list-group-item-action"
                                         href="../shop/track-your-order.html">Giỏ hàng</a></li>
-                                <li><a class="list-group-item list-group-item-action" href="../shop/wishlist.html">Sản phẩm yêu thích</a></li>
+                                <li><a class="list-group-item list-group-item-action" href="../shop/wishlist.html">Sản
+                                        phẩm yêu thích</a></li>
                                 <li><a class="list-group-item list-group-item-action"
                                         href="http://127.0.0.1:8000/contact">Dịch vụ khách hàng</a></li>
                                 <li><a class="list-group-item list-group-item-action"
                                         href="http://127.0.0.1:8000/contact">Trao đổi</a></li>
-                                <li><a class="list-group-item list-group-item-action" href="http://127.0.0.1:8000/contact">FAQs</a>
+                                <li><a class="list-group-item list-group-item-action"
+                                        href="http://127.0.0.1:8000/contact">FAQs</a>
                                 </li>
                                 <li><a class="list-group-item list-group-item-action"
                                         href="http://127.0.0.1:8000/contact">Hổ trợ sản phẩm</a></li>
@@ -190,7 +200,8 @@ $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
     <div class="bg-gray-14 py-2">
         <div class="container">
             <div class="flex-center-between d-block d-md-flex" style="color: black">
-                <div class="mb-3 mb-md-0">© <a href="#" class="font-weight-bold text-gray-90">DaNa-Mobile</a> - Đã đăng ký bản quyền</div>
+                <div class="mb-3 mb-md-0">© <a href="#" class="font-weight-bold text-gray-90">DaNa-Mobile</a> - Đã đăng
+                    ký bản quyền</div>
                 <div class="text-md-right">
                     <span class="d-inline-block bg-white border rounded p-1">
                         <img class="max-width-5" style="height:30px" src="{{asset('images/user/bao.jpg')}}"

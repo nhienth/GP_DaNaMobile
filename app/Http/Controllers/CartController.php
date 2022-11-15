@@ -1,15 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
-use App\Models\PostReview;
-use App\Models\Post;
-use App\Models\User;
-use App\Http\Middleware\checklogin;
-use DB;
 
-class PostReviewController extends Controller
+use Illuminate\Http\Request;
+
+class CartController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,32 +13,12 @@ class PostReviewController extends Controller
      */
     public function index()
     {
-        //
     }
 
-
-    //previewPost
-    public function showclient($id)
+    public function AddCart($id)
     {
-        
-        $post = Post::find($id);
-        $previews = PostReview::all();
-        return view('client.blogs.details', compact('post','previews'));
-        
+        dd($id);
     }
-
-    public function reviewPost(Request $request, $id)
-    {
-        $previews = new PostReview();
-        $previews->review = $request->review;
-        $previews->status = 0;
-        $previews->user_id = Auth::user()->id;     
-        $previews->posts_id = $id;
-       
-        $previews->save();
-        return back();
-    }
-
     /**
      * Show the form for creating a new resource.
      *
