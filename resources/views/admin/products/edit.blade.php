@@ -73,7 +73,7 @@
                                     <div class="mb-1">
                                         <label class="form-label fs-5 fw-bolder" for="select-country1">Danh mục sản
                                             phẩm</label>
-                                        <select class="form-select" id="select-country1" name="category_id" required
+                                        <select class="form-select" onchange="changeCate()" id="select-country1" name="category_id" required
                                             name="parent_id">
                                             <option value="0">Danh mục sản phẩm</option>
                                             {!! $categorySelect !!}
@@ -102,7 +102,7 @@
                                             phẩm</label>
                                     </div>
 
-                                    @foreach ($product->specfications as $specfication)
+                                    {{-- @foreach ($product->specfications as $specfication)
                                     <div class="mb-1 ms-2">
                                         <label class="form-label fs-6 fw-bolder" for="basic-addon-name">
                                             {{$specfication->specification_name}}
@@ -114,8 +114,21 @@
                                             value="{{$specfication->specification_value}}" aria-label="Name"
                                             aria-describedby="basic-addon-name" required />
                                     </div>
-                                    @endforeach
+                                    @endforeach --}}
 
+                                    @foreach ($specfications as $specfication)
+                                    <div class="show-{{$specfication->category_id}} mb-1 ms-2 show-spec"
+                                        style="display: none">
+                                        <label class="form-label fs-6 fw-bolder" for="basic-addon-name1">
+                                            {{$specfication->specification_name}}
+                                        </label>
+
+                                        <input type="text" id="basic-addon-name1" class="form-control"
+                                            placeholder="Nhập thông số sản phẩm" name="{{$specfication->id}}_value"
+                                            aria-label="Name" aria-describedby="basic-addon-name" required />
+                                    </div>
+                                    @endforeach
+                                    <input type="hidden" id="specification_cate" name="specification_cate" value="">
 
                                     <div class="mb-1">
                                         <label class="d-block form-label fs-5 fw-bolder" for="validationBioBootstrap">Mô
@@ -146,3 +159,17 @@
 </div>
 <!-- END: Content-->
 @endsection
+<script>
+    function changeCate() {
+    let specList = document.querySelectorAll('.show-spec');
+
+    let valueOption = document.getElementById("select-country1").value;
+
+    document.getElementById('specification_cate').value = valueOption;
+    
+    specList.forEach((spec) => {
+        let isSpecSeleted = spec.className.includes("show-" + valueOption); 
+        spec.style.display = isSpecSeleted ? "block" : "none";
+    });
+}
+</script>

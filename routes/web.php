@@ -48,7 +48,13 @@ Route::prefix('/')->group(function () {
     Route::prefix('/contact')->group(function () {
         Route::get('/', [ContactController::class, 'create']);
     });
-
+    Route::prefix('/compare')->group(function () {
+        Route::get('/', function () {
+            return view('client.shop.compare');
+        });
+        Route::get('/add/{id}', [ProductController::class, 'addToCompare'])->name('compare.add');
+        Route::get('/delete/{id}', [ProductController::class, 'deleteCompare'])->name('compare.delete');
+    });
     Route::prefix('/cart')->group(function () {
         Route::get('/', function () {
             return view('client.shop.cart');

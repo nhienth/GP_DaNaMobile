@@ -85,12 +85,9 @@
                                         class="text-green font-weight-bold">26 in stock</span></div>
                             </div>
                         </div>
-                        <div class="flex-horizontal-center flex-wrap mb-4">
-                            <a href="#" class="text-gray-6 font-size-13 mr-2"><i
-                                    class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
-                            <a href="#" class="text-gray-6 font-size-13 ml-2"><i
-                                    class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
-                        </div>
+                       
+                      
+                   
                         <div class="mb-2">
                             <ul class="font-size-14 pl-3 ml-1 text-gray-110">
                                 @foreach ($product->specfications as $productSpec)
@@ -151,6 +148,12 @@
                                     @endforeach
 
                                 </div>
+                            </div>
+                            <div class="flex-horizontal-center flex-wrap mb-4">
+                                <a href="#" class="text-gray-6 font-size-13 mr-2"><i
+                                        class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
+                                <a href="{{url('compare/add/'.$productCombi->id)}}" class="text-gray-6 font-size-13 ml-2" id="addCompare"><i
+                                        class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
                             </div>
                         </div>
                         <div class="d-md-flex align-items-end mb-3">
@@ -845,6 +848,7 @@
         let arrImgInput = [];
         let priceHtml = document.getElementById("price_product");
         let addCartButton = document.getElementById("addtocart");
+        let addCompare = document.getElementById("addCompare");
 
 
         let combiImageList = document.querySelectorAll('.combi-image-js');
@@ -870,6 +874,7 @@
                         priceHtml.innerHTML = `$${pro.nextElementSibling.value}`;
                         let combiId = pro.parentElement.lastElementChild.value;
                         addCartButton.href=`http://127.0.0.1:8000/cart/add/${combiId}`;
+                        addCompare.href=`http://127.0.0.1:8000/compare/add/${combiId}`;
                         
 
                         let imgCombi = pro.nextElementSibling.nextElementSibling;
