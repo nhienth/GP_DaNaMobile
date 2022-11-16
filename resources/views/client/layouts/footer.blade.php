@@ -18,7 +18,7 @@ $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
                     <div class="border-bottom border-color-1 mb-5">
                         <h3 class="section-title section-title__sm mb-0 pb-2 font-size-18" style="color: black">Sản phẩm gợi ý</h3>
                     </div>
-                    <ul class="list-unstyled products-group">
+                    {{-- <ul class="list-unstyled products-group">
                         @foreach ($random as $randoms)
                             
                         <li class="product-item product-item__list row no-gutters mb-6 remove-divider">
@@ -38,7 +38,7 @@ $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
 
                         @endforeach
 
-                    </ul>
+                    </ul> --}}
                 </div>
             </div>
             <div class="col-wd-3 col-lg-4">
@@ -319,7 +319,7 @@ $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
                             <h6 class="mb-3 font-weight-bold">Chăm sóc khách hàng</h6>
                             <!-- List Group -->
                             <ul class="list-group list-group-flush list-group-borderless mb-0 list-group-transparent">
-                                <li><a class="list-group-item list-group-item-action" href="http://127.0.0.1:8000/user/{{ Auth::user()->id }}">Tài khoản của tôi</a></li>
+                                {{-- <li><a class="list-group-item list-group-item-action" href="http://127.0.0.1:8000/user/{{ Auth::user()->id }}">Tài khoản của tôi</a></li> --}}
                                 <li><a class="list-group-item list-group-item-action"
                                         href="../shop/track-your-order.html">Giỏ hàng</a></li>
                                 <li><a class="list-group-item list-group-item-action" href="../shop/wishlist.html">Sản phẩm yêu thích</a></li>

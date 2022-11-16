@@ -270,7 +270,7 @@ class ProductController extends Controller
      */
     public function productDetail($id)
     {
-        $previews = Preview::all();
+        $previews = Preview::where('product_id',$id)->get();
         $slider = Slider::first()->orderBy('slider.created_at', 'DESC')->paginate(1);
         $banner = Banner::first()->orderBy('banner.created_at', 'DESC')->paginate(1);
         $product = Product::with(['category', 'variations', 'variation_value', 'combinations', 'images', 'specfications'])
@@ -283,6 +283,7 @@ class ProductController extends Controller
 
         return view('client.products.product_details', compact(['product', 'similarProducts','previews','banner','slider']));
     }
+
 
     public function deleteVariation($id, Request $request)
     {

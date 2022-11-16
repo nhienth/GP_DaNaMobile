@@ -467,15 +467,15 @@
                                 <!-- End Ratings -->
                             </div>
                             <div class="col-md-6" style="color:black">
-                                <h3 class="font-size-18 mb-5">Add a review</h3>
+                                <h3 class="font-size-18 mb-5">Thêm đánh giá</h3>
                                 <!-- Form -->
-                                <p class="text-gray-90"> Bạn cần đăng nhập để đánh giá sản phẩm<span class="text-dark" style="color: red">*</span></p>
+                                <p class="text-gray-90"> Bạn cần đăng nhập để đánh giá sản phẩm<span class="hidden" style="color: red">*</span></p>
                                 <form class="js-validate" action="{{route('preview',$product->id)}}" method="POST">
                                     @csrf
                                     @if (Auth::check())
                                     <div class="row align-items-center mb-4">
                                         <div class="col-md-4 col-lg-3">
-                                            <label for="rating" class="form-label mb-0">Your Review</label>
+                                            <label for="rating" class="form-label mb-0">Đánh giá sao của bạn</label>
                                         </div>
                                         <div class="col-md-8 col-lg-9">
                                             <a href="#" class="d-block">
@@ -491,7 +491,7 @@
                                     </div>
                                     <div class="js-form-message form-group mb-3 row">
                                         <div class="col-md-4 col-lg-3">
-                                            <label for="descriptionTextarea" class="form-label">Your Review</label>
+                                            <label for="descriptionTextarea" class="form-label">Đánh giá của bạn</label>
                                         </div>
                                         <div class="col-md-8 col-lg-9">
                                             <textarea class="form-control p-5" rows="4" name="review" placeholder=""></textarea>
@@ -499,7 +499,7 @@
                                     </div>                                                                
                                     <div class="row">
                                         <div class="offset-md-4 offset-lg-3 col-auto">
-                                            <button type="submit" class="btn btn-primary-dark btn-wide transition-3d-hover">Add Review</button>
+                                            <button type="submit" class="btn btn-primary-dark btn-wide transition-3d-hover">Thêm đánh giá</button>
                                         </div>
                                     </div>
                                     @endif

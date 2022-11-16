@@ -63,7 +63,7 @@
                                                 <div class="d-flex">
                                                     <h4 class="font-size-14 font-weight-bold mr-2"><a href="../blog/single-blog-post.html" class="">{{$item->user->name}}</a></h4>
                                                     <span><a href="../blog/single-blog-post.html" class="text-gray-23">{{$item->created_at->format('d/m/Y')}}</a></span>
-                                                    <a href="#" id="{{$item->id}}" class="text-blue ml-auto">Reply</a>
+                                                    <a href="#" id="{{$item->id}}" class="text-blue ml-auto">Trả lời</a>
                                                 </div>                                       
                                             </div>                                                                          
                                         </div>
@@ -74,24 +74,24 @@
                             </div>
                             <div class="mb-10">
                                 <div class="border-bottom border-color-1 mb-6">
-                                    <h4 class="section-title mb-0 pb-3 font-size-25" style="color: black">Leave a Reply</h4>
+                                    <h4 class="section-title mb-0 pb-3 font-size-25" style="color: black">Để lại đánh giá</h4>
                                 </div>
-                                <p class="hidden">Bạn cần đăng nhập để đánh giá bài viết<span class="text-dark" style="color: red">*</span></p>
+                                <p class="text-dark">Bạn cần đăng nhập để đánh giá bài viết<span class="hidden" style="color: red">*</span></p>
                                 <form class="js-validate" action="{{route('post_review',$post->id)}}"  method="POST" novalidate="novalidate">
                                     @csrf
                                     @if (Auth::check())
                                     <div class="js-form-message mb-4" style="color: black">
                                         <label class="form-label">
-                                            Comment
+                                            Bình luận
                                         </label>
                                         <div class="input-group">
                                             <textarea class="form-control p-5" rows="4" name="review" placeholder=""></textarea>
                                         </div>
                                     </div>
                                     <div class="mb-3">
-                                        <button type="submit" class="btn btn-primary-dark-w px-5">Post Comment</button>
+                                        <button type="submit" class="btn btn-primary-dark-w px-5">Đăng bình luận</button>
                                     </div>
-                                    @endif
+                                   @endif
                                 </form>
                             </div>                
                         </div>
