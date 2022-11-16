@@ -62,8 +62,11 @@ Route::prefix('/')->group(function () {
     });
 
     Route::prefix('/product')->group(function () {
+        Route::get('/byCate/{id}', [ProductController::class, 'productbyCate']);
 
         Route::get('/detail/{id}', [ProductController::class, 'productDetail']);
+
+        Route::get('/search', [ProductController::class, 'searchProduct']);
     
     });
 

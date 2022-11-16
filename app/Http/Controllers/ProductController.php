@@ -357,5 +357,76 @@ class ProductController extends Controller
         unset($product_compare_1[$id]);
         session()->put('product_compare_1', $product_compare_1);
         return view('client.shop.compare');
+        
     }
+
+    public function minPriceProduct($arrayPro) {
+       
+        foreach ($arrayPro as $pro) {
+            $minPrice = $pro->combinations{0}->price;
+            foreach ($pro->combinations as $item) {
+                if($minPrice > $item->price) {
+                    $minPrice = $item->price;
+                }
+            }
+
+            $pro['minPrice'] = $minPrice;
+        }
+       
+    }
+
+    public function productbyCate($id, Request $request){
+        $recommendProducts = Product::with(['category','combinations'])
+        ->orderBy('products.product_view', 'desc')
+        ->take(9)
+        ->get();
+
+        $productList = Product::with(['category','combinations'])
+        ->where('products.category_id', $id)
+        ->get();
+
+        $latestProducts = Product::with(['category','combinations'])
+        ->orderBy('products.id', 'desc')
+        ->take(5)
+        ->get();
+
+        $this->minPriceProduct($recommendProducts);
+        $this->minPriceProduct($productList);
+        $this->minPriceProduct($latestProducts);
+
+
+        return view('client.products.product_ bycate', compact(['recommendProducts','productList','latestProducts' ]));
+    }
+
+
+    public function searchProduct(Request $request) {
+        $keyword = $request->keyword;
+        $recommendProducts = Product::with(['category','combinations'])
+        ->orderBy('products.product_view', 'desc')
+        ->take(9)
+        ->get();
+
+        $productList = Product::with(['category','combinations'])
+        ->where('products.product_name', 'LIKE', '%'.$keyword.'%')
+        ->orderBy('products.id', 'desc')
+        ->get();
+
+
+        $latestProducts = Product::with(['category','combinations'])
+        ->orderBy('products.id', 'desc')
+        ->take(5)
+        ->get();
+
+        $this->minPriceProduct($recommendProducts);
+        $this->minPriceProduct($productList);
+        $this->minPriceProduct($latestProducts);
+
+
+        return view('client.products.product_ bycate', compact(['recommendProducts','productList','latestProducts' ]));
+    }
+
+ 
+
+
+
 }
