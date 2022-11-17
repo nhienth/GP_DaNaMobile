@@ -17,6 +17,7 @@ use App\Http\Controllers\VariationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\VoucherController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\OrderDetailsController;
@@ -37,32 +38,50 @@ use App\Http\Controllers\PostReviewController;
 */
 
 // -----------------------------------CLIENT-----------------------------
-Route::get('/product/detail/{id}', [ProductController::class, 'productDetail']);
-//review product
-Route::get('/detail/{id}',[PreviewController::class,'productReview']);
-Route::post('/preview/{id}',[PreviewController::class,'preview'])->name('preview');
 
 Route::prefix('/')->group(function () {
     Route::get('', [HomeController::class, 'index']);
 
     Route::prefix('/contact')->group(function () {
-
         Route::get('/', [ContactController::class, 'create']);
+    });
+    Route::prefix('/compare')->group(function () {
+        Route::get('/', function () {
+            return view('client.shop.compare');
+        });
+        Route::get('/add/{id}', [ProductController::class, 'addToCompare'])->name('compare.add');
+        Route::get('/delete/{id}', [ProductController::class, 'deleteCompare'])->name('compare.delete');
+    });
+    Route::prefix('/cart')->group(function () {
+        Route::get('/', function () {
+            return view('client.shop.cart');
+        });
+        Route::get('/add/{id}', [ProductController::class, 'addToCart'])->name('cart.add');
+    });
+
+    Route::prefix('/product')->group(function () {
+
+        Route::get('/detail/{id}', [ProductController::class, 'productDetail']);
+    //review product
+        Route::get('/detail/{id}',[PreviewController::class,'productReview']);
+        Route::post('/preview/{id}',[PreviewController::class,'preview'])->name('preview');
+        Route::get('/rate/{id}',[PreviewController::class,'reviewRate']);
+
     });
 
     Route::prefix('/user')->group(function () {
         Route::get('/{id}', [UserController::class, 'show']);
         Route::get('/update/{id}', [UserController::class, 'edit']);
         Route::post('/update/{id}', [UserController::class, 'update']);
-
+        Route::get('showaddress/{id}', [AddressControll::class, 'show']);
+        Route::get('create/{id}', [AddressControll::class, 'create']);
+        Route::post('create/{id}', [AddressControll::class, 'store']);
         Route::get('/showaddress/{id}', [AddressControll::class, 'show']);
-
         Route::get('/createaddress/{user_id}', [AddressControll::class, 'create']);
-
         Route::post('/createaddress', [AddressControll::class, 'store']);
-
         Route::get('/delete/{id}', [AddressControll::class, 'destroy']);
     });
+
     Route::prefix('/blogs')->group(function () {
 
         Route::get('/', [PostController::class, 'getAllPost']);
@@ -73,9 +92,9 @@ Route::prefix('/')->group(function () {
 
         Route::get('/details/{id}', [PostController::class, 'showclient']);
 
-        //review post
-    Route::get('/detail/{id}',[PostReviewController::class,'showclient']);
-    Route::post('/review/{id}',[PostReviewController::class,'reviewPost'])->name('post_review');
+        //review blogs
+        Route::get('/detail/{id}',[PostReviewController::class,'showclient']);
+        Route::post('/review/{id}',[PostReviewController::class,'reviewPost'])->name('post_review');
 
     });
     
@@ -88,12 +107,12 @@ Route::prefix('/')->group(function () {
 
 
 // -----------------------------------ADMIN-----------------------------
-Route::middleware(['auth','isAdmin'])->group(function () {
+Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::prefix('/admin')->group(function () {
         Route::get('/', function () {
             return view('admin.index');
         });
-        
+
         Route::prefix('/category')->group(function () {
             Route::get('/list', [CategoryController::class, 'index']);
             Route::get('/create', [CategoryController::class, 'create']);
@@ -103,6 +122,8 @@ Route::middleware(['auth','isAdmin'])->group(function () {
             Route::get('/delete/{id}', [CategoryController::class, 'destroy']);
         });
 
+        //preview
+        Route::post('/preview/{id}', [PreviewController::class, 'preview'])->name('preview')->middleware('auth');
         Route::prefix('/product')->group(function () {
             Route::get('/searchproduct', [ProductController::class, 'search'])->name('search');
             Route::get('/filter_view', [ProductController::class, 'filter_view'])->name('filter_view');
@@ -152,6 +173,11 @@ Route::middleware(['auth','isAdmin'])->group(function () {
             Route::get('/delete/{id}', [VariationController::class, 'destroy_main']);
         });
 
+        Route::get('/delete/{id}', [VariationController::class, 'destroy_main']);
+    });
+
+    Route::prefix('/post')->group(function () {
+        Route::get('/list', [PostController::class, 'index']);
         Route::prefix('/post')->group(function () {
             Route::get('/list', [PostController::class, 'index']);
 
@@ -184,9 +210,11 @@ Route::middleware(['auth','isAdmin'])->group(function () {
             Route::get('/edit/{id}', [VariationController::class, 'edit_main'])->name('variation_main.edit');
             Route::post('/update/{id}', [VariationController::class, 'update_main'])->name('variation_main.edit_process');
 
+            Route::get('/search', [PostController::class, 'search']);
+
             Route::get('/delete/{id}', [VariationController::class, 'destroy_main']);
         });
-    
+
         Route::prefix('/post')->group(function () {
             Route::get('/list', [PostController::class, 'index']);
 
@@ -198,7 +226,12 @@ Route::middleware(['auth','isAdmin'])->group(function () {
 
             Route::get('/details/{id}', [PostController::class, 'show']);
 
-                Route::get('/delete/{id}', [PostController::class, 'destroy']);
+            Route::get('/delete/{id}', [PostController::class, 'destroy']);
+
+            //tìm kiếm và lọc bài viết
+            Route::get('/searchpost', [PostController::class, 'searchs'])->name('searchs');
+            Route::get('/filter_view', [PostController::class, 'filter_view'])->name('filter_view');
+            Route::get('/filter_status', [PostController::class, 'filter_status'])->name('filter_status');
         });
 
         Route::prefix('/preview')->group(function () {
@@ -218,7 +251,7 @@ Route::middleware(['auth','isAdmin'])->group(function () {
         });
 
         Route::get('/search', [PostController::class, 'search']);
-        
+
         Route::prefix('/order')->group(function () {
             Route::get('/list', [OrderController::class, 'index']);
             Route::get('/details/{id}', [OrderDetailsController::class, 'show']);
@@ -249,7 +282,6 @@ Route::middleware(['auth','isAdmin'])->group(function () {
             Route::post('/edit/{id}', [BannerController::class, 'update'])->name('banner.edit_process');
             Route::get('/delete/{id}', [BannerController::class, 'destroy']);
         });
-
         Route::prefix('/voucher')->group(function () {
             Route::get('/list', [VoucherController::class, 'index'])->name('voucher.list');
             Route::get('/create',  [VoucherController::class, 'create']);
@@ -258,7 +290,29 @@ Route::middleware(['auth','isAdmin'])->group(function () {
             Route::post('/update/{id}', [VoucherController::class, 'update']);
             Route::get('/delete/{id}', [VoucherController::class, 'destroy']);
         });
+
+
+
+        Route::get('/checkout', function () {
+            return view('client.shop.checkout');
+            Route::prefix('/banner')->group(function () {
+                Route::get('/list', [BannerController::class, 'index'])->name('banner.list');
+                Route::get('/create', [BannerController::class, 'create'])->name('banner.create');
+                Route::post('/create', [BannerController::class, 'store'])->name('banner.create_process');
+                Route::get('/edit/{id}', [BannerController::class, 'edit'])->name('banner.edit');
+                Route::post('/edit/{id}', [BannerController::class, 'update'])->name('banner.edit_process');
+                Route::get('/delete/{id}', [BannerController::class, 'destroy']);
+            });
+
+            Route::prefix('/voucher')->group(function () {
+                Route::get('/list', [VoucherController::class, 'index'])->name('voucher.list');
+                Route::get('/create',  [VoucherController::class, 'create']);
+                Route::post('/create', [VoucherController::class, 'store'])->name('voucher.create');
+                Route::get('/edit/{id}', [VoucherController::class, 'edit']);
+                Route::post('/update/{id}', [VoucherController::class, 'update']);
+                Route::get('/delete/{id}', [VoucherController::class, 'destroy']);
+            });
+        });
     });
 });
-
 require __DIR__ . '/auth.php';

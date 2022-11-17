@@ -24,8 +24,8 @@ class HomeController extends Controller
     {
         $categories = Category::all();
         $categorySelect = $this->res(0);
-        //$categorylist = Category::orderBy('categories.created_at','DESC')->paginate(4);
-        $categorylist = Category::where('parent_id', '!=', '0')->orderBy('categories.created_at','DESC')->paginate(4);
+        $categoryhot = Category::orderBy('categories.created_at','DESC')->paginate(4);
+        $categorylist = Category::where('parent_id', '!=', '0')->orderBy('categories.created_at','DESC')->get();
 
         foreach ($categories as $category) {
             $parent_id = $category->parent_id;
@@ -79,6 +79,11 @@ class HomeController extends Controller
             $product['maxprice'] = $maxPrice;
 
         }
+
+        // sản phẩm theo danh mục
+
+        $product_cate = Category::with('products')->take(8)->get();
+
         // random
         $random = Product::with('combinations','category')->orderBy(DB::raw('RAND()'))
         ->limit(3)
@@ -102,7 +107,7 @@ class HomeController extends Controller
         }
         
 
-        return view('client.index')->with(compact('categories', 'categorylist', 'view_product', 'slider', 'banner', 'bannerlist', 'productsld', 'random', 'categorySelect'));
+        return view('client.index')->with(compact('categories', 'categoryhot', 'categorylist', 'view_product', 'product_cate', 'slider', 'banner', 'bannerlist', 'productsld', 'random', 'categorySelect'));
 
     }
 
