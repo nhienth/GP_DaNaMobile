@@ -49,6 +49,13 @@ Route::prefix('/')->group(function () {
         Route::get('/', [ContactController::class, 'create']);
     });
 
+
+    //wishlist
+
+    Route::get('/wishlist/{id}', [ProductController::class, 'addWishlist']);
+    Route::get('/listWishList', [ProductController::class, 'showWishList'])->name("listWishlist");
+    Route::get('/deleteWishList/{id}', [ProductController::class, 'deleteWishList']);
+    //end wishlist
     Route::prefix('/cart')->group(function () {
         Route::get('/', function () {
             return view('client.shop.cart');

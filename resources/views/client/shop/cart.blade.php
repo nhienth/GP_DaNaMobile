@@ -28,12 +28,13 @@
                     <thead>
                         <tr>
                             <th class="product-remove">#</th>
-                            <th class="product-remove">Image</th>
-                            <th class="product-name">Product</th>
-                            <th class="product-price">Price</th>
-                            <th class="product-quantity w-lg-15">Quantity</th>
-                            <th class="product-quantity w-lg-15">Actions</th>
-                            <th class="product-subtotal">Total</th>
+                            <th class="product-remove">HÌnh ảnh</th>
+                            <th class="product-name">Tên sản phẩm</th>
+                            <th class="product-price">Giá</th>
+                            <th class="product-quantity w-lg-15">Số lượng</th>
+                            <th class="product-quantity w-lg-15" >Xóa</th>
+                            <th class="product-quantity w-lg-15" >cập nhật</th>
+                            <th class="product-subtotal">Tổng tiền</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,8 +52,9 @@
                         @endphp --}}
                         <form action="{{url('cart/updateCart/'.$details['id_combi'])}}" method="post">
                             @csrf
+
                         <tr class="" data-id="{{ $id }}">
-                           
+                           <td></td>
                             <td class="d-none d-md-table-cell">
                                 <a href="#"><img class="img-fluid max-width-100 p-1 border border-color-1" src="{{asset('images/products/'.$details['image'])}}" alt="Image Description"></a>
                             </td>
@@ -70,8 +72,10 @@
                                 <input type="number" value="{{ $details['quantity'] }}" name="quantityNew" class="form-control quantity update-cart" min="1" />
                             </td>
                                  
-                            <td class="deleteCart">
-                                <a href="{{url('cart/deleteCart/'.$details['id_combi'])}}"><button class="btn btn-danger btn-sm cart_delete">Xóa</button></a>
+                            <td class="deleteCart" >
+                                <button class="btn btn-danger btn-sm cart_delete ">
+                                    <a class="text-white" href="{{url('cart/deleteCart/'.$details['id_combi'])}}">Xóa</a>
+                                </button>
                             </td>
                             <td class="deleteCart">
                                 <a href="{{url('cart/updateCart/'.$details['id_combi'])}}"><button class="btn btn-danger btn-sm cart_delete">Cập nhật</button></a>
@@ -418,7 +422,15 @@
         </div>
     </div>
 </main>
+<script>
+    let cartBtn = document.querySelectorAll('.deleteCart');
+    cartBtn.forEach(element => {
+        element.firstElementChild.stopPropagation();
+    });
+</script>
 @endsection
+
+
 {{-- @section('scripts')
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
