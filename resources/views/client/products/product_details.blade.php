@@ -902,7 +902,9 @@
                         
                     }
                 }else {
-                    priceHtml.innerHTML = `update...`;
+                    if(arr[0] != 'a' && arr[1] != 'b') {
+                        priceHtml.innerHTML = `update...`;
+                    }
                 }
 
             });
