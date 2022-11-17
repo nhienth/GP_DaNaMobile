@@ -183,6 +183,8 @@
                 // initialization of select picker
                 $.HSCore.components.HSSelectPicker.init('.js-select');
             });
+
+
         </script>
         
     </body>
