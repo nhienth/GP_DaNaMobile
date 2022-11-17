@@ -59,6 +59,8 @@ Route::prefix('/')->group(function () {
             return view('client.shop.cart');
         });
         Route::get('/add/{id}', [ProductController::class, 'addToCart'])->name('cart.add');
+        Route::get('/deleteCart/{id}', [ProductController::class, 'deleteCart'])->name('cart.remove');
+        Route::post('/updateCart/{id}', [ProductController::class, 'updateCart'])->name('update.cart');
     });
 
     Route::prefix('/product')->group(function () {
