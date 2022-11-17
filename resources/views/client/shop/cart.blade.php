@@ -8,7 +8,8 @@
             <div class="my-md-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-3 flex-nowrap flex-xl-wrap overflow-auto overflow-xl-visble">
-                        <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="../home/index.html">Home</a></li>
+                        <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="../home/index.html">Home</a>
+                        </li>
                         <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1 active" aria-current="page">Cart</li>
                     </ol>
                 </nav>
@@ -37,12 +38,12 @@
                     </thead>
                     <tbody>
                         @php
-                            $total = 0;
-                            // session()->forget('cart');
-                            // session()->flush();
+                        $total = 0;
+                        // session()->forget('cart');
+                        // session()->flush();
                         @endphp
-                         {{-- @foreach((array) session('cart') as $id => $details)
-                         @php $total += $details['price'] * $details['quantity'] @endphp
+                        {{-- @foreach((array) session('cart') as $id => $details)
+                        @php $total += $details['price'] * $details['quantity'] @endphp
                         @endforeach --}}
                         @if (session('cart'))
                         @foreach (session('cart') as $id => $details )
@@ -51,7 +52,9 @@
                                 <a href="#" class="text-gray-32 font-size-26">×</a>
                             </td>
                             <td class="d-none d-md-table-cell">
-                                <a href="#"><img class="img-fluid max-width-100 p-1 border border-color-1" src="{{asset('images/products/'.$details['image'])}}" alt="Image Description"></a>
+                                <a href="#"><img class="img-fluid max-width-100 p-1 border border-color-1"
+                                        src="{{asset('images/products/'.$details['image'])}}"
+                                        alt="Image Description"></a>
                             </td>
 
                             <td data-title="Product">
@@ -64,18 +67,22 @@
 
                             <td data-title="Quantity">
                                 <span class="sr-only">{{$details['quantity']}}</span>
-                             
+
                                 <!-- Quantity -->
                                 <div class="border rounded-pill py-1 width-122 w-xl-80 px-3 border-color-1">
                                     <div class="js-quantity row align-items-center">
                                         <div class="col">
-                                            <input class="js-result form-control h-auto border-0 rounded p-0 shadow-none" type="text" value="{{$details['quantity']}}">
+                                            <input
+                                                class="js-result form-control h-auto border-0 rounded p-0 shadow-none"
+                                                type="text" value="{{$details['quantity']}}">
                                         </div>
                                         <div class="col-auto pr-1">
-                                            <a class="js-minus btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0" href="javascript:;">
+                                            <a class="js-minus btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0"
+                                                href="javascript:;">
                                                 <small class="fas fa-minus btn-icon__inner"></small>
                                             </a>
-                                            <a class="js-plus btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0" href="javascript:;">
+                                            <a class="js-plus btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0"
+                                                href="javascript:;">
                                                 <small class="fas fa-plus btn-icon__inner"></small>
                                             </a>
                                         </div>
@@ -83,14 +90,14 @@
                                 </div>
                                 <!-- End Quantity -->
                             </td>
-                            
+
                             <td data-title="Total">
                                 <span class="">{{$details['quantity'] * $details['price']}}</span>
                             </td>
                         </tr>
                         @endforeach
                         @endif
-                        
+
                         <tr>
                             <td colspan="6" class="border-top space-top-2 justify-content-center">
                                 <div class="pt-md-3">
@@ -98,19 +105,30 @@
                                         <div class="mb-3 mb-md-0 w-xl-40">
                                             <!-- Apply coupon Form -->
                                             <form class="js-focus-state">
-                                                <label class="sr-only" for="subscribeSrEmailExample1">Coupon code</label>
+                                                <label class="sr-only" for="subscribeSrEmailExample1">Coupon
+                                                    code</label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" name="text" id="subscribeSrEmailExample1" placeholder="Coupon code" aria-label="Coupon code" aria-describedby="subscribeButtonExample2" required>
+                                                    <input type="text" class="form-control" name="text"
+                                                        id="subscribeSrEmailExample1" placeholder="Coupon code"
+                                                        aria-label="Coupon code"
+                                                        aria-describedby="subscribeButtonExample2" required>
                                                     <div class="input-group-append">
-                                                        <button class="btn btn-block btn-dark px-4" type="button" id="subscribeButtonExample2"><i class="fas fa-tags d-md-none"></i><span class="d-none d-md-inline">Apply coupon</span></button>
+                                                        <button class="btn btn-block btn-dark px-4" type="button"
+                                                            id="subscribeButtonExample2"><i
+                                                                class="fas fa-tags d-md-none"></i><span
+                                                                class="d-none d-md-inline">Apply coupon</span></button>
                                                     </div>
                                                 </div>
                                             </form>
                                             <!-- End Apply coupon Form -->
                                         </div>
                                         <div class="d-md-flex">
-                                            <button type="button" class="btn btn-soft-secondary mb-3 mb-md-0 font-weight-normal px-5 px-md-4 px-lg-5 w-100 w-md-auto">Update cart</button>
-                                            <a href="../shop/checkout.html" class="btn btn-primary-dark-w ml-md-2 px-5 px-md-4 px-lg-5 w-100 w-md-auto d-none d-md-inline-block">Proceed to checkout</a>
+                                            <button type="button"
+                                                class="btn btn-soft-secondary mb-3 mb-md-0 font-weight-normal px-5 px-md-4 px-lg-5 w-100 w-md-auto">Update
+                                                cart</button>
+                                            <a href="../shop/checkout.html"
+                                                class="btn btn-primary-dark-w ml-md-2 px-5 px-md-4 px-lg-5 w-100 w-md-auto d-none d-md-inline-block">Proceed
+                                                to checkout</a>
                                         </div>
                                     </div>
                                 </div>
@@ -137,12 +155,15 @@
                                 <td data-title="Shipping">
                                     Flat Rate: <span class="amount">$300.00</span>
                                     <div class="mt-1">
-                                        <a class="font-size-12 text-gray-90 text-decoration-on underline-on-hover font-weight-bold mb-3 d-inline-block" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                        <a class="font-size-12 text-gray-90 text-decoration-on underline-on-hover font-weight-bold mb-3 d-inline-block"
+                                            data-toggle="collapse" href="#collapseExample" role="button"
+                                            aria-expanded="false" aria-controls="collapseExample">
                                             Calculate Shipping
                                         </a>
                                         <div class="collapse mb-3" id="collapseExample">
                                             <div class="form-group mb-4">
-                                                <select class="js-select selectpicker dropdown-select right-dropdown-0-all w-100"
+                                                <select
+                                                    class="js-select selectpicker dropdown-select right-dropdown-0-all w-100"
                                                     data-style="bg-white font-weight-normal border border-color-1 text-gray-20">
                                                     <option value="">Select a country…</option>
                                                     <option value="AX">Åland Islands</option>
@@ -392,7 +413,8 @@
                                                 </select>
                                             </div>
                                             <div class="form-group mb-4">
-                                                <select class="js-select selectpicker dropdown-select right-dropdown-0-all w-100"
+                                                <select
+                                                    class="js-select selectpicker dropdown-select right-dropdown-0-all w-100"
                                                     data-style="bg-white font-weight-normal border border-color-1 text-gray-20">
                                                     <option value="">Select an option…</option>
                                                     <option value="AP">Andhra Pradesh</option>
@@ -434,7 +456,9 @@
                                                 </select>
                                             </div>
                                             <input class="form-control mb-4" type="text" placeholder="Postcode / ZIP">
-                                            <button type="button" class="btn btn-soft-secondary mb-3 mb-md-0 font-weight-normal px-5 px-md-4 px-lg-5 w-100 w-md-auto">Update Totals</button>
+                                            <button type="button"
+                                                class="btn btn-soft-secondary mb-3 mb-md-0 font-weight-normal px-5 px-md-4 px-lg-5 w-100 w-md-auto">Update
+                                                Totals</button>
                                         </div>
                                     </div>
                                 </td>
@@ -445,7 +469,9 @@
                             </tr>
                         </tbody>
                     </table>
-                    <button type="button" class="btn btn-primary-dark-w ml-md-2 px-5 px-md-4 px-lg-5 w-100 w-md-auto d-md-none">Proceed to checkout</button>
+                    <button type="button"
+                        class="btn btn-primary-dark-w ml-md-2 px-5 px-md-4 px-lg-5 w-100 w-md-auto d-md-none">Proceed to
+                        checkout</button>
                 </div>
             </div>
         </div>

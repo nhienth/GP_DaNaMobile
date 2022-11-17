@@ -104,17 +104,20 @@
                             <div class="d-flex align-items-baseline">
                                 {{-- <ins class="font-size-36 text-decoration-none">$1,999.00</ins>
                                 <del class="font-size-20 ml-2 text-gray-6">$2,299.00</del> --}}
-                                <span id="price_product" class="font-size-36 text-decoration-none">$1,999.00</span>
+                                <span id="price_product" data-price="{{$product->minprice}} - {{$product->maxprice}}"
+                                    class="font-size-36 text-decoration-none">${{$product->minprice}} -
+                                    {{$product->maxprice}}</span>
                             </div>
                         </div>
                         <div class="border-top border-bottom py-3 mb-4">
                             @foreach ($product->combinations as $productCombi)
                             <div>
-                            <input type="hidden" name="combination_string"
-                                value="{{$productCombi->combination_string}}">
-                            <input type="hidden" name="price" value="{{$productCombi->price}}">
-                            <input type="hidden" name="combination_image" value="{{$productCombi->combination_image}}">
-                            <input type="hidden" name="productCombi_Id" value="{{$productCombi->id}}"/>
+                                <input type="hidden" name="combination_string"
+                                    value="{{$productCombi->combination_string}}">
+                                <input type="hidden" name="price" value="{{$productCombi->price}}">
+                                <input type="hidden" name="combination_image"
+                                    value="{{$productCombi->combination_image}}">
+                                <input type="hidden" name="productCombi_Id" value="{{$productCombi->id}}" />
                             </div>
                             @endforeach
                             <div class="d-flex align-items-center">
@@ -179,7 +182,8 @@
                                 <!-- End Quantity -->
                             </div>
                             <div class="ml-md-3">
-                                <a href="{{url('cart/add/'.$productCombi->id)}}" class="btn px-5 btn-primary-dark transition-3d-hover" id="addtocart"><i
+                                <a href="{{url('cart/add/'.$productCombi->id)}}"
+                                    class="btn px-5 btn-primary-dark transition-3d-hover" id="addtocart"><i
                                         class="ec ec-add-to-cart mr-2 font-size-20"></i> Add to Cart</a>
                             </div>
                         </div>
@@ -850,16 +854,15 @@
         let arrImgInput = [];
         let priceHtml = document.getElementById("price_product");
         let addCartButton = document.getElementById("addtocart");
-
+        console.log([priceHtml]);
 
         let combiImageList = document.querySelectorAll('.combi-image-js');
             combiImageList.forEach(combiImage => {
                 arrImgInput.push(combiImage.firstElementChild);
             });
 
-
-
-        let productsCombination = document.getElementsByName('combination_string')
+        let productsCombination = document.getElementsByName('combination_string');
+        let combiArray = Array.from(productsCombination).map(pro => pro.value.trim());
         let radioList = document.querySelectorAll(".js-change-variation");
             radioList.forEach(element => {
                 element.addEventListener("change", function () {
@@ -870,22 +873,26 @@
                 }
                 variSeleted = arr.join(" ");
 
-                productsCombination.forEach((pro) => {
+                if(combiArray.includes(variSeleted)) {
+                    let pro = Array.from(productsCombination).find(pro => pro.value.trim() == variSeleted);
+                 
                     if (variSeleted == pro.value.trim()) {
                         priceHtml.innerHTML = `$${pro.nextElementSibling.value}`;
                         let combiId = pro.parentElement.lastElementChild.value;
                         addCartButton.href=`http://127.0.0.1:8000/cart/add/${combiId}`;
                         
-
                         let imgCombi = pro.nextElementSibling.nextElementSibling;
-
                         arrImgInput.forEach(imgInput => {
                             if(imgInput.value === imgCombi.value) {
                                 imgInput.parentElement.click();                              
                             }
-                        });
+                        })
+                        
                     }
-                });
+                }else {
+                    priceHtml.innerHTML = `update...`;
+                }
+
             });
         });
     

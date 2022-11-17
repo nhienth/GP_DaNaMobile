@@ -57,18 +57,20 @@
                                 <label class="form-label" for="UserPlan">Lượt xem</label>
                                 <form action="{{route('filter_view')}}" method="get">
                                     @csrf
-                                    <select id="view" name="view_selected" class="form-select text-capitalize mb-md-0 mb-2"
-                                    onchange="this.form.submit()">
+                                    <select id="view" name="view_selected"
+                                        class="form-select text-capitalize mb-md-0 mb-2" onchange="this.form.submit()">
                                         <option value="0"> Mặc định </option>
-                                        <option value="1">  Giảm dần </option>
-                                        <option value="2">  Tăng dần </option>
+                                        <option value="1"> Giảm dần </option>
+                                        <option value="2"> Tăng dần </option>
                                     </select>
                                 </form>
                             </div>
                             <div class="col-md-4 user_status">
                                 <label class="form-label" for="FilterTransaction">Trạng thái</label>
                                 <form action="{{route('filter_status')}}" method="get">
-                                    <select name="status_selected" id="status" class="form-select text-capitalize mb-md-0 mb-2xx" onchange="this.form.submit()">
+                                    <select name="status_selected" id="status"
+                                        class="form-select text-capitalize mb-md-0 mb-2xx"
+                                        onchange="this.form.submit()">
                                         <option value="2"> Tất Cả Trạng Thái </option>
                                         <option value="1"> Đang hoạt động </option>
                                         <option value="0"> Vô Hiệu hoá </option>
@@ -142,11 +144,11 @@
                                 </tr>
                             </thead>
 
-                                <tbody>
+                            <tbody>
 
-                                    <!-- phân trang -->
-                                    <?php
-                                    $conn = mysqli_connect("localhost", "root", "","danamobile");
+                                <!-- phân trang -->
+                                <?php
+                                    $conn = mysqli_connect("127.0.0.1", "root", "","danamobile");
                                         if (! $conn) {
 
                                         die("Connection failed" . mysqli_connect_error());
@@ -179,22 +181,21 @@
                                     $rs_result = mysqli_query ($conn, $query);
                                 
                                 ?>
-                                    <!-- kết phân trang -->
+                                <!-- kết phân trang -->
 
                                 @foreach ($products as $product)
                                 <tr data-dt-row="" data-dt-column="">
                                     <td></td>
                                     <td>{{$product->product_name}}</td>
                                     <td>{{$product->category->category_name}}</td>
-                                    <td><img class="rounded"
-                                            src="{{asset('images/products/'.$product->product_img)}}"
+                                    <td><img class="rounded" src="{{asset('images/products/'.$product->product_img)}}"
                                             width="100px" height="100px" style="display:block; margin: 0 auto;"></td>
                                     <td>{{$product->product_view}}</td>
                                     <td>
                                         <?php if($product->product_status == 1){ ?>
-                                            <span class="badge rounded-pill badge-light-success me-1">Đang hoạt động</span>
+                                        <span class="badge rounded-pill badge-light-success me-1">Đang hoạt động</span>
                                         <?php } else { ?>
-                                            <span class="badge rounded-pill badge-light-warning me-1"> Vô hiệu hoá</span>
+                                        <span class="badge rounded-pill badge-light-warning me-1"> Vô hiệu hoá</span>
                                         <?php } ?>
                                     </td>
                                     <td>
@@ -203,9 +204,8 @@
                                                     data-feather='plus'></i></button></a>
                                     </td>
                                     <td>
-                                        <a href="{{url('admin/product/edit', [$product->id])}}"><button
-                                                type="button" class="btn btn-warning"><i
-                                                    data-feather='edit'></i></button></a>
+                                        <a href="{{url('admin/product/edit', [$product->id])}}"><button type="button"
+                                                class="btn btn-warning"><i data-feather='edit'></i></button></a>
                                     </td>
                                     <td>
                                         <a href="{{url('admin/product/listProVar', [$product->id])}}"><button
@@ -220,7 +220,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        
+
                         <!-- Phân trang -->
                         <nav aria-label="Page navigation example" style="text-align: center">
                             <ul class="pagination">
@@ -274,21 +274,21 @@
                                         }
 
                                     ?>
-                                        <?php
+                                    <?php
                                         $total_pages = '';
                                         $page = '';
                                     ?>
-                                        <br>
-                                        <br>
-                                        <input id="page" type="number" min="1" max="<?php echo $total_pages
+                                    <br>
+                                    <br>
+                                    <input id="page" type="number" min="1" max="<?php echo $total_pages
                                         ?>" placeholder="<?php echo $page." /".$total_pages; ?>" required>
-                                    </li>
-                                </ul>
-                            </nav>
-                            <!-- kết phân trang -->
-                        </div>
+                                </li>
+                            </ul>
+                        </nav>
+                        <!-- kết phân trang -->
                     </div>
-                    <!-- list and filter end -->
+                </div>
+                <!-- list and filter end -->
             </section>
             <!-- users list ends -->
 

@@ -272,8 +272,6 @@ class ProductController extends Controller
     public function productDetail($id)
     {
         $previews = Preview::all();
-        $slider = Slider::first()->orderBy('slider.created_at', 'DESC')->paginate(1);
-        $banner = Banner::first()->orderBy('banner.created_at', 'DESC')->paginate(1);
         $product = Product::with(['category', 'variations', 'variation_value', 'combinations', 'images', 'specfications'])
             ->where('products.id', $id)->first();
 
@@ -282,7 +280,24 @@ class ProductController extends Controller
             ->where('products.id', '!=', $id)
             ->get();
 
-        return view('client.products.product_details', compact(['product', 'similarProducts', 'previews', 'banner', 'slider']));
+        $minPrice = $product->combinations{0}->price;
+        $maxPrice = $product->combinations{0}->price;
+
+        foreach ($product->combinations as $pro) {
+
+            if($minPrice > $pro->price) {
+                $minPrice = $pro->price;
+            } 
+
+            if($maxPrice < $pro->price) {
+                $maxPrice = $pro->price;
+            }
+        }
+
+        $product['minprice'] = $minPrice;
+        $product['maxprice'] = $maxPrice;
+
+        return view('client.products.product_details', compact(['product', 'similarProducts', 'previews']));
     }
 
     public function deleteVariation($id, Request $request)
