@@ -15,7 +15,8 @@ use App\Models\Banner;
 use App\Models\Slider;
 use App\Models\Combinations;
 use App\Models\Image_Gallery;
-
+use App\Models\WishList;
+use Illuminate\Console\View\Components\Alert;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -273,8 +274,6 @@ class ProductController extends Controller
     public function productDetail($id)
     {
         $previews = Preview::all();
-        $slider = Slider::first()->orderBy('slider.created_at', 'DESC')->paginate(1);
-        $banner = Banner::first()->orderBy('banner.created_at', 'DESC')->paginate(1);
         $product = Product::with(['category', 'variations', 'variation_value', 'combinations', 'images', 'specfications'])
             ->where('products.id', $id)->first();
 
@@ -283,7 +282,24 @@ class ProductController extends Controller
             ->where('products.id', '!=', $id)
             ->get();
 
-        return view('client.products.product_details', compact(['product', 'similarProducts', 'previews', 'banner', 'slider']));
+        $minPrice = $product->combinations{0}->price;
+        $maxPrice = $product->combinations{0}->price;
+
+        foreach ($product->combinations as $pro) {
+
+            if($minPrice > $pro->price) {
+                $minPrice = $pro->price;
+            } 
+
+            if($maxPrice < $pro->price) {
+                $maxPrice = $pro->price;
+            }
+        }
+
+        $product['minprice'] = $minPrice;
+        $product['maxprice'] = $maxPrice;
+
+        return view('client.products.product_details', compact(['product', 'similarProducts', 'previews']));
     }
 
     public function deleteVariation($id, Request $request)
@@ -305,6 +321,7 @@ class ProductController extends Controller
     {
         $product = Combinations::find($id);
         $product_name_id = $product->product_id;
+        $combi_id = $product->id;
         $productName = Product::find($product_name_id);
         $name = $productName->product_name;
         $cart = session()->get('cart', []);
@@ -316,18 +333,37 @@ class ProductController extends Controller
                 "quantity" => 1,
                 "price" => $product->price,
                 "image" => $product->combination_image,
-                ""
+                'id_combi' => $combi_id,
             ];
         }
         session()->put('cart', $cart);
         return view('client.shop.cart')->with('success', 'Product added to cart');
-        // dd($name);
+    }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateCart($id_combi, Request $request)
+    {
+        $cart = session()->get(key: "cart");
+
+        $cart[$id_combi]["quantity"] = $request->quantityNew;
+        session()->put('cart', $cart);
+        return view('client.shop.cart')->with('success', 'Product added to cart');
+    }
+    public function deleteCart($id_combi)
+    {
+
+        $carts = session()->get(key: "cart");
+        unset($carts[$id_combi]);
+        session()->put('cart', $carts);
+        return view('client.shop.cart')->with('success', 'Product added to cart');
     }
 
     public function addToCompare($id){
        
-    
-
         // $product_combi = Combinations::find($id);
         $product_combi = Combinations::with('product')->where('products_combinations.id', $id)->first();
 
@@ -428,5 +464,47 @@ class ProductController extends Controller
  
 
 
+
+    public function addWishlist($id)
+    {
+        $user_id = Auth::user()->id;
+
+        $checkIsset = false;
+        $showWl = WishList::where("wishlists.user_id", $user_id)->get();
+        $product = Combinations::with(['product'])
+            ->where('products_combinations.id', $id)
+            ->first();
+
+        foreach ($showWl as $item) {
+
+            if ($item->product_id == $product->id) {
+                $checkIsset = true;
+                break;
+            }
+        }
+        if ($checkIsset) {
+            return redirect()->route("listWishlist");
+        }
+        $productWishList = new WishList();
+        $productWishList->name = $product->product->product_name. ' -' .$product->combination_string;
+        $productWishList->image = $product->combination_image; 
+        $productWishList->price = $product->price; 
+        $productWishList->product_id  = $product->id;
+        $productWishList->user_id  = Auth::user()->id;
+        $productWishList->save();
+        return redirect()->route("listWishlist");
+    }
+    public function showWishList()
+    {
+        $id = Auth::user()->id;
+        $showWl = WishList::where("wishlists.user_id", $id)->get();
+        return view('client.products.wishlist', compact("showWl"));
+    }
+    public function deleteWishList($id)
+    {
+        $product = WishList::find($id);
+        $product->delete();
+        return redirect()->route('listWishlist');
+    }
 
 }

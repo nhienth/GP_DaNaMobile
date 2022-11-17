@@ -77,6 +77,7 @@
                                     <span class="text-secondary font-size-13">(3 customer reviews)</span>
                                 </a>
                             </div>
+
                             <div class="d-md-flex align-items-center">
                                 <a href="#" class="max-width-150 ml-n2 mb-2 mb-md-0 d-block"><img class="img-fluid"
                                         src="{{asset('client/assets/img/200X60/img1.png')}}"
@@ -85,9 +86,12 @@
                                         class="text-green font-weight-bold">26 in stock</span></div>
                             </div>
                         </div>
-                       
-                      
-                   
+                        <div class="flex-horizontal-center flex-wrap mb-4">
+
+                            <a href="" id="addWishlist"><i class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
+                            <a href="#" class="text-gray-6 font-size-13 ml-2"><i
+                                    class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
+                        </div>
                         <div class="mb-2">
                             <ul class="font-size-14 pl-3 ml-1 text-gray-110">
                                 @foreach ($product->specfications as $productSpec)
@@ -101,19 +105,27 @@
                             <div class="d-flex align-items-baseline">
                                 {{-- <ins class="font-size-36 text-decoration-none">$1,999.00</ins>
                                 <del class="font-size-20 ml-2 text-gray-6">$2,299.00</del> --}}
-                                <span id="price_product" class="font-size-36 text-decoration-none">$1,999.00</span>
+                                <span id="price_product" data-price="{{$product->minprice}} - {{$product->maxprice}}"
+                                    class="font-size-36 text-decoration-none">${{$product->minprice}} -
+                                    {{$product->maxprice}}</span>
                             </div>
                         </div>
+
                         <div class="border-top border-bottom py-3 mb-4">
-                            @foreach ($product->combinations as $productCombi)
-                            <div>
-                            <input type="hidden" name="combination_string"
-                                value="{{$productCombi->combination_string}}">
-                            <input type="hidden" name="price" value="{{$productCombi->price}}">
-                            <input type="hidden" name="combination_image" value="{{$productCombi->combination_image}}">
-                            <input type="hidden" name="productCombi_Id" value="{{$productCombi->id}}"/>
-                            </div>
-                            @endforeach
+                            <form action="">
+                                @foreach ($product->combinations as $productCombi)
+                                <div>
+                                    <input type="hidden" value="{{$product->product_name}}" />
+                                    <input type="hidden" name="combination_string"
+                                        value="{{$productCombi->combination_string}}">
+                                    <input type="hidden" name="price" id="wishlist_price{{$productCombi->id}}"
+                                        value="{{$productCombi->price}}">
+                                    <input type="hidden" name="combination_image"
+                                        value="{{$productCombi->combination_image}}">
+                                    <input type="hidden" name="productCombi_Id" value="{{$productCombi->id}}" />
+                                </div>
+                                @endforeach
+                            </form>
                             <div class="d-flex align-items-center">
 
                                 <div>
@@ -152,7 +164,8 @@
                             <div class="flex-horizontal-center flex-wrap mb-4">
                                 <a href="#" class="text-gray-6 font-size-13 mr-2"><i
                                         class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
-                                <a href="{{url('compare/add/'.$productCombi->id)}}" class="text-gray-6 font-size-13 ml-2" id="addCompare"><i
+                                <a href="{{url('compare/add/'.$productCombi->id)}}"
+                                    class="text-gray-6 font-size-13 ml-2" id="addCompare"><i
                                         class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
                             </div>
                         </div>
@@ -182,7 +195,8 @@
                                 <!-- End Quantity -->
                             </div>
                             <div class="ml-md-3">
-                                <a href="{{url('cart/add/'.$productCombi->id)}}" class="btn px-5 btn-primary-dark transition-3d-hover" id="addtocart"><i
+                                <a href="{{url('cart/add/'.$productCombi->id)}}"
+                                    class="btn px-5 btn-primary-dark transition-3d-hover" id="addtocart"><i
                                         class="ec ec-add-to-cart mr-2 font-size-20"></i> Add to Cart</a>
                             </div>
                         </div>
@@ -855,15 +869,16 @@
         let addCartButton = document.getElementById("addtocart");
         let addCompare = document.getElementById("addCompare");
 
+        let addWLButton = document.getElementById("addWishlist");
+
 
         let combiImageList = document.querySelectorAll('.combi-image-js');
             combiImageList.forEach(combiImage => {
                 arrImgInput.push(combiImage.firstElementChild);
             });
 
-
-
-        let productsCombination = document.getElementsByName('combination_string')
+        let productsCombination = document.getElementsByName('combination_string');
+        let combiArray = Array.from(productsCombination).map(pro => pro.value.trim());
         let radioList = document.querySelectorAll(".js-change-variation");
             radioList.forEach(element => {
                 element.addEventListener("change", function () {
@@ -874,23 +889,30 @@
                 }
                 variSeleted = arr.join(" ");
 
-                productsCombination.forEach((pro) => {
+                if(combiArray.includes(variSeleted)) {
+                    let pro = Array.from(productsCombination).find(pro => pro.value.trim() == variSeleted);
+                 
                     if (variSeleted == pro.value.trim()) {
                         priceHtml.innerHTML = `$${pro.nextElementSibling.value}`;
                         let combiId = pro.parentElement.lastElementChild.value;
                         addCartButton.href=`http://127.0.0.1:8000/cart/add/${combiId}`;
                         addCompare.href=`http://127.0.0.1:8000/compare/add/${combiId}`;
+                        addWLButton.href=`http://127.0.0.1:8000/wishlist/${combiId}`;
                         
-
                         let imgCombi = pro.nextElementSibling.nextElementSibling;
-
                         arrImgInput.forEach(imgInput => {
                             if(imgInput.value === imgCombi.value) {
                                 imgInput.parentElement.click();                              
                             }
-                        });
+                        })
+                        
                     }
-                });
+                }else {
+                    if(arr[0] != 'a' && arr[1] != 'b') {
+                        priceHtml.innerHTML = `update...`;
+                    }
+                }
+
             });
         });
     

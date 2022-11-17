@@ -8,7 +8,8 @@
             <div class="my-md-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-3 flex-nowrap flex-xl-wrap overflow-auto overflow-xl-visble">
-                        <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="../home/index.html">Home</a></li>
+                        <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="../home/index.html">Home</a>
+                        </li>
                         <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1 active" aria-current="page">Cart</li>
                     </ol>
                 </nav>
@@ -23,35 +24,42 @@
             <h1 class="text-center">Cart</h1>
         </div>
         <div class="mb-10 cart-table">
-            <form class="mb-4" action="#" method="post">
-                <table class="table" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th class="product-remove">&nbsp;</th>
-                            <th class="product-thumbnail">&nbsp;</th>
-                            <th class="product-name">Product</th>
-                            <th class="product-price">Price</th>
-                            <th class="product-quantity w-lg-15">Quantity</th>
-                            <th class="product-subtotal">Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @php
-                            $total = 0;
-                            // session()->forget('cart');
-                            // session()->flush();
-                        @endphp
-                         {{-- @foreach((array) session('cart') as $id => $details)
-                         @php $total += $details['price'] * $details['quantity'] @endphp
-                        @endforeach --}}
-                        @if (session('cart'))
-                        @foreach (session('cart') as $id => $details )
-                        <tr class="">
-                            <td class="text-center">
-                                <a href="#" class="text-gray-32 font-size-26">×</a>
-                            </td>
+
+            <table class="table" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th class="product-remove">#</th>
+                        <th class="product-remove">HÌnh ảnh</th>
+                        <th class="product-name">Tên sản phẩm</th>
+                        <th class="product-price">Giá</th>
+                        <th class="product-quantity w-lg-15">Số lượng</th>
+                        <th class="product-quantity w-lg-15">Xóa</th>
+                        <th class="product-quantity w-lg-15">cập nhật</th>
+                        <th class="product-subtotal">Tổng tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @php
+                    $total = 0;
+                    @endphp
+                    @foreach((array) session('cart') as $id => $details)
+
+                    @php $total += $details['price'] * $details['quantity'] @endphp
+                    @endforeach
+                    @if (session('cart'))
+                    @foreach (session('cart') as $id => $details )
+                    {{-- @php
+                    dd($id);
+                    @endphp --}}
+                    <form action="{{url('cart/updateCart/'.$details['id_combi'])}}" method="post">
+                        @csrf
+
+                        <tr class="" data-id="{{ $id }}">
+                            <td></td>
                             <td class="d-none d-md-table-cell">
-                                <a href="#"><img class="img-fluid max-width-100 p-1 border border-color-1" src="{{asset('images/products/'.$details['image'])}}" alt="Image Description"></a>
+                                <a href="#"><img class="img-fluid max-width-100 p-1 border border-color-1"
+                                        src="{{asset('images/products/'.$details['image'])}}"
+                                        alt="Image Description"></a>
                             </td>
 
                             <td data-title="Product">
@@ -62,63 +70,69 @@
                                 <span class="">{{$details['price']}}</span>
                             </td>
 
-                            <td data-title="Quantity">
-                                <span class="sr-only">{{$details['quantity']}}</span>
-                             
-                                <!-- Quantity -->
-                                <div class="border rounded-pill py-1 width-122 w-xl-80 px-3 border-color-1">
-                                    <div class="js-quantity row align-items-center">
-                                        <div class="col">
-                                            <input class="js-result form-control h-auto border-0 rounded p-0 shadow-none" type="text" value="{{$details['quantity']}}">
-                                        </div>
-                                        <div class="col-auto pr-1">
-                                            <a class="js-minus btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0" href="javascript:;">
-                                                <small class="fas fa-minus btn-icon__inner"></small>
-                                            </a>
-                                            <a class="js-plus btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0" href="javascript:;">
-                                                <small class="fas fa-plus btn-icon__inner"></small>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Quantity -->
+                            {{-- <td data-title="Quantity"> --}}
+                            <td data-th="Quantity">
+                                <input type="number" value="{{ $details['quantity'] }}" name="quantityNew"
+                                    class="form-control quantity update-cart" min="1" />
                             </td>
-                            
+
+                            <td class="deleteCart">
+                                <button class="btn btn-danger btn-sm cart_delete ">
+                                    <a class="text-white"
+                                        href="{{url('cart/deleteCart/'.$details['id_combi'])}}">Xóa</a>
+                                </button>
+                            </td>
+                            <td class="deleteCart">
+                                <a href="{{url('cart/updateCart/'.$details['id_combi'])}}"><button
+                                        class="btn btn-danger btn-sm cart_delete">Cập nhật</button></a>
+                            </td>
                             <td data-title="Total">
                                 <span class="">{{$details['quantity'] * $details['price']}}</span>
                             </td>
                         </tr>
-                        @endforeach
-                        @endif
-                        
-                        <tr>
-                            <td colspan="6" class="border-top space-top-2 justify-content-center">
-                                <div class="pt-md-3">
-                                    <div class="d-block d-md-flex flex-center-between">
-                                        <div class="mb-3 mb-md-0 w-xl-40">
-                                            <!-- Apply coupon Form -->
-                                            <form class="js-focus-state">
-                                                <label class="sr-only" for="subscribeSrEmailExample1">Coupon code</label>
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control" name="text" id="subscribeSrEmailExample1" placeholder="Coupon code" aria-label="Coupon code" aria-describedby="subscribeButtonExample2" required>
-                                                    <div class="input-group-append">
-                                                        <button class="btn btn-block btn-dark px-4" type="button" id="subscribeButtonExample2"><i class="fas fa-tags d-md-none"></i><span class="d-none d-md-inline">Apply coupon</span></button>
-                                                    </div>
+                    </form>
+                    @endforeach
+                    @endif
+
+                    <tr>
+                        <td colspan="6" class="border-top space-top-2 justify-content-center">
+                            <div class="pt-md-3">
+                                <div class="d-block d-md-flex flex-center-between">
+                                    <div class="mb-3 mb-md-0 w-xl-40">
+                                        <!-- Apply coupon Form -->
+                                        <form class="js-focus-state">
+                                            <label class="sr-only" for="subscribeSrEmailExample1">Coupon
+                                                code</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="text"
+                                                    id="subscribeSrEmailExample1" placeholder="Coupon code"
+                                                    aria-label="Coupon code" aria-describedby="subscribeButtonExample2"
+                                                    required>
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-block btn-dark px-4" type="button"
+                                                        id="subscribeButtonExample2"><i
+                                                            class="fas fa-tags d-md-none"></i><span
+                                                            class="d-none d-md-inline">Apply coupon</span></button>
                                                 </div>
-                                            </form>
-                                            <!-- End Apply coupon Form -->
-                                        </div>
-                                        <div class="d-md-flex">
-                                            <button type="button" class="btn btn-soft-secondary mb-3 mb-md-0 font-weight-normal px-5 px-md-4 px-lg-5 w-100 w-md-auto">Update cart</button>
-                                            <a href="../shop/checkout.html" class="btn btn-primary-dark-w ml-md-2 px-5 px-md-4 px-lg-5 w-100 w-md-auto d-none d-md-inline-block">Proceed to checkout</a>
-                                        </div>
+                                            </div>
+                                        </form>
+                                        <!-- End Apply coupon Form -->
+                                    </div>
+                                    <div class="d-md-flex">
+                                        <button type="button"
+                                            class="btn btn-soft-secondary mb-3 mb-md-0 font-weight-normal px-5 px-md-4 px-lg-5 w-100 w-md-auto">Update
+                                            cart</button>
+                                        <a href="../shop/checkout.html"
+                                            class="btn btn-primary-dark-w ml-md-2 px-5 px-md-4 px-lg-5 w-100 w-md-auto d-none d-md-inline-block">Proceed
+                                            to checkout</a>
                                     </div>
                                 </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </form>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
         </div>
         <div class="mb-8 cart-total">
             <div class="row">
@@ -130,19 +144,22 @@
                         <tbody>
                             <tr class="cart-subtotal">
                                 <th>Subtotal</th>
-                                <td data-title="Subtotal"><span class="amount">$1,785.00</span></td>
+                                <td data-title="Subtotal"><span class="amount">{{$total}}</span></td>
                             </tr>
                             <tr class="shipping">
                                 <th>Shipping</th>
                                 <td data-title="Shipping">
                                     Flat Rate: <span class="amount">$300.00</span>
                                     <div class="mt-1">
-                                        <a class="font-size-12 text-gray-90 text-decoration-on underline-on-hover font-weight-bold mb-3 d-inline-block" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                        <a class="font-size-12 text-gray-90 text-decoration-on underline-on-hover font-weight-bold mb-3 d-inline-block"
+                                            data-toggle="collapse" href="#collapseExample" role="button"
+                                            aria-expanded="false" aria-controls="collapseExample">
                                             Calculate Shipping
                                         </a>
                                         <div class="collapse mb-3" id="collapseExample">
                                             <div class="form-group mb-4">
-                                                <select class="js-select selectpicker dropdown-select right-dropdown-0-all w-100"
+                                                <select
+                                                    class="js-select selectpicker dropdown-select right-dropdown-0-all w-100"
                                                     data-style="bg-white font-weight-normal border border-color-1 text-gray-20">
                                                     <option value="">Select a country…</option>
                                                     <option value="AX">Åland Islands</option>
@@ -392,7 +409,8 @@
                                                 </select>
                                             </div>
                                             <div class="form-group mb-4">
-                                                <select class="js-select selectpicker dropdown-select right-dropdown-0-all w-100"
+                                                <select
+                                                    class="js-select selectpicker dropdown-select right-dropdown-0-all w-100"
                                                     data-style="bg-white font-weight-normal border border-color-1 text-gray-20">
                                                     <option value="">Select an option…</option>
                                                     <option value="AP">Andhra Pradesh</option>
@@ -434,21 +452,59 @@
                                                 </select>
                                             </div>
                                             <input class="form-control mb-4" type="text" placeholder="Postcode / ZIP">
-                                            <button type="button" class="btn btn-soft-secondary mb-3 mb-md-0 font-weight-normal px-5 px-md-4 px-lg-5 w-100 w-md-auto">Update Totals</button>
+                                            <button type="button"
+                                                class="btn btn-soft-secondary mb-3 mb-md-0 font-weight-normal px-5 px-md-4 px-lg-5 w-100 w-md-auto">Update
+                                                Totals</button>
                                         </div>
                                     </div>
                                 </td>
                             </tr>
                             <tr class="order-total">
                                 <th>Total</th>
-                                <td data-title="Total"><strong><span class="amount">$2,085.00</span></strong></td>
+                                <td data-title="Total"><strong><span class="amount">{{$total}}</span></strong></td>
                             </tr>
                         </tbody>
                     </table>
-                    <button type="button" class="btn btn-primary-dark-w ml-md-2 px-5 px-md-4 px-lg-5 w-100 w-md-auto d-md-none">Proceed to checkout</button>
+                    <button type="button"
+                        class="btn btn-primary-dark-w ml-md-2 px-5 px-md-4 px-lg-5 w-100 w-md-auto d-md-none">Proceed to
+                        checkout</button>
                 </div>
             </div>
         </div>
     </div>
 </main>
+<script>
+    let cartBtn = document.querySelectorAll('.deleteCart');
+    cartBtn.forEach(element => {
+        element.firstElementChild.stopPropagation();
+    });
+</script>
 @endsection
+
+
+{{-- @section('scripts')
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
+<script type="text/javascript">
+    function cartDelete(event){
+        event.preventDefault();
+        let urlDelete = $('.deleteCart').data('url');
+        let id = $(this).data('id');
+        $.ajax({
+            type: "GET",
+            url : urlDelete,
+            data: {id:id},
+            success: function (data){
+                if(data.code===200){
+                    alert("xoa thanah cong");
+                }
+            }
+            error: function(){}
+        })
+    }
+
+   $(function(){
+    $(document).on("click",".cart_delete",cartDelete);
+   });
+</script>
+@endsection --}}
