@@ -38,7 +38,6 @@ use App\Http\Controllers\PostReviewController;
 */
 
 // -----------------------------------CLIENT-----------------------------
-Route::get('/product/detail/{id}', [ProductController::class, 'productDetail']);
 //review product
 Route::post('/preview/{id}', [PreviewController::class, 'productReview'])->name('preview');
 
@@ -48,7 +47,13 @@ Route::prefix('/')->group(function () {
     Route::prefix('/contact')->group(function () {
         Route::get('/', [ContactController::class, 'create']);
     });
-
+    Route::prefix('/compare')->group(function () {
+        Route::get('/', function () {
+            return view('client.shop.compare');
+        });
+        Route::get('/add/{id}', [ProductController::class, 'addToCompare'])->name('compare.add');
+        Route::get('/delete/{id}', [ProductController::class, 'deleteCompare'])->name('compare.delete');
+    });
     Route::prefix('/cart')->group(function () {
         Route::get('/', function () {
             return view('client.shop.cart');
@@ -58,6 +63,12 @@ Route::prefix('/')->group(function () {
         Route::post('/updateCart/{id}', [ProductController::class, 'updateCart'])->name('update.cart');
     });
 
+    Route::prefix('/product')->group(function () {
+
+        Route::get('/detail/{id}', [ProductController::class, 'productDetail']);
+    
+    });
+
     Route::prefix('/user')->group(function () {
         Route::get('/{id}', [UserController::class, 'show']);
         Route::get('/update/{id}', [UserController::class, 'edit']);
@@ -65,15 +76,11 @@ Route::prefix('/')->group(function () {
         Route::get('showaddress/{id}', [AddressControll::class, 'show']);
         Route::get('create/{id}', [AddressControll::class, 'create']);
         Route::post('create/{id}', [AddressControll::class, 'store']);
+        Route::get('/showaddress/{id}', [AddressControll::class, 'show']);
+        Route::get('/createaddress/{user_id}', [AddressControll::class, 'create']);
+        Route::post('/createaddress', [AddressControll::class, 'store']);
+        Route::get('/delete/{id}', [AddressControll::class, 'destroy']);
     });
-
-    Route::get('/showaddress/{id}', [AddressControll::class, 'show']);
-
-    Route::get('/createaddress/{user_id}', [AddressControll::class, 'create']);
-
-    Route::post('/createaddress', [AddressControll::class, 'store']);
-
-    Route::get('/delete/{id}', [AddressControll::class, 'destroy']);
 
     Route::prefix('/blogs')->group(function () {
 
@@ -82,19 +89,9 @@ Route::prefix('/')->group(function () {
         // lay tat ca bai viet theo danh muc
 
         Route::get('/list/{id}', [PostController::class, 'getPostById']);
-        Route::get('/posts/', [PostController::class, 'getAllPost']);
-        Route::get('/tt/', function () {
-
-            return view('client.blogs.index');
-        });
 
         Route::get('/details/{id}', [PostController::class, 'showclient']);
     });
-    //review post
-    Route::get('/detail/{id}', [PostReviewController::class, 'showclient']);
-    Route::post('/review/{id}', [PostReviewController::class, 'reviewPost'])->name('post_review');
-
-
     //reviewPost
     Route::get('/details/{id}', [PostReviewController::class, 'showclient']);
     Route::post('/review/{id}', [PostReviewController::class, 'reviewPost'])->name('post_review')->middleware('auth');

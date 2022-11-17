@@ -185,10 +185,11 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
+        $specfications = ProductSpecificationsOptions::all();
         $cate = new CategoryController();
         $categorySelect = $cate->res(0);
         $product = Product::with('specfications')->where('products.id', $id)->first();
-        return view('admin.products.edit', compact(['product', 'categorySelect']));
+        return view('admin.products.edit', compact(['product', 'categorySelect', 'specfications']));
     }
 
     /**
@@ -358,5 +359,40 @@ class ProductController extends Controller
         unset($carts[$id_combi]);
         session()->put('cart', $carts);
         return view('client.shop.cart')->with('success', 'Product added to cart');
+    }
+
+    public function addToCompare($id){
+       
+    
+
+        // $product_combi = Combinations::find($id);
+        $product_combi = Combinations::with('product')->where('products_combinations.id', $id)->first();
+
+        $product_spec = Product::with(['category', 'variations', 'variation_value', 'combinations', 'images', 'specfications'])
+        ->where('products.id', $product_combi->product_id)->first()->specfications;
+    
+        $product_name_id = $product_combi->product_id;
+        $productName = Product::find($product_name_id);
+        $name = $productName->product_name;
+        $product_compare_1 = session()->get('product_compare_1', []);
+        $product_compare_1[$id] = [
+            "id" => $id,
+            "name" => $name . $product_combi->combination_string,
+            "quantity" => $product_combi->avilableStock,
+            "price" => $product_combi->price,
+            "image" => $product_combi->combination_image,
+            "sku" => $product_combi->sku,
+           "specfications" => $product_spec,
+        ];
+        session()->put('product_compare_1', $product_compare_1);    
+        return view('client.shop.compare')->with('success', 'Product added to cart');
+
+    }
+
+    public function deleteCompare($id){
+        $product_compare_1 = session()->get('product_compare_1', []);
+        unset($product_compare_1[$id]);
+        session()->put('product_compare_1', $product_compare_1);
+        return view('client.shop.compare');
     }
 }

@@ -156,6 +156,13 @@
 
                                 </div>
                             </div>
+                            <div class="flex-horizontal-center flex-wrap mb-4">
+                                <a href="#" class="text-gray-6 font-size-13 mr-2"><i
+                                        class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
+                                <a href="{{url('compare/add/'.$productCombi->id)}}"
+                                    class="text-gray-6 font-size-13 ml-2" id="addCompare"><i
+                                        class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
+                            </div>
                         </div>
                         <div class="d-md-flex align-items-end mb-3">
                             <div class="max-width-150 mb-4 mb-md-0">
@@ -855,7 +862,10 @@
         let arrImgInput = [];
         let priceHtml = document.getElementById("price_product");
         let addCartButton = document.getElementById("addtocart");
+        let addCompare = document.getElementById("addCompare");
+        
         console.log([priceHtml.attributes['data-price'].nodeValue]);
+
 
         let combiImageList = document.querySelectorAll('.combi-image-js');
             combiImageList.forEach(combiImage => {
@@ -881,6 +891,7 @@
                         priceHtml.innerHTML = `$${pro.nextElementSibling.value}`;
                         let combiId = pro.parentElement.lastElementChild.value;
                         addCartButton.href=`http://127.0.0.1:8000/cart/add/${combiId}`;
+                        addCompare.href=`http://127.0.0.1:8000/compare/add/${combiId}`;
                         
                         let imgCombi = pro.nextElementSibling.nextElementSibling;
                         arrImgInput.forEach(imgInput => {

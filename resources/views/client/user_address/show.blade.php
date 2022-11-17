@@ -52,11 +52,10 @@
                         </div>
 
                         @endforeach
-
+                        
                         <div class="col-md-6">
                             <a href="{{url('/user/createaddress',[$user->user_id])}}"><button type="button" class="btn btn-outline-primary">Thêm địa chỉ</button></a>
                         </div>
-
 
                         <div class="col-md-6">
                             <a href="{{url('/user',[$user->user_id])}}"><button type="button" class="btn btn-outline-primary">Quay lạy thông tin cá nhân</button></a>
