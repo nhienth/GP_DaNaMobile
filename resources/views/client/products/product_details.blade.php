@@ -855,7 +855,7 @@
         let arrImgInput = [];
         let priceHtml = document.getElementById("price_product");
         let addCartButton = document.getElementById("addtocart");
-        console.log([priceHtml]);
+        console.log([priceHtml.attributes['data-price'].nodeValue]);
 
         let combiImageList = document.querySelectorAll('.combi-image-js');
             combiImageList.forEach(combiImage => {
