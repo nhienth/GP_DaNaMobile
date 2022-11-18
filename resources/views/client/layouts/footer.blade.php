@@ -157,9 +157,17 @@ $random = [];
                             <h6 class="mb-3 font-weight-bold">Chăm sóc khách hàng</h6>
                             <!-- List Group -->
                             <ul class="list-group list-group-flush list-group-borderless mb-0 list-group-transparent">
-                                <li><a class="list-group-item list-group-item-action"
-                                        {{-- href="http://127.0.0.1:8000/user/{{ Auth::user()->id }}">Tài khoản của tôi</a> --}}
-                                </li>
+                                @if (Route::has('login'))
+                                @auth
+
+                                    <li><a class="list-group-item list-group-item-action" href="http://127.0.0.1:8000/user/{{ Auth::user()->id }}">Tài khoản của tôi</a></li>
+                                
+                                    @else
+
+                                    <li><a class="list-group-item list-group-item-action" href="{{ route('login') }}">Tài khoản của tôi</a></li>
+                                
+                                    @endauth
+                                @endif
                                 <li><a class="list-group-item list-group-item-action"
                                         href="../shop/track-your-order.html">Giỏ hàng</a></li>
                                 <li><a class="list-group-item list-group-item-action" href="../shop/wishlist.html">Sản

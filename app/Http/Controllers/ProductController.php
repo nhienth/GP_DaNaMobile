@@ -283,7 +283,24 @@ class ProductController extends Controller
             ->where('products.id', '!=', $id)
             ->get();
 
-        return view('client.products.product_details', compact(['product', 'similarProducts', 'previews', 'banner', 'slider']));
+        $minPrice = $product->combinations{0}->price;
+        $maxPrice = $product->combinations{0}->price;
+
+        foreach ($product->combinations as $pro) {
+
+            if($minPrice > $pro->price) {
+                $minPrice = $pro->price;
+            } 
+
+            if($maxPrice < $pro->price) {
+                $maxPrice = $pro->price;
+            }
+        }
+
+        $product['minprice'] = $minPrice;
+        $product['maxprice'] = $maxPrice;
+
+        return view('client.products.product_details', compact(['product', 'similarProducts', 'previews']));
     }
 
 
@@ -306,6 +323,7 @@ class ProductController extends Controller
     {
         $product = Combinations::find($id);
         $product_name_id = $product->product_id;
+        $combi_id = $product->id;
         $productName = Product::find($product_name_id);
         $name = $productName->product_name;
         $cart = session()->get('cart', []);
@@ -317,12 +335,33 @@ class ProductController extends Controller
                 "quantity" => 1,
                 "price" => $product->price,
                 "image" => $product->combination_image,
-                ""
+                'id_combi' => $combi_id,
             ];
         }
         session()->put('cart', $cart);
         return view('client.shop.cart')->with('success', 'Product added to cart');
-        // dd($name);
+    }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateCart($id_combi, Request $request)
+    {
+        $cart = session()->get(key: "cart");
+
+        $cart[$id_combi]["quantity"] = $request->quantityNew;
+        session()->put('cart', $cart);
+        return view('client.shop.cart')->with('success', 'Product added to cart');
+    }
+    public function deleteCart($id_combi)
+    {
+
+        $carts = session()->get(key: "cart");
+        unset($carts[$id_combi]);
+        session()->put('cart', $carts);
+        return view('client.shop.cart')->with('success', 'Product added to cart');
     }
 
     public function addToCompare($id){

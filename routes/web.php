@@ -57,6 +57,8 @@ Route::prefix('/')->group(function () {
             return view('client.shop.cart');
         });
         Route::get('/add/{id}', [ProductController::class, 'addToCart'])->name('cart.add');
+        Route::get('/deleteCart/{id}', [ProductController::class, 'deleteCart'])->name('cart.remove');
+        Route::post('/updateCart/{id}', [ProductController::class, 'updateCart'])->name('update.cart');
     });
 
     Route::prefix('/product')->group(function () {
@@ -176,7 +178,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
         Route::get('/delete/{id}', [VariationController::class, 'destroy_main']);
     });
 
-    Route::prefix('/post')->group(function () {
+    Route::prefix('/posts')->group(function () {
         Route::get('/list', [PostController::class, 'index']);
         Route::prefix('/post')->group(function () {
             Route::get('/list', [PostController::class, 'index']);
@@ -215,7 +217,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
             Route::get('/delete/{id}', [VariationController::class, 'destroy_main']);
         });
 
-        Route::prefix('/post')->group(function () {
+        Route::prefix('/posts')->group(function () {
             Route::get('/list', [PostController::class, 'index']);
 
             Route::get('/create', [PostController::class, 'create']);
