@@ -22,9 +22,15 @@
         <div class="mb-5">
             <h1 class="text-center" style="color:black;">Liên hệ</h1>
         </div>
+        
         <!-- Accordion -->
-        <form class="js-validate" novalidate="novalidate" style="color: black;">
+        <form class="js-validate" novalidate="novalidate" action="{{url('contact')}}" style="color: black;"
+            method="POST" enctype="multipart/form-data">
+            @csrf
             <!-- Billing Form -->
+            @if (Session::has('success'))
+                <h1 style="margin-left: 20px;color: green">{{Session::get('success')}}</h1>
+            @endif
             <div class="row">
                 <div class="col-md-12">
                     <!-- Input -->
@@ -33,7 +39,7 @@
                             Họ và tên
                             <span class="text-danger">*</span>
                         </label>
-                        <input type="text" class="form-control" name="" placeholder="" value="" data-msg="Please enter your frist name." data-error-class="u-has-error" data-success-class="u-has-success" autocomplete="off">
+                        <input type="text" class="form-control" name="name" placeholder="" value="" data-msg="Please enter your frist name." data-error-class="u-has-error" data-success-class="u-has-success" autocomplete="off">
                     </div>
                     <!-- End Input -->
                 </div>
@@ -45,7 +51,7 @@
                             Địa chỉ email
                             <span class="text-danger">*</span>
                         </label>
-                        <input type="email" class="form-control" name="" placeholder="" value=""  data-msg="Please enter your last name." data-error-class="u-has-error" data-success-class="u-has-success">
+                        <input type="email" class="form-control" name="email" placeholder="" value=""  data-msg="Please enter your last name." data-error-class="u-has-error" data-success-class="u-has-success">
                     </div>
                     <!-- End Input -->
                 </div>
@@ -57,7 +63,7 @@
                             Tiêu đề
                             <span class="text-danger">*</span>
                         </label>
-                        <input type="text" class="form-control" name="" placeholder="" value=""  data-msg="Please enter your last name." data-error-class="u-has-error" data-success-class="u-has-success">
+                        <input type="text" class="form-control" name="subject" placeholder="" value=""  data-msg="Please enter your last name." data-error-class="u-has-error" data-success-class="u-has-success">
                     </div>
                     <!-- End Input -->
                 </div>
@@ -69,13 +75,13 @@
                             Nội dung liên hệ
                             <span class="text-danger">*</span>
                         </label>
-                        <textarea class="form-control" name="" id="" cols="30" rows="10"></textarea>
+                        <textarea class="form-control" name="message" id="" cols="30" rows="10"></textarea>
                     </div>
                     <!-- End Input -->
                 </div>
 
                 <div class="col-md-6">
-                    <a href=""><button type="button" class="btn btn-outline-primary">Gửi</button></a>
+                    <button type="submit" class="btn btn-outline-primary">Gửi</button>
                 </div>
 
             </div>

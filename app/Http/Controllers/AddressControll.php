@@ -20,7 +20,7 @@ class AddressControll extends Controller
      */
     public function index()
     {
-        $users = User_addresses::with('user')->where('user_addresses.user_id',$id)->get();
+        // $users = User_addresses::with('user')->where('user_addresses.user_id',$id)->get();
     }
 
     /**
