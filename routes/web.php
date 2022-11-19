@@ -180,10 +180,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
         });
 
         Route::get('/delete/{id}', [VariationController::class, 'destroy_main']);
-    });
 
-    Route::prefix('/post')->group(function () {
-        Route::get('/list', [PostController::class, 'index']);
         Route::prefix('/post')->group(function () {
             Route::get('/list', [PostController::class, 'index']);
 
@@ -292,27 +289,22 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
             Route::get('/delete/{id}', [VoucherController::class, 'destroy']);
         });
 
+        Route::prefix('/banner')->group(function () {
+            Route::get('/list', [BannerController::class, 'index'])->name('banner.list');
+            Route::get('/create', [BannerController::class, 'create'])->name('banner.create');
+            Route::post('/create', [BannerController::class, 'store'])->name('banner.create_process');
+            Route::get('/edit/{id}', [BannerController::class, 'edit'])->name('banner.edit');
+            Route::post('/edit/{id}', [BannerController::class, 'update'])->name('banner.edit_process');
+            Route::get('/delete/{id}', [BannerController::class, 'destroy']);
+        });
 
-
-        Route::get('/checkout', function () {
-            return view('client.shop.checkout');
-            Route::prefix('/banner')->group(function () {
-                Route::get('/list', [BannerController::class, 'index'])->name('banner.list');
-                Route::get('/create', [BannerController::class, 'create'])->name('banner.create');
-                Route::post('/create', [BannerController::class, 'store'])->name('banner.create_process');
-                Route::get('/edit/{id}', [BannerController::class, 'edit'])->name('banner.edit');
-                Route::post('/edit/{id}', [BannerController::class, 'update'])->name('banner.edit_process');
-                Route::get('/delete/{id}', [BannerController::class, 'destroy']);
-            });
-
-            Route::prefix('/voucher')->group(function () {
-                Route::get('/list', [VoucherController::class, 'index'])->name('voucher.list');
-                Route::get('/create',  [VoucherController::class, 'create']);
-                Route::post('/create', [VoucherController::class, 'store'])->name('voucher.create');
-                Route::get('/edit/{id}', [VoucherController::class, 'edit']);
-                Route::post('/update/{id}', [VoucherController::class, 'update']);
-                Route::get('/delete/{id}', [VoucherController::class, 'destroy']);
-            });
+        Route::prefix('/voucher')->group(function () {
+            Route::get('/list', [VoucherController::class, 'index'])->name('voucher.list');
+            Route::get('/create',  [VoucherController::class, 'create']);
+            Route::post('/create', [VoucherController::class, 'store'])->name('voucher.create');
+            Route::get('/edit/{id}', [VoucherController::class, 'edit']);
+            Route::post('/update/{id}', [VoucherController::class, 'update']);
+            Route::get('/delete/{id}', [VoucherController::class, 'destroy']);
         });
     });
 });
