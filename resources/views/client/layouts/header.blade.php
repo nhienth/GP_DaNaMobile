@@ -633,12 +633,13 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                     <!-- End Logo-offcanvas-menu -->
                     <!-- Search Bar -->
                     <div class="col d-none d-xl-block">
-                        <form class="js-focus-state">
+                        <form class="js-focus-state" action="http://127.0.0.1:8000/product/search" method="GET">
+                            @csrf
                             <label class="sr-only" for="searchproduct">Search</label>
                             <div class="input-group">
-                                <input type="email"
+                                <input type="text"
                                     class="form-control py-2 pl-5 font-size-15 border-right-0 height-40 border-width-2 rounded-left-pill border-primary"
-                                    name="email" id="searchproduct-item" placeholder="Tìm kiếm Sản Phẩm"
+                                    name="keyword" id="searchproduct-item" placeholder="Tìm kiếm Sản Phẩm"
                                     aria-label="Search for Products" aria-describedby="searchProduct1" required>
                                 <div class="input-group-append">
                                     <!-- Select -->
@@ -651,7 +652,7 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                                         <option value="four">Four</option> --}}
                                     </select>
                                     <!-- End Select -->
-                                    <button class="btn btn-primary height-40 py-2 px-3 rounded-right-pill" type="button"
+                                    <button class="btn btn-primary height-40 py-2 px-3 rounded-right-pill" type="submit"
                                         id="searchProduct1">
                                         <span class="ec ec-search font-size-24"></span>
                                     </button>

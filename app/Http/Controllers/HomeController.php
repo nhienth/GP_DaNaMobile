@@ -203,7 +203,7 @@ class HomeController extends Controller
         foreach ($data_sub as $value_sub) {
             if ($value_sub['parent_id'] == $id) {  
                         
-                $this->html .= '<li><a class="nav-link u-header__sub-menu-nav-link" href="#">'.$value_sub['category_name'].'</a></li>';    
+                $this->html .= '<li><a class="nav-link u-header__sub-menu-nav-link" href="http://127.0.0.1:8000/product/byCate/'.$value_sub['id'].'">'.$value_sub['category_name'].'</a></li>';    
                    
             }
            

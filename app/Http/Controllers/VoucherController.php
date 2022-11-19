@@ -55,9 +55,6 @@ class VoucherController extends Controller
         $vou->product_id = $request['voucher_product_id'];
         $vou->status = $request['voucher_status'];
         $vou->save();
-        // if (Voucher::create($request->all())) {
-        //     return redirect()->route('voucher.list')->with('success', 'Thêm thành công');
-        // }
         return redirect()->route('voucher.list')->with('success', 'Thêm thành công');
     }
 

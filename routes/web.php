@@ -52,6 +52,14 @@ Route::prefix('/')->group(function () {
         Route::get('/add/{id}', [ProductController::class, 'addToCompare'])->name('compare.add');
         Route::get('/delete/{id}', [ProductController::class, 'deleteCompare'])->name('compare.delete');
     });
+
+
+    //wishlist
+
+    Route::get('/wishlist/{id}', [ProductController::class, 'addWishlist']);
+    Route::get('/listWishList', [ProductController::class, 'showWishList'])->name("listWishlist");
+    Route::get('/deleteWishList/{id}', [ProductController::class, 'deleteWishList']);
+    //end wishlist
     Route::prefix('/cart')->group(function () {
         Route::get('/', function () {
             return view('client.shop.cart');
@@ -62,6 +70,7 @@ Route::prefix('/')->group(function () {
     });
 
     Route::prefix('/product')->group(function () {
+        Route::get('/byCate/{id}', [ProductController::class, 'productbyCate']);
 
         Route::get('/detail/{id}', [ProductController::class, 'productDetail']);
     //review product

@@ -77,6 +77,7 @@
                                     <span class="text-secondary font-size-13">(3 customer reviews)</span>
                                 </a>
                             </div>
+
                             <div class="d-md-flex align-items-center">
                                 <a href="#" class="max-width-150 ml-n2 mb-2 mb-md-0 d-block"><img class="img-fluid"
                                         src="{{asset('client/assets/img/200X60/img1.png')}}"
@@ -86,9 +87,8 @@
                             </div>
                         </div>
                         <div class="flex-horizontal-center flex-wrap mb-4">
-                            <button class="wishlist_btn" onclick="addWishList()"><i
-                                    class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
-                            </button>
+
+                            <a href="" id="addWishlist"><i class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
                             <a href="#" class="text-gray-6 font-size-13 ml-2"><i
                                     class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
                         </div>
@@ -110,17 +110,22 @@
                                     {{$product->maxprice}}</span>
                             </div>
                         </div>
+
                         <div class="border-top border-bottom py-3 mb-4">
-                            @foreach ($product->combinations as $productCombi)
-                            <div>
-                                <input type="hidden" name="combination_string"
-                                    value="{{$productCombi->combination_string}}">
-                                <input type="hidden" name="price" value="{{$productCombi->price}}">
-                                <input type="hidden" name="combination_image"
-                                    value="{{$productCombi->combination_image}}">
-                                <input type="hidden" name="productCombi_Id" value="{{$productCombi->id}}" />
-                            </div>
-                            @endforeach
+                            <form action="">
+                                @foreach ($product->combinations as $productCombi)
+                                <div>
+                                    <input type="hidden" value="{{$product->product_name}}" />
+                                    <input type="hidden" name="combination_string"
+                                        value="{{$productCombi->combination_string}}">
+                                    <input type="hidden" name="price" id="wishlist_price{{$productCombi->id}}"
+                                        value="{{$productCombi->price}}">
+                                    <input type="hidden" name="combination_image"
+                                        value="{{$productCombi->combination_image}}">
+                                    <input type="hidden" name="productCombi_Id" value="{{$productCombi->id}}" />
+                                </div>
+                                @endforeach
+                            </form>
                             <div class="d-flex align-items-center">
 
                                 <div>
@@ -907,8 +912,8 @@
         let priceHtml = document.getElementById("price_product");
         let addCartButton = document.getElementById("addtocart");
         let addCompare = document.getElementById("addCompare");
-        
-        console.log([priceHtml.attributes['data-price'].nodeValue]);
+
+        let addWLButton = document.getElementById("addWishlist");
 
 
         let combiImageList = document.querySelectorAll('.combi-image-js');
@@ -936,6 +941,7 @@
                         let combiId = pro.parentElement.lastElementChild.value;
                         addCartButton.href=`http://127.0.0.1:8000/cart/add/${combiId}`;
                         addCompare.href=`http://127.0.0.1:8000/compare/add/${combiId}`;
+                        addWLButton.href=`http://127.0.0.1:8000/wishlist/${combiId}`;
                         
                         let imgCombi = pro.nextElementSibling.nextElementSibling;
                         arrImgInput.forEach(imgInput => {
@@ -946,16 +952,14 @@
                         
                     }
                 }else {
-                    priceHtml.innerHTML = `update...`;
+                    if(arr[0] != 'a' && arr[1] != 'b') {
+                        priceHtml.innerHTML = `update...`;
+                    }
                 }
 
             });
         });
     
     }, 2000);
-
-function addWishList(){
-alert('anh canh');
-}
 
 </script>
