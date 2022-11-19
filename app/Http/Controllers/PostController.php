@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\CategoryController;
 use App\Models\Post;
 use App\Models\PostReview;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -14,44 +15,44 @@ class PostController extends Controller
     {
         $keywords = $_GET['key_cate_id'];
         $categories = Category::all();
-        $posts = Post::where('category_id','=', $keywords)->paginate(5);
+        $posts = Post::where('category_id', '=', $keywords)->paginate(5);
         if (count($posts) != 0) {
-            return view('admin.posts.list',compact('posts','categories'));
-        } else if ( count($posts) == 0) {
-            $posts = Post::with('category')->orderBy('posts_id','desc')->paginate(5);
-            return view('admin.posts.list',compact('posts','categories'));
+            return view('admin.posts.list')->with(compact('posts', 'categories'));
+        } else if (count($posts) == 0) {
+            $posts = Post::with('category')->orderBy('posts.id', 'desc')->paginate(5);
+            return view('admin.posts.list')->with(compact('posts', 'categories'));
         }
     }
 
 
-    public function filter_view()
-    {
+    public function filter_views()
+    {   
         $keywords = $_GET['view_selected'];
         $categories = Category::all();
         $posts = Post::all();
         if ($keywords == 1) {
-            $posts = Post::with('category')->orderBy('posts.added_by','desc')->paginate(5);
-            return view ('admin.posts.list',compact('posts', 'categories'));
+            $posts = Post::with('category')->orderBy('posts.added_by', 'desc')->paginate(5);
+            return view('admin.posts.list')->with(compact('posts', 'categories'));
         } else if ($keywords == 2) {
             $posts = Post::with('category')->orderBy('posts.added_by','asc')->paginate(5);
-            return view ('admin.posts.list',compact('posts', 'categories'));
+            return view('admin.posts.list')->with(compact('posts', 'categories'));
         } else {
-            $posts = Post::with('category')->orderBy('posts.id','asc')->paginate(5);
-            return view ('admin.posts.list',compact('posts', 'categories'));
+            $posts = Post::with('category')->orderBy('posts.id', 'asc')->paginate(5);
+            return view('admin.posts.list')->with(compact('posts', 'categories'));
         }
     }
 
 
-    public function filter_status()
+    public function filter_statuss()
     {
         $keywords = $_GET['status_selected'];
         $categories = Category::all();
-        $posts = Post::where('status', '=',$keywords)->paginate(5);
+        $posts = Post::where('status', '=', $keywords)->paginate(5);
         if ($keywords != 2) {
-            return view('admin.posts.list',compact('posts','categories'));
+            return view('admin.posts.list')->with(compact('posts', 'categories'));
         } else {
             $posts = Post::with('category')->paginate(5);
-            return view('admin.posts.list',compact('posts','category'));
+            return view('admin.posts.list')->with(compact('posts', 'categories'));
         }
     }
 

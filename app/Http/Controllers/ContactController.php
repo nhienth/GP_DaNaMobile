@@ -51,18 +51,14 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->has('file_img')) {
-            $file = $request->file_img;
-            $file_name = $file->getClientoriginalName();
-            // dd($file_name);
-            $file->move(public_path('images/slider'), $file_name);
-        }
-        
-        $request->merge(['slider_img' => $file_name]);
-        // dd($request->all());
-        if (Slider::create($request->all())) {
-            return redirect()->route('slider.list')->with('success', 'Thêm thành công');
-        }
+        $contact = new Contact();
+        $contact->name = $request->name;
+        $contact->subject = $request->subject;
+        $contact->email = $request->email;
+        $contact->message = $request->message;
+        $contact->save();
+
+        return view('client.contact.index')->with('success', 'Gửi liên hệ thành công');
     }
     /**
      * Show the form for editing the specified resource.

@@ -282,6 +282,7 @@ class ProductController extends Controller
         $similarProducts = Product::with(['category'])
             ->where('products.category_id', $product->category_id)
             ->where('products.id', '!=', $id)
+            ->take(6)
             ->get();
 
         $minPrice = $product->combinations{0}->price;
