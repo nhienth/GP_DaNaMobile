@@ -64,7 +64,6 @@
                                         <select class="form-control" name="status">
                                             <option value="0">Đang hoạt động</option>
                                             <option value="1">Vô hiệu hóa</option>
-
                                         </select>
                                     </div>
                                     <button type="submit" class="btn btn-primary me-2">Cập nhật</button>

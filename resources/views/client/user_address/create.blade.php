@@ -44,6 +44,21 @@
                             </div>
                             <div class="col-md-12">
                                 <!-- Input -->
+                                <label class="form-label">
+                                        Loại địa chỉ
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                <div class="js-form-message mb-6">
+                                    <select class="form-control" name="name_address">
+                                        <option value="0">Nhà riêng</option>
+                                        <option value="1">Văn Phòng</option>
+                                    </select>
+                                </div>
+                                <!-- End Input -->
+                            </div>
+                            
+                            <div class="col-md-12">
+                                <!-- Input -->
                                 <div class="js-form-message mb-6">
                                     <label class="form-label">
                                         Tên 

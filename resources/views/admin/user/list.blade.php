@@ -128,6 +128,15 @@
                                         </td>
                                         <td>
                                             <?php
+                                            if($key["name_address"]==1){
+                                                echo "Văn phòng";
+                                            }else {
+                                                echo "Nhà riêng";
+                                            }
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <?php
                                             if($key["status"]==0){
                                                 echo "Hoạt động";
                                             }else {

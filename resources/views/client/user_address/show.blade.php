@@ -18,12 +18,19 @@
                     <!-- Billing Form -->
                     <div class="row">
                         @foreach ($users as $user)
-
                         <div class="col-md-8">
                             <!-- Input -->
                             <div class="js-form-message mb-3">
                                 <label class="form-label">
-                                    Địa chỉ email
+                                    Địa chỉ email (
+                                    <?php
+                                        if($user["name_address"]==1){
+                                            echo "Văn phòng";
+                                        }else {
+                                            echo "Nhà riêng";
+                                        }
+                                    ?>
+                                    )
                                     <span class="text-danger">*</span>
                                 </label>
                                 <input type="text" class="form-control" name="" placeholder="" value="{{ $user->completeAddress }}" data-msg="Please enter your frist name." data-error-class="u-has-error" data-success-class="u-has-success" autocomplete="off" disabled>
