@@ -83,8 +83,6 @@
                         @endforeach
 
                         @endforeach
-                  
-
                     <tr>
                         <th>Thêm vào giỏ hàng</th>
                         @foreach (session('product_compare_1') as $id => $details )
