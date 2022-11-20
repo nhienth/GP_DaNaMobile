@@ -38,8 +38,6 @@ use App\Http\Controllers\PostReviewController;
 */
 
 // -----------------------------------CLIENT-----------------------------
-//review product
-Route::post('/preview/{id}', [PreviewController::class, 'productReview'])->name('preview');
 
 Route::prefix('/')->group(function () {
     Route::get('', [HomeController::class, 'index']);
@@ -80,9 +78,11 @@ Route::prefix('/')->group(function () {
         Route::get('/byCate/{id}', [ProductController::class, 'productbyCate']);
 
         Route::get('/detail/{id}', [ProductController::class, 'productDetail']);
+    //review product
+        Route::get('/detail/{id}',[PreviewController::class,'productReview']);
+        Route::post('/preview/{id}',[PreviewController::class,'preview'])->name('preview');
+        Route::get('/rate/{id}',[PreviewController::class,'reviewRate']);
 
-        Route::get('/search', [ProductController::class, 'searchProduct']);
-    
     });
 
     Route::prefix('/user')->group(function () {
@@ -110,10 +110,15 @@ Route::prefix('/')->group(function () {
         Route::get('/list/{id}', [PostController::class, 'getPostById']);
 
         Route::get('/details/{id}', [PostController::class, 'showclient']);
+
+        //review blogs
+        Route::get('/detail/{id}',[PostReviewController::class,'showclient']);
+        Route::post('/review/{id}',[PostReviewController::class,'reviewPost'])->name('post_review');
+
     });
-    //reviewPost
-    Route::get('/details/{id}', [PostReviewController::class, 'showclient']);
-    Route::post('/review/{id}', [PostReviewController::class, 'reviewPost'])->name('post_review')->middleware('auth');
+    
+    
+
     Route::get('/checkout', function () {
         return view('client.shop.checkout');
     });
@@ -224,6 +229,11 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
             Route::get('/details/{id}', [PostController::class, 'show']);
 
             Route::get('/delete/{id}', [PostController::class, 'destroy']);
+
+            //tìm kiếm và lọc bài viết
+            Route::get('/searchpost', [PostController::class, 'searchs'])->name('searchs');
+            Route::get('/filter_view', [PostController::class, 'filter_views'])->name('filter_views');
+            Route::get('/filter_status', [PostController::class, 'filter_statuss'])->name('filter_statuss');
         });
 
         Route::prefix('/preview')->group(function () {

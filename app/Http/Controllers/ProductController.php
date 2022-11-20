@@ -43,7 +43,7 @@ class ProductController extends Controller
             $products = Product::with('category')->orderBy('products.product_view', 'desc')->paginate(5);
             return view('admin.products.list')->with(compact('products', 'categories'));
         } else if ($keywords == 2) {
-            $products = Product::with('category')->orderBy('products.product_view', 'asc')->paginate(5);
+            $products = Product::with('category')->orderBy('products.product_view', '       asc')->paginate(5);
             return view('admin.products.list')->with(compact('products', 'categories'));
         } else {
             $products = Product::with('category')->orderBy('products.id', 'asc')->paginate(5);
@@ -273,7 +273,9 @@ class ProductController extends Controller
      */
     public function productDetail($id)
     {
-        $previews = Preview::all();
+        $previews = Preview::where('product_id',$id)->get();
+        $slider = Slider::first()->orderBy('slider.created_at', 'DESC')->paginate(1);
+        $banner = Banner::first()->orderBy('banner.created_at', 'DESC')->paginate(1);
         $product = Product::with(['category', 'variations', 'variation_value', 'combinations', 'images', 'specfications'])
             ->where('products.id', $id)->first();
 
@@ -302,6 +304,7 @@ class ProductController extends Controller
 
         return view('client.products.product_details', compact(['product', 'similarProducts', 'previews']));
     }
+
 
     public function deleteVariation($id, Request $request)
     {

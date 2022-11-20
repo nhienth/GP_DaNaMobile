@@ -272,9 +272,13 @@
                         <div class="row mb-8">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <h3 class="font-size-18 mb-6">Based on 3 reviews</h3>
-                                    <h2 class="font-size-30 font-weight-bold text-lh-1 mb-0">4.3</h2>
-                                    <div class="text-lh-1">overall</div>
+                                    {{-- <h3 class="font-size-18 mb-6">Dựa trên {{$countall}} đánh giá</h3> --}}
+                                    @if (isset ($round))                                      
+                                    <h2 class="font-size-30 font-weight-bold text-lh-1 mb-0">{{$round}}</h2> 
+                                    <div class="text-lh-1">Tổng thể</div>                                                             
+                                    @else   
+                                                                  
+                                    @endif
                                 </div>
 
                                 <!-- Ratings -->
@@ -282,12 +286,12 @@
                                     <li class="py-1">
                                         <a class="row align-items-center mx-gutters-2 font-size-1" href="javascript:;">
                                             <div class="col-auto mb-2 mb-md-0">
-                                                <div class="text-warning text-ls-n2 font-size-16" style="width: 80px;">
-                                                    <small class="fas fa-star"></small>
-                                                    <small class="fas fa-star"></small>
-                                                    <small class="fas fa-star"></small>
-                                                    <small class="fas fa-star"></small>
-                                                    <small class="far fa-star text-muted"></small>
+                                                <div class="text-warning text-ls-n2 font-size-16" style="width: 100px;">
+                                                    <?php 
+                                                    for ($i = 0; $i < 5; $i++){
+                                                   echo '<i class="fas fa-star"></i>';
+                                                    }
+                                                    ?>
                                                 </div>
                                             </div>
                                             <div class="col-auto mb-2 mb-md-0">
@@ -297,7 +301,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-auto text-right">
-                                                <span class="text-gray-90">205</span>
+                                                {{-- <span class="text-gray-90">{{$count5}}</span> --}}
                                             </div>
                                         </a>
                                     </li>
@@ -305,11 +309,11 @@
                                         <a class="row align-items-center mx-gutters-2 font-size-1" href="javascript:;">
                                             <div class="col-auto mb-2 mb-md-0">
                                                 <div class="text-warning text-ls-n2 font-size-16" style="width: 80px;">
-                                                    <small class="fas fa-star"></small>
-                                                    <small class="fas fa-star"></small>
-                                                    <small class="fas fa-star"></small>
-                                                    <small class="far fa-star text-muted"></small>
-                                                    <small class="far fa-star text-muted"></small>
+                                                    <?php 
+                                                    for ($i = 0; $i < 4; $i++){
+                                                   echo '<i class="fas fa-star"></i>';
+                                                    }
+                                                    ?>
                                                 </div>
                                             </div>
                                             <div class="col-auto mb-2 mb-md-0">
@@ -319,7 +323,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-auto text-right">
-                                                <span class="text-gray-90">55</span>
+                                                {{-- <span class="text-gray-90">{{$count4}}</span> --}}
                                             </div>
                                         </a>
                                     </li>
@@ -327,11 +331,11 @@
                                         <a class="row align-items-center mx-gutters-2 font-size-1" href="javascript:;">
                                             <div class="col-auto mb-2 mb-md-0">
                                                 <div class="text-warning text-ls-n2 font-size-16" style="width: 80px;">
-                                                    <small class="fas fa-star"></small>
-                                                    <small class="fas fa-star"></small>
-                                                    <small class="far fa-star text-muted"></small>
-                                                    <small class="far fa-star text-muted"></small>
-                                                    <small class="far fa-star text-muted"></small>
+                                                    <?php 
+                                                    for ($i = 0; $i < 3; $i++){
+                                                   echo '<i class="fas fa-star"></i>';
+                                                    }
+                                                    ?>
                                                 </div>
                                             </div>
                                             <div class="col-auto mb-2 mb-md-0">
@@ -341,7 +345,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-auto text-right">
-                                                <span class="text-gray-90">23</span>
+                                                {{-- <span class="text-gray-90">{{$count3}}</span> --}}
                                             </div>
                                         </a>
                                     </li>
@@ -349,11 +353,11 @@
                                         <a class="row align-items-center mx-gutters-2 font-size-1" href="javascript:;">
                                             <div class="col-auto mb-2 mb-md-0">
                                                 <div class="text-warning text-ls-n2 font-size-16" style="width: 80px;">
-                                                    <small class="fas fa-star"></small>
-                                                    <small class="far fa-star text-muted"></small>
-                                                    <small class="far fa-star text-muted"></small>
-                                                    <small class="far fa-star text-muted"></small>
-                                                    <small class="far fa-star text-muted"></small>
+                                                    <?php 
+                                                    for ($i = 0; $i < 2; $i++){
+                                                   echo '<i class="fas fa-star"></i>';
+                                                    }
+                                                    ?>
                                                 </div>
                                             </div>
                                             <div class="col-auto mb-2 mb-md-0">
@@ -363,7 +367,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-auto text-right">
-                                                <span class="text-muted">0</span>
+                                                {{-- <span class="text-muted">{{$count2}}</span> --}}
                                             </div>
                                         </a>
                                     </li>
@@ -371,11 +375,11 @@
                                         <a class="row align-items-center mx-gutters-2 font-size-1" href="javascript:;">
                                             <div class="col-auto mb-2 mb-md-0">
                                                 <div class="text-warning text-ls-n2 font-size-16" style="width: 80px;">
-                                                    <small class="fas fa-star"></small>
-                                                    <small class="far fa-star text-muted"></small>
-                                                    <small class="far fa-star text-muted"></small>
-                                                    <small class="far fa-star text-muted"></small>
-                                                    <small class="far fa-star text-muted"></small>
+                                                    <?php 
+                                                    for ($i = 0; $i < 1; $i++){
+                                                   echo '<i class="fas fa-star"></i>';
+                                                    }
+                                                    ?>
                                                 </div>
                                             </div>
                                             <div class="col-auto mb-2 mb-md-0">
@@ -385,7 +389,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-auto text-right">
-                                                <span class="text-gray-90">4</span>
+                                                {{-- <span class="text-gray-90">{{$count1}}</span> --}}
                                             </div>
                                         </a>
                                     </li>
@@ -393,7 +397,7 @@
                                 <!-- End Ratings -->
                             </div>
                             <div class="col-md-6" style="color:black">
-                                <h3 class="font-size-18 mb-5">Viết bình luận</h3>
+                                <h3 class="font-size-18 mb-5">Thêm đánh giá</h3>
                                 <!-- Form -->
                                 <p class="text-gray-90"> Bạn cần đăng nhập để đánh giá sản phẩm<span class="text-dark"
                                     style="color: red">*</span></p>
@@ -402,23 +406,63 @@
                                     @if (Auth::check())
                                     <div class="row align-items-center mb-4">
                                         <div class="col-md-4 col-lg-3">
-                                            <label for="rating" class="form-label mb-0">Đánh giá sao</label>
+                                            <label for="rating" class="form-label mb-0">Đánh giá sao của bạn</label>
                                         </div>
-                                        <div class="col-md-8 col-lg-9">
+                                        {{-- <style>
+                                            .rating {
+                                                    display: flex;
+                                                    flex-direction: row-reverse;
+                                                    justify-content: center;
+                                                }
+
+                                                .rating > input{ display:none;}
+
+                                                .rating > label {
+                                                    position: relative;
+                                                        width: 1em;
+                                                        font-size: 2vw;
+                                                        color: #FFD600;
+                                                        cursor: pointer;
+                                                }
+                                                .rating > label::before{ 
+                                                    content: "\2605";
+                                                    position: absolute;
+                                                    opacity: 0;
+                                                }
+                                                .rating > label:hover:before,
+                                                .rating > label:hover ~ label:before {
+                                                    opacity: 1 !important;
+                                                }
+
+                                                .rating > input:checked ~ label:before{
+                                                    opacity:1;
+                                                }
+
+                                                .rating:hover > input:checked ~ label:before{ opacity: 0.4; }
+
+
+
+                                                p{ font-size: 1.2rem;}
+                                                @media only screen and (max-width: 600px) {
+                                                    h1{font-size: 14px;}
+                                                    p{font-size: 12px;}
+                                                }
+                                        </style>
+                                        <div class="rating">
                                             <a href="#" class="d-block">
-                                                <div class="text-warning text-ls-n2 font-size-16">
-                                                    <small class="far fa-star text-muted"></small>
-                                                    <small class="far fa-star text-muted"></small>
-                                                    <small class="far fa-star text-muted"></small>
-                                                    <small class="far fa-star text-muted"></small>
-                                                    <small class="far fa-star text-muted"></small>
-                                                </div>
+                                                <div class="rating">
+                                                    <input type="radio" name="rating status" value="5" id="5"><label for="5">☆</label>
+                                                    <input type="radio" name="rating status" value="4" id="4"><label for="4">☆</label>
+                                                    <input type="radio" name="rating status" value="3" id="3"><label for="3">☆</label>
+                                                    <input type="radio" name="rating status" value="2" id="2"><label for="2">☆</label>
+                                                    <input type="radio" name="rating status" value="1" id="1"><label for="1">☆</label>
+                                                  </div>
                                             </a>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                     <div class="js-form-message form-group mb-3 row">
                                         <div class="col-md-4 col-lg-3">
-                                            <label for="descriptionTextarea" class="form-label">Bình luận</label>
+                                            <label for="descriptionTextarea" class="form-label">Đánh giá của bạn</label>
                                         </div>
                                         <div class="col-md-8 col-lg-9">
                                             <textarea class="form-control p-5" rows="4" name="review"
@@ -446,13 +490,13 @@
                             <!-- Review Rating -->
                             <div
                                 class="d-flex justify-content-between align-items-center text-secondary font-size-1 mb-2">
-                                <div class="text-warning text-ls-n2 font-size-16" style="width: 80px;">
-                                    <small class="fas fa-star"></small>
-                                    <small class="fas fa-star"></small>
-                                    <small class="fas fa-star"></small>
-                                    <small class="far fa-star text-muted"></small>
-                                    <small class="far fa-star text-muted"></small>
-                                </div>
+                                {{-- <div class="text-warning text-ls-n2 font-size-16" style="width: 80px;">
+                                    <?php
+                                    for ($i = 1; $i < $preview->status; $i++){
+                                        echo '<i class="fas fa-star"></i>';
+                                    }
+                                    ?>
+                                </div> --}}
                             </div>
                             <!-- End Review Rating -->
                             <p class="text-gray-90">{{$preview->review}}</p>

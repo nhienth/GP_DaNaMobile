@@ -30,6 +30,51 @@
                     </div>
                 <!-- list and filter start -->
                 <div class="card">
+                    <div class="card-body border-bottom">
+                        <h4 class="card-title">Tìm kiếm và Lọc</h4>
+                        <div class="row">
+                            <div class="col-md-4 user_role">
+                                <label class="form-label" for="UserRole">Tìm kiếm theo danh mục</label>
+                                <form action="{{ route('searchs') }}" method="GET">
+                                    @csrf
+                                    <select name="key_cate_id" class="form-select text-capitalize mb-md-0 mb-2"
+                                        id="cate" onchange="this.form.submit()" class="sorting">
+                                        <option value="0">Danh mục</option>
+                                        <option value="0">Tất cả bài viết</option>
+
+                                        @foreach ($categories as $category)
+                                        <option data-id="{{ $category->id }}" value="{{ $category->id }}">
+                                            {{ $category->category_name }}</option>
+                                        @endforeach
+                                    </select>
+                                </form>
+                            </div>
+                            <div class="col-md-4 user_plan">
+                                <label class="form-label" for="UserPlan">Lượt xem</label>
+                                <form action="{{route('filter_views')}}" method="get">
+                                    @csrf
+                                    <select id="view" name="view_selected"
+                                        class="form-select text-capitalize mb-md-0 mb-2" onchange="this.form.submit()">
+                                        <option value="0"> Mặc định </option>
+                                        <option value="1"> Giảm dần </option>
+                                        <option value="2"> Tăng dần </option>
+                                    </select>
+                                </form>
+                            </div>
+                            <div class="col-md-4 user_status">
+                                <label class="form-label" for="FilterTransaction">Trạng thái</label>
+                                <form action="{{route('filter_statuss')}}" method="get">
+                                    <select name="status_selected" id="status"
+                                        class="form-select text-capitalize mb-md-0 mb-2xx"
+                                        onchange="this.form.submit()">
+                                        <option value="2"> Tất Cả Trạng Thái </option>
+                                        <option value="1"> Đang hoạt động </option>
+                                        <option value="0"> Vô Hiệu hoá </option>
+                                    </select>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 @if (Session::has('messenger'))
                 <div class="text-secondary font-weight-bold text-xs">
                     <h2 class="btn btn-info w-30">{{Session::get('messenger')}}</h2>
