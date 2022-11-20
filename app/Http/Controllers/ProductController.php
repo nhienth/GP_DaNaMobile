@@ -84,7 +84,7 @@ class ProductController extends Controller
     {
         //
         $cate = new CategoryController();
-        $categorySelect = $cate->res(0);
+        $categorySelect = $cate->res_delete_parent(0);
         $specfications = ProductSpecificationsOptions::all();
         return view('admin.products.create', compact(['specfications', 'categorySelect']));
     }

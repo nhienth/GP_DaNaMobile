@@ -26,5 +26,5 @@
 
 <!-- CSS Electro Template -->
 <link rel="stylesheet" href="{{asset('client/assets/css/theme.css')}}">
-
+<script src="{{asset('client/assets/js/quantity_count.js')}}"></script>
 {{-- End head --}}

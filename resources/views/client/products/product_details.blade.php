@@ -12,7 +12,7 @@
                                 chủ</a>
                         </li>
                         <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a
-                                href="../shop/shop.html">{{$product->category->category_name}}</a></li>
+                                href="{{url('http://127.0.0.1:8000/product/byCate/'.$product->category->id)}}">{{$product->category->category_name}}</a></li>
                         <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1 active" aria-current="page">
                             {{$product->product_name}}</li>
                     </ol>
@@ -74,7 +74,7 @@
                                         <small class="fas fa-star"></small>
                                         <small class="far fa-star text-muted"></small>
                                     </div>
-                                    <span class="text-secondary font-size-13">(3 customer reviews)</span>
+                                    <span class="text-secondary font-size-13">(3 người dùng đánh giá)</span>
                                 </a>
                             </div>
 
@@ -82,15 +82,15 @@
                                 <a href="#" class="max-width-150 ml-n2 mb-2 mb-md-0 d-block"><img class="img-fluid"
                                         src="{{asset('client/assets/img/200X60/img1.png')}}"
                                         alt="Image Description"></a>
-                                <div class="ml-md-3 text-gray-9 font-size-14">Availability: <span
+                                <div class="ml-md-3 text-gray-9 font-size-14">Số lượng trong kho: <span
                                         class="text-green font-weight-bold">26 in stock</span></div>
                             </div>
                         </div>
                         <div class="flex-horizontal-center flex-wrap mb-4">
 
                             <a href="" id="addWishlist"><i class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
-                            <a href="#" class="text-gray-6 font-size-13 ml-2"><i
-                                    class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
+                            <a href="" id="addCompare" class="text-blue font-size-13 ml-2" >
+                                <i class="ec ec-compare mr-1 font-size-15"></i> So sánh</a>
                         </div>
                         <div class="mb-2">
                             <ul class="font-size-14 pl-3 ml-1 text-gray-110">
@@ -106,7 +106,7 @@
                                 {{-- <ins class="font-size-36 text-decoration-none">$1,999.00</ins>
                                 <del class="font-size-20 ml-2 text-gray-6">$2,299.00</del> --}}
                                 <span id="price_product" data-price="{{$product->minprice}} - {{$product->maxprice}}"
-                                    class="font-size-36 text-decoration-none">${{$product->minprice}} -
+                                    class="font-size-36 text-decoration-none">{{$product->minprice}} -
                                     {{$product->maxprice}}</span>
                             </div>
                         </div>
@@ -161,24 +161,26 @@
 
                                 </div>
                             </div>
-                            <div class="flex-horizontal-center flex-wrap mb-4">
+                            {{-- <div class="flex-horizontal-center flex-wrap mb-4">
                                 <a href="#" class="text-gray-6 font-size-13 mr-2"><i
                                         class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
                                 <a href="{{url('compare/add/'.$productCombi->id)}}"
                                     class="text-gray-6 font-size-13 ml-2" id="addCompare"><i
                                         class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="d-md-flex align-items-end mb-3">
                             <div class="max-width-150 mb-4 mb-md-0">
-                                <h6 class="font-size-14">Quantity</h6>
+                                <h6 class="font-size-14">Số lượng</h6>
                                 <!-- Quantity -->
                                 <div class="border rounded-pill py-2 px-3 border-color-1">
                                     <div class="js-quantity row align-items-center">
                                         <div class="col">
+
                                             <input
                                                 class="js-result form-control h-auto border-0 rounded p-0 shadow-none"
                                                 type="text" value="1">
+                                                
                                         </div>
                                         <div class="col-auto pr-1">
                                             <a class="js-minus btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0"
@@ -566,6 +568,7 @@
 </main>
 
 @endsection
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <script>
     setTimeout(() => {
@@ -624,5 +627,39 @@
         });
     
     }, 2000);
+    // const plus = document.querySelector('.js-plus')
+    //                 const minus = document.querySelector('.js-minus')
 
+    //                 plus.addEventListener('click', () => {
+    //                     const newQuantity = (quantity.value || 0) + 1
+    //                     quantity.value = newQuantity
+    //                 })
+
+    //                 minus.addEventListener('click', () => {
+    //                     const newQuantity = (quantity.value || 0) - 1
+    //                     quantity.value = newQuantity
+    //                 })
+
+    jQuery(document).ready(function($){   
+          var resultVal = parseInt($('.js-result').val()); 
+            $('.js-plus').click(function (e){
+            e.preventDefault();  
+            resultVal += 1; 
+            $('.js-result').val(resultVal);
+          });
+  
+          $('.js-minus').click(function (e){
+
+            e.preventDefault();
+  
+            if (resultVal >= 1) {
+              resultVal -= 1;
+  
+              $('.js-result').val(resultVal);
+            } else {
+              return false;
+            }
+          });
+  
+        });
 </script>

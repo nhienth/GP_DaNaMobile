@@ -100,6 +100,7 @@
                         <table class="user-list-table table dataTable no-footer dtr-column text-center">
                             <thead class="table-light">
                                 <tr>
+                                    <th><input type="checkbox" name="select-all" id="select-all"></th>
                                     <th>#</th>
                                     <th>Tên Sản phẩm</th>
                                     <th>Giá trị biến thể</th>
@@ -117,7 +118,7 @@
                                 @foreach ($product->combinations as $productVariation)
                                 <?php  $i++ ?>
                                 <tr data-dt-row="" data-dt-column="">
-
+                                    <td><input type="checkbox" name="checkbox-<?php echo $i ?>" id="checkbox-<?php echo $i ?>" /></td>
                                     <td>
                                         <?php echo $i ?>
                                     </td>
@@ -162,4 +163,20 @@
     </div>
 </div>
 <!-- END: Content-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+    $('#select-all').click(function(event) {   
+    if(this.checked) {
+        // Iterate each checkbox
+        $(':checkbox').each(function() {
+            this.checked = true;                        
+        });
+    } else {
+        $(':checkbox').each(function() {
+            this.checked = false;                       
+        });
+    }
+}); 
+</script>
 @endsection
