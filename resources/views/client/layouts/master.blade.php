@@ -40,7 +40,7 @@
             <span class="fas fa-arrow-up u-go-to__inner"></span>
         </a>
         <!-- End Go to Top -->
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <!-- JS Global Compulsory -->
         <script src="{{asset('client/assets/vendor/jquery/dist/jquery.min.js')}}"></script>
         <script src="{{asset('client/assets/vendor/jquery-migrate/dist/jquery-migrate.min.js')}}"></script>
