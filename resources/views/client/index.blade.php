@@ -17,9 +17,7 @@ use App\Models\Product;
                         <div class="row min-height-420 py-7 py-md-0">
                             <div class="offset-xl-3 col-xl-4 col-6 mt-md-8">
 
-                                <h1 class="font-size-64 text-lh-57 font-weadd aight-light"
-                                    data-scs-animation-in="fadeInUp">
-
+                                <h1 class="font-size-64 text-lh-57 font-weadd aight-light" data-scs-animation-in="fadeInUp">
                                     {{$products->product_name}}
                                 </h1>
                                 <br>
@@ -667,6 +665,11 @@ use App\Models\Product;
             <div class="tab-content" id="Tpills-tabContent">
                 @foreach ($product_cate as $cate)
                     @php
+                        $productList = Product::with('category')
+                            ->where('products.category_id', $cate->id)
+                            ->where('products.product_status', 1)
+                            ->take(8)
+                            ->get();
                         $showActive = $cate->id == 7 ? 'show active' : '';
                     @endphp
                     <div class="tab-pane fade {{$showActive}}" id="Tpills-{{$cate->id}}" role="tabpanel"
@@ -674,7 +677,7 @@ use App\Models\Product;
                         <div class="row no-gutters">
                             <div class="col-md-5 col-wd-12 d-md-flex d-wd-block">
                                 <ul class="row list-unstyled products-group no-gutters mb-0 flex-xl-column flex-wd-row">
-                                    @foreach($cate->products as $products)
+                                    @foreach($productList as $products)
                                         <li class="col-xl-3 product-item max-width-xl-100 remove-divider">
                                             <div class="product-item__outer h-100 w-100 prodcut-box-shadow">
                                                 <div class="product-item__inner bg-white p-3">
@@ -688,16 +691,6 @@ use App\Models\Product;
                                                         <div class="mb-2">
                                                             <a href="{{url('product/detail',[$products->id])}}"
                                                                 class="d-block text-center"><img class="img-fluid" src="{{asset('images/products/'.$products->product_img)}}" alt="Image Description"></a>
-                                                        </div>
-                                                        <div class="flex-center-between mb-1">
-                                                            <div class="prodcut-price">
-                                                                <div class="text-gray-100">đ</div>
-                                                            </div>
-                                                            <div class="d-none d-xl-block prodcut-add-cart">
-                                                                <a href="{{url('product/detail',[$products->id])}}"
-                                                                    class="btn-add-cart btn-primary transition-3d-hover"><i
-                                                                        class="ec ec-add-to-cart"></i></a>
-                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="product-item__footer">

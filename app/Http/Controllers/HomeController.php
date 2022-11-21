@@ -37,6 +37,7 @@ class HomeController extends Controller
         $bannerlist = Banner::all();
         // all sản phẩm
         $productsld = Product::with('combinations','category')->orderBy('products.id', 'desc')
+            ->where('product_status', '1')
             ->take(8)
             ->get();
 
@@ -60,6 +61,7 @@ class HomeController extends Controller
 
         // sản phẩm theo lượt xem
         $view_product = Product::with('combinations','category')->orderBy('products.product_view', 'DESC')
+        ->where('product_status', '1')
         ->limit(8)
         ->get();//hiển thị theo lượt xem
         $priceArr = [];
@@ -82,10 +84,14 @@ class HomeController extends Controller
 
         // sản phẩm theo danh mục
 
-        $product_cate = Category::with('products')->take(8)->get();
+        $product_cate = Category::with('products')
+        ->take(8)
+        ->get();
+
 
         // random
         $random = Product::with('combinations','category')->orderBy(DB::raw('RAND()'))
+        ->where('product_status', '1')
         ->limit(3)
         ->get();//random ngẫu nhiên 5 bài
         $priceArr = [];
@@ -133,52 +139,6 @@ class HomeController extends Controller
         }
         return $this->html;
     }
-
-    // public function res_all_children($id){
-    //     $data = Category::all();
-    //     foreach ($data as $value){
-    //         if()
-    //     }
-    // }
-    // public function list($id, $text = '')
-    // {
-    //     $data = Category::all();
-    //     foreach ($data as $list) {          
-    //         if ($list['parent_id'] == $id) { 
-    //             $this->html .= '<div class="col-md-6 mb-4 mb-xl-0 col-xl-3">
-    //                                 <a href="../shop/shop.html" class="d-black text-gray-90">
-    //                                     <div class="min-height-132 py-1 d-flex bg-gray-1 align-items-center">
-    //                                         <div class="col-6 col-xl-5 col-wd-6 pr-0">
-                                                
-    //                                         </div>
-    //                                         <div class="col-6 col-xl-7 col-wd-6">
-    //                                             <div class="mb-2 pb-1 font-size-18 font-weight-light text-ls-n1 text-lh-23">
-    //                                                 .$list['getCategoryName'] .
-    //                                             </div>
-    //                                             <div class="link text-gray-90 font-weight-bold font-size-15" href="#">
-    //                                                 Xem sản phẩm
-    //                                                 <span class="link__icon ml-1">
-    //                                                     <span class="link__icon-inner"><i
-    //                                                             class="ec ec-arrow-right-categproes"></i></span>
-    //                                                 </span>
-    //                                             </div>
-    //                                         </div>
-    //                                     </div>
-    //                                 </a>
-    //                             </div>'
-                                            
-    //                                         ;   
-    //             $this->html .= '<li class="nav-item hs-has-mega-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut" data-position="left">
-    //             <a id="basicMegaMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false">'.$list['category_name'] . '</a>';
-    //             $this->res_sub($list['id'], $list['id']);
-    //             $this->html .= '</li>';
-    //         }else{
-    //             $this->html .= '</li>';
-    //         }
-    //     }
-    //     return $this->html;
-    // }
-
 
     public function res_sub($id, $id_parent)
     {
