@@ -169,6 +169,7 @@
                                         class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
                             </div> --}}
                         </div>
+                        <form id="addtocart1" action="{{url('cart/add/'.$productCombi->id)}}" method="get">
                         <div class="d-md-flex align-items-end mb-3">
                             <div class="max-width-150 mb-4 mb-md-0">
                                 <h6 class="font-size-14">Số lượng</h6>
@@ -178,16 +179,15 @@
                                         <div class="col">
                                             <input
                                                 class="js-result form-control h-auto border-0 rounded p-0 shadow-none"
-                                                type="text" value="1">
-
+                                                type="number" value="1"  min="1" name="quantity_sp">
                                         </div>
                                         <div class="col-auto pr-1">
                                             <a class="js-minus btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0"
-                                                href="javascript:;">
+                                                href="">
                                                 <small class="fas fa-minus btn-icon__inner"></small>
                                             </a>
                                             <a class="js-plus btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0"
-                                                href="javascript:;">
+                                                href="">
                                                 <small class="fas fa-plus btn-icon__inner"></small>
                                             </a>
                                         </div>
@@ -196,11 +196,12 @@
                                 <!-- End Quantity -->
                             </div>
                             <div class="ml-md-3">
-                                <a href="{{url('cart/add/'.$productCombi->id)}}"
-                                    class="btn px-5 btn-primary-dark transition-3d-hover" id="addtocart"><i
-                                        class="ec ec-add-to-cart mr-2 font-size-20"></i> Add to Cart</a>
+                                <button type="submit" class="btn px-5 btn-primary-dark transition-3d-hover" id="addtocart"><i
+                                    class="ec ec-add-to-cart mr-2 font-size-20"></i>Thêm vào giỏ hàng
+                                </button>
                             </div>
                         </div>
+                    </form>
                     </div>
                 </div>
             </div>
@@ -239,7 +240,7 @@
                                         <span class="sku">{{$product->sku}}</span>
                                     </li>
                                     <li class="nav-item text-gray-111 mx-3 flex-shrink-0 flex-xl-shrink-1">/</li>
-                                    <li class="nav-item text-gray-111 flex-shrink-0 flex-xl-shrink-1"><strong>Category:</strong>
+                                    <li class="nav-item text-gray-111 flex-shrink-0 flex-xl-shrink-1"><strong>Danh mục:</strong>
                                         <a href="#" class="text-blue">{{$product->category->category_name}}</a>
                                     </li>
                                     <li class="nav-item text-gray-111 mx-3 flex-shrink-0 flex-xl-shrink-1">/</li>
@@ -577,6 +578,7 @@
         let arr = ['a', 'b'];
         let arrImgInput = [];
         let priceHtml = document.getElementById("price_product");
+        let addCartForm = document.getElementById("addtocart1");
         let addCartButton = document.getElementById("addtocart");
         let addCompare = document.getElementById("addCompare");
 
@@ -606,6 +608,7 @@
                     if (variSeleted == pro.value.trim()) {
                         priceHtml.innerHTML = `$${pro.nextElementSibling.value}`;
                         let combiId = pro.parentElement.lastElementChild.value;
+                        addCartForm.action=`http://127.0.0.1:8000/cart/add/${combiId}`;
                         addCartButton.href=`http://127.0.0.1:8000/cart/add/${combiId}`;
                         addCompare.href=`http://127.0.0.1:8000/compare/add/${combiId}`;
                         addWLButton.href=`http://127.0.0.1:8000/wishlist/${combiId}`;

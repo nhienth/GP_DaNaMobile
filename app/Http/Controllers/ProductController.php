@@ -284,7 +284,7 @@ class ProductController extends Controller
             ->where('products.id', '!=', $id)
             ->take(6)
             ->get();
-
+        
         $minPrice = $product->combinations{0}->price;
         $maxPrice = $product->combinations{0}->price;
 
@@ -321,20 +321,22 @@ class ProductController extends Controller
         return view('admin.variation.edit', compact('detailVar', 'product', 'variation'));
     }
 
-    public function addToCart($id)
+    public function addToCart($id ,Request $request)
     {
         $product = Combinations::find($id);
         $product_name_id = $product->product_id;
         $combi_id = $product->id;
         $productName = Product::find($product_name_id);
         $name = $productName->product_name;
+        $quantity = $request->quantity_sp;
+        // dd($quantity);
         $cart = session()->get('cart', []);
         if (isset($cart[$id])) {
-            $cart[$id]['quantity']++;
+            $cart[$id]['quantity'] += $request->quantity_sp;
         } else {
             $cart[$id] = [
                 "name" => $name . $product->combination_string,
-                "quantity" => 1,
+                "quantity" => $request->quantity_sp,
                 "price" => $product->price,
                 "image" => $product->combination_image,
                 'id_combi' => $combi_id,
