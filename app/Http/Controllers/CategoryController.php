@@ -142,7 +142,7 @@ class CategoryController extends Controller
         // dd($id, $text);
         foreach ($data as $value) {
             if($value['id'] == $id) {
-                $this->html .= '<option value="' . $value['id'] . '" selected>' . $text . $value['category_name'] . '</option>';
+                $this->html .= '<option  value="' . $value['id'] . '" selected>' . $text . $value['category_name'] . '</option>';
                 $this->res($value['id'], $text . '--');
             }else{
                 $this->html .= '<option value="' . $value['id'] . '">' . $text . $value['category_name'] . '</option>';
@@ -156,8 +156,19 @@ class CategoryController extends Controller
         $data = Category::all();
         foreach ($data as $value) {
             if ($value['parent_id'] != $id) {
+                $this->html .= '<option id="'.$value['parent_id'].'" data-parent="'.$value['parent_id'].'" value="' . $value['id'] . '">' . $text . $value['category_name'] . '</option>';
+                //$this->res($value['id'], $text . '-1-');
+            }
+        }
+        return $this->html;
+    }
+
+    public function res_delete_children($id, $text = ''){
+        $data = Category::all();
+        foreach ($data as $value) {
+            if ($value['parent_id'] == $id) {
                 $this->html .= '<option value="' . $value['id'] . '">' . $text . $value['category_name'] . '</option>';
-                $this->res($value['id'], $text . '-1-');
+                //$this->res($value['id'], $text . '-1-');
             }
         }
         return $this->html;

@@ -147,7 +147,7 @@ class ProductController extends Controller
         }
 
         $cateIdSeleted = $request->specification_cate;
-
+        
         $specfications = ProductSpecificationsOptions::all();
         foreach ($specfications as $specfication) {
             if ($specfication->category_id == $cateIdSeleted) {

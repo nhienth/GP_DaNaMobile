@@ -71,7 +71,7 @@
                                         <label class="form-label fs-5 fw-bolder" for="select-country1">Danh mục sản
                                             phẩm</label>
                                         <select class="form-select" onchange="changeCate()" id="select-country1"
-                                            name="category_id" required name="parent_id">
+                                            name="category_id" required>
                                             <option value="0">Danh mục sản phẩm</option>
                                             {!! $categorySelect !!}
                                         </select>
@@ -94,9 +94,9 @@
                                             phẩm</label>
                                     </div>
 
+                                    {{-- Thông số --}}
                                     @foreach ($specfications as $specfication)
-                                    <div class="show-{{$specfication->category_id}} mb-1 ms-2 show-spec"
-                                        style="display: none">
+                                    <div class="show-{{$specfication->category_id}} mb-1 ms-2 show-spec" style="display: none">
                                         <label class="form-label fs-6 fw-bolder" for="basic-addon-name1">
                                             {{$specfication->specification_name}}
                                         </label>
@@ -106,6 +106,8 @@
                                             aria-label="Name" aria-describedby="basic-addon-name" required />
                                     </div>
                                     @endforeach
+
+
                                     <input type="hidden" id="specification_cate" name="specification_cate" value="">
 
                                     <div class="mb-1">
@@ -141,12 +143,16 @@
     function changeCate() {
     let specList = document.querySelectorAll('.show-spec');
 
-    let valueOption = document.getElementById("select-country1").value;
+    let valueOption = document.getElementById("select-country1");
 
-    document.getElementById('specification_cate').value = valueOption;
-    
+        // console.log(element.getAttribute('data-parent'));
+    let slt =  valueOption.options[valueOption.selectedIndex];
+    let idValue = slt.id;
+    console.log(idValue);
+    document.getElementById('specification_cate').value = valueOption.value;
+    console.log([valueOption]);
     specList.forEach((spec) => {
-        let isSpecSeleted = spec.className.includes("show-" + valueOption); 
+        let isSpecSeleted = spec.className.includes("show-" + idValue); 
         spec.style.display = isSpecSeleted ? "block" : "none";
     });
 }

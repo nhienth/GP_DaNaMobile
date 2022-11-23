@@ -176,11 +176,10 @@
                                 <div class="border rounded-pill py-2 px-3 border-color-1">
                                     <div class="js-quantity row align-items-center">
                                         <div class="col">
-
                                             <input
                                                 class="js-result form-control h-auto border-0 rounded p-0 shadow-none"
                                                 type="text" value="1">
-                                                
+
                                         </div>
                                         <div class="col-auto pr-1">
                                             <a class="js-minus btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0"
@@ -401,8 +400,7 @@
                             <div class="col-md-6" style="color:black">
                                 <h3 class="font-size-18 mb-5">Thêm đánh giá</h3>
                                 <!-- Form -->
-                                <p class="text-gray-90"> Bạn cần đăng nhập để đánh giá sản phẩm<span class="text-dark"
-                                    style="color: red">*</span></p>
+                                
                                 <form class="js-validate" action="{{route('preview',$product->id)}}" method="POST">
                                     @csrf
                                     @if (Auth::check())
@@ -477,6 +475,9 @@
                                                 class="btn btn-primary-dark btn-wide transition-3d-hover">Gửi</button>
                                         </div>
                                     </div>
+                                    @else 
+                                    <p class="text-gray-90"> Bạn cần đăng nhập để đánh giá sản phẩm <span class="text-dark"
+                                        style="color: red !important;">*</span></p>
                                     @endif
                                 </form>
                                 <!-- End Form -->
