@@ -41,7 +41,7 @@
                                         id="cate" onchange="this.form.submit()" class="sorting">
                                         <option value="0">Danh mục</option>
                                         <option value="0">Tất cả bài viết</option>
-
+                                        
                                         @foreach ($categories as $category)
                                         <option data-id="{{ $category->id }}" value="{{ $category->id }}">
                                             {{ $category->category_name }}</option>

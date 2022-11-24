@@ -61,7 +61,7 @@
                                             <div class="media-body">
                                                 <p>{{$item->review}}</p>                                             
                                                 <div class="d-flex">
-                                                    <h4 class="font-size-14 font-weight-bold mr-2"><a href="../blog/single-blog-post.html" class="">{{$item->user->name}}</a></h4>
+                                                    <h4 class="font-size-14 font-weight-bold mr-2"><a href="../blog/single-blog-post.html" class="">{{$item->name}}</a></h4>
                                                     <span><a href="../blog/single-blog-post.html" class="text-gray-23">{{$item->created_at->format('d/m/Y')}}</a></span>
                                                     <a href="#" id="{{$item->id}}" class="text-blue ml-auto">Trả lời</a>
                                                 </div>                                       

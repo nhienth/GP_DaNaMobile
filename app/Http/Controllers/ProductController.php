@@ -84,7 +84,7 @@ class ProductController extends Controller
     {
         //
         $cate = new CategoryController();
-        $categorySelect = $cate->res_delete_parent(0);
+        $categorySelect = $cate->res(0);
         $specfications = ProductSpecificationsOptions::all();
         return view('admin.products.create', compact(['specfications', 'categorySelect']));
     }
@@ -321,22 +321,20 @@ class ProductController extends Controller
         return view('admin.variation.edit', compact('detailVar', 'product', 'variation'));
     }
 
-    public function addToCart($id ,Request $request)
+    public function addToCart($id)
     {
         $product = Combinations::find($id);
         $product_name_id = $product->product_id;
         $combi_id = $product->id;
         $productName = Product::find($product_name_id);
         $name = $productName->product_name;
-        $quantity = $request->quantity_sp;
-        // dd($quantity);
         $cart = session()->get('cart', []);
         if (isset($cart[$id])) {
-            $cart[$id]['quantity'] += $request->quantity_sp;
+            $cart[$id]['quantity']++;
         } else {
             $cart[$id] = [
                 "name" => $name . $product->combination_string,
-                "quantity" => $request->quantity_sp,
+                "quantity" => 1,
                 "price" => $product->price,
                 "image" => $product->combination_image,
                 'id_combi' => $combi_id,
