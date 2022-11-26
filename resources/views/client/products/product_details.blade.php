@@ -88,7 +88,7 @@
                         </div>
                         <div class="flex-horizontal-center flex-wrap mb-4">
 
-                            <a href="" id="addWishlist"><i class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
+                            <a href="" id="addWishlist"><i class="ec ec-favorites mr-1 font-size-15"></i> Sản phẩm yêu thích</a>
                             <a href="" id="addCompare" class="text-blue font-size-13 ml-2" >
                                 <i class="ec ec-compare mr-1 font-size-15"></i> So sánh</a>
                         </div>

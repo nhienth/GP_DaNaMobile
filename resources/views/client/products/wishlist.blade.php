@@ -56,13 +56,13 @@
 
                                         <td data-title="Stock Status">
                                             <!-- Stock Status -->
-                                            <span>In stock</span>
+                                            <span>Tồn tại</span>
                                             <!-- End Stock Status -->
                                         </td>
 
                                         <td>
                                             <a href="{{url('cart/add/'.$item->product_id)}}">
-                                            <button type="button" class="btn btn-soft-secondary mb-3 mb-md-0 font-weight-normal px-5 px-md-4 px-lg-5 w-100 w-md-auto">Add to Cart</button>
+                                            <button type="button" class="btn btn-soft-secondary mb-3 mb-md-0 font-weight-normal px-5 px-md-4 px-lg-5 w-100 w-md-auto">Thêm vào giỏ hàng</button>
                                         </a>
                                         </td>
                                     </tr>

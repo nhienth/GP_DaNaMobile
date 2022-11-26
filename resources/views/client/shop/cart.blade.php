@@ -48,9 +48,6 @@
                     @endforeach
                     @if (session('cart'))
                     @foreach (session('cart') as $id => $details )
-                    {{-- @php
-                    dd($id);
-                    @endphp --}}
                     <form action="{{url('cart/updateCart/'.$details['id_combi'])}}" method="post">
                         @csrf
 
