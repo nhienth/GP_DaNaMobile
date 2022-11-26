@@ -93,6 +93,11 @@
                                             required />
                                     </div>
                                     <div class="mb-2">
+                                        <label for="customFile1" class="form-label fs-5 fw-bolder">Giảm giá</label>
+                                        <input class="form-control" name="sale" type="number" id="customFile1"
+                                            required />
+                                    </div>
+                                    <div class="mb-2">
                                         <label for="customFile1" class="form-label fs-5 fw-bolder">Số lượng</label>
                                         <input class="form-control" name="avilableStock" type="number" id="customFile1"
                                             required />

@@ -106,6 +106,7 @@
                                     <th>Giá trị biến thể</th>
                                     <th>Ảnh</th>
                                     <th>Giá</th>
+                                    <th>Giảm giá</th>
                                     <th>Số lượng</th>
                                     <th colspan="2">Hành động</th>
                                 </tr>
@@ -128,12 +129,13 @@
                                             src="{{asset('images/products/'.$productVariation->combination_image)}}"
                                             width="100px" height="100px" style="display:block; margin: 0 auto;"></td>
                                     <td>{{$productVariation->price}}</td>
+                                    <td>{{$productVariation->sale}}</td>
                                     <td>{{$productVariation->avilableStock}}</td>
-                                    <td>
+                                    {{-- <td>
                                         <a href="{{url('admin/product/editProVar', [$productVariation->id])}}"><button
                                                 type="button" class="btn btn-success"><i
                                                     data-feather='edit'></i></button></a>
-                                    </td>
+                                    </td> --}}
                                     <td>
                                         <a href="{{url('admin/product/deleteProvar', [$productVariation->id])}}"><button
                                                 type="button" class="btn btn-danger"><i

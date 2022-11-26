@@ -109,7 +109,6 @@
     padding: 17px 25px;
     border-radius: 5px 5px 5px 5px;
     cursor: pointer;
-    margin-top: 40px;
     font-size: 12px;
     }
 
@@ -186,14 +185,15 @@
                 <input name="hinh" type="file" class="form-control" disabled>
                 <img src=" " alt="" style="width:30%;">
             </div>	 --}}
-        </div>
-
-        <div class="rightcontact">	
             <div class="form-group">
                 <p>E-mail <span>*</span></p>	
                 <span class="icon-case"><i class="fas fa-envelope"></i></span>
                 <input type="email" name="email" id="email" data-rule="email" value="{{ $user -> email }}" disabled/>
             </div>	
+        </div>
+
+        <div class="rightcontact">	
+           
 
             <div class="form-group">
                 <p>Mật khẩu <span>*</span></p>
@@ -205,6 +205,9 @@
                 <span class="icon-case"><i class="fas fa-map-marker-alt"></i></i></span>
                 <a href="{{url('/user/showaddress',[$user->id])}}"><button type="button" class="btn btn-gradient-info">Xem địa chỉ</button></a>
             </div>	
+            {{-- <div class="form-group">
+                <a href="{{url('user/update',[$user->id])}}"><button type="button" class="button-contact btn btn-outline-primary">Chỉnh sửa</button></a>
+            </div>	 --}}
         </div>
         <a href="{{url('user/update',[$user->id])}}"><button type="button" class="button-contact btn btn-outline-primary">Chỉnh sửa</button></a>
     </div>

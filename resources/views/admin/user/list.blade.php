@@ -126,7 +126,7 @@
                                             }
                                             ?>
                                         </td>
-                                        <td>
+                                        {{-- <td>
                                             <?php
                                             if($key["name_address"]==1){
                                                 echo "Văn phòng";
@@ -134,7 +134,7 @@
                                                 echo "Nhà riêng";
                                             }
                                             ?>
-                                        </td>
+                                        </td> --}}
                                         <td>
                                             <?php
                                             if($key["status"]==0){

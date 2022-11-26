@@ -142,7 +142,7 @@ class CategoryController extends Controller
         // dd($id, $text);
         foreach ($data as $value) {
             if($value['id'] == $id) {
-                $this->html .= '<option value="' . $value['id'] . '" selected>' . $text . $value['category_name'] . '</option>';
+                $this->html .= '<option  value="' . $value['id'] . '" selected>' . $text . $value['category_name'] . '</option>';
                 $this->res($value['id'], $text . '--');
             }else{
                 $this->html .= '<option value="' . $value['id'] . '">' . $text . $value['category_name'] . '</option>';
@@ -156,8 +156,19 @@ class CategoryController extends Controller
         $data = Category::all();
         foreach ($data as $value) {
             if ($value['parent_id'] != $id) {
+                $this->html .= '<option id="'.$value['parent_id'].'" data-parent="'.$value['parent_id'].'" value="' . $value['id'] . '">' . $text . $value['category_name'] . '</option>';
+                //$this->res($value['id'], $text . '-1-');
+            }
+        }
+        return $this->html;
+    }
+
+    public function res_delete_children($id, $text = ''){
+        $data = Category::all();
+        foreach ($data as $value) {
+            if ($value['parent_id'] == $id) {
                 $this->html .= '<option value="' . $value['id'] . '">' . $text . $value['category_name'] . '</option>';
-                $this->res($value['id'], $text . '-1-');
+                //$this->res($value['id'], $text . '-1-');
             }
         }
         return $this->html;
@@ -249,5 +260,73 @@ class CategoryController extends Controller
             }
         }
         return $this->index();
+    }
+
+    // Filter and search categories
+
+    public function level(){
+        $key = $_GET['level'];      
+        if($key == 0){
+            $categories = Category::all();
+            foreach ($categories as $category) {
+                $parent_id = $category->parent_id;
+                $partenCateName = $this->getCategoryName($parent_id);
+                $category['parent_cate'] = $partenCateName;
+            }
+            return view('admin.categories.list', compact('categories'));
+        }else if( $key == 1){
+            $categories = Category::where("parent_id", 0)->get();
+            return view('admin.categories.list', compact('categories'));
+        }else{
+            $categories = Category::where("parent_id","<>", 0)->get();
+            foreach ($categories as $category) {
+                $parent_id = $category->parent_id;
+                $partenCateName = $this->getCategoryName($parent_id);
+                $category['parent_cate'] = $partenCateName;
+            }
+            return view('admin.categories.list', compact('categories'));
+        }
+    }
+
+    public function filter_name(){
+        $key = $_GET['filter_name'];      
+        if($key == 0){
+            $categories = Category::all();
+            foreach ($categories as $category) {
+                $parent_id = $category->parent_id;
+                $partenCateName = $this->getCategoryName($parent_id);
+                $category['parent_cate'] = $partenCateName;
+            }
+            return view('admin.categories.list', compact('categories'));
+        }else if( $key == 1){
+            
+            $categories = Category::orderBy("category_name", "DESC")->get();
+            foreach ($categories as $category) {
+                $parent_id = $category->parent_id;
+                $partenCateName = $this->getCategoryName($parent_id);
+                $category['parent_cate'] = $partenCateName;
+            }
+            return view('admin.categories.list', compact('categories'));
+        }else{
+            $categories = Category::orderBy("category_name", "ASC")->get();
+
+            foreach ($categories as $category) {
+                $parent_id = $category->parent_id;
+                $partenCateName = $this->getCategoryName($parent_id);
+                $category['parent_cate'] = $partenCateName;
+            }
+            return view('admin.categories.list', compact('categories'));
+        }       
+    }
+
+    public function search(){
+        $keyword = $_GET['key_search'];
+        $categories = Category::where('category_name','LIKE', '%' . $keyword . '%')->get();
+        foreach ($categories as $category) {
+            $parent_id = $category->parent_id;
+            $partenCateName = $this->getCategoryName($parent_id);
+            $category['parent_cate'] = $partenCateName;
+        }
+        return view('admin.categories.list', compact('categories'));
     }
 }

@@ -141,14 +141,23 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
             Route::get('/update/{id}', [CategoryController::class, 'edit']);
             Route::post('/update/{id}', [CategoryController::class, 'update']);
             Route::get('/delete/{id}', [CategoryController::class, 'destroy']);
+
+            // Filter
+            Route::get('/level', [CategoryController::class, 'level'])->name('level_cate');
+            Route::get('/filter_name', [CategoryController::class, 'filter_name'])->name('filter_name_cate');
+            Route::get('/search', [CategoryController::class, 'search'])->name('search_cate');
         });
 
         //preview
         Route::post('/preview/{id}', [PreviewController::class, 'preview'])->name('preview')->middleware('auth');
+
+        
         Route::prefix('/product')->group(function () {
             Route::get('/searchproduct', [ProductController::class, 'search'])->name('search');
-            Route::get('/filter_view', [ProductController::class, 'filter_view'])->name('filter_view');
-            Route::get('/filter_status', [ProductController::class, 'filter_status'])->name('filter_status');
+
+            Route::get('/search_product_by_cate', [ProductController::class, 'search_product_by_cate'])->name('search_product_by_cate');
+            Route::get('/filter_view', [ProductController::class, 'filter_view'])->name('filter_view_product');
+            Route::get('/filter_status', [ProductController::class, 'filter_status'])->name('filter_status_product');
             // Route::get('/list', [ProductController::class, 'index']);
 
             Route::get('/list', [ProductController::class, 'index'])->name('product.list');
