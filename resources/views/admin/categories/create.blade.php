@@ -53,7 +53,7 @@
                                     <h3 class="card-title fw-bolder">Thêm Danh mục</h3>
                                 </div>
                                 <div class="card-body">
-                                    <form class="needs-validation" novalidate method="POST"
+                                    <form class="needs-validation" method="POST"
                                         action="{{url('/admin/category/create')}}" enctype="multipart/form-data">
                                         @csrf
                                         <div class="mb-1">

@@ -284,7 +284,6 @@ class ProductController extends Controller
             ->where('products.id', '!=', $id)
             ->take(6)
             ->get();
-        
         $minPrice = $product->combinations{0}->price;
         $maxPrice = $product->combinations{0}->price;
 
