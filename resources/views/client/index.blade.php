@@ -219,7 +219,7 @@ use App\Models\Product;
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="product-item__footer">
+                                                {{-- <div class="product-item__footer">
                                                     <div class="border-top pt-2 flex-center-between flex-wrap">
                                                         <a href="../shop/compare.html"
                                                             class="text-gray-6 font-size-13"><i
@@ -228,7 +228,7 @@ use App\Models\Product;
                                                             class="text-gray-6 font-size-13"><i
                                                                 class="ec ec-favorites mr-1 font-size-15"></i> Yêu thích</a>
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                             </div>
                                         </div>
                                     </li>
@@ -267,7 +267,7 @@ use App\Models\Product;
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="product-item__footer">
+                                                {{-- <div class="product-item__footer">
                                                     <div class="border-top pt-2 flex-center-between flex-wrap">
                                                         <a href="../shop/compare.html"
                                                             class="text-gray-6 font-size-13"><i
@@ -276,7 +276,7 @@ use App\Models\Product;
                                                             class="text-gray-6 font-size-13"><i
                                                                 class="ec ec-favorites mr-1 font-size-15"></i> Yêu thích</a>
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                             </div>
                                         </div>
                                     </li>
@@ -315,7 +315,7 @@ use App\Models\Product;
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="product-item__footer">
+                                                {{-- <div class="product-item__footer">
                                                     <div class="border-top pt-2 flex-center-between flex-wrap">
                                                         <a href="../shop/compare.html"
                                                             class="text-gray-6 font-size-13"><i
@@ -325,7 +325,7 @@ use App\Models\Product;
                                                                 class="ec ec-favorites mr-1 font-size-15"></i> Add to
                                                             Wishlist</a>
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                             </div>
                                         </div>
                                     </li>
@@ -693,14 +693,14 @@ use App\Models\Product;
                                                                 class="d-block text-center"><img class="img-fluid" src="{{asset('images/products/'.$products->product_img)}}" alt="Image Description"></a>
                                                         </div>
                                                     </div>
-                                                    <div class="product-item__footer">
+                                                    {{-- <div class="product-item__footer">
                                                         <div class="border-top pt-2 flex-center-between flex-wrap">
                                                             <a href="../shop/compare.html" class="text-gray-6 font-size-13"><i
                                                                     class="ec ec-compare mr-1 font-size-15"></i> So sánh</a>
                                                             <a href="../shop/wishlist.html" class="text-gray-6 font-size-13"><i
                                                                     class="ec ec-favorites mr-1 font-size-15"></i> Yêu thích</a>
                                                         </div>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                             </div>
                                         </li>
@@ -2235,52 +2235,24 @@ use App\Models\Product;
                 <h3 class="section-title section-title__sm mb-0 pb-2 font-size-18" style="color: black">Sản phẩm đang giảm giá</h3>
             </div>
             <ul class="list-unstyled products-group">
+                @foreach ($product_sale as $sale)
                 <li class="product-item product-item__list row no-gutters mb-6 remove-divider">
                     <div class="col-auto">
-                        <a href="../shop/single-product-fullwidth.html" class="d-block width-75 text-center"><img
-                                class="img-fluid" src="{{asset('client/assets/img/75X75/img4.jpg')}}"
+                        <a href="{{url('product/detail',[$sale->id])}}" class="d-block width-75 text-center"><img
+                                class="img-fluid" src="{{asset('images/products/'.$sale->product_img)}}"
                                 alt="Image Description"></a>
                     </div>
                     <div class="col pl-4 d-flex flex-column">
-                        <h5 class="product-item__title mb-0"><a href="../shop/single-product-fullwidth.html"
-                                class="text-blue font-weight-bold">Yellow Earphones Waterproof with Bluetooth</a>
+                        <h5 class="product-item__title mb-0"><a href="{{url('product/detail',[$sale->id])}}"
+                                class="text-blue font-weight-bold">{{$sale->product_name}}</a>
                         </h5>
-                        <div class="prodcut-price mt-auto flex-horizontal-center">
-                            <ins class="font-size-15 text-decoration-none">$110.00</ins>
-                            <del class="font-size-12 text-gray-9 ml-2">$250.00</del>
+                        <div class="prodcut-price mt-auto flex-horizontal-center" style="color: black">
+                            <ins class="font-size-15 text-decoration-none">111đ</ins>
+                            <del class="font-size-12 text-gray-9 ml-2">111đ</del>
                         </div>
                     </div>
                 </li>
-                <li class="product-item product-item__list row no-gutters mb-6 remove-divider">
-                    <div class="col-auto">
-                        <a href="../shop/single-product-fullwidth.html" class="d-block width-75 text-center"><img
-                                class="img-fluid" src="{{asset('client/assets/img/75X75/img5.jpg')}}"
-                                alt="Image Description"></a>
-                    </div>
-                    <div class="col pl-4 d-flex flex-column">
-                        <h5 class="product-item__title mb-0"><a href="../shop/single-product-fullwidth.html"
-                                class="text-blue font-weight-bold">Camera C430W 4k Waterproof</a></h5>
-                        <div class="prodcut-price mt-auto flex-horizontal-center">
-                            <ins class="font-size-15 text-decoration-none">$899.00</ins>
-                            <del class="font-size-12 text-gray-9 ml-2">$1200.00</del>
-                        </div>
-                    </div>
-                </li>
-                <li class="product-item product-item__list row no-gutters mb-6 remove-divider">
-                    <div class="col-auto">
-                        <a href="../shop/single-product-fullwidth.html" class="d-block width-75 text-center"><img
-                                class="img-fluid" src="{{asset('client/assets/img/75X75/img6.jpg')}}"
-                                alt="Image Description"></a>
-                    </div>
-                    <div class="col pl-4 d-flex flex-column">
-                        <h5 class="product-item__title mb-0"><a href="../shop/single-product-fullwidth.html"
-                                class="text-blue font-weight-bold">Smartphone 6S 32GB LTE</a></h5>
-                        <div class="prodcut-price mt-auto flex-horizontal-center">
-                            <ins class="font-size-15 text-decoration-none">$2100.00</ins>
-                            <del class="font-size-12 text-gray-9 ml-2">$3299.00</del>
-                        </div>
-                    </div>
-                </li>
+                @endforeach
             </ul>
         </div>
         <div class="col-wd-3 col-lg-4">

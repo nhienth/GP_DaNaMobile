@@ -79,7 +79,7 @@ Route::prefix('/')->group(function () {
 
         Route::get('/detail/{id}', [ProductController::class, 'productDetail']);
     //review product
-        Route::get('/detail/{id}',[PreviewController::class,'productReview']);
+        // Route::get('/detail/{id}',[PreviewController::class,'productReview']);
         Route::post('/preview/{id}',[PreviewController::class,'preview'])->name('preview');
         Route::get('/rate/{id}',[PreviewController::class,'reviewRate']);
 
@@ -87,8 +87,8 @@ Route::prefix('/')->group(function () {
 
     Route::prefix('/user')->group(function () {
         Route::get('/{id}', [UserController::class, 'show']);
-        Route::get('/update/{id}', [UserController::class, 'edit']);
-        Route::post('/update/{id}', [UserController::class, 'update']);
+        Route::get('/update/{id}', [UserController::class, 'useredit']);
+        Route::post('/update/{id}', [UserController::class, 'userupdate']);
 
         // Route::get('showaddress/{id}', [AddressControll::class, 'show']);
         // Route::get('create/{id}', [AddressControll::class, 'create']);
@@ -97,6 +97,8 @@ Route::prefix('/')->group(function () {
         Route::get('/showaddress/{id}', [AddressControll::class, 'show']);
         Route::get('/createaddress/{user_id}', [AddressControll::class, 'create']);
         Route::post('/createaddress', [AddressControll::class, 'store']);
+        Route::get('/updateaddress/{user_id}', [AddressControll::class, 'edit']);
+        Route::post('/updateaddress', [AddressControll::class, 'update']);
 
         Route::get('/delete/{id}', [AddressControll::class, 'destroy']);
     });

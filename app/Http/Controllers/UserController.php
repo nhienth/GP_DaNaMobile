@@ -64,11 +64,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $categories = Category::all();
-        $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
-        $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
         $user = User::find($id);
-        return view('client.user.edit')->with(compact('categories','slider','banner','user'));
+        return view('admin.user.edit')->with(compact('user'));
     }
 
     /**
@@ -80,7 +77,31 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user ->id = $request->id;
+        $user ->role = $request->role;
+        $user ->status = $request->status;
+        // $user ->email = $request->email;
+
+        $user->save();
+        // dd($order);
+        return  $this->index()->with('status','Bạn đã cập nhật thành công');
+        
+    }
+
+
+    // client
+    public function useredit($id)
+    {
+        $categories = Category::all();
+        $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
+        $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
+        $user = User::find($id);
+        return view('client.user.edit')->with(compact('categories','slider','banner','user'));
+    }
+
+    public function userupdate(Request $request, $id)
+    {
         $user = User::find($id);
         $user ->id = $request->id;
         $user ->name = $request->name;
@@ -88,10 +109,9 @@ class UserController extends Controller
 
         $user->save();
         // dd($order);
-        return  redirect('/user/'.Auth::user()->id)->with('status','Bạn đã cập nhật thành công');
+        return  $this->show($id)->with('status','Bạn đã cập nhật thành công');
         
     }
-
     /**
      * Remove the specified resource from storage.
      *

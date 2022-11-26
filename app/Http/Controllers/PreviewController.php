@@ -53,8 +53,8 @@ class PreviewController extends Controller
         $similarProducts = Product::with(['category'])
         ->where('products.category_id', $product->category_id)
         ->where('products.id', '!=', $id)
+        ->take(6)
         ->get();
-        
         return view('client.products.product_details', compact('categories', 'slider', 'banner', 'products', 'previews','product', 'similarProducts'));
     }
 

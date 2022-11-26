@@ -154,31 +154,25 @@
     #sendmessage.show,.show  {
     display:block;
     }
-  /* end thông tin tài khoản */
+    /* end thông tin tài khoản */
 </style>
 <div class="mb-5">
-    <h1 class="text-center" style="color:black;">Thông tin cá nhân</h1>
+    <h1 class="text-center" style="color:black;">Chỉnh sửa địa chỉ cá nhân</h1>
 </div>
-<form class="js-validate" novalidate="novalidate" style="box-shadow: 0 0 5px #e03102;">
+<form class="js-validate" novalidate="novalidate" style="box-shadow: 0 0 5px #e03102;" action="{{url('user/updateaddress')}}" method="POST" enctype="multipart/form-data">
+    @csrf
     <div class="contentform">
         <div class="leftcontact">
             <div class="form-group">
-                <p>Vai trò<span>*</span></p>
-                <span class="icon-case"><i class="fa fa-male"></i></span>
-                <input type="text" name="ma_kh" id="nom" data-rule="required" disabled value="
-                <?php
-                    if($user["role"]==1){
-                        echo "Admin";
-                    }else {
-                        echo "Khách hàng";
-                    }
-                ?>"/>
-            </div>
-
-            <div class="form-group">
-                <p>Họ và tên <span>*</span></p>
+                <p>Địa chỉ<span>*</span></p>
                 <span class="icon-case"><i class="fa fa-user"></i></span>
-                <input type="text" value="{{ $user -> name }}" id="prenom" data-rule="required" disabled/>
+                <input type="text" value="{{$user->completeAddress}}" name="completeAddress" data-rule="required" required/>
+            </div>
+            
+            <div class="form-group">
+                <p>Số điện thoại<span>*</span></p>
+                <span class="icon-case"><i class="fas fa-phone"></i></span>
+                <input type="number" value="{{$user->phoneNumber}}" name="phoneNumber" data-rule="required" required/>
             </div>
 
             {{-- <div class="form-group">
@@ -190,25 +184,14 @@
 
         <div class="rightcontact">	
             <div class="form-group">
-                <p>E-mail <span>*</span></p>	
-                <span class="icon-case"><i class="fas fa-envelope"></i></span>
-                <input type="email" name="email" id="email" data-rule="email" value="{{ $user -> email }}" disabled/>
-            </div>	
-
-            <div class="form-group">
-                <p>Mật khẩu <span>*</span></p>
-                <input type="password" name="so_dien_thoai" id="society" data-rule="required" value="{{ $user -> password }}" disabled/>
-            </div>
-        
-            <div class="form-group">
-                <p>Địa chỉ <span>*</span></p>
-                <span class="icon-case"><i class="fas fa-map-marker-alt"></i></i></span>
-                <a href="{{url('/user/showaddress',[$user->id])}}"><button type="button" class="btn btn-gradient-info">Xem địa chỉ</button></a>
+                <p>Loại địa chỉ <span>*</span></p>	
+                <select class="form-control" name="name_address" value="{{$user->name_address}}">
+                    <option value="0">Nhà riêng</option>
+                    <option value="1">Văn Phòng</option>
+                </select>
             </div>	
         </div>
-        <a href="{{url('user/update',[$user->id])}}"><button type="button" class="button-contact btn btn-outline-primary">Chỉnh sửa</button></a>
+        <button type="submit" class="button-contact btn btn-outline-primary">Thêm</button>
     </div>
-  
 </form>	
-
 @endsection
