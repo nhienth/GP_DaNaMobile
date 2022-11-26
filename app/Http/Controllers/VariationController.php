@@ -184,6 +184,7 @@ class VariationController extends Controller
 
         $newCombination -> sku = $request->sku;
         $newCombination -> price = $request->price;
+        $newCombination -> sale = $request->sale;
         $newCombination -> avilableStock = $request->avilableStock;
         $newCombination ->product_id =  $request->product_id;
 

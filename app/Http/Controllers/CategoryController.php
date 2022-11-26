@@ -261,4 +261,72 @@ class CategoryController extends Controller
         }
         return $this->index();
     }
+
+    // Filter and search categories
+
+    public function level(){
+        $key = $_GET['level'];      
+        if($key == 0){
+            $categories = Category::all();
+            foreach ($categories as $category) {
+                $parent_id = $category->parent_id;
+                $partenCateName = $this->getCategoryName($parent_id);
+                $category['parent_cate'] = $partenCateName;
+            }
+            return view('admin.categories.list', compact('categories'));
+        }else if( $key == 1){
+            $categories = Category::where("parent_id", 0)->get();
+            return view('admin.categories.list', compact('categories'));
+        }else{
+            $categories = Category::where("parent_id","<>", 0)->get();
+            foreach ($categories as $category) {
+                $parent_id = $category->parent_id;
+                $partenCateName = $this->getCategoryName($parent_id);
+                $category['parent_cate'] = $partenCateName;
+            }
+            return view('admin.categories.list', compact('categories'));
+        }
+    }
+
+    public function filter_name(){
+        $key = $_GET['filter_name'];      
+        if($key == 0){
+            $categories = Category::all();
+            foreach ($categories as $category) {
+                $parent_id = $category->parent_id;
+                $partenCateName = $this->getCategoryName($parent_id);
+                $category['parent_cate'] = $partenCateName;
+            }
+            return view('admin.categories.list', compact('categories'));
+        }else if( $key == 1){
+            
+            $categories = Category::orderBy("category_name", "DESC")->get();
+            foreach ($categories as $category) {
+                $parent_id = $category->parent_id;
+                $partenCateName = $this->getCategoryName($parent_id);
+                $category['parent_cate'] = $partenCateName;
+            }
+            return view('admin.categories.list', compact('categories'));
+        }else{
+            $categories = Category::orderBy("category_name", "ASC")->get();
+
+            foreach ($categories as $category) {
+                $parent_id = $category->parent_id;
+                $partenCateName = $this->getCategoryName($parent_id);
+                $category['parent_cate'] = $partenCateName;
+            }
+            return view('admin.categories.list', compact('categories'));
+        }       
+    }
+
+    public function search(){
+        $keyword = $_GET['key_search'];
+        $categories = Category::where('category_name','LIKE', '%' . $keyword . '%')->get();
+        foreach ($categories as $category) {
+            $parent_id = $category->parent_id;
+            $partenCateName = $this->getCategoryName($parent_id);
+            $category['parent_cate'] = $partenCateName;
+        }
+        return view('admin.categories.list', compact('categories'));
+    }
 }
