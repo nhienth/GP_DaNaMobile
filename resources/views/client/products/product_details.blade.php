@@ -274,7 +274,7 @@
                         <div class="row mb-8">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    {{-- <h3 class="font-size-18 mb-6">Dựa trên {{$countall}} đánh giá</h3> --}}
+                                    <h3 class="font-size-18 mb-6">Dựa trên {{$countall}} đánh giá</h3>
                                     @if (isset ($round))                                      
                                     <h2 class="font-size-30 font-weight-bold text-lh-1 mb-0">{{$round}}</h2> 
                                     <div class="text-lh-1">Tổng thể</div>                                                             
@@ -303,14 +303,14 @@
                                                 </div>
                                             </div>
                                             <div class="col-auto text-right">
-                                                {{-- <span class="text-gray-90">{{$count5}}</span> --}}
+                                                <span class="text-gray-90">{{$count5}}</span>
                                             </div>
                                         </a>
                                     </li>
                                     <li class="py-1">
                                         <a class="row align-items-center mx-gutters-2 font-size-1" href="javascript:;">
                                             <div class="col-auto mb-2 mb-md-0">
-                                                <div class="text-warning text-ls-n2 font-size-16" style="width: 80px;">
+                                                <div class="text-warning text-ls-n2 font-size-16" style="width: 100px;">
                                                     <?php 
                                                     for ($i = 0; $i < 4; $i++){
                                                    echo '<i class="fas fa-star"></i>';
@@ -325,14 +325,14 @@
                                                 </div>
                                             </div>
                                             <div class="col-auto text-right">
-                                                {{-- <span class="text-gray-90">{{$count4}}</span> --}}
+                                                <span class="text-gray-90">{{$count4}}</span>
                                             </div>
                                         </a>
                                     </li>
                                     <li class="py-1">
                                         <a class="row align-items-center mx-gutters-2 font-size-1" href="javascript:;">
                                             <div class="col-auto mb-2 mb-md-0">
-                                                <div class="text-warning text-ls-n2 font-size-16" style="width: 80px;">
+                                                <div class="text-warning text-ls-n2 font-size-16" style="width: 100px;">
                                                     <?php 
                                                     for ($i = 0; $i < 3; $i++){
                                                    echo '<i class="fas fa-star"></i>';
@@ -347,14 +347,14 @@
                                                 </div>
                                             </div>
                                             <div class="col-auto text-right">
-                                                {{-- <span class="text-gray-90">{{$count3}}</span> --}}
+                                                <span class="text-gray-90">{{$count3}}</span>
                                             </div>
                                         </a>
                                     </li>
                                     <li class="py-1">
                                         <a class="row align-items-center mx-gutters-2 font-size-1" href="javascript:;">
                                             <div class="col-auto mb-2 mb-md-0">
-                                                <div class="text-warning text-ls-n2 font-size-16" style="width: 80px;">
+                                                <div class="text-warning text-ls-n2 font-size-16" style="width: 100px;">
                                                     <?php 
                                                     for ($i = 0; $i < 2; $i++){
                                                    echo '<i class="fas fa-star"></i>';
@@ -364,19 +364,19 @@
                                             </div>
                                             <div class="col-auto mb-2 mb-md-0">
                                                 <div class="progress ml-xl-5" style="height: 10px; width: 200px;">
-                                                    <div class="progress-bar" role="progressbar" style="width: 0%;"
-                                                        aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar" role="progressbar" style="width: 1%;"
+                                                        aria-valuenow="1" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </div>
                                             <div class="col-auto text-right">
-                                                {{-- <span class="text-muted">{{$count2}}</span> --}}
+                                                <span class="text-gray-90">{{$count2}}</span>
                                             </div>
                                         </a>
                                     </li>
                                     <li class="py-1">
                                         <a class="row align-items-center mx-gutters-2 font-size-1" href="javascript:;">
                                             <div class="col-auto mb-2 mb-md-0">
-                                                <div class="text-warning text-ls-n2 font-size-16" style="width: 80px;">
+                                                <div class="text-warning text-ls-n2 font-size-16" style="width: 100px;">
                                                     <?php 
                                                     for ($i = 0; $i < 1; $i++){
                                                    echo '<i class="fas fa-star"></i>';
@@ -391,7 +391,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-auto text-right">
-                                                {{-- <span class="text-gray-90">{{$count1}}</span> --}}
+                                                <span class="text-gray-90">{{$count1}}</span>
                                             </div>
                                         </a>
                                     </li>
@@ -401,8 +401,7 @@
                             <div class="col-md-6" style="color:black">
                                 <h3 class="font-size-18 mb-5">Thêm đánh giá</h3>
                                 <!-- Form -->
-                                <p class="text-gray-90"> Bạn cần đăng nhập để đánh giá sản phẩm<span class="text-dark"
-                                    style="color: red">*</span></p>
+                                <p class="text-gray-90"> Bạn cần đăng nhập để đánh giá sản phẩm <i style="color: red">*</i></p>
                                 <form class="js-validate" action="{{route('preview',$product->id)}}" method="POST">
                                     @csrf
                                     @if (Auth::check())
@@ -410,7 +409,7 @@
                                         <div class="col-md-4 col-lg-3">
                                             <label for="rating" class="form-label mb-0">Đánh giá sao của bạn</label>
                                         </div>
-                                        {{-- <style>
+                                        <style>
                                             .rating {
                                                     display: flex;
                                                     flex-direction: row-reverse;
@@ -460,7 +459,7 @@
                                                     <input type="radio" name="rating status" value="1" id="1"><label for="1">☆</label>
                                                   </div>
                                             </a>
-                                        </div> --}}
+                                        </div>
                                     </div>
                                     <div class="js-form-message form-group mb-3 row">
                                         <div class="col-md-4 col-lg-3">
@@ -492,20 +491,20 @@
                             <!-- Review Rating -->
                             <div
                                 class="d-flex justify-content-between align-items-center text-secondary font-size-1 mb-2">
-                                {{-- <div class="text-warning text-ls-n2 font-size-16" style="width: 80px;">
+                                <div class="text-warning text-ls-n2 font-size-16" style="width: 100px;">
                                     <?php
-                                    for ($i = 1; $i < $preview->status; $i++){
+                                    for ($i = 0; $i < $preview->status; $i++){
                                         echo '<i class="fas fa-star"></i>';
                                     }
                                     ?>
-                                </div> --}}
+                                </div>
                             </div>
                             <!-- End Review Rating -->
                             <p class="text-gray-90">{{$preview->review}}</p>
                             <!-- Reviewer -->
                             <div class="mb-2">
-                                <strong>{{$preview->user->name}}</strong>
-                                <span class="font-size-13 text-gray-23">{{$preview->created_at->format('d/m/Y')}}</span>
+                                <strong>{{$preview->name}}</strong>
+                                <span class="font-size-13 text-gray-23">{{$preview->created_at}}</span>
                             </div>
                             <!-- End Reviewer -->
                         </div>
@@ -522,7 +521,7 @@
     <div class="mb-6" style="color: black">
         <div
             class="d-flex justify-content-between align-items-center border-bottom border-color-1 flex-lg-nowrap flex-wrap mb-4">
-            <h3 class="section-title mb-0 pb-2 font-size-22">Sản phẩm cùng loại</h3>
+            <h3 class="section-title mb-0 pb-2 font-size-22" style="margin-left:50px">Sản phẩm cùng loại</h3>
         </div>
         <ul class="row list-unstyled products-group no-gutters">
             @foreach ($similarProducts as $similarProduct)

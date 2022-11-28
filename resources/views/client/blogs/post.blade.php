@@ -3,8 +3,7 @@
 <div class="container">
                 <div class="row">
                     <div class="col-xl-9 col-wd">
-                        <div class="min-width-1100-wd">
-                                
+                        <div class="min-width-1100-wd">          
                             <article class="card mb-13 border-0">
                                 <div class="row">
                                     @foreach ($allPost as $post) 
@@ -39,34 +38,34 @@
                         <aside class="mb-7">
                             <form class="" action="{{url('post/search')}}" method="get">
                                 <div class="d-flex align-items-center">
-                                    <label class="sr-only" for="signupSrEmail">Search Electro blog</label>
+                                    <label class="sr-only" for="signupSrEmail">Tìm bài viết</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control px-4" name="keyword" id="signupSrEmail" placeholder="Search..." aria-label="Search Electro blog">
+                                        <input type="text" class="form-control px-4" name="keyword" id="signupSrEmail" placeholder="Tìm kiếm..." aria-label="Search Electro blog">
                                     </div>
                                     <button type="submit" class="btn btn-primary text-nowrap ml-3 d-none">
-                                        <span class="fas fa-search font-size-1 mr-2"></span> Search
+                                        <span class="fas fa-search font-size-1 mr-2"></span> Tìm
                                     </button>
                                 </div>
                             </form>
                         </aside>
                         <aside class="mb-7">
                             <div class="border-bottom border-color-1 mb-5">
-                                <h3 class="section-title section-title__sm mb-0 pb-2 font-size-18">Categories</h3>
+                                <h3 class="section-title section-title__sm mb-0 pb-2 font-size-18">Danh mục</h3>
                             </div>
                             <div class="list-group">
-                                <a href="../blog/single-blog-post.html" class="font-bold-on-hover px-3 py-2 list-group-item list-group-item-action border-0"><i class="mr-2 fas fa-angle-right"></i> Design</a>
-                                <a href="../blog/single-blog-post.html" class="font-bold-on-hover px-3 py-2 list-group-item list-group-item-action border-right-0 border-left-0 border-bottom-0"><i class="mr-2 fas fa-angle-right"></i> Events</a>
-                                <a href="../blog/single-blog-post.html" class="font-bold-on-hover px-3 py-2 list-group-item list-group-item-action border-right-0 border-left-0 border-bottom-0"><i class="mr-2 fas fa-angle-right"></i> Links & Quotes</a>
-                                <a href="../blog/single-blog-post.html" class="font-bold-on-hover px-3 py-2 list-group-item list-group-item-action border-right-0 border-left-0 border-bottom-0"><i class="mr-2 fas fa-angle-right"></i> News</a>
-                                <a href="../blog/single-blog-post.html" class="font-bold-on-hover px-3 py-2 list-group-item list-group-item-action border-right-0 border-left-0 border-bottom-0"><i class="mr-2 fas fa-angle-right"></i> Social</a>
-                                <a href="../blog/single-blog-post.html" class="font-bold-on-hover px-3 py-2 list-group-item list-group-item-action border-right-0 border-left-0 border-bottom-0"><i class="mr-2 fas fa-angle-right"></i> Technology</a>
-                                <a href="../blog/single-blog-post.html" class="font-bold-on-hover px-3 py-2 list-group-item list-group-item-action border-right-0 border-left-0 border-bottom-0"><i class="mr-2 fas fa-angle-right"></i> Audios</a>
-                                <a href="../blog/single-blog-post.html" class="font-bold-on-hover px-3 py-2 list-group-item list-group-item-action border-right-0 border-left-0 border-bottom-0"><i class="mr-2 fas fa-angle-right"></i> Videos</a>
+                                <a href="../blog/single-blog-post.html" class="font-bold-on-hover px-3 py-2 list-group-item list-group-item-action border-0"><i class="mr-2 fas fa-angle-right"></i> Thiết kế</a>
+                                <a href="../blog/single-blog-post.html" class="font-bold-on-hover px-3 py-2 list-group-item list-group-item-action border-right-0 border-left-0 border-bottom-0"><i class="mr-2 fas fa-angle-right"></i> Sự kiện</a>
+                                <a href="../blog/single-blog-post.html" class="font-bold-on-hover px-3 py-2 list-group-item list-group-item-action border-right-0 border-left-0 border-bottom-0"><i class="mr-2 fas fa-angle-right"></i> Liên kết & Trích dẫn</a>
+                                <a href="../blog/single-blog-post.html" class="font-bold-on-hover px-3 py-2 list-group-item list-group-item-action border-right-0 border-left-0 border-bottom-0"><i class="mr-2 fas fa-angle-right"></i> Tin tức</a>
+                                <a href="../blog/single-blog-post.html" class="font-bold-on-hover px-3 py-2 list-group-item list-group-item-action border-right-0 border-left-0 border-bottom-0"><i class="mr-2 fas fa-angle-right"></i> Xã hội</a>
+                                <a href="../blog/single-blog-post.html" class="font-bold-on-hover px-3 py-2 list-group-item list-group-item-action border-right-0 border-left-0 border-bottom-0"><i class="mr-2 fas fa-angle-right"></i> Công nghệ</a>
+                                <a href="../blog/single-blog-post.html" class="font-bold-on-hover px-3 py-2 list-group-item list-group-item-action border-right-0 border-left-0 border-bottom-0"><i class="mr-2 fas fa-angle-right"></i> Âm thanh</a>
+                                <a href="../blog/single-blog-post.html" class="font-bold-on-hover px-3 py-2 list-group-item list-group-item-action border-right-0 border-left-0 border-bottom-0"><i class="mr-2 fas fa-angle-right"></i> Video</a>
                             </div>
                         </aside>
                         <aside class="mb-7">
                             <div class="border-bottom border-color-1 mb-5">
-                                <h3 class="section-title section-title__sm mb-0 pb-2 font-size-18">Recent Posts</h3>
+                                <h3 class="section-title section-title__sm mb-0 pb-2 font-size-18">Bài viết gần đây</h3>
                             </div>
                             <article class="mb-4">
                                 <div class="media">
@@ -74,8 +73,8 @@
                                         <img class="img-fluid object-fit-cover" src="{{asset('/client/assets/img/1500X730/img1.jpg')}}" alt="Image Description">
                                     </div>
                                     <div class="media-body">
-                                        <h4 class="font-size-14 mb-1"><a href="../blog/single-blog-post.html" class="text-gray-39">Robot Wars – Post with Gallery</a></h4>
-                                        <span class="text-gray-5">March 3, 2020</span>
+                                        <h4 class="font-size-14 mb-1"><a href="../blog/single-blog-post.html" class="text-gray-39">Robot Wars – Đăng với bộ sưu tập</a></h4>
+                                        <span class="text-gray-5">Tháng 12, 2022</span>
                                     </div>
                                 </div>
                             </article>
@@ -85,8 +84,8 @@
                                         <img class="img-fluid object-fit-cover" src="{{asset('/client/assets/img/1500X730/img4.jpg')}}" alt="Image Description">
                                     </div>
                                     <div class="media-body">
-                                        <h4 class="font-size-14 mb-1"><a href="../blog/single-blog-post.html" class="text-gray-39">Robot Wars – Now Closed – Post with Audio</a></h4>
-                                        <span class="text-gray-5">March 3, 2020</span>
+                                        <h4 class="font-size-14 mb-1"><a href="../blog/single-blog-post.html" class="text-gray-39">Robot Wars – Bây giờ đã đóng - Đăng với âm thanh</a></h4>
+                                        <span class="text-gray-5">Tháng 12, 2022</span>
                                     </div>
                                 </div>
                             </article>
@@ -96,8 +95,8 @@
                                         <img class="img-fluid object-fit-cover" src="{{asset('/client/assets/img/1500X730/img5.jpg')}}" alt="Image Description">
                                     </div>
                                     <div class="media-body">
-                                        <h4 class="font-size-14 mb-1"><a href="../blog/single-blog-post.html" class="text-gray-39">Robot Wars – Now Closed – Post with Video</a></h4>
-                                        <span class="text-gray-5">March 3, 2020</span>
+                                        <h4 class="font-size-14 mb-1"><a href="../blog/single-blog-post.html" class="text-gray-39">Robot Wars – Bây giờ đã đóng - đăng với Video</a></h4>
+                                        <span class="text-gray-5">Tháng 12, 2022</span>
                                     </div>
                                 </div>
                             </article>
@@ -108,8 +107,8 @@
                                         <i class="fa fa-paragraph position-absolute-center text-white"></i>
                                     </div>
                                     <div class="media-body">
-                                        <h4 class="font-size-14 mb-1"><a href="../blog/single-blog-post.html" class="text-gray-39">Announcement – Post without Image</a></h4>
-                                        <span class="text-gray-5">March 3, 2020</span>
+                                        <h4 class="font-size-14 mb-1"><a href="../blog/single-blog-post.html" class="text-gray-39">Thông báo - Đăng không có hình ảnh</a></h4>
+                                        <span class="text-gray-5">Tháng 12, 2022</span>
                                     </div>
                                 </div>
                             </article>
@@ -119,8 +118,8 @@
                                         <img class="img-fluid object-fit-cover" src="{{asset('/client/assets/img/1500X730/img6.jpg')}}" alt="Image Description">
                                     </div>
                                     <div class="media-body">
-                                        <h4 class="font-size-14 mb-1"><a href="../blog/single-blog-post.html" class="text-gray-39">Robot Wars – Now Closed</a></h4>
-                                        <span class="text-gray-5">March 3, 2020</span>
+                                        <h4 class="font-size-14 mb-1"><a href="../blog/single-blog-post.html" class="text-gray-39">Robot Wars – Bây giờ đã đóng</a></h4>
+                                        <span class="text-gray-5">Tháng 12, 2022</span>
                                     </div>
                                 </div>
                             </article>
@@ -130,16 +129,16 @@
                                 <h3 class="section-title section-title__sm mb-0 pb-2 font-size-18">Tags Clouds</h3>
                             </div>
                             <div class="d-flex flex-wrap mx-n1">
-                                <a href="../blog/single-blog-post.html" class="text-gray-90 mb-2 bg-primary-on-hover py-2 px-3 border mx-1">amazon like</a>
-                                <a href="../blog/single-blog-post.html" class="text-gray-90 mb-2 bg-primary-on-hover py-2 px-3 border mx-1">Awesome</a>
-                                <a href="../blog/single-blog-post.html" class="text-gray-90 mb-2 bg-primary-on-hover py-2 px-3 border mx-1">bootstrap</a>
-                                <a href="../blog/single-blog-post.html" class="text-gray-90 mb-2 bg-primary-on-hover py-2 px-3 border mx-1">buy it</a>
-                                <a href="../blog/single-blog-post.html" class="text-gray-90 mb-2 bg-primary-on-hover py-2 px-3 border mx-1">clean design</a>
-                                <a href="../blog/single-blog-post.html" class="text-gray-90 mb-2 bg-primary-on-hover py-2 px-3 border mx-1">electronics</a>
-                                <a href="../blog/single-blog-post.html" class="text-gray-90 mb-2 bg-primary-on-hover py-2 px-3 border mx-1">theme</a>
-                                <a href="../blog/single-blog-post.html" class="text-gray-90 mb-2 bg-primary-on-hover py-2 px-3 border mx-1">video post format</a>
-                                <a href="../blog/single-blog-post.html" class="text-gray-90 mb-2 bg-primary-on-hover py-2 px-3 border mx-1">Ecommerce</a>
-                                <a href="../blog/single-blog-post.html" class="text-gray-90 mb-2 bg-primary-on-hover py-2 px-3 border mx-1">wordpress</a>
+                                <a href="../blog/single-blog-post.html" class="text-gray-90 mb-2 bg-primary-on-hover py-2 px-3 border mx-1">Thích amazon</a>
+                                <a href="../blog/single-blog-post.html" class="text-gray-90 mb-2 bg-primary-on-hover py-2 px-3 border mx-1">Đáng kinh ngạc</a>
+                                <a href="../blog/single-blog-post.html" class="text-gray-90 mb-2 bg-primary-on-hover py-2 px-3 border mx-1">Bootstrap</a>
+                                <a href="../blog/single-blog-post.html" class="text-gray-90 mb-2 bg-primary-on-hover py-2 px-3 border mx-1">Mua nó</a>
+                                <a href="../blog/single-blog-post.html" class="text-gray-90 mb-2 bg-primary-on-hover py-2 px-3 border mx-1">Thiết kế sạch sẽ</a>
+                                <a href="../blog/single-blog-post.html" class="text-gray-90 mb-2 bg-primary-on-hover py-2 px-3 border mx-1">Thiết bị điện tử</a>
+                                <a href="../blog/single-blog-post.html" class="text-gray-90 mb-2 bg-primary-on-hover py-2 px-3 border mx-1">Chủ đề</a>
+                                <a href="../blog/single-blog-post.html" class="text-gray-90 mb-2 bg-primary-on-hover py-2 px-3 border mx-1">Định dạng bài viết video</a>
+                                <a href="../blog/single-blog-post.html" class="text-gray-90 mb-2 bg-primary-on-hover py-2 px-3 border mx-1">Thương mại điện tử</a>
+                                <a href="../blog/single-blog-post.html" class="text-gray-90 mb-2 bg-primary-on-hover py-2 px-3 border mx-1">Wordpress</a>
                             </div>
                         </aside>
                     </div>
