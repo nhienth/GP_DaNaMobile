@@ -82,6 +82,7 @@ Route::prefix('/')->group(function () {
         // Route::get('/detail/{id}',[PreviewController::class,'productReview']);
         Route::post('/preview/{id}',[PreviewController::class,'preview'])->name('preview');
         Route::get('/rate/{id}',[PreviewController::class,'reviewRate']);
+        Route::get('/search',[ProductController::class,'searchProduct']);
 
     });
 
