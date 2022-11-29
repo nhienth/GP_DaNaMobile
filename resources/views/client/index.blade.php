@@ -54,7 +54,7 @@ use App\Models\Product;
                 {{-- {!! $categorySelect !!} --}}
                     
                 <div class="col-md-6 mb-4 mb-xl-0 col-xl-3">
-                    <a href="../shop/shop.html" class="d-black text-gray-90">
+                    <a href="{{url('product/byCate/'.$list->id )}}" class="d-black text-gray-90">
                         <div class="min-height-132 py-1 d-flex bg-gray-1 align-items-center">
                             <div class="col-6 col-xl-5 col-wd-6 pr-0">
                                 <img class="img-fluid" src="{{asset('images/categories/'.$list->category_image)}}" style="height: 100px"

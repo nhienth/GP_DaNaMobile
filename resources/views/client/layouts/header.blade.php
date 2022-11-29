@@ -25,12 +25,12 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                     </div>
                     <div class="topbar-right ml-auto">
                         <ul class="list-inline mb-0">
-                            <li
+                            {{-- <li
                                 class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border">
                                 <a href="../home/contact-v2.html" class="u-header-topbar__nav-link"><i
                                         class="ec ec-map-pointer mr-1"></i>Địa chỉ cửa hàng</a>
 
-                            </li>
+                            </li> --}}
                             <li
                                 class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border">
                                 <a href="{{url('/cart/')}}" class="u-header-topbar__nav-link"><i
@@ -229,10 +229,9 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                                         @endif
                                         <div class="flex-center-between px-4 pt-2">
                                             <a href="{{url('/cart/')}}"
-                                                class="btn btn-soft-secondary mb-3 mb-md-0 font-weight-normal px-5 px-md-4 px-lg-5">View
-                                                cart</a>
-                                            <a href="../shop/checkout.html"
-                                                class="btn btn-primary-dark-w ml-md-2 px-5 px-md-4 px-lg-5 text-white">Checkout</a>
+                                                class="btn btn-soft-secondary mb-3 mb-md-0 font-weight-normal px-5 px-md-4 px-lg-5">Giỏ hàng</a>
+                                            <a href="{{url('/checkout/')}}"
+                                                class="btn btn-primary-dark-w ml-md-2 px-5 px-md-4 px-lg-5 text-white">Thanh toán</a>
                                         </div>
                                     </div>
                                 </li>
@@ -320,10 +319,10 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                                 <!-- End Trending Styles -->
 
                                 <!-- Gift Cards -->
-                                <li class="nav-item u-header__nav-item">
+                                {{-- <li class="nav-item u-header__nav-item">
                                     <a class="nav-link u-header__nav-link" href="#" aria-haspopup="true"
                                         aria-expanded="false">Gift Cards</a>
-                                </li>
+                                </li> --}}
                                 <!-- End Gift Cards -->
                             </ul>
                         </div>

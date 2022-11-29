@@ -38,6 +38,7 @@ use App\Http\Controllers\CheckoutController;
 |
 */
 
+
 // -----------------------------------CLIENT-----------------------------
 
 Route::prefix('/')->group(function () {
