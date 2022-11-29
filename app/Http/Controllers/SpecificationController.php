@@ -11,8 +11,10 @@ class SpecificationController extends Controller
     public function index()
     {
         $categories = Category::all();
+        $cate = new CategoryController();
+        $categorySelect = $cate->res_delete_children(0);
         $specifications_list = Specification::with(['category'])->get();
-        return view('admin/specifications/list')->with(compact('specifications_list', 'categories'));
+        return view('admin/specifications/list')->with(compact('specifications_list', 'categories','categorySelect'));
     }
 
     public function create(){
@@ -68,42 +70,29 @@ class SpecificationController extends Controller
     }
 
     public function name(){
-        $key = $_GET['name'];      
+        $key = $_GET['name'];    
+        $cate = new CategoryController();
+
+        $categorySelect = $cate->res_delete_children(0);  
         if($key == 0){
             $specifications_list = Specification::with(['category'])->get();
-            return view('admin.specifications.list', compact('specifications_list'));
+            return view('admin.specifications.list', compact('specifications_list','categorySelect'));
         }else if( $key == 1){
-            $specifications_list = Specification::with(['category'])->orderBy('specification_name', 'DESC')->get();
-            return view('admin.specifications.list', compact('specifications_list'));
-        }else{
             $specifications_list = Specification::with(['category'])->orderBy('specification_name', 'ASC')->get();
-            return view('admin.specifications.list', compact('specifications_list'));
+            return view('admin.specifications.list', compact('specifications_list','categorySelect'));
+        }else{
+            $specifications_list = Specification::with(['category'])->orderBy('specification_name', 'DESC')->get();
+            return view('admin.specifications.list', compact('specifications_list','categorySelect'));
         }
     }
 
     public function category(){
-        $key = $_GET['category'];      
-        if($key == 0){
-            $specifications_list = Specification::with(['category'])->get();
-            return view('admin.specifications.list', compact('specifications_list'));
-        }else if( $key == 1){
-            $categories = Category::all();
-            foreach ($categories as $category) {
-                $parent_id = $category->parent_id;
-                $partenCateName = $this->getCategoryName($parent_id);
-                $category['parent_cate'] = $partenCateName;
-            }
-            $specifications_list = Specification::with(['category'])->orderBy('specification_name', 'DESC')->get();
-            return view('admin.specifications.list', compact('specifications_list', 'categories'));
-        }else{
-            $categories = Category::all();
-            foreach ($categories as $category) {
-                $parent_id = $category->parent_id;
-                $partenCateName = $this->getCategoryName($parent_id);
-                $category['parent_cate'] = $partenCateName;
-            }
-            $specifications_list = Specification::with(['category'])->orderBy('specification_name', 'ASC')->get();
-            return view('admin.specifications.list', compact('specifications_list', 'categories'));
-        }
+        $key = $_GET['category'];    
+        $cate = new CategoryController();
+
+        $categorySelect = $cate->res_delete_children(0);
+        $specifications_list = Specification::with(['category'])->where('category_id','=',$key)->get();
+        return view('admin.specifications.list', compact('specifications_list', 'categorySelect'));
+
     }
 }
