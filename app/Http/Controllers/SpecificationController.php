@@ -17,7 +17,7 @@ class SpecificationController extends Controller
 
     public function create(){
         $cate = new CategoryController();
-        $categorySelect = $cate->res(0);
+        $categorySelect = $cate->res_delete_children(0);
         return view('admin.specifications.create', compact(['categorySelect']));
     }
 

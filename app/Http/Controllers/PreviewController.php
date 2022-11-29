@@ -53,6 +53,7 @@ class PreviewController extends Controller
         $similarProducts = Product::with(['category'])
         ->where('products.category_id', $product->category_id)
         ->where('products.id', '!=', $id)
+        ->take(6)
         ->get();
 
         $countall = DB::table('product_reviews')->where('product_id','=',$product->id)->count();

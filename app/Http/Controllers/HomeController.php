@@ -112,8 +112,31 @@ class HomeController extends Controller
 
         }
         
+        // sản phẩm sale
+        $product_sale = Product::with('combinations','category')
+        ->where('product_status', '1')
+        ->limit(3)
+        ->get();
+        // foreach($product_sale)
+        $priceArr = [];
+        $minPrice = 0;
+        $maxPrice = 0;
+        foreach ($product_sale as $product) {
+          foreach ($product->combinations as $productCombi) {
+            array_push($priceArr, $productCombi->price);
+          
+            }
+            $minPrice = min($priceArr);
+            $maxPrice = max($priceArr);
 
-        return view('client.index')->with(compact('categories', 'categoryhot', 'categorylist', 'view_product', 'product_cate', 'slider', 'banner', 'bannerlist', 'productsld', 'random', 'categorySelect'));
+            $priceArr = [];
+
+            $product['minprice'] = $minPrice;
+            $product['maxprice'] = $maxPrice;
+
+        }
+
+        return view('client.index')->with(compact('categories', 'categoryhot', 'categorylist', 'view_product', 'product_cate', 'slider', 'banner', 'bannerlist', 'productsld', 'random', 'product_sale', 'categorySelect'));
 
     }
 

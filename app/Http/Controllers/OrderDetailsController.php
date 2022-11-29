@@ -49,7 +49,7 @@ class OrderDetailsController extends Controller
      */
     public function show($id)
     {             
-        $detail = OrderDetails::with('product' , 'order')->where('order_details.order_id', $id)->get();
+        $detail = OrderDetails::with('product','order')->where('order_details.order_id', $id)->get();
         return view('admin.order.details',compact('detail'));
     }
     /**

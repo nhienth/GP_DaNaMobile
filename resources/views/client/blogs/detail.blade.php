@@ -48,7 +48,7 @@
                             </ul>
                             <div class="mb-10">
                                 <div class="border-bottom border-color-1 mb-10" style="color: black">
-                                    <h4 class="section-title mb-0 pb-3 font-size-25">3 Bình luận</h4>
+                                    <h4 class="section-title mb-0 pb-3 font-size-25">Bình luận</h4>
                                 </div>
                                 <ol class="nav">
                                     <li class="w-100 border-bottom pb-6 mb-6 border-color-1">
@@ -76,7 +76,7 @@
                                 <div class="border-bottom border-color-1 mb-6">
                                     <h4 class="section-title mb-0 pb-3 font-size-25" style="color: black">Để lại đánh giá</h4>
                                 </div>
-                                <p class="text-dark">Bạn cần đăng nhập để đánh giá bài viết<span class="hidden" style="color: red">*</span></p>
+                                
                                 <form class="js-validate" action="{{route('post_review',$post->id)}}"  method="POST" novalidate="novalidate">
                                     @csrf
                                     @if (Auth::check())
@@ -89,8 +89,10 @@
                                         </div>
                                     </div>
                                     <div class="mb-3">
-                                        <button type="submit" class="btn btn-primary-dark-w px-5">Đăng bình luận</button>
+                                        <button type="submit" class="btn btn-primary-dark-w px-5" style="color: white;">Đăng bình luận</button>
                                     </div>
+                                    @else
+                                    <p class="text-dark">Bạn cần đăng nhập để đánh giá bài viết<span class="hidden" style="color: red">*</span></p>
                                    @endif
                                 </form>
                             </div>                

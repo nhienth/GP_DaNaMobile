@@ -240,7 +240,7 @@
                                         <span class="sku">{{$product->sku}}</span>
                                     </li>
                                     <li class="nav-item text-gray-111 mx-3 flex-shrink-0 flex-xl-shrink-1">/</li>
-                                    <li class="nav-item text-gray-111 flex-shrink-0 flex-xl-shrink-1"><strong>Category:</strong>
+                                    <li class="nav-item text-gray-111 flex-shrink-0 flex-xl-shrink-1"><strong>Danh mục:</strong>
                                         <a href="#" class="text-blue">{{$product->category->category_name}}</a>
                                     </li>
                                     <li class="nav-item text-gray-111 mx-3 flex-shrink-0 flex-xl-shrink-1">/</li>
@@ -401,7 +401,7 @@
                             <div class="col-md-6" style="color:black">
                                 <h3 class="font-size-18 mb-5">Thêm đánh giá</h3>
                                 <!-- Form -->
-                                <p class="text-gray-90"> Bạn cần đăng nhập để đánh giá sản phẩm <i style="color: red">*</i></p>
+                                
                                 <form class="js-validate" action="{{route('preview',$product->id)}}" method="POST">
                                     @csrf
                                     @if (Auth::check())
@@ -476,6 +476,9 @@
                                                 class="btn btn-primary-dark btn-wide transition-3d-hover">Gửi</button>
                                         </div>
                                     </div>
+                                    @else 
+                                    <p class="text-gray-90"> Bạn cần đăng nhập để đánh giá sản phẩm <span class="text-dark"
+                                        style="color: red !important;">*</span></p>
                                     @endif
                                 </form>
                                 <!-- End Form -->
@@ -515,54 +518,56 @@
             </div>
         </div>
         <!-- End Tab Content -->
-    </div>
-    <!-- End Single Product Tab -->
-    <!-- Related products -->
-    <div class="mb-6" style="color: black">
-        <div
-            class="d-flex justify-content-between align-items-center border-bottom border-color-1 flex-lg-nowrap flex-wrap mb-4">
-            <h3 class="section-title mb-0 pb-2 font-size-22" style="margin-left:50px">Sản phẩm cùng loại</h3>
-        </div>
-        <ul class="row list-unstyled products-group no-gutters">
-            @foreach ($similarProducts as $similarProduct)
-                <li class="col-6 col-md-3 col-xl-2gdot4-only col-wd-2 product-item">
-                    <div class="product-item__outer h-100">
-                        <div class="product-item__inner px-xl-4 p-3">
-                            <div class="product-item__body pb-xl-2">
-                                <div class="mb-2"><a href="{{url('product/detail',[$similarProduct->id])}}"
-                                        class="font-size-12 text-gray-5">{{$similarProduct->category->category_name}}</a></div>
-                                <h5 class="mb-1 product-item__title"><a href="{{url('product/detail',[$similarProduct->id])}}"
-                                        class="text-blue font-weight-bold">{{$similarProduct->product_name}}</a></h5>
-                                <div class="mb-2">
-                                    <a href="{{url('product/detail',[$similarProduct->id])}}" class="d-block text-center"><img
-                                            class="img-fluid" src="{{asset('images/products/'.$similarProduct->product_img)}}"
-                                            alt="Image Description"></a>
-                                </div>
-                                <div class="flex-center-between mb-1">
-                                    <div class="prodcut-price">
-                                        <div class="text-gray-100">$685,00</div>
+        <div class="mb-6" style="color: black">
+            <div
+                class="d-flex justify-content-between align-items-center border-bottom border-color-1 flex-lg-nowrap flex-wrap mb-4">
+                <h3 class="section-title mb-0 pb-2 font-size-22">Sản phẩm cùng loại</h3>
+            </div>
+            <ul class="row list-unstyled products-group no-gutters">
+                @foreach ($similarProducts as $similarProduct)
+                    <li class="col-6 col-md-3 col-xl-2gdot4-only col-wd-2 product-item">
+                        <div class="product-item__outer h-100">
+                            <div class="product-item__inner px-xl-4 p-3">
+                                <div class="product-item__body pb-xl-2">
+                                    <div class="mb-2"><a href="{{url('product/detail',[$similarProduct->id])}}"
+                                            class="font-size-12 text-gray-5">{{$similarProduct->category->category_name}}</a></div>
+                                    <h5 class="mb-1 product-item__title"><a href="{{url('product/detail',[$similarProduct->id])}}"
+                                            class="text-blue font-weight-bold">{{$similarProduct->product_name}}</a></h5>
+                                    <div class="mb-2">
+                                        <a href="{{url('product/detail',[$similarProduct->id])}}" class="d-block text-center"><img
+                                                class="img-fluid" src="{{asset('images/products/'.$similarProduct->product_img)}}"
+                                                alt="Image Description"></a>
                                     </div>
-                                    <div class="d-none d-xl-block prodcut-add-cart">
-                                        <a href="{{url('product/detail',[$similarProduct->id])}}"
-                                            class="btn-add-cart btn-primary transition-3d-hover"><i
-                                                class="ec ec-add-to-cart"></i></a>
+                                    <div class="flex-center-between mb-1">
+                                        <div class="prodcut-price">
+                                            <div class="text-gray-100">$685,00</div>
+                                        </div>
+                                        <div class="d-none d-xl-block prodcut-add-cart">
+                                            <a href="{{url('product/detail',[$similarProduct->id])}}"
+                                                class="btn-add-cart btn-primary transition-3d-hover"><i
+                                                    class="ec ec-add-to-cart"></i></a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="product-item__footer">
-                                <div class="border-top pt-2 flex-center-between flex-wrap">
-                                    <a href="../shop/compare.html" class="text-gray-6 font-size-13"><i
-                                            class="ec ec-compare mr-1 font-size-15"></i> So sánh</a>
-                                    <a href="../shop/wishlist.html" class="text-gray-6 font-size-13"><i
-                                            class="ec ec-favorites mr-1 font-size-15"></i> Yêu thích</a>
+                                <div class="product-item__footer">
+                                    <div class="border-top pt-2 flex-center-between flex-wrap">
+                                        <a href="../shop/compare.html" class="text-gray-6 font-size-13"><i
+                                                class="ec ec-compare mr-1 font-size-15"></i> So sánh</a>
+                                        <a href="../shop/wishlist.html" class="text-gray-6 font-size-13"><i
+                                                class="ec ec-favorites mr-1 font-size-15"></i> Yêu thích</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </li>
-            @endforeach
-        </ul>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
     </div>
+    <!-- End Single Product Tab -->
+    <!-- Related products -->
+    
+    
     <!-- End Related products -->
 </main>
 
@@ -620,7 +625,7 @@
                     }
                 }else {
                     if(arr[0] != 'a' && arr[1] != 'b') {
-                        priceHtml.innerHTML = `update...`;
+                        priceHtml.innerHTML = `Update...`;
                     }
                 }
 

@@ -80,9 +80,33 @@ class AddressControll extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function edit($id)
+    {
+        $categories = Category::all();
+        $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
+        $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
+        $user = User_addresses::find($id);
+        return view('client.user_address.edit')->with(compact('categories','slider','banner','user'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, $id)
     {
-        //
+        $user = User_addresses::find($id);
+        $user ->id = $request->id;
+        $user ->completeAddress = $request->completeAddress;
+        $user ->phoneNumber = $request->phoneNumber;
+        $user ->name_address = $request->name_address;
+
+        $user->save();
+        dd($user);
+        return  $this->show($id)->with('status','Bạn đã cập nhật thành công');
     }
 
     /**

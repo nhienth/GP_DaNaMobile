@@ -21,7 +21,7 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function search()
+    public function search_product_by_cate()
     {
         $keywords = $_GET['key_cate_id'];
         $categories = Category::all();
@@ -43,7 +43,7 @@ class ProductController extends Controller
             $products = Product::with('category')->orderBy('products.product_view', 'desc')->paginate(5);
             return view('admin.products.list')->with(compact('products', 'categories'));
         } else if ($keywords == 2) {
-            $products = Product::with('category')->orderBy('products.product_view', '       asc')->paginate(5);
+            $products = Product::with('category')->orderBy('products.product_view', 'asc')->paginate(5);
             return view('admin.products.list')->with(compact('products', 'categories'));
         } else {
             $products = Product::with('category')->orderBy('products.id', 'asc')->paginate(5);
@@ -147,7 +147,7 @@ class ProductController extends Controller
         }
 
         $cateIdSeleted = $request->specification_cate;
-
+        
         $specfications = ProductSpecificationsOptions::all();
         foreach ($specfications as $specfication) {
             if ($specfication->category_id == $cateIdSeleted) {
@@ -276,15 +276,16 @@ class ProductController extends Controller
         $previews = Preview::where('product_id',$id)->get();
         $slider = Slider::first()->orderBy('slider.created_at', 'DESC')->paginate(1);
         $banner = Banner::first()->orderBy('banner.created_at', 'DESC')->paginate(1);
-        $product = Product::with(['category', 'variations', 'variation_value', 'combinations', 'images', 'specfications'])
-            ->where('products.id', $id)->first();
+        $product = Product::with(['category', 'variations', 'variation_value', 'combinations', 'images', 'specfications'])->where('products.id', $id)->first();
 
         $similarProducts = Product::with(['category'])
             ->where('products.category_id', $product->category_id)
             ->where('products.id', '!=', $id)
             ->take(6)
             ->get();
-
+        // $similarProducts = Product::
+        // take(6)
+        // ->get();
         $minPrice = $product->combinations{0}->price;
         $maxPrice = $product->combinations{0}->price;
 

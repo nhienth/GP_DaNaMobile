@@ -35,12 +35,11 @@
                         <div class="row">
                             <div class="col-md-4 user_role">
                                 <label class="form-label" for="UserRole">Tìm kiếm theo danh mục</label>
-                                <form action="{{ route('search') }}" method="GET">
+                                <form action="{{route('search_product_by_cate')}}" method="GET">
                                     @csrf
                                     <select name="key_cate_id" class="form-select text-capitalize mb-md-0 mb-2"
                                         id="cate" onchange="this.form.submit()" class="sorting">
-                                        <option value="0">Danh mục</option>
-                                        <option value="0">Tất cả sản phẩm</option>
+                                        <option value="0">Tất cả danh mục</option>
 
                                         @foreach ($categories as $category)
                                         <option data-id="{{ $category->id }}" value="{{ $category->id }}">
@@ -55,7 +54,7 @@
                             </div>
                             <div class="col-md-4 user_plan">
                                 <label class="form-label" for="UserPlan">Lượt xem</label>
-                                <form action="{{route('filter_view')}}" method="get">
+                                <form action="{{route('filter_view_product')}}" method="get">
                                     @csrf
                                     <select id="view" name="view_selected"
                                         class="form-select text-capitalize mb-md-0 mb-2" onchange="this.form.submit()">
@@ -67,7 +66,7 @@
                             </div>
                             <div class="col-md-4 user_status">
                                 <label class="form-label" for="FilterTransaction">Trạng thái</label>
-                                <form action="{{route('filter_status')}}" method="get">
+                                <form action="{{route('filter_status_product')}}" method="get">
                                     <select name="status_selected" id="status"
                                         class="form-select text-capitalize mb-md-0 mb-2xx"
                                         onchange="this.form.submit()">
