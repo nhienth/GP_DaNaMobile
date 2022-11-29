@@ -82,6 +82,7 @@ Route::prefix('/')->group(function () {
         Route::get('/detail/{id}',[PreviewController::class,'productReview']);
         Route::post('/preview/{id}',[PreviewController::class,'preview'])->name('preview');
         Route::get('/rate/{id}',[PreviewController::class,'reviewRate']);
+        Route::get('/search',[ProductController::class,'searchProduct']);
 
     });
 
@@ -212,6 +213,11 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
             Route::get('/update/{id}', [SpecificationController::class, 'edit'])->name('specification.edit');
             Route::post('/update/{id}', [SpecificationController::class, 'update'])->name('specification.edit_process');
             Route::get('/delete/{id}', [SpecificationController::class, 'destroy']);
+
+            Route::get('/search', [SpecificationController::class, 'search'])->name('search_spe');
+            Route::get('/spe_name', [SpecificationController::class, 'name'])->name('spe_name');
+            Route::get('/search_specate', [SpecificationController::class, 'category'])->name('category');
+
         });
 
         Route::prefix('/variation_main')->group(function () {
@@ -275,6 +281,10 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
         Route::prefix('/stocks')->group(function () {
             Route::get('/list', [StocksController::class, 'index']);
             Route::get('/stock_detail/{id}', [StocksController::class, 'show']);
+            Route::get('/search', [StocksController::class, 'search'])->name('search_stock');
+            Route::get('/stock_name', [StocksController::class, 'name'])->name('stock_name');
+            Route::get('/price', [StocksController::class, 'price'])->name('price');
+
         });
 
         Route::prefix('/slider')->group(function () {

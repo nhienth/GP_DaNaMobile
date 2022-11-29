@@ -235,12 +235,12 @@
                         <li class="mb-4">
                             <div class="row">
                                 <div class="col-auto">
-                                    <a href="../shop/single-product-fullwidth.html" class="d-block width-75">
+                                    <a href="{{url('product/detail', [$product->id])}}" class="d-block width-75">
                                         <img class="img-fluid" src="{{asset('images/products/'.$product->product_img)}}" alt="Image Description">
                                     </a>
                                 </div>
                                 <div class="col">
-                                    <h3 class="text-lh-1dot2 font-size-14 mb-0"><a href="../shop/single-product-fullwidth.html">{{$product->product_name}}</a></h3>
+                                    <h3 class="text-lh-1dot2 font-size-14 mb-0"><a href="{{url('product/detail', [$product->id])}}">{{$product->product_name}}</a></h3>
                                     <div class="text-warning text-ls-n2 font-size-16 mb-1" style="width: 80px;">
                                         <small class="fas fa-star"></small>
                                         <small class="fas fa-star"></small>
@@ -306,23 +306,23 @@
                                         <div class="product-item__outer h-100">
                                             <div class="product-item__inner px-wd-4 p-2 p-md-3">
                                                 <div class="product-item__body pb-xl-2">
-                                                    <div class="mb-2"><a href="../shop/product-categories-7-column-full-width.html" class="font-size-12 text-gray-5">{{$product->category->category_name}}</a></div>
-                                                    <h5 class="mb-1 product-item__title"><a href="../shop/single-product-fullwidth.html" class="text-blue font-weight-bold">{{$product->product_name}}</a></h5>
+                                                    <div class="mb-2"><a href="{{url('product/detail', [$product->id])}}" class="font-size-12 text-gray-5">{{$product->category->category_name}}</a></div>
+                                                    <h5 class="mb-1 product-item__title"><a href="{{url('product/detail', [$product->id])}}" class="text-blue font-weight-bold">{{$product->product_name}}</a></h5>
                                                     <div class="mb-2">
-                                                        <a href="../shop/single-product-fullwidth.html" class="d-block text-center"><img class="img-fluid" src="{{asset('images/products/'.$product->product_img)}}" alt="Image Description"></a>
+                                                        <a href="{{url('product/detail', [$product->id])}}" class="d-block text-center"><img class="img-fluid" src="{{asset('images/products/'.$product->product_img)}}" alt="Image Description"></a>
                                                     </div>
                                                     <div class="flex-center-between mb-1">
                                                         <div class="prodcut-price">
                                                             <div class="text-gray-100">${{$product->minPrice}}</div>
                                                         </div>
                                                         <div class="d-none d-xl-block prodcut-add-cart">
-                                                            <a href="../shop/single-product-fullwidth.html" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>
+                                                            <a href="{{url('product/detail', [$product->id])}}" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="product-item__footer">
                                                     <div class="border-top pt-2 flex-center-between flex-wrap">
-                                                        <a href="../shop/compare.html" class="text-gray-6 font-size-13"><i class="ec ec-compare mr-1 font-size-15"></i> So sánh</a>
+                                                        <a href="" class="text-gray-6 font-size-13"><i class="ec ec-compare mr-1 font-size-15"></i> So sánh</a>
                                                         <a href="../shop/wishlist.html" class="text-gray-6 font-size-13"><i class="ec ec-favorites mr-1 font-size-15"></i> Yêu thích</a>
                                                     </div>
                                                 </div>
@@ -439,10 +439,10 @@
                                 <div class="product-item__outer h-100">
                                     <div class="product-item__inner px-xl-4 p-3">
                                         <div class="product-item__body pb-xl-2">
-                                            <div class="mb-2"><a href="../shop/product-categories-7-column-full-width.html" class="font-size-12 text-gray-5">{{$product->category->category_name}}</a></div>
-                                            <h5 class="mb-1 product-item__title"><a href="" class="text-blue font-weight-bold">{{$product->product_name}}</a></h5>
+                                            <div class="mb-2"><a href="{{url('product/byCate', [$product->category_id])}}" class="font-size-12 text-gray-5">{{$product->category->category_name}}</a></div>
+                                            <h5 class="mb-1 product-item__title"><a href="{{url('product/detail', [$product->id])}}" class="text-blue font-weight-bold">{{$product->product_name}}</a></h5>
                                             <div class="mb-2">
-                                                <a href="" class="d-block text-center"><img class="img-fluid" src="{{asset('images/products/'.$product->product_img)}}" alt="Image Description"></a>
+                                                <a href="{{url('product/detail', [$product->id])}}" class="d-block text-center"><img class="img-fluid" src="{{asset('images/products/'.$product->product_img)}}" alt="Image Description"></a>
                                             </div>
                                             <div class="flex-center-between mb-1">
                                                 <div class="prodcut-price">
@@ -455,8 +455,8 @@
                                         </div>
                                         <div class="product-item__footer">
                                             <div class="border-top pt-2 flex-center-between flex-wrap">
-                                                <a href="../shop/compare.html" class="text-gray-6 font-size-13"><i class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
-                                                <a href="../shop/wishlist.html" class="text-gray-6 font-size-13"><i class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
+                                                <a href="" class="text-gray-6 font-size-13"><i class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
+                                                <a href="" class="text-gray-6 font-size-13"><i class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
                                             </div>
                                         </div>
                                     </div>
@@ -475,10 +475,10 @@
                                 <div class="product-item__outer h-100">
                                     <div class="product-item__inner px-xl-4 p-3">
                                         <div class="product-item__body pb-xl-2">
-                                            <div class="mb-2"><a href="../shop/product-categories-7-column-full-width.html" class="font-size-12 text-gray-5">{{$product->category->category_name}}</a></div>
-                                            <h5 class="mb-1 product-item__title"><a href="../shop/single-product-fullwidth.html" class="text-blue font-weight-bold">{{$product->product_name}}</a></h5>
+                                            <div class="mb-2"><a href="{{url('product/byCate', [$product->category_id])}}" class="font-size-12 text-gray-5">{{$product->category->category_name}}</a></div>
+                                            <h5 class="mb-1 product-item__title"><a href="{{url('product/detail', [$product->id])}}" class="text-blue font-weight-bold">{{$product->product_name}}</a></h5>
                                             <div class="mb-2">
-                                                <a href="../shop/single-product-fullwidth.html" class="d-block text-center"><img class="img-fluid" src="{{asset('images/products/'.$product->product_img)}}" alt="Image Description"></a>
+                                                <a href="{{url('product/detail', [$product->id])}}" class="d-block text-center"><img class="img-fluid" src="{{asset('images/products/'.$product->product_img)}}" alt="Image Description"></a>
                                             </div>
                                             <div class="mb-3">
                                                 <a class="d-inline-flex align-items-center small font-size-14" href="#">
@@ -503,14 +503,14 @@
                                                     <div class="text-gray-100">${{$product->minPrice}}</div>
                                                 </div>
                                                 <div class="d-none d-xl-block prodcut-add-cart">
-                                                    <a href="../shop/single-product-fullwidth.html" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>
+                                                    <a href="{{url('product/detail', [$product->id])}}" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="product-item__footer">
                                             <div class="border-top pt-2 flex-center-between flex-wrap">
-                                                <a href="../shop/compare.html" class="text-gray-6 font-size-13"><i class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
-                                                <a href="../shop/wishlist.html" class="text-gray-6 font-size-13"><i class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
+                                                <a href="" class="text-gray-6 font-size-13"><i class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
+                                                <a href="" class="text-gray-6 font-size-13"><i class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
                                             </div>
                                         </div>
                                     </div>
@@ -532,13 +532,13 @@
                                     <div class="product-item__inner remove-prodcut-hover py-4 row">
                                         <div class="product-item__header col-6 col-md-4">
                                             <div class="mb-2">
-                                                <a href="../shop/single-product-fullwidth.html" class="d-block text-center"><img class="img-fluid" src="{{asset('images/products/'.$product->product_img)}}" alt="Image Description"></a>
+                                                <a href="{{url('product/detail', [$product->id])}}" class="d-block text-center"><img class="img-fluid" src="{{asset('images/products/'.$product->product_img)}}" alt="Image Description"></a>
                                             </div>
                                         </div>
                                         <div class="product-item__body col-6 col-md-5">
                                             <div class="pr-lg-10">
-                                                <div class="mb-2"><a href="../shop/product-categories-7-column-full-width.html" class="font-size-12 text-gray-5">{{$product->category->category_name}}</a></div>
-                                                <h5 class="mb-2 product-item__title"><a href="../shop/single-product-fullwidth.html" class="text-blue font-weight-bold">{{$product->product_name}}</a></h5>
+                                                <div class="mb-2"><a href="{{url('product/byCate', [$product->category_id])}}" class="font-size-12 text-gray-5">{{$product->category->category_name}}</a></div>
+                                                <h5 class="mb-2 product-item__title"><a href="{{url('product/detail', [$product->id])}}" class="text-blue font-weight-bold">{{$product->product_name}}</a></h5>
                                                 <div class="prodcut-price mb-2 d-md-none">
                                                     <div class="text-gray-100">${{$product->minPrice}}</div>
                                                 </div>
@@ -567,7 +567,7 @@
                                                     <div class="text-gray-100">${{$product->minPrice}}</div>
                                                 </div>
                                                 <div class="prodcut-add-cart">
-                                                    <a href="../shop/single-product-fullwidth.html" class="btn btn-sm btn-block btn-primary-dark btn-wide transition-3d-hover">Add to cart</a>
+                                                    <a href="{{url('product/detail', [$product->id])}}" class="btn btn-sm btn-block btn-primary-dark btn-wide transition-3d-hover">Add to cart</a>
                                                 </div>
                                             </div>
                                             <div class="flex-horizontal-center justify-content-between justify-content-wd-center flex-wrap">
@@ -590,13 +590,13 @@
                                     <div class="product-item__inner remove-prodcut-hover py-4 row">
                                         <div class="product-item__header col-6 col-md-2">
                                             <div class="mb-2">
-                                                <a href="../shop/single-product-fullwidth.html" class="d-block text-center"><img class="img-fluid" src="{{asset('images/products/'.$product->product_img)}}" alt="Image Description"></a>
+                                                <a href="{{url('product/detail', [$product->id])}}" class="d-block text-center"><img class="img-fluid" src="{{asset('images/products/'.$product->product_img)}}" alt="Image Description"></a>
                                             </div>
                                         </div>
                                         <div class="product-item__body col-6 col-md-7">
                                             <div class="pr-lg-10">
-                                                <div class="mb-2"><a href="../shop/product-categories-7-column-full-width.html" class="font-size-12 text-gray-5">{{$product->category->category_name}}</a></div>
-                                                <h5 class="mb-2 product-item__title"><a href="../shop/single-product-fullwidth.html" class="text-blue font-weight-bold">{{$product->product_name}}</a></h5>
+                                                <div class="mb-2"><a href="{{url('product/byCate', [$product->category_id])}}" class="font-size-12 text-gray-5">{{$product->category->category_name}}</a></div>
+                                                <h5 class="mb-2 product-item__title"><a href="{{url('product/detail', [$product->id])}}" class="text-blue font-weight-bold">{{$product->product_name}}</a></h5>
                                                 <div class="prodcut-price d-md-none">
                                                     <div class="text-gray-100">${{$product->minPrice}}</div>
                                                 </div>
@@ -625,7 +625,7 @@
                                                     <div class="text-gray-100">${{$product->minPrice}}</div>
                                                 </div>
                                                 <div class="prodcut-add-cart">
-                                                    <a href="../shop/single-product-fullwidth.html" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>
+                                                    <a href="{{url('product/detail', [$product->id])}}" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>
                                                 </div>
                                             </div>
                                             <div class="flex-horizontal-center justify-content-between justify-content-wd-center flex-wrap border-top pt-3">
