@@ -40,7 +40,6 @@
                                     <select name="key_cate_id" class="form-select text-capitalize mb-md-0 mb-2"
                                         id="cate" onchange="this.form.submit()" class="sorting">
                                         <option value="0">Tất cả danh mục</option>
-
                                         @foreach ($categories as $category)
                                         <option data-id="{{ $category->id }}" value="{{ $category->id }}">
                                             {{ $category->category_name }}</option>

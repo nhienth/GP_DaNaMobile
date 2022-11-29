@@ -106,8 +106,8 @@
                                 {{-- <ins class="font-size-36 text-decoration-none">$1,999.00</ins>
                                 <del class="font-size-20 ml-2 text-gray-6">$2,299.00</del> --}}
                                 <span id="price_product" data-price="{{$product->minprice}} - {{$product->maxprice}}"
-                                    class="font-size-36 text-decoration-none">{{$product->minprice}} -
-                                    {{$product->maxprice}}</span>
+                                    class="font-size-36 text-decoration-none">{{number_format($product->minprice)}}đ -
+                                    {{number_format($product->maxprice)}}đ</span>
                             </div>
                         </div>
 
@@ -161,13 +161,6 @@
 
                                 </div>
                             </div>
-                            {{-- <div class="flex-horizontal-center flex-wrap mb-4">
-                                <a href="#" class="text-gray-6 font-size-13 mr-2"><i
-                                        class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
-                                <a href="{{url('compare/add/'.$productCombi->id)}}"
-                                    class="text-gray-6 font-size-13 ml-2" id="addCompare"><i
-                                        class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
-                            </div> --}}
                         </div>
                         <form id="addtocart1" action="{{url('cart/add/'.$productCombi->id)}}" method="get">
                         <div class="d-md-flex align-items-end mb-3">
@@ -608,7 +601,7 @@
                     let pro = Array.from(productsCombination).find(pro => pro.value.trim() == variSeleted);
                  
                     if (variSeleted == pro.value.trim()) {
-                        priceHtml.innerHTML = `$${pro.nextElementSibling.value}`;
+                        priceHtml.innerHTML = `${Intl.NumberFormat('en-IN').format(pro.nextElementSibling.value)}đ`;
                         let combiId = pro.parentElement.lastElementChild.value;
                         addCartForm.action=`http://127.0.0.1:8000/cart/add/${combiId}`;
                         addCartButton.href=`http://127.0.0.1:8000/cart/add/${combiId}`;
@@ -625,7 +618,7 @@
                     }
                 }else {
                     if(arr[0] != 'a' && arr[1] != 'b') {
-                        priceHtml.innerHTML = `Update...`;
+                        priceHtml.innerHTML = `<h4>Đang cập nhật...</h4>`;
                     }
                 }
 
@@ -633,18 +626,6 @@
         });
     
     }, 2000);
-    // const plus = document.querySelector('.js-plus')
-    //                 const minus = document.querySelector('.js-minus')
-
-    //                 plus.addEventListener('click', () => {
-    //                     const newQuantity = (quantity.value || 0) + 1
-    //                     quantity.value = newQuantity
-    //                 })
-
-    //                 minus.addEventListener('click', () => {
-    //                     const newQuantity = (quantity.value || 0) - 1
-    //                     quantity.value = newQuantity
-    //                 })
 
     jQuery(document).ready(function($){   
           var resultVal = parseInt($('.js-result').val()); 

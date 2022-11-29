@@ -46,23 +46,17 @@
                                         </select>
                                     </form>
                                 </div>
-                                <div class="col-md-4 user_plan">
-                                    <div class="col-md-4 user_role">
-                                        <label class="form-label" for="UserRole">Danh mục</label>
-                                        <form action="{{ route('spe_name') }}" method="GET">
-                                            @csrf
-                                            <select name="category" class="form-select text-capitalize mb-md-0 mb-2"
-                                                id="category" onchange="this.form.submit()" class="sorting">
-                                                <option value="0"> Tất cả </option>
-                                                <option value="1" class="text-capitalize"></option>
-                                                <option value="2" class="text-capitalize">Từ Z đến A</option>
-                                            </select>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 user_status">
-                                    <label class="form-label" for="FilterTransaction">Trạng thái</label>
-                                    <select id="FilterTransaction" class="form-select text-capitalize mb-md-0 mb-2xx"><option value=""> Select Status </option></select>
+                                
+                                <div class="col-md-4 user_role">
+                                    <label class="form-label" for="UserRole">Danh mục</label>
+                                    <form action="{{ route('category') }}" method="GET">
+                                        @csrf
+                                        <select name="category" class="form-select text-capitalize mb-md-0 mb-2"
+                                            id="category" onchange="this.form.submit()" class="sorting">
+                                            <option value="0"> Tất cả </option>
+                                            {!! $categorySelect !!}
+                                        </select>
+                                    </form>
                                 </div>
                             </div>
                         </div>
