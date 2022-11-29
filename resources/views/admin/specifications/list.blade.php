@@ -35,15 +35,30 @@
                             <h4 class="card-title">Tìm kiếm và Lọc</h4>
                             <div class="row">
                                 <div class="col-md-4 user_role">
-                                    <label class="form-label" for="UserRole">Vai trò</label>
-                                    <select id="UserRole" class="form-select text-capitalize mb-md-0 mb-2">
-                                        <option value=""> Select Role </option>
-                                        <option value="' + d + '" class="text-capitalize">' + d + '</option>
-                                    </select>
+                                    <label class="form-label" for="UserRole">Tên</label>
+                                    <form action="{{ route('spe_name') }}" method="GET">
+                                        @csrf
+                                        <select name="name" class="form-select text-capitalize mb-md-0 mb-2"
+                                            id="name" onchange="this.form.submit()" class="sorting">
+                                            <option value="0"> Tất cả </option>
+                                            <option value="1" class="text-capitalize">Từ A đến Z</option>
+                                            <option value="2" class="text-capitalize">Từ Z đến A</option>
+                                        </select>
+                                    </form>
                                 </div>
                                 <div class="col-md-4 user_plan">
-                                    <label class="form-label" for="UserPlan">Kế hoạch</label>
-                                    <select id="UserPlan" class="form-select text-capitalize mb-md-0 mb-2"><option value=""> Select Plan </option></select>
+                                    <div class="col-md-4 user_role">
+                                        <label class="form-label" for="UserRole">Danh mục</label>
+                                        <form action="{{ route('spe_name') }}" method="GET">
+                                            @csrf
+                                            <select name="category" class="form-select text-capitalize mb-md-0 mb-2"
+                                                id="category" onchange="this.form.submit()" class="sorting">
+                                                <option value="0"> Tất cả </option>
+                                                <option value="1" class="text-capitalize"></option>
+                                                <option value="2" class="text-capitalize">Từ Z đến A</option>
+                                            </select>
+                                        </form>
+                                    </div>
                                 </div>
                                 <div class="col-md-4 user_status">
                                     <label class="form-label" for="FilterTransaction">Trạng thái</label>
@@ -71,25 +86,22 @@
                                     <div class="col-sm-12 col-lg-8 ps-xl-75 ps-0">
                                         <div class="dt-action-buttons d-flex align-items-center justify-content-center justify-content-lg-end flex-lg-nowrap flex-wrap">
                                             <div class="me-1">
+                                                <form action="{{route('search_spe')}}" method="get">
                                                 <div id="DataTables_Table_0_filter" class="dataTables_filter">
                                                     <label>
                                                         Tìm kiếm: 
-                                                        <input type="search" class="form-control" placeholder aria-controls="DataTables_Table_0">
+                                                        <input type="text" class="form-control" placeholder aria-controls="DataTables_Table_0" name="key_search">
                                                     </label>
+                                                    <div class="dt-buttons d-inline-flex mt-50">
+                                                        <button class="dt-button buttons-collection btn btn-outline-secondary me-2" 
+                                                        tabindex="0" aria-controls="DataTables_Table_0" type="submit" aria-haspopup="true">Tìm kiếm</button>
+                                                    </div>
                                                 </div>
+                                                </form>
                                             </div>
                                             <div class="dt-buttons d-inline-flex mt-50">
-                                                <button class="dt-button buttons-collection btn btn-outline-secondary dropdown-toggle me-2" 
-                                                tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="true">Xuất</button>
-                                                {{-- <div class="dt-button-collection" style="top: 148.625px; left: 889.488px;">
-                                                    <div role="menu">
-                                                        <button class="dt-button buttons-print dropdown-item" tabindex="0" type="button">Print</button>
-                                                        <button class="dt-button buttons-print dropdown-item" tabindex="0" type="button">Print</button>
-                                                        <button class="dt-button buttons-print dropdown-item" tabindex="0" type="button">Print</button>
-                                                    </div>
-                                                </div> --}}
-                                                <a href="{{url('admin/specification/create')}}"><button type="button" class="dt-button add-new btn btn-primary" tabindex="0" data-bs-target="#modals-slide-in" aria-controls="DataTables_Table_0">
-                                                    <span>Thêm Thông số mới</span>
+                                                <a href="{{url('admin/specification/create')}}" style="color:white;"><button type="button" class="dt-button add-new btn btn-primary" tabindex="0" data-bs-target="#modals-slide-in" aria-controls="DataTables_Table_0">
+                                                    Thêm Thông số mới
                                                 </button></a>
                                             </div>
                                         </div>
