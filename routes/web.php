@@ -24,6 +24,7 @@ use App\Http\Controllers\OrderDetailsController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SpecificationController;
 use App\Http\Controllers\PostReviewController;
+use App\Http\Controllers\CheckoutController;
 
 
 /*
@@ -121,9 +122,8 @@ Route::prefix('/')->group(function () {
     
     
 
-    Route::get('/checkout', function () {
-        return view('client.shop.checkout');
-    });
+    Route::get('/checkout', [CheckoutController::class,'index']);
+    Route::post('/done', [CheckoutController::class,'store'])->name('done');
 });
 
 
