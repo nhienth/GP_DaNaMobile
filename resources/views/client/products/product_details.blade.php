@@ -80,7 +80,8 @@
 
                             <div class="d-md-flex align-items-center">
                                 <a href="#" class="max-width-150 ml-n2 mb-2 mb-md-0 d-block"><img class="img-fluid"
-                                        src="{{asset('client/assets/img/200X60/img1.png')}}"
+                                        src="{{asset('images/categories/'.$product->category->category_image)}}"
+                                        width="80px"
                                         alt="Image Description"></a>
                                 <div class="ml-md-3 text-gray-9 font-size-14">Số lượng trong kho: <span
                                         class="text-green font-weight-bold">26 in stock</span></div>
@@ -92,13 +93,7 @@
                             <a href="" id="addCompare" class="text-blue font-size-13 ml-2" >
                                 <i class="ec ec-compare mr-1 font-size-15"></i> So sánh</a>
                         </div>
-                        <div class="mb-2">
-                            <ul class="font-size-14 pl-3 ml-1 text-gray-110">
-                                @foreach ($product->specfications as $productSpec)
-                                <li>{{$product->specification_name}} : {{$product->specification_value}}</li>
-                                @endforeach
-                            </ul>
-                        </div>
+                
 
                         <p><strong>SKU</strong>: FW511948218</p>
                         <div class="mb-4">

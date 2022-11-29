@@ -148,9 +148,7 @@
         // console.log(element.getAttribute('data-parent'));
     let slt =  valueOption.options[valueOption.selectedIndex];
     let idValue = slt.id;
-    console.log(idValue);
-    document.getElementById('specification_cate').value = valueOption.value;
-    console.log([valueOption]);
+    document.getElementById('specification_cate').value = idValue;
     specList.forEach((spec) => {
         let isSpecSeleted = spec.className.includes("show-" + idValue); 
         spec.style.display = isSpecSeleted ? "block" : "none";

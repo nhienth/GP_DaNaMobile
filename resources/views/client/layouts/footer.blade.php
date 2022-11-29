@@ -161,17 +161,17 @@ $random = [];
                                 @auth
 
                                     <li><a class="list-group-item list-group-item-action" href="http://127.0.0.1:8000/user/{{ Auth::user()->id }}">Tài khoản của tôi</a></li>
-                                
+                                    <li><a class="list-group-item list-group-item-action" href="{{url('listWishList')}}">Sản
+                                        phẩm yêu thích</a></li>
                                     @else
 
-                                    <li><a class="list-group-item list-group-item-action" href="{{ route('login') }}">Tài khoản của tôi</a></li>
+                                    <li><a class="list-group-item list-group-item-action" href="{{ route('login') }}">Đăng nhập</a></li>
                                 
                                     @endauth
                                 @endif
                                 <li><a class="list-group-item list-group-item-action"
-                                        href="../shop/track-your-order.html">Giỏ hàng</a></li>
-                                <li><a class="list-group-item list-group-item-action" href="../shop/wishlist.html">Sản
-                                        phẩm yêu thích</a></li>
+                                        href="{{url('/cart/')}}">Giỏ hàng</a></li>
+                                
                                 <li><a class="list-group-item list-group-item-action"
                                         href="http://127.0.0.1:8000/contact">Dịch vụ khách hàng</a></li>
                                 <li><a class="list-group-item list-group-item-action"
