@@ -12,9 +12,9 @@
                         <h2 class="content-header-title float-start mb-0">Quản lý Thông số</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Quản trị</a>
+                                <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/admin/">Quản trị</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="#">Thông số</a>
+                                <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/admin/specification/list">Thông số</a>
                                 </li>
                                 <li class="breadcrumb-item active">Nhập Thông số
                                 </li>

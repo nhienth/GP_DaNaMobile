@@ -60,8 +60,8 @@ $(window).on('load', function () {
   // On load Toast
   setTimeout(function () {
     toastr['success'](
-      'You have successfully logged in to Vuexy. Now you can start to explore!',
-      '👋 Welcome John Doe!',
+      'Bạn đã đăng nhập thành công vào trang quản trị DaNa Mobile. Bây giờ bạn có thể bắt đầu khám phá!',
+      '👋 Chào mừng Quản trị viên!',
       {
         closeButton: true,
         tapToDismiss: false,

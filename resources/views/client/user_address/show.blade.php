@@ -164,7 +164,7 @@
         <div class="row">
             @foreach ($users as $user)
                 <div class="form-group col-md-8">
-                    <p>Địa chỉ E-mail: 
+                    <p>Địa chỉ: 
                         (
                             <?php
                                 if($user["name_address"]==1){
@@ -176,11 +176,11 @@
                         )
                         <span class="text-danger">*</span>
                     </p>
-                    <input type="email" name="" id="" data-rule="" value="{{ $user -> completeAddress }}" disabled/>
+                    <input type="text" name="" id="" data-rule="" value="{{ $user -> completeAddress }}" disabled/>
                 </div>
-                <div class="col-md-2">
+                {{-- <div class="col-md-2">
                     <a href="{{url('/user/updateaddress',[$user->user_id])}}"><button type="button" class="btn btn-outline-primary">Chỉnh sửa</button></a>
-                </div>
+                </div> --}}
 
                 <div class="col-md-2">
                     <a href="{{url('/user/delete',[$user->id])}}"><button type="button" class="btn btn-outline-primary">Xóa</button></a>

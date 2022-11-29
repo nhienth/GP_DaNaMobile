@@ -38,9 +38,9 @@ class ContactController extends Controller
     {
         $categories = Category::all();
         $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
-        $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
+        $bannerlist = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
         $user = User::first();
-        return view('client.contact.index')->with(compact('categories','slider','banner','user'));
+        return view('client.contact.index')->with(compact('categories','slider','bannerlist','user'));
     }
 
     /**

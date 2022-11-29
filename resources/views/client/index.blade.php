@@ -23,7 +23,7 @@ use App\Models\Product;
                                 <br>
                                 <div class="mb-4" data-scs-animation-in="fadeInUp" data-scs-animation-delay="300">
                                     <div class="font-size-50 font-weight-bold text-lh-45">
-                                        <sup class="">{{$products->minprice}}$ - {{$products->maxprice}}$</sup>
+                                        <sup class="">{{number_format($products->minprice)}}đ - {{number_format($products->maxprice)}}đ</sup>
                                     </div>
                                 </div>
                                 <a href="{{url('product/detail',[$products->id])}}"
@@ -85,31 +85,30 @@ use App\Models\Product;
             <div class="row">
                 <!-- Deal -->
                 <div class="col-md-auto mb-6 mb-md-0">
-                    <div class="p-3 border border-width-2 border-primary borders-radius-20 bg-white min-width-370">
+                    <div class="p-3 border border-width-2 border-primary borders-radius-20 bg-white min-width-370" >
                         <div class="d-flex justify-content-between align-items-center m-1 ml-2">
-                            <h3 class="font-size-22 mb-0 font-weight-normal text-lh-28 max-width-120">Special Offer</h3>
+                            <h3 class="font-size-22 mb-0 font-weight-normal text-lh-28 max-width-120" style="color: black">Khuyến mãi đặc biệt</h3>
                             <div
                                 class="d-flex align-items-center flex-column justify-content-center bg-primary rounded-pill height-75 width-75 text-lh-1">
-                                <span class="font-size-12">Save</span>
-                                <div class="font-size-20 font-weight-bold">$120</div>
+                                <span class="font-size-12">Khuyến mãi</span>
+                                <div class="font-size-20 font-weight-bold">17%</div>
                             </div>
                         </div>
                         <div class="mb-4">
                             <a href="../shop/single-product-fullwidth.html" class="d-block text-center"><img
-                                    class="img-fluid" src="{{asset('client/assets/img/320X300/img1.jpg')}}"
+                                    class="img-fluid" src="{{asset('images/products/iphone-13-pro-xanh-xa-1.jpg')}}" width="300px"
                                     alt="Image Description"></a>
                         </div>
                         <h5 class="mb-2 font-size-14 text-center mx-auto max-width-180 text-lh-18"><a
-                                href="../shop/single-product-fullwidth.html" class="text-blue font-weight-bold">Game
-                                Console Controller + USB 3.0 Cable</a></h5>
+                                href="../shop/single-product-fullwidth.html" class="text-blue font-weight-bold">Iphone</a></h5>
                         <div class="d-flex align-items-center justify-content-center mb-3">
-                            <del class="font-size-18 mr-2 text-gray-2">$99,00</del>
-                            <ins class="font-size-30 text-red text-decoration-none">$79,00</ins>
+                            <del class="font-size-18 mr-2 text-gray-2">36,990,000đ</del>
+                            <ins class="font-size-30 text-red text-decoration-none">30,490,000đ</ins>
                         </div>
                         <div class="mb-3 mx-2">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <span class="">Availavle: <strong>6</strong></span>
-                                <span class="">Already Sold: <strong>28</strong></span>
+                            <div class="d-flex justify-content-between align-items-center mb-2" style="color: black">
+                                <span class="">Sẵn có: <strong>88</strong></span>
+                                <span class="">Đã bán: <strong>511</strong></span>
                             </div>
                             <div class="rounded-pill bg-gray-3 height-20 position-relative">
                                 <span
@@ -117,28 +116,28 @@ use App\Models\Product;
                             </div>
                         </div>
                         <div class="mb-2">
-                            <h6 class="font-size-15 text-gray-2 text-center mb-3">Hurry Up! Offer ends in:</h6>
-                            <div class="js-countdown d-flex justify-content-center" data-end-date="2020/11/30"
+                            <h6 class="font-size-15 text-gray-2 text-center mb-3">Nhanh lên! Thời gian còn lại:</h6>
+                            <div class="js-countdown d-flex justify-content-center" data-end-date="2022/11/30"
                                 data-hours-format="%H" data-minutes-format="%M" data-seconds-format="%S">
                                 <div class="text-lh-1">
                                     <div class="text-gray-2 font-size-30 bg-gray-4 py-2 px-2 rounded-sm mb-2">
                                         <span class="js-cd-hours"></span>
                                     </div>
-                                    <div class="text-gray-2 font-size-12 text-center">HOURS</div>
+                                    <div class="text-gray-2 font-size-12 text-center">GIỜ</div>
                                 </div>
                                 <div class="mx-1 pt-1 text-gray-2 font-size-24">:</div>
                                 <div class="text-lh-1">
                                     <div class="text-gray-2 font-size-30 bg-gray-4 py-2 px-2 rounded-sm mb-2">
                                         <span class="js-cd-minutes"></span>
                                     </div>
-                                    <div class="text-gray-2 font-size-12 text-center">MINS</div>
+                                    <div class="text-gray-2 font-size-12 text-center">PHÚT</div>
                                 </div>
                                 <div class="mx-1 pt-1 text-gray-2 font-size-24">:</div>
                                 <div class="text-lh-1">
                                     <div class="text-gray-2 font-size-30 bg-gray-4 py-2 px-2 rounded-sm mb-2">
                                         <span class="js-cd-seconds"></span>
                                     </div>
-                                    <div class="text-gray-2 font-size-12 text-center">SECS</div>
+                                    <div class="text-gray-2 font-size-12 text-center">GIÂY</div>
                                 </div>
                             </div>
                         </div>
@@ -210,7 +209,7 @@ use App\Models\Product;
                                                     </div>
                                                     <div class="flex-center-between mb-1">
                                                         <div class="prodcut-price">
-                                                            <div class="text-gray-100">{{$productsss->minprice}} đ</div>
+                                                            <div class="text-gray-100">{{number_format($productsss->minprice)}} đ</div>
                                                         </div>
                                                         <div class="d-none d-xl-block prodcut-add-cart">
                                                             <a href="{{url('product/detail',[$productsss->id])}}"
@@ -267,16 +266,6 @@ use App\Models\Product;
                                                         </div>
                                                     </div>
                                                 </div>
-                                                {{-- <div class="product-item__footer">
-                                                    <div class="border-top pt-2 flex-center-between flex-wrap">
-                                                        <a href="../shop/compare.html"
-                                                            class="text-gray-6 font-size-13"><i
-                                                                class="ec ec-compare mr-1 font-size-15"></i> So sánh</a>
-                                                        <a href="../shop/wishlist.html"
-                                                            class="text-gray-6 font-size-13"><i
-                                                                class="ec ec-favorites mr-1 font-size-15"></i> Yêu thích</a>
-                                                    </div>
-                                                </div> --}}
                                             </div>
                                         </div>
                                     </li>
@@ -306,7 +295,7 @@ use App\Models\Product;
                                                     </div>
                                                     <div class="flex-center-between mb-1">
                                                         <div class="prodcut-price">
-                                                            <div class="text-gray-100">$685,00</div>
+                                                            <div class="text-gray-100">10,490,000đ</div>
                                                         </div>
                                                         <div class="d-none d-xl-block prodcut-add-cart">
                                                             <a href="../shop/single-product-fullwidth.html"
@@ -315,17 +304,6 @@ use App\Models\Product;
                                                         </div>
                                                     </div>
                                                 </div>
-                                                {{-- <div class="product-item__footer">
-                                                    <div class="border-top pt-2 flex-center-between flex-wrap">
-                                                        <a href="../shop/compare.html"
-                                                            class="text-gray-6 font-size-13"><i
-                                                                class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
-                                                        <a href="../shop/wishlist.html"
-                                                            class="text-gray-6 font-size-13"><i
-                                                                class="ec ec-favorites mr-1 font-size-15"></i> Add to
-                                                            Wishlist</a>
-                                                    </div>
-                                                </div> --}}
                                             </div>
                                         </div>
                                     </li>
@@ -348,7 +326,7 @@ use App\Models\Product;
                                                     </div>
                                                     <div class="flex-center-between mb-1">
                                                         <div class="prodcut-price">
-                                                            <div class="text-gray-100">$685,00</div>
+                                                            <div class="text-gray-100">10,490,000đ</div>
                                                         </div>
                                                         <div class="d-none d-xl-block prodcut-add-cart">
                                                             <a href="../shop/single-product-fullwidth.html"
@@ -390,7 +368,7 @@ use App\Models\Product;
                                                     </div>
                                                     <div class="flex-center-between mb-1">
                                                         <div class="prodcut-price">
-                                                            <div class="text-gray-100">$685,00</div>
+                                                            <div class="text-gray-100">10,490,000đ</div>
                                                         </div>
                                                         <div class="d-none d-xl-block prodcut-add-cart">
                                                             <a href="../shop/single-product-fullwidth.html"
@@ -432,7 +410,7 @@ use App\Models\Product;
                                                     </div>
                                                     <div class="flex-center-between mb-1">
                                                         <div class="prodcut-price">
-                                                            <div class="text-gray-100">$685,00</div>
+                                                            <div class="text-gray-100">10,490,000đ</div>
                                                         </div>
                                                         <div class="d-none d-xl-block prodcut-add-cart">
                                                             <a href="../shop/single-product-fullwidth.html"
@@ -474,7 +452,7 @@ use App\Models\Product;
                                                     </div>
                                                     <div class="flex-center-between mb-1">
                                                         <div class="prodcut-price">
-                                                            <div class="text-gray-100">$685,00</div>
+                                                            <div class="text-gray-100">10,490,000đ</div>
                                                         </div>
                                                         <div class="d-none d-xl-block prodcut-add-cart">
                                                             <a href="../shop/single-product-fullwidth.html"
@@ -516,7 +494,7 @@ use App\Models\Product;
                                                     </div>
                                                     <div class="flex-center-between mb-1">
                                                         <div class="prodcut-price">
-                                                            <div class="text-gray-100">$685,00</div>
+                                                            <div class="text-gray-100">10,490,000đ</div>
                                                         </div>
                                                         <div class="d-none d-xl-block prodcut-add-cart">
                                                             <a href="../shop/single-product-fullwidth.html"
@@ -559,7 +537,7 @@ use App\Models\Product;
                                                     </div>
                                                     <div class="flex-center-between mb-1">
                                                         <div class="prodcut-price">
-                                                            <div class="text-gray-100">$685,00</div>
+                                                            <div class="text-gray-100">10,490,000đ</div>
                                                         </div>
                                                         <div class="d-none d-xl-block prodcut-add-cart">
                                                             <a href="../shop/single-product-fullwidth.html"
@@ -602,7 +580,7 @@ use App\Models\Product;
                                                     </div>
                                                     <div class="flex-center-between mb-1">
                                                         <div class="prodcut-price">
-                                                            <div class="text-gray-100">$685,00</div>
+                                                            <div class="text-gray-100">10,490,000đ</div>
                                                         </div>
                                                         <div class="d-none d-xl-block prodcut-add-cart">
                                                             <a href="../shop/single-product-fullwidth.html"
@@ -733,22 +711,22 @@ use App\Models\Product;
                                     <div class="col col-lg-auto product-media-left">
                                         <a href="../shop/single-product-fullwidth.html"
                                             class="max-width-150 d-block"><img class="img-fluid"
-                                                src="{{asset('client/')}}assets/img/150X140/img1.jpg"
+                                                src="{{asset('images/products/samsung-galaxy-s22-ultra-1-1.jpg')}}"
                                                 alt="Image Description"></a>
                                     </div>
                                     <div class="col product-item__body pl-2 pl-lg-3 mr-xl-2 mr-wd-1">
                                         <div class="mb-4">
                                             <div class="mb-2"><a
                                                     href="../shop/product-categories-7-column-full-width.html"
-                                                    class="font-size-12 text-gray-5">Tablets</a></div>
+                                                    class="font-size-12 text-gray-5">Samsung</a></div>
                                             <h5 class="product-item__title"><a
                                                     href="../shop/single-product-fullwidth.html"
-                                                    class="text-blue font-weight-bold">Tablet Air 3 WiFi 64GB Gold</a>
+                                                    class="text-blue font-weight-bold">Samsung galaxy s22</a>
                                             </h5>
                                         </div>
                                         <div class="flex-center-between mb-3">
                                             <div class="prodcut-price">
-                                                <div class="text-gray-100">$629,00</div>
+                                                <div class="text-gray-100">30,990,000đ</div>
                                             </div>
                                             <div class="d-none d-xl-block prodcut-add-cart">
                                                 <a href="../shop/single-product-fullwidth.html"
@@ -775,64 +753,22 @@ use App\Models\Product;
                                     <div class="col col-lg-auto product-media-left">
                                         <a href="../shop/single-product-fullwidth.html"
                                             class="max-width-150 d-block"><img class="img-fluid"
-                                                src="{{asset('client/')}}assets/img/150X140/img2.jpg"
+                                                src="{{asset('images/products/realme-8-pro-den-1-org.jpg')}}"
                                                 alt="Image Description"></a>
                                     </div>
                                     <div class="col product-item__body pl-2 pl-lg-3 mr-xl-2 mr-wd-1">
                                         <div class="mb-4">
                                             <div class="mb-2"><a
                                                     href="../shop/product-categories-7-column-full-width.html"
-                                                    class="font-size-12 text-gray-5">Laptops & Computers</a></div>
+                                                    class="font-size-12 text-gray-5">Realme</a></div>
                                             <h5 class="product-item__title"><a
                                                     href="../shop/single-product-fullwidth.html"
-                                                    class="text-blue font-weight-bold">Tablet White EliteBook Revolve
-                                                    810 G2</a></h5>
-                                        </div>
-                                        <div class="flex-center-between mb-3">
-                                            <div class="prodcut-price">
-                                                <div class="text-gray-100">$1 299,00</div>
-                                            </div>
-                                            <div class="d-none d-xl-block prodcut-add-cart">
-                                                <a href="../shop/single-product-fullwidth.html"
-                                                    class="btn-add-cart btn-primary transition-3d-hover"><i
-                                                        class="ec ec-add-to-cart"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-item__footer">
-                                            <div class="border-top pt-2 flex-center-between flex-wrap">
-                                                <a href="../shop/compare.html" class="text-gray-6 font-size-13"><i
-                                                        class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
-                                                <a href="../shop/wishlist.html" class="text-gray-6 font-size-13"><i
-                                                        class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li
-                            class="col-wd-3 col-md-4 product-item product-item__card pb-2 mb-2 pb-md-0 mb-md-0 remove-divider-xl">
-                            <div class="product-item__outer h-100">
-                                <div class="product-item__inner p-md-3 row no-gutters">
-                                    <div class="col col-lg-auto product-media-left">
-                                        <a href="../shop/single-product-fullwidth.html"
-                                            class="max-width-150 d-block"><img class="img-fluid"
-                                                src="{{asset('client/')}}assets/img/150X140/img3.jpg"
-                                                alt="Image Description"></a>
-                                    </div>
-                                    <div class="col product-item__body pl-2 pl-lg-3 mr-xl-2 mr-wd-1">
-                                        <div class="mb-4">
-                                            <div class="mb-2"><a
-                                                    href="../shop/product-categories-7-column-full-width.html"
-                                                    class="font-size-12 text-gray-5">Accesories</a></div>
-                                            <h5 class="product-item__title"><a
-                                                    href="../shop/single-product-fullwidth.html"
-                                                    class="text-blue font-weight-bold">Pendrive USB 3.0 Flash 64 GB</a>
+                                                    class="text-blue font-weight-bold">Realme 8 Pro</a>
                                             </h5>
                                         </div>
                                         <div class="flex-center-between mb-3">
                                             <div class="prodcut-price">
-                                                <div class="text-gray-100">$110,00</div>
+                                                <div class="text-gray-100">7,290,000đ</div>
                                             </div>
                                             <div class="d-none d-xl-block prodcut-add-cart">
                                                 <a href="../shop/single-product-fullwidth.html"
@@ -853,151 +789,28 @@ use App\Models\Product;
                             </div>
                         </li>
                         <li
-                            class="col-wd-3 col-md-4 product-item product-item__card d-none d-md-block pb-2 mb-2 pb-md-0 mb-md-0 border-bottom border-md-bottom-0 remove-divider-wd">
+                            class="col-wd-3 col-md-4 product-item product-item__card pb-2 mb-2 pb-md-0 mb-md-0 border-bottom border-md-bottom-0">
                             <div class="product-item__outer h-100">
                                 <div class="product-item__inner p-md-3 row no-gutters">
                                     <div class="col col-lg-auto product-media-left">
                                         <a href="../shop/single-product-fullwidth.html"
                                             class="max-width-150 d-block"><img class="img-fluid"
-                                                src="{{asset('client/')}}assets/img/150X140/img7.jpg"
+                                                src="{{asset('images/products/vivo-y15s-2021-d-1.jpg')}}"
                                                 alt="Image Description"></a>
                                     </div>
                                     <div class="col product-item__body pl-2 pl-lg-3 mr-xl-2 mr-wd-1">
                                         <div class="mb-4">
                                             <div class="mb-2"><a
                                                     href="../shop/product-categories-7-column-full-width.html"
-                                                    class="font-size-12 text-gray-5">Headphones</a></div>
+                                                    class="font-size-12 text-gray-5">Vivo</a></div>
                                             <h5 class="product-item__title"><a
                                                     href="../shop/single-product-fullwidth.html"
-                                                    class="text-blue font-weight-bold">White Solo 2 Wireless</a></h5>
-                                        </div>
-                                        <div class="flex-center-between mb-3">
-                                            <div class="prodcut-price">
-                                                <div class="text-gray-100">$110,00</div>
-                                            </div>
-                                            <div class="d-none d-xl-block prodcut-add-cart">
-                                                <a href="../shop/single-product-fullwidth.html"
-                                                    class="btn-add-cart btn-primary transition-3d-hover"><i
-                                                        class="ec ec-add-to-cart"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-item__footer">
-                                            <div class="border-top pt-2 flex-center-between flex-wrap">
-                                                <a href="../shop/compare.html" class="text-gray-6 font-size-13"><i
-                                                        class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
-                                                <a href="../shop/wishlist.html" class="text-gray-6 font-size-13"><i
-                                                        class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li
-                            class="col-wd-3 col-md-4 product-item product-item__card d-none d-md-block pb-2 mb-2 pb-md-0 mb-md-0 border-bottom border-md-bottom-0">
-                            <div class="product-item__outer h-100">
-                                <div class="product-item__inner p-md-3 row no-gutters">
-                                    <div class="col col-lg-auto product-media-left">
-                                        <a href="../shop/single-product-fullwidth.html"
-                                            class="max-width-150 d-block"><img class="img-fluid"
-                                                src="{{asset('client/')}}assets/img/150X140/img4.jpg"
-                                                alt="Image Description"></a>
-                                    </div>
-                                    <div class="col product-item__body pl-2 pl-lg-3 mr-xl-2 mr-wd-1">
-                                        <div class="mb-4">
-                                            <div class="mb-2"><a
-                                                    href="../shop/product-categories-7-column-full-width.html"
-                                                    class="font-size-12 text-gray-5">Smartwatches</a></div>
-                                            <h5 class="product-item__title"><a
-                                                    href="../shop/single-product-fullwidth.html"
-                                                    class="text-blue font-weight-bold">Smartwatch 2.0 LTE Wifi</a></h5>
-                                        </div>
-                                        <div class="flex-center-between mb-3">
-                                            <div class="prodcut-price">
-                                                <div class="text-gray-100">$110,00</div>
-                                            </div>
-                                            <div class="d-none d-xl-block prodcut-add-cart">
-                                                <a href="../shop/single-product-fullwidth.html"
-                                                    class="btn-add-cart btn-primary transition-3d-hover"><i
-                                                        class="ec ec-add-to-cart"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-item__footer">
-                                            <div class="border-top pt-2 flex-center-between flex-wrap">
-                                                <a href="../shop/compare.html" class="text-gray-6 font-size-13"><i
-                                                        class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
-                                                <a href="../shop/wishlist.html" class="text-gray-6 font-size-13"><i
-                                                        class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li
-                            class="col-wd-3 col-md-4 product-item product-item__card d-none d-md-block pb-2 mb-2 pb-md-0 mb-md-0 border-bottom border-md-bottom-0 remove-divider-xl">
-                            <div class="product-item__outer h-100">
-                                <div class="product-item__inner p-md-3 row no-gutters">
-                                    <div class="col col-lg-auto product-media-left">
-                                        <a href="../shop/single-product-fullwidth.html"
-                                            class="max-width-150 d-block"><img class="img-fluid"
-                                                src="{{asset('client/')}}assets/img/150X140/img5.jpg"
-                                                alt="Image Description"></a>
-                                    </div>
-                                    <div class="col product-item__body pl-2 pl-lg-3 mr-xl-2 mr-wd-1">
-                                        <div class="mb-4">
-                                            <div class="mb-2"><a
-                                                    href="../shop/product-categories-7-column-full-width.html"
-                                                    class="font-size-12 text-gray-5">Smartwatches</a></div>
-                                            <h5 class="product-item__title"><a
-                                                    href="../shop/single-product-fullwidth.html"
-                                                    class="text-blue font-weight-bold">Gear Virtual Reality</a></h5>
-                                        </div>
-                                        <div class="flex-center-between mb-3">
-                                            <div class="prodcut-price">
-                                                <div class="text-gray-100">$799,00</div>
-                                            </div>
-                                            <div class="d-none d-xl-block prodcut-add-cart">
-                                                <a href="../shop/single-product-fullwidth.html"
-                                                    class="btn-add-cart btn-primary transition-3d-hover"><i
-                                                        class="ec ec-add-to-cart"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-item__footer">
-                                            <div class="border-top pt-2 flex-center-between flex-wrap">
-                                                <a href="../shop/compare.html" class="text-gray-6 font-size-13"><i
-                                                        class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
-                                                <a href="../shop/wishlist.html" class="text-gray-6 font-size-13"><i
-                                                        class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li
-                            class="col-wd-3 col-md-4 product-item product-item__card d-none d-wd-block pb-2 mb-2 pb-md-0 mb-md-0 border-bottom border-md-bottom-0">
-                            <div class="product-item__outer h-100">
-                                <div class="product-item__inner p-md-3 row no-gutters">
-                                    <div class="col col-lg-auto product-media-left">
-                                        <a href="../shop/single-product-fullwidth.html"
-                                            class="max-width-150 d-block"><img class="img-fluid"
-                                                src="{{asset('client/')}}assets/img/150X140/img6.jpg"
-                                                alt="Image Description"></a>
-                                    </div>
-                                    <div class="col product-item__body pl-2 pl-lg-3 mr-xl-2 mr-wd-1">
-                                        <div class="mb-4">
-                                            <div class="mb-2"><a
-                                                    href="../shop/product-categories-7-column-full-width.html"
-                                                    class="font-size-12 text-gray-5">Gadgets</a></div>
-                                            <h5 class="product-item__title"><a
-                                                    href="../shop/single-product-fullwidth.html"
-                                                    class="text-blue font-weight-bold">External SSD USB 3.1 750 GB</a>
+                                                    class="text-blue font-weight-bold">Vivo Y15s</a>
                                             </h5>
                                         </div>
                                         <div class="flex-center-between mb-3">
                                             <div class="prodcut-price">
-                                                <div class="text-gray-100">$799,00</div>
+                                                <div class="text-gray-100">3,490,000đ</div>
                                             </div>
                                             <div class="d-none d-xl-block prodcut-add-cart">
                                                 <a href="../shop/single-product-fullwidth.html"
@@ -1018,28 +831,196 @@ use App\Models\Product;
                             </div>
                         </li>
                         <li
-                            class="col-wd-3 col-md-4 product-item product-item__card d-none d-wd-block pb-2 mb-2 pb-md-0 mb-md-0 border-bottom border-md-bottom-0 remove-divider-wd">
+                            class="col-wd-3 col-md-4 product-item product-item__card pb-2 mb-2 pb-md-0 mb-md-0 border-bottom border-md-bottom-0">
                             <div class="product-item__outer h-100">
                                 <div class="product-item__inner p-md-3 row no-gutters">
                                     <div class="col col-lg-auto product-media-left">
                                         <a href="../shop/single-product-fullwidth.html"
                                             class="max-width-150 d-block"><img class="img-fluid"
-                                                src="{{asset('client/')}}assets/img/150X140/img8.jpg"
+                                                src="{{asset('images/products/xiaomi-redmi-note-11-1-2.jpg')}}"
                                                 alt="Image Description"></a>
                                     </div>
                                     <div class="col product-item__body pl-2 pl-lg-3 mr-xl-2 mr-wd-1">
                                         <div class="mb-4">
                                             <div class="mb-2"><a
                                                     href="../shop/product-categories-7-column-full-width.html"
-                                                    class="font-size-12 text-gray-5">Cameras</a></div>
+                                                    class="font-size-12 text-gray-5">Xiaomi</a></div>
                                             <h5 class="product-item__title"><a
                                                     href="../shop/single-product-fullwidth.html"
-                                                    class="text-blue font-weight-bold">Purple NX Mini F1 aparat SMART
-                                                    NX</a></h5>
+                                                    class="text-blue font-weight-bold">Xiaomi note 11</a>
+                                            </h5>
                                         </div>
                                         <div class="flex-center-between mb-3">
                                             <div class="prodcut-price">
-                                                <div class="text-gray-100">$559.00</div>
+                                                <div class="text-gray-100">4,690,000đ</div>
+                                            </div>
+                                            <div class="d-none d-xl-block prodcut-add-cart">
+                                                <a href="../shop/single-product-fullwidth.html"
+                                                    class="btn-add-cart btn-primary transition-3d-hover"><i
+                                                        class="ec ec-add-to-cart"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="product-item__footer">
+                                            <div class="border-top pt-2 flex-center-between flex-wrap">
+                                                <a href="../shop/compare.html" class="text-gray-6 font-size-13"><i
+                                                        class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
+                                                <a href="../shop/wishlist.html" class="text-gray-6 font-size-13"><i
+                                                        class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li
+                            class="col-wd-3 col-md-4 product-item product-item__card pb-2 mb-2 pb-md-0 mb-md-0 border-bottom border-md-bottom-0">
+                            <div class="product-item__outer h-100">
+                                <div class="product-item__inner p-md-3 row no-gutters">
+                                    <div class="col col-lg-auto product-media-left">
+                                        <a href="../shop/single-product-fullwidth.html"
+                                            class="max-width-150 d-block"><img class="img-fluid"
+                                                src="{{asset('images/products/galaxy-s22-ultra-black-7.jpg')}}"
+                                                alt="Image Description"></a>
+                                    </div>
+                                    <div class="col product-item__body pl-2 pl-lg-3 mr-xl-2 mr-wd-1">
+                                        <div class="mb-4">
+                                            <div class="mb-2"><a
+                                                    href="../shop/product-categories-7-column-full-width.html"
+                                                    class="font-size-12 text-gray-5">Samsung</a></div>
+                                            <h5 class="product-item__title"><a
+                                                    href="../shop/single-product-fullwidth.html"
+                                                    class="text-blue font-weight-bold">Samsung galaxy s22 Ultra</a>
+                                            </h5>
+                                        </div>
+                                        <div class="flex-center-between mb-3">
+                                            <div class="prodcut-price">
+                                                <div class="text-gray-100">5,990,000đ</div>
+                                            </div>
+                                            <div class="d-none d-xl-block prodcut-add-cart">
+                                                <a href="../shop/single-product-fullwidth.html"
+                                                    class="btn-add-cart btn-primary transition-3d-hover"><i
+                                                        class="ec ec-add-to-cart"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="product-item__footer">
+                                            <div class="border-top pt-2 flex-center-between flex-wrap">
+                                                <a href="../shop/compare.html" class="text-gray-6 font-size-13"><i
+                                                        class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
+                                                <a href="../shop/wishlist.html" class="text-gray-6 font-size-13"><i
+                                                        class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li
+                            class="col-wd-3 col-md-4 product-item product-item__card pb-2 mb-2 pb-md-0 mb-md-0 border-bottom border-md-bottom-0">
+                            <div class="product-item__outer h-100">
+                            <div class="product-item__inner p-md-3 row no-gutters">
+                                <div class="col col-lg-auto product-media-left">
+                                    <a href="../shop/single-product-fullwidth.html"
+                                        class="max-width-150 d-block"><img class="img-fluid"
+                                            src="{{asset('images/products/samsung-galaxy-s22-ultra-1-1.jpg')}}"
+                                            alt="Image Description"></a>
+                                </div>
+                                <div class="col product-item__body pl-2 pl-lg-3 mr-xl-2 mr-wd-1">
+                                    <div class="mb-4">
+                                        <div class="mb-2"><a
+                                                href="../shop/product-categories-7-column-full-width.html"
+                                                class="font-size-12 text-gray-5">Samsung</a></div>
+                                        <h5 class="product-item__title"><a
+                                                href="../shop/single-product-fullwidth.html"
+                                                class="text-blue font-weight-bold">Samsung galaxy s22</a>
+                                        </h5>
+                                    </div>
+                                    <div class="flex-center-between mb-3">
+                                        <div class="prodcut-price">
+                                            <div class="text-gray-100">30,990,000đ</div>
+                                        </div>
+                                        <div class="d-none d-xl-block prodcut-add-cart">
+                                            <a href="../shop/single-product-fullwidth.html"
+                                                class="btn-add-cart btn-primary transition-3d-hover"><i
+                                                    class="ec ec-add-to-cart"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="product-item__footer">
+                                        <div class="border-top pt-2 flex-center-between flex-wrap">
+                                            <a href="../shop/compare.html" class="text-gray-6 font-size-13"><i
+                                                    class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
+                                            <a href="../shop/wishlist.html" class="text-gray-6 font-size-13"><i
+                                                    class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </li>
+                        <li
+                            class="col-wd-3 col-md-4 product-item product-item__card pb-2 mb-2 pb-md-0 mb-md-0 border-bottom border-md-bottom-0">
+                            <div class="product-item__outer h-100">
+                                <div class="product-item__inner p-md-3 row no-gutters">
+                                    <div class="col col-lg-auto product-media-left">
+                                        <a href="../shop/single-product-fullwidth.html"
+                                            class="max-width-150 d-block"><img class="img-fluid"
+                                                src="{{asset('images/products/realme-8-pro-den-1-org.jpg')}}"
+                                                alt="Image Description"></a>
+                                    </div>
+                                    <div class="col product-item__body pl-2 pl-lg-3 mr-xl-2 mr-wd-1">
+                                        <div class="mb-4">
+                                            <div class="mb-2"><a
+                                                    href="../shop/product-categories-7-column-full-width.html"
+                                                    class="font-size-12 text-gray-5">Realme</a></div>
+                                            <h5 class="product-item__title"><a
+                                                    href="../shop/single-product-fullwidth.html"
+                                                    class="text-blue font-weight-bold">Realme 8 Pro</a>
+                                            </h5>
+                                        </div>
+                                        <div class="flex-center-between mb-3">
+                                            <div class="prodcut-price">
+                                                <div class="text-gray-100">7,290,000đ</div>
+                                            </div>
+                                            <div class="d-none d-xl-block prodcut-add-cart">
+                                                <a href="../shop/single-product-fullwidth.html"
+                                                    class="btn-add-cart btn-primary transition-3d-hover"><i
+                                                        class="ec ec-add-to-cart"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="product-item__footer">
+                                            <div class="border-top pt-2 flex-center-between flex-wrap">
+                                                <a href="../shop/compare.html" class="text-gray-6 font-size-13"><i
+                                                        class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
+                                                <a href="../shop/wishlist.html" class="text-gray-6 font-size-13"><i
+                                                        class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li
+                            class="col-wd-3 col-md-4 product-item product-item__card pb-2 mb-2 pb-md-0 mb-md-0 border-bottom border-md-bottom-0">
+                            <div class="product-item__outer h-100">
+                                <div class="product-item__inner p-md-3 row no-gutters">
+                                    <div class="col col-lg-auto product-media-left">
+                                        <a href="../shop/single-product-fullwidth.html"
+                                            class="max-width-150 d-block"><img class="img-fluid"
+                                                src="{{asset('images/products/vivo-y15s-2021-d-1.jpg')}}"
+                                                alt="Image Description"></a>
+                                    </div>
+                                    <div class="col product-item__body pl-2 pl-lg-3 mr-xl-2 mr-wd-1">
+                                        <div class="mb-4">
+                                            <div class="mb-2"><a
+                                                    href="../shop/product-categories-7-column-full-width.html"
+                                                    class="font-size-12 text-gray-5">Vivo</a></div>
+                                            <h5 class="product-item__title"><a
+                                                    href="../shop/single-product-fullwidth.html"
+                                                    class="text-blue font-weight-bold">Vivo Y15s</a>
+                                            </h5>
+                                        </div>
+                                        <div class="flex-center-between mb-3">
+                                            <div class="prodcut-price">
+                                                <div class="text-gray-100">3,490,000đ</div>
                                             </div>
                                             <div class="d-none d-xl-block prodcut-add-cart">
                                                 <a href="../shop/single-product-fullwidth.html"
@@ -1061,7 +1042,7 @@ use App\Models\Product;
                         </li>
                     </ul>
                 </div>
-                {{-- <div class="js-slide">
+                <div class="js-slide">
                     <ul class="row list-unstyled products-group no-gutters mb-0 overflow-visible">
                         <li
                             class="col-wd-3 col-md-4 product-item product-item__card pb-2 mb-2 pb-md-0 mb-md-0 border-bottom border-md-bottom-0">
@@ -1734,7 +1715,7 @@ use App\Models\Product;
                             </div>
                         </li>
                     </ul>
-                </div> --}}
+                </div>
             </div>
         </div>
         <!-- End Prodcut-cards-carousel -->
@@ -1803,19 +1784,18 @@ use App\Models\Product;
                                 <div class="product-item__inner px-wd-4 p-2 p-md-3">
                                     <div class="product-item__body pb-xl-2">
                                         <div class="mb-2"><a href="../shop/product-categories-7-column-full-width.html"
-                                                class="font-size-12 text-gray-5">Speakers</a></div>
+                                                class="font-size-12 text-gray-5">Oppo</a></div>
                                         <h5 class="mb-1 product-item__title"><a
                                                 href="../shop/single-product-fullwidth.html"
-                                                class="text-blue font-weight-bold">Wireless Audio System Multiroom 360
-                                                degree Full base audio</a></h5>
+                                                class="text-blue font-weight-bold">Oppo reno8 5G</a></h5>
                                         <div class="mb-2">
                                             <a href="../shop/single-product-fullwidth.html"
                                                 class="d-block text-center"><img class="img-fluid"
-                                                    src="{{asset('client/')}}" alt="Image Description"></a>
+                                                    src="{{asset('images/products/oppo-reno8-5g-vang-1-1.jpg')}}" alt="Image Description"></a>
                                         </div>
                                         <div class="flex-center-between mb-1">
                                             <div class="prodcut-price">
-                                                <div class="text-gray-100">$685,00</div>
+                                                <div class="text-gray-100">10,490,000đ</div>
                                             </div>
                                             <div class="d-none d-xl-block prodcut-add-cart">
                                                 <a href="../shop/single-product-fullwidth.html"
@@ -1842,20 +1822,19 @@ use App\Models\Product;
                                 <div class="product-item__inner px-wd-4 p-2 p-md-3">
                                     <div class="product-item__body pb-xl-2">
                                         <div class="mb-2"><a href="../shop/product-categories-7-column-full-width.html"
-                                                class="font-size-12 text-gray-5">Speakers</a></div>
+                                                class="font-size-12 text-gray-5">Iphone</a></div>
                                         <h5 class="mb-1 product-item__title"><a
                                                 href="../shop/single-product-fullwidth.html"
-                                                class="text-blue font-weight-bold">Wireless Audio System Multiroom 360
-                                                degree Full base audio</a></h5>
+                                                class="text-blue font-weight-bold">Iphone 11</a></h5>
                                         <div class="mb-2">
                                             <a href="../shop/single-product-fullwidth.html"
                                                 class="d-block text-center"><img class="img-fluid"
-                                                    src="{{asset('client/')}}assets/img/212X200/img2.jpg"
+                                                    src="{{asset('images/products/iphone-11-den-1-1-1-org.jpg')}}"
                                                     alt="Image Description"></a>
                                         </div>
                                         <div class="flex-center-between mb-1">
                                             <div class="prodcut-price">
-                                                <div class="text-gray-100">$685,00</div>
+                                                <div class="text-gray-100">11,190,000đ</div>
                                             </div>
                                             <div class="d-none d-xl-block prodcut-add-cart">
                                                 <a href="../shop/single-product-fullwidth.html"
@@ -1882,20 +1861,19 @@ use App\Models\Product;
                                 <div class="product-item__inner px-wd-4 p-2 p-md-3">
                                     <div class="product-item__body pb-xl-2">
                                         <div class="mb-2"><a href="../shop/product-categories-7-column-full-width.html"
-                                                class="font-size-12 text-gray-5">Speakers</a></div>
+                                                class="font-size-12 text-gray-5">Samsung</a></div>
                                         <h5 class="mb-1 product-item__title"><a
                                                 href="../shop/single-product-fullwidth.html"
-                                                class="text-blue font-weight-bold">Wireless Audio System Multiroom 360
-                                                degree Full base audio</a></h5>
+                                                class="text-blue font-weight-bold">Samsung galaxy a23</a></h5>
                                         <div class="mb-2">
                                             <a href="../shop/single-product-fullwidth.html"
                                                 class="d-block text-center"><img class="img-fluid"
-                                                    src="{{asset('client/')}}assets/img/212X200/img3.jpg"
+                                                    src="{{asset('images/products/samsung-galaxy-a23-1-1.jpg')}}"
                                                     alt="Image Description"></a>
                                         </div>
                                         <div class="flex-center-between mb-1">
                                             <div class="prodcut-price">
-                                                <div class="text-gray-100">$685,00</div>
+                                                <div class="text-gray-100">30,990,000đ</div>
                                             </div>
                                             <div class="d-none d-xl-block prodcut-add-cart">
                                                 <a href="../shop/single-product-fullwidth.html"
@@ -1922,20 +1900,19 @@ use App\Models\Product;
                                 <div class="product-item__inner px-wd-4 p-2 p-md-3">
                                     <div class="product-item__body pb-xl-2">
                                         <div class="mb-2"><a href="../shop/product-categories-7-column-full-width.html"
-                                                class="font-size-12 text-gray-5">Speakers</a></div>
+                                                class="font-size-12 text-gray-5">Xiaomi</a></div>
                                         <h5 class="mb-1 product-item__title"><a
                                                 href="../shop/single-product-fullwidth.html"
-                                                class="text-blue font-weight-bold">Wireless Audio System Multiroom 360
-                                                degree Full base audio</a></h5>
+                                                class="text-blue font-weight-bold">Xiaomi note 11</a></h5>
                                         <div class="mb-2">
                                             <a href="../shop/single-product-fullwidth.html"
                                                 class="d-block text-center"><img class="img-fluid"
-                                                    src="{{asset('client/')}}assets/img/212X200/img4.jpg"
+                                                    src="{{asset('images/products/xiaomi-redmi-note-11-1-2.jpg')}}"
                                                     alt="Image Description"></a>
                                         </div>
                                         <div class="flex-center-between mb-1">
                                             <div class="prodcut-price">
-                                                <div class="text-gray-100">$685,00</div>
+                                                <div class="text-gray-100">4,690,000đ</div>
                                             </div>
                                             <div class="d-none d-xl-block prodcut-add-cart">
                                                 <a href="../shop/single-product-fullwidth.html"
@@ -1962,20 +1939,19 @@ use App\Models\Product;
                                 <div class="product-item__inner px-wd-4 p-2 p-md-3">
                                     <div class="product-item__body pb-xl-2">
                                         <div class="mb-2"><a href="../shop/product-categories-7-column-full-width.html"
-                                                class="font-size-12 text-gray-5">Speakers</a></div>
+                                                class="font-size-12 text-gray-5">Realme</a></div>
                                         <h5 class="mb-1 product-item__title"><a
                                                 href="../shop/single-product-fullwidth.html"
-                                                class="text-blue font-weight-bold">Wireless Audio System Multiroom 360
-                                                degree Full base audio</a></h5>
+                                                class="text-blue font-weight-bold">Realme 8 Pro</a></h5>
                                         <div class="mb-2">
                                             <a href="../shop/single-product-fullwidth.html"
                                                 class="d-block text-center"><img class="img-fluid"
-                                                    src="{{asset('client/')}}assets/img/212X200/img5.jpg"
+                                                    src="{{asset('images/products/realme-8-pro-den-1-org.jpg')}}"
                                                     alt="Image Description"></a>
                                         </div>
                                         <div class="flex-center-between mb-1">
                                             <div class="prodcut-price">
-                                                <div class="text-gray-100">$685,00</div>
+                                                <div class="text-gray-100">7,290,000đ</div>
                                             </div>
                                             <div class="d-none d-xl-block prodcut-add-cart">
                                                 <a href="../shop/single-product-fullwidth.html"
@@ -2002,20 +1978,57 @@ use App\Models\Product;
                                 <div class="product-item__inner px-wd-4 p-2 p-md-3">
                                     <div class="product-item__body pb-xl-2">
                                         <div class="mb-2"><a href="../shop/product-categories-7-column-full-width.html"
-                                                class="font-size-12 text-gray-5">Speakers</a></div>
+                                                class="font-size-12 text-gray-5">Oppo</a></div>
                                         <h5 class="mb-1 product-item__title"><a
                                                 href="../shop/single-product-fullwidth.html"
-                                                class="text-blue font-weight-bold">Wireless Audio System Multiroom 360
-                                                degree Full base audio</a></h5>
+                                                class="text-blue font-weight-bold">Oppo reno8 5G</a></h5>
                                         <div class="mb-2">
                                             <a href="../shop/single-product-fullwidth.html"
                                                 class="d-block text-center"><img class="img-fluid"
-                                                    src="{{asset('client/')}}assets/img/212X200/img6.jpg"
+                                                    src="{{asset('images/products/oppo-reno8-5g-vang-1-1.jpg')}}" alt="Image Description"></a>
+                                        </div>
+                                        <div class="flex-center-between mb-1">
+                                            <div class="prodcut-price">
+                                                <div class="text-gray-100">10,490,000đ</div>
+                                            </div>
+                                            <div class="d-none d-xl-block prodcut-add-cart">
+                                                <a href="../shop/single-product-fullwidth.html"
+                                                    class="btn-add-cart btn-primary transition-3d-hover"><i
+                                                        class="ec ec-add-to-cart"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="product-item__footer">
+                                        <div class="border-top pt-2 flex-center-between flex-wrap">
+                                            <a href="../shop/compare.html" class="text-gray-6 font-size-13"><i
+                                                    class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
+                                            <a href="../shop/wishlist.html" class="text-gray-6 font-size-13"><i
+                                                    class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="js-slide products-group">
+                        <div class="product-item">
+                            <div class="product-item__outer h-100">
+                                <div class="product-item__inner px-wd-4 p-2 p-md-3">
+                                    <div class="product-item__body pb-xl-2">
+                                        <div class="mb-2"><a href="../shop/product-categories-7-column-full-width.html"
+                                                class="font-size-12 text-gray-5">Iphone</a></div>
+                                        <h5 class="mb-1 product-item__title"><a
+                                                href="../shop/single-product-fullwidth.html"
+                                                class="text-blue font-weight-bold">Iphone 11</a></h5>
+                                        <div class="mb-2">
+                                            <a href="../shop/single-product-fullwidth.html"
+                                                class="d-block text-center"><img class="img-fluid"
+                                                    src="{{asset('images/products/iphone-11-den-1-1-1-org.jpg')}}"
                                                     alt="Image Description"></a>
                                         </div>
                                         <div class="flex-center-between mb-1">
                                             <div class="prodcut-price">
-                                                <div class="text-gray-100">$685,00</div>
+                                                <div class="text-gray-100">11,190,000đ</div>
                                             </div>
                                             <div class="d-none d-xl-block prodcut-add-cart">
                                                 <a href="../shop/single-product-fullwidth.html"
@@ -2042,20 +2055,19 @@ use App\Models\Product;
                                 <div class="product-item__inner px-wd-4 p-2 p-md-3">
                                     <div class="product-item__body pb-xl-2">
                                         <div class="mb-2"><a href="../shop/product-categories-7-column-full-width.html"
-                                                class="font-size-12 text-gray-5">Speakers</a></div>
+                                                class="font-size-12 text-gray-5">Samsung</a></div>
                                         <h5 class="mb-1 product-item__title"><a
                                                 href="../shop/single-product-fullwidth.html"
-                                                class="text-blue font-weight-bold">Wireless Audio System Multiroom 360
-                                                degree Full base audio</a></h5>
+                                                class="text-blue font-weight-bold">Samsung galaxy a23</a></h5>
                                         <div class="mb-2">
                                             <a href="../shop/single-product-fullwidth.html"
                                                 class="d-block text-center"><img class="img-fluid"
-                                                    src="{{asset('client/')}}assets/img/212X200/img7.jpg"
+                                                    src="{{asset('images/products/samsung-galaxy-a23-1-1.jpg')}}"
                                                     alt="Image Description"></a>
                                         </div>
                                         <div class="flex-center-between mb-1">
                                             <div class="prodcut-price">
-                                                <div class="text-gray-100">$685,00</div>
+                                                <div class="text-gray-100">30,990,000đ</div>
                                             </div>
                                             <div class="d-none d-xl-block prodcut-add-cart">
                                                 <a href="../shop/single-product-fullwidth.html"
@@ -2082,59 +2094,58 @@ use App\Models\Product;
                                 <div class="product-item__inner px-wd-4 p-2 p-md-3">
                                     <div class="product-item__body pb-xl-2">
                                         <div class="mb-2"><a href="../shop/product-categories-7-column-full-width.html"
-                                                class="font-size-12 text-gray-5">Speakers</a></div>
+                                                class="font-size-12 text-gray-5">Xiaomi</a></div>
                                         <h5 class="mb-1 product-item__title"><a
                                                 href="../shop/single-product-fullwidth.html"
-                                                class="text-blue font-weight-bold">Wireless Audio System Multiroom 360
-                                                degree Full base audio</a></h5>
+                                                class="text-blue font-weight-bold">Xiaomi note 11</a></h5>
                                         <div class="mb-2">
                                             <a href="../shop/single-product-fullwidth.html"
                                                 class="d-block text-center"><img class="img-fluid"
-                                                    src="{{asset('client/')}}" alt="Image Description"></a>
-                                        </div>
-                                        <div class="flex-center-between mb-1">
-                                            <div class="prodcut-price">
-                                                <div class="text-gray-100">$685,00</div>
-                                            </div>
-                                            <div class="d-none d-xl-block prodcut-add-cart">
-                                                <a href="../shop/single-product-fullwidth.html"
-                                                    class="btn-add-cart btn-primary transition-3d-hover"><i
-                                                        class="ec ec-add-to-cart"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="product-item__footer">
-                                        <div class="border-top pt-2 flex-center-between flex-wrap">
-                                            <a href="../shop/compare.html" class="text-gray-6 font-size-13"><i
-                                                    class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
-                                            <a href="../shop/wishlist.html" class="text-gray-6 font-size-13"><i
-                                                    class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="js-slide products-group">
-                        <div class="product-item">
-                            <div class="product-item__outer h-100">
-                                <div class="product-item__inner px-wd-4 p-2 p-md-3">
-                                    <div class="product-item__body pb-xl-2">
-                                        <div class="mb-2"><a href="../shop/product-categories-7-column-full-width.html"
-                                                class="font-size-12 text-gray-5">Speakers</a></div>
-                                        <h5 class="mb-1 product-item__title"><a
-                                                href="../shop/single-product-fullwidth.html"
-                                                class="text-blue font-weight-bold">Wireless Audio System Multiroom 360
-                                                degree Full base audio</a></h5>
-                                        <div class="mb-2">
-                                            <a href="../shop/single-product-fullwidth.html"
-                                                class="d-block text-center"><img class="img-fluid"
-                                                    src="{{asset('client/')}}assets/img/212X200/img1.jpg"
+                                                    src="{{asset('images/products/xiaomi-redmi-note-11-1-2.jpg')}}"
                                                     alt="Image Description"></a>
                                         </div>
                                         <div class="flex-center-between mb-1">
                                             <div class="prodcut-price">
-                                                <div class="text-gray-100">$685,00</div>
+                                                <div class="text-gray-100">4,690,000đ</div>
+                                            </div>
+                                            <div class="d-none d-xl-block prodcut-add-cart">
+                                                <a href="../shop/single-product-fullwidth.html"
+                                                    class="btn-add-cart btn-primary transition-3d-hover"><i
+                                                        class="ec ec-add-to-cart"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="product-item__footer">
+                                        <div class="border-top pt-2 flex-center-between flex-wrap">
+                                            <a href="../shop/compare.html" class="text-gray-6 font-size-13"><i
+                                                    class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
+                                            <a href="../shop/wishlist.html" class="text-gray-6 font-size-13"><i
+                                                    class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="js-slide products-group">
+                        <div class="product-item">
+                            <div class="product-item__outer h-100">
+                                <div class="product-item__inner px-wd-4 p-2 p-md-3">
+                                    <div class="product-item__body pb-xl-2">
+                                        <div class="mb-2"><a href="../shop/product-categories-7-column-full-width.html"
+                                                class="font-size-12 text-gray-5">Realme</a></div>
+                                        <h5 class="mb-1 product-item__title"><a
+                                                href="../shop/single-product-fullwidth.html"
+                                                class="text-blue font-weight-bold">Realme 8 Pro</a></h5>
+                                        <div class="mb-2">
+                                            <a href="../shop/single-product-fullwidth.html"
+                                                class="d-block text-center"><img class="img-fluid"
+                                                    src="{{asset('images/products/realme-8-pro-den-1-org.jpg')}}"
+                                                    alt="Image Description"></a>
+                                        </div>
+                                        <div class="flex-center-between mb-1">
+                                            <div class="prodcut-price">
+                                                <div class="text-gray-100">7,290,000đ</div>
                                             </div>
                                             <div class="d-none d-xl-block prodcut-add-cart">
                                                 <a href="../shop/single-product-fullwidth.html"
@@ -2220,7 +2231,7 @@ use App\Models\Product;
                             <h5 class="product-item__title mb-0"><a href="{{url('product/detail',[$randoms->id])}}"
                                     class="text-blue font-weight-bold">{{ $randoms->product_name }}</a></h5>
                             <div class="prodcut-price mt-auto" style="color: black">
-                                <div class="font-size-15">{{$randoms->minprice}}đ</div>
+                                <div class="font-size-15">{{number_format($randoms->minprice)}}đ</div>
                             </div>
                         </div>
                     </li>
@@ -2262,13 +2273,13 @@ use App\Models\Product;
             <ul class="list-unstyled products-group">
                 <li class="product-item product-item__list row no-gutters mb-6 remove-divider">
                     <div class="col-auto">
-                        <a href="../shop/single-product-fullwidth.html" class="d-block width-75 text-center"><img
-                                class="img-fluid" src="{{asset('client/assets/img/75X75/img7.jpg')}}"
+                        <a href="{{asset('images/products/')}}" class="d-block width-75 text-center"><img
+                                class="img-fluid" src="{{asset('images/products/vivo-y15s-2021-tx-1.jpg')}}"
                                 alt="Image Description"></a>
                     </div>
                     <div class="col pl-4 d-flex flex-column">
                         <h5 class="product-item__title mb-0"><a href="../shop/single-product-fullwidth.html"
-                                class="text-blue font-weight-bold">Smartwatch 2.0 LTE Wifi Waterproof</a></h5>
+                                class="text-blue font-weight-bold">Vivo y15s</a></h5>
                         <div class="text-warning mb-2">
                             <small class="fas fa-star"></small>
                             <small class="fas fa-star"></small>
@@ -2284,12 +2295,12 @@ use App\Models\Product;
                 <li class="product-item product-item__list row no-gutters mb-6 remove-divider">
                     <div class="col-auto">
                         <a href="../shop/single-product-fullwidth.html" class="d-block width-75 text-center"><img
-                                class="img-fluid" src="{{asset('client/assets/img/75X75/img8.jpg')}}"
+                                class="img-fluid" src="{{asset('images/products/iphone-11-den-1-1-1-org.jpg')}}"
                                 alt="Image Description"></a>
                     </div>
                     <div class="col pl-4 d-flex flex-column">
-                        <h5 class="product-item__title mb-0"><a href="../shop/single-product-fullwidth.html"
-                                class="text-blue font-weight-bold">22Mps Camera 6200U with 500GB SDcard</a></h5>
+                        <h5 class="product-item__title mb-0"><a href="images/products/oppo-reno8-5g-den-1.jpg"
+                                class="text-blue font-weight-bold">Iphone 11</a></h5>
                         <div class="text-warning mb-2">
                             <small class="fas fa-star"></small>
                             <small class="fas fa-star"></small>
@@ -2305,12 +2316,12 @@ use App\Models\Product;
                 <li class="product-item product-item__list row no-gutters mb-6 remove-divider">
                     <div class="col-auto">
                         <a href="../shop/single-product-fullwidth.html" class="d-block width-75 text-center"><img
-                                class="img-fluid" src="{{asset('client/assets/img/75X75/img9.jpg')}}"
+                                class="img-fluid" src="{{asset('images/products/oppo-reno8-5g-den-1.jpg')}}"
                                 alt="Image Description"></a>
                     </div>
                     <div class="col pl-4 d-flex flex-column">
                         <h5 class="product-item__title mb-0"><a href="../shop/single-product-fullwidth.html"
-                                class="text-blue font-weight-bold">Full Color LaserJet Pro M452dn</a></h5>
+                                class="text-blue font-weight-bold">Oppo reno8 5G</a></h5>
                         <div class="text-warning mb-2">
                             <small class="fas fa-star"></small>
                             <small class="fas fa-star"></small>

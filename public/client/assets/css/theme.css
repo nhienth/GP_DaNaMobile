@@ -37443,3 +37443,8 @@ blockquote:not(.blockquote) p {
 /*------------------------------------
   File for your custom SCSS style
 ------------------------------------*/
+.vertical-menu .navbar-expand-xl .u-header__navbar-nav .u-header__sub-menu{
+  height: 280px !important;
+  width: 15em !important;
+ 
+}

@@ -149,7 +149,7 @@ class PostController extends Controller
 
         return redirect('/admin/post/list')->with('success', 'Thêm bài viết thành công');
     }
-
+ 
     /**
      * Display the specified resource.
      *

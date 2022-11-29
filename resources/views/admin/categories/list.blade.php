@@ -51,8 +51,8 @@
                                     <select name="filter_name" class="form-select text-capitalize mb-md-0 mb-2"
                                         id="filter_name" onchange="this.form.submit()" class="sorting">
                                         <option value="0"> Mặc định </option>
-                                        <option value="2" class="text-capitalize"> A đến Z</option>
-                                        <option value="1" class="text-capitalize">Z đến A</option>
+                                        <option value="2" class="text-capitalize">Từ A đến Z</option>
+                                        <option value="1" class="text-capitalize">Từ Z đến A</option>
                                     </select>
                                 </form>
                             </div>
