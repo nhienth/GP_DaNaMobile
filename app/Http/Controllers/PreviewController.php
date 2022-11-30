@@ -55,50 +55,46 @@ class PreviewController extends Controller
         ->where('products.id', '!=', $id)
         ->take(6)
         ->get();
+
+        $countall = DB::table('product_reviews')->where('product_id','=',$product->id)->count();
+        $count5 = DB::table('product_reviews')->where('product_id','=',$product->id)->where('status', '=', 5)->count();
+        $count4 = DB::table('product_reviews')->where('product_id','=',$product->id)->where('status', '=', 4)->count();
+        $count3 = DB::table('product_reviews')->where('product_id','=',$product->id)->where('status', '=', 3)->count();
+        $count2 = DB::table('product_reviews')->where('product_id','=',$product->id)->where('status', '=', 2)->count();
+        $count1 = DB::table('product_reviews')->where('product_id','=',$product->id)->where('status', '=', 1)->count();
+        
+        if ($countall > 0 ) {
+            $total = ($count5*5 + $count4*4 + $count3*3 + $count2*2 + $count1*1)/$countall;
+            $round =  round($total, 1);
+            $previews = DB::table('product_reviews')->join('users','users.id','=','product_reviews.user_id')->select('product_reviews.*','users.name')->where('product_id','=',$product->id)->get();
+            return view('client.products.product_details' , compact('product','previews', 'countall','count5','count4','count3','count2','count1', 'round', 'similarProducts' ));
+        }
+        else {
+            $previews = DB::table('product_reviews')->join('users','users.id','=','product_reviews.user_id')->select('product_reviews.*','users.name')->where('product_id','=',$product->id)->get();
+            return view('client.products.product_details' , compact('product','previews','countall','count5','count4','count3','count2','count1', 'similarProducts'));
+        }    
+
         return view('client.products.product_details', compact('categories', 'slider', 'banner', 'products', 'previews','product', 'similarProducts'));
     }
 
     public function preview(Request $request, $id)
     {
         $previews = new Preview();
-        $previews->rate = 0;
+        $previews->rate = 5;
         $previews->review = $request->review;
-        $previews->status = 0;
         $previews->user_id = Auth::user()->id;
         $previews->product_id = $id;
 
-        // if ($request->rating_status > 0) {
-        //     $previews->status = $request->rating_status;
-        // } else {
-        //     $previews->status = 5;
-        // }
+        if ($request->rating_status > 0) {
+            $previews->status = $request->rating_status;
+        } else {
+            $previews->status = 5;
+        }
 
-        
         $previews->save();
         return back();
     }
 
-    
-    public function reviewRate($id)
-    {
-        $countall = DB::table('previews')->where('product_id','=',$product->id)->count();
-        $count5 = DB::table('previews')->where('product_id','=',$product->id)->where('status', '=', 5)->count();
-        $count4 = DB::table('previews')->where('product_id','=',$product->id)->where('status', '=', 4)->count();
-        $count3 = DB::table('previews')->where('product_id','=',$product->id)->where('status', '=', 3)->count();
-        $count2 = DB::table('previews')->where('product_id','=',$product->id)->where('status', '=', 2)->count();
-        $count1 = DB::table('previews')->where('product_id','=',$product->id)->where('status', '=', 1)->count();
-        
-        if ($countall > 0 ) {
-            $total = ($count5 * 5 + $count4 * 4 + $count3 * 3 + $count2 * 2 + $count1 * 1)/$countall;
-            $round =  round($total, 1);
-            $previews = DB::table('previews')->join('users','users.id','=','previews.user_id')->select('previews.*','users.name')->where('product_id','=',$product->id)->get();
-            return view('client.products.product_details' , compact('product_id' , 'previews', 'countall','count5','count4','count3','count2','count1', 'round' ));
-        }
-        else {
-            $previews = DB::table('previews')->join('users','users.id','=','previews.user_id')->select('previews.*','users.name')->where('product_id','=',$product->id)->get();
-            return view('client.products.product_details' , compact('product','previews','countall','count5','count4','count3','count2','count1'));
-        }
-    }
     /**
      * Store a newly created resource in storage.
      *

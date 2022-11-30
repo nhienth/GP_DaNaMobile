@@ -35,6 +35,19 @@
                         <div class="row">
                             <div class="col-md-4 user_role">
                                 <label class="form-label" for="UserRole">Tìm kiếm theo danh mục</label>
+                                <form action="{{ route('searchs') }}" method="GET">
+                                    @csrf
+                                    <select name="key_cate_id" class="form-select text-capitalize mb-md-0 mb-2"
+                                        id="cate" onchange="this.form.submit()" class="sorting">
+                                        <option value="0">Danh mục</option>
+                                        <option value="0">Tất cả bài viết</option>
+                                        
+                                        @foreach ($categories as $category)
+                                        <option data-id="{{ $category->id }}" value="{{ $category->id }}">
+                                            {{ $category->category_name }}</option>
+                                        @endforeach
+                                    </select>
+                                </form>
                             </div>
                             <div class="col-md-4 user_plan">
                                 <label class="form-label" for="UserPlan">Lượt xem</label>
