@@ -64,16 +64,6 @@
                                             <div class="dt-buttons d-inline-flex mt-50">
                                                 <button class="dt-button buttons-collection btn btn-outline-secondary dropdown-toggle me-2" 
                                                 tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="true">Xuất</button>
-                                                {{-- <div class="dt-button-collection" style="top: 148.625px; left: 889.488px;">
-                                                    <div role="menu">
-                                                        <button class="dt-button buttons-print dropdown-item" tabindex="0" type="button">Print</button>
-                                                        <button class="dt-button buttons-print dropdown-item" tabindex="0" type="button">Print</button>
-                                                        <button class="dt-button buttons-print dropdown-item" tabindex="0" type="button">Print</button>
-                                                    </div>
-                                                </div> --}}
-                                                <!-- <button type="button" class="dt-button add-new btn btn-primary" tabindex="0" data-bs-target="#modals-slide-in" aria-controls="DataTables_Table_0">
-                                                    <span>Thêm Sản phẩm mới</span>
-                                                </button> -->
                                             </div>
                                         </div>
                                     </div>

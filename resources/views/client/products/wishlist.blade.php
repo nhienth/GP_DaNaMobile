@@ -51,7 +51,7 @@
                                         </td>
 
                                         <td data-title="Unit Price">
-                                            <span class="">{{$item->price}}</span>
+                                            <span class="">{{number_format($item->price)}}đ</span>
                                         </td>
 
                                         <td data-title="Stock Status">

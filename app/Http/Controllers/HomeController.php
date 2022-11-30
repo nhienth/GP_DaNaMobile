@@ -10,6 +10,7 @@ use App\Models\Banner;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Combinations;
+use App\Models\Preview;
 use DB;
 class HomeController extends Controller
 {
@@ -35,6 +36,15 @@ class HomeController extends Controller
         $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
         $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
         $bannerlist = Banner::all();
+
+        // sản phẩm sale 
+        $productsalemax = Combinations::with(['product'])
+        ->orderBy('products_combinations.sale','desc')
+        // ->where('products_combinations.product_id','products.id')
+        ->take(1)
+        ->get();
+        // dd($productsalemax);
+
         // all sản phẩm
         $productsld = Product::with('combinations','category')->orderBy('products.id', 'desc')
             ->where('product_status', '1')
@@ -81,6 +91,30 @@ class HomeController extends Controller
             $product['maxprice'] = $maxPrice;
 
         }
+
+        // sản phẩm theo Đánh giá
+        $prevew_product = Preview::with('product')->orderBy('product_reviews.rate', 'DESC')
+        // ->where('product_reviews.product_id', 'products.product_status', '1')
+        ->limit(8)
+        ->get();
+        $priceArr = [];
+        $minPrice = 0;
+        $maxPrice = 0;
+        foreach ($view_product as $product) {
+          foreach ($product->combinations as $productCombi) {
+            array_push($priceArr, $productCombi->price);
+          
+            }
+            $minPrice = min($priceArr);
+            $maxPrice = max($priceArr);
+
+            $priceArr = [];
+
+            $product['minprice'] = $minPrice;
+            $product['maxprice'] = $maxPrice;
+
+        }
+        // dd($prevew_product);
 
         // sản phẩm theo danh mục
 
@@ -136,7 +170,7 @@ class HomeController extends Controller
 
         }
 
-        return view('client.index')->with(compact('categories', 'categoryhot', 'categorylist', 'view_product', 'product_cate', 'slider', 'banner', 'bannerlist', 'productsld', 'random', 'product_sale', 'categorySelect'));
+        return view('client.index')->with(compact('productsalemax','categories', 'categoryhot', 'categorylist', 'view_product', 'prevew_product', 'product_cate', 'slider', 'banner', 'bannerlist', 'productsld', 'random', 'product_sale', 'categorySelect'));
 
     }
 

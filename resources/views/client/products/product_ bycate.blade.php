@@ -250,7 +250,7 @@
                                     </div>
                                     <div class="font-weight-bold">
                                         <del class="font-size-11 text-gray-9 d-block"></del>
-                                        <ins class="font-size-15 text-black text-decoration-none d-block">${{$product->minPrice}}</ins>
+                                        <ins class="font-size-15 text-black text-decoration-none d-block">{{number_format($product->minPrice)}}đ</ins>
                                     </div>
                                 </div>
                             </div>
@@ -313,7 +313,7 @@
                                                     </div>
                                                     <div class="flex-center-between mb-1">
                                                         <div class="prodcut-price">
-                                                            <div class="text-gray-100">${{$product->minPrice}}</div>
+                                                            <div class="text-gray-100">{{number_format($product->minPrice)}}đ</div>
                                                         </div>
                                                         <div class="d-none d-xl-block prodcut-add-cart">
                                                             <a href="{{url('product/detail', [$product->id])}}" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>
@@ -446,7 +446,7 @@
                                             </div>
                                             <div class="flex-center-between mb-1">
                                                 <div class="prodcut-price">
-                                                    <div class="text-gray-100">${{$product->minPrice}}</div>
+                                                    <div class="text-gray-100">{{number_format($product->minPrice)}}đ</div>
                                                 </div>
                                                 <div class="d-none d-xl-block prodcut-add-cart">
                                                     <a href="" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>

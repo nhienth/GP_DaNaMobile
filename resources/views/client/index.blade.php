@@ -86,61 +86,63 @@ use App\Models\Product;
                 <!-- Deal -->
                 <div class="col-md-auto mb-6 mb-md-0">
                     <div class="p-3 border border-width-2 border-primary borders-radius-20 bg-white min-width-370" >
-                        <div class="d-flex justify-content-between align-items-center m-1 ml-2">
-                            <h3 class="font-size-22 mb-0 font-weight-normal text-lh-28 max-width-120" style="color: black">Khuyến mãi đặc biệt</h3>
-                            <div
-                                class="d-flex align-items-center flex-column justify-content-center bg-primary rounded-pill height-75 width-75 text-lh-1">
-                                <span class="font-size-12">Khuyến mãi</span>
-                                <div class="font-size-20 font-weight-bold">17%</div>
-                            </div>
-                        </div>
-                        <div class="mb-4">
-                            <a href="../shop/single-product-fullwidth.html" class="d-block text-center"><img
-                                    class="img-fluid" src="{{asset('images/products/iphone-13-pro-xanh-xa-1.jpg')}}" width="300px"
-                                    alt="Image Description"></a>
-                        </div>
-                        <h5 class="mb-2 font-size-14 text-center mx-auto max-width-180 text-lh-18"><a
-                                href="../shop/single-product-fullwidth.html" class="text-blue font-weight-bold">Iphone</a></h5>
-                        <div class="d-flex align-items-center justify-content-center mb-3">
-                            <del class="font-size-18 mr-2 text-gray-2">36,990,000đ</del>
-                            <ins class="font-size-30 text-red text-decoration-none">30,490,000đ</ins>
-                        </div>
-                        <div class="mb-3 mx-2">
-                            <div class="d-flex justify-content-between align-items-center mb-2" style="color: black">
-                                <span class="">Sẵn có: <strong>88</strong></span>
-                                <span class="">Đã bán: <strong>511</strong></span>
-                            </div>
-                            <div class="rounded-pill bg-gray-3 height-20 position-relative">
-                                <span
-                                    class="position-absolute left-0 top-0 bottom-0 rounded-pill w-30 bg-primary"></span>
-                            </div>
-                        </div>
-                        <div class="mb-2">
-                            <h6 class="font-size-15 text-gray-2 text-center mb-3">Nhanh lên! Thời gian còn lại:</h6>
-                            <div class="js-countdown d-flex justify-content-center" data-end-date="2022/11/30"
-                                data-hours-format="%H" data-minutes-format="%M" data-seconds-format="%S">
-                                <div class="text-lh-1">
-                                    <div class="text-gray-2 font-size-30 bg-gray-4 py-2 px-2 rounded-sm mb-2">
-                                        <span class="js-cd-hours"></span>
-                                    </div>
-                                    <div class="text-gray-2 font-size-12 text-center">GIỜ</div>
-                                </div>
-                                <div class="mx-1 pt-1 text-gray-2 font-size-24">:</div>
-                                <div class="text-lh-1">
-                                    <div class="text-gray-2 font-size-30 bg-gray-4 py-2 px-2 rounded-sm mb-2">
-                                        <span class="js-cd-minutes"></span>
-                                    </div>
-                                    <div class="text-gray-2 font-size-12 text-center">PHÚT</div>
-                                </div>
-                                <div class="mx-1 pt-1 text-gray-2 font-size-24">:</div>
-                                <div class="text-lh-1">
-                                    <div class="text-gray-2 font-size-30 bg-gray-4 py-2 px-2 rounded-sm mb-2">
-                                        <span class="js-cd-seconds"></span>
-                                    </div>
-                                    <div class="text-gray-2 font-size-12 text-center">GIÂY</div>
+                        @foreach($productsalemax as $sale )
+                            <div class="d-flex justify-content-between align-items-center m-1 ml-2">
+                                <h3 class="font-size-22 mb-0 font-weight-normal text-lh-28 max-width-120" style="color: black">Khuyến mãi đặc biệt</h3>
+                                <div
+                                    class="d-flex align-items-center flex-column justify-content-center bg-primary rounded-pill height-75 width-75 text-lh-1">
+                                    <span class="font-size-12">Khuyến mãi</span>
+                                    <div class="font-size-20 font-weight-bold">{{$sale->sale}}%</div>
                                 </div>
                             </div>
-                        </div>
+                            <div class="mb-4">
+                                <a href="../shop/single-product-fullwidth.html" class="d-block text-center"><img
+                                        class="img-fluid" src="{{asset('images/products/'.$sale->combination_image)}}" width="300px"
+                                        alt="Image Description"></a>
+                            </div>
+                            <h5 class="mb-2 font-size-14 text-center mx-auto max-width-180 text-lh-18"><a
+                                    href="../shop/single-product-fullwidth.html" class="text-blue font-weight-bold">{{$sale->product_name}}</a></h5>
+                            <div class="d-flex align-items-center justify-content-center mb-3">
+                                <del class="font-size-18 mr-2 text-gray-2">{{number_format($sale->price)}}đ</del>
+                                <ins class="font-size-30 text-red text-decoration-none">{{(number_format($sale->price - ($sale->price * ($sale->sale/100))))}}</ins>
+                            </div>
+                            <div class="mb-3 mx-2">
+                                <div class="d-flex justify-content-between align-items-center mb-2" style="color: black">
+                                    <span class="">Sẵn có: <strong>{{$sale->avilableStock}}</strong></span>
+                                    <span class="">Đã bán: <strong>511</strong></span>
+                                </div>
+                                <div class="rounded-pill bg-gray-3 height-20 position-relative">
+                                    <span
+                                        class="position-absolute left-0 top-0 bottom-0 rounded-pill w-30 bg-primary"></span>
+                                </div>
+                            </div>
+                            <div class="mb-2">
+                                <h6 class="font-size-15 text-gray-2 text-center mb-3">Nhanh lên! Thời gian còn lại:</h6>
+                                <div class="js-countdown d-flex justify-content-center" data-end-date="2022/12/20"
+                                    data-hours-format="%H" data-minutes-format="%M" data-seconds-format="%S">
+                                    <div class="text-lh-1">
+                                        <div class="text-gray-2 font-size-30 bg-gray-4 py-2 px-2 rounded-sm mb-2">
+                                            <span class="js-cd-hours"></span>
+                                        </div>
+                                        <div class="text-gray-2 font-size-12 text-center">GIỜ</div>
+                                    </div>
+                                    <div class="mx-1 pt-1 text-gray-2 font-size-24">:</div>
+                                    <div class="text-lh-1">
+                                        <div class="text-gray-2 font-size-30 bg-gray-4 py-2 px-2 rounded-sm mb-2">
+                                            <span class="js-cd-minutes"></span>
+                                        </div>
+                                        <div class="text-gray-2 font-size-12 text-center">PHÚT</div>
+                                    </div>
+                                    <div class="mx-1 pt-1 text-gray-2 font-size-24">:</div>
+                                    <div class="text-lh-1">
+                                        <div class="text-gray-2 font-size-30 bg-gray-4 py-2 px-2 rounded-sm mb-2">
+                                            <span class="js-cd-seconds"></span>
+                                        </div>
+                                        <div class="text-gray-2 font-size-12 text-center">GIÂY</div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
                 <!-- End Deal -->
@@ -218,16 +220,6 @@ use App\Models\Product;
                                                         </div>
                                                     </div>
                                                 </div>
-                                                {{-- <div class="product-item__footer">
-                                                    <div class="border-top pt-2 flex-center-between flex-wrap">
-                                                        <a href="../shop/compare.html"
-                                                            class="text-gray-6 font-size-13"><i
-                                                                class="ec ec-compare mr-1 font-size-15"></i> So sánh</a>
-                                                        <a href="../shop/wishlist.html"
-                                                            class="text-gray-6 font-size-13"><i
-                                                                class="ec ec-favorites mr-1 font-size-15"></i> Yêu thích</a>
-                                                    </div>
-                                                </div> --}}
                                             </div>
                                         </div>
                                     </li>
@@ -276,333 +268,34 @@ use App\Models\Product;
                             <div class="tab-pane fade pt-2" id="pills-three-example1" role="tabpanel"
                                 aria-labelledby="pills-three-example1-tab">
                                 <ul class="row list-unstyled products-group no-gutters">
+                                    @foreach($prevew_product as $preview)
                                     <li class="col-6 col-wd-3 col-md-4 product-item">
                                         <div class="product-item__outer h-100">
                                             <div class="product-item__inner px-xl-4 p-3">
                                                 <div class="product-item__body pb-xl-2">
                                                     <div class="mb-2"><a
-                                                            href="../shop/product-categories-7-column-full-width.html"
-                                                            class="font-size-12 text-gray-5">Speakers</a></div>
+                                                            href="{{url('product/detail',[$preview->id])}}"
+                                                            class="font-size-12 text-gray-5"></a></div>
                                                     <h5 class="mb-1 product-item__title"><a
-                                                            href="../shop/single-product-fullwidth.html"
-                                                            class="text-blue font-weight-bold">Wireless Audio System
-                                                            Multiroom 360 degree Full base audio</a></h5>
+                                                            href="{{url('product/detail',[$preview->id])}}"
+                                                            class="text-blue font-weight-bold">{{$preview->product->product_name}}</a></h5>
                                                     <div class="mb-2">
-                                                        <a href="../shop/single-product-fullwidth.html"
+                                                        <a href="{{url('product/detail',[$preview->id])}}"
                                                             class="d-block text-center"><img class="img-fluid"
-                                                                src="{{asset('client/assets/img/212X200/img1.jpg')}}"
+                                                                src="{{asset('images/products/'.$preview->product->product_img)}}"
                                                                 alt="Image Description"></a>
                                                     </div>
                                                     <div class="flex-center-between mb-1">
-                                                        <div class="prodcut-price">
-                                                            <div class="text-gray-100">10,490,000đ</div>
-                                                        </div>
                                                         <div class="d-none d-xl-block prodcut-add-cart">
-                                                            <a href="../shop/single-product-fullwidth.html"
-                                                                class="btn-add-cart btn-primary transition-3d-hover"><i
-                                                                    class="ec ec-add-to-cart"></i></a>
+                                                            <a href="{{url('product/detail',[$preview->id])}}"
+                                                                class="btn btn-primary transition-3d-hover">Xem chi tiết</a>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </li>
-                                    <li class="col-6 col-wd-3 col-md-4 product-item">
-                                        <div class="product-item__outer h-100">
-                                            <div class="product-item__inner px-xl-4 p-3">
-                                                <div class="product-item__body pb-xl-2">
-                                                    <div class="mb-2"><a
-                                                            href="../shop/product-categories-7-column-full-width.html"
-                                                            class="font-size-12 text-gray-5">Speakers</a></div>
-                                                    <h5 class="mb-1 product-item__title"><a
-                                                            href="../shop/single-product-fullwidth.html"
-                                                            class="text-blue font-weight-bold">Tablet White EliteBook
-                                                            Revolve 810 G2</a></h5>
-                                                    <div class="mb-2">
-                                                        <a href="../shop/single-product-fullwidth.html"
-                                                            class="d-block text-center"><img class="img-fluid"
-                                                                src="{{asset('client/assets/img/212X200/img2.jpg')}}"
-                                                                alt="Image Description"></a>
-                                                    </div>
-                                                    <div class="flex-center-between mb-1">
-                                                        <div class="prodcut-price">
-                                                            <div class="text-gray-100">10,490,000đ</div>
-                                                        </div>
-                                                        <div class="d-none d-xl-block prodcut-add-cart">
-                                                            <a href="../shop/single-product-fullwidth.html"
-                                                                class="btn-add-cart btn-primary transition-3d-hover"><i
-                                                                    class="ec ec-add-to-cart"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-item__footer">
-                                                    <div class="border-top pt-2 flex-center-between flex-wrap">
-                                                        <a href="../shop/compare.html"
-                                                            class="text-gray-6 font-size-13"><i
-                                                                class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
-                                                        <a href="../shop/wishlist.html"
-                                                            class="text-gray-6 font-size-13"><i
-                                                                class="ec ec-favorites mr-1 font-size-15"></i> Add to
-                                                            Wishlist</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="col-6 col-wd-3 col-md-4 product-item remove-divider-xl">
-                                        <div class="product-item__outer h-100">
-                                            <div class="product-item__inner px-xl-4 p-3">
-                                                <div class="product-item__body pb-xl-2">
-                                                    <div class="mb-2"><a
-                                                            href="../shop/product-categories-7-column-full-width.html"
-                                                            class="font-size-12 text-gray-5">Speakers</a></div>
-                                                    <h5 class="mb-1 product-item__title"><a
-                                                            href="../shop/single-product-fullwidth.html"
-                                                            class="text-blue font-weight-bold">Purple Solo 2
-                                                            Wireless</a></h5>
-                                                    <div class="mb-2">
-                                                        <a href="../shop/single-product-fullwidth.html"
-                                                            class="d-block text-center"><img class="img-fluid"
-                                                                src="{{asset('client/assets/img/212X200/img3.jpg')}}"
-                                                                alt="Image Description"></a>
-                                                    </div>
-                                                    <div class="flex-center-between mb-1">
-                                                        <div class="prodcut-price">
-                                                            <div class="text-gray-100">10,490,000đ</div>
-                                                        </div>
-                                                        <div class="d-none d-xl-block prodcut-add-cart">
-                                                            <a href="../shop/single-product-fullwidth.html"
-                                                                class="btn-add-cart btn-primary transition-3d-hover"><i
-                                                                    class="ec ec-add-to-cart"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-item__footer">
-                                                    <div class="border-top pt-2 flex-center-between flex-wrap">
-                                                        <a href="../shop/compare.html"
-                                                            class="text-gray-6 font-size-13"><i
-                                                                class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
-                                                        <a href="../shop/wishlist.html"
-                                                            class="text-gray-6 font-size-13"><i
-                                                                class="ec ec-favorites mr-1 font-size-15"></i> Add to
-                                                            Wishlist</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="col-6 col-wd-3 col-md-4 product-item remove-divider-wd">
-                                        <div class="product-item__outer h-100">
-                                            <div class="product-item__inner px-xl-4 p-3">
-                                                <div class="product-item__body pb-xl-2">
-                                                    <div class="mb-2"><a
-                                                            href="../shop/product-categories-7-column-full-width.html"
-                                                            class="font-size-12 text-gray-5">Speakers</a></div>
-                                                    <h5 class="mb-1 product-item__title"><a
-                                                            href="../shop/single-product-fullwidth.html"
-                                                            class="text-blue font-weight-bold">Smartphone 6S 32GB
-                                                            LTE</a></h5>
-                                                    <div class="mb-2">
-                                                        <a href="../shop/single-product-fullwidth.html"
-                                                            class="d-block text-center"><img class="img-fluid"
-                                                                src="{{asset('client/assets/img/212X200/img4.jpg')}}"
-                                                                alt="Image Description"></a>
-                                                    </div>
-                                                    <div class="flex-center-between mb-1">
-                                                        <div class="prodcut-price">
-                                                            <div class="text-gray-100">10,490,000đ</div>
-                                                        </div>
-                                                        <div class="d-none d-xl-block prodcut-add-cart">
-                                                            <a href="../shop/single-product-fullwidth.html"
-                                                                class="btn-add-cart btn-primary transition-3d-hover"><i
-                                                                    class="ec ec-add-to-cart"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-item__footer">
-                                                    <div class="border-top pt-2 flex-center-between flex-wrap">
-                                                        <a href="../shop/compare.html"
-                                                            class="text-gray-6 font-size-13"><i
-                                                                class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
-                                                        <a href="../shop/wishlist.html"
-                                                            class="text-gray-6 font-size-13"><i
-                                                                class="ec ec-favorites mr-1 font-size-15"></i> Add to
-                                                            Wishlist</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="col-6 col-wd-3 col-md-4 product-item">
-                                        <div class="product-item__outer h-100">
-                                            <div class="product-item__inner px-xl-4 p-3">
-                                                <div class="product-item__body pb-xl-2">
-                                                    <div class="mb-2"><a
-                                                            href="../shop/product-categories-7-column-full-width.html"
-                                                            class="font-size-12 text-gray-5">Speakers</a></div>
-                                                    <h5 class="mb-1 product-item__title"><a
-                                                            href="../shop/single-product-fullwidth.html"
-                                                            class="text-blue font-weight-bold">Widescreen NX Mini F1
-                                                            SMART NX</a></h5>
-                                                    <div class="mb-2">
-                                                        <a href="../shop/single-product-fullwidth.html"
-                                                            class="d-block text-center"><img class="img-fluid"
-                                                                src="{{asset('client/assets/img/212X200/img5.jpg')}}"
-                                                                alt="Image Description"></a>
-                                                    </div>
-                                                    <div class="flex-center-between mb-1">
-                                                        <div class="prodcut-price">
-                                                            <div class="text-gray-100">10,490,000đ</div>
-                                                        </div>
-                                                        <div class="d-none d-xl-block prodcut-add-cart">
-                                                            <a href="../shop/single-product-fullwidth.html"
-                                                                class="btn-add-cart btn-primary transition-3d-hover"><i
-                                                                    class="ec ec-add-to-cart"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-item__footer">
-                                                    <div class="border-top pt-2 flex-center-between flex-wrap">
-                                                        <a href="../shop/compare.html"
-                                                            class="text-gray-6 font-size-13"><i
-                                                                class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
-                                                        <a href="../shop/wishlist.html"
-                                                            class="text-gray-6 font-size-13"><i
-                                                                class="ec ec-favorites mr-1 font-size-15"></i> Add to
-                                                            Wishlist</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="col-6 col-wd-3 col-md-4 product-item remove-divider-xl">
-                                        <div class="product-item__outer h-100">
-                                            <div class="product-item__inner px-xl-4 p-3">
-                                                <div class="product-item__body pb-xl-2">
-                                                    <div class="mb-2"><a
-                                                            href="../shop/product-categories-7-column-full-width.html"
-                                                            class="font-size-12 text-gray-5">Speakers</a></div>
-                                                    <h5 class="mb-1 product-item__title"><a
-                                                            href="../shop/single-product-fullwidth.html"
-                                                            class="text-blue font-weight-bold">Full Color LaserJet Pro
-                                                            M452dn</a></h5>
-                                                    <div class="mb-2">
-                                                        <a href="../shop/single-product-fullwidth.html"
-                                                            class="d-block text-center"><img class="img-fluid"
-                                                                src="{{asset('client/assets/img/212X200/img6.jpg')}}"
-                                                                alt="Image Description"></a>
-                                                    </div>
-                                                    <div class="flex-center-between mb-1">
-                                                        <div class="prodcut-price">
-                                                            <div class="text-gray-100">10,490,000đ</div>
-                                                        </div>
-                                                        <div class="d-none d-xl-block prodcut-add-cart">
-                                                            <a href="../shop/single-product-fullwidth.html"
-                                                                class="btn-add-cart btn-primary transition-3d-hover"><i
-                                                                    class="ec ec-add-to-cart"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-item__footer">
-                                                    <div class="border-top pt-2 flex-center-between flex-wrap">
-                                                        <a href="../shop/compare.html"
-                                                            class="text-gray-6 font-size-13"><i
-                                                                class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
-                                                        <a href="../shop/wishlist.html"
-                                                            class="text-gray-6 font-size-13"><i
-                                                                class="ec ec-favorites mr-1 font-size-15"></i> Add to
-                                                            Wishlist</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li
-                                        class="col-6 col-wd-3 col-md-4 product-item d-xl-none d-wd-block remove-divider-xl">
-                                        <div class="product-item__outer h-100">
-                                            <div class="product-item__inner px-xl-4 p-3">
-                                                <div class="product-item__body pb-xl-2">
-                                                    <div class="mb-2"><a
-                                                            href="../shop/product-categories-7-column-full-width.html"
-                                                            class="font-size-12 text-gray-5">Speakers</a></div>
-                                                    <h5 class="mb-1 product-item__title"><a
-                                                            href="../shop/single-product-fullwidth.html"
-                                                            class="text-blue font-weight-bold">GameConsole Destiny
-                                                            Special Edition</a></h5>
-                                                    <div class="mb-2">
-                                                        <a href="../shop/single-product-fullwidth.html"
-                                                            class="d-block text-center"><img class="img-fluid"
-                                                                src="{{asset('client/assets/img/212X200/img7.jpg')}}"
-                                                                alt="Image Description"></a>
-                                                    </div>
-                                                    <div class="flex-center-between mb-1">
-                                                        <div class="prodcut-price">
-                                                            <div class="text-gray-100">10,490,000đ</div>
-                                                        </div>
-                                                        <div class="d-none d-xl-block prodcut-add-cart">
-                                                            <a href="../shop/single-product-fullwidth.html"
-                                                                class="btn-add-cart btn-primary transition-3d-hover"><i
-                                                                    class="ec ec-add-to-cart"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-item__footer">
-                                                    <div class="border-top pt-2 flex-center-between flex-wrap">
-                                                        <a href="../shop/compare.html"
-                                                            class="text-gray-6 font-size-13"><i
-                                                                class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
-                                                        <a href="../shop/wishlist.html"
-                                                            class="text-gray-6 font-size-13"><i
-                                                                class="ec ec-favorites mr-1 font-size-15"></i> Add to
-                                                            Wishlist</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li
-                                        class="col-6 col-wd-3 col-md-4 product-item d-xl-none d-wd-block remove-divider-wd">
-                                        <div class="product-item__outer h-100">
-                                            <div class="product-item__inner px-xl-4 p-3">
-                                                <div class="product-item__body pb-xl-2">
-                                                    <div class="mb-2"><a
-                                                            href="../shop/product-categories-7-column-full-width.html"
-                                                            class="font-size-12 text-gray-5">Speakers</a></div>
-                                                    <h5 class="mb-1 product-item__title"><a
-                                                            href="../shop/single-product-fullwidth.html"
-                                                            class="text-blue font-weight-bold">Camera C430W 4k
-                                                            Waterproof</a></h5>
-                                                    <div class="mb-2">
-                                                        <a href="../shop/single-product-fullwidth.html"
-                                                            class="d-block text-center"><img class="img-fluid"
-                                                                src="{{asset('client/assets/img/212X200/img8.jpg')}}"
-                                                                alt="Image Description"></a>
-                                                    </div>
-                                                    <div class="flex-center-between mb-1">
-                                                        <div class="prodcut-price">
-                                                            <div class="text-gray-100">10,490,000đ</div>
-                                                        </div>
-                                                        <div class="d-none d-xl-block prodcut-add-cart">
-                                                            <a href="../shop/single-product-fullwidth.html"
-                                                                class="btn-add-cart btn-primary transition-3d-hover"><i
-                                                                    class="ec ec-add-to-cart"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-item__footer">
-                                                    <div class="border-top pt-2 flex-center-between flex-wrap">
-                                                        <a href="../shop/compare.html"
-                                                            class="text-gray-6 font-size-13"><i
-                                                                class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
-                                                        <a href="../shop/wishlist.html"
-                                                            class="text-gray-6 font-size-13"><i
-                                                                class="ec ec-favorites mr-1 font-size-15"></i> Add to
-                                                            Wishlist</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>

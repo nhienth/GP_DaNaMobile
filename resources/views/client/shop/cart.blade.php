@@ -63,7 +63,7 @@
                             </td>
 
                             <td data-title="Price">
-                                <span class="">{{$details['price']}}</span>
+                                <span class="">{{number_format($details['price'])}}đ</span>
                             </td>
 
                             {{-- <td data-title="Quantity"> --}}
@@ -83,7 +83,7 @@
                                         class="btn btn-danger btn-sm cart_delete">Cập nhật</button></a>
                             </td>
                             <td data-title="Total">
-                                <span class="">{{$details['quantity'] * $details['price']}}</span>
+                                <span class="">{{number_format($details['quantity'] * $details['price'])}}đ</span>
                             </td>
                         </tr>
                     </form>

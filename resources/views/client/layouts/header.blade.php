@@ -198,7 +198,7 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                                         <span
                                             class="bg-lg-down-black width-22 height-22 bg-primary position-absolute d-flex align-items-center justify-content-center rounded-circle left-12 top-8 font-weight-bold font-size-12 text-white" > <?=count((array) session('cart'))?> </span>
                                         <span
-                                            class="d-none d-xl-block font-weight-bold font-size-16 text-gray-90 ml-3">{{$total}}</span>
+                                            class="d-none d-xl-block font-weight-bold font-size-16 text-gray-90 ml-3">{{number_format($total)}}đ</span>
                                     </div>
                                     <div id="basicDropdownHover"
                                         class="cart-dropdown dropdown-menu dropdown-unfold border-top border-top-primary mt-3 border-width-2 border-left-0 border-right-0 border-bottom-0 left-auto right-0"

@@ -187,7 +187,7 @@
                                     <td>{{$product->product_name}}</td>
                                     <td>{{$product->category->category_name}}</td>
                                     <td><img class="rounded" src="{{asset('images/products/'.$product->product_img)}}"
-                                            width="100px" height="100px" style="display:block; margin: 0 auto;"></td>
+                                            width="150px" height="100px" style="display:block; margin: 0 auto;"></td>
                                     <td>{{$product->product_view}}</td>
                                     <td>
                                         <?php if($product->product_status == 1){ ?>

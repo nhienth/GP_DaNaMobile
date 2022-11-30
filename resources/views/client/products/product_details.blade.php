@@ -596,7 +596,7 @@
                     let pro = Array.from(productsCombination).find(pro => pro.value.trim() == variSeleted);
                  
                     if (variSeleted == pro.value.trim()) {
-                        priceHtml.innerHTML = `${Intl.NumberFormat('en-IN').format(pro.nextElementSibling.value)}đ`;
+                        priceHtml.innerHTML = `${Intl.NumberFormat('en-US').format(pro.nextElementSibling.value)}đ`;
                         let combiId = pro.parentElement.lastElementChild.value;
                         addCartForm.action=`http://127.0.0.1:8000/cart/add/${combiId}`;
                         addCartButton.href=`http://127.0.0.1:8000/cart/add/${combiId}`;
