@@ -173,14 +173,14 @@ $random = [];
                                         href="{{url('/cart/')}}">Giỏ hàng</a></li>
                                 
                                 <li><a class="list-group-item list-group-item-action"
-                                        href="http://127.0.0.1:8000/contact">Dịch vụ khách hàng</a></li>
+                                        href="{{url('/contact')}}">Dịch vụ khách hàng</a></li>
                                 <li><a class="list-group-item list-group-item-action"
-                                        href="http://127.0.0.1:8000/contact">Trao đổi</a></li>
+                                        href="{{url('/contact')}}">Trao đổi</a></li>
                                 <li><a class="list-group-item list-group-item-action"
-                                        href="http://127.0.0.1:8000/contact">FAQs</a>
+                                        href="{{url('/contact')}}">FAQs</a>
                                 </li>
                                 <li><a class="list-group-item list-group-item-action"
-                                        href="http://127.0.0.1:8000/contact">Hổ trợ sản phẩm</a></li>
+                                        href="{{url('/contact')}}">Hổ trợ sản phẩm</a></li>
                             </ul>
                             <!-- End List Group -->
                         </div>

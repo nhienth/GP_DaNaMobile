@@ -12,7 +12,7 @@
                                 chủ</a>
                         </li>
                         <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a
-                                href="{{url('http://127.0.0.1:8000/product/byCate/'.$product->category->id)}}">{{$product->category->category_name}}</a></li>
+                                href="{{url('/product/byCate/'.$product->category->id)}}">{{$product->category->category_name}}</a></li>
                         <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1 active" aria-current="page">
                             {{$product->product_name}}</li>
                     </ol>

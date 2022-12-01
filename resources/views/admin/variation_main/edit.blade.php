@@ -12,9 +12,9 @@
                             <h2 class="content-header-title float-start mb-0">Cập nhật Biến thể</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Trang chủ</a>
+                                    <li class="breadcrumb-item"><a href="{{url('admin')}}">Trang chủ</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="#">Biến thể</a>
+                                    <li class="breadcrumb-item"><a href="{{url('admin/variation_main/list')}}">Biến thể</a>
                                     </li>
                                     <li class="breadcrumb-item active">Cập nhật
                                     </li>
