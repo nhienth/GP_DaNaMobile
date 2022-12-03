@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\Order;
-
+use App\Models\User;
 
 class OrderDetails extends Model
 {
@@ -22,11 +22,13 @@ class OrderDetails extends Model
         'product_id'
     ];
 
-    public function order(){
-        return $this->belongsTo(Order::class,'order_id');
+    public function orders(){
+        return $this->belongsTo(Order::class,'order_id','id');
     }
-    public function product(){
-        return $this->belongsTo(Product::class,'product_id');
+    public function products(){
+        return $this->belongsTo(Product::class,'product_id','id');
     }
-
+    public function users(){
+        return $this->belongsTo(User::class,'user_id','id');
+    }
 }

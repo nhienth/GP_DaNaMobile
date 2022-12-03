@@ -390,7 +390,7 @@
                                 <h3 class="font-size-18 mb-5">Thêm đánh giá</h3>
                                 <!-- Form -->
                                 
-                                <form class="js-validate" action="{{route('preview',$product->id)}}" method="POST">
+                                <form class="js-validate" id="review" action="{{route('preview',$product->id)}}" method="POST">
                                     @csrf
                                     @if (Auth::check())
                                     <div class="row align-items-center mb-4">
@@ -644,4 +644,34 @@
           });
   
         });
+
+
+        $(document).ready(function () {             
+            $('#review').on('submit', function (e) {
+                e.preventDefault();
+                let formData = new FormData(this);
+                $.ajax({
+                    url: "/product/detail/{id}",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    cache: false,
+                    method: 'GET',
+                    beforeSend: function () {
+                        $('#review').find('span.error-text').text('');
+                    },
+                    success: function (data) {                      
+                        $('#review')[0].reset();                                          
+                        setTimeout(() => location.reload(), 2000);
+                    },
+                    error: function (error) {
+                        // $('.title-error').html(error.errors.title);
+                        $.each(error.responseJSON.data, function (prefix, val) {
+                            console.log(prefix, val)
+                            $('#review').find(`span.${prefix}-error`).html(val[0]);
+                        });
+                    }
+                })
+            })
+        })
 </script>

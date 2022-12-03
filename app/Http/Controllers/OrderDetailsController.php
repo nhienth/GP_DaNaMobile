@@ -5,9 +5,7 @@ use App\Models\OrderDetails;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Product;
-
-
-
+use App\Models\User;
 
 class OrderDetailsController extends Controller
 {
@@ -49,8 +47,10 @@ class OrderDetailsController extends Controller
      */
     public function show($id)
     {             
-        $detail = OrderDetails::with('product','order')->where('order_details.order_id', $id)->get();
-        return view('admin.order.details',compact('detail'));
+        $detail = OrderDetails::where('order_id','=', $id)->get();
+        $order = Order::find($id);
+        $products = Product::find($id);
+        return view('admin.order.details',compact('detail','order','products'));
     }
     /**
      * Show the form for editing the specified resource.

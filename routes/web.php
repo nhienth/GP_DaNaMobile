@@ -78,12 +78,10 @@ Route::prefix('/')->group(function () {
 
     Route::prefix('/product')->group(function () {
         Route::get('/byCate/{id}', [ProductController::class, 'productbyCate']);
-
         Route::get('/detail/{id}', [ProductController::class, 'productDetail']);
-    //review product
-        Route::get('/detail/{id}',[PreviewController::class,'productReview']);
-        Route::post('/preview/{id}',[PreviewController::class,'preview'])->name('preview');
-        Route::get('/rate/{id}',[PreviewController::class,'reviewRate']);
+    //review product       
+        Route::post('/preview/{id}',[ProductController::class,'preview'])->name('preview');
+        // Route::get('/rate/{id}',[ProductController::class,'reviewRate']);
         Route::get('/search',[ProductController::class,'searchProduct']);
 
     });
@@ -151,7 +149,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
         });
 
         //preview
-        Route::post('/preview/{id}', [PreviewController::class, 'preview'])->name('preview')->middleware('auth');
+        // Route::post('/preview/{id}', [PreviewController::class, 'preview'])->name('preview')->middleware('auth');
 
         
         Route::prefix('/product')->group(function () {

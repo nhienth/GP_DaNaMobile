@@ -108,11 +108,11 @@
                             <tbody>                   
                                 @foreach ($detail as $item)
                                 <tr data-dt-row="" data-dt-column="">
-                                      <td>{{$item->order->fullname}}</td>  
-                                      <td>{{$item->order->email}}</td> 
-                                      <td>{{$item->order->phone}}</td>                                           
-                                      <td>{{$item->order->address}}</td> 
-                                      <td></td> 
+                                      <td>{{$item->orders->fullname}}</td>  
+                                      <td>{{$item->orders->email}}</td> 
+                                      <td>{{$item->orders->phone}}</td>                                           
+                                      <td>{{$item->orders->address}}</td> 
+                                      <td>{{$item->orders->created_at }}</td> 
                                 </tr>
                             @endforeach                                                           
                                 </tr>                                                                              
@@ -135,11 +135,11 @@
                             <tbody>                    
                                 @foreach ($detail as $item)
                                 <tr data-dt-row="" data-dt-column="">
-                                      <td>{{$item->order->fullname}}</td>  
-                                      <td>{{$item->order->address}}</td> 
-                                      <td>{{$item->order->phone}}</td>                                           
+                                      <td>{{$item->orders->fullname}}</td>  
+                                      <td>{{$item->orders->address}}</td> 
+                                      <td>{{$item->orders->phone}}</td>                                           
                                       <td></td> 
-                                      <td>{{$item->order->note}}</td> 
+                                      <td>{{$item->orders->note}}</td> 
                                 </tr>
                             @endforeach                                                                                
                                 </tr>                                                                         
@@ -163,8 +163,8 @@
                             @foreach ($detail as $item)
                                 <tr data-dt-row="" data-dt-column="">
                                       <td>{{$item->id}}</td>                                             
-                                      <td>{{$item->order->id}}</td> 
-                                      <td>{{$item->product->product_name}}</td> 
+                                      <td>{{$item->order_id}}</td> 
+                                      <td>{{$item->products->product_name}}</td> 
                                       <td>{{$item->quantity}}</td> 
                                       <td>{{$item->total_amount}}</td>
                                 </tr>
