@@ -33,7 +33,7 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                             </li> --}}
                             <li
                                 class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border">
-                                <a href="{{url('/cart/')}}" class="u-header-topbar__nav-link"><i
+                                <a href="{{route('bill.list')}}" class="u-header-topbar__nav-link"><i
 
                                         class="ec ec-transport mr-1"></i> Đơn hàng của bạn</a>
                             </li>

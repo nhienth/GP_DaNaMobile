@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\Banner;
 use App\Models\PostReview;
 use App\Models\Category;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -220,4 +221,7 @@ class PostController extends Controller
         $post->delete();
         return redirect('/admin/post/list')->with('messenger', 'Bài viết đã bị xóa');
     }
+
+
+    
 }

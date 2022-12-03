@@ -15,6 +15,8 @@ use App\Models\Banner;
 use App\Models\Slider;
 use App\Models\Combinations;
 use App\Models\Image_Gallery;
+use App\Models\Order;
+use App\Models\OrderDetails;
 use App\Models\WishList;
 use Illuminate\Console\View\Components\Alert;
 use Illuminate\Http\Request;
@@ -509,6 +511,25 @@ class ProductController extends Controller
         $product = WishList::find($id);
         $product->delete();
         return redirect()->route('listWishlist');
+    }
+
+    //Show my bill
+    public function showMyBill () 
+    {
+        $myBill = Order::with('orderdetail')->get();
+        return view('client.shop.mybill', compact('myBill'));
+    }
+
+    public function showBillDetail($id)
+    {
+        $billDetails = OrderDetails::where('order_id', $id)->get();
+        foreach ($billDetails as $billdetail) {
+            $productCombi = Combinations::find($billdetail->product_id);
+            $productName = Product::find($productCombi->product_id)->value('product_name');
+            $billdetail['product_combi'] = $productCombi;
+            $billdetail['product_name'] = $productName;
+        }
+        return view('client.shop.billdetail', compact('billDetails'));
     }
 
 

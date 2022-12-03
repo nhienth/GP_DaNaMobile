@@ -88,12 +88,17 @@
                             </div>
                         </div>
                         <div class="flex-horizontal-center flex-wrap mb-4">
-
-                            <a href="" id="addWishlist"><i class="ec ec-favorites mr-1 font-size-15"></i> Sản phẩm yêu thích</a>
+                         
+                            @if (Auth::check())
+                                <a href="" id="addWishlist"><i class="ec ec-favorites mr-1 font-size-15"></i> Sản phẩm yêu thích</a>
+                                <a href></a>
+                            @else
+                                
+                            @endif
                             <a href="" id="addCompare" class="text-blue font-size-13 ml-2" >
                                 <i class="ec ec-compare mr-1 font-size-15"></i> So sánh</a>
                         </div>
-                
+
 
                         <p><strong>SKU</strong>: FW511948218</p>
                         <div class="mb-4">
@@ -263,11 +268,11 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <h3 class="font-size-18 mb-6">Dựa trên {{$countall}} đánh giá</h3>
-                                    @if (isset ($round))                                      
-                                    <h2 class="font-size-30 font-weight-bold text-lh-1 mb-0">{{$round}}</h2> 
-                                    <div class="text-lh-1">Tổng thể</div>                                                             
-                                    @else   
-                                                                  
+                                    @if (isset ($round))
+                                    <h2 class="font-size-30 font-weight-bold text-lh-1 mb-0">{{$round}}</h2>
+                                    <div class="text-lh-1">Tổng thể</div>
+                                    @else
+
                                     @endif
                                 </div>
 
@@ -277,7 +282,7 @@
                                         <a class="row align-items-center mx-gutters-2 font-size-1" href="javascript:;">
                                             <div class="col-auto mb-2 mb-md-0">
                                                 <div class="text-warning text-ls-n2 font-size-16" style="width: 100px;">
-                                                    <?php 
+                                                    <?php
                                                     for ($i = 0; $i < 5; $i++){
                                                    echo '<i class="fas fa-star"></i>';
                                                     }
@@ -299,7 +304,7 @@
                                         <a class="row align-items-center mx-gutters-2 font-size-1" href="javascript:;">
                                             <div class="col-auto mb-2 mb-md-0">
                                                 <div class="text-warning text-ls-n2 font-size-16" style="width: 100px;">
-                                                    <?php 
+                                                    <?php
                                                     for ($i = 0; $i < 4; $i++){
                                                    echo '<i class="fas fa-star"></i>';
                                                     }
@@ -321,7 +326,7 @@
                                         <a class="row align-items-center mx-gutters-2 font-size-1" href="javascript:;">
                                             <div class="col-auto mb-2 mb-md-0">
                                                 <div class="text-warning text-ls-n2 font-size-16" style="width: 100px;">
-                                                    <?php 
+                                                    <?php
                                                     for ($i = 0; $i < 3; $i++){
                                                    echo '<i class="fas fa-star"></i>';
                                                     }
@@ -343,7 +348,7 @@
                                         <a class="row align-items-center mx-gutters-2 font-size-1" href="javascript:;">
                                             <div class="col-auto mb-2 mb-md-0">
                                                 <div class="text-warning text-ls-n2 font-size-16" style="width: 100px;">
-                                                    <?php 
+                                                    <?php
                                                     for ($i = 0; $i < 2; $i++){
                                                    echo '<i class="fas fa-star"></i>';
                                                     }
@@ -365,7 +370,7 @@
                                         <a class="row align-items-center mx-gutters-2 font-size-1" href="javascript:;">
                                             <div class="col-auto mb-2 mb-md-0">
                                                 <div class="text-warning text-ls-n2 font-size-16" style="width: 100px;">
-                                                    <?php 
+                                                    <?php
                                                     for ($i = 0; $i < 1; $i++){
                                                    echo '<i class="fas fa-star"></i>';
                                                     }
@@ -389,7 +394,7 @@
                             <div class="col-md-6" style="color:black">
                                 <h3 class="font-size-18 mb-5">Thêm đánh giá</h3>
                                 <!-- Form -->
-                                
+
                                 <form class="js-validate" action="{{route('preview',$product->id)}}" method="POST">
                                     @csrf
                                     @if (Auth::check())
@@ -413,7 +418,7 @@
                                                         color: #FFD600;
                                                         cursor: pointer;
                                                 }
-                                                .rating > label::before{ 
+                                                .rating > label::before{
                                                     content: "\2605";
                                                     position: absolute;
                                                     opacity: 0;
@@ -464,7 +469,7 @@
                                                 class="btn btn-primary-dark btn-wide transition-3d-hover">Gửi</button>
                                         </div>
                                     </div>
-                                    @else 
+                                    @else
                                     <p class="text-gray-90"> Bạn cần đăng nhập để đánh giá sản phẩm <span class="text-dark"
                                         style="color: red !important;">*</span></p>
                                     @endif
@@ -554,8 +559,8 @@
     </div>
     <!-- End Single Product Tab -->
     <!-- Related products -->
-    
-    
+
+
     <!-- End Related products -->
 </main>
 
@@ -594,7 +599,7 @@
 
                 if(combiArray.includes(variSeleted)) {
                     let pro = Array.from(productsCombination).find(pro => pro.value.trim() == variSeleted);
-                 
+
                     if (variSeleted == pro.value.trim()) {
                         priceHtml.innerHTML = `${Intl.NumberFormat('en-US').format(pro.nextElementSibling.value)}đ`;
                         let combiId = pro.parentElement.lastElementChild.value;
@@ -602,14 +607,14 @@
                         addCartButton.href=`http://127.0.0.1:8000/cart/add/${combiId}`;
                         addCompare.href=`http://127.0.0.1:8000/compare/add/${combiId}`;
                         addWLButton.href=`http://127.0.0.1:8000/wishlist/${combiId}`;
-                        
+
                         let imgCombi = pro.nextElementSibling.nextElementSibling;
                         arrImgInput.forEach(imgInput => {
                             if(imgInput.value === imgCombi.value) {
-                                imgInput.parentElement.click();                              
+                                imgInput.parentElement.click();
                             }
                         })
-                        
+
                     }
                 }else {
                     if(arr[0] != 'a' && arr[1] != 'b') {
@@ -619,29 +624,29 @@
 
             });
         });
-    
+
     }, 2000);
 
-    jQuery(document).ready(function($){   
-          var resultVal = parseInt($('.js-result').val()); 
+    jQuery(document).ready(function($){
+          var resultVal = parseInt($('.js-result').val());
             $('.js-plus').click(function (e){
-            e.preventDefault();  
-            resultVal += 1; 
+            e.preventDefault();
+            resultVal += 1;
             $('.js-result').val(resultVal);
           });
-  
+
           $('.js-minus').click(function (e){
 
             e.preventDefault();
-  
+
             if (resultVal >= 1) {
               resultVal -= 1;
-  
+
               $('.js-result').val(resultVal);
             } else {
               return false;
             }
           });
-  
+
         });
 </script>
