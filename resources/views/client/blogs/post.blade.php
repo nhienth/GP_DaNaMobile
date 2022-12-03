@@ -34,7 +34,7 @@
                             
                         </div>
                     </div>
-                    <div class="col-xl-3 col-wd">
+                    {{-- <div class="col-xl-3 col-wd">
                         <aside class="mb-7">
                             <form class="" action="{{url('post/search')}}" method="get">
                                 <div class="d-flex align-items-center">
@@ -141,7 +141,7 @@
                                 <a href="../blog/single-blog-post.html" class="text-gray-90 mb-2 bg-primary-on-hover py-2 px-3 border mx-1">Wordpress</a>
                             </div>
                         </aside>
-                    </div>
+                    </div> --}}
                 </div>
                 <!-- Brand Carousel -->
                 <div class="mb-6">
@@ -168,36 +168,13 @@
                                     "slidesToShow": 1
                                 }
                             }]'>
+                            @foreach($banner as $banners)
                             <div class="js-slide">
-                                <a href="#" class="link-hover__brand">
-                                    <img class="img-fluid m-auto max-height-50" src="{{asset('/client/assets/img/200X60/img1.png')}}" alt="Image Description">
+                                <a href="{{$banners->location}}" class="link-hover__brand">
+                                    <img class="img-fluid m-auto max-height-50" src="{{asset('/images/banner/'.$banners->banner_img)}}" alt="Image Description">
                                 </a>
                             </div>
-                            <div class="js-slide">
-                                <a href="#" class="link-hover__brand">
-                                    <img class="img-fluid m-auto max-height-50" src="{{asset('/client/assets/img/200X60/img2.png')}}" alt="Image Description">
-                                </a>
-                            </div>
-                            <div class="js-slide">
-                                <a href="#" class="link-hover__brand">
-                                    <img class="img-fluid m-auto max-height-50" src="{{asset('/client/assets/img/200X60/img3.png')}}" alt="Image Description">
-                                </a>
-                            </div>
-                            <div class="js-slide">
-                                <a href="#" class="link-hover__brand">
-                                    <img class="img-fluid m-auto max-height-50" src="{{asset('/client/assets/img/200X60/img4.png')}}" alt="Image Description">
-                                </a>
-                            </div>
-                            <div class="js-slide">
-                                <a href="#" class="link-hover__brand">
-                                    <img class="img-fluid m-auto max-height-50" src="{{asset('/client/assets/img/200X60/img5.png')}}" alt="Image Description">
-                                </a>
-                            </div>
-                            <div class="js-slide">
-                                <a href="#" class="link-hover__brand">
-                                    <img class="img-fluid m-auto max-height-50" src="{{asset('/client/assets/img/200X60/img6.png')}}" alt="Image Description">
-                                </a>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

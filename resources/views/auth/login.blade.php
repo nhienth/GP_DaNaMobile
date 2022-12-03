@@ -2,7 +2,7 @@
     
     <div class="overlay-layout">  </div>
     
-    <div class="img-layout" style="background-image: url('{{asset('form/images/background.jpg')}}'); background-size: cover; background-repeat: no-repeat; background-position: center center;height:760px">
+    <div class="img-layout" style="background-image: url('{{asset('form/images/background_login.jpg')}}'); background-size: cover; background-repeat: no-repeat; background-position: center center;height:760px">
         <section class="ftco-section">
             <div class="container">
                 <x-slot name="logo">

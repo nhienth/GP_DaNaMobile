@@ -41,8 +41,11 @@ class HomeController extends Controller
         $productsalemax = Combinations::with(['product'])
         ->orderBy('products_combinations.sale','desc')
         // ->where('products_combinations.product_id','products.id')
-        ->take(1)
-        ->get();
+        ->first();
+        $proName = Product::find($productsalemax->product_id)->value('product_name');
+        $proID = Product::find($productsalemax->product_id)->value('id');
+        $productsalemax['product_name'] = $proName;
+        $productsalemax['id'] = $proID;
         // dd($productsalemax);
 
         // all sản phẩm
@@ -93,28 +96,17 @@ class HomeController extends Controller
         }
 
         // sản phẩm theo Đánh giá
-        $prevew_product = Preview::with('product')->orderBy('product_reviews.rate', 'DESC')
-        // ->where('product_reviews.product_id', 'products.product_status', '1')
+        $prevew_product = Preview::with('product')
+        ->select(DB::raw('product_id, max(created_at) as maxdate, min(created_at) as mindate, avg(status) as avgrate'), DB::raw('count(*) as total'))
+        ->groupBy('product_id')
+        ->latest('avgrate')
         ->limit(8)
         ->get();
-        $priceArr = [];
-        $minPrice = 0;
-        $maxPrice = 0;
-        foreach ($view_product as $product) {
-          foreach ($product->combinations as $productCombi) {
-            array_push($priceArr, $productCombi->price);
-          
-            }
-            $minPrice = min($priceArr);
-            $maxPrice = max($priceArr);
-
-            $priceArr = [];
-
-            $product['minprice'] = $minPrice;
-            $product['maxprice'] = $maxPrice;
-
+        
+        foreach ($prevew_product as $prv) {
+            $cateName = Category::find($prv->product->category_id);
+            $prv['category_name'] =  $cateName->category_name;
         }
-        // dd($prevew_product);
 
         // sản phẩm theo danh mục
 
@@ -170,7 +162,20 @@ class HomeController extends Controller
 
         }
 
-        return view('client.index')->with(compact('productsalemax','categories', 'categoryhot', 'categorylist', 'view_product', 'prevew_product', 'product_cate', 'slider', 'banner', 'bannerlist', 'productsld', 'random', 'product_sale', 'categorySelect'));
+        // Top 3 đánh giá
+        $top3preview = Preview::with('product')
+        ->select(DB::raw('product_id, max(created_at) as maxdate, min(created_at) as mindate, avg(status) as avgrate'), DB::raw('count(*) as total'))
+        ->groupBy('product_id')
+        ->latest('avgrate')
+        ->limit(3)
+        ->get();
+        
+        foreach ($prevew_product as $prv) {
+            $cateName = Category::find($prv->product->category_id);
+            $prv['category_name'] =  $cateName->category_name;
+        }
+
+        return view('client.index')->with(compact('productsalemax','categories', 'categoryhot', 'categorylist', 'view_product', 'prevew_product', 'product_cate', 'slider', 'banner', 'bannerlist', 'productsld', 'random', 'product_sale', 'categorySelect','top3preview'));
 
     }
 

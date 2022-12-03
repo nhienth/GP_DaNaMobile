@@ -89,6 +89,7 @@
                                         <th>#</th>
                                         <th>Tên sản phẩm</th>
                                         <th>Số bình luận</th>
+                                        <th>Tổng sao</th>
                                         <th>Bình luận cũ nhất</th>
                                         <th>Bình luận mới nhất</th>
                                         <th>Chi tiết</th>
@@ -101,6 +102,7 @@
                                         <td></td>
                                         <td>{{$preview->product->product_name}}</td>
                                         <td>{{$preview->total}}</td>
+                                        <td>{{number_format($preview->avgrate, 1,'.', '')}}</td>
                                         <td>{{$preview->mindate}}</td>
                                         <!-- ->format('d/m/Y') -->
                                         <td>{{$preview->maxdate}}</td>

@@ -277,7 +277,6 @@ class ProductController extends Controller
         $slider = Slider::first()->orderBy('slider.created_at', 'DESC')->paginate(1);
         $banner = Banner::first()->orderBy('banner.created_at', 'DESC')->paginate(1);
         $product = Product::with(['category', 'variations', 'variation_value', 'combinations', 'images', 'specfications'])->where('products.id', $id)->first();
-
         $similarProducts = Product::with(['category'])
             ->where('products.category_id', $product->category_id)
             ->where('products.id', '!=', $id)

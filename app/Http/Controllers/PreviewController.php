@@ -23,15 +23,10 @@ class PreviewController extends Controller
 
     public function index()
     {
-
         $previews = Preview::with('product')
-            // ->select('product_id', DB::raw('count(*) as total'),DB::raw('DATE(created_at) as date)'))
-            // ->groupBy('product_id')
-            ->select(DB::raw('product_id, max(created_at) as maxdate, min(created_at) as mindate'), DB::raw('count(*) as total'))
+            ->select(DB::raw('product_id, max(created_at) as maxdate, min(created_at) as mindate, avg(status) as avgrate'), DB::raw('count(*) as total'))
             ->groupBy('product_id')
-            //->orderBy('paper_update', 'desc')
             ->get();
-        // dd($previews);
         return view('admin.preview.list', compact('previews'));
     }
 
@@ -51,11 +46,10 @@ class PreviewController extends Controller
         ->where('products.id', $id)->first();
 
         $similarProducts = Product::with(['category'])
-        ->where('products.category_id', $product->category_id)
-        ->where('products.id', '!=', $id)
-        ->take(6)
-        ->get();
-
+            ->where('products.category_id', $product->category_id)
+            ->where('products.id', '!=', $id)
+            ->take(6)
+            ->get();
         $countall = DB::table('product_reviews')->where('product_id','=',$product->id)->count();
         $count5 = DB::table('product_reviews')->where('product_id','=',$product->id)->where('status', '=', 5)->count();
         $count4 = DB::table('product_reviews')->where('product_id','=',$product->id)->where('status', '=', 4)->count();
