@@ -16,9 +16,9 @@
                             <h2 class="content-header-title float-start mb-0">Quản lý sản phẩm</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/admin">Trang chủ</a>
+                                    <li class="breadcrumb-item"><a href="{{url('admin')}}">Trang chủ</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/admin/product/list">Sản
+                                    <li class="breadcrumb-item"><a href="{{url('admin/product/list')}}">Sản
                                             phẩm</a>
                                     </li>
                                     <li class="breadcrumb-item active">Danh sách biến thể sản phẩm
@@ -33,17 +33,14 @@
                     <div class="card-body border-bottom">
                         <h4 class="card-title">Tìm kiếm và Lọc</h4>
                         <div class="row">
-                            <div class="col-md-4 user_role">
-
-                            </div>
                             <div class="col-md-4 user_plan">
-                                <label class="form-label" for="UserPlan">Kế hoạch</label>
+                                <label class="form-label" for="UserPlan">Tên</label>
                                 <select id="UserPlan" class="form-select text-capitalize mb-md-0 mb-2">
                                     <option value=""> Select Plan </option>
                                 </select>
                             </div>
                             <div class="col-md-4 user_status">
-                                <label class="form-label" for="FilterTransaction">Trạng thái</label>
+                                <label class="form-label" for="FilterTransaction">Giá</label>
                                 <select id="FilterTransaction" class="form-select text-capitalize mb-md-0 mb-2xx">
                                     <option value=""> Select Status </option>
                                 </select>
@@ -83,9 +80,9 @@
                                         </div>
                                         <div class="dt-buttons d-inline-flex mt-50">
                                             <button
-                                                class="dt-button buttons-collection btn btn-outline-secondary dropdown-toggle me-2"
+                                                class="dt-button buttons-collection btn btn-outline-secondary me-2"
                                                 tabindex="0" aria-controls="DataTables_Table_0" type="button"
-                                                aria-haspopup="true">Xuất</button>
+                                                aria-haspopup="true">Tìm kiếm</button>
 
                                             <a type="button" href="{{url('/admin/product/create')}}"
                                                 class="dt-button add-new btn btn-primary" tabindex="0"

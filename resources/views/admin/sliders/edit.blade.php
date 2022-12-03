@@ -12,9 +12,9 @@
                         <h2 class="content-header-title float-start mb-0">Quản lý slider</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Quản trị</a>
+                                <li class="breadcrumb-item"><a href="{{url('admin')}}">Quản trị</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="#">Slider</a>
+                                <li class="breadcrumb-item"><a href="{{url('admin/slider/list')}}">Slider</a>
                                 </li>
                                 <li class="breadcrumb-item active">Sửa slider
                                 </li>

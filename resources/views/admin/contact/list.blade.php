@@ -16,9 +16,9 @@
                                 <h2 class="content-header-title float-start mb-0">Liên hệ</h2>
                                 <div class="breadcrumb-wrapper">
                                     <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="index.html">Trang chủ</a>
+                                        <li class="breadcrumb-item"><a href="{{url('admin')}}">Trang chủ</a>
                                         </li>
-                                        <li class="breadcrumb-item"><a href="#">Liên hệ</a>
+                                        <li class="breadcrumb-item"><a href="{{url('admin/contact/list')}}">Liên hệ</a>
                                         </li>
                                         <li class="breadcrumb-item active">Danh sách
                                         </li>
