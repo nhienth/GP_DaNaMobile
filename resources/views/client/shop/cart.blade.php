@@ -8,9 +8,9 @@
             <div class="my-md-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-3 flex-nowrap flex-xl-wrap overflow-auto overflow-xl-visble">
-                        <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="../home/index.html">Home</a>
+                        <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="../home/index.html">Trang chủ</a>
                         </li>
-                        <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1 active" aria-current="page">Cart</li>
+                        <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1 active text-black" aria-current="page">Giỏ hàng</li>
                     </ol>
                 </nav>
             </div>
@@ -21,7 +21,7 @@
 
     <div class="container">
         <div class="mb-4">
-            <h1 class="text-center">Cart</h1>
+            <h1 class="text-center text-black">Giỏ hàng </h1>
         </div>
         <div class="mb-10 cart-table">
 
@@ -63,7 +63,7 @@
                             </td>
 
                             <td data-title="Price">
-                                <span class="">{{$details['price']}}</span>
+                                <span class="">{{number_format($details['price'])}}đ</span>
                             </td>
 
                             {{-- <td data-title="Quantity"> --}}
@@ -83,7 +83,7 @@
                                         class="btn btn-danger btn-sm cart_delete">Cập nhật</button></a>
                             </td>
                             <td data-title="Total">
-                                <span class="">{{$details['quantity'] * $details['price']}}</span>
+                                <span class="">{{number_format($details['quantity'] * $details['price'])}}đ</span>
                             </td>
                         </tr>
                     </form>

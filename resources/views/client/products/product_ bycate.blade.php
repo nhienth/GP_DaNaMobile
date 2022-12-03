@@ -250,7 +250,7 @@
                                     </div>
                                     <div class="font-weight-bold">
                                         <del class="font-size-11 text-gray-9 d-block"></del>
-                                        <ins class="font-size-15 text-black text-decoration-none d-block">${{$product->minPrice}}</ins>
+                                        <ins class="font-size-15 text-black text-decoration-none d-block">{{number_format($product->minPrice)}}đ</ins>
                                     </div>
                                 </div>
                             </div>
@@ -260,83 +260,7 @@
                 </div>
             </div>
             <div class="col-xl-9 col-wd-9gdot5">
-                <!-- Recommended Products -->
-                <div class="mb-6 d-none d-xl-block">
-                    <div class="position-relative">
-                        <div class="border-bottom border-color-1 mb-2">
-                            <h3 class="text-black d-inline-block section-title section-title__full mb-0 pb-2 font-size-22">Sản phẩm gợi ý</h3>
-                        </div>
-                        <div class="js-slick-carousel u-slick position-static overflow-hidden u-slick-overflow-visble pb-7 pt-2 px-1"
-                            data-pagi-classes="text-center right-0 bottom-1 left-0 u-slick__pagination u-slick__pagination--long mb-0 z-index-n1 mt-3 mt-md-0"
-                            data-slides-show="5"
-                            data-slides-scroll="1"
-                            data-arrows-classes="position-absolute top-0 font-size-17 u-slick__arrow-normal top-10"
-                            data-arrow-left-classes="fa fa-angle-left right-1"
-                            data-arrow-right-classes="fa fa-angle-right right-0"
-                            data-responsive='[{
-                              "breakpoint": 1400,
-                              "settings": {
-                                "slidesToShow": 4
-                              }
-                            }, {
-                                "breakpoint": 1200,
-                                "settings": {
-                                  "slidesToShow": 4
-                                }
-                            }, {
-                              "breakpoint": 992,
-                              "settings": {
-                                "slidesToShow": 3
-                              }
-                            }, {
-                              "breakpoint": 768,
-                              "settings": {
-                                "slidesToShow": 2
-                              }
-                            }, {
-                              "breakpoint": 554,
-                              "settings": {
-                                "slidesToShow": 2
-                              }
-                            }]'>
-                            @foreach ($recommendProducts as $product)
-                                
-                                <div class="js-slide products-group">
-                                    <div class="product-item">
-                                        <div class="product-item__outer h-100">
-                                            <div class="product-item__inner px-wd-4 p-2 p-md-3">
-                                                <div class="product-item__body pb-xl-2">
-                                                    <div class="mb-2"><a href="{{url('product/detail', [$product->id])}}" class="font-size-12 text-gray-5">{{$product->category->category_name}}</a></div>
-                                                    <h5 class="mb-1 product-item__title"><a href="{{url('product/detail', [$product->id])}}" class="text-blue font-weight-bold">{{$product->product_name}}</a></h5>
-                                                    <div class="mb-2">
-                                                        <a href="{{url('product/detail', [$product->id])}}" class="d-block text-center"><img class="img-fluid" src="{{asset('images/products/'.$product->product_img)}}" alt="Image Description"></a>
-                                                    </div>
-                                                    <div class="flex-center-between mb-1">
-                                                        <div class="prodcut-price">
-                                                            <div class="text-gray-100">${{$product->minPrice}}</div>
-                                                        </div>
-                                                        <div class="d-none d-xl-block prodcut-add-cart">
-                                                            <a href="{{url('product/detail', [$product->id])}}" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-item__footer">
-                                                    <div class="border-top pt-2 flex-center-between flex-wrap">
-                                                        <a href="" class="text-gray-6 font-size-13"><i class="ec ec-compare mr-1 font-size-15"></i> So sánh</a>
-                                                        <a href="../shop/wishlist.html" class="text-gray-6 font-size-13"><i class="ec ec-favorites mr-1 font-size-15"></i> Yêu thích</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                            
-                           
-                        </div>
-                    </div>
-                </div>
-                <!-- End Recommended Products -->
+                
                 <!-- Shop-control-bar Title -->
                 <div class="flex-center-between mb-3">
                     <h3 class="text-black font-size-25 mb-0">Sản phẩm</h3>
@@ -446,7 +370,7 @@
                                             </div>
                                             <div class="flex-center-between mb-1">
                                                 <div class="prodcut-price">
-                                                    <div class="text-gray-100">${{$product->minPrice}}</div>
+                                                    <div class="text-gray-100">{{number_format($product->minPrice)}}đ</div>
                                                 </div>
                                                 <div class="d-none d-xl-block prodcut-add-cart">
                                                     <a href="" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>
@@ -655,6 +579,83 @@
                     </ul>
                 </nav>
                 <!-- End Shop Pagination -->
+                <!-- Recommended Products -->
+                <div class="mb-6 d-none d-xl-block">
+                    <div class="position-relative">
+                        <div class="border-bottom border-color-1 mb-2">
+                            <h3 class="text-black d-inline-block section-title section-title__full mb-0 pb-2 font-size-22">Sản phẩm gợi ý</h3>
+                        </div>
+                        <div class="js-slick-carousel u-slick position-static overflow-hidden u-slick-overflow-visble pb-7 pt-2 px-1"
+                            data-pagi-classes="text-center right-0 bottom-1 left-0 u-slick__pagination u-slick__pagination--long mb-0 z-index-n1 mt-3 mt-md-0"
+                            data-slides-show="5"
+                            data-slides-scroll="1"
+                            data-arrows-classes="position-absolute top-0 font-size-17 u-slick__arrow-normal top-10"
+                            data-arrow-left-classes="fa fa-angle-left right-1"
+                            data-arrow-right-classes="fa fa-angle-right right-0"
+                            data-responsive='[{
+                              "breakpoint": 1400,
+                              "settings": {
+                                "slidesToShow": 4
+                              }
+                            }, {
+                                "breakpoint": 1200,
+                                "settings": {
+                                  "slidesToShow": 4
+                                }
+                            }, {
+                              "breakpoint": 992,
+                              "settings": {
+                                "slidesToShow": 3
+                              }
+                            }, {
+                              "breakpoint": 768,
+                              "settings": {
+                                "slidesToShow": 2
+                              }
+                            }, {
+                              "breakpoint": 554,
+                              "settings": {
+                                "slidesToShow": 2
+                              }
+                            }]'>
+                            @foreach ($recommendProducts as $product)
+                                
+                                <div class="js-slide products-group">
+                                    <div class="product-item">
+                                        <div class="product-item__outer h-100">
+                                            <div class="product-item__inner px-wd-4 p-2 p-md-3">
+                                                <div class="product-item__body pb-xl-2">
+                                                    <div class="mb-2"><a href="{{url('product/detail', [$product->id])}}" class="font-size-12 text-gray-5">{{$product->category->category_name}}</a></div>
+                                                    <h5 class="mb-1 product-item__title"><a href="{{url('product/detail', [$product->id])}}" class="text-blue font-weight-bold">{{$product->product_name}}</a></h5>
+                                                    <div class="mb-2">
+                                                        <a href="{{url('product/detail', [$product->id])}}" class="d-block text-center"><img class="img-fluid" src="{{asset('images/products/'.$product->product_img)}}" alt="Image Description"></a>
+                                                    </div>
+                                                    <div class="flex-center-between mb-1">
+                                                        <div class="prodcut-price">
+                                                            <div class="text-gray-100">{{number_format($product->minPrice)}}đ</div>
+                                                        </div>
+                                                        <div class="d-none d-xl-block prodcut-add-cart">
+                                                            <a href="{{url('product/detail', [$product->id])}}" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="product-item__footer">
+                                                    <div class="border-top pt-2 flex-center-between flex-wrap">
+                                                        <a href="" class="text-gray-6 font-size-13"><i class="ec ec-compare mr-1 font-size-15"></i> So sánh</a>
+                                                        <a href="../shop/wishlist.html" class="text-gray-6 font-size-13"><i class="ec ec-favorites mr-1 font-size-15"></i> Yêu thích</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                            
+                           
+                        </div>
+                    </div>
+                </div>
+                <!-- End Recommended Products -->
             </div>
         </div>
         <!-- Brand Carousel -->

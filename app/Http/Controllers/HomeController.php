@@ -10,6 +10,7 @@ use App\Models\Banner;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Combinations;
+use App\Models\Preview;
 use DB;
 class HomeController extends Controller
 {
@@ -35,6 +36,18 @@ class HomeController extends Controller
         $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
         $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
         $bannerlist = Banner::all();
+
+        // sản phẩm sale 
+        $productsalemax = Combinations::with(['product'])
+        ->orderBy('products_combinations.sale','desc')
+        // ->where('products_combinations.product_id','products.id')
+        ->first();
+        $proName = Product::find($productsalemax->product_id)->value('product_name');
+        $proID = Product::find($productsalemax->product_id)->value('id');
+        $productsalemax['product_name'] = $proName;
+        $productsalemax['id'] = $proID;
+        // dd($productsalemax);
+
         // all sản phẩm
         $productsld = Product::with('combinations','category')->orderBy('products.id', 'desc')
             ->where('product_status', '1')
@@ -80,6 +93,19 @@ class HomeController extends Controller
             $product['minprice'] = $minPrice;
             $product['maxprice'] = $maxPrice;
 
+        }
+
+        // sản phẩm theo Đánh giá
+        $prevew_product = Preview::with('product')
+        ->select(DB::raw('product_id, max(created_at) as maxdate, min(created_at) as mindate, avg(status) as avgrate'), DB::raw('count(*) as total'))
+        ->groupBy('product_id')
+        ->latest('avgrate')
+        ->limit(8)
+        ->get();
+        
+        foreach ($prevew_product as $prv) {
+            $cateName = Category::find($prv->product->category_id);
+            $prv['category_name'] =  $cateName->category_name;
         }
 
         // sản phẩm theo danh mục
@@ -136,7 +162,20 @@ class HomeController extends Controller
 
         }
 
-        return view('client.index')->with(compact('categories', 'categoryhot', 'categorylist', 'view_product', 'product_cate', 'slider', 'banner', 'bannerlist', 'productsld', 'random', 'product_sale', 'categorySelect'));
+        // Top 3 đánh giá
+        $top3preview = Preview::with('product')
+        ->select(DB::raw('product_id, max(created_at) as maxdate, min(created_at) as mindate, avg(status) as avgrate'), DB::raw('count(*) as total'))
+        ->groupBy('product_id')
+        ->latest('avgrate')
+        ->limit(3)
+        ->get();
+        
+        foreach ($prevew_product as $prv) {
+            $cateName = Category::find($prv->product->category_id);
+            $prv['category_name'] =  $cateName->category_name;
+        }
+
+        return view('client.index')->with(compact('productsalemax','categories', 'categoryhot', 'categorylist', 'view_product', 'prevew_product', 'product_cate', 'slider', 'banner', 'bannerlist', 'productsld', 'random', 'product_sale', 'categorySelect','top3preview'));
 
     }
 

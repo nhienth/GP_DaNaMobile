@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\CategoryController;
 use App\Models\Post;
+use App\Models\Banner;
 use App\Models\PostReview;
 use App\Models\Category;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -66,7 +68,6 @@ class PostController extends Controller
     {
         $posts = Post::with('category')->orderBy('posts.created_at', 'DESC')->paginate(5);
         $categories = Category::all();
-        // dd($posts);
         return view('admin.posts.list', compact('posts','categories'));
     }
 
@@ -77,9 +78,9 @@ class PostController extends Controller
      */
     public function getAllPost()
     {
+        $banner = Banner::take(5)->get();
         $allPost = Post::with('category')->orderBy('posts.created_at', 'DESC')->get();
-        // dd($posts);
-        return view('client.blogs.post', compact('allPost'));
+        return view('client.blogs.post', compact('allPost','banner'));
     }
 
     public function showclient($id)
@@ -220,4 +221,7 @@ class PostController extends Controller
         $post->delete();
         return redirect('/admin/post/list')->with('messenger', 'Bài viết đã bị xóa');
     }
+
+
+    
 }

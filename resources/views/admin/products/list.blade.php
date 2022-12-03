@@ -16,9 +16,9 @@
                             <h2 class="content-header-title float-start mb-0">Quản lý sản phẩm</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/admin">Trang chủ</a>
+                                    <li class="breadcrumb-item"><a href="{{url('admin')}}">Trang chủ</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/admin/product/list">Sản
+                                    <li class="breadcrumb-item"><a href="{{url('admin/admin/product/list')}}">Sản
                                             phẩm</a>
                                     </li>
                                     <li class="breadcrumb-item active">Danh sách sản phẩm
@@ -150,7 +150,7 @@
                                     <td>{{$product->product_name}}</td>
                                     <td>{{$product->category->category_name}}</td>
                                     <td><img class="rounded" src="{{asset('images/products/'.$product->product_img)}}"
-                                            width="100px" height="100px" style="display:block; margin: 0 auto;"></td>
+                                            width="150px" height="100px" style="display:block; margin: 0 auto;"></td>
                                     <td>{{$product->product_view}}</td>
                                     <td>
                                         <?php if($product->product_status == 1){ ?>

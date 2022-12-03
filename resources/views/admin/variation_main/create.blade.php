@@ -12,9 +12,9 @@
                         <h2 class="content-header-title float-start mb-0">Quản lý Biến thể</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/admin">Trang chủ</a>
+                                <li class="breadcrumb-item"><a href="{{url('admin')}}">Trang chủ</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/admin/variation_main/list">Biến thể</a>
+                                <li class="breadcrumb-item"><a href="{{url('admin/variation_main/list')}}">Biến thể</a>
                                 </li>
                                 <li class="breadcrumb-item active">Nhập Biến thể mới
                                 </li>

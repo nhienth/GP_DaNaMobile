@@ -125,7 +125,7 @@
             <!-- End Card -->
         </div>
         <!-- End Accordion -->
-        <form class="js-validate" novalidate="novalidate" action="{{route('done')}}" method="post">
+        <form class="js-validate" novalidate="novalidate" action="{{route('done')}}" method="post"  enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-lg-5 order-lg-2 mb-7 mb-lg-0">
@@ -164,15 +164,15 @@
                                     <tfoot>
                                         <tr>
                                             <th>Tổng tiền tạm thời</th>
-                                            <td><?= $subTotal ?></td>
+                                            <td><?= number_format($subTotal) ?>đ</td>
                                         </tr>
                                         <tr>
                                             <th>Phí vận chuyển</th>
-                                            <td><?= $ship ?></td>
+                                            <td><?= number_format($ship) ?>đ</td>
                                         </tr>
                                         <tr>
                                             <th>Tổng</th>
-                                            <td><strong><?= $subTotal + $ship ?></strong></td>
+                                            <td><strong><?= number_format($subTotal + $ship) ?>đ</strong></td>
                                             <input type="hidden" value="<?= $subTotal + $ship ?>" name="total_amount">
                                         </tr>
                                     </tfoot>

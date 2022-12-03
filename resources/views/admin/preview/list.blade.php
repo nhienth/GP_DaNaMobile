@@ -17,9 +17,9 @@
                                     <h2 class="content-header-title float-start mb-0">Đánh giá bình luận</h2>
                                     <div class="breadcrumb-wrapper">
                                         <ol class="breadcrumb">
-                                            <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/admin">Trang chủ</a>
+                                            <li class="breadcrumb-item"><a href="{{url('admin')}}">Trang chủ</a>
                                             </li>
-                                            <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/admin/preview/list">Đánh giá bình luận</a>
+                                            <li class="breadcrumb-item"><a href="{{url('admin/preview/list')}}">Bình luận</a>
                                             </li>
                                             <li class="breadcrumb-item active">Danh sách
                                             </li>
@@ -89,6 +89,7 @@
                                         <th>#</th>
                                         <th>Tên sản phẩm</th>
                                         <th>Số bình luận</th>
+                                        <th>Tổng sao</th>
                                         <th>Bình luận cũ nhất</th>
                                         <th>Bình luận mới nhất</th>
                                         <th>Chi tiết</th>
@@ -101,6 +102,7 @@
                                         <td></td>
                                         <td>{{$preview->product->product_name}}</td>
                                         <td>{{$preview->total}}</td>
+                                        <td>{{number_format($preview->avgrate, 1,'.', '')}}</td>
                                         <td>{{$preview->mindate}}</td>
                                         <!-- ->format('d/m/Y') -->
                                         <td>{{$preview->maxdate}}</td>

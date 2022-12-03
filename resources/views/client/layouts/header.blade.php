@@ -33,7 +33,7 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                             </li> --}}
                             <li
                                 class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border">
-                                <a href="{{url('/cart/')}}" class="u-header-topbar__nav-link"><i
+                                <a href="{{route('bill.list')}}" class="u-header-topbar__nav-link"><i
 
                                         class="ec ec-transport mr-1"></i> Đơn hàng của bạn</a>
                             </li>
@@ -109,7 +109,7 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                     <!-- End Logo-offcanvas-menu -->
                     <!-- Search Bar -->
                     <div class="col d-none d-xl-block">
-                        <form class="js-focus-state" action="http://127.0.0.1:8000/product/search" method="GET">
+                        <form class="js-focus-state" action="{{url('/product/search')}}" method="GET">
                             @csrf
                             <label class="sr-only" for="searchproduct">Tìm kiếm</label>
                             <div class="input-group">
@@ -198,7 +198,7 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                                         <span
                                             class="bg-lg-down-black width-22 height-22 bg-primary position-absolute d-flex align-items-center justify-content-center rounded-circle left-12 top-8 font-weight-bold font-size-12 text-white" > <?=count((array) session('cart'))?> </span>
                                         <span
-                                            class="d-none d-xl-block font-weight-bold font-size-16 text-gray-90 ml-3">{{$total}}</span>
+                                            class="d-none d-xl-block font-weight-bold font-size-16 text-gray-90 ml-3">{{number_format($total)}}đ</span>
                                     </div>
                                     <div id="basicDropdownHover"
                                         class="cart-dropdown dropdown-menu dropdown-unfold border-top border-top-primary mt-3 border-width-2 border-left-0 border-right-0 border-bottom-0 left-auto right-0"
@@ -299,21 +299,21 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                             <ul class="navbar-nav u-header__navbar-nav">
                                 <!-- Home -->
                                 <li class="nav-item u-header__nav-item">
-                                    <a class="nav-link u-header__nav-link" href="http://127.0.0.1:8000"
+                                    <a class="nav-link u-header__nav-link" href="{{url('/')}}"
                                         aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Trang chủ</a>
                                 </li>
                                 <!-- End Home -->
 
                                 <!-- Featured Brands -->
                                 <li class="nav-item u-header__nav-item">
-                                    <a class="nav-link u-header__nav-link" href="http://127.0.0.1:8000/blogs"
+                                    <a class="nav-link u-header__nav-link" href="{{url('/blogs')}}"
                                         aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Bài viết</a>
                                 </li>
                                 <!-- End Featured Brands -->
 
                                 <!-- Trending Styles -->
                                 <li class="nav-item u-header__nav-item">
-                                    <a class="nav-link u-header__nav-link" href="http://127.0.0.1:8000/contact" aria-haspopup="true"
+                                    <a class="nav-link u-header__nav-link" href="{{url('/contact')}}" aria-haspopup="true"
                                         aria-expanded="false" aria-labelledby="blogSubMenu">Liên hệ</a>
                                 </li>
                                 <!-- End Trending Styles -->
