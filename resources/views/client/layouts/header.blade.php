@@ -57,7 +57,7 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                                                 <div id="userlogin" class="dropdown-menu dropdown-unfold "
                                                     style="text-align:center" aria-labelledby="Userclient">
                                                     <a href="http://127.0.0.1:8000/user/{{ Auth::user()->id }}" class="dropdown-item">Thông tin cá nhân</a>
-
+                                                    <a href="http://127.0.0.1:8000/user/voucher/{{ Auth::user()->id }}" class="dropdown-item">Kho voucher</a>
                                                     <a href="http://127.0.0.1:8000/user/{{ Auth::user()->id }}" class="dropdown-item">Đổi mật khẩu</a>
                                                     <hr>
                                                     <a href="route('logout')"
@@ -315,6 +315,11 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                                 <li class="nav-item u-header__nav-item">
                                     <a class="nav-link u-header__nav-link" href="{{url('/contact')}}" aria-haspopup="true"
                                         aria-expanded="false" aria-labelledby="blogSubMenu">Liên hệ</a>
+                                </li>
+
+                                <li class="nav-item u-header__nav-item">
+                                    <a class="nav-link u-header__nav-link" href="{{url('/voucher')}}" aria-haspopup="true"
+                                        aria-expanded="false" aria-labelledby="blogSubMenu">Săn Voucher</a>
                                 </li>
                                 <!-- End Trending Styles -->
 

@@ -8,27 +8,24 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\App;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-
-class Voucher extends Model
+class VoucherUser extends Model
 {
     use HasFactory;
-    public $table = "vouchers";
+    public $table = "voucher_user";
     public $timestamps = true;
     protected $fillable = [
         'id',
-        'code',
-        'type',
-        'value',
-        'status',
-        'product_id',
+        'user_id',
+        'voucher_id'
     ];
     use SoftDeletes;
-    public function voucher_product()
+    public function vu_voucher()
     {
-        return $this->belongsTo(Product::class, 'product_id', 'id');
+        return $this->belongsTo(Voucher::class, 'voucher_id', 'id');
     }
 
-    public function voucher_vu(){
-        return $this->hasMany(VoucherUser::class);
+    public function vu_user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }

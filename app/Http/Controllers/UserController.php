@@ -7,6 +7,8 @@ use App\Models\Category;
 use App\Models\Slider;
 use  App\Models\User;
 use  App\Models\User_addresses;
+use  App\Models\VoucherUser;
+use  App\Models\Voucher;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -121,5 +123,31 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function voucher($id)
+    {
+        $categories = Category::all();
+        $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
+        $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
+        $user = User::find($id);
+        $this->checkVoucher($id);
+        $list_vu = VoucherUser::with('vu_voucher','vu_user')->where('user_id',$id)->get();
+        // dd($list_vu);
+        return view('client.user.voucher')->with(compact('categories','slider','banner','user', 'list_vu'));
+    }
+
+    public function checkVoucher($id){
+        $list = Voucher::all();
+        foreach ($list as $key ) {
+            if($key->numberof < 1){
+                Voucher::find($key->id)->delete();
+                VoucherUser::where('voucher_id',$key->id)->delete();
+            }
+            if($key->time < date('Y-m-d', time())){
+                Voucher::find($key->id)->delete();
+                VoucherUser::where('voucher_id',$key->id)->delete();
+            }
+        }
     }
 }

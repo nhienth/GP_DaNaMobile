@@ -108,6 +108,8 @@
                                     <th>Code</th>
                                     <th>Loại hình</th>
                                     <th>Giá trị</th> 
+                                    <th>Số lượng</th> 
+                                    <th>Thời gian còn lại</th> 
                                     <th>Trạng thái</th>
                                     <th>Product ID</th>
                                     <th>Product Name</th>
@@ -123,6 +125,8 @@
                                 <td>{{$voucher->code}}</td>
                                 <td>{{$voucher->type}}</td> 
                                 <td>{{$voucher->value}}</td>                            
+                                <td>{{$voucher->numberof}}</td>                            
+                                <td>{{$voucher->time}}</td>                            
                                 <td>{{$voucher->status}}</td>
                                 <td>{{$voucher->product_id}}</td>
                                 <td>{{$voucher->voucher_product->product_name}}</td>

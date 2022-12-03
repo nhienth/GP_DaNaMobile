@@ -89,7 +89,20 @@
                                             <div class="valid-feedback">Looks good!</div>
                                             <div class="invalid-feedback">Please enter value</div>
                                         </div>
-                                        
+                                        <div class="mb-1">
+                                            <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Số lượng</label>
+    
+                                            <input value="{{$voucher->numberof}}" type="text" name="voucher_value" id="basic-addon-name" class="form-control" placeholder="Nhập giá trị" aria-label="Name" aria-describedby="basic-addon-name" required />
+                                            <div class="valid-feedback">Looks good!</div>
+                                            <div class="invalid-feedback">Please enter value</div>
+                                        </div>
+                                        <div class="mb-1">
+                                            <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Thời gian còn lại</label>
+    
+                                            <input value="{{$voucher->time}}" type="text" name="voucher_time" id="basic-addon-name" class="form-control" placeholder="Nhập giá trị" aria-label="Name" aria-describedby="basic-addon-name" required />
+                                            <div class="valid-feedback">Looks good!</div>
+                                            <div class="invalid-feedback">Please enter value</div>
+                                        </div>
                                         <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Trạng Thái</label>
     
