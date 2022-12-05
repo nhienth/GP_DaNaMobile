@@ -25,7 +25,8 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SpecificationController;
 use App\Http\Controllers\PostReviewController;
 use App\Http\Controllers\CheckoutController;
-
+use App\Models\Order;
+use GuzzleHttp\Handler\Proxy;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,16 +83,15 @@ Route::prefix('/')->group(function () {
         Route::get('/add/{id}', [ProductController::class, 'addToCart'])->name('cart.add');
         Route::get('/deleteCart/{id}', [ProductController::class, 'deleteCart'])->name('cart.remove');
         Route::post('/updateCart/{id}', [ProductController::class, 'updateCart'])->name('update.cart');
+
     });
 
     Route::prefix('/product')->group(function () {
         Route::get('/byCate/{id}', [ProductController::class, 'productbyCate']);
-
         Route::get('/detail/{id}', [ProductController::class, 'productDetail']);
-    //review product
-        Route::get('/detail/{id}',[PreviewController::class,'productReview']);
-        Route::post('/preview/{id}',[PreviewController::class,'preview'])->name('preview');
-        Route::get('/rate/{id}',[PreviewController::class,'reviewRate']);
+    //review product       
+        Route::post('/preview/{id}',[ProductController::class,'preview'])->name('preview');
+        // Route::get('/rate/{id}',[ProductController::class,'reviewRate']);
         Route::get('/search',[ProductController::class,'searchProduct']);
 
     });
@@ -130,9 +130,18 @@ Route::prefix('/')->group(function () {
         Route::post('/review/{id}',[PostReviewController::class,'reviewPost'])->name('post_review');
 
     });
+    Route::prefix('/bill')->group(function () 
+    {
+        // Route::get('/list', function ()
+        // {
+        //     $myBill = Order::all();
+        //     return view('client.shop.mybill', ['mybill' => $myBill]);
+        // }
+        // );
+        Route::get('/list', [ProductController::class, 'showMyBill'])->name('bill.list');
+        Route::get('/detail/{id}', [ProductController::class, 'showBillDetail'])->name('bill.show_detail');
+    });
     
-    
-
     Route::get('/checkout', [CheckoutController::class,'index']);
     Route::post('/done', [CheckoutController::class,'store'])->name('done');
 });
@@ -160,7 +169,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
         });
 
         //preview
-        Route::post('/preview/{id}', [PreviewController::class, 'preview'])->name('preview')->middleware('auth');
+        // Route::post('/preview/{id}', [PreviewController::class, 'preview'])->name('preview')->middleware('auth');
 
         
         Route::prefix('/product')->group(function () {

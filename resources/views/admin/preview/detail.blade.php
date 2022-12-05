@@ -86,6 +86,7 @@
                                         <th>Mã</th>
                                         <th>Tên sản phẩm</th>
                                         <th>Nội dung bình luận</th>
+                                        <th>Đánh giá sao</th>
                                         <th>Người bình luận</th>
                                         <th>Ngày bình luận</th>
                                         <th>Chức năng</th>
@@ -99,6 +100,7 @@
                                         <td>{{$stockdetail->id}}</td>
                                         <td>{{$stockdetail->product->product_name}}</td>
                                         <td>{{$stockdetail->review}}</td>
+                                        <td>{{$stockdetail->status}}</td>
                                         <td>{{$stockdetail->user->name}}</td>
                                         <td>{{$stockdetail->created_at}}</td>
                                         <td><a href="http://127.0.0.1:8000/admin/preview/delete/{{$stockdetail->id}}"><button type="button" class="btn btn-gradient-danger"><i data-feather='trash-2'></i></button></a></td>

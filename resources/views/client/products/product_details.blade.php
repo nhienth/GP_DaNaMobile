@@ -12,7 +12,7 @@
                                 chủ</a>
                         </li>
                         <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a
-                                href="{{url('/product/byCate/'.$product->category->id)}}">{{$product->category->category_name}}</a></li>
+                                href="{{url('http://127.0.0.1:8000/product/byCate/'.$product->category->id)}}">{{$product->category->category_name}}</a></li>
                         <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1 active" aria-current="page">
                             {{$product->product_name}}</li>
                     </ol>
@@ -390,7 +390,7 @@
                                 <h3 class="font-size-18 mb-5">Thêm đánh giá</h3>
                                 <!-- Form -->
                                 
-                                <form class="js-validate" action="{{route('preview',$product->id)}}" method="POST">
+                                <form class="js-validate" id="review" action="{{route('preview',$product->id)}}" method="POST">
                                     @csrf
                                     @if (Auth::check())
                                     <div class="row align-items-center mb-4">
@@ -596,7 +596,7 @@
                     let pro = Array.from(productsCombination).find(pro => pro.value.trim() == variSeleted);
                  
                     if (variSeleted == pro.value.trim()) {
-                        priceHtml.innerHTML = `${Intl.NumberFormat('en-US').format(pro.nextElementSibling.value)}đ`;
+                        priceHtml.innerHTML = `${Intl.NumberFormat('en-IN').format(pro.nextElementSibling.value)}đ`;
                         let combiId = pro.parentElement.lastElementChild.value;
                         addCartForm.action=`http://127.0.0.1:8000/cart/add/${combiId}`;
                         addCartButton.href=`http://127.0.0.1:8000/cart/add/${combiId}`;
@@ -643,5 +643,5 @@
             }
           });
   
-        });
+        });       
 </script>

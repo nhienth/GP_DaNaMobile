@@ -15,7 +15,10 @@ use App\Models\Banner;
 use App\Models\Slider;
 use App\Models\Combinations;
 use App\Models\Image_Gallery;
+use App\Models\Order;
+use App\Models\OrderDetails;
 use App\Models\WishList;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Console\View\Components\Alert;
 use Illuminate\Http\Request;
 
@@ -273,11 +276,12 @@ class ProductController extends Controller
      */
     public function productDetail($id)
     {
+        $products = Product::find($id);
+        $categories = Category::all();
         $previews = Preview::where('product_id',$id)->get();
         $slider = Slider::first()->orderBy('slider.created_at', 'DESC')->paginate(1);
         $banner = Banner::first()->orderBy('banner.created_at', 'DESC')->paginate(1);
         $product = Product::with(['category', 'variations', 'variation_value', 'combinations', 'images', 'specfications'])->where('products.id', $id)->first();
-
         $similarProducts = Product::with(['category'])
             ->where('products.category_id', $product->category_id)
             ->where('products.id', '!=', $id)
@@ -303,7 +307,43 @@ class ProductController extends Controller
         $product['minprice'] = $minPrice;
         $product['maxprice'] = $maxPrice;
 
-        return view('client.products.product_details', compact(['product', 'similarProducts', 'previews']));
+        $countall = DB::table('product_reviews')->where('product_id','=',$product->id)->count();
+        $count5 = DB::table('product_reviews')->where('product_id','=',$product->id)->where('status', '=', 5)->count();
+        $count4 = DB::table('product_reviews')->where('product_id','=',$product->id)->where('status', '=', 4)->count();
+        $count3 = DB::table('product_reviews')->where('product_id','=',$product->id)->where('status', '=', 3)->count();
+        $count2 = DB::table('product_reviews')->where('product_id','=',$product->id)->where('status', '=', 2)->count();
+        $count1 = DB::table('product_reviews')->where('product_id','=',$product->id)->where('status', '=', 1)->count();
+        
+        if ($countall > 0 ) {
+            $total = ($count5*5 + $count4*4 + $count3*3 + $count2*2 + $count1*1)/$countall;
+            $round =  round($total, 1);
+            $previews = DB::table('product_reviews')->join('users','users.id','=','product_reviews.user_id')->select('product_reviews.*','users.name')->where('product_id','=',$product->id)->get();
+            return view('client.products.product_details' , compact('product','previews', 'countall','count5','count4','count3','count2','count1', 'round', 'similarProducts' ));
+        }
+        else {
+            $previews = DB::table('product_reviews')->join('users','users.id','=','product_reviews.user_id')->select('product_reviews.*','users.name')->where('product_id','=',$product->id)->get();
+            return view('client.products.product_details' , compact('product','previews','countall','count5','count4','count3','count2','count1', 'similarProducts'));
+        }    
+
+        return view('client.products.product_details', compact('categories', 'slider', 'banner', 'products', 'previews','product', 'similarProducts'));
+    }
+
+    public function preview(Request $request, $id)
+    {
+        $previews = new Preview();
+        $previews->rate = 5;
+        $previews->review = $request->review;
+        $previews->user_id = Auth::user()->id;
+        $previews->product_id = $id;
+
+        if ($request->rating_status > 0) {
+            $previews->status = $request->rating_status;
+        } else {
+            $previews->status = 5;
+        }
+
+        $previews->save();
+        return back();
     }
 
 
@@ -510,6 +550,25 @@ class ProductController extends Controller
         $product = WishList::find($id);
         $product->delete();
         return redirect()->route('listWishlist');
+    }
+
+    //Show my bill
+    public function showMyBill () 
+    {
+        $myBill = Order::with('orderdetail')->get();
+        return view('client.shop.mybill', compact('myBill'));
+    }
+
+    public function showBillDetail($id)
+    {
+        $billDetails = OrderDetails::where('order_id', $id)->get();
+        foreach ($billDetails as $billdetail) {
+            $productCombi = Combinations::find($billdetail->product_id);
+            $productName = Product::find($productCombi->product_id)->value('product_name');
+            $billdetail['product_combi'] = $productCombi;
+            $billdetail['product_name'] = $productName;
+        }
+        return view('client.shop.billdetail', compact('billDetails'));
     }
 
 
