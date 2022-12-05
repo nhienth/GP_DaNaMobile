@@ -46,15 +46,20 @@
                                 <form class="needs-validation" novalidate action="{{url('/admin/payment/create')}}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="mb-1">
-                                        <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Tên tài khoản ngân hàng</label>
-
-                                        <input type="text" id="basic-addon-name" class="form-control" placeholder="Nhập tên tài khoản ngân hàng" aria-label="Name" name="payment_name" aria-describedby="basic-addon-name" required />
+                                        <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Tên</label>
+                                        <input type="text" id="basic-addon-name" class="form-control" placeholder="Tên" aria-label="Name" name="payment_name" aria-describedby="basic-addon-name" required />
                                     </div>
-
+                                    
                                     <div class="mb-1">
-                                        <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Số tài khoản</label>
-
-                                        <input type="text" id="basic-addon-name" class="form-control" placeholder="Nhập số tài khoản" aria-label="Name" name="payment_status" aria-describedby="basic-addon-name" required />
+                                        <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Nội dung</label>
+                                        <input type="text" id="basic-addon-name" class="form-control" placeholder="Nội dung" aria-label="Name" name="payment_content" aria-describedby="basic-addon-name" required />
+                                    </div>
+                                    <div class="mb-1">
+                                        <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Trạng thái</label>
+                                        <select name="payment_status" id="" class="form-control">
+                                            <option value="0">Vô hiệu hoá</option>
+                                            <option value="1">Đang hoạt động</option>
+                                        </select>
                                     </div>
 
                                     <button type="submit" class="btn btn-primary me-2">Thêm</button>

@@ -46,17 +46,27 @@
                                 <form class="needs-validation" novalidate action="{{url('/admin/payment/update', [$payment->id])}}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="mb-1">
-                                        <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Tên tài khoản ngân hàng</label>
-
-                                        <input type="text" id="basic-addon-name" class="form-control" placeholder="Nhập tên tài khoản ngân hàng" value="{{$payment->payment_name}}" aria-label="Name" name="payment_name" aria-describedby="basic-addon-name" required />
+                                        <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Tên</label>
+                                        <input type="text" id="basic-addon-name" class="form-control" placeholder="Nhập tên" value="{{$payment->payment_name}}" aria-label="Name" name="payment_name" aria-describedby="basic-addon-name" required />
                                     </div>
 
                                     <div class="mb-1">
-                                        <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Số tài khoản</label>
+                                        <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Nội dung</label>
 
-                                        <input type="text" id="basic-addon-name" class="form-control" placeholder="Nhập số tài khoản" value="{{$payment->payment_status}}" aria-label="Name" name="payment_status" aria-describedby="basic-addon-name" required />
+                                        <input type="text" id="basic-addon-name" class="form-control" placeholder="Nhập số tài khoản" value="{{$payment->payment_content}}" aria-label="Name" name="payment_status" aria-describedby="basic-addon-name" required />
                                     </div>
-
+                                    <div class="mb-1">
+                                        <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Trạng thái</label>
+                                        <select name="payment_status" id="" class="form-control">
+                                            @if($payment->payment_status == 1)
+                                                <option value="0" checked>Vô hiệu hoá</option>
+                                                <option value="1">Đang hoạt động</option>
+                                            @else
+                                            <option value="0" >Vô hiệu hoá</option>
+                                            <option value="1" checked>Đang hoạt động</option>
+                                            @endif
+                                        </select>
+                                    </div>
                                     <button type="submit" class="btn btn-primary me-2">Cập nhật</button>
                                     <button type="reset" class="btn btn-primary me-2">Nhập lại</button>
                                     <a href="{{url('/admin/payment/list')}}" class="btn btn-primary">Danh sách</a>

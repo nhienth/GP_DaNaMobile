@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Payment;
+use App\Models\Voucher;
+use App\Models\VoucherUser;
 use App\Models\Order;
 use App\Models\OrderDetails;
 use Illuminate\Http\Request;
@@ -17,10 +20,12 @@ class CheckoutController extends Controller
     public function index()
     {
         $userId = Auth::user()->id;
+        $payments = Payment::all();
         $productList = session('cart');
         $user = User::with('user_addresses')->where('users.id', $userId)->first();    
+        $list_vu = VoucherUser::with('vu_voucher','vu_user')->where('user_id',Auth::user()->id)->get();
 
-        return view('client.shop.checkout', compact('user', 'productList'));
+        return view('client.shop.checkout', compact('user', 'productList','payments'));
     }
 
     /**

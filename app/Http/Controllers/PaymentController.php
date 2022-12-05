@@ -39,6 +39,7 @@ class PaymentController extends Controller
     {
         $payment = new Payment();
         $payment->payment_name = $request->payment_name;
+        $payment->payment_content = $request->payment_content;
         $payment->payment_status = $request->payment_status;
         $payment->save();
 

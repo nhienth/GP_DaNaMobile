@@ -125,15 +125,14 @@ class UserController extends Controller
         //
     }
 
-    public function voucher($id)
+    public function voucher()
     {
         $categories = Category::all();
         $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
         $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
-        $user = User::find($id);
-        $this->checkVoucher($id);
-        $list_vu = VoucherUser::with('vu_voucher','vu_user')->where('user_id',$id)->get();
-        // dd($list_vu);
+        $user = User::find(Auth::user()->id);
+        $this->checkVoucher(Auth::user()->id);
+        $list_vu = VoucherUser::with('vu_voucher','vu_user')->where('user_id',Auth::user()->id)->get();
         return view('client.user.voucher')->with(compact('categories','slider','banner','user', 'list_vu'));
     }
 

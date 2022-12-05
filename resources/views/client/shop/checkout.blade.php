@@ -27,78 +27,6 @@
         <div class="mb-5">
             <h1 class="text-center" style="color: red; font-weight: 700;">THANH TOÁN</h1>
         </div>
-        <!-- Accordion -->
-        <div id="shopCartAccordion" class="accordion rounded mb-5">
-            <!-- Card -->
-            <div class="card border-0">
-                <div id="shopCartHeadingOne" class="alert alert-primary mb-0" role="alert" style="color: white;">
-                    Phản hồi khách hàng?  <a href="#" class="alert-link" data-toggle="collapse" data-target="#shopCartOne" aria-expanded="false" aria-controls="shopCartOne" style="color: white;">Nhấn vào đây để đăng nhập</a>
-                </div>
-                <div id="shopCartOne" class="collapse border border-top-0" aria-labelledby="shopCartHeadingOne" data-parent="#shopCartAccordion" style="">
-                    <!-- Form -->
-                    <form class="js-validate p-5">
-                        <!-- Title -->
-                        <div class="mb-5">
-                            <p class="text-gray-90 mb-2">Chào mừng trở lại! Đăng nhập vào tài khoản của bạn.</p>
-                            <p class="text-gray-90">Nếu bạn đã mua sắm với chúng tôi trước đây, vui lòng nhập thông tin chi tiết của bạn dưới đây. Nếu bạn là khách hàng mới, vui lòng chuyển sang phần Thanh toán & Vận chuyển.</p>
-                        </div>
-                        <!-- End Title -->
-
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <!-- Form Group -->
-                                <div class="js-form-message form-group">
-                                    <label class="form-label" for="signinSrEmailExample3">Địa chỉ Email</label>
-                                    <input type="email" class="form-control" name="email" id="signinSrEmailExample3" placeholder="Email address" aria-label="Email address" required
-                                    data-msg="Please enter a valid email address."
-                                    data-error-class="u-has-error"
-                                    data-success-class="u-has-success">
-                                </div>
-                                <!-- End Form Group -->
-                            </div>
-                            <div class="col-lg-6">
-                                <!-- Form Group -->
-                                <div class="js-form-message form-group">
-                                    <label class="form-label" for="signinSrPasswordExample2">Mật khẩu</label>
-                                    <input type="password" class="form-control" name="password" id="signinSrPasswordExample2" placeholder="********" aria-label="********" required
-                                    data-msg="Your password is invalid. Please try again."
-                                    data-error-class="u-has-error"
-                                    data-success-class="u-has-success">
-                                </div>
-                                <!-- End Form Group -->
-                            </div>
-                        </div>
-
-                        <!-- Checkbox -->
-                        <div class="js-form-message mb-3">
-                            <div class="custom-control custom-checkbox d-flex align-items-center">
-                                <input type="checkbox" class="custom-control-input" id="rememberCheckbox" name="rememberCheckbox" required
-                                data-error-class="u-has-error"
-                                data-success-class="u-has-success">
-                                <label class="custom-control-label form-label cl-black" for="rememberCheckbox">
-                                    Ghi nhớ tài khoản
-                                </label>
-                            </div>
-                        </div>
-                        <!-- End Checkbox -->
-
-                        <!-- Button -->
-                        <div class="mb-1">
-                            <div class="mb-3">
-                                <button type="submit" class="btn btn-primary-dark-w px-5">Đăng nhập</button>
-                            </div>
-                            <div class="mb-2">
-                                <a class="text-blue" href="#">Quên mật khẩu?</a>
-                            </div>
-                        </div>
-                        <!-- End Button -->
-                    </form>
-                    <!-- End Form -->
-                </div>
-            </div>
-            <!-- End Card -->
-        </div>
-        <!-- End Accordion -->
 
         <!-- Accordion -->
         <div id="shopCartAccordion1" class="accordion rounded mb-6">
@@ -180,102 +108,31 @@
                                 <!-- End Product Content -->
                                 <div class="border-top border-width-3 border-color-1 pt-3 mb-3">
                                     <!-- Basics Accordion -->
-                                    <div id="basicsAccordion1">
+                                    <div id="basicsAccordion1">                                     
                                         <!-- Card -->
+                                        @foreach ($payments as $payment) 
                                         <div class="border-bottom border-color-1 border-dotted-bottom">
-                                            <div class="p-3" id="basicsHeadingOne">
+                                            <div class="p-3" id="basicsHeading{{$payment->id}}">
                                                 <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input" id="stylishRadio1" name="stylishRadio" checked>
-                                                    <label class="custom-control-label form-label cl-black" for="stylishRadio1"
+                                                    <input type="radio" class="custom-control-input" id="{{$payment->id}}StylishRadio1" name="stylishRadio">
+                                                    <label class="custom-control-label form-label cl-black" for="{{$payment->id}}StylishRadio1"
                                                         data-toggle="collapse"
-                                                        data-target="#basicsCollapseOnee"
-                                                        aria-expanded="true"
-                                                        aria-controls="basicsCollapseOnee">
-                                                        Chuyển khoản trực tiếp
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div id="basicsCollapseOnee" class="collapse show border-top border-color-1 border-dotted-top bg-dark-lighter"
-                                                aria-labelledby="basicsHeadingOne"
-                                                data-parent="#basicsAccordion1">
-                                                <div class="p-4 cl-black ">
-                                                    Thực hiện thanh toán của bạn trực tiếp vào tài khoản ngân hàng của chúng tôi. Vui lòng sử dụng ID đơn đặt hàng của bạn làm tham chiếu thanh toán. Đơn đặt hàng của bạn sẽ không được giao cho đến khi số tiền trong tài khoản của chúng tôi được thanh toán.
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End Card -->
-
-                                        <!-- Card -->
-                                        <div class="border-bottom border-color-1 border-dotted-bottom">
-                                            <div class="p-3" id="basicsHeadingTwo">
-                                                <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input" id="secondStylishRadio1" name="stylishRadio">
-                                                    <label class="custom-control-label form-label cl-black" for="secondStylishRadio1"
-                                                        data-toggle="collapse"
-                                                        data-target="#basicsCollapseTwo"
+                                                        data-target="#basicsCollapse{{$payment->id}}"
                                                         aria-expanded="false"
-                                                        aria-controls="basicsCollapseTwo">
-                                                        Check payments
+                                                        aria-controls="basicsCollapse{{$payment->id}}">
+                                                        {{$payment->payment_name}}
                                                     </label>
                                                 </div>
                                             </div>
-                                            <div id="basicsCollapseTwo" class="collapse border-top border-color-1 border-dotted-top bg-dark-lighter"
-                                                aria-labelledby="basicsHeadingTwo"
+                                            <div id="basicsCollapse{{$payment->id}}" class="collapse border-top border-color-1 border-dotted-top bg-dark-lighter"
+                                                aria-labelledby="basicsHeading{{$payment->id}}"
                                                 data-parent="#basicsAccordion1">
                                                 <div class="p-4 cl-black">
-                                                    Vui lòng gửi séc tới Tên cửa hàng, Phố cửa hàng, Thị trấn cửa hàng, Bang / Hạt cửa hàng, Mã bưu điện cửa hàng.
+                                                    {{$payment->payment_content}}
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- End Card -->
-
-                                        <!-- Card -->
-                                        <div class="border-bottom border-color-1 border-dotted-bottom">
-                                            <div class="p-3" id="basicsHeadingThree">
-                                                <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input " id="thirdstylishRadio1" name="stylishRadio">
-                                                    <label class="custom-control-label form-label cl-black" for="thirdstylishRadio1"
-                                                        data-toggle="collapse"
-                                                        data-target="#basicsCollapseThree"
-                                                        aria-expanded="false"
-                                                        aria-controls="basicsCollapseThree">
-                                                        Thanh toán khi giao hàng
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div id="basicsCollapseThree" class="collapse border-top border-color-1 border-dotted-top bg-dark-lighter"
-                                                aria-labelledby="basicsHeadingThree"
-                                                data-parent="#basicsAccordion1">
-                                                <div class="p-4 cl-black">
-                                                    Thanh toán bằng tiền mặt khi giao hàng.
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End Card -->
-
-                                        <!-- Card -->
-                                        <div class="border-bottom border-color-1 border-dotted-bottom">
-                                            <div class="p-3" id="basicsHeadingFour">
-                                                <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input" id="FourstylishRadio1" name="stylishRadio">
-                                                    <label class="custom-control-label form-label cl-black" for="FourstylishRadio1"
-                                                        data-toggle="collapse"
-                                                        data-target="#basicsCollapseFour"
-                                                        aria-expanded="false"
-                                                        aria-controls="basicsCollapseFour">
-                                                        PayPal / <a href="#" class="text-blue cl-black">PayPal là gì?</a>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div id="basicsCollapseFour" class="collapse border-top border-color-1 border-dotted-top bg-dark-lighter"
-                                                aria-labelledby="basicsHeadingFour"
-                                                data-parent="#basicsAccordion1">
-                                                <div class="p-4 cl-black">
-                                                    Thanh toán qua PayPal; bạn có thể thanh toán bằng thẻ tín dụng nếu bạn không có tài khoản PayPal.
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End Card -->
+                                        @endforeach                       
                                     </div>
                                     <!-- End Basics Accordion -->
                                 </div>

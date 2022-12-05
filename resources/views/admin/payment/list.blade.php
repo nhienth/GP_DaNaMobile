@@ -91,10 +91,9 @@
                         <table class="user-list-table table dataTable no-footer dtr-column text-center" >
                             <thead class="table-light ">
                                 <tr>
-                                    <th>Tên tài khoản</th>
-                                    <th>Số tài khoản</th>
-                                    <th>Ngày thêm mới</th>
-                                    <th>Ngày cập nhật</th>
+                                    <th>Tên</th>
+                                    <th>Nội dung</th>
+                                    <th>Trạng thái</th>
                                     <th colspan="2">Hành động</th>
                                 </tr>
                             </thead>
@@ -102,9 +101,8 @@
                                 @foreach($payment as $payments)
                                 <tr data-dt-row="" data-dt-column="">
                                     <td>{{$payments->payment_name}}</td>
+                                    <td>{{$payments->payment_content}}</td>
                                     <td>{{$payments->payment_status	}}</td>
-                                    <td>{{$payments->created_at}}</td>
-                                    <td>{{$payments->updated_at}}</td>
                                     <td>
                                         <a href="{{url('admin/payment/edit', [$payments->id])}}"><button type="button" class="btn btn-success"><i data-feather='edit'></i></button></a>
                                     </td>
