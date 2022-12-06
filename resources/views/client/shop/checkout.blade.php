@@ -1,6 +1,9 @@
 @extends('client.layouts.master')
 @section('main')
 <style>
+    .dathang{
+        color: white !important;
+    }
     .cl-black{
         color: black !important;
     }
@@ -334,6 +337,19 @@
                                                                     </form>
                                                                 </div>
                                                             </td>
+                                                            @if(session('vc'))
+                                                            @if($vu->voucher_id == session('vc')['id'])
+                                                            <td>
+                                                                <div class="primary-btn">
+                                                                    <form action="{{url('/voucher/useCheckout')}}" method="POST" enctype="multipart/form-data">
+                                                                        @csrf
+                                                                        <input type="hidden" name="voucher_id" value="{{$vu->voucher_id}}">
+                                                                        <button class="btn btn-primary" type="submit">Dùng ngay</button>
+                                                                    </form>
+                                                                </div>
+                                                            </td>
+                                                            @endif
+                                                            @endif
                                                         </tr>
                                                         @endforeach
                                                     </tbody>
@@ -470,7 +486,9 @@
                                         </label>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary-dark-w btn-block btn-pill font-size-20 mb-3 py-3">Đặt hàng</button>
+                                <button type="submit" class="btn btn-primary-dark-w btn-block btn-pill font-size-20 mb-3 py-3 dathang" name="redirect"><img src="{{asset('images/logo/vnpay.png')}}" style="margin-right: 20px;" width="30px">Thanh toán VNPay</button>
+                                <button type="submit" class="btn btn-primary-dark-w btn-block btn-pill font-size-20 mb-3 py-3 dathang" name="payUrl"><img src="{{asset('images/logo/momo.png')}}" style="margin-right: 20px;" width="30px">Thanh toán MOMO</button>
+                                <button type="submit" class="btn btn-primary-dark-w btn-block btn-pill font-size-20 mb-3 py-3 dathang" name="done">Đặt hàng</button>
                             </div>
                             <!-- End Order Summary -->
                         </div>
@@ -570,34 +588,6 @@
                     
                         <!-- End Billing Form -->
 
-                        <!-- Accordion -->
-                        <div id="shopCartAccordion2" class="accordion rounded mb-6">
-                            <!-- Card -->
-                            <div class="card border-0">
-                                <div id="shopCartHeadingThree" class="custom-control custom-checkbox d-flex align-items-center">
-                                    <input type="checkbox" class="custom-control-input" id="createAnaccount" name="createAnaccount" >
-                                    <label class="custom-control-label form-label cl-black" for="createAnaccount" data-toggle="collapse" data-target="#shopCartThree" aria-expanded="false" aria-controls="shopCartThree">
-                                        Tạo tài khoản?
-                                    </label>
-                                </div>
-                                <div id="shopCartThree" class="collapse" aria-labelledby="shopCartHeadingThree" data-parent="#shopCartAccordion2" style="">
-                                    <!-- Form Group -->
-                                    <div class="js-form-message form-group py-5">
-                                        <label class="form-label cl-black" for="signinSrPasswordExample1">
-                                            Tạo mật khẩu
-                                            <span class="text-danger">*</span>
-                                        </label>
-                                        <input type="password" class="form-control" name="password" id="signinSrPasswordExample1" placeholder="********" aria-label="********" required
-                                        data-msg="Enter password."
-                                        data-error-class="u-has-error"
-                                        data-success-class="u-has-success">
-                                    </div>
-                                    <!-- End Form Group -->
-                                </div>
-                            </div>
-                            <!-- End Card -->
-                        </div>
-                        <!-- End Accordion -->
                         <!-- Title -->
                         <div class="border-bottom border-color-1 mb-5">
                             <h3 class="section-title mb-0 pb-2 font-size-25 cl-black">Chi tiết vận chuyển</h3>
@@ -617,6 +607,31 @@
                     </div>
                 </div>
             </div>
+        </form>
+        <form action="{{url('/vnpay_payment')}}" method="post">
+            @csrf
+            <input type="hidden" value="<?= $subTotal + $ship ?>" name="total_amount">
+            <input type="hidden" value="{{$user->name}}" class="form-control" name="fullname" placeholder="Jack" aria-label="Jack" required="" data-msg="Please enter your frist name." data-error-class="u-has-error" data-success-class="u-has-success" autocomplete="off">
+            <input type="hidden" name="email" value="{{$user->email}}" class="form-control" name="emailAddress" placeholder="jackwayley@gmail.com" aria-label="jackwayley@gmail.com" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
+            <input type="hidden" name="phone" value="0123" class="form-control" placeholder="+1 (062) 109-9222" aria-label="+1 (062) 109-9222" data-msg="Please enter your last name." data-error-class="u-has-error" data-success-class="u-has-success">
+            <select name="hidden" class="form-control js-select selectpicker dropdown-select" required="" data-msg="Please select country." data-error-class="u-has-error" data-success-class="u-has-success"
+            data-live-search="true"
+            data-style="form-control border-color-1 font-weight-normal">
+            @foreach($user->user_addresses as $address)
+                <option value="{{$address->id}}">{{$address->completeAddress}}
+                  
+                    @if ($address->name_address == 0)
+                        ( Nhà riêng )
+                    @else
+                        ( Văn phòng )
+                    @endif
+                </option>
+            @endforeach                                
+        </select>
+
+        <input type="hidden" name="user_id" value="{{$user->id}}">
+
+            <button type="submit" class="" name="redirect">Thanh toán VNPay</button>
         </form>
     </div>
 </main>

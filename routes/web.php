@@ -144,6 +144,9 @@ Route::prefix('/')->group(function () {
     
     Route::get('/checkout', [CheckoutController::class,'index']);
     Route::post('/done', [CheckoutController::class,'store'])->name('done');
+
+    // Cổng thanh toán
+    Route::post('/vnpay_payment', [CheckoutController::class, 'vnpay_payment']);
 });
 
 
