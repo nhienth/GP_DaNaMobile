@@ -57,7 +57,7 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                                                 <div id="userlogin" class="dropdown-menu dropdown-unfold "
                                                     style="text-align:center" aria-labelledby="Userclient">
                                                     <a href="http://127.0.0.1:8000/user/{{ Auth::user()->id }}" class="dropdown-item">Thông tin cá nhân</a>
-                                                    <a href="http://127.0.0.1:8000/user/voucher" class="dropdown-item">Kho voucher</a>
+                                                    <a href="http://127.0.0.1:8000/voucher/voucher_user" class="dropdown-item">Kho voucher</a>
                                                     <a href="http://127.0.0.1:8000/user/{{ Auth::user()->id }}" class="dropdown-item">Đổi mật khẩu</a>
                                                     <hr>
                                                     <a href="route('logout')"

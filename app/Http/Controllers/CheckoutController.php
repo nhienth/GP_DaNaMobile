@@ -20,22 +20,47 @@ class CheckoutController extends Controller
     public function index()
     {
         $userId = Auth::user()->id;
-        $payments = Payment::all();
+        $payments = Payment::where('payment_status', '1')->get();
         $productList = session('cart');
         $user = User::with('user_addresses')->where('users.id', $userId)->first();    
+        $this->checkVoucher(Auth::user()->id);
         $list_vu = VoucherUser::with('vu_voucher','vu_user')->where('user_id',Auth::user()->id)->get();
-
-        return view('client.shop.checkout', compact('user', 'productList','payments'));
+        return view('client.shop.checkout', compact('user', 'productList','payments','list_vu'));
     }
-
+    public function checkVoucher($id){
+        $list = Voucher::all();
+        foreach ($list as $key ) {
+            if($key->numberof < 1){
+                Voucher::find($key->id)->delete();
+                VoucherUser::where('voucher_id',$key->id)->delete();
+            }
+            if($key->time < date('Y-m-d', time())){
+                Voucher::find($key->id)->delete();
+                VoucherUser::where('voucher_id',$key->id)->delete();
+            }
+        }
+    }
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function useCheckout(Request $request)
     {
-        //
+        $voucher_id = $request->voucher_id;
+        $voucher = Voucher::find($voucher_id);
+        $vc = session()->get('vc', []);
+        // if($voucher->type ="Giảm theo tiền"){
+        //     $vc['value'] = $voucher->value;
+        // }else{
+        //     $vc['value'] = $voucher->value*0.01;
+        // }
+        $vc['value'] = $voucher->value;
+        $vc['id'] = $voucher->id;
+        $vc['type'] = $voucher->type;
+        session()->put('vc', $vc);
+        // dd(session('vc')['value']);
+        return redirect()->back();
     }
 
     /**
@@ -53,11 +78,15 @@ class CheckoutController extends Controller
         $bill->address = $request->address;
         $bill->email = $request->email;
         $bill->phone = $request->phone;
-        $bill->note = "a";
         $bill->status = 0;
-        $bill->payment_id = 0;
+        $bill->payment_id = $request->payment_id;
         $bill->total_amount = $request->total_amount;
-        $bill->note = $request->note;
+        $bill->voucher = $request->voucher;
+        if($request->note){
+            $bill->note = $request->note;
+        }else{
+            $bill->note = '';
+        }
         $bill->save();
         foreach(session('cart') as $cart){
           
@@ -69,7 +98,7 @@ class CheckoutController extends Controller
             $billDetails->save();
         }
     
-        return 0;
+        return route('index');
     }
 
     /**

@@ -115,18 +115,18 @@
                                         <td></td>
                                         <td>{{$order->id}}</td>
                                         <td>{{$order->order_number}}</td>
-                                        <td>{{$order->sub_total}}</td>
+                                        <td>{{$order->total_amount}}</td>
                                         <td>{{$order->payment_id}}</td>
                                         <td>
                                             <?php
                                             if($order["status"]==0){
-                                                echo "Đang xử lý";
+                                                echo "<span class='badge rounded-pill badge-light-primary me-1'>Đang xử lý</span>";
                                             }else if($order["status"]==1){
-                                                echo "Đang giao hàng";
+                                                echo "<span class='badge rounded-pill badge-light-info me-1'>Đang giao hàng</span>";
                                             }else if($order["status"]==2){
-                                                echo "Đã giao hàng";
+                                                echo "<span class='badge rounded-pill badge-light-success me-1'>Đã giao hàng</span>";
                                             }else {
-                                                echo "Đã hủy hàng";
+                                                echo "<span class='badge rounded-pill badge-light-warning me-1'>Đã huỷ hàng</span>";
                                             }
                                             ?>
                                         </td>

@@ -56,6 +56,7 @@ Route::prefix('/')->group(function () {
         Route::get('/', [VoucherController::class, 'list']);
         Route::post('/addVoucher', [VoucherController::class, 'addVoucher']);
         Route::get('/voucher_user', [UserController::class, 'voucher']);
+        Route::post('/useCheckout', [CheckoutController::class, 'useCheckout']);
 
     });
     // Compare
@@ -101,7 +102,6 @@ Route::prefix('/')->group(function () {
         Route::get('/update/{id}', [UserController::class, 'useredit']);
         Route::post('/update/{id}', [UserController::class, 'userupdate']);
 
-        Route::get('/voucher_user', [UserController::class, 'voucher']);
         // Route::get('showaddress/{id}', [AddressControll::class, 'show']);
         // Route::get('create/{id}', [AddressControll::class, 'create']);
         // Route::post('create/{id}', [AddressControll::class, 'store']);
