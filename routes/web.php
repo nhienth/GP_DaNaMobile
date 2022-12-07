@@ -25,7 +25,8 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SpecificationController;
 use App\Http\Controllers\PostReviewController;
 use App\Http\Controllers\CheckoutController;
-
+use App\Models\Order;
+use GuzzleHttp\Handler\Proxy;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,6 +75,7 @@ Route::prefix('/')->group(function () {
         Route::get('/add/{id}', [ProductController::class, 'addToCart'])->name('cart.add');
         Route::get('/deleteCart/{id}', [ProductController::class, 'deleteCart'])->name('cart.remove');
         Route::post('/updateCart/{id}', [ProductController::class, 'updateCart'])->name('update.cart');
+
     });
 
     Route::prefix('/product')->group(function () {
@@ -85,6 +87,7 @@ Route::prefix('/')->group(function () {
         Route::post('/preview/{id}',[PreviewController::class,'preview'])->name('preview');
         Route::get('/rate/{id}',[PreviewController::class,'reviewRate']);
         Route::get('/search',[ProductController::class,'searchProduct']);
+        Route::get('/filter_price', [ProductController::class, 'filter_price'])->name('filter_price');
 
     });
 
@@ -117,8 +120,11 @@ Route::prefix('/')->group(function () {
         Route::post('/review/{id}',[PostReviewController::class,'reviewPost'])->name('post_review');
 
     });
-    
-    
+    Route::prefix('/bill')->group(function ()
+    {
+        Route::get('/list', [ProductController::class, 'showMyBill'])->name('bill.list')->middleware('checkBill');
+        Route::get('/detail/{id}', [ProductController::class, 'showBillDetail'])->name('bill.show_detail');
+    });
 
     Route::get('/checkout', [CheckoutController::class,'index']);
     Route::post('/done', [CheckoutController::class,'store'])->name('done');
@@ -149,7 +155,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
         //preview
         Route::post('/preview/{id}', [PreviewController::class, 'preview'])->name('preview')->middleware('auth');
 
-        
+
         Route::prefix('/product')->group(function () {
             Route::get('/searchproduct', [ProductController::class, 'search'])->name('search');
 
@@ -260,7 +266,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
             Route::get('/list', [ContactController::class, 'index']);
         });
 
-        Route::prefix('/user')->group(function () {
+        Route::prefix('/user')->middleware('CheckSeniorAdmin')->group(function () {
             Route::get('/list', [UserController::class, 'index']);
             Route::get('/edit/{id}', [UserController::class, 'edit']);
             Route::put('/update/{id}', [UserController::class, 'update']);

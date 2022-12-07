@@ -200,20 +200,16 @@
                         <!-- End Link -->
                     </div>
                     <div class="range-slider">
-                        <h4 class="font-size-14 mb-3 font-weight-bold">Price</h4>
+                        <h4 class="font-size-14 mb-3 font-weight-bold text-black">Price</h4>
                         <!-- Range Slider -->
-                        <input class="js-range-slider" type="text"
-                        data-extra-classes="u-range-slider u-range-slider-indicator u-range-slider-grid"
-                        data-type="double"
-                        data-grid="false"
-                        data-hide-from-to="true"
-                        data-prefix="$"
-                        data-min="0"
-                        data-max="3456"
-                        data-from="0"
-                        data-to="3456"
-                        data-result-min="#rangeSliderExample3MinResult"
-                        data-result-max="#rangeSliderExample3MaxResult">
+                        <form action="{{ route('filter_price')  }}" method="GET">
+                        <select name="select_price" id=""  onchange="this.form.submit()">
+                            <option value="1">Dưới 3 triệu</option>
+                            <option value="2">Dưới 5 triệu</option>
+                            <option value="3">Trên 5 triệu</option>
+                        </select>
+                        </form>
+
                         <!-- End Range Slider -->
                         <div class="mt-1 text-gray-111 d-flex mb-4">
                             <span class="mr-0dot5">Price: </span>
@@ -255,12 +251,12 @@
                                 </div>
                             </div>
                         </li>
-                        @endforeach  
+                        @endforeach
                     </ul>
                 </div>
             </div>
             <div class="col-xl-9 col-wd-9gdot5">
-                
+
                 <!-- Shop-control-bar Title -->
                 <div class="flex-center-between mb-3">
                     <h3 class="text-black font-size-25 mb-0">Sản phẩm</h3>
@@ -354,11 +350,11 @@
                 <!-- Shop Body -->
                 <!-- Tab Content -->
                 <div class="tab-content" id="pills-tabContent">
-                  
+
                     <div class="tab-pane fade pt-2 show active" id="pills-one-example1" role="tabpanel" aria-labelledby="pills-one-example1-tab" data-target-group="groups">
                         <ul class="row list-unstyled products-group no-gutters">
                             @foreach ($productList as $product)
-                                
+
                             <li class="col-6 col-md-3 col-wd-2gdot4 product-item">
                                 <div class="product-item__outer h-100">
                                     <div class="product-item__inner px-xl-4 p-3">
@@ -394,7 +390,7 @@
                     <div class="tab-pane fade pt-2" id="pills-two-example1" role="tabpanel" aria-labelledby="pills-two-example1-tab" data-target-group="groups">
                         <ul class="row list-unstyled products-group no-gutters">
                             @foreach ($productList as $product)
-                                
+
                             <li class="col-6 col-md-3 col-wd-2gdot4 product-item">
                                 <div class="product-item__outer h-100">
                                     <div class="product-item__inner px-xl-4 p-3">
@@ -441,16 +437,16 @@
                                 </div>
                             </li>
                             @endforeach
-        
-              
+
+
                         </ul>
                     </div>
 
                     <div class="tab-pane fade pt-2" id="pills-three-example1" role="tabpanel" aria-labelledby="pills-three-example1-tab" data-target-group="groups">
                         <ul class="d-block list-unstyled products-group prodcut-list-view">
                             @foreach ($productList as $product)
-                                
-                            
+
+
                             <li class="product-item remove-divider">
                                 <div class="product-item__outer w-100">
                                     <div class="product-item__inner remove-prodcut-hover py-4 row">
@@ -501,8 +497,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </li>  
-                            @endforeach                       
+                            </li>
+                            @endforeach
                         </ul>
                     </div>
 
@@ -564,7 +560,7 @@
 
                         </ul>
                     </div>
-                
+
 
                 </div>
                 <!-- End Tab Content -->
@@ -619,7 +615,7 @@
                               }
                             }]'>
                             @foreach ($recommendProducts as $product)
-                                
+
                                 <div class="js-slide products-group">
                                     <div class="product-item">
                                         <div class="product-item__outer h-100">
@@ -650,8 +646,8 @@
                                     </div>
                                 </div>
                             @endforeach
-                            
-                           
+
+
                         </div>
                     </div>
                 </div>

@@ -6,6 +6,13 @@
     <div class="content-wrapper container-xxl p-0">
         <div class="content-header row">
         </div>
+        <div>
+            @if (session()->has('message'))
+                <div class="alert alert-danger">
+                    {{ session()->get('message'); }}
+                </div>
+            @endif
+        </div>
         <div class="content-body">
             <!-- Dashboard Ecommerce Starts -->
             <section id="dashboard-ecommerce">
@@ -482,7 +489,7 @@
                         </div>
                     </div>
                     <!--/ Company Table Card -->
-
+                   
                     <!-- Developer Meetup Card -->
                     <div class="col-lg-4 col-md-6 col-12">
                         <div class="card card-developer-meetup">
