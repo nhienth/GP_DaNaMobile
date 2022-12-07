@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use  App\Models\Order;
 use  App\Models\OrderDetails;
+use  App\Models\Slider;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\UserController;
@@ -35,9 +36,9 @@ class OrderController extends Controller
 
         return redirect('/admin/order/list');
 
-        $slider = Slider::find($id);
-        $slider->update($request->only('slider_img'));
-        return redirect()->route('slider.list');
+        // $slider = Slider::find($id);
+        // $slider->update($request->only('slider_img'));
+        // return redirect()->route('slider.list');
     }
 
     /**

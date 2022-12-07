@@ -119,7 +119,7 @@ class CheckoutController extends Controller
         $vnp_OrderType = 'billpayment';
         $vnp_Amount = $total * 100;
         $vnp_Locale = 'vn';
-        $vnp_BankCode = 'JCB';
+        $vnp_BankCode = 'NCB';
         $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
         //Add Params of 2.0.1 Version
         // $vnp_ExpireDate = $expire;
@@ -239,7 +239,6 @@ class CheckoutController extends Controller
             'requestType' => $requestType,
             'signature' => $signature);
         $result = $this->execPostRequest($endpoint, json_encode($data));
-        // dd($result);
         $jsonResult = json_decode($result, true);  // decode json
         $link = $jsonResult['payUrl'];
         //Just a example, please check more in there

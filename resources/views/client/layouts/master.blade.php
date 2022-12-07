@@ -98,6 +98,41 @@
                 $.HSCore.components.HSSVGIngector.init('.js-svg-injector');
             });
 
+            // Checkout
+            jQuery(document).ready(function () {
+                $('#click1').click(function() {
+                    $('#redirect').removeClass('dpnone');
+                    $('#payUrl').addClass('dpnone');
+                    $('#done').addClass('dpnone');
+                });
+                $('#click2').click(function() {
+                    $('#redirect').addClass('dpnone');
+                    $('#payUrl').removeClass('dpnone');
+                    $('#done').addClass('dpnone');
+                });
+                $('#click3').click(function() {
+                    $('#redirect').addClass('dpnone');
+                    $('#payUrl').addClass('dpnone');
+                    $('#done').removeClass('dpnone');
+                });
+                $('#click4').click(function() {
+                    $('#redirect').addClass('dpnone');
+                    $('#payUrl').addClass('dpnone');
+                    $('#done').removeClass('dpnone');
+                });
+                $('#click5').click(function() {
+                    $('#redirect').addClass('dpnone');
+                    $('#payUrl').addClass('dpnone');
+                    $('#done').removeClass('dpnone');
+                });
+                $('#click6').click(function() {
+                    $('#redirect').addClass('dpnone');
+                    $('#payUrl').addClass('dpnone');
+                    $('#done').removeClass('dpnone');
+                });
+            });
+            // Endcheckout
+
             $(document).on('ready', function () {
                 // initialization of header
                 $.HSCore.components.HSHeader.init($('#header'));

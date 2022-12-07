@@ -1,6 +1,13 @@
 @extends('client.layouts.master')
 @section('main')
 <style>
+    .dpnone{
+        display: none !important;
+    }
+
+    .dpblock{
+        display: block !important;
+    }
     .dathang{
         color: white !important;
     }
@@ -454,7 +461,7 @@
                                         @foreach ($payments as $payment) 
                                         <div class="border-bottom border-color-1 border-dotted-bottom">
                                             <div class="p-3" id="basicsHeading{{$payment->id}}">
-                                                <div class="custom-control custom-radio">
+                                                <div class="custom-control custom-radio" id="click{{$payment->id}}">
                                                     <input type="radio" class="custom-control-input" id="{{$payment->id}}StylishRadio1" name="payment_id" value="{{$payment->id}}">
                                                     <label class="custom-control-label form-label cl-black" for="{{$payment->id}}StylishRadio1"
                                                         data-toggle="collapse"
@@ -486,9 +493,9 @@
                                         </label>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary-dark-w btn-block btn-pill font-size-20 mb-3 py-3 dathang" name="redirect"><img src="{{asset('images/logo/vnpay.png')}}" style="margin-right: 20px;" width="30px">Thanh toán VNPay</button>
-                                <button type="submit" class="btn btn-primary-dark-w btn-block btn-pill font-size-20 mb-3 py-3 dathang" name="payUrl"><img src="{{asset('images/logo/momo.png')}}" style="margin-right: 20px;" width="30px">Thanh toán MOMO</button>
-                                <button type="submit" class="btn btn-primary-dark-w btn-block btn-pill font-size-20 mb-3 py-3 dathang" name="done">Đặt hàng</button>
+                                <button type="submit" class="btn btn-primary-dark-w btn-block btn-pill font-size-20 mb-3 py-3 dathang dpnone" name="redirect" id="redirect"><img src="{{asset('images/logo/vnpay.png')}}" style="margin-right: 20px;" width="30px">Thanh toán VNPay</button>
+                                <button type="submit" class="btn btn-primary-dark-w btn-block btn-pill font-size-20 mb-3 py-3 dathang dpnone" name="payUrl" id="payUrl"><img src="{{asset('images/logo/momo.png')}}" style="margin-right: 20px;" width="30px">Thanh toán MOMO</button>
+                                <button type="submit" class="btn btn-primary-dark-w btn-block btn-pill font-size-20 mb-3 py-3 dathang dpnone" name="done" id="done">Đặt hàng</button>
                             </div>
                             <!-- End Order Summary -->
                         </div>
@@ -608,7 +615,7 @@
                 </div>
             </div>
         </form>
-        <form action="{{url('/vnpay_payment')}}" method="post">
+        {{-- <form action="{{url('/vnpay_payment')}}" method="post">
             @csrf
             <input type="hidden" value="<?= $subTotal + $ship ?>" name="total_amount">
             <input type="hidden" value="{{$user->name}}" class="form-control" name="fullname" placeholder="Jack" aria-label="Jack" required="" data-msg="Please enter your frist name." data-error-class="u-has-error" data-success-class="u-has-success" autocomplete="off">
@@ -632,7 +639,8 @@
         <input type="hidden" name="user_id" value="{{$user->id}}">
 
             <button type="submit" class="" name="redirect">Thanh toán VNPay</button>
-        </form>
+        </form> --}}
     </div>
 </main>
+
 @endsection
