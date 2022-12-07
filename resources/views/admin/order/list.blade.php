@@ -81,16 +81,6 @@
                                             <div class="dt-buttons d-inline-flex mt-50">
                                                 <button class="dt-button buttons-collection btn btn-outline-secondary dropdown-toggle me-2" 
                                                 tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="true">Xuất</button>
-                                                {{-- <div class="dt-button-collection" style="top: 148.625px; left: 889.488px;">
-                                                    <div role="menu">
-                                                        <button class="dt-button buttons-print dropdown-item" tabindex="0" type="button">Print</button>
-                                                        <button class="dt-button buttons-print dropdown-item" tabindex="0" type="button">Print</button>
-                                                        <button class="dt-button buttons-print dropdown-item" tabindex="0" type="button">Print</button>
-                                                    </div>
-                                                </div> --}}
-                                                <!-- <button type="button" class="dt-button add-new btn btn-primary" tabindex="0" data-bs-target="#modals-slide-in" aria-controls="DataTables_Table_0">
-                                                    <span>Thêm Sản phẩm mới</span>
-                                                </button> -->
                                             </div>
                                         </div>
                                     </div>
@@ -101,22 +91,20 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Mã đơn hàng</th>
-                                        <th>Số lượng đơn hàng</th>
-                                        <th>Tổng tiền</th>
-                                        <th>Mã phương thức thanh toán</th>
-                                        <th>Trạng thái</th>
                                         <th>Tên khách hàng</th>
+                                        <th>Tổng tiền</th>
+                                        <th>Trạng thái</th>
                                         <th colspan="2">Hành động</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php $i=0 ?>
                                     @foreach($orders as $order)
                                     <tr data-dt-row="" data-dt-column="">
-                                        <td></td>
+                                        <td>{{ ++$i }}</td>
                                         <td>{{$order->id}}</td>
-                                        <td>{{$order->order_number}}</td>
-                                        <td>{{$order->sub_total}}</td>
-                                        <td>{{$order->payment_id}}</td>
+                                        <td>{{$order->fullname}}</td>
+                                        <td>{{number_format($order->total_amount)}}đ</td>
                                         <td>
                                             <?php
                                             if($order["status"]==0){
@@ -130,7 +118,6 @@
                                             }
                                             ?>
                                         </td>
-                                        <td>{{$order->fullname}}</td>
                                         <td><a href="{{ url('admin/order/details',[$order->id])}}">Xem chi tiết</a></td> 
                                         <td><a href="{{ url('admin/order/edit',[$order->id])}}"><button type="button" class="btn btn-gradient-success"><i data-feather='edit'></i></button></a></td>
                                     </tr>

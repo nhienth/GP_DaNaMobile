@@ -1,15 +1,9 @@
 <x-guest-layout >
     
-    <div class="overlay-layout">  </div>
-    
-    <div class="img-layout" style="background-image: url('{{asset('form/images/background_login.jpg')}}'); background-size: cover; background-repeat: no-repeat; background-position: center center;height:760px">
+    {{-- <div class="overlay-layout">  </div> --}}
+    <div class="img-layout" style="background-image: url('{{asset('form/images/background1.jpg')}}'); background-size: cover; background-repeat: no-repeat; background-position: center center;height:760px">
         <section class="ftco-section">
             <div class="container">
-                <x-slot name="logo">
-                    <a href="/">
-                        <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-                    </a>
-                </x-slot>
                 <!-- Validation Errors -->
                 <x-auth-validation-errors class="mb-4" :errors="$errors" />
                 <div class="row justify-content-center">
@@ -37,7 +31,7 @@
                                 <!-- Đăng nhập -->
                                 <div class="form-group">
                                     <div class="flex items-center justify-end mt-4">
-                                        <x-primary-button class="form-control btn btn-primary submit px-3">
+                                        <x-primary-button class="form-control btn btn-primary submit px-3" onclick="notify()">
                                             {{ __('Đăng nhập') }}
                                         </x-primary-button>
 

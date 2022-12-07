@@ -92,11 +92,7 @@ Route::prefix('/')->group(function () {
         Route::get('/{id}', [UserController::class, 'show']);
         Route::get('/update/{id}', [UserController::class, 'useredit']);
         Route::post('/update/{id}', [UserController::class, 'userupdate']);
-
-        // Route::get('showaddress/{id}', [AddressControll::class, 'show']);
-        // Route::get('create/{id}', [AddressControll::class, 'create']);
-        // Route::post('create/{id}', [AddressControll::class, 'store']);
-
+        
         Route::get('/showaddress/{id}', [AddressControll::class, 'show']);
         Route::get('/createaddress/{user_id}', [AddressControll::class, 'create']);
         Route::post('/createaddress', [AddressControll::class, 'store']);

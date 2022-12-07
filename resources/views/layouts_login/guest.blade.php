@@ -16,6 +16,15 @@
         <link rel="stylesheet" href="../css/app.css">
         <link rel="stylesheet" href="{{asset('form/css/style.css')}}">
       
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/styles/metro/notify-metro.css" />
+
+        <script type="text/javascript">
+            function notify() {
+                $.notify("Chấp nhận quyền truy cập", "success");
+            }
+        </script>
         <style>
             .divider:after,
             .divider:before {
@@ -27,6 +36,7 @@
         </style>
     </head>
     <body>
+
         <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}
         </div>

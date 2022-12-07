@@ -51,12 +51,7 @@ class StocksController extends Controller
      */
     public function show($id)
     {
-        // echo $id;
-        // $combi = Combinations::find($id);
         $combi = Combinations::with(['product','stock'])->where('products_combinations.product_id',$id)->get();
-        // dd($combi);
-        // $data = Stocks::with('combination')->where('products_id', $id)->first();
-        // $combi = Products::with('combinations')->where('products_id', $data)->get();
         return view('admin.stocks.stockdetail')->with(compact('combi'));
     }
 
