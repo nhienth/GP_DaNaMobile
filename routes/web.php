@@ -87,6 +87,7 @@ Route::prefix('/')->group(function () {
         Route::post('/preview/{id}',[PreviewController::class,'preview'])->name('preview');
         Route::get('/rate/{id}',[PreviewController::class,'reviewRate']);
         Route::get('/search',[ProductController::class,'searchProduct']);
+        Route::get('/filter_price', [ProductController::class, 'filter_price'])->name('filter_price');
 
     });
 
@@ -123,7 +124,7 @@ Route::prefix('/')->group(function () {
         Route::post('/review/{id}',[PostReviewController::class,'reviewPost'])->name('post_review');
 
     });
-    Route::prefix('/bill')->group(function () 
+    Route::prefix('/bill')->group(function ()
     {
         // Route::get('/list', function ()
         // {
@@ -134,7 +135,7 @@ Route::prefix('/')->group(function () {
         Route::get('/list', [ProductController::class, 'showMyBill'])->name('bill.list');
         Route::get('/detail/{id}', [ProductController::class, 'showBillDetail'])->name('bill.show_detail');
     });
-    
+
     Route::get('/checkout', [CheckoutController::class,'index']);
     Route::post('/done', [CheckoutController::class,'store'])->name('done');
 });
@@ -164,7 +165,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
         //preview
         Route::post('/preview/{id}', [PreviewController::class, 'preview'])->name('preview')->middleware('auth');
 
-        
+
         Route::prefix('/product')->group(function () {
             Route::get('/searchproduct', [ProductController::class, 'search'])->name('search');
 
