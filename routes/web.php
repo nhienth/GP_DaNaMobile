@@ -126,13 +126,7 @@ Route::prefix('/')->group(function () {
     });
     Route::prefix('/bill')->group(function ()
     {
-        // Route::get('/list', function ()
-        // {
-        //     $myBill = Order::all();
-        //     return view('client.shop.mybill', ['mybill' => $myBill]);
-        // }
-        // );
-        Route::get('/list', [ProductController::class, 'showMyBill'])->name('bill.list');
+        Route::get('/list', [ProductController::class, 'showMyBill'])->name('bill.list')->middleware('checkBill');
         Route::get('/detail/{id}', [ProductController::class, 'showBillDetail'])->name('bill.show_detail');
     });
 
@@ -276,7 +270,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
             Route::get('/list', [ContactController::class, 'index']);
         });
 
-        Route::prefix('/user')->group(function () {
+        Route::prefix('/user')->middleware('CheckSeniorAdmin')->group(function () {
             Route::get('/list', [UserController::class, 'index']);
             Route::get('/edit/{id}', [UserController::class, 'edit']);
             Route::put('/update/{id}', [UserController::class, 'update']);

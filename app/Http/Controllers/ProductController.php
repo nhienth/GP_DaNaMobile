@@ -71,8 +71,6 @@ class ProductController extends Controller
     {
         $key_word = $_GET['select_price'];
         $product = Product::with('combinations')->get();
-
-        dd($product);
     }
     /**
      * Display a listing of the resource.

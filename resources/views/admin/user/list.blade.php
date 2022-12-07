@@ -89,6 +89,8 @@
                                             <?php
                                             if($key["role"]==1){
                                                 echo "Admin";
+                                            }else if ($key['role']==2) {
+                                                echo "Junior Admin";
                                             }else {
                                                 echo "Khách hàng";
                                             }
