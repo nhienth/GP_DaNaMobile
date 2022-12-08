@@ -223,12 +223,15 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                                         <div class="flex-center-between px-4 pt-2">
                                             <a href="{{url('/cart/')}}"
                                             class="btn btn-soft-secondary mb-3 mb-md-0 font-weight-normal px-5 px-md-4 px-lg-5">Giỏ hàng</a>
-                                            @if (Auth::check())
-                                                <a href="{{url('/checkout/')}}"
+                                            @if (Auth::check() && count((array) session('cart')) == 0)
+                                                <a href="{{url('/')}}"
+                                                class="btn btn-primary-dark-w ml-md-2 px-5 px-md-4 px-lg-5 text-white">Mua Hàng</a>
+                                            @elseif (Auth::check() && count((array) session('cart')) > 0)
+                                                <a  href="{{url('/checkout/')}}"
                                                 class="btn btn-primary-dark-w ml-md-2 px-5 px-md-4 px-lg-5 text-white">Thanh toán</a>
-                                            @else
-                                                <a href="{{url('/login/')}}"
-                                                class="btn btn-primary-dark-w ml-md-2 px-5 px-md-4 px-lg-5 text-white">Đăng nhập để thanh toán</a>
+                                            @elseif (!Auth::check())
+                                            <a  href="{{url('/login/')}}"
+                                            class="btn btn-primary-dark-w ml-md-2 px-5 px-md-4 px-lg-5 text-white">Đăng nhập</a>
                                             @endif
                                         </div>
                                     </div>
