@@ -72,8 +72,6 @@ class ProductController extends Controller
     {
         $key_word = $_GET['select_price'];
         $product = Product::with('combinations')->get();
-
-        dd($product);
     }
     /**
      * Display a listing of the resource.
@@ -291,14 +289,13 @@ class ProductController extends Controller
         $slider = Slider::first()->orderBy('slider.created_at', 'DESC')->paginate(1);
         $banner = Banner::first()->orderBy('banner.created_at', 'DESC')->paginate(1);
         $product = Product::with(['category', 'variations', 'variation_value', 'combinations', 'images', 'specfications'])->where('products.id', $id)->first();
+        $product->product_view+=1;
+        $product->save();
         $similarProducts = Product::with(['category'])
             ->where('products.category_id', $product->category_id)
             ->where('products.id', '!=', $id)
             ->take(6)
             ->get();
-        // $similarProducts = Product::
-        // take(6)
-        // ->get();
         $minPrice = $product->combinations{0}->price;
         $maxPrice = $product->combinations{0}->price;
 

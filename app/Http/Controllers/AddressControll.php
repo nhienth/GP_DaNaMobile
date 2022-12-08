@@ -35,7 +35,6 @@ class AddressControll extends Controller
         $categories = Category::all();
         $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
         $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
-        // $user = User_addresses::with('user')->where('user_addresses.user_id',$user_id)->find($user_id);
         return view('client.user_address.create')->with(compact('categories','slider','banner')); 
     }
 
@@ -67,9 +66,7 @@ class AddressControll extends Controller
         $categories = Category::all();
         $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
         $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
-        // $user = User::with('user_addresses')->find($id);
         $users = User_addresses::with('user')->where('user_addresses.user_id',$id)->get();
-        // dd($users);
         return view('client.user_address.show')->with(compact('categories','slider','banner','users'));
     }
 

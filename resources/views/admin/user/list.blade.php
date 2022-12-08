@@ -79,9 +79,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php $i = 0 ?>
                                     @foreach($alluser as $key)
                                     <tr data-dt-row="" data-dt-column="">
-                                        <td></td>
+                                        <td>{{++$i}}</td>
                                         <td>{{$key->id}}</td>
                                         <td>{{$key->name}}</td>
                                         <td>{{$key->email}}</td>
@@ -89,6 +90,8 @@
                                             <?php
                                             if($key["role"]==1){
                                                 echo "Admin";
+                                            }else if ($key['role']==2) {
+                                                echo "Junior Admin";
                                             }else {
                                                 echo "Khách hàng";
                                             }

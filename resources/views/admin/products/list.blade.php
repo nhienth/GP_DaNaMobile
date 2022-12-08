@@ -143,10 +143,10 @@
                             </thead>
 
                             <tbody>
-
+                                <?php $i = 0 ?>
                                 @foreach ($products as $product)
                                 <tr data-dt-row="" data-dt-column="">
-                                    <td></td>
+                                    <td>{{++$i}}</td>
                                     <td>{{$product->product_name}}</td>
                                     <td>{{$product->category->category_name}}</td>
                                     <td><img class="rounded" src="{{asset('images/products/'.$product->product_img)}}"

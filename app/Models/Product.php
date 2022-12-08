@@ -81,7 +81,4 @@ class Product extends Model
         );
     }
 
-
-
-
 }

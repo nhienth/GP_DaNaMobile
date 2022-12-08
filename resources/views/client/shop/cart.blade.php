@@ -90,29 +90,10 @@
                     @endforeach
                     @endif
                     <tr>
-                        <td colspan="6" class="border-top space-top-2 justify-content-center">
+                        <td colspan="8" class="border-top space-top-2 justify-content-center">
                             <div class="pt-md-3">
-                                <div class="d-block d-md-flex flex-center-between">
-                                    <div class="mb-3 mb-md-0 w-xl-40">
-                                        <!-- Apply coupon Form -->
-                                        <form class="js-focus-state">
-                                            <label class="sr-only" for="subscribeSrEmailExample1">Mã giảm giá</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" name="text"
-                                                    id="subscribeSrEmailExample1" placeholder="Coupon code"
-                                                    aria-label="Coupon code" aria-describedby="subscribeButtonExample2"
-                                                    required>
-                                                <div class="input-group-append">
-                                                    <button class="btn btn-block btn-dark px-4" type="button"
-                                                        id="subscribeButtonExample2"><i
-                                                            class="fas fa-tags d-md-none"></i><span
-                                                    class="d-none d-md-inline">Áp dụng</span>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                        <!-- End Apply coupon Form -->
-                                    </div>
+                                <div class="d-block d-md-flex flex-center-between" style="justify-content: end">
+                                    
                                     <div class="d-md-flex">
                                         <a href="{{url('checkout')}}"
                                             class="btn btn-primary-dark-w ml-md-2 px-5 px-md-4 px-lg-5 w-100 w-md-auto d-none d-md-inline-block text-white">Thanh toán</a>

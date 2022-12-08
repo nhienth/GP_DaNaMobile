@@ -10,6 +10,7 @@ use App\Models\Banner;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Combinations;
+use App\Models\OrderDetails;
 use App\Models\Preview;
 use DB;
 class HomeController extends Controller
@@ -40,13 +41,11 @@ class HomeController extends Controller
         // sản phẩm sale 
         $productsalemax = Combinations::with(['product'])
         ->orderBy('products_combinations.sale','desc')
-        // ->where('products_combinations.product_id','products.id')
         ->first();
         $proName = Product::find($productsalemax->product_id)->value('product_name');
         $proID = Product::find($productsalemax->product_id)->value('id');
         $productsalemax['product_name'] = $proName;
         $productsalemax['id'] = $proID;
-        // dd($productsalemax);
 
         // all sản phẩm
         $productsld = Product::with('combinations','category')->orderBy('products.id', 'desc')
@@ -114,6 +113,19 @@ class HomeController extends Controller
         ->take(8)
         ->get();
 
+        // top 20 sản phẩm
+        $top20 = DB::table('products')
+        ->select('products.*','categories.category_name' ,DB::raw('SUM(order_details.quantity) as sumnn'))
+        ->join('categories', 'products.category_id', '=', 'categories.id')
+        ->join('order_details', 'order_details.product_id', '=', 'products.id')
+        ->join('orders', 'order_details.order_id', '=', 'orders.id')
+        ->where('orders.status', '=', 2)
+        ->groupBy('products.id')
+        ->having('sumnn', '>', 0)
+        ->orderBy('sumnn', 'DESC')
+        ->take(8)
+        ->get();
+        // dd($top20s);
 
         // random
         $random = Product::with('combinations','category')->orderBy(DB::raw('RAND()'))
@@ -175,7 +187,7 @@ class HomeController extends Controller
             $prv['category_name'] =  $cateName->category_name;
         }
 
-        return view('client.index')->with(compact('productsalemax','categories', 'categoryhot', 'categorylist', 'view_product', 'prevew_product', 'product_cate', 'slider', 'banner', 'bannerlist', 'productsld', 'random', 'product_sale', 'categorySelect','top3preview'));
+        return view('client.index')->with(compact('productsalemax','categories', 'categoryhot', 'categorylist', 'view_product', 'prevew_product', 'product_cate', 'slider', 'banner', 'bannerlist', 'productsld', 'top20', 'random', 'product_sale', 'categorySelect','top3preview'));
 
     }
 

@@ -96,10 +96,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php $i = 0 ?>
                                     @foreach($previews as $preview)
-                                     
                                     <tr data-dt-row="" data-dt-column="">
-                                        <td></td>
+                                        <td>{{++$i}}</td>
                                         <td>{{$preview->product->product_name}}</td>
                                         <td>{{$preview->total}}</td>
                                         <td>{{number_format($preview->avgrate, 1,'.', '')}}</td>
