@@ -114,8 +114,13 @@
                                         <!-- End Apply coupon Form -->
                                     </div>
                                     <div class="d-md-flex">
-                                        <a href="{{url('checkout')}}"
+                                        @if (Auth::check())
+                                            <a href="{{url('checkout')}}"
                                             class="btn btn-primary-dark-w ml-md-2 px-5 px-md-4 px-lg-5 w-100 w-md-auto d-none d-md-inline-block text-white">Thanh toán</a>
+                                        @else
+                                            <a href="{{url('login')}}"
+                                            class="btn btn-primary-dark-w ml-md-2 px-5 px-md-4 px-lg-5 w-100 w-md-auto d-none d-md-inline-block text-white">Vui lòng đăng nhập để thanh toán</a>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
