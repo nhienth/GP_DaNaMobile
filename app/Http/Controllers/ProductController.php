@@ -18,9 +18,9 @@ use App\Models\Image_Gallery;
 use App\Models\Order;
 use App\Models\OrderDetails;
 use App\Models\WishList;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Console\View\Components\Alert;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -71,7 +71,28 @@ class ProductController extends Controller
     public function filter_price()
     {
         $key_word = $_GET['select_price'];
-        $product = Product::with('combinations')->get();
+        if($key_word == 1){
+            $productFilter = Product::join('products_combinations', 'products.id', '=', 'products_combinations.product_id')
+            ->select('products.product_name', 'products.product_img',DB::raw('min(products_combinations.price) as minprice'))
+            ->groupBy('product_id')
+            ->having('minprice', '<', '3000000')
+            ->get();
+        }elseif($key_word == 2){
+            $productFilter = Product::join('products_combinations', 'products.id', '=', 'products_combinations.product_id')
+            ->select('products.product_name', 'products.product_img',DB::raw('min(products_combinations.price) as minprice'))
+            ->groupBy('product_id')
+            ->having('minprice', '<', '5000000')
+            ->get();
+        }else{
+            $productFilter = Product::join('products_combinations', 'products.id', '=', 'products_combinations.product_id')
+            ->select('products.product_name', 'products.product_img',DB::raw('min(products_combinations.price) as minprice'))
+            ->groupBy('product_id')
+            ->having('minprice', '>', '5000000')
+            ->get();
+        }
+
+        return view('client.products.product_filter', compact('productFilter'));
+
     }
     /**
      * Display a listing of the resource.
@@ -562,7 +583,7 @@ class ProductController extends Controller
     //Show my bill
     public function showMyBill ()
     {
-        $myBill = Order::with('orderdetail')->get();
+        $myBill = Order::with('orderdetail')->where('user_id', Auth::id())->orderBy('id', 'DESC')->get();
         return view('client.shop.mybill', compact('myBill'));
     }
 

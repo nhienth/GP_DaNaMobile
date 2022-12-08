@@ -83,14 +83,14 @@
                         @endforeach
 
                         @endforeach
-                    <tr>
+                    {{-- <tr>
                         <th>Thêm vào giỏ hàng</th>
                         @foreach (session('product_compare_1') as $id => $details )
                         <td>
                             <div class=""><a href="{{$details['price']}}" class="btn btn-soft-secondary mb-3 mb-md-0 font-weight-normal px-5 px-md-3 px-xl-5">Thêm vào giỏ hàng</a></div>
                         </td>
                         @endforeach
-                    </tr>
+                    </tr> --}}
                     <tr>
                         <th>Xoá</th>
                         @foreach (session('product_compare_1') as $id => $details )
