@@ -561,7 +561,7 @@ class ProductController extends Controller
     //Show my bill
     public function showMyBill ()
     {
-        $myBill = Order::with('orderdetail')->get();
+        $myBill = Order::with('orderdetail')->where('user_id', Auth::id())->orderBy('id', 'DESC')->get();
         return view('client.shop.mybill', compact('myBill'));
     }
 

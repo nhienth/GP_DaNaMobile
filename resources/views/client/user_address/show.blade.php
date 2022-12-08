@@ -196,8 +196,8 @@
                 </div>
             @endforeach
         </div>
-        <a href="{{url('/user/createaddress',[$user->user_id])}}"><button type="button" class="button-contact btn btn-outline-primary">Thêm địa chỉ</button></a>
-        <a href="{{url('/user',[$user->user_id])}}"><button type="button" class="button-contact btn btn-outline-primary">Quay lại thông tin cá nhân</button></a>
+        <a href="{{url('/user/createaddress',[Auth::user()->id])}}"><button type="button" class="button-contact btn btn-outline-primary">Thêm địa chỉ</button></a>
+        <a href="{{url('/user',[Auth::user()->id])}}"><button type="button" class="button-contact btn btn-outline-primary">Quay lại thông tin cá nhân</button></a>
     </div>
   
 </form>	

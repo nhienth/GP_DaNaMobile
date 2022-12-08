@@ -37,16 +37,24 @@
                 </thead>
                 <tbody>
                     @foreach ($myBill as $item )
-                        @foreach ($item->orderdetail as $itemDetail )
                         <tr>
-                            <td>{{ $item->id - 1}}</td>
-                            <td></td>
-                            <td>{{ $item->total_amount }}</td>
-                            <td>{{ $item->address }}</td>
-                            <td></td>
+                            <td>{{ $item->id}}</td>
+                            <td>{{ $item->created_at}}</td>
+                            <td>tong tien</td>
+                            <td>dia chi</td>
+                            <?php
+                                if($item->status==0){
+                                    echo "<td class='badge rounded-pill badge-light-primary me-1'>Đang xử lý</td>";
+                                }else if($item->status==1){
+                                    echo "<td class='badge rounded-pill badge-light-info me-1'>Đang giao hàng</td>";
+                                }else if($item->status==2){
+                                    echo "<td class='badge rounded-pill badge-light-success me-1'>Đã giao hàng</td>";
+                                }else {
+                                    echo "<td class='badge rounded-pill badge-light-warning me-1'>Đã huỷ hàng</td>";
+                                }
+                            ?>
                             <td><a href="{{url('bill/detail/'.$item->id)}}"><button type="button" class="btn btn-primary">Xem chi tiết</button></a></td>
                         </tr>
-                        @endforeach
                     @endforeach
                 </tbody>
             </table>

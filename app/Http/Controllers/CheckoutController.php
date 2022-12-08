@@ -8,6 +8,8 @@ use App\Models\Voucher;
 use App\Models\VoucherUser;
 use App\Models\Order;
 use App\Models\OrderDetails;
+use App\Models\Combinations;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 class CheckoutController extends Controller
@@ -98,14 +100,23 @@ class CheckoutController extends Controller
                 $billDetails->total_amount = $cart['quantity']*$cart['price'];
                 $billDetails->save();
 
+                $product = Combinations::find($billDetails->product_id);
+                $product->avilableStock = $product->avilableStock - $billDetails->quantity;
+                $product->save();
             } 
-            if(isset($_POST['done'])){      
-                return redirect()->back();
+
+
+            if(isset($_POST['done'])){   
+                $cart = [];
+                session()->put('cart', $cart);  
+                return redirect()->route('bill.list');
             }else if(isset($_POST['redirect'])){
                 $this->vnpay_payment_test($bill->id, $bill->total_amount);
             }else{
                 $this->momo_payment_test($bill->id, $bill->total_amount);
             }
+
+
     }
 
     public function vnpay_payment_test($id, $total){      
