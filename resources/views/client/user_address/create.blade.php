@@ -191,7 +191,9 @@
                 </select>
             </div>	
         </div>
-        <button type="submit" class="button-contact btn btn-outline-primary">Thêm</button>
+        <div class="text-center">
+            <button type="submit" class="button-contact btn btn-outline-primary">Thêm</button>
+        </div>
     </div>
 </form>	
 @endsection

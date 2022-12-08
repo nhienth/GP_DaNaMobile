@@ -67,24 +67,29 @@
                             <h2 class="font-size-25 text-lh-1dot2">{{$product->product_name}}</h2>
                             <div class="mb-2">
                                 <a class="d-inline-flex align-items-center small font-size-15 text-lh-1" href="#">
-                                    <div class="text-warning mr-2">
-                                        <small class="fas fa-star"></small>
-                                        <small class="fas fa-star"></small>
-                                        <small class="fas fa-star"></small>
-                                        <small class="fas fa-star"></small>
-                                        <small class="far fa-star text-muted"></small>
+                                    @if (isset ($round))
+                                    <div class="text-warning" style="overflow: hidden; width : {{$round*90/5-5}}px">
+                                        <div style="width: 90px">
+                                            <small class="fas fa-star"></small>
+                                            <small class="fas fa-star"></small>
+                                            <small class="fas fa-star"></small>
+                                            <small class="fas fa-star"></small>
+                                            <small class="fas fa-star"></small>
+                                        </div>
                                     </div>
-                                    <span class="text-secondary font-size-13">(3 người dùng đánh giá)</span>
+                                    <span class="text-secondary font-size-13 " style="margin-left: 10px;">| ({{$countall}} người dùng đánh giá)</span>
+                                    @else   
+                                                                  
+                                    @endif
                                 </a>
                             </div>
-
                             <div class="d-md-flex align-items-center">
                                 <a href="#" class="max-width-150 ml-n2 mb-2 mb-md-0 d-block"><img class="img-fluid"
                                         src="{{asset('images/categories/'.$product->category->category_image)}}"
                                         width="80px"
                                         alt="Image Description"></a>
                                 <div class="ml-md-3 text-gray-9 font-size-14">Số lượng trong kho: <span
-                                        class="text-green font-weight-bold">26 in stock</span></div>
+                                        class="text-green font-weight-bold">26</span></div>
                             </div>
                         </div>
                         <div class="flex-horizontal-center flex-wrap mb-4">
@@ -479,6 +484,7 @@
                                 <img class="img-fluid rounded-circle" src="{{asset('/images/user/default.jpg')}}"
                                     alt="Image Description" width="50px">
                             </div>
+                            <strong>{{$preview->name}}</strong>
                             <!-- Review Rating -->
                             <div
                                 class="d-flex justify-content-between align-items-center text-secondary font-size-1 mb-2">
@@ -494,7 +500,6 @@
                             <p class="text-gray-90">{{$preview->review}}</p>
                             <!-- Reviewer -->
                             <div class="mb-2">
-                                <strong>{{$preview->name}}</strong>
                                 <span class="font-size-13 text-gray-23">{{$preview->created_at}}</span>
                             </div>
                             <!-- End Reviewer -->
@@ -527,13 +532,9 @@
                                                 alt="Image Description"></a>
                                     </div>
                                     <div class="flex-center-between mb-1">
-                                        <div class="prodcut-price">
-                                            <div class="text-gray-100">$685,00</div>
-                                        </div>
                                         <div class="d-none d-xl-block prodcut-add-cart">
-                                            <a href="{{url('product/detail',[$similarProduct->id])}}"
-                                                class="btn-add-cart btn-primary transition-3d-hover"><i
-                                                    class="ec ec-add-to-cart"></i></a>
+                                            <a href="{{url('product/detail',[$preview->product_id])}}"
+                                                class="btn btn-primary transition-3d-hover">Xem chi tiết</a>
                                         </div>
                                     </div>
                                 </div>

@@ -125,7 +125,6 @@ class HomeController extends Controller
         ->orderBy('sumnn', 'DESC')
         ->take(8)
         ->get();
-        // dd($top20s);
 
         // random
         $random = Product::with('combinations','category')->orderBy(DB::raw('RAND()'))

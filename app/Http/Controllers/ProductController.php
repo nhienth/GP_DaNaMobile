@@ -288,9 +288,10 @@ class ProductController extends Controller
         $previews = Preview::where('product_id',$id)->get();
         $slider = Slider::first()->orderBy('slider.created_at', 'DESC')->paginate(1);
         $banner = Banner::first()->orderBy('banner.created_at', 'DESC')->paginate(1);
-        $product = Product::with(['category', 'variations', 'variation_value', 'combinations', 'images', 'specfications'])->where('products.id', $id)->first();
+        $product = Product::with(['category', 'variations', 'variation_value' , 'preview', 'combinations', 'images', 'specfications'])->where('products.id', $id)->first();
         $product->product_view+=1;
         $product->save();
+        // dd($product->preview);
         $similarProducts = Product::with(['category'])
             ->where('products.category_id', $product->category_id)
             ->where('products.id', '!=', $id)

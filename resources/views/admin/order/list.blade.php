@@ -103,14 +103,8 @@
                                     <tr data-dt-row="" data-dt-column="">
                                         <td>{{ ++$i }}</td>
                                         <td>{{$order->id}}</td>
-<<<<<<< HEAD
-                                        <td>{{$order->order_number}}</td>
-                                        <td>{{$order->total_amount}}</td>
-                                        <td>{{$order->payment_id}}</td>
-=======
                                         <td>{{$order->fullname}}</td>
                                         <td>{{number_format($order->total_amount)}}đ</td>
->>>>>>> 6f3220a6dd68b7502ab9c62fd15ce6819d3cc0b7
                                         <td>
                                             <?php
                                             if($order["status"]==0){

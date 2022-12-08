@@ -150,6 +150,9 @@
     border-radius: 3px;
     box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.03);
     }
+    .text-center{
+        margin: 10px;
+    }
 
     #sendmessage.show,.show  {
     display:block;
@@ -191,7 +194,9 @@
                 </select>
             </div>	
         </div>
-        <button type="submit" class="button-contact btn btn-outline-primary">Thêm</button>
+        <div class="text-center">
+            <button type="submit" class="button-contact btn btn-outline-primary">Thêm</button>
+        </div>
     </div>
 </form>	
 @endsection
