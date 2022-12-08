@@ -145,6 +145,7 @@
                             <tbody>
                                 <?php $i = 0 ?>
                                 @foreach ($products as $product)
+                                
                                 <tr data-dt-row="" data-dt-column="">
                                     <td>{{++$i}}</td>
                                     <td>{{$product->product_name}}</td>
@@ -165,17 +166,24 @@
                                                     data-feather='plus'></i></button></a>
                                     </td>
                                     <td>
+                                        @if (Auth::user()->role == 2)
                                         <a href="{{url('admin/product/edit', [$product->id])}}"><button type="button"
-                                                class="btn btn-warning"><i data-feather='edit'></i></button></a>
+                                            class="btn btn-warning"><i data-feather='edit'></i></button></a>
+                                        @endif
+                                       
                                     </td>
                                     <td>
+                                       
                                         <a href="{{url('admin/product/listProVar', [$product->id])}}"><button
                                                 type="button" class="btn btn-success"><i
                                                     data-feather='eye'></i></button></a>
                                     </td>
                                     <td>
-                                        <a href="{{url('admin/product/delete', [$product->id])}}"><button type="button"
+                                        @if (Auth::user()->role == 2)
+                                            <a href="{{url('admin/product/delete', [$product->id])}}"><button type="button"
                                                 class="btn btn-danger"><i data-feather='trash-2'></i></button></a>
+                                        @endif
+                                      
                                     </td>
                                 </tr>
                                 @endforeach
