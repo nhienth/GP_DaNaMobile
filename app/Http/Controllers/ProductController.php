@@ -18,7 +18,6 @@ use App\Models\Image_Gallery;
 use App\Models\Order;
 use App\Models\OrderDetails;
 use App\Models\WishList;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Console\View\Components\Alert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
