@@ -548,10 +548,9 @@
                                         <span class="text-danger">*</span>
                                     </label>
                                     <select name="address" class="form-control js-select selectpicker dropdown-select" required="" data-msg="Please select country." data-error-class="u-has-error" data-success-class="u-has-success"
-                                        data-live-search="true"
-                                        data-style="form-control border-color-1 font-weight-normal">
+                                        data-live-search="true" data-style="form-control border-color-1 font-weight-normal">
                                         @foreach($user->user_addresses as $address)
-                                            <option value="{{$address->id}}">{{$address->completeAddress}}
+                                            <option value="{{$address->id}}">{{ $address -> city }} - {{ $address -> district }} - {{ $address -> ward }} - {{ $address -> street }}
                                               
                                                 @if ($address->type_address == 0)
                                                     ( Nhà riêng )
@@ -571,7 +570,7 @@
                                 <!-- Input -->
                                 <div class="js-form-message mb-6">
                                     <label class="form-label cl-black">
-                                        Địa chỉ Email
+                                        Email
                                         <span class="text-danger">*</span>
                                     </label>
                                     <input type="email" name="email" value="{{$user->email}}" class="form-control" name="emailAddress" placeholder="jackwayley@gmail.com" aria-label="jackwayley@gmail.com" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">

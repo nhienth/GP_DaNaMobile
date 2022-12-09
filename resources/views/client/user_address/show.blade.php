@@ -163,7 +163,7 @@
     <div class="contentform">
         <div class="row">
             @foreach ($users as $user)
-                <div class="form-group col-md-8">
+                <div class="form-group col-md-10">
                     <p>Địa chỉ: 
                         (
                             <?php
@@ -176,17 +176,17 @@
                         )
                         <span class="text-danger">*</span>
                     </p>
-                    <input type="text" name="" id="" data-rule="" value="{{ $user -> completeAddress }}" disabled/>
+                    <input type="text" name="" id="" data-rule="" value="{{ $user -> city }} - {{ $user -> district }} - {{ $user -> ward }} - {{ $user -> street }}" disabled/>
                 </div>
                 {{-- <div class="col-md-2">
                     <a href="{{url('/user/updateaddress',[$user->user_id])}}"><button type="button" class="btn btn-outline-primary">Chỉnh sửa</button></a>
                 </div> --}}
 
-                <div class="col-md-2">
+                <div class="col-md-1">
                     <a href="{{url('/user/delete',[$user->id])}}"><button type="button" class="btn btn-outline-primary">Xóa</button></a>
                 </div>
 
-                <div class="form-group col-md-8">
+                <div class="form-group col-md-10">
                     <!-- Input -->
                     <p>Số điện thoại
                         <span class="text-danger">*</span>

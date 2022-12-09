@@ -163,18 +163,36 @@
     @csrf
     <div class="contentform">
         <div class="leftcontact">
-            <div class="form-group">
-                <p>Địa chỉ<span>*</span></p>
-                <span class="icon-case"><i class="fa fa-user"></i></span>
-                <input type="text" value="" name="completeAddress" data-rule="required" required/>
-            </div>
             
             <div class="form-group">
-                <p>Số điện thoại<span>*</span></p>
+                <p>Tỉnh<span>*</span></p>
                 <span class="icon-case"><i class="fa fa-user"></i></span>
-                <input type="number" value="" name="phoneNumber" data-rule="required" required/>
+                <select class="form-select" name="city" aria-label="Disabled select example" id="city">
+                    <option value="" selected>Chọn tỉnh thành</option>           
+                </select>
             </div>
 
+            <div class="form-group">
+                <p>Quận, huyện<span>*</span></p>
+                <span class="icon-case"><i class="fa fa-user"></i></span>
+                <select class="form-select" name="district" aria-label="Disabled select example" id="district" >
+                    <option value="" selected>Chọn quận huyện</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <p>Phường, xã<span>*</span></p>
+                <span class="icon-case"><i class="fa fa-user"></i></span>
+                <select class="form-select" name="ward" aria-label="Disabled select example" id="ward">
+                    <option value="" selected>Chọn phường xã</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <p>Tên đường, tòa nhà, số nhà<span>*</span></p>
+                <span class="icon-case"><i class="fa fa-user"></i></span>
+                <input type="text" value="" name="street" data-rule="required" required/>
+            </div>
             {{-- <div class="form-group">
                 <p>Ảnh đại diện <span>*</span></p>
                 <input name="hinh" type="file" class="form-control" disabled>
@@ -183,6 +201,12 @@
         </div>
 
         <div class="rightcontact">	
+            <div class="form-group">
+                <p>Số điện thoại<span>*</span></p>
+                <span class="icon-case"><i class="fa fa-user"></i></span>
+                <input type="number" value="" name="phoneNumber" data-rule="required" required/>
+            </div>
+
             <div class="form-group">
                 <p>Loại địa chỉ <span>*</span></p>	
                 <select class="form-control" name="type_address">
@@ -196,4 +220,49 @@
         </div>
     </div>
 </form>	
+{{-- JS Địa chỉ --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script>
+    var citis = document.getElementById("city");
+    var districts = document.getElementById("district");
+    var wards = document.getElementById("ward");
+    var Parameter = {
+    url: "https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json",
+    method: "GET",
+    responseType: "application/json",
+    };
+    var promise = axios(Parameter);
+    promise.then(function (result) {
+    renderCity(result.data);
+    });
+
+    function renderCity(data) {
+    for (const x of data) {
+        citis.options[citis.options.length] = new Option(x.Name, x.Name);
+    }
+    citis.onchange = function () {
+        district.length = 1;
+        ward.length = 1;
+        if(this.value != ""){
+        const result = data.filter(n => n.Name === this.value);
+
+        for (const k of result[0].Districts) {
+            district.options[district.options.length] = new Option(k.Name, k.Name);
+        }
+        }
+    };
+    district.onchange = function () {
+        ward.length = 1;
+        const dataCity = data.filter((n) => n.Name === citis.value);
+        if (this.value != "") {
+        const dataWards = dataCity[0].Districts.filter(n => n.Name === this.value)[0].Wards;
+
+        for (const w of dataWards) {
+            wards.options[wards.options.length] = new Option(w.Name, w.Name);
+        }
+        }
+    };
+}
+</script>
+
 @endsection

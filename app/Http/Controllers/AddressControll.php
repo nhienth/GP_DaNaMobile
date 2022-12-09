@@ -47,7 +47,10 @@ class AddressControll extends Controller
     public function store(Request $request)
     {
         $address = new User_addresses();
-        $address->completeAddress = $request -> completeAddress;
+        $address->city = $request -> city;
+        $address->district = $request -> district;
+        $address->ward = $request -> ward;
+        $address->street = $request -> street;
         $address->phoneNumber = $request -> phoneNumber;
         $address->user_id = Auth::user()->id;
         $address->save();
