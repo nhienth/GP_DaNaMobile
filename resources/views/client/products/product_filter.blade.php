@@ -203,23 +203,25 @@
                         <h4 class="font-size-14 mb-3 font-weight-bold text-black">Price</h4>
                         <!-- Range Slider -->
                         <form action="{{ route('filter_price')  }}" method="GET">
-                        <select name="select_price" id=""  onchange="this.form.submit()">
-                            <option value="1">Dưới 3 triệu</option>
-                            <option value="2">Dưới 5 triệu</option>
-                            <option value="3">Trên 5 triệu</option>
-                        </select>
+                            <select name="select_price">
+                                <option value="1">Dưới 3 triệu</option>
+                                <option value="2">Dưới 5 triệu</option>
+                                <option value="3">Trên 5 triệu</option>
+                            </select>
+                            
+                           
+    
+                            <!-- End Range Slider -->
+                            <div class="mt-1 text-gray-111 d-flex mb-4">
+                                <span class="mr-0dot5">Price: </span>
+                                <span>$</span>
+                                <span id="rangeSliderExample3MinResult" class=""></span>
+                                <span class="mx-0dot5"> — </span>
+                                <span>$</span>
+                                <span id="rangeSliderExample3MaxResult" class=""></span>
+                            </div>
+                            <button type="submit" class="btn px-4 btn-primary-dark-w py-2 rounded-lg">Filter</button>
                         </form>
-
-                        <!-- End Range Slider -->
-                        <div class="mt-1 text-gray-111 d-flex mb-4">
-                            <span class="mr-0dot5">Price: </span>
-                            <span>$</span>
-                            <span id="rangeSliderExample3MinResult" class=""></span>
-                            <span class="mx-0dot5"> — </span>
-                            <span>$</span>
-                            <span id="rangeSliderExample3MaxResult" class=""></span>
-                        </div>
-                        <button type="submit" class="btn px-4 btn-primary-dark-w py-2 rounded-lg">Filter</button>
                     </div>
                 </div>
                 
