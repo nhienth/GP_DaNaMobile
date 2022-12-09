@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('wishlists', function (Blueprint $table) {
             $table->id();
+            $table->string('image');
+            $table->string('name');
             $table->float('price');
-            $table->integer('quantity');
-            $table->float('amount');
 
             $table->foreignId('product_id')
                 ->constrained('products')

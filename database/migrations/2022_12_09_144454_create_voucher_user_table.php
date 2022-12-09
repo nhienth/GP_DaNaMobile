@@ -13,19 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('products_stocks', function (Blueprint $table) {
+        Schema::create('voucher_user', function (Blueprint $table) {
             $table->id();
-            $table->integer('total_stock');
-            $table->float('unit_price');
-            $table->float('total_price');
-            
-            $table->foreignId('products_combinations_id')
-                ->constrained('products_combinations')
+            $table->integer('numberof');
+      
+            $table->foreignId('user_id')
+                ->constrained('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-
+            $table->foreignId('voucher_id')
+                ->constrained('vouchers')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->timestamp('deleted_at')->nullable();
-
             $table->timestamps();
         });
     }
@@ -37,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products_stocks');
+        Schema::dropIfExists('voucher_user');
     }
 };

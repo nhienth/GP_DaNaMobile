@@ -15,9 +15,11 @@ return new class extends Migration
     {
         Schema::create('products_combinations', function (Blueprint $table) {
             $table->id();
-            $table->string('combination_string', 50);
+            $table->string('combination_string');
+            $table->string('combination_image');
             $table->string('sku', 50);
             $table->float('price');
+            $table->integer('sale');
             $table->integer('avilableStock');
 
             $table->foreignId('product_id')
@@ -26,7 +28,6 @@ return new class extends Migration
                 ->onDelete('cascade');
 
             $table->timestamp('deleted_at')->nullable();
-
 
             $table->timestamps();
         });

@@ -25,14 +25,13 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
-            $table->foreignId('added_by')
+            $table->foreignId('user_id')
                 ->constrained('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
             $table->timestamp('deleted_at')->nullable();
             
-
             $table->timestamps();
         });
     }

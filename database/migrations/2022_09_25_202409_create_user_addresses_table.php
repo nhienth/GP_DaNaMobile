@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('completeAddress');
             $table->string('phoneNumber', 30);
-            
+            $table->string('type_address', 50);
             $table->foreignId('user_id')
                 ->constrained('users')
                 ->onUpdate('cascade')

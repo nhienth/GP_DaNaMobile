@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('code', 50);
             $table->string('type', 50);
             $table->float('value');
+            $table->date('time');
+            $table->integer('numberof');
             $table->boolean('status');
             $table->foreignId('product_id')
                 ->constrained('products')

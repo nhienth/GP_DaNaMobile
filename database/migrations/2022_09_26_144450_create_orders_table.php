@@ -15,8 +15,6 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->integer('order_number');
-            $table->float('sub_total');
             $table->string('voucher');
             $table->float('total_amount');
             $table->string('fullname', 50);

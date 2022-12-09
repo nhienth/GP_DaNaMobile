@@ -24,7 +24,7 @@ return new class extends Migration
                 ->onDelete('cascade');
 
             $table->foreignId('posts_id')
-                ->constrained('products')
+                ->constrained('posts')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
