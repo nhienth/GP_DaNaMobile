@@ -553,7 +553,7 @@
                                         @foreach($user->user_addresses as $address)
                                             <option value="{{$address->id}}">{{$address->completeAddress}}
                                               
-                                                @if ($address->name_address == 0)
+                                                @if ($address->type_address == 0)
                                                     ( Nhà riêng )
                                                 @else
                                                     ( Văn phòng )
@@ -585,7 +585,7 @@
                                     <label class="form-label cl-black">
                                         Điện thoại
                                     </label>
-                                    <input type="text" name="phone" value="0123" class="form-control" placeholder="+1 (062) 109-9222" aria-label="+1 (062) 109-9222" data-msg="Please enter your last name." data-error-class="u-has-error" data-success-class="u-has-success">
+                                    <input type="text" name="phone" value="{{$user->phoneNumber}}" class="form-control" placeholder="+1 (062) 109-9222" aria-label="+1 (062) 109-9222" data-msg="Please enter your last name." data-error-class="u-has-error" data-success-class="u-has-success">
                                 </div>
                                 <!-- End Input -->
                             </div>

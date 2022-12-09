@@ -17,7 +17,7 @@ class StocksController extends Controller
     public function index()
     {
         // $allstocks = Stocks::all();
-        $products_stocks = Product::with(['combinations', 'stock'])->get();
+        $products_stocks = Product::with(['combinations'])->get();
 
         return view('admin.stocks.list')->with(compact('products_stocks'));
     }

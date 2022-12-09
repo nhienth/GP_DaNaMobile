@@ -188,7 +188,7 @@
         <div class="rightcontact">	
             <div class="form-group">
                 <p>Loại địa chỉ <span>*</span></p>	
-                <select class="form-control" name="name_address" value="{{$user->name_address}}">
+                <select class="form-control" name="type_address" value="{{$user->name_address}}">
                     <option value="0">Nhà riêng</option>
                     <option value="1">Văn Phòng</option>
                 </select>

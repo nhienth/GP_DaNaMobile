@@ -167,7 +167,7 @@
                     <p>Địa chỉ: 
                         (
                             <?php
-                                if($user["name_address"]==1){
+                                if($user["type_address"]==1){
                                     echo "Văn phòng";
                                 }else {
                                     echo "Nhà riêng";
