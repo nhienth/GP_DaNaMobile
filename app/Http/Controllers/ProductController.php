@@ -27,7 +27,8 @@ class ProductController extends Controller
     public function search_product_by_cate()
     {
         $keywords = $_GET['key_cate_id'];
-        $categories = Category::all();
+                $categories = Category::where('parent_id','<>',0)->get();
+
         $products = Product::where('category_id', '=', $keywords)->paginate(5);
         if (count($products) != 0) {
             return view('admin.products.list')->with(compact('products', 'categories'));
@@ -40,7 +41,8 @@ class ProductController extends Controller
     public function filter_view()
     {
         $keywords = $_GET['view_selected'];
-        $categories = Category::all();
+                $categories = Category::where('parent_id','<>',0)->get();
+
         $products = Product::all();
         if ($keywords == 1) {
             $products = Product::with('category')->orderBy('products.product_view', 'desc')->paginate(5);
@@ -57,7 +59,8 @@ class ProductController extends Controller
     public function filter_status()
     {
         $keywords = $_GET['status_selected'];
-        $categories = Category::all();
+                $categories = Category::where('parent_id','<>',0)->get();
+
         $products = Product::where('product_status', '=', $keywords)->paginate(5);
         if ($keywords != 2) {
             return view('admin.products.list')->with(compact('products', 'categories'));
@@ -101,7 +104,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        
+        $categories = Category::where('parent_id','<>',0)->get();
         $products = Product::with('category')->orderBy('products.id', 'desc')->paginate(5);
         return view('admin.products.list', compact(['categories', 'products']));
     }
@@ -204,10 +208,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -502,9 +503,10 @@ class ProductController extends Controller
         $this->minPriceProduct($recommendProducts);
         $this->minPriceProduct($productList);
         $this->minPriceProduct($latestProducts);
+        $bannerlist = Banner::all();
 
 
-        return view('client.products.product_ bycate', compact(['recommendProducts','productList','latestProducts' ]));
+        return view('client.products.product_ bycate', compact(['recommendProducts','productList','latestProducts', 'bannerlist' ]));
     }
 
 

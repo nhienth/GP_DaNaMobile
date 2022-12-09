@@ -35,7 +35,7 @@
                             <div class="row">
                                 <div class="col-md-4 user_role">
                                     <label class="form-label" for="UserRole">Tên</label>
-                                    <form action="{{ route('spe_name') }}" method="GET">
+                                    <form action="{{ route('stock_name') }}" method="GET">
                                         @csrf
                                         <select name="name" class="form-select text-capitalize mb-md-0 mb-2"
                                             id="name" onchange="this.form.submit()" class="sorting">
@@ -44,22 +44,6 @@
                                             <option value="2" class="text-capitalize">Từ Z đến A</option>
                                         </select>
                                     </form>
-                                </div>
-                                <div class="col-md-4 user_plan">
-                                    <label class="form-label" for="UserRole">Giá</label>
-                                    <form action="{{ route('price') }}" method="GET">
-                                        @csrf
-                                        <select name="price" class="form-select text-capitalize mb-md-0 mb-2"
-                                            id="price" onchange="this.form.submit()" class="sorting">
-                                            <option value="0"> Tất cả </option>
-                                            <option value="1" class="text-capitalize">Từ cao đến thấp</option>
-                                            <option value="2" class="text-capitalize">Từ thấp đến cao</option>
-                                        </select>
-                                    </form>
-                                </div>
-                                <div class="col-md-4 user_status">
-                                    <label class="form-label" for="FilterTransaction">Trạng thái</label>
-                                    <select id="FilterTransaction" class="form-select text-capitalize mb-md-0 mb-2xx"><option value=""> Select Status </option></select>
                                 </div>
                             </div>
                         </div>
@@ -128,7 +112,7 @@
                                         <td>{{$product->product_name}}</td>
                                         <td><img class="rounded" src="{{asset('images/products/'.$product->product_img)}}" width="100px" height="70px" style="display:block; margin: 0 auto;"></td>
                                         <td>{{$total_stock}}</td>
-                                        <td>{{$total_price}}</td>
+                                        <td>{{number_format($total_price)}}đ</td>
                                
                                         <td><a href="http://127.0.0.1:8000/admin/stocks/stock_detail/{{$product->id}}"><button type="button" class="btn btn-gradient-info"><i data-feather='eye'></i></button></a></td>
                                         <!-- <td><a href="{{url('admin/stocks/stock_detail', [$product->id])}}">Chi tiết</a></td> -->

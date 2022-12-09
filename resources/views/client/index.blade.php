@@ -397,14 +397,6 @@ use App\Models\Product;
                                                                 class="d-block text-center"><img class="img-fluid" src="{{asset('images/products/'.$products->product_img)}}" alt="Image Description"></a>
                                                         </div>
                                                     </div>
-                                                    {{-- <div class="product-item__footer">
-                                                        <div class="border-top pt-2 flex-center-between flex-wrap">
-                                                            <a href="../shop/compare.html" class="text-gray-6 font-size-13"><i
-                                                                    class="ec ec-compare mr-1 font-size-15"></i> So sánh</a>
-                                                            <a href="../shop/wishlist.html" class="text-gray-6 font-size-13"><i
-                                                                    class="ec ec-favorites mr-1 font-size-15"></i> Yêu thích</a>
-                                                        </div>
-                                                    </div> --}}
                                                 </div>
                                             </div>
                                         </li>

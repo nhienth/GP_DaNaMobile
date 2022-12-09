@@ -1,13 +1,9 @@
 {{-- Begin Footer --}}
-
 <?php
-
-
 
 use App\Models\Banner;
 $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
 $random = [];
-
 
 ?>
 <footer>
@@ -28,21 +24,7 @@ $random = [];
                     </div>
                 </div>
                 <div class="col-lg-5">
-                    <!-- Subscribe Form -->
-                    <form class="js-validate js-form-message">
-                        <label class="sr-only" for="subscribeSrEmail">Địa chỉ email</label>
-                        <div class="input-group input-group-pill">
-                            <input type="email" class="form-control border-0 height-40" name="email"
-                                id="subscribeSrEmail" placeholder="Địa chỉ email" aria-label="Địa chỉ email"
-                                aria-describedby="subscribeButton" required
-                                data-msg="Please enter a valid email address.">
-                            <div class="input-group-append">
-                                <button type="submit" class="btn btn-dark btn-sm-wide height-40 py-2"
-                                    id="subscribeButton">Đăng nhập</button>
-                            </div>
-                        </div>
-                    </form>
-                    <!-- End Subscribe Form -->
+                   
                 </div>
             </div>
         </div>

@@ -109,27 +109,4 @@ class StocksController extends Controller
         }
     }
 
-    public function price(){
-        $key = $_GET['price'];      
-        if($key == 0){
-            $products_stocks = Product::with(['combinations', 'stock'])->get();
-            return view('admin.stocks.list', compact('products_stocks'));
-        }else if( $key == 1){
-            $products_stocks = Product::with(['combinations', 'stock'])->orderBy('combinations.', 'ASC')->get();
-            // dd($products_stocks);
-            foreach ($products_stocks as $product) {
-                $total_stock = 0;
-                $total_price = 0;
-                
-                foreach($product->combinations as $product_combination){
-                    $total_stock += $product_combination->avilableStock;
-                    $total_price += $product_combination->price * $product_combination->avilableStock;
-                }
-            }
-            return view('admin.categories.list', compact('categories'));
-        }else{
-            $products_stocks = Product::with(['combinations', 'stock'])->orderBy('product_name', 'ASC')->get();
-            return view('admin.stocks.list', compact('products_stocks'));
-        }
-    }
 }

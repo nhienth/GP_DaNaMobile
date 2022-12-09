@@ -29,26 +29,6 @@
                     </div>
                 <!-- list and filter start -->
                 <div class="card">
-                    <div class="card-body border-bottom">
-                        <h4 class="card-title">Tìm kiếm và lọc</h4>
-                        <div class="row">
-                            <div class="col-md-4 user_role">
-                                <label class="form-label" for="UserRole">Vai trò</label>
-                                <select id="UserRole" class="form-select text-capitalize mb-md-0 mb-2">
-                                    <option value=""> Select Role </option>
-                                    <option value="' + d + '" class="text-capitalize">' + d + '</option>
-                                </select>
-                            </div>
-                            <div class="col-md-4 user_plan">
-                                <label class="form-label" for="UserPlan">Kế hoạch</label>
-                                <select id="UserPlan" class="form-select text-capitalize mb-md-0 mb-2"><option value=""> Select Plan </option></select>
-                            </div>
-                            <div class="col-md-4 user_status">
-                                <label class="form-label" for="FilterTransaction">Trạng thái</label>
-                                <select id="FilterTransaction" class="form-select text-capitalize mb-md-0 mb-2xx"><option value=""> Select Status </option></select>
-                            </div>
-                        </div>
-                    </div>
                     <div class="card-datatable table-responsive pt-0">
                         <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
                             <div class="f-flex justify-content-between align-items-center header-actions mx-2 row mt-75">
@@ -68,22 +48,22 @@
                                 </div>
                                 <div class="col-sm-12 col-lg-8 ps-xl-75 ps-0">
                                     <div class="dt-action-buttons d-flex align-items-center justify-content-center justify-content-lg-end flex-lg-nowrap flex-wrap">
-                                        <div class="me-1">
+                                        <form action="" method="get">
                                             <div id="DataTables_Table_0_filter" class="dataTables_filter">
                                                 <label>
                                                     Tìm kiếm: 
-                                                    <input type="search" class="form-control" placeholder aria-controls="DataTables_Table_0">
+                                                    <input type="text" class="form-control" placeholder aria-controls="DataTables_Table_0" name="key_search">
                                                 </label>
+                                                <div class="dt-buttons d-inline-flex mt-50">
+                                                    <button class="dt-button buttons-collection btn btn-outline-secondary me-2" 
+                                                    tabindex="0" aria-controls="DataTables_Table_0" type="submit" aria-haspopup="true">Tìm kiếm</button>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="dt-buttons d-inline-flex mt-50">
-                                            <button class="dt-button buttons-collection btn btn-outline-secondary dropdown-toggle me-2" 
-                                            tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="true">Xuất</button>
-                                            <a type="button" href="{{url('/admin/payment/create')}}" class="dt-button add-new btn btn-primary" tabindex="0" data-bs-target="#modals-slide-in" aria-controls="DataTables_Table_0">
-                                                <span>Thêm Sản phẩm mới</span>
-                                            </a>
+                                        </form>
+                                        <a type="button" href="{{url('/admin/payment/create')}}" class="dt-button add-new btn btn-primary" tabindex="0" data-bs-target="#modals-slide-in" aria-controls="DataTables_Table_0">
+                                            <span>Thêm phương thức thanh toán</span>
+                                        </a>
                                            
-                                        </div>
                                     </div>
                                 </div>
                             </div>

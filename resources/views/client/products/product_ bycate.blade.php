@@ -222,38 +222,6 @@
                         <button type="submit" class="btn px-4 btn-primary-dark-w py-2 rounded-lg">Filter</button>
                     </div>
                 </div>
-                <div class="mb-8">
-                    <div class="text-black border-bottom border-color-1 mb-5">
-                        <h3 class="section-title section-title__sm mb-0 pb-2 font-size-18">Sản phẩm mới nhất</h3>
-                    </div>
-                    <ul class="list-unstyled">
-                        @foreach ($latestProducts as $product)
-                        <li class="mb-4">
-                            <div class="row">
-                                <div class="col-auto">
-                                    <a href="{{url('product/detail', [$product->id])}}" class="d-block width-75">
-                                        <img class="img-fluid" src="{{asset('images/products/'.$product->product_img)}}" alt="Image Description">
-                                    </a>
-                                </div>
-                                <div class="col">
-                                    <h3 class="text-lh-1dot2 font-size-14 mb-0"><a href="{{url('product/detail', [$product->id])}}">{{$product->product_name}}</a></h3>
-                                    <div class="text-warning text-ls-n2 font-size-16 mb-1" style="width: 80px;">
-                                        <small class="fas fa-star"></small>
-                                        <small class="fas fa-star"></small>
-                                        <small class="fas fa-star"></small>
-                                        <small class="fas fa-star"></small>
-                                        <small class="far fa-star text-muted"></small>
-                                    </div>
-                                    <div class="font-weight-bold">
-                                        <del class="font-size-11 text-gray-9 d-block"></del>
-                                        <ins class="font-size-15 text-black text-decoration-none d-block">{{number_format($product->minPrice)}}đ</ins>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        @endforeach
-                    </ul>
-                </div>
             </div>
             <div class="col-xl-9 col-wd-9gdot5">
 
@@ -629,36 +597,16 @@
                             "slidesToShow": 1
                         }
                     }]'>
+                    @foreach ($bannerlist as $list)
+                        
                     <div class="js-slide">
-                        <a href="#" class="link-hover__brand">
-                            <img class="img-fluid m-auto max-height-50" src="../../assets/img/200X60/img1.png" alt="Image Description">
+                        <a href="{{$list->location}}" class="link-hover__brand">
+                            <img class="img-fluid m-auto max-height-50"
+                                src="{{asset('images/banner/'.$list->banner_img)}}" alt="Image Description">
                         </a>
                     </div>
-                    <div class="js-slide">
-                        <a href="#" class="link-hover__brand">
-                            <img class="img-fluid m-auto max-height-50" src="../../assets/img/200X60/img2.png" alt="Image Description">
-                        </a>
-                    </div>
-                    <div class="js-slide">
-                        <a href="#" class="link-hover__brand">
-                            <img class="img-fluid m-auto max-height-50" src="../../assets/img/200X60/img3.png" alt="Image Description">
-                        </a>
-                    </div>
-                    <div class="js-slide">
-                        <a href="#" class="link-hover__brand">
-                            <img class="img-fluid m-auto max-height-50" src="../../assets/img/200X60/img4.png" alt="Image Description">
-                        </a>
-                    </div>
-                    <div class="js-slide">
-                        <a href="#" class="link-hover__brand">
-                            <img class="img-fluid m-auto max-height-50" src="../../assets/img/200X60/img5.png" alt="Image Description">
-                        </a>
-                    </div>
-                    <div class="js-slide">
-                        <a href="#" class="link-hover__brand">
-                            <img class="img-fluid m-auto max-height-50" src="../../assets/img/200X60/img6.png" alt="Image Description">
-                        </a>
-                    </div>
+
+                    @endforeach
                 </div>
             </div>
         </div>
