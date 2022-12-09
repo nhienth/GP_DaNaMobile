@@ -259,12 +259,6 @@
             </div>
             <div class="col-xl-9 col-wd-9gdot5">
 
-                <!-- Shop-control-bar Title -->
-                <div class="flex-center-between mb-3">
-                    <h3 class="text-black font-size-25 mb-0">Sản phẩm</h3>
-                    <p class="text-black font-size-14 text-gray-90 mb-0">Showing 1–25 of 56 results</p>
-                </div>
-                <!-- End shop-control-bar Title -->
                 <!-- Shop-control-bar -->
                 <div class="bg-gray-1 flex-center-between borders-radius-9 py-1">
                     <div class="d-xl-none">
@@ -316,37 +310,6 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="d-flex">
-                        <form method="get">
-                            <!-- Select -->
-                            <select class="js-select selectpicker dropdown-select max-width-200 max-width-160-sm right-dropdown-0 px-2 px-xl-0"
-                                data-style="btn-sm bg-white font-weight-normal py-2 border text-gray-20 bg-lg-down-transparent border-lg-down-0">
-                                <option value="one" selected>Default sorting</option>
-                                <option value="two">Sort by popularity</option>
-                                <option value="three">Sort by average rating</option>
-                                <option value="four">Sort by latest</option>
-                                <option value="five">Sort by price: low to high</option>
-                                <option value="six">Sort by price: high to low</option>
-                            </select>
-                            <!-- End Select -->
-                        </form>
-                        <form method="POST" class="ml-2 d-none d-xl-block">
-                            <!-- Select -->
-                            <select class="js-select selectpicker dropdown-select max-width-120"
-                                data-style="btn-sm bg-white font-weight-normal py-2 border text-gray-20 bg-lg-down-transparent border-lg-down-0">
-                                <option value="one" selected>Show 20</option>
-                                <option value="two">Show 40</option>
-                                <option value="three">Show All</option>
-                            </select>
-                            <!-- End Select -->
-                        </form>
-                    </div>
-                    <nav class="px-3 flex-horizontal-center text-gray-20 d-none d-xl-flex">
-                        <form method="post" class="min-width-50 mr-1">
-                            <input size="2" min="1" max="3" step="1" type="number" class="form-control text-center px-2 height-35" value="1">
-                        </form> of 3
-                        <a class="text-gray-30 font-size-20 ml-2" href="#">→</a>
-                    </nav>
                 </div>
                 <!-- End Shop-control-bar -->
                 <!-- Shop Body -->
@@ -385,40 +348,6 @@
                             </li>
                             @endforeach
                         </ul>
-                        {{-- fillter product by price --}}
-                        {{-- <ul class="row list-unstyled products-group no-gutters">
-                            @foreach ($productFilter as $item)
-                            <li class="col-6 col-md-3 col-wd-2gdot4 product-item">
-                                <div class="product-item__outer h-100">
-                                    <div class="product-item__inner px-xl-4 p-3">
-                                        <div class="product-item__body pb-xl-2">
-                                            <div class="mb-2"><a href="{{url('product/byCate', [$product->category_id])}}" class="font-size-12 text-gray-5">{{$product->category->category_name}}</a></div>
-                                            <h5 class="mb-1 product-item__title"><a href="{{url('product/detail', [$product->id])}}" class="text-blue font-weight-bold">{{$product->product_name}}</a></h5>
-                                            <div class="mb-2">
-                                                <a href="{{url('product/detail', [$product->id])}}" class="d-block text-center"><img class="img-fluid" src="{{asset('images/products/'.$product->product_img)}}" alt="Image Description"></a>
-                                            </div>
-                                            <div class="flex-center-between mb-1">
-                                                <div class="prodcut-price">
-                                                    <div class="text-gray-100">{{number_format($product->minPrice)}}đ</div>
-                                                </div>
-                                                <div class="d-none d-xl-block prodcut-add-cart">
-                                                    <a href="" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="product-item__footer">
-                                            <div class="border-top pt-2 flex-center-between flex-wrap">
-                                                <a href="" class="text-gray-6 font-size-13"><i class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
-                                                <a href="" class="text-gray-6 font-size-13"><i class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            @endforeach
-                        </ul> --}}
-
-                        {{-- end filter product by --}}
                     </div>
 
                     <div class="tab-pane fade pt-2" id="pills-two-example1" role="tabpanel" aria-labelledby="pills-two-example1-tab" data-target-group="groups">
@@ -598,17 +527,6 @@
 
                 </div>
                 <!-- End Tab Content -->
-                <!-- End Shop Body -->
-                <!-- Shop Pagination -->
-                <nav class="d-md-flex justify-content-between align-items-center border-top pt-3" aria-label="Page navigation example">
-                    <div class="text-black text-center text-md-left mb-3 mb-md-0">Showing 1–25 of 56 results</div>
-                    <ul class="pagination mb-0 pagination-shop justify-content-center justify-content-md-start">
-                        <li class="page-item"><a class="page-link current" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    </ul>
-                </nav>
-                <!-- End Shop Pagination -->
                 <!-- Recommended Products -->
                 <div class="mb-6 d-none d-xl-block">
                     <div class="position-relative">
