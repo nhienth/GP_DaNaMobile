@@ -533,7 +533,7 @@
                                     </div>
                                     <div class="flex-center-between mb-1">
                                         <div class="d-none d-xl-block prodcut-add-cart">
-                                            <a href="{{url('product/detail',[$preview->product_id])}}"
+                                            <a href="{{url('product/detail',[$similarProduct->product_id])}}"
                                                 class="btn btn-primary transition-3d-hover">Xem chi tiết</a>
                                         </div>
                                     </div>

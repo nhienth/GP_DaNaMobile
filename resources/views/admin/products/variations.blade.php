@@ -30,41 +30,12 @@
                 </div>
                 <!-- list and filter start -->
                 <div class="card">
-                    <div class="card-body border-bottom">
-                        <h4 class="card-title">Tìm kiếm và Lọc</h4>
-                        <div class="row">
-                            <div class="col-md-4 user_plan">
-                                <label class="form-label" for="UserPlan">Tên</label>
-                                <select id="UserPlan" class="form-select text-capitalize mb-md-0 mb-2">
-                                    <option value=""> Select Plan </option>
-                                </select>
-                            </div>
-                            <div class="col-md-4 user_status">
-                                <label class="form-label" for="FilterTransaction">Giá</label>
-                                <select id="FilterTransaction" class="form-select text-capitalize mb-md-0 mb-2xx">
-                                    <option value=""> Select Status </option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
                     <div class="card-datatable table-responsive pt-0">
                         <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
                             <div
                                 class="f-flex justify-content-between align-items-center header-actions mx-2 row mt-75">
                                 <div class="col-sm-12 col-lg-4 d-flex justify-content-center justify-content-lg-start">
-                                    <div class="dataTables_length" id="DataTables_Table_0_length">
-                                        <label>
-                                            Hiển thị
-                                            <select name="DataTables_Table_0_length" class="form-select"
-                                                aria-controls="DataTables_Table_0">
-                                                <option value="10">10</option>
-                                                <option value="25">25</option>
-                                                <option value="50">50</option>
-                                                <option value="100">100</option>
-                                            </select>
-                                            mục
-                                        </label>
-                                    </div>
+                                    {{--  --}}
                                 </div>
                                 <div class="col-sm-12 col-lg-8 ps-xl-75 ps-0">
                                     <div
@@ -124,7 +95,7 @@
                                     <td>{{$productVariation->combination_string}}</td>
                                     <td><img class="rounded"
                                             src="{{asset('images/products/'.$productVariation->combination_image)}}"
-                                            width="100px" height="100px" style="display:block; margin: 0 auto;"></td>
+                                            width="150px" height="100px" style="display:block; margin: 0 auto;"></td>
                                     <td>{{$productVariation->price}}</td>
                                     <td>{{$productVariation->sale}}</td>
                                     <td>{{$productVariation->avilableStock}}</td>
@@ -142,17 +113,8 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <div class="d-flex justify-content-between mx-2 row mb-1">
-                            <div class="col-sm-12 col-md-6">
-                                <div class="dataTables_info" id="DataTables_Table_0_info" role="status"
-                                    aria-live="polite">Hiển thị 0 đến 0 của 0 mục</div>
-                            </div>
-
-                        </div>
                     </div>
-                    <!-- Modal to add new user starts-->
 
-                    <!-- Modal to add new user Ends-->
                 </div>
                 <!-- list and filter end -->
             </section>

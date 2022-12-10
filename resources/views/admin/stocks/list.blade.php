@@ -2,11 +2,7 @@
 @section('main')
     <!-- BEGIN: Content-->
     <div class="app-content content ">
-        <div class="content-overlay"></div>
-        <div class="header-navbar-shadow"></div>
         <div class="content-wrapper container-xxl p-0">
-            <div class="content-header row">
-            </div>
             <div class="content-body">
                 <!-- users list start -->
                 <section class="app-user-list">
@@ -51,18 +47,6 @@
                             <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
                                 <div class="f-flex justify-content-between align-items-center header-actions mx-2 row mt-75">
                                     <div class="col-sm-12 col-lg-4 d-flex justify-content-center justify-content-lg-start">
-                                        <div class="dataTables_length" id="DataTables_Table_0_length">
-                                            <label>
-                                                Hiển thị 
-                                                <select name="DataTables_Table_0_length" class="form-select" aria-controls="DataTables_Table_0">
-                                                    <option value="10">10</option>
-                                                    <option value="25">25</option>
-                                                    <option value="50">50</option>
-                                                    <option value="100">100</option>
-                                                </select>
-                                                mục
-                                            </label>
-                                        </div>
                                     </div>
                                     <div class="col-sm-12 col-lg-8 ps-xl-75 ps-0">
                                         <div class="dt-action-buttons d-flex align-items-center justify-content-center justify-content-lg-end flex-lg-nowrap flex-wrap">
@@ -121,29 +105,9 @@
                                 @endforeach
                                 </tbody>
                             </table>
-                            <div class="d-flex justify-content-between mx-2 row mb-1">
-                                <div class="col-sm-12 col-md-6">
-                                    <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Hiển thị 0 đến 0 của 0 mục</div>
-                                </div>
-                                <div class="col-sm-12 col-md-6">
-                                    <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
-                                        <ul class="pagination">
-                                            <li class="paginate_button page-item previous disabled" id="DataTables_Table_0_previous">
-                                                <a href=""></a>
-                                            </li>
-                                            <li class="paginate_button page-item next disabled" id="DataTables_Table_0_next">
-                                                <a href=""></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
-                    <!-- list and filter end -->
                 </section>
-                <!-- users list ends -->
-
             </div>
         </div>
     </div>

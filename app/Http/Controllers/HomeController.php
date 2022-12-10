@@ -154,7 +154,6 @@ class HomeController extends Controller
         ->where('product_status', '1')
         ->limit(3)
         ->get();
-        // foreach($product_sale)
         $priceArr = [];
         $minPrice = 0;
         $maxPrice = 0;
@@ -172,7 +171,6 @@ class HomeController extends Controller
             $product['maxprice'] = $maxPrice;
 
         }
-
         // Top 3 đánh giá
         $top3preview = Preview::with('product')
         ->select(DB::raw('product_id, max(created_at) as maxdate, min(created_at) as mindate, avg(status) as avgrate'), DB::raw('count(*) as total'))

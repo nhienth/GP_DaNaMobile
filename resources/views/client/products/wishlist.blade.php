@@ -20,7 +20,7 @@
 
             <div class="container">
                 <div class="my-6">
-                    <h1 class="text-center">My wishlist on Electro</h1>
+                    <h1 class="text-center" style="color: black">Sản phẩm yêu thích</h1>
                 </div>
                 <div class="mb-16 wishlist-table">
                     <form class="mb-4" action="#" method="post">

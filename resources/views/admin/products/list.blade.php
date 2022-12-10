@@ -192,10 +192,7 @@
 
                     </div>
                 </div>
-                <!-- list and filter end -->
             </section>
-            <!-- users list ends -->
-
         </div>
     </div>
 </div>

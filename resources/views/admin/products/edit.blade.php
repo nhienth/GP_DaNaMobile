@@ -24,24 +24,6 @@
                     </div>
                 </div>
             </div>
-            <div class="content-header-right text-md-end col-md-3 col-12 d-md-block d-none">
-                <div class="mb-1 breadcrumb-right">
-                    <div class="dropdown">
-                        <button class="btn-icon btn btn-primary btn-round btn-sm dropdown-toggle" type="button"
-                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                data-feather="grid"></i></button>
-                        <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="app-todo.html"><i
-                                    class="me-1" data-feather="check-square"></i><span
-                                    class="align-middle">Todo</span></a><a class="dropdown-item" href="app-chat.html"><i
-                                    class="me-1" data-feather="message-square"></i><span
-                                    class="align-middle">Chat</span></a><a class="dropdown-item"
-                                href="app-email.html"><i class="me-1" data-feather="mail"></i><span
-                                    class="align-middle">Email</span></a><a class="dropdown-item"
-                                href="app-calendar.html"><i class="me-1" data-feather="calendar"></i><span
-                                    class="align-middle">Calendar</span></a></div>
-                    </div>
-                </div>
-            </div>
         </div>
         <div class="content-body">
             <!-- Validation -->
@@ -102,20 +84,6 @@
                                             phẩm</label>
                                     </div>
 
-                                    {{-- @foreach ($product->specfications as $specfication)
-                                    <div class="mb-1 ms-2">
-                                        <label class="form-label fs-6 fw-bolder" for="basic-addon-name">
-                                            {{$specfication->specification_name}}
-                                        </label>
-                                        <input type="hidden" name="specfications_option_value_id"
-                                            value="{{$specfication->id}}">
-                                        <input type="text" id="basic-addon-name" class="form-control"
-                                            placeholder="Nhập thông số sản phẩm" name="{{$specfication->id}}_value"
-                                            value="{{$specfication->specification_value}}" aria-label="Name"
-                                            aria-describedby="basic-addon-name" required />
-                                    </div>
-                                    @endforeach --}}
-
                                     @foreach ($specfications as $specfication)
                                     <div class="show-{{$specfication->category_id}} mb-1 ms-2 show-spec"
                                         style="display: none">
@@ -145,11 +113,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- /Bootstrap Validation -->
-
-                    <!-- jQuery Validation -->
-
-                    <!-- /jQuery Validation -->
                 </div>
             </section>
             <!-- /Validation -->
