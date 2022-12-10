@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 use  App\Models\Order;
 use  App\Models\OrderDetails;
 use  App\Models\Slider;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Session as FacadesSession;
 
 class OrderController extends Controller
 {
@@ -18,7 +20,7 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::with('orderdetail')->get();
-        
+
         return view('admin.order.list',compact('orders'));
     }
 
@@ -93,5 +95,29 @@ class OrderController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    // filter status order
+    public function filter_status_order (Request $request)
+    {
+        $key_word = $request['filter_status_order'];
+        if ($key_word == 1) {
+            $orders = Order::with('orderdetail')->where('orders.status','=', '1')->get();
+        } elseif ($key_word == 2) {
+            $orders = Order::with('orderdetail')->where('orders.status','=', '2')->get();
+        } elseif ($key_word == 3) {
+            $orders = Order::with('orderdetail')->where('orders.status','=', '3')->get();
+        } elseif ($key_word == 4) {
+            $orders = Order::with('orderdetail')->where('orders.status','=', '4')->get();
+        }else {
+            $orders = Order::with('orderdetail')->get();
+        }
+        if (count($orders) > 0){
+            return view('admin.order.list',compact('orders'));
+        }else {
+            $request->session()->now('message', 'Không có đơn hàng nào ở trạng thái này !');
+            return view('admin.order.list',compact('orders'));
+        }   
+
     }
 }

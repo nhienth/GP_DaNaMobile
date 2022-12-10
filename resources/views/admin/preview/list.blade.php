@@ -35,19 +35,24 @@
                             <h4 class="card-title">Tìm kiếm và lọc</h4>
                             <div class="row">
                                 <div class="col-md-4 user_role">
-                                    <label class="form-label" for="UserRole">Role</label>
+                                    <label class="form-label" for="UserRole">Vai trò</label>
                                     <select id="UserRole" class="form-select text-capitalize mb-md-0 mb-2">
-                                        <option value=""> Select Role </option>
+                                        <option value=""> Chọn vai trò </option>
                                         <option value="' + d + '" class="text-capitalize">' + d + '</option>
                                     </select>
                                 </div>
                                 <div class="col-md-4 user_plan">
-                                    <label class="form-label" for="UserPlan">Plan</label>
-                                    <select id="UserPlan" class="form-select text-capitalize mb-md-0 mb-2"><option value=""> Select Plan </option></select>
+                                    <label class="form-label" for="UserPlan">Kế hoạch</label>
+                                    <select id="UserPlan" class="form-select text-capitalize mb-md-0 mb-2"><option value=""> Chọn kế hoạch </option></select>
                                 </div>
                                 <div class="col-md-4 user_status">
-                                    <label class="form-label" for="FilterTransaction">Status</label>
-                                    <select id="FilterTransaction" class="form-select text-capitalize mb-md-0 mb-2xx"><option value=""> Select Status </option></select>
+                                    <label class="form-label" for="FilterTransaction">Trạng thái</label>
+                                    <form action="{{ url('admin/preview/filter-preview-date') }}" method="get">
+                                        <select id="FilterTransaction" name="filter_preview_date" onchange="this.form.submit()" class="form-select text-capitalize mb-md-0 mb-2xx">
+                                            <option value="1" {{ request()->filter_preview_date == 1 ? 'selected' : ''; }}> Bình luận mới nhất </option>
+                                            <option value="2" {{ request()->filter_preview_date != 1 ? 'selected' : ''; }}> Bình luận cũ nhất </option>
+                                        </select>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -57,7 +62,7 @@
                                     <div class="col-sm-12 col-lg-4 d-flex justify-content-center justify-content-lg-start">
                                         <div class="dataTables_length" id="DataTables_Table_0_length">
                                             <label>
-                                                Show 
+                                                Show
                                                 <select name="DataTables_Table_0_length" class="form-select" aria-controls="DataTables_Table_0">
                                                     <option value="10">10</option>
                                                     <option value="25">25</option>
@@ -73,12 +78,12 @@
                                             <div class="me-1">
                                                 <div id="DataTables_Table_0_filter" class="dataTables_filter">
                                                     <label>
-                                                        Search: 
+                                                        Search:
                                                         <input type="search" class="form-control" placeholder aria-controls="DataTables_Table_0">
                                                     </label>
                                                 </div>
                                             </div>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -89,9 +94,8 @@
                                         <th>#</th>
                                         <th>Tên sản phẩm</th>
                                         <th>Số bình luận</th>
+                                        <th>Ngày bình luận</th>
                                         <th>Tổng sao</th>
-                                        <th>Bình luận cũ nhất</th>
-                                        <th>Bình luận mới nhất</th>
                                         <th>Chi tiết</th>
                                     </tr>
                                 </thead>
@@ -102,13 +106,13 @@
                                         <td>{{++$i}}</td>
                                         <td>{{$preview->product->product_name}}</td>
                                         <td>{{$preview->total}}</td>
-                                        <td>{{number_format($preview->avgrate, 1,'.', '')}}</td>
-                                        <td>{{$preview->mindate}}</td>
-                                        <!-- ->format('d/m/Y') -->
                                         <td>{{$preview->maxdate}}</td>
-                                        <td><a href="{{url('admin/preview/detail',[$preview->product->id])}}"><button type="button" class="btn btn-gradient-info"><i data-feather='eye'></i></button></a></td>
+                                        <td>{{number_format($preview->avgrate, 1,'.', '')}}</td>
+                                        <td><a href="{{url('admin/preview/detail',[$preview->product->id])}}">
+                                                <button type="button" class="btn btn-gradient-info">
+                                                    <i data-feather='eye'></i>
+                                                </button></a></td>
                                     </tr>
-                                      
                                     @endforeach
                                 </tbody>
                             </table>
@@ -131,7 +135,7 @@
                             </div>
                         </div>
                         <!-- Modal to add new user starts-->
-                        
+
                         <!-- Modal to add new user Ends-->
                     </div>
                     <!-- list and filter end -->

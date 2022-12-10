@@ -90,7 +90,7 @@ Route::prefix('/')->group(function () {
     Route::prefix('/product')->group(function () {
         Route::get('/byCate/{id}', [ProductController::class, 'productbyCate']);
         Route::get('/detail/{id}', [ProductController::class, 'productDetail']);
-    //review product       
+    //review product
         Route::post('/preview/{id}',[ProductController::class,'preview'])->name('preview');
         // Route::get('/rate/{id}',[ProductController::class,'reviewRate']);
         Route::get('/search',[ProductController::class,'searchProduct']);
@@ -102,7 +102,7 @@ Route::prefix('/')->group(function () {
         Route::get('/{id}', [UserController::class, 'show']);
         Route::get('/update/{id}', [UserController::class, 'useredit']);
         Route::post('/update/{id}', [UserController::class, 'userupdate']);
-        
+
         Route::get('/showaddress/{id}', [AddressControll::class, 'show']);
         Route::get('/createaddress/{user_id}', [AddressControll::class, 'create']);
         Route::post('/createaddress', [AddressControll::class, 'store']);
@@ -270,6 +270,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
             Route::get('/list', [PreviewController::class, 'index']);
             Route::get('/detail/{id}', [PreviewController::class, 'show']);
             Route::get('/delete/{id}', [PreviewController::class, 'destroy']);
+            Route::get('/filter-preview-date', [PreviewController::class, 'filterPreviewByDate'])->name('preview.filter');
         });
 
         Route::prefix('/contact')->group(function () {
@@ -289,6 +290,8 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
             Route::get('/details/{id}', [OrderDetailsController::class, 'show']);
             Route::get('/edit/{id}', [OrderController::class, 'edit']);
             Route::put('/update/{id}', [OrderController::class, 'update']);
+            Route::get('/filter-status-order', [OrderController::class, 'filter_status_order'])->name('filter.status.order');
+
         });
 
         Route::prefix('/stocks')->group(function () {

@@ -53,7 +53,6 @@ class PreviewController extends Controller
     public function show($id)
     {
         $detail = Preview::with(['product', 'user'])->where('product_reviews.product_id', $id)->get();
-        // dd($detail);
         return view('admin.preview.detail')->with(compact('detail'));
     }
 
@@ -80,5 +79,25 @@ class PreviewController extends Controller
         $preview = Preview::find($id);
         $preview->delete();
         return redirect('admin/preview/list')->with('status', 'Bạn đã Xóa thành công');
+    }
+
+    public function filterPreviewByDate (Request $request)
+    {
+        $key_word = $request['filter_preview_date'];
+        if($key_word == 1){
+            $previews = Preview::with('product')
+            ->select(DB::raw('product_id, max(created_at) as maxdate, min(created_at) as mindate, avg(status) as avgrate'), DB::raw('count(*) as total'))
+            ->groupBy('product_id')
+            ->orderBy('maxdate', 'DESC')
+            ->get();
+        }else{
+            $previews = Preview::with('product')
+            ->select(DB::raw('product_id, max(created_at) as maxdate, min(created_at) as mindate, avg(status) as avgrate'), DB::raw('count(*) as total'))
+            ->groupBy('product_id')
+            ->orderBy('maxdate', 'ASC')
+            ->get();
+        }
+        return view('admin.preview.list', compact('previews'));
+
     }
 }

@@ -54,10 +54,10 @@
                                     <div class="mb-1">
                                         <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Trạng thái</label>
                                         <select class="form-control" name="status">
-                                            <option value="0">Đợi xử lý</option>
-                                            <option value="1">Đang giao hàng</option>
-                                            <option value="2">Đã giao hàng</option>
-                                            <option value="3">Đã huỷ hàng</option>
+                                            <option value="1">Đợi xử lý</option>
+                                            <option value="2">Đang giao hàng</option>
+                                            <option value="3">Đã giao hàng</option>
+                                            <option value="4">Đã huỷ hàng</option>
                                         </select>
                                     </div>
                                     <button type="submit" class="btn btn-primary me-2">Cập nhật</button>
@@ -70,7 +70,7 @@
                     <!-- /Bootstrap Validation -->
 
                     <!-- jQuery Validation -->
-                    
+
                     <!-- /jQuery Validation -->
                 </div>
             </section>
