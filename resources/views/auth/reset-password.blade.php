@@ -30,17 +30,32 @@
                             <div class="form-group">
                                 <input type="email" class="form-control" placeholder="Mời nhập Email"
                                 id="email" name="email" :value="old('email', $request->email)" required autofocus>
+                                @error('email')
+                                    <span class="invali-feedback" role="alert">
+                                        <strong>{{$message}}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <!-- Mật khẩu -->
                             <div class="form-group">
                                 <input id="password" type="password" class="form-control" placeholder="Mời nhập mật khẩu" 
                                 name="password" required>
                                 <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                @error('password')
+                                    <span class="invali-feedback" role="alert">
+                                        <strong>{{$message}}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <input id="password_confirmation" type="password" class="form-control" placeholder="Nhập lại mật khẩu" 
                                 name="password_confirmation" required >
                                 <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                @error('password_confirmation')
+                                    <span class="invali-feedback" role="alert">
+                                        <strong>{{$message}}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <div class="flex items-center justify-end mt-4">

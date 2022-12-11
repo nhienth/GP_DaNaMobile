@@ -103,12 +103,10 @@
                         <p><strong>SKU</strong>: FW511948218</p>
                         <div class="mb-4">
                             <div class="d-flex align-items-baseline">
-                                {{-- <ins class="font-size-36 text-decoration-none">$1,999.00</ins>
-                                <del class="font-size-20 ml-2 text-gray-6">$2,299.00</del> --}}
-                                <span id="price_product" data-price="{{$product->minprice}} - {{$product->maxprice}}"
-                                    class="font-size-36 text-decoration-none">{{number_format($product->minprice)}}đ -
-                                    {{number_format($product->maxprice)}}đ</span>
+                                <ins id="pricesale_product" data-price="{{$product->minprice}} - {{$product->maxprice}}" class="font-size-36 text-decoration-none">{{number_format($product->minprice)}}đ -
+                                    {{number_format($product->maxprice)}}đ</ins>
                             </div>
+                                <del id="price_product" data-price="{{$product->minprice}} - {{$product->maxprice}}" class="font-size-25" style="color: rgb(117, 117, 132)"></del>
                         </div>
 
                         <div class="border-top border-bottom py-3 mb-4">
@@ -123,6 +121,7 @@
                                     <input type="hidden" name="combination_image"
                                         value="{{$productCombi->combination_image}}">
                                     <input type="hidden" name="productCombi_Id" value="{{$productCombi->id}}" />
+                                    <input type="hidden" name="productCombi_sale" value="{{$productCombi->sale}}" />
                                 </div>
                                 @endforeach
                             </form>
@@ -569,6 +568,7 @@
         let arr = ['a', 'b'];
         let arrImgInput = [];
         let priceHtml = document.getElementById("price_product");
+        let pricesaleHtml = document.getElementById("pricesale_product");
         let addCartForm = document.getElementById("addtocart1");
         let addCartButton = document.getElementById("addtocart");
         let addCompare = document.getElementById("addCompare");
@@ -597,7 +597,11 @@
                     let pro = Array.from(productsCombination).find(pro => pro.value.trim() == variSeleted);
                  
                     if (variSeleted == pro.value.trim()) {
-                        priceHtml.innerHTML = `${Intl.NumberFormat('en-IN').format(pro.nextElementSibling.value)}đ`;
+                        let sale = pro.parentElement.lastElementChild.value;
+                        let priceSale = pro.nextElementSibling.value - (pro.nextElementSibling.value * sale/100)
+                        priceHtml.innerHTML = `${Intl.NumberFormat('en-US').format(pro.nextElementSibling.value)}đ`;
+                        pricesaleHtml.innerHTML = `${Intl.NumberFormat('en-US').format(priceSale)}đ`;
+                        
                         let combiId = pro.parentElement.lastElementChild.value;
                         addCartForm.action=`http://127.0.0.1:8000/cart/add/${combiId}`;
                         addCartButton.href=`http://127.0.0.1:8000/cart/add/${combiId}`;

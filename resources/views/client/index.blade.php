@@ -104,7 +104,7 @@ use App\Models\Product;
                                     href="{{url('product/detail',[$productsalemax->id])}}" class="text-blue font-weight-bold">{{$productsalemax->product_name}}</a></h5>
                             <div class="d-flex align-items-center justify-content-center mb-3">
                                 <del class="font-size-18 mr-2 text-gray-2">{{number_format($productsalemax->price)}}đ</del>
-                                <ins class="font-size-30 text-red text-decoration-none">{{(number_format($productsalemax->price - ($productsalemax->price * ($productsalemax->sale/100))))}}</ins>
+                                <ins class="font-size-30 text-red text-decoration-none">{{number_format($productsalemax->price - ($productsalemax->price * ($productsalemax->sale/100)))}} đ</ins>
                             </div>
                             <div class="mb-3 mx-2">
                                 <div class="d-flex justify-content-between align-items-center mb-2" style="color: black">
@@ -547,8 +547,8 @@ use App\Models\Product;
                                 class="text-blue font-weight-bold">{{$sale->product_name}}</a>
                         </h5>
                         <div class="prodcut-price mt-auto flex-horizontal-center" style="color: black">
-                            <ins class="font-size-15 text-decoration-none">111đ</ins>
-                            <del class="font-size-12 text-gray-9 ml-2">111đ</del>
+                            <ins class="font-size-15 text-decoration-none">{{ number_format($sale->minprice - ($sale->minprice * ($sale->sale/100))) }}</ins>
+                            <del class="font-size-12 text-gray-9 ml-2">{{ number_format($sale->minprice) }}</del>
                         </div>
                     </div>
                 </li>

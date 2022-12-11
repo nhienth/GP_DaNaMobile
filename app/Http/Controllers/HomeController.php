@@ -42,10 +42,9 @@ class HomeController extends Controller
         $productsalemax = Combinations::with(['product'])
         ->orderBy('products_combinations.sale','desc')
         ->first();
-        $proName = Product::find($productsalemax->product_id)->value('product_name');
-        $proID = Product::find($productsalemax->product_id)->value('id');
-        $productsalemax['product_name'] = $proName;
-        $productsalemax['id'] = $proID;
+        $proName = Product::where('id',$productsalemax->product_id)->first();
+        $productsalemax['product_name'] = $proName->product_name;
+        $productsalemax['id'] = $proName->id;
 
         // all sản phẩm
         $productsld = Product::with('combinations','category')->orderBy('products.id', 'desc')
@@ -114,13 +113,14 @@ class HomeController extends Controller
         ->get();
 
         // top 20 sản phẩm
-        $top20 = DB::table('products')
-        ->select('products.*','categories.category_name' ,DB::raw('SUM(order_details.quantity) as sumnn'))
-        ->join('categories', 'products.category_id', '=', 'categories.id')
-        ->join('order_details', 'order_details.product_id', '=', 'products.id')
+        $top20 = DB::table('products_combinations')
+        ->select('products.*', 'categories.category_name', 'products_combinations.combination_string','products_combinations.id as productcombi_id' ,DB::raw('SUM(order_details.quantity) as sumnn'))
+        ->join('order_details', 'order_details.product_id', '=', 'products_combinations.id')
         ->join('orders', 'order_details.order_id', '=', 'orders.id')
+        ->join('products', 'products.id', '=', 'products_combinations.product_id')
+        ->join('categories', 'products.category_id', '=', 'categories.id')
         ->where('orders.status', '=', 2)
-        ->groupBy('products.id')
+        ->groupBy('products_combinations.product_id')
         ->having('sumnn', '>', 0)
         ->orderBy('sumnn', 'DESC')
         ->take(8)
@@ -154,23 +154,24 @@ class HomeController extends Controller
         ->where('product_status', '1')
         ->limit(3)
         ->get();
-        $priceArr = [];
-        $minPrice = 0;
-        $maxPrice = 0;
         foreach ($product_sale as $product) {
           foreach ($product->combinations as $productCombi) {
             array_push($priceArr, $productCombi->price);
-          
+            if ($productCombi->sale > 0)  $prsale = $productCombi->sale;
             }
             $minPrice = min($priceArr);
             $maxPrice = max($priceArr);
-
             $priceArr = [];
+
+            $productsale = $prsale;
+            $prsale = [];
 
             $product['minprice'] = $minPrice;
             $product['maxprice'] = $maxPrice;
+            $product['sale'] = $productsale;
 
         }
+
         // Top 3 đánh giá
         $top3preview = Preview::with('product')
         ->select(DB::raw('product_id, max(created_at) as maxdate, min(created_at) as mindate, avg(status) as avgrate'), DB::raw('count(*) as total'))

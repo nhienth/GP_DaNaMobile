@@ -19,18 +19,33 @@
                                 <div class="form-group">
                                     <input type="text" class="form-control" placeholder="Mời nhập họ và tên"
                                     id="name" name="name" :value="old('name')" required autofocus >
+                                    @error('name')
+                                    <span class="invali-feedback" role="alert">
+                                        <strong>{{$message}}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
 
                                 <!-- Địa chỉ email -->
                                 <div class="form-group">
                                     <input type="email" class="form-control" placeholder="Mời nhập Email"
                                     id="email" name="email" :value="old('email')" required >
+                                    @error('email')
+                                    <span class="invali-feedback" role="alert">
+                                        <strong>{{$message}}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                                 <!-- Mật khẩu -->
                                 <div class="form-group">
                                     <input id="password" type="password" class="form-control" placeholder="Mời nhập mật khẩu" 
                                     name="password" required autocomplete="new-password" >
                                     <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                    @error('password')
+                                    <span class="invali-feedback" role="alert">
+                                        <strong>{{$message}}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
 
                                 <!-- Nhập lại mật khẩu -->
@@ -38,6 +53,11 @@
                                     <input id="password_confirmation" type="password" class="form-control" placeholder="Mời nhập mật khẩu" 
                                     name="password_confirmation" required>
                                     <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                    @error('password_confirmation')
+                                    <span class="invali-feedback" role="alert">
+                                        <strong>{{$message}}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
 
                                 <div class="flex items-center justify-end mt-4">

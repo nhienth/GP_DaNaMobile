@@ -31,6 +31,11 @@
                                     <div class="form-group">
                                         <input type="email" class="form-control" placeholder="Mời nhập tên email"
                                         id="email" name="email" :value="old('email')" required autofocus>
+                                        @error('email')
+                                            <span class="invali-feedback" role="alert">
+                                                <strong>{{$message}}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
 
                                     <div class="flex items-center justify-end mt-4">

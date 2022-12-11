@@ -5,7 +5,6 @@
         <section class="ftco-section">
             <div class="container">
                 <!-- Validation Errors -->
-                <x-auth-validation-errors class="mb-4" :errors="$errors" />
                 <div class="row justify-content-center">
                     <div class="col-md-6 text-center mb-5">
                     <h2 class="heading-section">Đăng nhập</h2>
@@ -21,17 +20,27 @@
                                 <div class="form-group">
                                     <input type="text" class="form-control" placeholder="Mời nhập email"
                                     id="email" type="email" name="email" :value="old('email')" required autofocus>
+                                    @error('email')
+                                    <span class="invali-feedback" role="alert">
+                                        <strong>{{$message}}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                                 <!-- Mật khẩu -->
                                 <div class="form-group">
                                     <input id="password" type="password" class="form-control" placeholder="Mời nhập mật khẩu" 
                                     name="password" required autocomplete="current-password">
                                     <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                    @error('password')
+                                    <span class="invali-feedback" role="alert">
+                                        <strong>{{$message}}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                                 <!-- Đăng nhập -->
                                 <div class="form-group">
                                     <div class="flex items-center justify-end mt-4">
-                                        <x-primary-button class="form-control btn btn-primary submit px-3" onclick="notify()">
+                                        <x-primary-button class="form-control btn btn-primary submit px-3">
                                             {{ __('Đăng nhập') }}
                                         </x-primary-button>
 

@@ -53,7 +53,7 @@
                         @foreach (session('product_compare_1') as $id => $details )
 
                         <td>
-                            <div class="product-price">{{$details['price']}}</div>
+                            <div class="product-price">{{number_format($details['price'])}}đ</div>
                         </td>
                         @endforeach
 

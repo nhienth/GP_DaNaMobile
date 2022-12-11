@@ -30,6 +30,11 @@
                                 <div class="form-group">
                                     <input id="password" type="password" class="form-control" placeholder="Mời nhập mật khẩu"  name="password" required autocomplete="current-password">
                                     <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                    @error('password')
+                                        <span class="invali-feedback" role="alert">
+                                            <strong>{{$message}}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <!-- Đăng nhập -->
                                 <div class="form-group">
