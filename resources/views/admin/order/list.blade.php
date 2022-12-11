@@ -106,11 +106,11 @@
                                         <td>{{number_format($order->total_amount)}}đ</td>
                                         <td>
                                             <?php
-                                            if($order["status"]==1){
+                                            if($order["status"]==0){
                                                 echo "<span class='badge rounded-pill badge-light-primary me-1'>Đang xử lý</span>";
-                                            }else if($order["status"]==2){
+                                            }else if($order["status"]==1){
                                                 echo "<span class='badge rounded-pill badge-light-info me-1'>Đang giao hàng</span>";
-                                            }else if($order["status"]==3){
+                                            }else if($order["status"]==2){
                                                 echo "<span class='badge rounded-pill badge-light-success me-1'>Đã giao hàng</span>";
                                             }else {
                                                 echo "<span class='badge rounded-pill badge-light-warning me-1'>Đã huỷ hàng</span>";
