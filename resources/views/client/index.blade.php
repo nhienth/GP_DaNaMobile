@@ -321,21 +321,7 @@ use App\Models\Product;
         <!-- Full banner -->
         <div class="mb-6">
             <a href="../shop/shop.html" class="d-block text-gray-90" style="height: 300px">
-                <div class="" style="background-image: url({{asset('images/background.jpg')}});height: 300px;">
-                    <div class="space-top-2-md p-4 pt-6 pt-md-8 pt-lg-6 pt-xl-8 pb-lg-4 px-xl-8 px-lg-6" >
-                        <div class="flex-horizontal-center mt-lg-3 mt-xl-0 overflow-auto overflow-md-visble">
-                            <h1 class="text-lh-38 font-size-32 font-weight-light mb-0 flex-shrink-0 flex-md-shrink-1" >
-                                SHOP AND <strong>SAVE BIG</strong> ON HOTTEST TABLETS</h1>
-                            <div class="ml-5 flex-content-center flex-shrink-0">
-                                <div class="bg-primary rounded-lg px-6 py-2">
-                                    <em class="font-size-14 font-weight-light">STARTING AT</em>
-                                    <div class="font-size-30 font-weight-bold text-lh-1">
-                                        <sup class="">$</sup>79<sup class="">99</sup>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="" style="background-image: url({{asset('images/background.gif')}});height: 300px;background-repeat: no-repeat;background-size: 100%;">
                 </div>
             </a>
         </div>
@@ -585,13 +571,13 @@ use App\Models\Product;
                 @endforeach
             </ul>
         </div>
-        @foreach($banner as $banners)
+        {{-- @foreach($banner as $banners) --}}
         <div class="col-wd-3 d-none d-wd-block">
-            <a href="{{$banners->location}}" class="d-block"><img class="img-fluid"
-                    src="{{asset('images/banner/'.$banners->banner_img)}}" alt="Image Description"
+            <a href="{{$banner->location}}" class="d-block"><img class="img-fluid"
+                    src="{{asset('images/banner/'.$banner->banner_img)}}" alt="Image Description"
                     style="width:100%"></a>
         </div>
-        @endforeach
+        {{-- @endforeach --}}
     </div>
 </div>
 <!-- End Footer-top-widget -->

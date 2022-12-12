@@ -35,8 +35,9 @@ class HomeController extends Controller
             $category['parent_cate'] = $partenCateName;
         }
         $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
-        $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
-        $bannerlist = Banner::all();
+        $banner = Banner::where('id', '9')->first();
+        $bannerlist = Banner::where('id', '<>', '9')->get();
+        // dd($banner);
 
         // sản phẩm sale 
         $productsalemax = Combinations::with(['product'])
