@@ -8,9 +8,9 @@
             <div class="my-md-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-3 flex-nowrap flex-xl-wrap overflow-auto overflow-xl-visble">
-                        <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="../home/index.html">Home</a>
+                        <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="{{ url('/')}}">Trang chủ</a>
                         </li>
-                        <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1 active" aria-current="page">Cart</li>
+                        <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1 active" aria-current="page">Đơn hàng của bạn</li>
                     </ol>
                 </nav>
             </div>
@@ -36,12 +36,15 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @php
+                        $count = 1;
+                    @endphp
                     @foreach ($myBill as $item )
                         <tr>
-                            <td>{{ $item->id}}</td>
-                            <td>{{ $item->created_at}}</td>
-                            <td>tong tien</td>
-                            <td>dia chi</td>
+                            <td>{{ $count++ }}</td>
+                            <td>{{ $item->create_at}}</td>
+                            <td>{{number_format( $item->total_amount )}}₫</td>
+                            <td>{{ $item->address }}</td>
                             <?php
                                 if($item->status==0){
                                     echo "<td class='badge rounded-pill badge-light-primary me-1'>Đang xử lý</td>";

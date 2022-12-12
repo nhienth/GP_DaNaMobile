@@ -33,18 +33,7 @@
                     <div class="card">
                         <div class="card-body border-bottom">
                             <h4 class="card-title">Tìm kiếm và lọc</h4>
-                            <div class="row">
-                                <div class="col-md-4 user_role">
-                                    <label class="form-label" for="UserRole">Vai trò</label>
-                                    <select id="UserRole" class="form-select text-capitalize mb-md-0 mb-2">
-                                        <option value=""> Chọn vai trò </option>
-                                        <option value="' + d + '" class="text-capitalize">' + d + '</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-4 user_plan">
-                                    <label class="form-label" for="UserPlan">Kế hoạch</label>
-                                    <select id="UserPlan" class="form-select text-capitalize mb-md-0 mb-2"><option value=""> Chọn kế hoạch </option></select>
-                                </div>
+                            
                                 <div class="col-md-4 user_status">
                                     <label class="form-label" for="FilterTransaction">Trạng thái</label>
                                     <form action="{{ url('admin/preview/filter-preview-date') }}" method="get">
@@ -59,33 +48,6 @@
                         <div class="card-datatable table-responsive pt-0">
                             <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
                                 <div class="f-flex justify-content-between align-items-center header-actions mx-2 row mt-75">
-                                    <div class="col-sm-12 col-lg-4 d-flex justify-content-center justify-content-lg-start">
-                                        <div class="dataTables_length" id="DataTables_Table_0_length">
-                                            <label>
-                                                Show
-                                                <select name="DataTables_Table_0_length" class="form-select" aria-controls="DataTables_Table_0">
-                                                    <option value="10">10</option>
-                                                    <option value="25">25</option>
-                                                    <option value="50">50</option>
-                                                    <option value="100">100</option>
-                                                </select>
-                                                entries
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 col-lg-8 ps-xl-75 ps-0">
-                                        <div class="dt-action-buttons d-flex align-items-center justify-content-center justify-content-lg-end flex-lg-nowrap flex-wrap">
-                                            <div class="me-1">
-                                                <div id="DataTables_Table_0_filter" class="dataTables_filter">
-                                                    <label>
-                                                        Search:
-                                                        <input type="search" class="form-control" placeholder aria-controls="DataTables_Table_0">
-                                                    </label>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                             <table class="user-list-table table dataTable no-footer dtr-column">
@@ -116,23 +78,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <div class="d-flex justify-content-between mx-2 row mb-1">
-                                <div class="col-sm-12 col-md-6">
-                                    <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div>
-                                </div>
-                                <div class="col-sm-12 col-md-6">
-                                    <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
-                                        <ul class="pagination">
-                                            <li class="paginate_button page-item previous disabled" id="DataTables_Table_0_previous">
-                                                <a href=""></a>
-                                            </li>
-                                            <li class="paginate_button page-item next disabled" id="DataTables_Table_0_next">
-                                                <a href=""></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                           
                         </div>
                         <!-- Modal to add new user starts-->
 

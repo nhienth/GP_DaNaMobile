@@ -157,25 +157,13 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                                             class="font-size-22 ec ec-compare"></i></a></li>
                                 @if(isset(Auth::user()->id))
                                 <li class="col d-none d-xl-block"><a href="{{url('listWishList')}}" class="text-gray-90"
-                                        data-toggle="tooltip" data-placement="top" title="Favorites"><i
+                                        data-toggle="tooltip" data-placement="top" title="Yêu thích"><i
                                             class="font-size-22 ec ec-favorites"></i></a></li>
                                 @endif 
-                                <li class="col d-xl-none px-2 px-sm-3"><a href="../shop/my-account.html"
-                                        class="text-gray-90" data-toggle="tooltip" data-placement="top"
-                                        title="My Account"><i class="font-size-22 ec ec-user"></i></a></li>
-                                <li class="col pr-xl-0 px-2 px-sm-3 d-xl-none">
-                                    <a href="../shop/cart.html" class="text-gray-90 position-relative d-flex "
-                                        data-toggle="tooltip" data-placement="top" title="Cart">
-                                        <i class="font-size-22 ec ec-shopping-bag"></i>
-                                        <span
-                                            class="bg-lg-down-black width-22 height-22 bg-primary position-absolute d-flex align-items-center justify-content-center rounded-circle left-12 top-8 font-weight-bold font-size-12">2</span>
-                                        <span
-                                            class="d-none d-xl-block font-weight-bold font-size-16 text-gray-90 ml-3">$1785.00</span>
-                                    </a>
-                                </li>
+                              
                                 <li class="col pr-xl-0 px-2 px-sm-3 d-none d-xl-block">
                                     <div id="basicDropdownHoverInvoker" class="text-gray-90 position-relative d-flex "
-                                        data-toggle="tooltip" data-placement="top" title="Cart"
+                                        data-toggle="tooltip" data-placement="top" title="Giỏ hàng"
                                         aria-controls="basicDropdownHover" aria-haspopup="true" aria-expanded="false"
                                         data-unfold-event="click" data-unfold-target="#basicDropdownHover"
                                         data-unfold-type="css-animation" data-unfold-duration="300"
