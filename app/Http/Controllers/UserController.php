@@ -109,6 +109,28 @@ class UserController extends Controller
         return  $this->show($id)->with('status','Bạn đã cập nhật thành công');
         
     }
+
+    // đổi mật khẩu
+    public function passedit($id)
+    {
+        $categories = Category::all();
+        $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
+        $banner = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
+        $user = User::find($id);
+        return view('client.user.editpass')->with(compact('categories','slider','banner','user'));
+    }
+
+    public function passupdate(Request $request, $id)
+    {
+        $user = User::find($id);
+        $user ->id = $request->id;
+        $user ->password = $request->password;
+
+        $user->save();
+        // dd($user);
+        return  $this->show($id)->with('status','Bạn đã cập nhật thành công');
+        
+    }
     /**
      * Remove the specified resource from storage.
      *

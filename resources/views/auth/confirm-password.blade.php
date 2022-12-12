@@ -10,7 +10,6 @@
                 </x-slot>
                 
                 <!-- Validation Errors -->
-                <x-auth-validation-errors class="mb-4" :errors="$errors" />
                 <div class="row justify-content-center">
                     <div class="col-md-6 text-center mb-5">
                         <div class="mb-4 text-sm text-gray-600" style="color: aliceblue">
@@ -31,7 +30,7 @@
                                     <input id="password" type="password" class="form-control" placeholder="Mời nhập mật khẩu"  name="password" required autocomplete="current-password">
                                     <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                                     @error('password')
-                                        <span class="invali-feedback" role="alert">
+                                        <span class="invali-feedback" role="alert" style="color: red">
                                             <strong>{{$message}}</strong>
                                         </span>
                                     @enderror

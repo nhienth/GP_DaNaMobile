@@ -21,7 +21,7 @@
                                     <input type="text" class="form-control" placeholder="Mời nhập email"
                                     id="email" type="email" name="email" :value="old('email')" required autofocus>
                                     @error('email')
-                                    <span class="invali-feedback" role="alert">
+                                    <span class="invali-feedback" role="alert" style="color: red">
                                         <strong>{{$message}}</strong>
                                     </span>
                                     @enderror
@@ -30,9 +30,9 @@
                                 <div class="form-group">
                                     <input id="password" type="password" class="form-control" placeholder="Mời nhập mật khẩu" 
                                     name="password" required autocomplete="current-password">
-                                    <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                    <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password hidepass-js"></span>
                                     @error('password')
-                                    <span class="invali-feedback" role="alert">
+                                    <span class="invali-feedback" role="alert" style="color: red">
                                         <strong>{{$message}}</strong>
                                     </span>
                                     @enderror
@@ -66,7 +66,7 @@
                             <p class="w-100 text-center">&mdash; Hoặc đăng nhập với &mdash;</p>
                             <div class="social d-flex text-center">
                                 <a href="#" class="px-2 py-2 mr-md-1 rounded"><span class="ion-logo-facebook mr-2"></span> Facebook</a>
-                                <a href="#" class="px-2 py-2 ml-md-1 rounded"><span class="ion-logo-twitter mr-2"></span> Twitter</a>
+                                <a href="{{route('google.redirect')}}" class="px-2 py-2 ml-md-1 rounded"><span class="ion-logo-twitter mr-2"></span> Google</a>
                             </div>
                         </div>
                     </div>
@@ -74,4 +74,18 @@
             </div>
         </section>
     </div>
+    <script>
+        const passField = document.querySelector("input");
+           const showBtnList = document.querySelectorAll(".hidepass-js");
+           showBtnList.forEach(showBtn => {
+            showBtn.onclick = (()=>{
+                let passField = showBtn.previousElementSibling;
+                if(passField.type === "password"){
+                    passField.type = "text";
+                }else{
+                    passField.type = "password";
+                }
+            });
+        });
+    </script>
 </x-guest-layout>

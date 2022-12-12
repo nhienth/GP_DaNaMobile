@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AddressControll;
+use App\Http\Controllers\GoogleController;
 
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
@@ -46,6 +47,11 @@ use GuzzleHttp\Handler\Proxy;
 Route::prefix('/')->group(function () {
     Route::get('', [HomeController::class, 'index']);
 
+    Route::prefix('/auth')->group(function () {
+        Route::get('/google', [GoogleController::class, 'googleRedirect'])->name('google.redirect');
+        Route::get('/google/callback', [GoogleController::class, 'googleLogin'])->name('google.login');
+    });
+    
     Route::prefix('/contact')->group(function () {
         Route::get('/', [ContactController::class, 'create']);
         Route::post('/', [ContactController::class, 'store']);
@@ -110,6 +116,9 @@ Route::prefix('/')->group(function () {
         Route::post('/updateaddress', [AddressControll::class, 'update']);
 
         Route::get('/delete/{id}', [AddressControll::class, 'destroy']);
+        
+        Route::get('/updatepass/{id}', [UserController::class, 'passedit']);
+        Route::post('/updatepass/{id}', [UserController::class, 'passupdate']);
     });
 
     Route::prefix('/blogs')->group(function () {
