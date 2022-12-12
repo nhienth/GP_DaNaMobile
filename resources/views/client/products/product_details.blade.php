@@ -608,7 +608,7 @@
                         let sku = pro.parentElement.childNodes[9].value;
                         let avilableStock = pro.parentElement.childNodes[11].value;
                         skuHtml.innerHTML = sku;
-                        avilableStockHtml.innerHTML = avilableStock;
+                        avilableStockHtml.innerHTML = avilableStock;    
                         
                         let combiId = pro.parentElement.lastElementChild.value;
                         addCartForm.action=`http://127.0.0.1:8000/cart/add/${combiId}`;
