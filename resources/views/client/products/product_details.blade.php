@@ -89,7 +89,7 @@
                                         width="80px"
                                         alt="Image Description"></a>
                                 <div class="ml-md-3 text-gray-9 font-size-14">Số lượng trong kho: <span
-                                        class="text-green font-weight-bold">26</span></div>
+                                        class="text-green font-weight-bold" id="avilableStock_product">{{$product->avilableStock0}}</span></div>
                             </div>
                         </div>
                         <div class="flex-horizontal-center flex-wrap mb-4">
@@ -100,7 +100,7 @@
                         </div>
                 
 
-                        <p><strong>SKU</strong>: FW511948218</p>
+                        <p><strong >SKU</strong>: <span id="sku_product">{{$product->sku0}}</span> </p>
                         <div class="mb-4">
                             <div class="d-flex align-items-baseline">
                                 <ins id="pricesale_product" data-price="{{$product->minprice}} - {{$product->maxprice}}" class="font-size-36 text-decoration-none">{{number_format($product->minprice)}}đ -
@@ -120,6 +120,8 @@
                                         value="{{$productCombi->price}}">
                                     <input type="hidden" name="combination_image"
                                         value="{{$productCombi->combination_image}}">
+                                    <input type="hidden" name="productCombi_sku" value="{{$productCombi->sku}}" />
+                                    <input type="hidden" name="productCombi_avilableStock" value="{{$productCombi->avilableStock}}" />
                                     <input type="hidden" name="productCombi_Id" value="{{$productCombi->id}}" />
                                     <input type="hidden" name="productCombi_sale" value="{{$productCombi->sale}}" />
                                 </div>
@@ -569,6 +571,8 @@
         let arrImgInput = [];
         let priceHtml = document.getElementById("price_product");
         let pricesaleHtml = document.getElementById("pricesale_product");
+        let skuHtml = document.getElementById("sku_product");
+        let avilableStockHtml = document.getElementById("avilableStock_product");
         let addCartForm = document.getElementById("addtocart1");
         let addCartButton = document.getElementById("addtocart");
         let addCompare = document.getElementById("addCompare");
@@ -601,6 +605,10 @@
                         let priceSale = pro.nextElementSibling.value - (pro.nextElementSibling.value * sale/100)
                         priceHtml.innerHTML = `${Intl.NumberFormat('en-US').format(pro.nextElementSibling.value)}đ`;
                         pricesaleHtml.innerHTML = `${Intl.NumberFormat('en-US').format(priceSale)}đ`;
+                        let sku = pro.parentElement.childNodes[9].value;
+                        let avilableStock = pro.parentElement.childNodes[11].value;
+                        skuHtml.innerHTML = sku;
+                        avilableStockHtml.innerHTML = avilableStock;
                         
                         let combiId = pro.parentElement.lastElementChild.value;
                         addCartForm.action=`http://127.0.0.1:8000/cart/add/${combiId}`;

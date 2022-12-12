@@ -153,6 +153,7 @@ class ProductController extends Controller
         $error = array();
         $ext = array();
         $size = array();
+
         foreach ($_FILES['product_img_gallery']['name'] as $file) {
             $name[] = $file;
         }
@@ -335,7 +336,8 @@ class ProductController extends Controller
 
         $product['minprice'] = $minPrice;
         $product['maxprice'] = $maxPrice;
-
+        $product['sku0'] = "...";
+        $product['avilableStock0'] = "...";
         $countall = DB::table('product_reviews')->where('product_id','=',$product->id)->count();
         $count5 = DB::table('product_reviews')->where('product_id','=',$product->id)->where('status', '=', 5)->count();
         $count4 = DB::table('product_reviews')->where('product_id','=',$product->id)->where('status', '=', 4)->count();
