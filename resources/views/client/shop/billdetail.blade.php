@@ -8,9 +8,9 @@
             <div class="my-md-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-3 flex-nowrap flex-xl-wrap overflow-auto overflow-xl-visble">
-                        <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="../home/index.html">Home</a>
+                        <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="{{ url('/') }}">Trang chủ</a>
                         </li>
-                        <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1 active" aria-current="page">Cart</li>
+                        <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1 active" aria-current="page">Đơn hàng chi tiết của bạn</li>
                     </ol>
                 </nav>
             </div>
@@ -36,9 +36,12 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @php
+                        $count = 1;
+                    @endphp
                     @foreach ($billDetails as $item )
                         <tr>
-                            <td>{{ $item->id }}</td>
+                            <td>{{ $count++ }}</td>
                             <td>{{ $item->product_name }} - {{ $item->product_combi->combination_string }}</td>
                             <td><img src="{{asset('images/products/'.$item->product_combi->combination_image)}}" width="100px" height="80px" alt=""></td>
                             <td>{{ $item->quantity }}</td>

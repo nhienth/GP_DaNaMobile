@@ -34,17 +34,7 @@
                         <div class="card-body border-bottom">
                             <h4 class="card-title">Đơn hàng</h4>
                             <div class="row">
-                                <div class="col-md-4 user_role">
-                                    <label class="form-label" for="UserRole">Vai trò</label>
-                                    <select id="UserRole" class="form-select text-capitalize mb-md-0 mb-2">
-                                        <option value=""> Chọn vai trò </option>
-                                        <option value="' + d + '" class="text-capitalize">' + d + '</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-4 user_plan">
-                                    <label class="form-label" for="UserPlan">Kế hoạch</label>
-                                    <select id="UserPlan" class="form-select text-capitalize mb-md-0 mb-2"><option value=""> Lựa chọn kế hoạch </option></select>
-                                </div>
+                               
                                 <div class="col-md-4 user_status">
                                     <label class="form-label" for="FilterTransaction">Trạng thái</label>
                                     <form action="{{ route('filter.status.order') }}" method="get">
@@ -64,24 +54,7 @@
                         <div class="card-datatable table-responsive pt-0">
                             <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
                                 <div class="f-flex justify-content-between align-items-center header-actions mx-2 row mt-75">
-                                    <div class="col-sm-12 col-lg-4 d-flex justify-content-center justify-content-lg-start">
-                                        
-                                    </div>
-                                    <div class="col-sm-12 col-lg-8 ps-xl-75 ps-0">
-                                        <div class="dt-action-buttons d-flex align-items-center justify-content-center justify-content-lg-end flex-lg-nowrap flex-wrap">
-                                            <div class="me-1">
-                                                <div id="DataTables_Table_0_filter" class="dataTables_filter">
-                                                    <label>
-                                                        Tìm kiếm:
-                                                        <input type="search" class="form-control" placeholder aria-controls="DataTables_Table_0">
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="dt-buttons d-inline-flex mt-50">
-                                                <button class="dt-button buttons-collection btn btn-outline-secondary dropdown-toggle me-2"
-                                                tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="true">Xuất</button>
-                                            </div>
-                                        </div>
+                                    
                                     </div>
                                 </div>
                             </div>
