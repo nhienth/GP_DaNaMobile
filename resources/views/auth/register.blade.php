@@ -4,7 +4,6 @@
     <!-- Validation Errors -->
         <section class="ftco-section">
             <div class="container">
-                <x-auth-validation-errors class="mb-4" :errors="$errors" />
                 <div class="row justify-content-center">
                     <div class="col-md-6 text-center mb-5">
                     <h2 class="heading-section">Đăng ký</h2>
@@ -20,7 +19,7 @@
                                     <input type="text" class="form-control" placeholder="Mời nhập họ và tên"
                                     id="name" name="name" :value="old('name')" required autofocus >
                                     @error('name')
-                                    <span class="invali-feedback" role="alert">
+                                    <span class="invali-feedback" role="alert" style="color: red">
                                         <strong>{{$message}}</strong>
                                     </span>
                                     @enderror
@@ -31,7 +30,7 @@
                                     <input type="email" class="form-control" placeholder="Mời nhập Email"
                                     id="email" name="email" :value="old('email')" required >
                                     @error('email')
-                                    <span class="invali-feedback" role="alert">
+                                    <span class="invali-feedback" role="alert" style="color: red">
                                         <strong>{{$message}}</strong>
                                     </span>
                                     @enderror
@@ -40,9 +39,9 @@
                                 <div class="form-group">
                                     <input id="password" type="password" class="form-control" placeholder="Mời nhập mật khẩu" 
                                     name="password" required autocomplete="new-password" >
-                                    <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                    <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password hidepass-js"></span>
                                     @error('password')
-                                    <span class="invali-feedback" role="alert">
+                                    <span class="invali-feedback" role="alert" style="color: red">
                                         <strong>{{$message}}</strong>
                                     </span>
                                     @enderror
@@ -52,9 +51,9 @@
                                 <div class="form-group">
                                     <input id="password_confirmation" type="password" class="form-control" placeholder="Mời nhập mật khẩu" 
                                     name="password_confirmation" required>
-                                    <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                    <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password hidepass-js"></span>
                                     @error('password_confirmation')
-                                    <span class="invali-feedback" role="alert">
+                                    <span class="invali-feedback" role="alert" style="color: red">
                                         <strong>{{$message}}</strong>
                                     </span>
                                     @enderror
@@ -76,7 +75,7 @@
                             <p class="w-100 text-center">&mdash; Hoặc đăng ký bằng &mdash;</p>
                             <div class="social d-flex text-center">
                                 <a href="#" class="px-2 py-2 mr-md-1 rounded"><span class="ion-logo-facebook mr-2"></span> Facebook</a>
-                                <a href="#" class="px-2 py-2 ml-md-1 rounded"><span class="ion-logo-twitter mr-2"></span> Twitter</a>
+                                <a href="{{route('google.redirect')}}" class="px-2 py-2 ml-md-1 rounded"><span class="ion-logo-twitter mr-2"></span> Google</a>
                             </div>
                         </div>
                     </div>
@@ -84,4 +83,18 @@
             </div>
         </section>
     </div>
+    <script>
+        const passField = document.querySelector("input");
+           const showBtnList = document.querySelectorAll(".hidepass-js");
+           showBtnList.forEach(showBtn => {
+            showBtn.onclick = (()=>{
+                let passField = showBtn.previousElementSibling;
+                if(passField.type === "password"){
+                    passField.type = "text";
+                }else{
+                    passField.type = "password";
+                }
+            });
+        });
+    </script>
 </x-guest-layout>

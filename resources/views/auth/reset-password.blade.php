@@ -11,7 +11,6 @@
                     </a>
                 </x-slot>
                 <!-- Validation Errors -->
-                <x-auth-validation-errors class="mb-4" :errors="$errors" />
                 <div class="row justify-content-center">
                     <div class="col-md-6 text-center mb-5">
                     <h2 class="heading-section">Đổi mật khẩu</h2>
@@ -31,7 +30,7 @@
                                 <input type="email" class="form-control" placeholder="Mời nhập Email"
                                 id="email" name="email" :value="old('email', $request->email)" required autofocus>
                                 @error('email')
-                                    <span class="invali-feedback" role="alert">
+                                    <span class="invali-feedback" role="alert" style="color: red">
                                         <strong>{{$message}}</strong>
                                     </span>
                                 @enderror
@@ -42,7 +41,7 @@
                                 name="password" required>
                                 <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                                 @error('password')
-                                    <span class="invali-feedback" role="alert">
+                                    <span class="invali-feedback" role="alert" style="color: red">
                                         <strong>{{$message}}</strong>
                                     </span>
                                 @enderror
@@ -52,7 +51,7 @@
                                 name="password_confirmation" required >
                                 <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                                 @error('password_confirmation')
-                                    <span class="invali-feedback" role="alert">
+                                    <span class="invali-feedback" role="alert" style="color: red">
                                         <strong>{{$message}}</strong>
                                     </span>
                                 @enderror
