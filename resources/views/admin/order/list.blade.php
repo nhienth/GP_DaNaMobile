@@ -39,11 +39,11 @@
                                     <label class="form-label" for="FilterTransaction">Trạng thái</label>
                                     <form action="{{ route('filter.status.order') }}" method="get">
                                         <select id="FilterTransaction" name="filter_status_order" onchange="this.form.submit()" class="form-select text-capitalize mb-md-0 mb-2xx">
-                                            <option value="0" {{ request()->filter_status_order == 0 ? 'selected' : '' }}> Tất cả trạng thái </option>
-                                            <option value="1" {{ request()->filter_status_order == 1 ? 'selected' : '' }}> Đang xử lý </option>
-                                            <option value="2" {{ request()->filter_status_order == 2 ? 'selected' : '' }}> Đang giao hàng </option>
-                                            <option value="3" {{ request()->filter_status_order == 3 ? 'selected' : '' }}> Đã giao hàng </option>
-                                            <option value="4" {{ request()->filter_status_order == 4 ? 'selected' : '' }}> Đã hủy hàng </option>
+                                            <option value="4" {{ request()->filter_status_order == 4 ? 'selected' : '' }}> Tất cả trạng thái </option>
+                                            <option value="0" {{ request()->filter_status_order == 0 ? 'selected' : '' }}> Đang xử lý </option>
+                                            <option value="1" {{ request()->filter_status_order == 1 ? 'selected' : '' }}> Đang giao hàng </option>
+                                            <option value="2" {{ request()->filter_status_order == 2 ? 'selected' : '' }}> Đã giao hàng </option>
+                                            <option value="3" {{ request()->filter_status_order == 3 ? 'selected' : '' }}> Đã hủy hàng </option>
                                         </select>
                                     </form>
 

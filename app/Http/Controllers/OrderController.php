@@ -19,7 +19,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::with('orderdetail')->get();
+        $orders = Order::with('orderdetail')
+        ->orderBy('orders.id','desc')
+        ->get();
 
         return view('admin.order.list',compact('orders'));
     }
@@ -101,16 +103,18 @@ class OrderController extends Controller
     public function filter_status_order (Request $request)
     {
         $key_word = $request['filter_status_order'];
-        if ($key_word == 1) {
+        if ($key_word == 0) {
+            $orders = Order::with('orderdetail')->where('orders.status','=', '0')->get();
+        } elseif ($key_word == 1) {
             $orders = Order::with('orderdetail')->where('orders.status','=', '1')->get();
         } elseif ($key_word == 2) {
             $orders = Order::with('orderdetail')->where('orders.status','=', '2')->get();
         } elseif ($key_word == 3) {
             $orders = Order::with('orderdetail')->where('orders.status','=', '3')->get();
-        } elseif ($key_word == 4) {
-            $orders = Order::with('orderdetail')->where('orders.status','=', '4')->get();
         }else {
-            $orders = Order::with('orderdetail')->get();
+            $orders = Order::with('orderdetail')
+        ->orderBy('orders.id','desc')
+        ->get();
         }
         if (count($orders) > 0){
             return view('admin.order.list',compact('orders'));
