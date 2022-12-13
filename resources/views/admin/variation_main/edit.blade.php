@@ -49,8 +49,9 @@
                                             <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Tên biến thể</label>
     
                                             <input value="{{$variation->variation_name}}" type="text" name="variation_name" id="basic-addon-name" class="form-control" placeholder="Nhập tên biến thể" aria-label="Name" aria-describedby="basic-addon-name" required />
-                                            <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please enter value</div>
+                                            @error('variation_name')
+                                            <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                        @enderror
                                         </div>
                                         <button type="submit" class="btn btn-primary me-2">Cập nhật</button>
                                         <button type="submit" class="btn btn-primary me-2">Nhập lại</button>
