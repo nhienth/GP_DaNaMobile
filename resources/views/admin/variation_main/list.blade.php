@@ -30,7 +30,7 @@
                                     <div class="dt-action-buttons d-flex align-items-center justify-content-center justify-content-lg-end flex-lg-nowrap flex-wrap">
                                         <div class="dt-buttons d-inline-flex mt-50">
                                             <button type="button" class="dt-button add-new btn btn-primary" tabindex="0" data-bs-target="#modals-slide-in" aria-controls="DataTables_Table_0">
-                                               <a href="{{url('admin/variation_main/create')}}" style="color: white;">Thêm kiểu Biến thể mới</a>
+                                               <a href="{{url('admin/variation_main/create')}}" style="color: white;">Thêm kiểu biến thể mới</a>
                                             </button>
                                         </div>
                                     </div>

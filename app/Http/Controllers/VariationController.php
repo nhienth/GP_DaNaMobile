@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EditVariationRequest;
+use App\Http\Requests\StoreVariationRequest;
 use App\Models\Product;
 use App\Models\Variation;
 use App\Models\Variation_Option;
@@ -32,7 +34,7 @@ class VariationController extends Controller
         return view('admin.variation_main.create');
     }
 
-    public function store_main(Request $request){
+    public function store_main(StoreVariationRequest $request){
         $variation = new Variation();
         $variation->variation_name = $request['variation_name'];
         $variation->save();
@@ -45,7 +47,7 @@ class VariationController extends Controller
         return view('admin.variation_main.edit', compact('variation'));
     }
 
-    public function update_main(Request $request, $id)
+    public function update_main(EditVariationRequest $request, $id)
     {
         $variation = Variation::find($id);
         $variation->variation_name = $request['variation_name'];
