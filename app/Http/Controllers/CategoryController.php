@@ -130,7 +130,7 @@ class CategoryController extends Controller
         $data = Category::all();
         foreach ($data as $value) {
             if ($value['parent_id'] == $id) {
-                $this->html .= '<option value="' . $value['id'] . '">' . $text . $value['category_name'] . '</option>';
+                $this->html .= '<option id="' . $value['parent_id'] . '" value="' . $value['id'] . '">' . $text . $value['category_name'] . '</option>';
                 $this->res($value['id'], $text . '--');
             }
         }

@@ -276,9 +276,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        // $path = '../public/images/admin/products/';
         $product = Product::find($id);
-        // unlink($path.$product->product_img);
         $product->delete();
         return redirect('/admin/product/list');
     }

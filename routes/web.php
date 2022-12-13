@@ -192,6 +192,8 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 
             Route::get('/edit/{id}', [ProductController::class, 'edit']);
             Route::post('/update/{id}', [ProductController::class, 'update']);
+            Route::get('/delete/{id}', [ProductController::class, 'destroy']);
+
 
             Route::get('/addVariation/{id}', [VariationController::class, 'create']);
             Route::post('/addVariation', [VariationController::class, 'store']);
