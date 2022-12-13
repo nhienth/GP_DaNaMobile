@@ -42,10 +42,14 @@
                                     <div class="mb-1">
                                         <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Tên sản
                                             phẩm</label>
-
+                                        
                                         <input type="text" id="basic-addon-name" class="form-control"
                                             placeholder="Nhập tên sản phẩm" aria-label="Name" name="product_name"
-                                            aria-describedby="basic-addon-name" required />
+                                            value="{{old('product_name')}}"
+                                            aria-describedby="basic-addon-name" />
+                                        @error('product_name')
+                                            <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                        @enderror
                                         <div class="valid-feedback">Looks good!</div>
                                         <div class="invalid-feedback">Please enter your name.</div>
                                     </div>
@@ -53,23 +57,33 @@
                                         <label class="form-label fs-5 fw-bolder" for="select-country1">Danh mục sản
                                             phẩm</label>
                                         <select class="form-select" onchange="changeCate()" id="select-country1"
-                                            name="category_id" required>
-                                            <option value="0">Danh mục sản phẩm</option>
+                                            name="category_id">
+                                            <option value="">Danh mục sản phẩm</option>
                                             {!! $categorySelect !!}
                                         </select>
+                                        @error('category_id')
+                                            <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                        @enderror
                                         <div class="valid-feedback">Looks good!</div>
                                         <div class="invalid-feedback">Please select your country</div>
                                     </div>
                                     <div class="mb-2">
                                         <label for="customFile1" class="form-label fs-5 fw-bolder">Ảnh sản phẩm</label>
                                         <input class="form-control" name="product_img" type="file" id="customFile1"
-                                            required />
+                                        value="{{old('product_img')}}"
+                                             />
+                                        @error('product_img')
+                                            <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                     <div class="mb-2">
                                         <label for="customFile1" class="form-label fs-5 fw-bolder">Thư viện ảnh</label>
                                         <input class="form-control" name="product_img_gallery[]" type="file"
                                             id="customFile1" required multiple="true" />
+                                        @error('product_img_gallery[]')
+                                            <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="mb-1">
                                         <label class="d-block form-label fs-5 fw-bolder" for="">Thông số sản
@@ -98,6 +112,9 @@
 
                                         <textarea name="product_desc" class="form-control" id="mySummernote"
                                             rows="9"></textarea>
+                                        @error('product_desc')
+                                            <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                     <button type="submit" class="btn btn-primary me-2">Thêm</button>
@@ -117,13 +134,12 @@
 <script>
     function changeCate() {
     let specList = document.querySelectorAll('.show-spec');
-
     let valueOption = document.getElementById("select-country1");
 
-        // console.log(element.getAttribute('data-parent'));
     let slt =  valueOption.options[valueOption.selectedIndex];
-    let idValue = slt.id;
+    let idValue = slt.id ? slt.id : 0;
     document.getElementById('specification_cate').value = idValue;
+
     specList.forEach((spec) => {
         let isSpecSeleted = spec.className.includes("show-" + idValue); 
         spec.style.display = isSpecSeleted ? "block" : "none";
