@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PaymentRequest;
 use Illuminate\Http\Request;
 use App\Models\Payment;
 
@@ -35,7 +36,7 @@ class PaymentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PaymentRequest $request)
     {
         $payment = new Payment();
         $payment->payment_name = $request->payment_name;
@@ -43,7 +44,7 @@ class PaymentController extends Controller
         $payment->payment_status = $request->payment_status;
         $payment->save();
 
-        return redirect('/admin/payment/list');
+        return redirect('/admin/payment/list')->withErrors();
     }
 
     /**

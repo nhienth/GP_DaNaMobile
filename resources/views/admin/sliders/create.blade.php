@@ -39,9 +39,10 @@
                                     <div class="mb-1">
                                         <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Thêm slider</label>
 
-                                        <input type="file" id="basic-addon-name" class="form-control"  aria-label="Name" aria-describedby="basic-addon-name" name="file_img" required />
-                                        <div class="valid-feedback">Looks good!</div>
-                                        <div class="invalid-feedback">Please enter your name.</div>
+                                        <input type="file" id="basic-addon-name" class="form-control"  aria-label="Name" aria-describedby="basic-addon-name" name="file_img"  />
+                                        @error('file_img')
+                                        <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <button type="submit" class="btn btn-primary me-2">Thêm</button>
                                     <button type="reset" class="btn btn-primary me-2">Nhập lại</button>

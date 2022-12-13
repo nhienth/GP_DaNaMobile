@@ -39,16 +39,21 @@
                                     @csrf
                                     <div class="mb-1">
                                         <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Thêm Thông số</label>
-                                        <input type="text" id="basic-addon-name" class="form-control" placeholder="Nhập tên thông số" aria-label="Name" name="specification_name" aria-describedby="basic-addon-name" required />
+                                        <input type="text" id="basic-addon-name" class="form-control" placeholder="Nhập tên thông số" aria-label="Name" name="specification_name" aria-describedby="basic-addon-name"  />
+                                        @error('specification_name')
+                                        <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="mb-1">
                                         <label class="form-label fs-5 fw-bolder" for="select-country1">Danh mục sản phẩm</label>
-                                        <select class="form-select" id="select-country1" name="category_id" required name="parent_id">
-                                            <option value="0">Danh mục sản phẩm</option>
+                                        <select class="form-select" id="select-country1" name="category_id"  >
+                                            <option value="">Danh mục sản phẩm</option>
                                             {!! $categorySelect !!}
                                         </select>
-                                        <div class="valid-feedback">Looks good!</div>
-                                        <div class="invalid-feedback">Please select your country</div>
+                                        @error('category_id')
+                                        <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                        @enderror
+
                                     </div>
                                     <button type="submit" class="btn btn-primary me-2">Thêm</button>
                                     <button type="reset" class="btn btn-primary me-2">Nhập lại</button>

@@ -32,7 +32,7 @@
                         <div class="col-md-8 col-12" style="margin : 0 auto">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title fw-bolder">Thêm Danh mục</h3>
+                                    <h3 class="card-title fw-bolder">Thêm danh mục</h3>
                                 </div>
                                 <div class="card-body">
                                     <form class="needs-validation" method="POST"
@@ -41,32 +41,34 @@
                                         <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Tên danh
                                                 mục</label>
-                                            <input type="text" name="category_name" id="basic-addon-name"
-                                                class="form-control" placeholder="Nhập tên Danh mục" aria-label="Name"
-                                                aria-describedby="basic-addon-name" required />
-                                                @error('category_name')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
+                                            <input type="text" name="category_name" id="basic-addon-name" value="{{old('category_name')}}"
+                                                class="form-control" placeholder="Nhập tên danh mục" aria-label="Name" 
+                                                aria-describedby="basic-addon-name" />
+                                            @error('category_name')
+                                                <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="mb-1">
                                             <label for="customFile1" class="form-label fs-5 fw-bolder">Ảnh danh
                                                 mục</label>
-                                            <input class="form-control" type="file" id="customFile1" required
+                                            <input class="form-control" type="file" id="customFile1" value="{{old('category_image')}}"
                                                 name="category_image" />
                                             @error('category_image')
-                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                <div class="alert alert-danger mt-1">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="select-country1">Danh
                                                 mục</label>
-                                            <select class="form-select" id="select-country1" required name="parent_id">
-                                                <option value="0">Danh mục cha</option>
+                                            <select class="form-select" id="select-country1"  name="parent_id">
+                                                <option value="">Danh mục cha</option>
                                                 {!! $categorySelect !!}
                                             </select>
                                             @error('parent_id')
-                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                <div class="alert alert-danger mt-1">{{ $message }}</div>
                                             @enderror
+                                            <div class="valid-feedback">Looks good!</div>
+                                            <div class="invalid-feedback">Please select your country</div>
                                         </div>
 
                                         <button type="submit" class="btn btn-primary me-2">Thêm</button>
