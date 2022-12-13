@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="card-body">
                                     <form class="needs-validation" method="POST"
-                                        action="{{url('/admin/category/create')}}" enctype="multipart/form-data">
+                                        action="{{url('/admin/category/create')}}" novalidate enctype="multipart/form-data">
                                         @csrf
                                         <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Tên danh
@@ -44,12 +44,18 @@
                                             <input type="text" name="category_name" id="basic-addon-name"
                                                 class="form-control" placeholder="Nhập tên Danh mục" aria-label="Name"
                                                 aria-describedby="basic-addon-name" required />
+                                                @error('category_name')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
                                         </div>
                                         <div class="mb-1">
                                             <label for="customFile1" class="form-label fs-5 fw-bolder">Ảnh danh
                                                 mục</label>
                                             <input class="form-control" type="file" id="customFile1" required
                                                 name="category_image" />
+                                            @error('category_image')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="select-country1">Danh
@@ -58,8 +64,9 @@
                                                 <option value="0">Danh mục cha</option>
                                                 {!! $categorySelect !!}
                                             </select>
-                                            <div class="valid-feedback">Looks good!</div>
-                                            <div class="invalid-feedback">Please select your country</div>
+                                            @error('parent_id')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
 
                                         <button type="submit" class="btn btn-primary me-2">Thêm</button>

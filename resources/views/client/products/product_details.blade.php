@@ -610,7 +610,7 @@
                         skuHtml.innerHTML = sku;
                         avilableStockHtml.innerHTML = avilableStock;    
                         
-                        let combiId = pro.parentElement.lastElementChild.value;
+                        let combiId = pro.parentElement.childNodes[13].value;
                         addCartForm.action=`http://127.0.0.1:8000/cart/add/${combiId}`;
                         addCartButton.href=`http://127.0.0.1:8000/cart/add/${combiId}`;
                         addCompare.href=`http://127.0.0.1:8000/compare/add/${combiId}`;
