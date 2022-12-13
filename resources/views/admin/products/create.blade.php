@@ -117,13 +117,12 @@
 <script>
     function changeCate() {
     let specList = document.querySelectorAll('.show-spec');
-
     let valueOption = document.getElementById("select-country1");
 
-        // console.log(element.getAttribute('data-parent'));
     let slt =  valueOption.options[valueOption.selectedIndex];
-    let idValue = slt.id;
+    let idValue = slt.id ? slt.id : 0;
     document.getElementById('specification_cate').value = idValue;
+
     specList.forEach((spec) => {
         let isSpecSeleted = spec.className.includes("show-" + idValue); 
         spec.style.display = isSpecSeleted ? "block" : "none";
