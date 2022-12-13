@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SliderRequest;
 use Illuminate\Http\Request;
 use App\Models\Slider;
 
@@ -40,7 +41,7 @@ class SliderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SliderRequest $request)
     {
         if ($request->has('file_img')) {
             $file = $request->file_img;
@@ -48,7 +49,7 @@ class SliderController extends Controller
             // dd($file_name);
             $file->move(public_path('images/slider'), $file_name);
         }
-        
+
         $request->merge(['slider_img' => $file_name]);
         // dd($request->all());
         if (Slider::create($request->all())) {

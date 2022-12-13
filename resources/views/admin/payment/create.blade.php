@@ -39,12 +39,18 @@
                                     @csrf
                                     <div class="mb-1">
                                         <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Tên</label>
-                                        <input type="text" id="basic-addon-name" class="form-control" placeholder="Tên" aria-label="Name" name="payment_name" aria-describedby="basic-addon-name" required />
+                                        <input type="text" id="basic-addon-name" class="form-control" placeholder="Tên" aria-label="Name" name="payment_name" aria-describedby="basic-addon-name"  />
+                                        @error('payment_name')
+                                        <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                        @enderror
                                     </div>
-                                    
+
                                     <div class="mb-1">
                                         <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Nội dung</label>
-                                        <input type="text" id="basic-addon-name" class="form-control" placeholder="Nội dung" aria-label="Name" name="payment_content" aria-describedby="basic-addon-name" required />
+                                        <input type="text" id="basic-addon-name" class="form-control" placeholder="Nội dung" aria-label="Name" name="payment_content" aria-describedby="basic-addon-name"  />
+                                        @error('payment_content')
+                                        <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="mb-1">
                                         <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Trạng thái</label>

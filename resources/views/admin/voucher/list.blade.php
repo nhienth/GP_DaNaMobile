@@ -37,11 +37,11 @@
                                     <form action="" method="get">
                                         <div id="DataTables_Table_0_filter" class="dataTables_filter">
                                             <label>
-                                                Tìm kiếm: 
+                                                Tìm kiếm:
                                                 <input type="text" class="form-control" placeholder aria-controls="DataTables_Table_0" name="key_search">
                                             </label>
                                             <div class="dt-buttons d-inline-flex mt-50">
-                                                <button class="dt-button buttons-collection btn btn-outline-secondary me-2" 
+                                                <button class="dt-button buttons-collection btn btn-outline-secondary me-2"
                                                 tabindex="0" aria-controls="DataTables_Table_0" type="submit" aria-haspopup="true">Tìm kiếm</button>
                                             </div>
                                         </div>
@@ -49,7 +49,7 @@
                                 </div>
                                 <div class="col-sm-12 col-lg-6 ps-xl-75 ps-0">
                                     <div class="dt-action-buttons d-flex align-items-center justify-content-center justify-content-lg-end flex-lg-nowrap flex-wrap">
-                                        <a href="{{route('voucher.create')}}"><button type="button" class="dt-button add-new btn btn-primary" 
+                                        <a href="{{route('voucher.create')}}"><button type="button" class="dt-button add-new btn btn-primary"
                                             tabindex="0" data-bs-target="#modals-slide-in" aria-controls="DataTables_Table_0">Thêm Voucher mới</button></a>
                                     </div>
                                 </div>
@@ -59,35 +59,42 @@
                         <table class="user-list-table table">
                             <thead class="table-light">
                                 <tr>
-                                    
+
                                     <th>ID</th>
                                     <th>Code</th>
                                     <th>Loại hình</th>
-                                    <th>Giá trị</th> 
-                                    <th>Số lượng</th> 
-                                    <th>Thời gian còn lại</th> 
+                                    <th>Giá trị</th>
+                                    <th>Số lượng</th>
+                                    <th>Thời gian còn lại</th>
                                     <th>Trạng thái</th>
-                                    <th>Product ID</th>
-                                    <th>Product Name</th>
-                                    <th colspan="2">Actions</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th colspan="2">Thao tác</th>
                                 </tr>
                             </thead>
                            <tbody>
-                            
+
                             @foreach ($result as $voucher)
-                            
+
                             <tr data-dt-row="" data-dt-colum="">
                                 <td>{{$voucher->id}}</td>
                                 <td>{{$voucher->code}}</td>
-                                <td>{{$voucher->type}}</td> 
-                                <td>{{$voucher->value}}</td>                            
-                                <td>{{$voucher->numberof}}</td>                            
-                                <td>{{$voucher->time}}</td>                            
-                                <td>{{$voucher->status}}</td>
-                                <td>{{$voucher->product_id}}</td>
+                                <td>{{$voucher->type}}</td>
+                                <td>{{$voucher->value}}</td>
+                                <td>{{$voucher->numberof}}</td>
+                                <td>{{$voucher->time}}</td>
+                                <td>
+                                    @if($voucher->status == 1)
+                                       <span class="alert-success">Đang áp dụng</span>
+                                    @elseif($voucher->status == 2)
+
+                                        <span class="alert-danger">Hết hạn sử dụng</span>
+                                    @elseif($voucher->status == 3)
+                                        <span class="alert-warning">Sắp hết hạn</span>
+                                    @endif
+                                </td>
                                 <td>{{$voucher->voucher_product->product_name}}</td>
                                 <td><a href="{{url('admin/voucher/edit',[$voucher->id])}}"><button type="button" class="btn btn-gradient-success"><i data-feather='edit'></i></button></a></td>
-                                <td><a href="{{url('admin/voucher/delete',[$voucher->id])}}"><button type="button" class="btn btn-gradient-danger"><i data-feather='trash-2'></i></button></a></td>                              
+                                <td><a href="{{url('admin/voucher/delete',[$voucher->id])}}"><button type="button" class="btn btn-gradient-danger"><i data-feather='trash-2'></i></button></a></td>
                                 </tr>
                             @endforeach
                            </tbody>
