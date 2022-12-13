@@ -44,20 +44,22 @@
                                 </div>
                                 <div class="card-body">
                                     <form class="needs-validation" novalidate method="POST" action="{{route('voucher.create')}}">
-                                        @csrf                                                                                                         
+                                        @csrf
                                         {{-- <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="basic-addon-name">ID</label>
-    
+
                                             <input value="" type="text" name="voucher_id" id="basic-addon-name" class="form-control" placeholder="Nhập ID" aria-label="Name" aria-describedby="basic-addon-name" required />
-                                            
-                                            
+
+
                                         </div> --}}
                                         <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Mã Giảm Giá</label>
-    
-                                            <input value="" type="text" name="voucher_code" id="basic-addon-name" class="form-control" placeholder="Nhập mã giảm giá" aria-label="Name" aria-describedby="basic-addon-name" required />
-                                            
-                                            
+
+                                            <input value="" type="text" name="voucher_code" id="basic-addon-name" class="form-control" placeholder="Nhập mã giảm giá" aria-label="Name" aria-describedby="basic-addon-name" />
+                                            @error('voucher_code')
+                                            <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                            @enderror
+
                                         </div>
                                         <div class="mb-1">
                                             <label
@@ -76,51 +78,63 @@
                                             <option value="Giảm theo %">
                                                 Giảm Theo %
                                             </option>
-                                           
+
                                         </select>
                                         </div>
                                         <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Giá Trị</label>
-    
-                                            <input value="" type="text" name="voucher_value" id="basic-addon-name" class="form-control" placeholder="Nhập giá trị" aria-label="Name" aria-describedby="basic-addon-name" required />
-                                            
-                                            
+                                            <input value="" type="text" name="voucher_value" id="basic-addon-name" class="form-control" placeholder="Nhập giá trị" aria-label="Name" aria-describedby="basic-addon-name"  />
+                                            @error('voucher_value')
+                                            <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                            @enderror
+
                                         </div>
                                         <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Số lượng</label>
-    
-                                            <input value="" type="text" name="voucher_numberof" id="basic-addon-name" class="form-control" placeholder="Nhập giá trị" aria-label="Name" aria-describedby="basic-addon-name" required />
-                                            
-                                            
+                                            <input value="" type="text" name="voucher_numberof" id="basic-addon-name" class="form-control" placeholder="Nhập giá trị" aria-label="Name" aria-describedby="basic-addon-name"  />
+                                            @error('voucher_numberof')
+                                            <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Thời gian hết hạn</label>
-    
-                                            <input value="" type="date" name="voucher_time" id="basic-addon-name" class="form-control" placeholder="Nhập giá trị" aria-label="Name" aria-describedby="basic-addon-name" required />
-                                            
-                                            
+                                            <input value="" type="date" name="voucher_time" id="basic-addon-name" class="form-control" placeholder="Nhập giá trị" aria-label="Name" aria-describedby="basic-addon-name"  />
                                         </div>
 
                                         <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Trạng Thái</label>
-    
-                                            <input value="" type="text" name="voucher_status" id="basic-addon-name" class="form-control" placeholder="Nhập trạng thái" aria-label="Name" aria-describedby="basic-addon-name" required />
-                                            
+                                            <select
+                                                class="form-select"
+                                                id="select-country1" name="voucher_status"
+                                            >
+                                                <option value="1">
+                                                    Đang áp dụng
+                                                </option>
+                                                <option value="2">
+                                                    Hết hạn
+                                                </option>
+                                                <option value="3">
+                                                    Sắp hết hạn
+                                                </option>
+                                            </select>
+                                            @error('voucher_status')
+                                            <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Mã Sản Phẩm </label>
-                            
+
                                             <select name="voucher_product_id"  class="form-select"
                                             id="select-country1" > Chọn mã sản phẩm
                                                 @foreach ($result as  $rs)
                                                 <option  value="{{$rs->id}}"> {{$rs->product_name}}</option>
                                                 @endforeach
                                             </select>
-                                            
-                                          
-                                     
+
+
+
                                             {{-- <input value="" type="text" name="voucher_product_id" id="basic-addon-name" class="form-control" placeholder="Nhập mã sản phẩm" aria-label="Name" aria-describedby="basic-addon-name" required />
-                                            
+
                                             <div class="invalid-feedback">Please enter product Id.</div> --}}
                                         </div>
                                         <a href="{{route('voucher.create')}}"><button type="submit" class="btn btn-primary me-2">Thêm mới</button>
@@ -131,14 +145,14 @@
                             </div>
                         </div>
                         <!-- /Bootstrap Validation -->
-    
+
                         <!-- jQuery Validation -->
-                        
+
                         <!-- /jQuery Validation -->
                     </div>
                 </section>
                 <!-- /Validation -->
-    
+
             </div>
         </div>
     </div>

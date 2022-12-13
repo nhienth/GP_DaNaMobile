@@ -599,7 +599,7 @@
 
                 if(combiArray.includes(variSeleted)) {
                     let pro = Array.from(productsCombination).find(pro => pro.value.trim() == variSeleted);
-                 
+                    
                     if (variSeleted == pro.value.trim()) {
                         let sale = pro.parentElement.lastElementChild.value;
                         let priceSale = pro.nextElementSibling.value - (pro.nextElementSibling.value * sale/100)
@@ -610,7 +610,7 @@
                         skuHtml.innerHTML = sku;
                         avilableStockHtml.innerHTML = avilableStock;
                         
-                        let combiId = pro.parentElement.lastElementChild.value;
+                        let combiId = pro.parentElement.children[6].value;
                         addCartForm.action=`http://127.0.0.1:8000/cart/add/${combiId}`;
                         addCartButton.href=`http://127.0.0.1:8000/cart/add/${combiId}`;
                         addCompare.href=`http://127.0.0.1:8000/compare/add/${combiId}`;

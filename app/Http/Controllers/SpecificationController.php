@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\ParameterRequest;
 use App\Models\Specification;
 use App\Models\Category;
 
@@ -23,7 +24,7 @@ class SpecificationController extends Controller
         return view('admin.specifications.create', compact(['categorySelect']));
     }
 
-    public function store(Request $request){
+    public function store(ParameterRequest $request){
         $specification = new Specification();
         $specification->specification_name = $request->specification_name;
         $specification->category_id = $request->category_id;
@@ -40,7 +41,7 @@ class SpecificationController extends Controller
     }
 
     public function edit($id)
-    {      
+    {
         $specification = Specification::with('category')->where('product_specifications_options.id', $id)->first();
         $cate = new CategoryController();
         $categorySelect = $cate->res_selected_category($specification->category_id);
@@ -70,10 +71,10 @@ class SpecificationController extends Controller
     }
 
     public function name(){
-        $key = $_GET['name'];    
+        $key = $_GET['name'];
         $cate = new CategoryController();
 
-        $categorySelect = $cate->res_delete_children(0);  
+        $categorySelect = $cate->res_delete_children(0);
         if($key == 0){
             $specifications_list = Specification::with(['category'])->get();
             return view('admin.specifications.list', compact('specifications_list','categorySelect'));
@@ -87,7 +88,7 @@ class SpecificationController extends Controller
     }
 
     public function category(){
-        $key = $_GET['category'];    
+        $key = $_GET['category'];
         $cate = new CategoryController();
 
         $categorySelect = $cate->res_delete_children(0);
