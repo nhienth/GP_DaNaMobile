@@ -46,6 +46,28 @@ class AddressControll extends Controller
      */
     public function store(Request $request)
     {
+        $validateData = $request->validate([
+            'city' => 'required',
+            'district' => 'required',
+            'ward' => 'required',
+            'street' => 'required',
+            // 'phoneNumber' => 'required|numeric|regex: /^(84[3|5|7|8|9])+([0-9]{8})\b/m',
+            'phoneNumber' => [
+                'required',
+                'numeric',
+                'regex: /^(032|033|034|035|036|037|038|039|086|096|097|098|081|082|083|084|085|088|091|094|056|058|092|070|076|077|078|079|089|090|093|099|059)+([0-9]{7})$/',
+            ],
+            'type_address' => 'required',
+        ], [
+            'city.required' => 'Không được để trống *',
+            'district.required' => 'Không được để trống *',
+            'ward.required' => 'Không được để trống *',
+            'street.required' => 'Không được để trống *',
+            'phoneNumber.required' => 'Không được để trống *',
+            'phoneNumber.numeric' => 'Nhập đúng định dạng số điện thoại *',
+            'phoneNumber.regex' => 'Nhập đúng định dạnh số điện thoại( ví dụ : 099... ) *',
+            'type_address.required' => 'Không được để trống *',
+        ]);
         $address = new User_addresses();
         $address->city = $request -> city;
         $address->district = $request -> district;

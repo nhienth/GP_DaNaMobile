@@ -38,7 +38,7 @@
     color: #F00;
     }
 
-    p {
+    label {
     margin: 0px;
     font-weight: 500;
     line-height: 2;
@@ -173,23 +173,39 @@
     <form class="js-validate" novalidate="novalidate" style="box-shadow: 0 0 5px #e03102;" action="{{url('/user/updatepass', [$user->id])}}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="contentform">
-                <div class="form-group">
-                    <p>Mật khẩu cũ<span>*</span></p>
-                    <input type="password" name="password" placeholder="" value="{{ $user->password }}" required data-msg="Vui lòng nhập địa chỉ." data-error-class="u-has-error" data-success-class="u-has-success" autocomplete="off"/>
-                    <span class="hide-btn hidepass-js"><i class="fas fa-eye"></i></span>
+            <div class="form-group">
+                <label>Mật khẩu hiện tại<span>*</span></label>
+                <div class="input-group mb-3">
+                    <input type="password" name="oldpassword" placeholder="Vui lòng nhập mật khẩu cũ" value="" data-msg="Vui lòng nhập địa chỉ." class="form-control"/>
+                    <span class="input-group-text hidepass-js"><i class="fas fa-eye"></i></span>
                 </div>
-    
-                <div class="form-group">
-                    <p>Mật khẩu mới<span>*</span></p>
-                    <input type="password" name="password" placeholder="Vui lòng nhập mật khẩu" value="" required data-msg="Vui lòng nhập mật khẩu." data-error-class="u-has-error" data-success-class="u-has-success" autocomplete="off"/>
-                    <span class="hide-btn hidepass-js"><i class="fas fa-eye"></i></span>	
-                </div>	
 
-                <div class="form-group">
-                    <p>Xác nhận mật khẩu<span>*</span></p>
-                    <input type="password" name="password" placeholder="Vui lòng xác nhận mật khẩu." value="" required data-msg="Vui lòng xác nhận mật khẩu." data-error-class="u-has-error" data-success-class="u-has-success" autocomplete="off"/>
-                    <span class="hide-btn hidepass-js"><i class="fas fa-eye"></i></span>	
+                @error('oldpassword')
+                    <span style="color: red;">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label>Mật khẩu mới<span>*</span></label>
+                <div class="input-group mb-3">
+                    <input type="password" name="password" placeholder="Vui lòng nhập mật khẩu" value="{{ old('password') }}" data-msg="Vui lòng nhập mật khẩu." class="form-control"/>
+                    <span class="input-group-text hidepass-js"><i class="fas fa-eye"></i></span>
                 </div>	
+                @error('password')
+                    <span style="color: red;">{{ $message }}</span>
+                @enderror	
+            </div>	
+
+            <div class="form-group">
+                <label>Xác nhận mật khẩu<span>*</span></label>
+                <div class="input-group mb-3">
+                    <input type="password" name="password_confirmation" placeholder="Vui lòng xác nhận mật khẩu." value="" data-msg="Vui lòng xác nhận mật khẩu." class="form-control"/>
+                    <span class="input-group-text hidepass-js"><i class="fas fa-eye"></i></span>
+                </div>	
+                @error('password_confirmation')
+                    <span style="color: red;">{{ $message }}</span>
+                @enderror
+            </div>	
 
             <button type="submit" class="button-contact btn btn-outline-primary">Cập nhật</button>
         

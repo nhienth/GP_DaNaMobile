@@ -166,53 +166,80 @@
             
             <div class="form-group">
                 <p>Tỉnh<span>*</span></p>
-                <span class="icon-case"><i class="fa fa-user"></i></span>
-                <select class="form-select" name="city" aria-label="Disabled select example" id="city">
-                    <option value="" selected>Chọn tỉnh thành</option>           
-                </select>
+                <div class="input-group">
+                    <span class="icon-case"><i class="fa fa-user"></i></span>
+                    <select class="form-control" name="city" aria-label="Disabled select example" id="city">
+                        <option value="" selected>Chọn tỉnh thành</option>           
+                    </select>
+                </div>
+                @error('city')
+                    <span style="color: red;">{{ $message }}</span>
+                @enderror
             </div>
 
             <div class="form-group">
                 <p>Quận, huyện<span>*</span></p>
-                <span class="icon-case"><i class="fa fa-user"></i></span>
-                <select class="form-select" name="district" aria-label="Disabled select example" id="district" >
-                    <option value="" selected>Chọn quận huyện</option>
-                </select>
+                <div class="input-group">
+                    <span class="icon-case"><i class="fa fa-user"></i></span>
+                    <select class="form-control" name="district" aria-label="Disabled select example" id="district" >
+                        <option value="" selected>Chọn quận huyện</option>
+                    </select>
+                </div>
+                @error('district')
+                    <span style="color: red;">{{ $message }}</span>
+                @enderror
             </div>
 
             <div class="form-group">
                 <p>Phường, xã<span>*</span></p>
-                <span class="icon-case"><i class="fa fa-user"></i></span>
-                <select class="form-select" name="ward" aria-label="Disabled select example" id="ward">
-                    <option value="" selected>Chọn phường xã</option>
-                </select>
+                <div class="input-group">
+                    <span class="icon-case"><i class="fa fa-user"></i></span>
+                    <select class="form-control" name="ward" aria-label="Disabled select example" id="ward">
+                        <option value="" selected>Chọn phường xã</option>
+                    </select>
+                </div>
+                @error('ward')
+                    <span style="color: red;">{{ $message }}</span>
+                @enderror
             </div>
 
             <div class="form-group">
                 <p>Tên đường, tòa nhà, số nhà<span>*</span></p>
-                <span class="icon-case"><i class="fa fa-user"></i></span>
-                <input type="text" value="" name="street" data-rule="required" required/>
+                <div class="input-group">
+                    <span class="icon-case"><i class="fa fa-user"></i></span>
+                    <input type="text" value="" name="street" data-rule="required" />
+                </div>
+                @error('street')
+                    <span style="color: red;">{{ $message }}</span>
+                @enderror
             </div>
-            {{-- <div class="form-group">
-                <p>Ảnh đại diện <span>*</span></p>
-                <input name="hinh" type="file" class="form-control" disabled>
-                <img src=" " alt="" style="width:30%;">
-            </div>	 --}}
+           
         </div>
 
         <div class="rightcontact">	
             <div class="form-group">
                 <p>Số điện thoại<span>*</span></p>
-                <span class="icon-case"><i class="fa fa-user"></i></span>
-                <input type="number" value="" name="phoneNumber" data-rule="required" required/>
+                <div class="input-group">
+                    <span class="icon-case"><i class="fa fa-user"></i></span>
+                    <input type="text" value="" name="phoneNumber" data-rule="required" />
+                </div>
+                @error('phoneNumber')
+                    <span style="color: red;">{{ $message }}</span>
+                @enderror
             </div>
 
             <div class="form-group">
                 <p>Loại địa chỉ <span>*</span></p>	
-                <select class="form-control" name="type_address">
-                    <option value="0">Nhà riêng</option>
-                    <option value="1">Văn Phòng</option>
-                </select>
+                <div class="input-group">
+                    <select class="form-control" name="type_address">
+                        <option selected value="">Chọn địa chỉ</option>
+                        <option value="0">Nhà riêng</option>
+                        <option value="1">Văn Phòng</option>
+                    </select>
+                </div>
+                @error('type_address')
+                    <span style="color: red;">{{ $message }}</span>
+                @enderror
             </div>	
         </div>
         <div class="text-center">

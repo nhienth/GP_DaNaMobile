@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Slider;
-use  App\Models\User;
-use  App\Models\User_addresses;
-use  App\Models\VoucherUser;
-use  App\Models\Voucher;
+use App\Models\User;
+use App\Models\User_addresses;
+use App\Models\VoucherUser;
+use App\Models\Voucher;
+use Hash;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -122,13 +123,32 @@ class UserController extends Controller
 
     public function passupdate(Request $request, $id)
     {
-        $user = User::find($id);
-        $user ->id = $request->id;
-        $user ->password = $request->password;
-
-        $user->save();
-        // dd($user);
-        return  $this->show($id)->with('status','Bạn đã cập nhật thành công');
+        $validateData = $request->validate([
+            'oldpassword' => 'required',
+            'password' => [
+                'required',
+                'regex:/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.* )(?=.*[^a-zA-Z0-9]).{8,16}$/m',
+                'confirmed',
+            ],
+            'password_confirmation' => 'required|confirmed'
+        ], [
+            'oldpassword.required' => 'Không được để trống *',
+            'password.required' => 'Không được để trống *',
+            'password_confirmation.required' => 'Không được để trống *',
+            'password_confirmation.confirmed' => 'Mật khẩu không trùng khớp *',
+            'password.regex' => 'Hãy tạo một mật khẩu mạnh với ít nhất 8 đến 16 ký tự, một chữ hoa và chữ thường, một số và một ký tự đặc biệt *',
+            'password.confirmed' => 'Mật khẩu không trùng khớp *'
+        ]);
+        $hashedPassword = Auth::user()->password;
+        if(Hash::check($request->oldpassword, $hashedPassword)){
+            $user = User::find(Auth::id());
+            $user->password = Hash::make($request->password);
+            $user->save($validateData);
+            // Auth::logout();
+            return $this->show($id)->with('status','Bạn đã cập nhật thành công');
+        }else{
+            return redirect()->back()->with('info', 'Thay đổi mật khẩu không thành công!');
+        }
         
     }
     /**
