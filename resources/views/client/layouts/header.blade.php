@@ -19,7 +19,7 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
             <div class="container">
                 <div class="d-flex align-items-center">
                     <div class="topbar-left">
-                        <a href="#" class="text-gray-110 font-size-13 hover-on-dark">Chào mừng bạn đến với Shop thiết bị
+                        <a href="#" class="text-gray-110 font-size-13 hover-on-dark">Chào mừng bạn đến với cửa hàng thiết bị
                             điện thoại di động DaNa-Mobile</a>
 
                     </div>
@@ -49,12 +49,12 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                                                 @csrf
                                                 <div id="userlogin" class="dropdown-menu dropdown-unfold "
                                                     style="text-align:center" aria-labelledby="Userclient">
-                                                    <a href="http://127.0.0.1:8000/user/{{ Auth::user()->id }}" class="dropdown-item">Thông tin cá nhân</a>
+                                                    <a href="{{url('user', [Auth::user()->id])}}" class="dropdown-item">Thông tin cá nhân</a>
                                                     @if(Auth::user()->role == 1)
-                                                    <a href="http://127.0.0.1:8000/admin" class="dropdown-item">Trang quản trị</a>
+                                                    <a href="{{url('/admin')}}" class="dropdown-item">Trang quản trị</a>
                                                     @endif
-                                                    <a href="http://127.0.0.1:8000/voucher/voucher_user" class="dropdown-item">Kho voucher</a>
-                                                    <a href="http://127.0.0.1:8000/user/updatepass/{{ Auth::user()->id }}" class="dropdown-item">Đổi mật khẩu</a>
+                                                    <a href="{{url('/voucher/voucher_user')}}" class="dropdown-item">Kho voucher</a>
+                                                    <a href="{{url('user/updatepass/', [Auth::user()->id])}}" class="dropdown-item">Đổi mật khẩu</a>
                                                     <hr>
                                                     <a href="route('logout')"
                                                         onclick="event.preventDefault(); this.closest('form').submit();">

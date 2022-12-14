@@ -51,6 +51,8 @@
             <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('admin/order/list')}}"><i data-feather="shopping-cart"></i><span class="menu-title text-truncate" data-i18n="shopping-cart">Đơn hàng</span></a></li>
             
             <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('admin/stocks/list')}}"><i data-feather="shopping-bag"></i><span class="menu-title text-truncate" data-i18n="shopping-cart">Kho hàng</span></a></li>
+
+            <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('admin/statistical/list')}}"><i data-feather="shopping-bag"></i><span class="menu-title text-truncate" data-i18n="shopping-cart">Thống kê</span></a></li>
             
             <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('admin/user/list')}}"><i data-feather="user"></i><span class="menu-title text-truncate" data-i18n="user">Tài khoản</span></a></li>
             

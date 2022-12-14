@@ -12,7 +12,7 @@ use App\Models\User;
 use App\Models\Combinations;
 use App\Models\OrderDetails;
 use App\Models\Preview;
-use DB;
+use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
     /**

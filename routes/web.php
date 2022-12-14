@@ -125,9 +125,7 @@ Route::prefix('/')->group(function () {
     Route::prefix('/blogs')->group(function () {
 
         Route::get('/', [PostController::class, 'getAllPost']);
-
         // lay tat ca bai viet theo danh muc
-
         Route::get('/list/{id}', [PostController::class, 'getPostById']);
 
         Route::get('/details/{id}', [PostController::class, 'showclient']);
@@ -169,10 +167,6 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
             Route::get('/filter_name', [CategoryController::class, 'filter_name'])->name('filter_name_cate');
             Route::get('/search', [CategoryController::class, 'search'])->name('search_cate');
         });
-
-        //preview
-        // Route::post('/preview/{id}', [PreviewController::class, 'preview'])->name('preview')->middleware('auth');
-
 
         Route::prefix('/product')->group(function () {
             Route::get('/searchproduct', [ProductController::class, 'search'])->name('search');
@@ -347,6 +341,10 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
             Route::get('/edit/{id}', [PaymentController::class, 'edit']);
             Route::post('/update/{id}', [PaymentController::class, 'update']);
             Route::get('/delete/{id}', [PaymentController::class, 'destroy']);
+        });
+
+        Route::prefix('/statistical')->group(function () {
+            Route::get('/list', [StatisticalController::class, 'getAllStatisticals'])->name('statistical.list');
         });
 
     });

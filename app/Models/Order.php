@@ -10,12 +10,11 @@ use App\Models\Product;
 
 class Order extends Model
 {
-    public $timestamps = false;
+    protected $table = 'orders';
+    
     protected $fillable = [
         'order_number', 'user_id', 'sub_total', 'voucher','total_amount','payment_id','status','full_name','email','phone','address','note'
     ];
-    protected $primaryKey = 'id';
-    protected $table = 'orders';
 
     public function orderdetail()
     {
