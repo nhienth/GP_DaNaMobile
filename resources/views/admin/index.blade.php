@@ -17,30 +17,11 @@
             <!-- Dashboard Ecommerce Starts -->
             <section id="dashboard-ecommerce">
                 <div class="row match-height">
-                    <!-- Medal Card -->
-                    <div class="col-xl-4 col-md-6 col-12">
-                        <div class="card card-congratulation-medal">
-                            <div class="card-body">
-                                <h5>Congratulations 🎉 John!</h5>
-                                <p class="card-text font-small-3">You have won gold medal</p>
-                                <h3 class="mb-75 mt-2 pt-50">
-                                    <a href="#">$48.9k</a>
-                                </h3>
-                                <button type="button" class="btn btn-primary">View Sales</button>
-                                <img src="../../../app-assets/images/illustration/badge.svg" class="congratulation-medal" alt="Medal Pic" />
-                            </div>
-                        </div>
-                    </div>
-                    <!--/ Medal Card -->
-
                     <!-- Statistics Card -->
-                    <div class="col-xl-8 col-md-6 col-12">
+                    <div class="col-xl-12 col-md-6 col-12">
                         <div class="card card-statistics">
                             <div class="card-header">
-                                <h4 class="card-title">Statistics</h4>
-                                <div class="d-flex align-items-center">
-                                    <p class="card-text font-small-2 me-25 mb-0">Updated 1 month ago</p>
-                                </div>
+                                <h4 class="card-title">Số liệu thống kê</h4>
                             </div>
                             <div class="card-body statistics-body">
                                 <div class="row">
@@ -48,12 +29,12 @@
                                         <div class="d-flex flex-row">
                                             <div class="avatar bg-light-primary me-2">
                                                 <div class="avatar-content">
-                                                    <i data-feather="trending-up" class="avatar-icon"></i>
+                                                    <i data-feather="align-justify" class="avatar-icon"></i>
                                                 </div>
                                             </div>
                                             <div class="my-auto">
-                                                <h4 class="fw-bolder mb-0">230k</h4>
-                                                <p class="card-text font-small-3 mb-0">Sales</p>
+                                                <h4 class="fw-bolder mb-0">{{ $category }}</h4>
+                                                <p class="card-text font-small-3 mb-0">Danh mục</p>
                                             </div>
                                         </div>
                                     </div>
@@ -65,8 +46,8 @@
                                                 </div>
                                             </div>
                                             <div class="my-auto">
-                                                <h4 class="fw-bolder mb-0">8.549k</h4>
-                                                <p class="card-text font-small-3 mb-0">Customers</p>
+                                                <h4 class="fw-bolder mb-0">{{ $role }}</h4>
+                                                <p class="card-text font-small-3 mb-0">Tài khoản</p>
                                             </div>
                                         </div>
                                     </div>
@@ -78,8 +59,8 @@
                                                 </div>
                                             </div>
                                             <div class="my-auto">
-                                                <h4 class="fw-bolder mb-0">1.423k</h4>
-                                                <p class="card-text font-small-3 mb-0">Products</p>
+                                                <h4 class="fw-bolder mb-0">{{ $product }}</h4>
+                                                <p class="card-text font-small-3 mb-0">Sản phẩm</p>
                                             </div>
                                         </div>
                                     </div>
@@ -87,12 +68,12 @@
                                         <div class="d-flex flex-row">
                                             <div class="avatar bg-light-success me-2">
                                                 <div class="avatar-content">
-                                                    <i data-feather="dollar-sign" class="avatar-icon"></i>
+                                                    <i data-feather="shopping-bag" class="avatar-icon"></i>
                                                 </div>
                                             </div>
                                             <div class="my-auto">
-                                                <h4 class="fw-bolder mb-0">$9745</h4>
-                                                <p class="card-text font-small-3 mb-0">Revenue</p>
+                                                <h4 class="fw-bolder mb-0">{{ $order }}</h4>
+                                                <p class="card-text font-small-3 mb-0">Đơn hàng</p>
                                             </div>
                                         </div>
                                     </div>
@@ -105,6 +86,26 @@
 
                 <div class="row match-height">
                     <div class="col-lg-4 col-12">
+                        <div class="col-lg-12 col-md-6 col-12">
+                            <div class="card earnings-card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <h4 class="card-title mb-1">Earnings</h4>
+                                            <div class="font-small-2">This Month</div>
+                                            <h5 class="mb-1">$4055.56</h5>
+                                            <p class="card-text text-muted font-small-2">
+                                                <span class="fw-bolder">68.2%</span><span> more earnings than last month.</span>
+                                            </p>
+                                        </div>
+                                        <div class="col-6">
+                                            <div id="earnings-chart"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Earnings Card -->
                         <div class="row match-height">
                             <!-- Bar Chart - Orders -->
                             <div class="col-lg-6 col-md-3 col-6">
@@ -129,29 +130,8 @@
                                 </div>
                             </div>
                             <!--/ Line Chart - Profit -->
-
-                            <!-- Earnings Card -->
-                            <div class="col-lg-12 col-md-6 col-12">
-                                <div class="card earnings-card">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <h4 class="card-title mb-1">Earnings</h4>
-                                                <div class="font-small-2">This Month</div>
-                                                <h5 class="mb-1">$4055.56</h5>
-                                                <p class="card-text text-muted font-small-2">
-                                                    <span class="fw-bolder">68.2%</span><span> more earnings than last month.</span>
-                                                </p>
-                                            </div>
-                                            <div class="col-6">
-                                                <div id="earnings-chart"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/ Earnings Card -->
                         </div>
+                        <!--/ Earnings Card -->
                     </div>
 
                     <!-- Revenue Report Card -->

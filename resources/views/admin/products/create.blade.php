@@ -70,20 +70,19 @@
                                     <div class="mb-2">
                                         <label for="customFile1" class="form-label fs-5 fw-bolder">Ảnh sản phẩm</label>
                                         <input class="form-control" name="product_img" type="file" id="customFile1"
-                                        value="{{old('product_img')}}"
-                                             />
-                                        @error('product_img')
-                                            <div class="alert alert-danger mt-1">{{ $message }}</div>
-                                        @enderror
+                                        value="{{old('product_img')}}" />
+                                        {{-- @error('product_img')
+                                        <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                        @enderror --}}
                                     </div>
 
                                     <div class="mb-2">
                                         <label for="customFile1" class="form-label fs-5 fw-bolder">Thư viện ảnh</label>
                                         <input class="form-control" name="product_img_gallery[]" type="file"
                                             id="customFile1" required multiple="true" />
-                                        @error('product_img_gallery[]')
+                                        {{-- @error('product_img_gallery[]')
                                             <div class="alert alert-danger mt-1">{{ $message }}</div>
-                                        @enderror
+                                        @enderror --}}
                                     </div>
                                     <div class="mb-1">
                                         <label class="d-block form-label fs-5 fw-bolder" for="">Thông số sản

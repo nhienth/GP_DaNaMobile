@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AddressControll;
 use App\Http\Controllers\GoogleController;
 
+use App\Http\Controllers\StatisticalController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StocksController;
@@ -153,9 +154,7 @@ Route::prefix('/')->group(function () {
 // -----------------------------------ADMIN-----------------------------
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::prefix('/admin')->group(function () {
-        Route::get('/', function () {
-            return view('admin.index');
-        });
+        Route::get('/', [StatisticalController::class, 'index']);
 
         Route::prefix('/category')->group(function () {
             Route::get('/list', [CategoryController::class, 'index']);

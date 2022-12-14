@@ -28,7 +28,7 @@ class StoreProductRequest extends FormRequest
             'category_id' => 'required',
             'product_img' => 'required',
             'product_desc' => 'required',
-            'product_img_gallery[]' => 'required',
+            // 'product_img_gallery[]' => 'required',
         ];
     }
 
@@ -41,7 +41,7 @@ class StoreProductRequest extends FormRequest
             'category_id.required' => 'Danh mục không được để trống',
             'product_img.required' => 'Ảnh sản phẩm không được để trống',
             'product_desc.required' => 'Mô tả sản phẩm không được để trống',
-            'product_img_gallery[].required' => 'Thư viện ảnh không được để trống',
+            // 'product_img_gallery[].required' => 'Thư viện ảnh không được để trống',
         ];
     }
 }

@@ -91,50 +91,10 @@ $random = [];
                     <div class="row">
                         <div class="col-12 col-md mb-4 mb-md-0">
                             <h6 class="mb-3 font-weight-bold">Tìm kiếm nhanh</h6>
-                            <!-- List Group -->
-                            <ul class="list-group list-group-flush list-group-borderless mb-0 list-group-transparent">
-                                <li><a class="list-group-item list-group-item-action"
-                                        href="../shop/product-categories-5-column-sidebar.html">Laptops & Computers</a>
-                                </li>
-                                <li><a class="list-group-item list-group-item-action"
-                                        href="../shop/product-categories-5-column-sidebar.html">Cameras &
-                                        Photography</a></li>
-                                <li><a class="list-group-item list-group-item-action"
-                                        href="../shop/product-categories-5-column-sidebar.html">Smart Phones &
-                                        Tablets</a></li>
-                                <li><a class="list-group-item list-group-item-action"
-                                        href="../shop/product-categories-5-column-sidebar.html">Video Games &
-                                        Consoles</a></li>
-                                <li><a class="list-group-item list-group-item-action"
-                                        href="../shop/product-categories-5-column-sidebar.html">TV & Audio</a></li>
-                                <li><a class="list-group-item list-group-item-action"
-                                        href="../shop/product-categories-5-column-sidebar.html">Gadgets</a></li>
-                                <li><a class="list-group-item list-group-item-action"
-                                        href="../shop/product-categories-5-column-sidebar.html">Car Electronic & GPS</a>
-                                </li>
-                            </ul>
-                            <!-- End List Group -->
+                            <div class="mb-6">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31098.323046338846!2d108.22662651928634!3d16.05212088979534!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3142197d122a3a2f%3A0x40fd7aefb9e41361!2sKokoro%20Cafe!5e1!3m2!1svi!2s!4v1670487378298!5m2!1svi!2s" width="500" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
                         </div>
-
-                        <div class="col-12 col-md mb-4 mb-md-0">
-                            <!-- List Group -->
-                            <ul
-                                class="list-group list-group-flush list-group-borderless mb-0 list-group-transparent mt-md-6">
-                                <li><a class="list-group-item list-group-item-action"
-                                        href="../shop/product-categories-5-column-sidebar.html">Printers & Ink</a></li>
-                                <li><a class="list-group-item list-group-item-action"
-                                        href="../shop/product-categories-5-column-sidebar.html">Software</a></li>
-                                <li><a class="list-group-item list-group-item-action"
-                                        href="../shop/product-categories-5-column-sidebar.html">Office Supplies</a></li>
-                                <li><a class="list-group-item list-group-item-action"
-                                        href="../shop/product-categories-5-column-sidebar.html">Computer Components</a>
-                                </li>
-                                <li><a class="list-group-item list-group-item-action"
-                                        href="../shop/product-categories-5-column-sidebar.html">Accesories</a></li>
-                            </ul>
-                            <!-- End List Group -->
-                        </div>
-
                         <div class="col-12 col-md mb-4 mb-md-0">
                             <h6 class="mb-3 font-weight-bold">Chăm sóc khách hàng</h6>
                             <!-- List Group -->

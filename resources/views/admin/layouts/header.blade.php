@@ -8,9 +8,6 @@
                     <span class="avatar"><img class="round" src="{{asset('images/user/default.jpg')}}" alt="avatar" height="40" width="40"><span class="avatar-status-online"></span></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user">
-                    <a class="dropdown-item" href="page-profile.html"><i class="me-80" data-feather="user"></i> Thông tin cá nhân</a>
-                    <a class="dropdown-item" href=""><i class="me-50" data-feather="settings"></i>Đổi mật khẩu</a>
-                <div class="dropdown-divider"></div>
                     <form method="POST" action="{{ route('logout') }}" class="dropdown-item">
                         @csrf
                         <x-responsive-nav-link :href="route('logout')"

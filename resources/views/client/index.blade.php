@@ -118,7 +118,7 @@ use App\Models\Product;
                             </div>
                             <div class="mb-2">
                                 <h6 class="font-size-15 text-gray-2 text-center mb-3">Nhanh lên! Thời gian còn lại:</h6>
-                                <div class="js-countdown d-flex justify-content-center" data-end-date="2022/12/20"
+                                <div class="js-countdown d-flex justify-content-center" data-end-date="2022/12/29"
                                     data-hours-format="%H" data-minutes-format="%M" data-seconds-format="%S">
                                     <div class="text-lh-1">
                                         <div class="text-gray-2 font-size-30 bg-gray-4 py-2 px-2 rounded-sm mb-2">
