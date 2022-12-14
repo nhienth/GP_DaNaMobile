@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="card-body">
                                     <form class="needs-validation" method="POST"
-                                        action="{{url('/admin/category/create')}}" enctype="multipart/form-data">
+                                        action="{{url('/admin/category/create')}}" novalidate enctype="multipart/form-data">
                                         @csrf
                                         <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Tên danh

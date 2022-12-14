@@ -471,8 +471,8 @@ use App\Models\Product;
                         
                     <div class="js-slide">
                         <a href="{{$list->location}}" class="link-hover__brand">
-                            <img class="img-fluid m-auto max-height-50"
-                                src="{{asset('images/banner/'.$list->banner_img)}}" alt="Image Description">
+                            <img class="img-fluid m-auto"
+                                src="{{asset('images/banner/'.$list->banner_img)}}" alt="Image Description" style="width: 80%; max-height:7rem;">
                         </a>
                     </div>
 

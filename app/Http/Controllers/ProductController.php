@@ -74,6 +74,8 @@ class ProductController extends Controller
     //lọc sản phẩm theo giá bán
     public function filter_price()
     {
+        $banner = Banner::where('id', '9')->first();
+        $bannerlist = Banner::where('id', '<>', '9')->get();
         $key_word = $_GET['select_price'];
         if($key_word == 1){
             $productFilter = Product::join('products_combinations', 'products.id', '=', 'products_combinations.product_id')
@@ -95,7 +97,7 @@ class ProductController extends Controller
             ->get();
         }
 
-        return view('client.products.product_filter', compact('productFilter'));
+        return view('client.products.product_filter', compact('productFilter','banner', 'bannerlist'));
 
     }
     /**

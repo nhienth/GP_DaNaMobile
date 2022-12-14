@@ -605,10 +605,10 @@
                         let priceSale = pro.nextElementSibling.value - (pro.nextElementSibling.value * sale/100)
                         priceHtml.innerHTML = `${Intl.NumberFormat('en-US').format(pro.nextElementSibling.value)}đ`;
                         pricesaleHtml.innerHTML = `${Intl.NumberFormat('en-US').format(priceSale)}đ`;
-                        let sku = pro.parentElement.childNodes[9].value;
-                        let avilableStock = pro.parentElement.childNodes[11].value;
+                        let sku = pro.parentElement.children[4].value;
+                        let avilableStock = pro.parentElement.children[5].value;
                         skuHtml.innerHTML = sku;
-                        avilableStockHtml.innerHTML = avilableStock;
+                        avilableStockHtml.innerHTML = avilableStock;    
                         
                         let combiId = pro.parentElement.children[6].value;
                         addCartForm.action=`http://127.0.0.1:8000/cart/add/${combiId}`;
