@@ -78,17 +78,19 @@ class PostController extends Controller
      */
     public function getAllPost()
     {
-        $banner = Banner::take(5)->get();
+        $banner = Banner::where('id', '9')->first();
+        $bannerlist = Banner::where('id', '<>', '9')->get();
         $allPost = Post::with('category')->orderBy('posts.created_at', 'DESC')->get();
-        return view('client.blogs.post', compact('allPost','banner'));
+        return view('client.blogs.post', compact('allPost','banner', 'bannerlist'));
     }
 
     public function showclient($id)
     {
-
+        $banner = Banner::where('id', '9')->first();
+        $bannerlist = Banner::where('id', '<>', '9')->get();
         $post = Post::find($id);
         $previews = PostReview::where('posts_id',$id)->get();
-        return view('client.blogs.detail', compact('post','previews'));
+        return view('client.blogs.detail', compact('post','previews','banner', 'bannerlist'));
     }
 
     /**

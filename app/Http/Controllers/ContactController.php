@@ -19,8 +19,10 @@ class ContactController extends Controller
     }
     public function index()
     {
+        $banner = Banner::where('id', '9')->first();
+        $bannerlist = Banner::where('id', '<>', '9')->get();
         $result = $this->contact->all();
-        return view('admin.contact.list', compact('result'));
+        return view('admin.contact.list', compact('result','banner', 'bannerlist'));
     }
 
 

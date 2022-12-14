@@ -280,7 +280,7 @@
                     Có phiếu giảm giá?  <a href="#" class="alert-link" data-toggle="collapse" data-target="#shopCartTwo" aria-expanded="false" aria-controls="shopCartTwo" style="color: white;">Nhấn vào đây để nhập mã của bạn</a>
                 </div>
                 <div id="shopCartTwo" class="collapse border border-top-0" aria-labelledby="shopCartHeadingTwo" data-parent="#shopCartAccordion1" style="">
-                    <form class="js-validate p-5" novalidate="novalidate">
+                    <form class="js-validate p-5">
                         <p class="w-100 text-gray-90" >Nếu bạn có mã giảm giá, vui lòng áp dụng nó bên dưới.</p>
                         <div class="input-group input-group-pill ">
                             <div class="row mb-5" style="width: 100%">
@@ -401,7 +401,7 @@
                                     
                                     <tbody>
                                         <?php $subTotal = 0;
-                                                $ship = 100;
+                                                $ship = 30000;
                                                 $total = 0;
                                                 
                                         ?>
@@ -409,7 +409,7 @@
                                         <?php $subTotal += $cart['price']*$cart['quantity'] ?>
                                         <tr class="cart_item">
                                             <td>{{$cart['name']}}&nbsp;<strong class="product-quantity">× {{$cart['quantity']}}</strong></td>
-                                            <td>{{$cart['price']*$cart['quantity']}}</td> 
+                                            <td>{{number_format($cart['price']*$cart['quantity'])}}đ</td> 
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -446,7 +446,7 @@
                                         @else
                                         <tr>
                                             <th>Tổng</th>
-                                            <td><strong><?= number_format($subTotal + $ship) ?>đ</strong></td>
+                                            <td style="text-align: right !important;"><strong><?= number_format($subTotal + $ship) ?>đ</strong></td>
                                             <input type="hidden" value="<?= $subTotal + $ship ?>" name="total_amount">
                                         </tr>
                                         @endif
@@ -520,7 +520,7 @@
                                         Họ và tên
                                         <span class="text-danger">*</span>
                                     </label>
-                                    <input type="text" value="{{$user->name}}" class="form-control" name="fullname" placeholder="Jack" aria-label="Jack" required="" data-msg="Please enter your frist name." data-error-class="u-has-error" data-success-class="u-has-success" autocomplete="off">
+                                    <input type="text" value="{{$user->name}}" class="form-control" name="fullname" placeholder="Jack" aria-label="Jack" required="" data-msg="Hãy nhập tên của bạn." data-error-class="u-has-error" data-success-class="u-has-success" autocomplete="off">
                                 </div>
                                 <!-- End Input -->
                             </div>
@@ -532,14 +532,11 @@
                                     <label class="form-label cl-black">
                                         Tên công ty (Nếu có)
                                     </label>
-                                    <input type="text" class="form-control" name="companyName" placeholder="Company Name" aria-label="Company Name" data-msg="Please enter a company name." data-error-class="u-has-error" data-success-class="u-has-success">
+                                    <input type="text" class="form-control" name="companyName" placeholder="Company Name" aria-label="Company Name" data-msg="Hãy nhập tên công ty của bạn." data-error-class="u-has-error" data-success-class="u-has-success">
                                 </div>
                                 <!-- End Input -->
                             </div>
                             <div class="w-100"></div>
-
-                            
-
                             <div class="col-md-12">
                                 <!-- Input -->
                                 <div class="js-form-message mb-6">
@@ -550,8 +547,7 @@
                                     <select name="address" class="form-control js-select selectpicker dropdown-select" required="" data-msg="Please select country." data-error-class="u-has-error" data-success-class="u-has-success"
                                         data-live-search="true" data-style="form-control border-color-1 font-weight-normal">
                                         @foreach($user->user_addresses as $address)
-                                            <option value="{{$address->id}}">{{ $address -> city }} - {{ $address -> district }} - {{ $address -> ward }} - {{ $address -> street }}
-                                              
+                                            <option value="{{$address->id}}">{{ $address -> city }} - {{ $address -> district }} - {{ $address -> ward }} - {{ $address -> street }}                                          
                                                 @if ($address->type_address == 0)
                                                     ( Nhà riêng )
                                                 @else
@@ -573,7 +569,7 @@
                                         Email
                                         <span class="text-danger">*</span>
                                     </label>
-                                    <input type="email" name="email" value="{{$user->email}}" class="form-control" name="emailAddress" placeholder="jackwayley@gmail.com" aria-label="jackwayley@gmail.com" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
+                                    <input type="email" name="email" value="{{$user->email}}" class="form-control" name="emailAddress" placeholder="jackwayley@gmail.com" aria-label="jackwayley@gmail.com" required="" data-msg="Hãy nhập Email của bạn!" data-error-class="u-has-error" data-success-class="u-has-success">
                                 </div>
                                 <!-- End Input -->
                             </div>
@@ -583,8 +579,9 @@
                                 <div class="js-form-message mb-6">
                                     <label class="form-label cl-black">
                                         Điện thoại
+                                        <span class="text-danger">*</span>
                                     </label>
-                                    <input type="text" name="phone" value="{{$user->phoneNumber}}" class="form-control" placeholder="+1 (062) 109-9222" aria-label="+1 (062) 109-9222" data-msg="Please enter your last name." data-error-class="u-has-error" data-success-class="u-has-success">
+                                    <input type="text" name="phone" value="{{$user->phoneNumber}}" class="form-control" placeholder="+84 (829) 111 111" aria-label="+84 (829) 111 111" data-msg="Hãy nhập số điện thoại của bạn!" data-error-class="u-has-error" data-success-class="u-has-success">
                                 </div>
                                 <!-- End Input -->
                             </div>
@@ -606,7 +603,7 @@
                             </label>
 
                             <div class="input-group">
-                                <textarea class="form-control p-5" rows="4" name="text" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                                <textarea class="form-control p-5" rows="4" name="text" placeholder="Ghi chú về đơn đặt hàng của bạn, ví dụ: ghi chú đặc biệt cho giao hàng."></textarea>
                             </div>
                         </div>
                         <!-- End Input -->

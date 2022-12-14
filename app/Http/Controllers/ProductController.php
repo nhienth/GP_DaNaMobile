@@ -2,25 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\CategoryController;
-
-use Illuminate\Support\Facades\Auth;
 use Validator;
-use App\Models\Category;
-use App\Models\ProductSpecificationsOptions;
-use App\Models\ProductSpecificationsOptionsValue;
-use App\Models\Product;
-use App\Models\Preview;
+
+use App\Models\Order;
 use App\Models\Banner;
 use App\Models\Slider;
-use App\Models\Combinations;
-use App\Models\Image_Gallery;
-use App\Models\Order;
-use App\Models\OrderDetails;
+use App\Models\Preview;
+use App\Models\Product;
+use App\Models\Category;
 use App\Models\WishList;
-use Illuminate\Console\View\Components\Alert;
+use App\Models\Combinations;
+use App\Models\OrderDetails;
 use Illuminate\Http\Request;
+use App\Models\Image_Gallery;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreProductRequest;
+use App\Http\Controllers\CategoryController;
+use App\Models\ProductSpecificationsOptions;
+use Illuminate\Console\View\Components\Alert;
+use App\Models\ProductSpecificationsOptionsValue;
 
 class ProductController extends Controller
 {
@@ -73,6 +74,8 @@ class ProductController extends Controller
     //lọc sản phẩm theo giá bán
     public function filter_price()
     {
+        $banner = Banner::where('id', '9')->first();
+        $bannerlist = Banner::where('id', '<>', '9')->get();
         $key_word = $_GET['select_price'];
         if($key_word == 1){
             $productFilter = Product::join('products_combinations', 'products.id', '=', 'products_combinations.product_id')
@@ -94,7 +97,7 @@ class ProductController extends Controller
             ->get();
         }
 
-        return view('client.products.product_filter', compact('productFilter'));
+        return view('client.products.product_filter', compact('productFilter','banner', 'bannerlist'));
 
     }
     /**
@@ -130,7 +133,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
         $product = new Product();
 
@@ -276,9 +279,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        // $path = '../public/images/admin/products/';
         $product = Product::find($id);
-        // unlink($path.$product->product_img);
         $product->delete();
         return redirect('/admin/product/list');
     }
