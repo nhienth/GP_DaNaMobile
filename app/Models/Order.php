@@ -11,7 +11,7 @@ use App\Models\Product;
 class Order extends Model
 {
     protected $table = 'orders';
-    
+    public $timestamps = true;
     protected $fillable = [
         'order_number', 'user_id', 'sub_total', 'voucher','total_amount','payment_id','status','full_name','email','phone','address','note'
     ];
@@ -27,5 +27,3 @@ class Order extends Model
         return $this->hasMany(Product::class,'product_id','id');
     }
 }
-
-

@@ -42,7 +42,10 @@
                     @foreach ($myBill as $item )
                         <tr>
                             <td>{{ $count++ }}</td>
-                            <td>{{ $item->create_at}}</td>
+                            {{-- @php
+                                dd($item->created_at)
+                            @endphp --}}
+                            <td>{{ $item->created_at->format('d/m/Y') }}</td>
                             <td>{{number_format( $item->total_amount )}}₫</td>
                             <td>{{ $item->address }}</td>
                             <?php
