@@ -12,12 +12,13 @@
                                 chủ</a>
                         </li>
                         <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a
-                                href="{{url('http://127.0.0.1:8000/product/byCate/'.$product->category->id)}}">{{$product->category->category_name}}</a></li>
+                                href="{{url('/product/byCate/', [$product->category->id])}}">{{$product->category->category_name}}</a></li>
                         <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1 active" aria-current="page">
                             {{$product->product_name}}</li>
                     </ol>
                 </nav>
             </div>
+            <input type="hidden" value="{{$product->id}}" id="product_id">
             <!-- End breadcrumb -->
         </div>
     </div>
@@ -108,25 +109,8 @@
                             </div>
                                 <del id="price_product" data-price="{{$product->minprice}} - {{$product->maxprice}}" class="font-size-25" style="color: rgb(117, 117, 132)"></del>
                         </div>
-
+                        <input type="hidden" id="countVariation" value="{{count($product->variations)}}">
                         <div class="border-top border-bottom py-3 mb-4">
-                            <form action="">
-                                @foreach ($product->combinations as $productCombi)
-                                <div>
-                                    <input type="hidden" value="{{$product->product_name}}" />
-                                    <input type="hidden" name="combination_string"
-                                        value="{{$productCombi->combination_string}}">
-                                    <input type="hidden" name="price" id="wishlist_price{{$productCombi->id}}"
-                                        value="{{$productCombi->price}}">
-                                    <input type="hidden" name="combination_image"
-                                        value="{{$productCombi->combination_image}}">
-                                    <input type="hidden" name="productCombi_sku" value="{{$productCombi->sku}}" />
-                                    <input type="hidden" name="productCombi_avilableStock" value="{{$productCombi->avilableStock}}" />
-                                    <input type="hidden" name="productCombi_Id" value="{{$productCombi->id}}" />
-                                    <input type="hidden" name="productCombi_sale" value="{{$productCombi->sale}}" />
-                                </div>
-                                @endforeach
-                            </form>
                             <div class="d-flex align-items-center">
 
                                 <div>
@@ -163,7 +147,7 @@
                                 </div>
                             </div>
                         </div>
-                        <form id="addtocart1" action="{{url('cart/add/'.$productCombi->id)}}" method="get">
+                        <form id="addtocart1" action="" method="get">
                         <div class="d-md-flex align-items-end mb-3">
                             <div class="max-width-150 mb-4 mb-md-0">
                                 <h6 class="font-size-14">Số lượng</h6>
@@ -565,75 +549,70 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <script>
-    setTimeout(() => {
-        let variSeleted;
-        let arr = ['a', 'b'];
-        let arrImgInput = [];
-        let priceHtml = document.getElementById("price_product");
-        let pricesaleHtml = document.getElementById("pricesale_product");
-        let skuHtml = document.getElementById("sku_product");
-        let avilableStockHtml = document.getElementById("avilableStock_product");
-        let addCartForm = document.getElementById("addtocart1");
-        let addCartButton = document.getElementById("addtocart");
-        let addCompare = document.getElementById("addCompare");
+    $(document).ready(function () {
+        let variationArray = {};
 
-        let addWLButton = document.getElementById("addWishlist");
+        $(document).on('change','.js-change-variation', function (e) {
+            let productId = $('#product_id').val();
+            let variationOptionQuantity = $('#countVariation').val();
+            let key = this.name;
+            let value = this.value;
+            variationArray[key] = value;
 
-
-        let combiImageList = document.querySelectorAll('.combi-image-js');
-            combiImageList.forEach(combiImage => {
-                arrImgInput.push(combiImage.firstElementChild);
+            let combiArray = $.map(variationArray, function (index, value) {
+                return (index);
             });
 
-        let productsCombination = document.getElementsByName('combination_string');
-        let combiArray = Array.from(productsCombination).map(pro => pro.value.trim());
-        let radioList = document.querySelectorAll(".js-change-variation");
-            radioList.forEach(element => {
-                element.addEventListener("change", function () {
-                if (this.name == "Bộ nhớ") {
-                    arr[1] = this.value;
-                } else {
-                    arr[0] = this.value;
-                }
-                variSeleted = arr.join(" ");
-
-                if(combiArray.includes(variSeleted)) {
-                    let pro = Array.from(productsCombination).find(pro => pro.value.trim() == variSeleted);
-                    
-                    if (variSeleted == pro.value.trim()) {
-                        let sale = pro.parentElement.lastElementChild.value;
-                        let priceSale = pro.nextElementSibling.value - (pro.nextElementSibling.value * sale/100)
-                        priceHtml.innerHTML = `${Intl.NumberFormat('en-US').format(pro.nextElementSibling.value)}đ`;
-                        pricesaleHtml.innerHTML = `${Intl.NumberFormat('en-US').format(priceSale)}đ`;
-                        let sku = pro.parentElement.children[4].value;
-                        let avilableStock = pro.parentElement.children[5].value;
-                        skuHtml.innerHTML = sku;
-                        avilableStockHtml.innerHTML = avilableStock;    
-                        
-                        let combiId = pro.parentElement.children[6].value;
-                        addCartForm.action=`http://127.0.0.1:8000/cart/add/${combiId}`;
-                        addCartButton.href=`http://127.0.0.1:8000/cart/add/${combiId}`;
-                        addCompare.href=`http://127.0.0.1:8000/compare/add/${combiId}`;
-                        addWLButton.href=`http://127.0.0.1:8000/wishlist/${combiId}`;
-                        
-                        let imgCombi = pro.nextElementSibling.nextElementSibling;
-                        arrImgInput.forEach(imgInput => {
-                            if(imgInput.value === imgCombi.value) {
-                                imgInput.parentElement.click();                              
-                            }
-                        })
-                        
-                    }
-                }else {
-                    if(arr[0] != 'a' && arr[1] != 'b') {
-                        priceHtml.innerHTML = `<h4>Đang cập nhật...</h4>`;
-                    }
-                }
-
-            });
+            if (combiArray.length == variationOptionQuantity) {
+                data = {
+                    product_id: productId,
+                    combistring: combiArray.join(' '),
+                    combistringReverse: combiArray.reverse().join(' ')
+                };
+            
+                fetchProductCombination(data);
+            }
         });
-    
-    }, 2000);
+
+        function fetchProductCombination(data) {
+            $.ajaxSetup({
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                },
+            });
+
+            $.ajax({
+                type: "GET",
+                url: "/product/combi",
+                data: data,
+                dataType: "json",
+                success: function (response) {
+                    let priceProF = Intl.NumberFormat('en-US').format(response.productCombi.price);
+                    let priceSalePro = response.productCombi.price - (response.productCombi.price * response.productCombi.sale/100);
+                    let priceSaleProF = Intl.NumberFormat('en-US').format(priceSalePro);
+
+                    $('#price_product').html(`${priceProF}đ`);
+                    $('#sku_product').html(response.productCombi.sku);
+                    $('#avilableStock_product').html(response.productCombi.avilableStock);
+                    $('#pricesale_product').html(`${priceSaleProF}đ`);
+                    
+                    let photoGallery = $('input[name="js-name-combiImg"]');
+                    $.each(photoGallery, function (index, item) { 
+                         if(item.value == response.productCombi.combination_image ) {
+                            item.parentElement.click();
+                         }
+                    });
+
+                    let combiId = response.productCombi.id;
+
+                    $('#addtocart1').attr('action',`http://127.0.0.1:8000/cart/add/${combiId}`)
+                    $('#addtocart').attr('href', `http://127.0.0.1:8000/cart/add/${combiId}`);
+                    $('#addCompare').attr('href', `http://127.0.0.1:8000/compare/add/${combiId}`); 
+                    $('#addWishlist').attr('href', `http://127.0.0.1:8000/wishlist/${combiId}`);
+                }
+            });
+        }
+    });
 
     jQuery(document).ready(function($){   
           var resultVal = parseInt($('.js-result').val()); 

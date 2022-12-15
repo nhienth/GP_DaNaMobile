@@ -102,6 +102,7 @@ Route::prefix('/')->group(function () {
         // Route::get('/rate/{id}',[ProductController::class,'reviewRate']);
         Route::get('/search',[ProductController::class,'searchProduct']);
         Route::get('/filter_price', [ProductController::class, 'filter_price'])->name('filter_price');
+        Route::get('/combi', [ProductController::class, 'getProductCombi']);
 
     });
 

@@ -39,6 +39,23 @@ class ProductController extends Controller
         }
     }
 
+    public function getProductCombi(Request $request) {
+        $combistring = $request->get('combistring');
+        $combistringReverse = $request->get('combistringReverse');
+        $productCombi = Combinations::where('product_id', $request->get('product_id'))
+        ->where(function ($query) use($combistring,  $combistringReverse) {
+            $query->where('combination_string', 'like', "%$combistring%")
+                ->orWhere('combination_string','like',  "%$combistringReverse%");
+        })->first();
+
+        // $photoGalerry = Image_Gallery::where('product_id', $request->get('product_id'))->get();
+
+        return response()->json([
+            'status' => 200,
+            'productCombi' => $productCombi
+        ]);
+    }
+
     public function filter_view()
     {
         $keywords = $_GET['view_selected'];

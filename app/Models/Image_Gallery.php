@@ -14,6 +14,7 @@ class Image_Gallery extends Model
     protected $fillable = [
         'small',
         'medium',
-        'large'
+        'large',
+        'product_id'
     ];
 }
