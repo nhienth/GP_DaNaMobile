@@ -246,6 +246,29 @@ class ProductController extends Controller
         return view('admin.products.edit', compact(['product', 'categorySelect', 'specfications']));
     }
 
+    public function hotfix($id) {
+        $specfications = ProductSpecificationsOptions::all();
+        $productId = $id;
+        return view('admin.products.hotfix', compact('specfications', 'productId'));
+    }
+    public function hotfixUpdate(Request $request, $id) {
+        $product = Product::find($id);
+        $specfications = ProductSpecificationsOptions::all();
+        foreach ($specfications as $specfication) {
+                $nspecfication = new ProductSpecificationsOptionsValue();
+
+                $nspecfication_value = $specfication->id . "_value";
+                $nspecification_name = $specfication->specification_name;
+
+                $nspecfication->specification_name = $nspecification_name;
+                $nspecfication->specification_value = $request->$nspecfication_value;
+                $nspecfication->product_id = $product->id;
+
+                $nspecfication->save();
+        }
+        return 0;
+    }
+
     /**
      * Update the specified resource in storage.
      *

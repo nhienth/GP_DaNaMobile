@@ -170,6 +170,9 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
         });
 
         Route::prefix('/product')->group(function () {
+            Route::get('/hotfix/{id}', [ProductController::class, 'hotfix']);
+            Route::post('/hotfix/{id}', [ProductController::class, 'hotfixUpdate']);
+
             Route::get('/searchproduct', [ProductController::class, 'search'])->name('search');
 
             Route::get('/search_product_by_cate', [ProductController::class, 'search_product_by_cate'])->name('search_product_by_cate');
