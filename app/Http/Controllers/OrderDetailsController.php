@@ -5,6 +5,9 @@ use App\Models\OrderDetails;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\User_addresses;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Combinations;
 use App\Models\User;
 
 class OrderDetailsController extends Controller
@@ -40,17 +43,20 @@ class OrderDetailsController extends Controller
         //
     }
     /**
-     * Display the specified resource.
+     * Display the specified resource.  
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {             
-        $detail = OrderDetails::where('order_id','=', $id)->get();
-        $order = Order::find($id);
+    {    
+        $detail = OrderDetails::join('products_combinations','products_combinations.id', '=', 'order_details.product_id')
+        ->where('order_id','=', $id)->get();
+        $order = Order::where('orders.id','=', $id)->first();  
+        $address = User_addresses::where('user_id', Auth::id())->first();
+        // dd($order);
         $products = Product::find($id);
-        return view('admin.order.details',compact('detail','order','products'));
+        return view('admin.order.details',compact('detail','order','products','address'));
     }
     /**
      * Show the form for editing the specified resource.

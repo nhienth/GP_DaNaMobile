@@ -65,6 +65,7 @@
                                         <th>Mã đơn hàng</th>
                                         <th>Tên khách hàng</th>
                                         <th>Tổng tiền</th>
+                                        <th>Phương thức thanh toán</th>                                     
                                         <th>Trạng thái</th>
                                         <th colspan="2">Hành động</th>
                                     </tr>
@@ -77,6 +78,7 @@
                                         <td>{{$order->id}}</td>
                                         <td>{{$order->fullname}}</td>
                                         <td>{{number_format($order->total_amount)}}đ</td>
+                                        <td>{{$order->payment->payment_name}}</td>
                                         <td>
                                             <?php
                                             if($order["status"]==0){

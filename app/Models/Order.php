@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\OrderDetail;
 use App\Models\User;
 use App\Models\Product;
+use App\Models\Payment;
 
 class Order extends Model
 {
@@ -25,5 +26,8 @@ class Order extends Model
     }
     public function product(){
         return $this->hasMany(Product::class,'product_id','id');
+    }
+    public function payment(){
+        return $this->belongsTo(Payment::class,'payment_id','id');
     }
 }
