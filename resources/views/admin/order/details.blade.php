@@ -97,9 +97,9 @@
                                 <tr data-dt-row="" data-dt-column="">
                                       <td>{{$item->id}}</td>                                             
                                       <td>{{$item->products->product_name}} - {{$item->combination_string }}</td> 
-                                      <td>{{$item->combination_image}}</td> 
+                                      <td><img src="{{asset('images/products/'.$item->combination_image)}}" alt="" width="100px"></td> 
                                       <td>{{$item->quantity}}</td> 
-                                      <td>{{number_format($item->total_amount)}}</td>
+                                      <td>{{number_format($item->total_amount)}} đ</td>
                                 </tr>
                             @endforeach                                       
                             </tbody>
