@@ -22,6 +22,8 @@ use App\Http\Controllers\CategoryController;
 use App\Models\ProductSpecificationsOptions;
 use Illuminate\Console\View\Components\Alert;
 use App\Models\ProductSpecificationsOptionsValue;
+use App\Models\User;
+use App\Models\User_addresses;
 
 class ProductController extends Controller
 {
@@ -629,7 +631,8 @@ class ProductController extends Controller
     public function showMyBill ()
     {
         $myBill = Order::with('orderdetail')->where('user_id', Auth::id())->orderBy('id', 'DESC')->get();
-        return view('client.shop.mybill', compact('myBill'));
+        $address = User_addresses::where('user_id', Auth::id())->first();
+        return view('client.shop.mybill', compact('myBill','address'));
     }
 
     public function showBillDetail($id)
