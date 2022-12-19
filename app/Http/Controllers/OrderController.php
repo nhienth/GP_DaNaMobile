@@ -19,10 +19,10 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::with('orderdetail')
+        $orders = Order::with('orderdetail','payment')
         ->orderBy('orders.id','desc')
         ->get();
-
+        
         return view('admin.order.list',compact('orders'));
     }
 
