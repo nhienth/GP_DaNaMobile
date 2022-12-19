@@ -42,11 +42,17 @@ class StatisticalController extends Controller
         $listIdproductsSold = $this->listSoldProducts();
         $unSoldProduts = Combinations::whereNotIn('id', $listIdproductsSold)->get();
 
+        //Top doanh thu 1 ngày qua 
+        $topRevenueInDay = $this->topRevenue('subDay', 100);
+
         // Top doanh thu 7 ngày qua
         $topRevenueInWeek = $this->topRevenue('subWeek', 100);
 
         // Top doanh thu 1 tháng qua
         $topRevenueInMonth = $this->topRevenue('subMonth', 100);
+
+         //Top doanh thu 1 năm qua 
+         $topRevenueInYear = $this->topRevenue('subYear', 100);
 
     }
 
