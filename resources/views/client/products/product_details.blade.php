@@ -516,21 +516,14 @@
                                                 class="img-fluid" src="{{asset('images/products/'.$similarProduct->product_img)}}"
                                                 alt="Image Description"></a>
                                     </div>
-                                    <div class="flex-center-between mb-1">
+                                    <div class="flex-center-between mb-1" style="justify-content: center">
                                         <div class="d-none d-xl-block prodcut-add-cart">
                                             <a href="{{url('product/detail',[$similarProduct->product_id])}}"
                                                 class="btn btn-primary transition-3d-hover">Xem chi tiết</a>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="product-item__footer">
-                                    <div class="border-top pt-2 flex-center-between flex-wrap">
-                                        <a href="../shop/compare.html" class="text-gray-6 font-size-13"><i
-                                                class="ec ec-compare mr-1 font-size-15"></i> So sánh</a>
-                                        <a href="../shop/wishlist.html" class="text-gray-6 font-size-13"><i
-                                                class="ec ec-favorites mr-1 font-size-15"></i> Yêu thích</a>
-                                    </div>
-                                </div>
+                              
                             </div>
                         </div>
                     </li>

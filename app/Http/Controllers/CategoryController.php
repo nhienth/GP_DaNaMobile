@@ -266,8 +266,8 @@ class CategoryController extends Controller
 
     // Filter and search categories
 
-    public function level(){
-        $key = $_GET['level'];      
+    public function level(Request $request){
+        $key = $request['level'];      
         if($key == 0){
             $categories = Category::all();
             foreach ($categories as $category) {
@@ -275,10 +275,8 @@ class CategoryController extends Controller
                 $partenCateName = $this->getCategoryName($parent_id);
                 $category['parent_cate'] = $partenCateName;
             }
-            return view('admin.categories.list', compact('categories'));
         }else if( $key == 1){
             $categories = Category::where("parent_id", 0)->get();
-            return view('admin.categories.list', compact('categories'));
         }else{
             $categories = Category::where("parent_id","<>", 0)->get();
             foreach ($categories as $category) {
@@ -286,8 +284,14 @@ class CategoryController extends Controller
                 $partenCateName = $this->getCategoryName($parent_id);
                 $category['parent_cate'] = $partenCateName;
             }
-            return view('admin.categories.list', compact('categories'));
         }
+        if (count($categories) > 0){
+            return view('admin.categories.list', compact('categories'));
+        }else {
+            $request->session()->now('message', 'Không có danh mục nào thuộc loại này!');
+            return view('admin.categories.list', compact('categories'));
+        }  
+       
     }
 
     public function filter_name(){

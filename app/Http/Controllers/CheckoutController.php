@@ -24,7 +24,7 @@ class CheckoutController extends Controller
         $userId = Auth::user()->id;
         $payments = Payment::where('payment_status', '1')->get();
         $productList = session('cart');
-        $user = User::with('user_addresses')->where('users.id', $userId)->first();    
+        $user = User::with('user_addresses')->where('users.id', $userId)->first();
         $this->checkVoucher(Auth::user()->id);
         $list_vu = VoucherUser::with('vu_voucher','vu_user')->where('user_id',Auth::user()->id)->get();
         return view('client.shop.checkout', compact('user', 'productList','payments','list_vu'));
@@ -112,7 +112,7 @@ class CheckoutController extends Controller
                 return redirect()->route('bill.list');
             }else if(isset($_POST['redirect'])){
                 $this->vnpay_payment_test($bill->id, $bill->total_amount);
-            }else{
+            }else if(isset($_POST['payUrl'])){
                 $this->momo_payment_test($bill->id, $bill->total_amount);
             }
 
@@ -251,9 +251,17 @@ class CheckoutController extends Controller
             'signature' => $signature);
         $result = $this->execPostRequest($endpoint, json_encode($data));
         $jsonResult = json_decode($result, true);  // decode json
-        $link = $jsonResult['payUrl'];
-        //Just a example, please check more in there
-        header('Location: ' . $link);
-        die();
+
+        if($jsonResult['message'] !== "Giao dịch thành công."){
+            echo '<script>alert("Welcome to QABug");
+            window.location="http://127.0.0.1:8000/checkout"
+            </script>';
+        }
+        else{
+            $link = $jsonResult['payUrl'];
+            header('Location: ' . $link);
+            die();
+        }
+       
     }
 }

@@ -39,9 +39,9 @@
                                     @csrf
                                     <select name="level" class="form-select text-capitalize mb-md-0 mb-2"
                                         id="level" onchange="this.form.submit()" class="sorting">
-                                        <option value="0"> Tất cả </option>
-                                        <option value="1" class="text-capitalize">Danh mục cha</option>
-                                        <option value="2" class="text-capitalize">Danh mục con</option>
+                                        <option value="0" {{ request()->level == 0 ? 'selected' : '' }}> Tất cả </option>
+                                        <option value="1" class="text-capitalize"  {{ request()->level == 1 ? 'selected' : '' }}>Danh mục cha</option>
+                                        <option value="2" class="text-capitalize"  {{ request()->level == 2 ? 'selected' : '' }}>Danh mục con</option>
                                     </select>
                                 </form>
                             </div>
@@ -122,6 +122,11 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <div>
+                            @if(session()->has('message'))
+                                <p class="alert alert-danger text-center">{{ session()->get('message') }}</p>
+                            @endif
+                        </div>
                     </div>
                 </div>
                 <!-- list and filter end -->

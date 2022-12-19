@@ -69,9 +69,9 @@
                                     <select name="status_selected" id="status"
                                         class="form-select text-capitalize mb-md-0 mb-2xx"
                                         onchange="this.form.submit()">
-                                        <option value="2"> Tất Cả Trạng Thái </option>
-                                        <option value="1"> Đang hoạt động </option>
-                                        <option value="0"> Vô Hiệu hoá </option>
+                                        <option value="2" {{ request()->status_selected == 2 ? 'selected' : '' }}> Tất Cả Trạng Thái </option>
+                                        <option value="1" {{ request()->status_selected == 1 ? 'selected' : '' }}> Đang hoạt động </option>
+                                        <option value="0" {{ request()->status_selected == 0 ? 'selected' : '' }}> Vô Hiệu hoá </option>
                                     </select>
                                 </form>
                             </div>
@@ -80,42 +80,26 @@
                     {{-- <div class="card-datatable table-responsive pt-0"> --}}
                         <div class="card-datatable pt-0">
                             <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
-                                <div
-                                    class="f-flex justify-content-between align-items-center header-actions mx-2 row mt-75">
-                                    <div
-                                        class="col-sm-12 col-lg-4 d-flex justify-content-center justify-content-lg-start">
-                                        <div class="dataTables_length" id="DataTables_Table_0_length">
-                                            <label>
-                                                Hiển thị
-                                                <select name="DataTables_Table_0_length" class="form-select"
-                                                    aria-controls="DataTables_Table_0">
-                                                    <option value="10">10</option>
-                                                    <option value="25">25</option>
-                                                    <option value="50">50</option>
-                                                    <option value="100">100</option>
-                                                </select>
-                                                mục
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 col-lg-8 ps-xl-75 ps-0">
-                                        <div
-                                            class="dt-action-buttons d-flex align-items-center justify-content-center justify-content-lg-end flex-lg-nowrap flex-wrap">
-                                            <div class="me-1">
+                                <div class="f-flex justify-content-between align-items-center header-actions mx-2 row mt-75">
+                                    <div class="col-sm-12 col-lg-6 d-flex justify-content-center justify-content-lg-start">
+                                        <div class="me-1">
+                                            <form action="{{route('search_product')}}" method="get">
                                                 <div id="DataTables_Table_0_filter" class="dataTables_filter">
                                                     <label>
-                                                        Tìm kiếm:
-                                                        <input type="search" class="form-control" placeholder
-                                                            aria-controls="DataTables_Table_0">
+                                                        Tìm kiếm: 
+                                                        <input type="text" class="form-control" placeholder aria-controls="DataTables_Table_0" name="key_search" value={{ request()->key_search ? request()->key_search : '' }}>
                                                     </label>
+                                                    <div class="dt-buttons d-inline-flex mt-50">
+                                                        <button class="dt-button buttons-collection btn btn-outline-secondary me-2" 
+                                                        tabindex="0" aria-controls="DataTables_Table_0" type="submit" aria-haspopup="true">Tìm kiếm</button>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-lg-6 ps-xl-75 ps-0">
+                                        <div class="dt-action-buttons d-flex align-items-center justify-content-center justify-content-lg-end flex-lg-nowrap flex-wrap">                                           
                                             <div class="dt-buttons d-inline-flex mt-50">
-                                                <button
-                                                    class="dt-button buttons-collection btn btn-outline-secondary dropdown-toggle me-2"
-                                                    tabindex="0" aria-controls="DataTables_Table_0" type="button"
-                                                    aria-haspopup="true">Xuất</button>
-
                                                 <a type="button" href="{{url('/admin/product/create')}}"
                                                     class="dt-button add-new btn btn-primary" tabindex="0"
                                                     data-bs-target="#modals-slide-in"
@@ -124,7 +108,7 @@
                                                 </a>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>              
                                 </div>
                             </div>
                         </div>
@@ -189,7 +173,11 @@
                                 @endforeach
                             </tbody>
                         </table>
-
+                        <div>
+                            @if(session()->has('message'))
+                                <p class="alert alert-danger text-center">{{ session()->get('message') }}</p>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </section>

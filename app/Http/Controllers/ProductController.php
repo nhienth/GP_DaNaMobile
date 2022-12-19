@@ -25,19 +25,6 @@ use App\Models\ProductSpecificationsOptionsValue;
 
 class ProductController extends Controller
 {
-    public function search_product_by_cate()
-    {
-        $keywords = $_GET['key_cate_id'];
-                $categories = Category::where('parent_id','<>',0)->get();
-
-        $products = Product::where('category_id', '=', $keywords)->paginate(5);
-        if (count($products) != 0) {
-            return view('admin.products.list')->with(compact('products', 'categories'));
-        } else if (count($products) == 0) {
-            $products = Product::with('category')->orderBy('products.id', 'desc')->paginate(5);
-            return view('admin.products.list')->with(compact('products', 'categories'));
-        }
-    }
 
     public function getProductCombi(Request $request) {
         $combistring = $request->get('combistring');
@@ -55,6 +42,18 @@ class ProductController extends Controller
             'productCombi' => $productCombi
         ]);
     }
+    public function search_product_by_cate()
+    {
+        $keywords = $_GET['key_cate_id'];
+                $categories = Category::where('parent_id','<>',0)->get();
+        $products = Product::where('category_id', '=', $keywords)->paginate(5);
+        if (count($products) != 0) {
+            return view('admin.products.list')->with(compact('products', 'categories'));
+        } else if (count($products) == 0) {
+            $products = Product::with('category')->orderBy('products.id', 'desc')->paginate(5);
+            return view('admin.products.list')->with(compact('products', 'categories'));
+        }
+    }
 
     public function filter_view()
     {
@@ -63,27 +62,45 @@ class ProductController extends Controller
 
         $products = Product::all();
         if ($keywords == 1) {
-            $products = Product::with('category')->orderBy('products.product_view', 'desc')->paginate(5);
+            $products = Product::with('category')->orderBy('products.product_view', 'desc')->get();
             return view('admin.products.list')->with(compact('products', 'categories'));
         } else if ($keywords == 2) {
-            $products = Product::with('category')->orderBy('products.product_view', 'asc')->paginate(5);
+            $products = Product::with('category')->orderBy('products.product_view', 'asc')->get();
             return view('admin.products.list')->with(compact('products', 'categories'));
         } else {
-            $products = Product::with('category')->orderBy('products.id', 'asc')->paginate(5);
+            $products = Product::with('category')->orderBy('products.id', 'asc')->get();
             return view('admin.products.list')->with(compact('products', 'categories'));
         }
     }
 
-    public function filter_status()
+    public function filter_status(Request $request)
     {
-        $keywords = $_GET['status_selected'];
-                $categories = Category::where('parent_id','<>',0)->get();
-
-        $products = Product::where('product_status', '=', $keywords)->paginate(5);
-        if ($keywords != 2) {
-            return view('admin.products.list')->with(compact('products', 'categories'));
+        $keywords = $request['status_selected'];
+        $categories = Category::where('parent_id','<>',0)->get();
+        
+        if ($keywords != 2) { 
+            $products = Product::where('product_status', '=', $keywords)->get();
         } else {
-            $products = Product::with('category')->paginate(5);
+            $products = Product::with('category')->get();
+        }
+
+        if (count($products) > 0){
+            return view('admin.products.list')->with(compact('products', 'categories'));
+        }else {
+            $request->session()->now('message', 'Không có sản phẩm nào ở trạng thái này!');
+            return view('admin.products.list')->with(compact('products', 'categories'));
+        } 
+    }
+
+    public function search(Request $request)
+    {
+        $key_search = $request['key_search'];
+        $categories = Category::where('parent_id','<>',0)->get();
+        $products = Product::where('product_name' ,'LIKE', '%'.$key_search.'%')->get();
+        if(count($products) >0 ){
+            return view('admin.products.list')->with(compact('products', 'categories'));
+        }else{
+            $request->session()->now('message', 'Không có sản phẩm nào ở trạng thái này!');
             return view('admin.products.list')->with(compact('products', 'categories'));
         }
     }

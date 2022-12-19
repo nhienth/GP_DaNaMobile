@@ -142,7 +142,7 @@ Route::prefix('/')->group(function () {
         Route::get('/detail/{id}', [ProductController::class, 'showBillDetail'])->name('bill.show_detail');
     });
 
-    Route::get('/checkout', [CheckoutController::class,'index']);
+    Route::get('/checkout', [CheckoutController::class,'index'])->name('checkout');
     Route::post('/done', [CheckoutController::class,'store'])->name('done');
 
     // Cổng thanh toán
@@ -178,6 +178,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
             Route::get('/search_product_by_cate', [ProductController::class, 'search_product_by_cate'])->name('search_product_by_cate');
             Route::get('/filter_view', [ProductController::class, 'filter_view'])->name('filter_view_product');
             Route::get('/filter_status', [ProductController::class, 'filter_status'])->name('filter_status_product');
+            Route::get('/search', [ProductController::class, 'search'])->name('search_product');
             // Route::get('/list', [ProductController::class, 'index']);
 
             Route::get('/list', [ProductController::class, 'index'])->name('product.list');

@@ -544,24 +544,37 @@
                                         Địa chỉ
                                         <span class="text-danger">*</span>
                                     </label>
-                                    <select name="address" class="form-control js-select selectpicker dropdown-select" required="" data-msg="Please select country." data-error-class="u-has-error" data-success-class="u-has-success"
+                                    <select name="address" id="address" class="form-control js-select selectpicker dropdown-select" required="" data-msg="Địa chỉ không được để trống." data-error-class="u-has-error" data-success-class="u-has-success"
                                         data-live-search="true" data-style="form-control border-color-1 font-weight-normal">
+                                        <option id="" value="">Chọn địa chỉ </option>                                         
                                         @foreach($user->user_addresses as $address)
-                                            <option value="{{$address->id}}">{{ $address -> city }} - {{ $address -> district }} - {{ $address -> ward }} - {{ $address -> street }}                                          
+                                            <option id="{{$address->id}}" value="{{$address->id}}">{{ $address -> city }} - {{ $address -> district }} - {{ $address -> ward }} - {{ $address -> street }}                                          
                                                 @if ($address->type_address == 0)
                                                     ( Nhà riêng )
                                                 @else
                                                     ( Văn phòng )
                                                 @endif
                                             </option>
-                                        @endforeach                                
+                                        @endforeach                        
                                     </select>
                                 </div>
                                 <!-- End Input -->
                             </div>
-
+                          
                             <div class="w-100"></div>
-
+                            <div class="col-md-6">
+                                <!-- Input -->
+                                <div class="js-form-message mb-6" id="inputMobile">
+                                    <label class="form-label cl-black">
+                                        Điện thoại
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    @foreach($user->user_addresses as $phoneNumber)
+                                        <input id="phone{{$phoneNumber->id}}" type="text" style="display: none" name="phone" value="{{$phoneNumber->phoneNumber}}" class="form-control" placeholder="+84 (829) 111 111" aria-label="+84 (829) 111 111" data-msg="Hãy nhập số điện thoại của bạn!" data-error-class="u-has-error" data-success-class="u-has-success">
+                                    @endforeach  
+                                </div>
+                                <!-- End Input -->
+                            </div>
                             <div class="col-md-6">
                                 <!-- Input -->
                                 <div class="js-form-message mb-6">
@@ -570,18 +583,6 @@
                                         <span class="text-danger">*</span>
                                     </label>
                                     <input type="email" name="email" value="{{$user->email}}" class="form-control" name="emailAddress" placeholder="jackwayley@gmail.com" aria-label="jackwayley@gmail.com" required="" data-msg="Hãy nhập Email của bạn!" data-error-class="u-has-error" data-success-class="u-has-success">
-                                </div>
-                                <!-- End Input -->
-                            </div>
-
-                            <div class="col-md-6">
-                                <!-- Input -->
-                                <div class="js-form-message mb-6">
-                                    <label class="form-label cl-black">
-                                        Điện thoại
-                                        <span class="text-danger">*</span>
-                                    </label>
-                                    <input type="text" name="phone" value="{{$user->phoneNumber}}" class="form-control" placeholder="+84 (829) 111 111" aria-label="+84 (829) 111 111" data-msg="Hãy nhập số điện thoại của bạn!" data-error-class="u-has-error" data-success-class="u-has-success">
                                 </div>
                                 <!-- End Input -->
                             </div>
@@ -611,32 +612,18 @@
                 </div>
             </div>
         </form>
-        {{-- <form action="{{url('/vnpay_payment')}}" method="post">
-            @csrf
-            <input type="hidden" value="<?= $subTotal + $ship ?>" name="total_amount">
-            <input type="hidden" value="{{$user->name}}" class="form-control" name="fullname" placeholder="Jack" aria-label="Jack" required="" data-msg="Please enter your frist name." data-error-class="u-has-error" data-success-class="u-has-success" autocomplete="off">
-            <input type="hidden" name="email" value="{{$user->email}}" class="form-control" name="emailAddress" placeholder="jackwayley@gmail.com" aria-label="jackwayley@gmail.com" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
-            <input type="hidden" name="phone" value="0123" class="form-control" placeholder="+1 (062) 109-9222" aria-label="+1 (062) 109-9222" data-msg="Please enter your last name." data-error-class="u-has-error" data-success-class="u-has-success">
-            <select name="hidden" class="form-control js-select selectpicker dropdown-select" required="" data-msg="Please select country." data-error-class="u-has-error" data-success-class="u-has-success"
-            data-live-search="true"
-            data-style="form-control border-color-1 font-weight-normal">
-            @foreach($user->user_addresses as $address)
-                <option value="{{$address->id}}">{{$address->completeAddress}}
-                  
-                    @if ($address->name_address == 0)
-                        ( Nhà riêng )
-                    @else
-                        ( Văn phòng )
-                    @endif
-                </option>
-            @endforeach                                
-        </select>
-
-        <input type="hidden" name="user_id" value="{{$user->id}}">
-
-            <button type="submit" class="" name="redirect">Thanh toán VNPay</button>
-        </form> --}}
     </div>
 </main>
 
 @endsection
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.2/jquery.min.js"></script>
+<script>
+    jQuery(document).ready(function () {
+        $("#address").change(function() {
+            var select = $("select option:selected").val();
+            console.log(select);
+            $("#phone"+select).css("display","block");
+            $("input[name=phone]").not("#phone"+select).css("display","none");
+        });
+    });       
+</script>
