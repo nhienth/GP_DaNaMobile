@@ -36,7 +36,12 @@ class ProductController extends Controller
                 ->orWhere('combination_string','like',  "%$combistringReverse%");
         })->first();
 
-        // $photoGalerry = Image_Gallery::where('product_id', $request->get('product_id'))->get();
+        if (!$productCombi) {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Phiên bản đã chọn ở khu vực này đang tạm hết hàng'
+            ]);
+        }
 
         return response()->json([
             'status' => 200,

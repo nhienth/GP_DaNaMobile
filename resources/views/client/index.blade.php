@@ -360,7 +360,7 @@ use App\Models\Product;
                             ->where('products.product_status', 1)
                             ->take(8)
                             ->get();
-                        $showActive = $cate->id == 7 ? 'show active' : '';
+                        $showActive = $cate->id == 21 ? 'show active' : '';
                     @endphp
                     <div class="tab-pane fade {{$showActive}}" id="Tpills-{{$cate->id}}" role="tabpanel"
                         aria-labelledby="Tpills-{{$cate->id}}-tap">

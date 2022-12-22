@@ -349,7 +349,8 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
         });
 
         Route::prefix('/statistical')->group(function () {
-            Route::get('/list', [StatisticalController::class, 'getAllStatisticals'])->name('statistical.list');
+            Route::get('/', [StatisticalController::class, 'getAllStatisticals'])->name('statistical.list');
+            Route::get('/list', [StatisticalController::class, 'getStatistical']);
         });
 
     });

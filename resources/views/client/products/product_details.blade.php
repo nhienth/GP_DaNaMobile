@@ -602,6 +602,8 @@
                     $('#addtocart').attr('href', `http://127.0.0.1:8000/cart/add/${combiId}`);
                     $('#addCompare').attr('href', `http://127.0.0.1:8000/compare/add/${combiId}`); 
                     $('#addWishlist').attr('href', `http://127.0.0.1:8000/wishlist/${combiId}`);
+                }, error: function (response) {
+                    console.log(response);
                 }
             });
         }

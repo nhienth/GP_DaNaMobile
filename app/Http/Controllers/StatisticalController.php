@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Chart;
@@ -9,7 +10,9 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Combinations;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
 
 class StatisticalController extends Controller
 {
@@ -32,31 +35,68 @@ class StatisticalController extends Controller
     }
 
     public function getAllStatisticals() {
-        // Top sản phẩm bán nhanh 
-        $topSellingProducts = $this->sellingProducts('DESC', 10);
-
-        // Top sản phẩm bán chậm
-        $slowSellingProducts = $this->sellingProducts('ASC', 10);
-
-        // Danh sách sản phẩm chưa có lượt mua
-        $listIdproductsSold = $this->listSoldProducts();
-        $unSoldProduts = Combinations::whereNotIn('id', $listIdproductsSold)->get();
-
-        //Top doanh thu 1 ngày qua 
-        $topRevenueInDay = $this->topRevenue('subDay', 100);
-
-        // Top doanh thu 7 ngày qua
-        $topRevenueInWeek = $this->topRevenue('subWeek', 100);
-
-        // Top doanh thu 1 tháng qua
-        $topRevenueInMonth = $this->topRevenue('subMonth', 100);
-
-         //Top doanh thu 1 năm qua
-         $topRevenueInYear = $this->topRevenue('subYear', 100);
+         return view('admin.statistical.index');
 
     }
 
-    public function sellingProducts($orderBy, $limit) {
+    function getStatistical(Request $request) {
+        $startDay = $request->startDay;
+        $endDay =  $request->endDay;
+        $orderBy = $request->orderStat;
+        $limit = $request->amountStat;
+        $startDayTime = new DateTime($startDay);
+        $endDayTime = new DateTime($endDay);
+        $optionStat = $request->optionStat;
+
+        if ($optionStat == 1) {
+            $productStatistical = $this->sellingProducts($startDayTime, $endDayTime, $orderBy, $limit);
+        }else if ($optionStat == 2){
+            $productStatistical = $this->topRevenue($startDayTime, $endDayTime, $orderBy, $limit);
+        }else {
+            // Danh sách sản phẩm chưa có lượt mua
+            $listIdproductsSold = $this->listSoldProducts();
+            $productStatistical = Combinations::select('products.product_name', 'categories.category_name', 'products_combinations.*')
+            ->join('products', 'products_combinations.product_id', '=', 'products.id')
+            ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->whereNotIn('products_combinations.id', $listIdproductsSold)
+            ->take($limit)
+            ->get();
+        }
+        
+        return response()->json([
+            'status' => 200,
+            'productStatistical' => $productStatistical
+        ]);
+        
+    }
+
+    public function sellingProducts($dayStart,$dayEnd, $orderBy, $limit) {
+        return Combinations::select('products.product_name', 'categories.category_name', 'products_combinations.*', 'order_details.created_at' ,DB::raw('SUM(order_details.quantity) as totalSold'))
+        ->join('order_details', 'order_details.product_id', '=', 'products_combinations.id')
+        ->join('orders', 'order_details.order_id', '=', 'orders.id')
+        ->join('products', 'products.id', '=', 'products_combinations.product_id')
+        ->join('categories', 'products.category_id', '=', 'categories.id')
+        ->where('orders.status', '=', 2)
+        ->whereBetween('order_details.created_at', [$dayStart, $dayEnd])
+        ->groupBy('products_combinations.id')
+        ->having('totalSold', '>', 0)
+        ->orderBy('totalSold', $orderBy)
+        ->take($limit)
+        ->get();
+    }
+
+    public function listSoldProducts () {
+        $products = $this->sellingProductsF('DESC', 100);
+        $productsId = [];
+        foreach ($products as $product) {
+            array_push($productsId, $product->productcombi_id);
+        }
+
+        return $productsId;
+    }
+
+    
+    public function sellingProductsF($orderBy, $limit) {
         return Combinations::select('products.*', 'categories.category_name', 'products_combinations.combination_string','products_combinations.id as productcombi_id' ,DB::raw('SUM(order_details.quantity) as totalSold'))
         ->join('order_details', 'order_details.product_id', '=', 'products_combinations.id')
         ->join('orders', 'order_details.order_id', '=', 'orders.id')
@@ -70,32 +110,19 @@ class StatisticalController extends Controller
         ->get();
     }
 
-    public function listSoldProducts () {
-        $products = $this->sellingProducts('DESC', 100);
-        $productsId = [];
-        foreach ($products as $product) {
-            array_push($productsId, $product->productcombi_id);
-        }
-
-        return $productsId;
-    }
-
-    public function topRevenue($sub, $limit) {
-        return Combinations::select('products.*', 'categories.category_name', 'products_combinations.combination_string','products_combinations.id as productcombi_id' ,DB::raw('SUM(order_details.quantity) as totalSold'), DB::raw('SUM(order_details.total_amount) as totalRevenue'))
+    public function topRevenue($dayStart, $dayEnd, $orderBy, $limit) {
+        return Combinations::select('products.product_name', 'categories.category_name', 'products_combinations.*' ,DB::raw('SUM(order_details.quantity) as totalSold'), DB::raw('SUM(order_details.total_amount) as totalRevenue'))
         ->join('order_details', 'order_details.product_id', '=', 'products_combinations.id')
         ->join('orders', 'order_details.order_id', '=', 'orders.id')
         ->join('products', 'products.id', '=', 'products_combinations.product_id')
         ->join('categories', 'products.category_id', '=', 'categories.id')
         ->where('orders.status', '=', 2)
-        ->whereBetween('order_details.created_at', [Carbon::now()->$sub()->format("Y-m-d H:i:s"), Carbon::now()])
+        ->whereBetween('order_details.created_at', [$dayStart, $dayEnd])
         ->groupBy('products_combinations.id')
         ->having('totalSold', '>', 0)
-        ->orderBy('totalRevenue', 'DESC')
+        ->orderBy('totalRevenue', $orderBy)
         ->take($limit)
         ->get();
     }
-
-    
-
 
 }
