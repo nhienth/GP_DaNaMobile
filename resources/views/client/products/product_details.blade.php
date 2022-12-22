@@ -115,31 +115,34 @@
 
                                 <div>
                                     @foreach ($product->variations as $variation)
-                                    <div>
-
-                                        <label for="">{{$variation->variation_name}}</label>
+                                    <p class="title-variation">{{$variation->variation_name}}</p>
+                                    <div class="css-radio-container">
+                                        <form>
                                         @php
-                                        $variationsIsset = [];
+                                            $variationsIsset = [];
                                         @endphp
 
                                         @foreach ($product->variation_value as $item)
-                                        @if ($variation->variation_name === $item->variation_name)
+                                            @if ($variation->variation_name === $item->variation_name)
 
-                                        @if (!in_array($item->variation_value, $variationsIsset))
+                                            @if (!in_array($item->variation_value, $variationsIsset))
+                                            <label for="">
 
-                                        <input type="radio" class="js-change-variation" name="{{$item->variation_name}}"
-                                            id="{{$item->variation_value}}" value="{{$item->variation_value}}">
-                                        <label for="{{$item->variation_value}}">{{$item->variation_value}}</label>
+                                                <input type="radio" class="js-change-variation" name="{{$variation->variation_name}}"
+                                                id="{{$item->variation_value}}" value="{{$item->variation_value}}">
+                                                <span>{{$item->variation_value}}</span>
+                                            </label>
 
                                         @endif
 
                                         @php
-                                        $variationsIsset[] = $item->variation_value;
+                                            $variationsIsset[] = $item->variation_value;
                                         @endphp
 
 
                                         @endif
                                         @endforeach
+                                        </form>
                                     </div>
 
                                     @endforeach
