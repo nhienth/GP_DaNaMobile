@@ -48,15 +48,12 @@ $(document).ready(function () {
                     `
                 )
                 $.each(response.productStatistical, function (index, product) { 
-                     
+                    let date = moment(product.created_at, 'YYYY-MM-DD HH:mm:ss').format('DD/MM/YYYY');
                     $("tbody").append(
                         `
-                        
-                        @foreach ($products as $product)
-                        
                         <tr data-dt-row="" data-dt-column="">
                             <td></td>
-                            <td>${product.created_at}</td>
+                            <td>${date}</td>
                             <td>${product.product_name} ${product.combination_string}</td>
                             <td>${product.category_name}</td>
                             <td><img class="rounded" src="../../images/products/${product.combination_image}"
@@ -110,15 +107,12 @@ $(document).ready(function () {
                     `
                 )
                 $.each(response.productStatistical, function (index, product) { 
-                     
+                    let date = moment(product.created_at, 'YYYY-MM-DD HH:mm:ss').format('DD/MM/YYYY');
                     $("tbody").append(
                         `
-                        
-                        @foreach ($products as $product)
-                        
                         <tr data-dt-row="" data-dt-column="">
                             <td></td>
-                            <td>${product.created_at}</td>
+                            <td>${date}</td>
                             <td>${product.product_name} ${product.combination_string}</td>
                             <td>${product.category_name}</td>
                             <td><img class="rounded" src="../../images/products/${product.combination_image}"
@@ -127,9 +121,7 @@ $(document).ready(function () {
                             <td>${product.totalSold}</td>
                             <td>${Intl.NumberFormat('en-US').format(product.totalRevenue)} đ</td>
                             <td>${product.avilableStock}</td>
-                    
                         </tr>
-                        
                         `
                     )
                 });
@@ -172,24 +164,19 @@ $(document).ready(function () {
                     `
                 )
                 $.each(response.productStatistical, function (index, product) { 
-                     
+                    let date = moment(product.created_at, 'YYYY-MM-DD HH:mm:ss').format('DD/MM/YYYY');
                     $("tbody").append(
                         `
-                        
-                        @foreach ($products as $product)
-                        
                         <tr data-dt-row="" data-dt-column="">
                             <td></td>
-                            <td>${product.created_at}</td>
+                            <td>${date}</td>
                             <td>${product.product_name} ${product.combination_string}</td>
                             <td>${product.category_name}</td>
                             <td><img class="rounded" src="../../images/products/${product.combination_image}"
                                     width="150px" height="100px" style="display:block; margin: 0 auto;"></td>
                             <td>${Intl.NumberFormat('en-US').format(product.price)} đ</td>
                             <td>${product.avilableStock}</td>
-                    
                         </tr>
-                        
                         `
                     )
                 });
