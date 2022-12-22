@@ -51,7 +51,7 @@ class StatisticalController extends Controller
         // Top doanh thu 1 tháng qua
         $topRevenueInMonth = $this->topRevenue('subMonth', 100);
 
-         //Top doanh thu 1 năm qua 
+         //Top doanh thu 1 năm qua
          $topRevenueInYear = $this->topRevenue('subYear', 100);
 
     }

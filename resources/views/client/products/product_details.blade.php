@@ -614,7 +614,6 @@
             resultVal += 1; 
             $('.js-result').val(resultVal);
           });
-  
           $('.js-minus').click(function (e){
 
             e.preventDefault();

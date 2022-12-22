@@ -402,7 +402,7 @@ use App\Models\Product;
         <div class="space-top-2">
             <div
                 class=" d-flex justify-content-between border-bottom border-color-1 flex-md-nowrap flex-wrap border-sm-bottom-0">
-                <h3 class="section-title mb-0 pb-2 font-size-22" style="color: black">Top 20 sản phẩm bán chạy</h3>
+                <h3 class="section-title mb-0 pb-2 font-size-22" style="color: black">Top sản phẩm bán chạy</h3>
             </div>
             <div class="js-slide">
                 <ul class="row list-unstyled products-group no-gutters mb-0 overflow-visible">

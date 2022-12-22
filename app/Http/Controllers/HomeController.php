@@ -110,7 +110,6 @@ class HomeController extends Controller
         // sản phẩm theo danh mục
 
         $product_cate = Category::with('products')
-        ->take(8)
         ->get();
 
         // top 20 sản phẩm
