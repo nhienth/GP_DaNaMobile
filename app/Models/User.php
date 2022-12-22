@@ -54,5 +54,4 @@ class User extends Authenticatable
     public function user_voucher(){
         return $this->hasMany(VoucherUser::class);
     }
- 
 }

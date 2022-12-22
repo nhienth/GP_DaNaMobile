@@ -43,9 +43,9 @@
                     @foreach ($myBill as $item )
                         <tr>
                             <td>{{ $count++ }}</td>
-                            <td>{{ $item->created_at->format('d/m/Y') }}</td>
-                            <td>{{number_format( $item->total_amount )}}₫</td>
-                            <td>{{ $address['street'] }}, {{ $address['ward'] }}, {{ $address['district'] }}, {{ $address['city'] }}</td>
+                            <td>{{ $item->created_at }}</td>
+                            <td>{{ number_format( $item->total_amount )}}₫</td>
+                            <td>{{ $item->street }}, {{ $item->ward}}, {{ $item->district  }}, {{  $item->city }}</td>
                             <td>{{ $item->phone }}</td>
                             <?php
                                 if($item->status==0){
