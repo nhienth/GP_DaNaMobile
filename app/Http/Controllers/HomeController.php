@@ -109,7 +109,10 @@ class HomeController extends Controller
 
         // sản phẩm theo danh mục
 
-        $product_cate = Category::with('products')->get();
+        $product_cate = Category::with('products')
+        // ->take(8)
+        ->get();
+
         // top 20 sản phẩm
         $top20 = DB::table('products_combinations')
         ->select('products.*', 'categories.category_name', 'products_combinations.combination_string','products_combinations.id as productcombi_id' ,DB::raw('SUM(order_details.quantity) as sumnn'))
@@ -135,6 +138,7 @@ class HomeController extends Controller
         foreach ($random as $product) {
           foreach ($product->combinations as $productCombi) {
             array_push($priceArr, $productCombi->price);
+          
             }
             $minPrice = min($priceArr);
             $maxPrice = max($priceArr);

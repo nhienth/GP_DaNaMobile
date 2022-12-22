@@ -382,6 +382,16 @@ use App\Models\Product;
                                                             <a href="{{url('product/detail',[$products->id])}}"
                                                                 class="d-block text-center"><img class="img-fluid" src="{{asset('images/products/'.$products->product_img)}}" alt="Image Description"></a>
                                                         </div>
+                                                        <div class="flex-center-between mb-1">
+                                                            <div class="prodcut-price">
+                                                                <div class="text-gray-100">{{number_format($products->minprice)}} đ</div>
+                                                            </div>
+                                                            <div class="d-none d-xl-block prodcut-add-cart">
+                                                                <a href="{{url('product/detail',[$products->id])}}"
+                                                                    class="btn-add-cart btn-primary transition-3d-hover"><i
+                                                                        class="ec ec-add-to-cart"></i></a>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -402,7 +412,7 @@ use App\Models\Product;
         <div class="space-top-2">
             <div
                 class=" d-flex justify-content-between border-bottom border-color-1 flex-md-nowrap flex-wrap border-sm-bottom-0">
-                <h3 class="section-title mb-0 pb-2 font-size-22" style="color: black">Top 20 sản phẩm bán chạy</h3>
+                <h3 class="section-title mb-0 pb-2 font-size-22" style="color: black">Top sản phẩm bán chạy</h3>
             </div>
             <div class="js-slide">
                 <ul class="row list-unstyled products-group no-gutters mb-0 overflow-visible">
