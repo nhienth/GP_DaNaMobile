@@ -27,7 +27,6 @@ use App\Models\User_addresses;
 
 class ProductController extends Controller
 {
-
     public function getProductCombi(Request $request) {
         $combistring = $request->get('combistring');
         $combistringReverse = $request->get('combistringReverse');
@@ -652,9 +651,13 @@ class ProductController extends Controller
     //Show my bill
     public function showMyBill ()
     {
-        $myBill = Order::with('orderdetail')->where('user_id', Auth::id())->orderBy('id', 'DESC')->get();
-        $address = User_addresses::where('user_id', Auth::id())->first();
-        return view('client.shop.mybill', compact('myBill','address'));
+        // $myBill = Order::with('orderdetail')->where('user_id', Auth::id())->orderBy('id', 'DESC')->get();
+        $myBill = DB::table('orders')
+                ->join('user_addresses', 'orders.address', '=', 'user_addresses.id')
+                ->where('orders.user_id', Auth::id())
+                ->select('orders.created_at', 'orders.total_amount', 'orders.phone', 'orders.status', 'orders.id', 'user_addresses.street', 'user_addresses.ward', 'user_addresses.district', 'user_addresses.city')
+                ->get();
+        return view('client.shop.mybill', compact('myBill'));
     }
 
     public function showBillDetail($id)
