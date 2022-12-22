@@ -580,30 +580,39 @@
                 data: data,
                 dataType: "json",
                 success: function (response) {
-                    let priceProF = Intl.NumberFormat('en-US').format(response.productCombi.price);
-                    let priceSalePro = response.productCombi.price - (response.productCombi.price * response.productCombi.sale/100);
-                    let priceSaleProF = Intl.NumberFormat('en-US').format(priceSalePro);
+                    if (response.status === 200) {
+                        let priceProF = Intl.NumberFormat('en-US').format(response.productCombi.price);
+                        if (response.productCombi.sale > 0) {
+                            let priceSalePro = response.productCombi.price - (response.productCombi.price * response.productCombi.sale/100);
+                            let priceSaleProF = Intl.NumberFormat('en-US').format(priceSalePro);
+                            $('#price_product').html(`${priceProF}đ`);
+                            $('#pricesale_product').html(`${priceSaleProF}đ`);
+                        }else {
+                            $('#price_product').html("");
+                            $('#pricesale_product').html(`${priceProF}đ`);
+                        }
 
-                    $('#price_product').html(`${priceProF}đ`);
-                    $('#sku_product').html(response.productCombi.sku);
-                    $('#avilableStock_product').html(response.productCombi.avilableStock);
-                    $('#pricesale_product').html(`${priceSaleProF}đ`);
-                    
-                    let photoGallery = $('input[name="js-name-combiImg"]');
-                    $.each(photoGallery, function (index, item) { 
-                         if(item.value == response.productCombi.combination_image ) {
-                            item.parentElement.click();
-                         }
-                    });
+                        $('#sku_product').html(response.productCombi.sku);
+                        $('#avilableStock_product').html(response.productCombi.avilableStock);
+                        
+                        let photoGallery = $('input[name="js-name-combiImg"]');
+                        $.each(photoGallery, function (index, item) { 
+                            if(item.value == response.productCombi.combination_image ) {
+                                item.parentElement.click();
+                            }
+                        });
 
-                    let combiId = response.productCombi.id;
+                        let combiId = response.productCombi.id;
 
-                    $('#addtocart1').attr('action',`http://127.0.0.1:8000/cart/add/${combiId}`)
-                    $('#addtocart').attr('href', `http://127.0.0.1:8000/cart/add/${combiId}`);
-                    $('#addCompare').attr('href', `http://127.0.0.1:8000/compare/add/${combiId}`); 
-                    $('#addWishlist').attr('href', `http://127.0.0.1:8000/wishlist/${combiId}`);
-                }, error: function (response) {
-                    console.log(response);
+                        $('#addtocart1').attr('action',`http://127.0.0.1:8000/cart/add/${combiId}`)
+                        $('#addtocart').attr('href', `http://127.0.0.1:8000/cart/add/${combiId}`);
+                        $('#addCompare').attr('href', `http://127.0.0.1:8000/compare/add/${combiId}`); 
+                        $('#addWishlist').attr('href', `http://127.0.0.1:8000/wishlist/${combiId}`);
+                    }else {
+                        $('#price_product').html("");
+                        $('#pricesale_product').html(response.message);
+                    }
+
                 }
             });
         }
