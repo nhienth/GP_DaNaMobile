@@ -39,7 +39,7 @@ class ProductController extends Controller
         if (!$productCombi) {
             return response()->json([
                 'status' => 404,
-                'message' => 'Phiên bản đã chọn ở khu vực này đang tạm hết hàng'
+                'message' => 'Phiên bản đã chọn đang tạm hết hàng'
             ]);
         }
 

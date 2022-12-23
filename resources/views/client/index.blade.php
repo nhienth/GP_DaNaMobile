@@ -382,6 +382,16 @@ use App\Models\Product;
                                                             <a href="{{url('product/detail',[$products->id])}}"
                                                                 class="d-block text-center"><img class="img-fluid" src="{{asset('images/products/'.$products->product_img)}}" alt="Image Description"></a>
                                                         </div>
+                                                        <div class="flex-center-between mb-1">
+                                                            <div class="prodcut-price">
+                                                                <div class="text-gray-100">{{number_format($products->minprice)}} đ</div>
+                                                            </div>
+                                                            <div class="d-none d-xl-block prodcut-add-cart">
+                                                                <a href="{{url('product/detail',[$products->id])}}"
+                                                                    class="btn-add-cart btn-primary transition-3d-hover"><i
+                                                                        class="ec ec-add-to-cart"></i></a>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

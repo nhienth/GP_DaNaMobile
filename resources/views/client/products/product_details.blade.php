@@ -115,31 +115,34 @@
 
                                 <div>
                                     @foreach ($product->variations as $variation)
-                                    <div>
-
-                                        <label for="">{{$variation->variation_name}}</label>
+                                    <p class="title-variation">{{$variation->variation_name}}</p>
+                                    <div class="css-radio-container">
+                                        <form>
                                         @php
-                                        $variationsIsset = [];
+                                            $variationsIsset = [];
                                         @endphp
 
                                         @foreach ($product->variation_value as $item)
-                                        @if ($variation->variation_name === $item->variation_name)
+                                            @if ($variation->variation_name === $item->variation_name)
 
-                                        @if (!in_array($item->variation_value, $variationsIsset))
+                                            @if (!in_array($item->variation_value, $variationsIsset))
+                                            <label for="">
 
-                                        <input type="radio" class="js-change-variation" name="{{$item->variation_name}}"
-                                            id="{{$item->variation_value}}" value="{{$item->variation_value}}">
-                                        <label for="{{$item->variation_value}}">{{$item->variation_value}}</label>
+                                                <input type="radio" class="js-change-variation" name="{{$variation->variation_name}}"
+                                                id="{{$item->variation_value}}" value="{{$item->variation_value}}">
+                                                <span>{{$item->variation_value}}</span>
+                                            </label>
 
                                         @endif
 
                                         @php
-                                        $variationsIsset[] = $item->variation_value;
+                                            $variationsIsset[] = $item->variation_value;
                                         @endphp
 
 
                                         @endif
                                         @endforeach
+                                        </form>
                                     </div>
 
                                     @endforeach
@@ -580,30 +583,39 @@
                 data: data,
                 dataType: "json",
                 success: function (response) {
-                    let priceProF = Intl.NumberFormat('en-US').format(response.productCombi.price);
-                    let priceSalePro = response.productCombi.price - (response.productCombi.price * response.productCombi.sale/100);
-                    let priceSaleProF = Intl.NumberFormat('en-US').format(priceSalePro);
+                    if (response.status === 200) {
+                        let priceProF = Intl.NumberFormat('en-US').format(response.productCombi.price);
+                        if (response.productCombi.sale > 0) {
+                            let priceSalePro = response.productCombi.price - (response.productCombi.price * response.productCombi.sale/100);
+                            let priceSaleProF = Intl.NumberFormat('en-US').format(priceSalePro);
+                            $('#price_product').html(`${priceProF}đ`);
+                            $('#pricesale_product').html(`${priceSaleProF}đ`);
+                        }else {
+                            $('#price_product').html("");
+                            $('#pricesale_product').html(`${priceProF}đ`);
+                        }
 
-                    $('#price_product').html(`${priceProF}đ`);
-                    $('#sku_product').html(response.productCombi.sku);
-                    $('#avilableStock_product').html(response.productCombi.avilableStock);
-                    $('#pricesale_product').html(`${priceSaleProF}đ`);
-                    
-                    let photoGallery = $('input[name="js-name-combiImg"]');
-                    $.each(photoGallery, function (index, item) { 
-                         if(item.value == response.productCombi.combination_image ) {
-                            item.parentElement.click();
-                         }
-                    });
+                        $('#sku_product').html(response.productCombi.sku);
+                        $('#avilableStock_product').html(response.productCombi.avilableStock);
+                        
+                        let photoGallery = $('input[name="js-name-combiImg"]');
+                        $.each(photoGallery, function (index, item) { 
+                            if(item.value == response.productCombi.combination_image ) {
+                                item.parentElement.click();
+                            }
+                        });
 
-                    let combiId = response.productCombi.id;
+                        let combiId = response.productCombi.id;
 
-                    $('#addtocart1').attr('action',`http://127.0.0.1:8000/cart/add/${combiId}`)
-                    $('#addtocart').attr('href', `http://127.0.0.1:8000/cart/add/${combiId}`);
-                    $('#addCompare').attr('href', `http://127.0.0.1:8000/compare/add/${combiId}`); 
-                    $('#addWishlist').attr('href', `http://127.0.0.1:8000/wishlist/${combiId}`);
-                }, error: function (response) {
-                    console.log(response);
+                        $('#addtocart1').attr('action',`http://127.0.0.1:8000/cart/add/${combiId}`)
+                        $('#addtocart').attr('href', `http://127.0.0.1:8000/cart/add/${combiId}`);
+                        $('#addCompare').attr('href', `http://127.0.0.1:8000/compare/add/${combiId}`); 
+                        $('#addWishlist').attr('href', `http://127.0.0.1:8000/wishlist/${combiId}`);
+                    }else {
+                        $('#price_product').html("");
+                        $('#pricesale_product').html(response.message);
+                    }
+
                 }
             });
         }
