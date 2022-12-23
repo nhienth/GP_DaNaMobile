@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Chart;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Payment;
 use App\Models\Category;
 use App\Models\Combinations;
 use Illuminate\Http\Request;
@@ -23,17 +24,25 @@ class StatisticalController extends Controller
         $product = Product::count();
         $order = Order::count();
 
-        $probyCate = DB::table('products')
-        ->join('categories', 'products.category_id', '=', 'categories.id')
-        ->select('categories.*', 'products.*', DB::raw('count(*) as totalCate'))
-        ->where('category_id', '<>', '0')
-        ->groupBy('category_id')
-        ->pluck('totalCate', 'category_id')
-        ->all();
+        $payment = $this->transaction();
+        // $probyCate = DB::table('products')
+        // ->join('categories', 'products.category_id', '=', 'categories.id')
+        // ->select('categories.*', 'products.*', DB::raw('count(*) as totalCate'))
+        // ->where('category_id', '<>', '0')
+        // ->groupBy('category_id')
+        // ->pluck('totalCate', 'category_id')
+        // ->all();
 
-        return view('admin.index', compact(['category', 'role', 'product', 'order']));
+        return view('admin.index', compact(['category', 'role', 'product', 'order', 'payment']));
     }
-
+    public function transaction(){
+        return Payment::select('*', DB::raw('SUM(orders.total_amount) as totalPrice'))
+        ->join('orders', 'orders.payment_id','payments.id')
+        ->join('order_details', 'order_details.order_id', '=', 'orders.id')
+        ->where('orders.status', '=', 2)
+        ->groupBy('payments.id')
+        ->get();
+    }
     public function getAllStatisticals() {
          return view('admin.statistical.index');
 
@@ -124,5 +133,7 @@ class StatisticalController extends Controller
         ->take($limit)
         ->get();
     }
+
+   
 
 }
