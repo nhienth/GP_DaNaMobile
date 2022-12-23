@@ -67,6 +67,7 @@ $(document).ready(function () {
                         `
                     )
                 });
+                paginationStat('tbody tr');
 
             }, error: function (response) {
                 console.log(response);
@@ -125,6 +126,7 @@ $(document).ready(function () {
                         `
                     )
                 });
+                paginationStat('tbody tr');
 
             }, error: function (response) {
                 console.log(response);
@@ -133,7 +135,6 @@ $(document).ready(function () {
     }
 
     function fetchUnSoldProduts(data) {
-
         $.ajaxSetup({
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -180,6 +181,7 @@ $(document).ready(function () {
                         `
                     )
                 });
+                paginationStat('tbody tr');
 
             }, error: function (response) {
                 console.log(response);
@@ -236,5 +238,27 @@ $(document).ready(function () {
         
         }
     }
+    
+    function paginationStat(element) {
+    
+        let items = $(element);
+        let numItems = items.length;
+        let perPage = 5;
+
+        items.slice(perPage).hide();
+
+        $('#pagination-container').pagination({
+            items: numItems,
+            itemsOnPage: perPage,
+            prevText: "&laquo;",
+            nextText: "&raquo;",
+            onPageClick: function (pageNumber) {
+                var showFrom = perPage * (pageNumber - 1);
+                var showTo = showFrom + perPage;
+                items.hide().slice(showFrom, showTo).show();
+            }
+        });
+    }
+
 });
 

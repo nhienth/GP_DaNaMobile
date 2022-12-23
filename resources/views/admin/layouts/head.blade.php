@@ -45,6 +45,8 @@
 
 <!-- BEGIN: Custom CSS-->
 <link rel="stylesheet" type="text/css" href="{{asset('backend/assets/css/style.css')}}">
+<link rel="stylesheet" href="{{asset('client/radio.css')}}">
+
 <!-- END: Custom CSS-->
 
 {{-- <!-- CSS -->

@@ -45,6 +45,7 @@
     <!-- BEGIN: Vendor JS-->
     <script src="{{asset('backend/app-assets/vendors/js/vendors.min.js')}}"></script>
     <!-- BEGIN Vendor JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.6/jquery.simplePagination.js"></script>
 
     <!-- BEGIN: Page Vendor JS-->
     <script src="{{asset('backend/app-assets/vendors/js/charts/apexcharts.min.js')}}"></script>
@@ -96,7 +97,7 @@
         })
     </script>
 
-        <script src="{{asset('client/assets/js/jquery-3.6.0.min.js')}}"></script>
+        {{-- <script src="{{asset('client/assets/js/jquery-3.6.0.min.js')}}"></script> --}}
         <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
         
         
