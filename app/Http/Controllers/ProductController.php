@@ -566,13 +566,20 @@ class ProductController extends Controller
         ->take(5)
         ->get();
 
+        $categoryList = Category::with('products')->where('parent_id', '!=', '0')->get();
+        
+        foreach ($categoryList as $cate) {
+            $countPro = count($cate->products);
+            $cate['countPro'] = $countPro;
+        }
+
         $this->minPriceProduct($recommendProducts);
         $this->minPriceProduct($productList);
         $this->minPriceProduct($latestProducts);
         $bannerlist = Banner::all();
 
 
-        return view('client.products.product_ bycate', compact(['recommendProducts','productList','latestProducts', 'bannerlist' ]));
+        return view('client.products.product_ bycate', compact(['recommendProducts','productList','latestProducts', 'bannerlist', 'categoryList' ]));
     }
 
 

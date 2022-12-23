@@ -50,7 +50,7 @@
                                     </div>
 
                                     <div class="mb-2" style="font-style: italic;">
-                                       Tác giả : {{$post->added_by}}
+                                       Tác giả : {{$post->user->name}}
                                     </div>
 
                                     <div class="mb-2" style="font-style: italic;">

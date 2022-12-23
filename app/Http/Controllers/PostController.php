@@ -9,6 +9,8 @@ use App\Models\PostReview;
 use App\Models\Category;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class PostController extends Controller
 {
@@ -66,7 +68,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('category')->orderBy('posts.created_at', 'DESC')->paginate(5);
+        $posts = Post::with('category', 'user')->orderBy('posts.created_at', 'DESC')->paginate(5);
         $categories = Category::all();
         return view('admin.posts.list', compact('posts','categories'));
     }
@@ -146,7 +148,8 @@ class PostController extends Controller
         move_uploaded_file($_FILES['post_img']['tmp_name'], $target_file);
         $post->post_img = $imgpath;
         $post->category_id = $request->category_id;
-        $post->added_by = 0;
+        // Lay id cua admin hien tai
+        $post->added_by = Auth::id();
         $post->status = 0;
         $post->save();
 
