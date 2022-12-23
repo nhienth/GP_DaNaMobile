@@ -253,7 +253,7 @@ class CheckoutController extends Controller
         $jsonResult = json_decode($result, true);  // decode json
 
         if($jsonResult['message'] !== "Giao dịch thành công."){
-            echo '<script>alert("Welcome to QABug");
+            echo '<script>alert("'.$jsonResult['message'].'");
             window.location="http://127.0.0.1:8000/checkout"
             </script>';
         }
