@@ -606,11 +606,20 @@
                         });
 
                         let combiId = response.productCombi.id;
+                        let urlCart = "{{ route('cart.add',":id")}}";
+                        urlCart = urlCart.replace(':id',combiId);
 
-                        $('#addtocart1').attr('action',`http://127.0.0.1:8000/cart/add/${combiId}`)
-                        $('#addtocart').attr('href', `http://127.0.0.1:8000/cart/add/${combiId}`);
-                        $('#addCompare').attr('href', `http://127.0.0.1:8000/compare/add/${combiId}`); 
-                        $('#addWishlist').attr('href', `http://127.0.0.1:8000/wishlist/${combiId}`);
+                        let urlCompare = "{{ route('cart.add',":id")}}";
+                        urlCompare = urlCompare.replace(':id',combiId);
+
+                        let urlWishlist = "{{ route('cart.add',":id")}}";
+                        urlWishlist = urlWishlist.replace(':id',combiId);
+
+                        
+                        $('#addtocart1').attr('action',`${urlCart}`)
+                        $('#addtocart').attr('href', `${urlCart}`);
+                        $('#addCompare').attr('href', `${urlCompare}`); 
+                        $('#addWishlist').attr('href', `${urlWishlist}`);
                     }else {
                         $('#price_product').html("");
                         $('#pricesale_product').html(response.message);
