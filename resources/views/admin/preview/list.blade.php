@@ -78,7 +78,10 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                           
+                            <div id="pagination-container"></div>
+                        <div>
+                   
+                        </div>
                         </div>
                         <!-- Modal to add new user starts-->
 
@@ -93,3 +96,6 @@
     </div>
     <!-- END: Content-->
 @endsection
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.6/jquery.simplePagination.js"></script>
+<script src="{{asset('admin_js/pagination_js.js')}}"></script>

@@ -52,11 +52,11 @@ class ProductController extends Controller
     {
         $keywords = $_GET['key_cate_id'];
                 $categories = Category::where('parent_id','<>',0)->get();
-        $products = Product::where('category_id', '=', $keywords)->paginate(5);
+        $products = Product::where('category_id', '=', $keywords)->get();
         if (count($products) != 0) {
             return view('admin.products.list')->with(compact('products', 'categories'));
         } else if (count($products) == 0) {
-            $products = Product::with('category')->orderBy('products.id', 'desc')->paginate(5);
+            $products = Product::with('category')->orderBy('products.id', 'desc')->get();
             return view('admin.products.list')->with(compact('products', 'categories'));
         }
     }
@@ -149,7 +149,7 @@ class ProductController extends Controller
     {
         
         $categories = Category::where('parent_id','<>',0)->get();
-        $products = Product::with('category')->orderBy('products.id', 'desc')->paginate(5);
+        $products = Product::with('category')->orderBy('products.id', 'desc')->get();
         return view('admin.products.list', compact(['categories', 'products']));
     }
 

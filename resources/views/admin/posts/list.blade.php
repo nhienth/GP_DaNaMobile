@@ -149,6 +149,10 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <div id="pagination-container"></div>
+                        <div>
+                   
+                        </div>
                         <div class="d-flex justify-content-between mx-2 row mb-1">
                             <div class="col-sm-12 col-md-6">
                                 <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Hiển thị 0 đến 0 của 0 mục</div>
@@ -177,3 +181,6 @@
     </div>
 </div>
 @endsection
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.6/jquery.simplePagination.js"></script>
+<script src="{{asset('admin_js/pagination_js.js')}}"></script>
