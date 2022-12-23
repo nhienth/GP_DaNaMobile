@@ -95,7 +95,7 @@ class StatisticalController extends Controller
     }
 
     public function listSoldProducts () {
-        $products = $this->sellingProductsF('DESC', 100);
+        $products = $this->sellingProductsF();
         $productsId = [];
         foreach ($products as $product) {
             array_push($productsId, $product->productcombi_id);
@@ -105,7 +105,7 @@ class StatisticalController extends Controller
     }
 
     
-    public function sellingProductsF($orderBy, $limit) {
+    public function sellingProductsF() {
         return Combinations::select('products.*', 'categories.category_name', 'products_combinations.combination_string','products_combinations.id as productcombi_id' ,DB::raw('SUM(order_details.quantity) as totalSold'))
         ->join('order_details', 'order_details.product_id', '=', 'products_combinations.id')
         ->join('orders', 'order_details.order_id', '=', 'orders.id')
@@ -114,8 +114,7 @@ class StatisticalController extends Controller
         ->where('orders.status', '=', 2)
         ->groupBy('products_combinations.id')
         ->having('totalSold', '>', 0)
-        ->orderBy('totalSold', $orderBy)
-        ->take($limit)
+        ->orderBy('totalSold', 'DESC')
         ->get();
     }
 

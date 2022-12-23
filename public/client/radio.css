@@ -71,4 +71,6 @@
 .title-variation {
     margin: 0 !important;
     color: black;
+    font-weight: bolder;
+    font-size: 14px;
 }

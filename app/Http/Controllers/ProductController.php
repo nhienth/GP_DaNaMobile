@@ -36,7 +36,7 @@ class ProductController extends Controller
                 ->orWhere('combination_string','like',  "%$combistringReverse%");
         })->first();
 
-        if (!$productCombi) {
+        if (!$productCombi || $productCombi->avilableStock <= 0) {
             return response()->json([
                 'status' => 404,
                 'message' => 'Phiên bản đã chọn đang tạm hết hàng'
