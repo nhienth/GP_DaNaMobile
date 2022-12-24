@@ -16,7 +16,6 @@ use App\Http\Controllers\PreviewController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\VariationController;
-use App\Http\Controllers\PostController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\CartController;
@@ -123,19 +122,7 @@ Route::prefix('/')->group(function () {
         Route::post('/updatepass/{id}', [UserController::class, 'passupdate']);
     });
 
-    Route::prefix('/blogs')->group(function () {
-
-        Route::get('/', [PostController::class, 'getAllPost']);
-        // lay tat ca bai viet theo danh muc
-        Route::get('/list/{id}', [PostController::class, 'getPostById']);
-
-        Route::get('/details/{id}', [PostController::class, 'showclient']);
-
-        //review blogs
-        Route::get('/detail/{id}',[PostReviewController::class,'showclient']);
-        Route::post('/review/{id}',[PostReviewController::class,'reviewPost'])->name('post_review');
-
-    });
+   
     Route::prefix('/bill')->group(function ()
     {
         Route::get('/list', [ProductController::class, 'showMyBill'])->name('bill.list')->middleware('checkBill');
@@ -251,28 +238,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
             Route::get('/edit/{id}', [VariationController::class, 'edit_main'])->name('variation_main.edit');
             Route::post('/update/{id}', [VariationController::class, 'update_main'])->name('variation_main.edit_process');
 
-            Route::get('/search', [PostController::class, 'search']);
-
             Route::get('/delete/{id}', [VariationController::class, 'destroy_main']);
-        });
-
-        Route::prefix('/post')->group(function () {
-            Route::get('/list', [PostController::class, 'index']);
-
-            Route::get('/create', [PostController::class, 'create']);
-            Route::post('/create', [PostController::class, 'store']);
-
-            Route::get('/edit/{id}', [PostController::class, 'edit']);
-            Route::post('/update/{id}', [PostController::class, 'update']);
-
-            Route::get('/details/{id}', [PostController::class, 'show']);
-
-            Route::get('/delete/{id}', [PostController::class, 'destroy']);
-
-            //tìm kiếm và lọc bài viết
-            Route::get('/searchpost', [PostController::class, 'searchs'])->name('searchs');
-            Route::get('/filter_view', [PostController::class, 'filter_views'])->name('filter_views');
-            Route::get('/filter_status', [PostController::class, 'filter_statuss'])->name('filter_statuss');
         });
 
         Route::prefix('/preview')->group(function () {
@@ -292,7 +258,6 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
             Route::put('/update/{id}', [UserController::class, 'update']);
         });
 
-        Route::get('/search', [PostController::class, 'search']);
 
         Route::prefix('/order')->group(function () {
             Route::get('/list', [OrderController::class, 'index']);
