@@ -52,7 +52,7 @@ Route::prefix('/')->group(function () {
         Route::get('/google', [GoogleController::class, 'googleRedirect'])->name('google.redirect');
         Route::get('/google/callback', [GoogleController::class, 'googleLogin'])->name('google.login');
     });
-    
+
     Route::prefix('/contact')->group(function () {
         Route::get('/', [ContactController::class, 'create']);
         Route::post('/', [ContactController::class, 'store']);
@@ -64,7 +64,6 @@ Route::prefix('/')->group(function () {
         Route::post('/addVoucher', [VoucherController::class, 'addVoucher']);
         Route::get('/voucher_user', [UserController::class, 'voucher']);
         Route::post('/useCheckout', [CheckoutController::class, 'useCheckout']);
-
     });
     // Compare
     Route::prefix('/compare')->group(function () {
@@ -78,7 +77,7 @@ Route::prefix('/')->group(function () {
 
     //wishlist
 
-    Route::get('/wishlist/{id}', [ProductController::class, 'addWishlist']);
+    Route::get('/wishlist/{id}', [ProductController::class, 'addWishlist'])->name('addWishlist');
     Route::get('/listWishList', [ProductController::class, 'showWishList'])->name("listWishlist");
     Route::get('/deleteWishList/{id}', [ProductController::class, 'deleteWishList']);
 
@@ -91,19 +90,17 @@ Route::prefix('/')->group(function () {
         Route::get('/add/{id}', [ProductController::class, 'addToCart'])->name('cart.add');
         Route::get('/deleteCart/{id}', [ProductController::class, 'deleteCart'])->name('cart.remove');
         Route::post('/updateCart/{id}', [ProductController::class, 'updateCart'])->name('update.cart');
-
     });
 
     Route::prefix('/product')->group(function () {
         Route::get('/byCate/{id}', [ProductController::class, 'productbyCate']);
         Route::get('/detail/{id}', [ProductController::class, 'productDetail']);
-    //review product
-        Route::post('/preview/{id}',[ProductController::class,'preview'])->name('preview');
+        //review product
+        Route::post('/preview/{id}', [ProductController::class, 'preview'])->name('preview');
         // Route::get('/rate/{id}',[ProductController::class,'reviewRate']);
-        Route::get('/search',[ProductController::class,'searchProduct']);
+        Route::get('/search', [ProductController::class, 'searchProduct']);
         Route::get('/filter_price', [ProductController::class, 'filter_price'])->name('filter_price');
         Route::get('/combi', [ProductController::class, 'getProductCombi']);
-
     });
 
     Route::prefix('/user')->group(function () {
@@ -118,7 +115,7 @@ Route::prefix('/')->group(function () {
         Route::post('/updateaddress', [AddressControll::class, 'update']);
 
         Route::get('/delete/{id}', [AddressControll::class, 'destroy']);
-        
+
         Route::get('/updatepass/{id}', [UserController::class, 'passedit']);
         Route::post('/updatepass/{id}', [UserController::class, 'passupdate']);
     });
@@ -132,18 +129,16 @@ Route::prefix('/')->group(function () {
         Route::get('/details/{id}', [PostController::class, 'showclient']);
 
         //review blogs
-        Route::get('/detail/{id}',[PostReviewController::class,'showclient']);
-        Route::post('/review/{id}',[PostReviewController::class,'reviewPost'])->name('post_review');
-
+        Route::get('/detail/{id}', [PostReviewController::class, 'showclient']);
+        Route::post('/review/{id}', [PostReviewController::class, 'reviewPost'])->name('post_review');
     });
-    Route::prefix('/bill')->group(function ()
-    {
+    Route::prefix('/bill')->group(function () {
         Route::get('/list', [ProductController::class, 'showMyBill'])->name('bill.list')->middleware('checkBill');
         Route::get('/detail/{id}', [ProductController::class, 'showBillDetail'])->name('bill.show_detail');
     });
 
-    Route::get('/checkout', [CheckoutController::class,'index'])->name('checkout');
-    Route::post('/done', [CheckoutController::class,'store'])->name('done');
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+    Route::post('/done', [CheckoutController::class, 'store'])->name('done');
 
     // Cổng thanh toán
     Route::post('/vnpay_payment', [CheckoutController::class, 'vnpay_payment']);
@@ -239,7 +234,6 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
             Route::get('/search', [SpecificationController::class, 'search'])->name('search_spe');
             Route::get('/spe_name', [SpecificationController::class, 'name'])->name('spe_name');
             Route::get('/search_specate', [SpecificationController::class, 'category'])->name('category');
-
         });
 
         Route::prefix('/variation_main')->group(function () {
@@ -300,7 +294,6 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
             Route::get('/edit/{id}', [OrderController::class, 'edit']);
             Route::put('/update/{id}', [OrderController::class, 'update']);
             Route::get('/filter-status-order', [OrderController::class, 'filter_status_order'])->name('filter.status.order');
-
         });
 
         Route::prefix('/stocks')->group(function () {
@@ -309,7 +302,6 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
             Route::get('/search', [StocksController::class, 'search'])->name('search_stock');
             Route::get('/stock_name', [StocksController::class, 'name'])->name('stock_name');
             Route::get('/price', [StocksController::class, 'price'])->name('price');
-
         });
 
         Route::prefix('/slider')->group(function () {
@@ -352,7 +344,6 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
             Route::get('/', [StatisticalController::class, 'getAllStatisticals'])->name('statistical.list');
             Route::get('/list', [StatisticalController::class, 'getStatistical']);
         });
-
     });
 });
 require __DIR__ . '/auth.php';
