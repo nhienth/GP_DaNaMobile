@@ -83,7 +83,7 @@
                                         </div>
                                         <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Giá Trị</label>
-                                            <input value="" type="text" name="voucher_value" id="basic-addon-name" class="form-control" placeholder="Nhập giá trị" aria-label="Name" aria-describedby="basic-addon-name"  />
+                                            <input value="" type="number" name="voucher_value" id="basic-addon-name" class="form-control" placeholder="Nhập giá trị" aria-label="Name" aria-describedby="basic-addon-name"  />
                                             @error('voucher_value')
                                             <div class="alert alert-danger mt-1">{{ $message }}</div>
                                             @enderror
@@ -91,7 +91,7 @@
                                         </div>
                                         <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Số lượng</label>
-                                            <input value="" type="text" name="voucher_numberof" id="basic-addon-name" class="form-control" placeholder="Nhập giá trị" aria-label="Name" aria-describedby="basic-addon-name"  />
+                                            <input value="" type="number" name="voucher_numberof" id="basic-addon-name" class="form-control" placeholder="Nhập giá trị" aria-label="Name" aria-describedby="basic-addon-name"  />
                                             @error('voucher_numberof')
                                             <div class="alert alert-danger mt-1">{{ $message }}</div>
                                             @enderror

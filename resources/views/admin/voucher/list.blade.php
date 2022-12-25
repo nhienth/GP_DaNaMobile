@@ -79,7 +79,7 @@
                                 <td>{{$voucher->id}}</td>
                                 <td>{{$voucher->code}}</td>
                                 <td>{{$voucher->type}}</td>
-                                <td>{{$voucher->value}}</td>
+                                <td>{{number_format($voucher->value)}}</td>
                                 <td>{{$voucher->numberof}}</td>
                                 <td>{{$voucher->time}}</td>
                                 <td>
@@ -101,7 +101,7 @@
                         </table>
                         <div id="pagination-container"></div>
                         <div>
-                   
+
                         </div>
                     </div>
                     <!-- Modal to add new user starts-->

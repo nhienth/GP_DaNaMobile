@@ -132,6 +132,7 @@ Route::prefix('/')->group(function () {
         Route::get('/detail/{id}', [PostReviewController::class, 'showclient']);
         Route::post('/review/{id}', [PostReviewController::class, 'reviewPost'])->name('post_review');
     });
+    // Đơn hàng của bạn
     Route::prefix('/bill')->group(function () {
         Route::get('/list', [ProductController::class, 'showMyBill'])->name('bill.list')->middleware('checkBill');
         Route::get('/detail/{id}', [ProductController::class, 'showBillDetail'])->name('bill.show_detail');

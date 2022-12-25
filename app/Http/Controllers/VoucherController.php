@@ -25,7 +25,7 @@ class VoucherController extends Controller
     }
     public function index()
     {
-        $result = $this->voucher->all();
+        $result = $this->voucher->orderBy('id', 'DESC')->get();
         return view('admin.voucher.list', compact('result'));
     }
 
@@ -97,11 +97,13 @@ class VoucherController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $vou = Voucher::find($id);
+        // $vou = Voucher::find($id);
+        $vou = Voucher::with('voucher_product')->find($id);
         // $vou->voucher_id = $request['voucher_id'];
         $vou->code = $request['voucher_code'];
         $vou->type = $request['voucher_type'];
         $vou->value = $request['voucher_value'];
+        $vou->numberof = $request['voucher_numberof'];
         $vou->product_id = $request['voucher_product_id'];
         $vou->status = $request['voucher_status'];
         $vou->save();
@@ -122,32 +124,34 @@ class VoucherController extends Controller
         return redirect()->route('voucher.list');
     }
 
-    public function checkVoucher($id){
+    public function checkVoucher($id)
+    {
         $list = Voucher::all();
-        foreach ($list as $key ) {
-            if($key->numberof < 1){
+        foreach ($list as $key) {
+            if ($key->numberof < 1) {
                 Voucher::find($key->id)->delete();
-                VoucherUser::where('voucher_id',$key->id)->delete();
+                VoucherUser::where('voucher_id', $key->id)->delete();
             }
-            if($key->time < date('Y-m-d', time())){
+            if ($key->time < date('Y-m-d', time())) {
                 Voucher::find($key->id)->delete();
-                VoucherUser::where('voucher_id',$key->id)->delete();
+                VoucherUser::where('voucher_id', $key->id)->delete();
             }
         }
     }
 
-    public function list(){
+    public function list()
+    {
         $result = Voucher::with('voucher_vu')->get();
         $user = "";
         if (Auth::check()) {
             $user = User::with('user_voucher')->where('users.id', Auth::user()->id)->first();
-        foreach ($result as $vou) {
-            foreach ($user->user_voucher as $user_vou) {
-                if ($vou->id === $user_vou->voucher_id) {
-                    $vou['isGet'] = true;
+            foreach ($result as $vou) {
+                foreach ($user->user_voucher as $user_vou) {
+                    if ($vou->id === $user_vou->voucher_id) {
+                        $vou['isGet'] = true;
+                    }
                 }
             }
-        }
         }
 
         return view('client.voucher.list', compact('result'));
@@ -156,8 +160,8 @@ class VoucherController extends Controller
     public function addVoucher(Request $request)
     {
         $vu = new VoucherUser();
-        $voucher = Voucher::where("id",$request['voucher_id'])->first();
-        $voucher -> numberof -= 1;
+        $voucher = Voucher::where("id", $request['voucher_id'])->first();
+        $voucher->numberof -= 1;
         $voucher->save();
         $vu->voucher_id = $request['voucher_id'];
         $vu->user_id = $request['user_id'];

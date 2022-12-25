@@ -45,19 +45,19 @@
                                 <div class="card-body">
                                     <form class="needs-validation" novalidate method="POST" action="{{url('admin/voucher/update',[$voucher->id])}}">
                                         @csrf
-                                  
-                                            
-                                        
+
+
+
                                         {{-- <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="basic-addon-name">ID</label>
-    
+
                                             <input value="{{$voucher->id}}" type="text" name="voucher_id" id="basic-addon-name" class="form-control" placeholder="Nhập ID" aria-label="Name" aria-describedby="basic-addon-name" required />
                                             <div class="valid-feedback">Looks good!</div>
                                             <div class="invalid-feedback">Please enter ID.</div>
                                         </div> --}}
                                         <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Mã Giảm Giá</label>
-    
+
                                             <input value="{{$voucher->code}}" type="text" name="voucher_code" id="basic-addon-name" class="form-control" placeholder="Nhập mã giảm giá" aria-label="Name" aria-describedby="basic-addon-name" required />
                                             <div class="valid-feedback">Looks good!</div>
                                             <div class="invalid-feedback">Please enter Code.</div>
@@ -79,47 +79,61 @@
                                             <option value="Giảm theo %">
                                                 Giảm Theo %
                                             </option>
-                                           
+
                                         </select>
                                         </div>
                                         <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Giá Trị</label>
-    
-                                            <input value="{{$voucher->value}}" type="text" name="voucher_value" id="basic-addon-name" class="form-control" placeholder="Nhập giá trị" aria-label="Name" aria-describedby="basic-addon-name" required />
+
+                                            <input value="{{$voucher->value}}" type="number" name="voucher_value" id="basic-addon-name" class="form-control" placeholder="Nhập giá trị" aria-label="Name" aria-describedby="basic-addon-name" required />
                                             <div class="valid-feedback">Looks good!</div>
                                             <div class="invalid-feedback">Please enter value</div>
                                         </div>
                                         <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Số lượng</label>
-    
-                                            <input value="{{$voucher->numberof}}" type="text" name="voucher_value" id="basic-addon-name" class="form-control" placeholder="Nhập giá trị" aria-label="Name" aria-describedby="basic-addon-name" required />
+
+                                            <input value="{{$voucher->numberof}}" type="number" name="voucher_numberof" id="basic-addon-name" class="form-control" placeholder="Nhập giá trị" aria-label="Name" aria-describedby="basic-addon-name" required />
                                             <div class="valid-feedback">Looks good!</div>
                                             <div class="invalid-feedback">Please enter value</div>
                                         </div>
                                         <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Thời gian còn lại</label>
-    
+
                                             <input value="{{$voucher->time}}" type="text" name="voucher_time" id="basic-addon-name" class="form-control" placeholder="Nhập giá trị" aria-label="Name" aria-describedby="basic-addon-name" required />
                                             <div class="valid-feedback">Looks good!</div>
                                             <div class="invalid-feedback">Please enter value</div>
                                         </div>
                                         <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Trạng Thái</label>
-    
-                                            <input value="{{$voucher->status}}" type="text" name="voucher_status" id="basic-addon-name" class="form-control" placeholder="Nhập trạng thái" aria-label="Name" aria-describedby="basic-addon-name" required />
+{{--
+                                            <input value="{{$voucher->status}}" type="text" name="voucher_status" id="basic-addon-name" class="form-control" placeholder="Nhập trạng thái" aria-label="Name" aria-describedby="basic-addon-name" required /> --}}
+                                            <select
+                                                class="form-select"
+                                                id="select-country1" name="voucher_status"  value="{{$voucher->status}}"
+                                            >
+                                                <option value="1">
+                                                    Đang áp dụng
+                                                </option>
+                                                <option value="2">
+                                                    Hết hạn
+                                                </option>
+                                                <option value="3">
+                                                    Sắp hết hạn
+                                                </option>
+                                            </select>
                                             <div class="valid-feedback">Looks good!</div>
                                             <div class="invalid-feedback">Please enter status.</div>
                                         </div>
                                         <div class="mb-1">
-                                            <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Mã Sản Phẩm </label>
-                            
+                                            <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Tên Sản Phẩm </label>
+
                                             <select name="voucher_product_id"  class="form-select"
-                                            id="select-country1" > Chọn mã sản phẩm
+                                            id="select-country1" value="{{$voucher->product_name}}" > Chọn mã sản phẩm
                                                 @foreach ($result as  $rs)
                                                 <option  value="{{$rs->id}}"> {{$rs->product_name}}</option>
                                                 @endforeach
                                             </select>
-                                            
+
                                         </div>
                                       <button type="submit" class="btn btn-primary me-2">Cập nhật</button>
                                         <button type="submit" class="btn btn-primary me-2">Nhập lại</button>
@@ -129,14 +143,14 @@
                             </div>
                         </div>
                         <!-- /Bootstrap Validation -->
-    
+
                         <!-- jQuery Validation -->
-                        
+
                         <!-- /jQuery Validation -->
                     </div>
                 </section>
                 <!-- /Validation -->
-    
+
             </div>
         </div>
     </div>
