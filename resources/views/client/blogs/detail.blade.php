@@ -38,14 +38,14 @@
                                 </div>
                                 <!-- End Review -->
                             </div>
-                            <ul class="nav justify-content-between mb-11">
+                            {{-- <ul class="nav justify-content-between mb-11">
                                 <li class="nav-item m-0">
                                     <a class="nav-link text-gray-27 px-0" href="../blog/single-blog-post.html"><span class="mr-1">←</span> SpaceX Falcon bùng nổ sau khi hạ cánh</a>
                                 </li>
                                 <li class="nav-item m-0">
                                     <a class="nav-link text-gray-27 px-0" href="../blog/single-blog-post.html">Thông báo - Đăng không có hình ảnh <span class="ml-1">→</span></a>
                                 </li>
-                            </ul>
+                            </ul> --}}
                             <div class="mb-10">
                                 <div class="border-bottom border-color-1 mb-10" style="color: black">
                                     <h4 class="section-title mb-0 pb-3 font-size-25">Bình luận</h4>
