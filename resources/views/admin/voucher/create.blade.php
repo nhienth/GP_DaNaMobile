@@ -14,7 +14,7 @@
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{url('admin')}}">Trang chủ</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="{{url('admin/voucher/list')}}">Voucher</a>
+                                    <li class="breadcrumb-item"><a href="{{url('admin/voucher/list')}}">Phiếu giảm giá</a>
                                     </li>
                                     <li class="breadcrumb-item active">Thêm mới
                                     </li>
@@ -83,7 +83,7 @@
                                         </div>
                                         <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Giá Trị</label>
-                                            <input value="" type="text" name="voucher_value" id="basic-addon-name" class="form-control" placeholder="Nhập giá trị" aria-label="Name" aria-describedby="basic-addon-name"  />
+                                            <input value="" type="number" name="voucher_value" id="basic-addon-name" class="form-control" placeholder="Nhập giá trị" aria-label="Name" aria-describedby="basic-addon-name"  />
                                             @error('voucher_value')
                                             <div class="alert alert-danger mt-1">{{ $message }}</div>
                                             @enderror
@@ -91,7 +91,7 @@
                                         </div>
                                         <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Số lượng</label>
-                                            <input value="" type="text" name="voucher_numberof" id="basic-addon-name" class="form-control" placeholder="Nhập giá trị" aria-label="Name" aria-describedby="basic-addon-name"  />
+                                            <input value="" type="number" name="voucher_numberof" id="basic-addon-name" class="form-control" placeholder="Nhập giá trị" aria-label="Name" aria-describedby="basic-addon-name"  />
                                             @error('voucher_numberof')
                                             <div class="alert alert-danger mt-1">{{ $message }}</div>
                                             @enderror
@@ -113,9 +113,6 @@
                                                 <option value="2">
                                                     Hết hạn
                                                 </option>
-                                                <option value="3">
-                                                    Sắp hết hạn
-                                                </option>
                                             </select>
                                             @error('voucher_status')
                                             <div class="alert alert-danger mt-1">{{ $message }}</div>
@@ -130,9 +127,6 @@
                                                 <option  value="{{$rs->id}}"> {{$rs->product_name}}</option>
                                                 @endforeach
                                             </select>
-
-
-
                                             {{-- <input value="" type="text" name="voucher_product_id" id="basic-addon-name" class="form-control" placeholder="Nhập mã sản phẩm" aria-label="Name" aria-describedby="basic-addon-name" required />
 
                                             <div class="invalid-feedback">Please enter product Id.</div> --}}

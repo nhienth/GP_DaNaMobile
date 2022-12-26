@@ -18,7 +18,7 @@
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="{{url('admin')}}">Trang chủ</a>
                                         </li>
-                                        <li class="breadcrumb-item"><a href="{{url('admin/voucher/list')}}">Voucher</a>
+                                        <li class="breadcrumb-item"><a href="{{url('admin/voucher/list')}}">Phiếu giảm giá</a>
                                         </li>
                                         <li class="breadcrumb-item active">Danh sách
                                         </li>
@@ -61,14 +61,14 @@
                                 <tr>
 
                                     <th>ID</th>
-                                    <th>Code</th>
+                                    <th>Mã</th>
                                     <th>Loại hình</th>
                                     <th>Giá trị</th>
                                     <th>Số lượng</th>
                                     <th>Thời gian còn lại</th>
                                     <th>Trạng thái</th>
                                     <th>Tên sản phẩm</th>
-                                    <th colspan="2">Thao tác</th>
+                                    <th colspan="2" style="text-align: center">Thao tác</th>
                                 </tr>
                             </thead>
                            <tbody>
@@ -79,17 +79,14 @@
                                 <td>{{$voucher->id}}</td>
                                 <td>{{$voucher->code}}</td>
                                 <td>{{$voucher->type}}</td>
-                                <td>{{$voucher->value}}</td>
+                                <td>{{number_format($voucher->value)}}</td>
                                 <td>{{$voucher->numberof}}</td>
                                 <td>{{$voucher->time}}</td>
                                 <td>
                                     @if($voucher->status == 1)
                                        <span class="alert-success">Đang áp dụng</span>
                                     @elseif($voucher->status == 2)
-
-                                        <span class="alert-danger">Hết hạn sử dụng</span>
-                                    @elseif($voucher->status == 3)
-                                        <span class="alert-warning">Sắp hết hạn</span>
+                                        <span class="alert-danger">Vô hiệu hoá</span>
                                     @endif
                                 </td>
                                 <td>{{$voucher->voucher_product->product_name}}</td>
@@ -101,7 +98,7 @@
                         </table>
                         <div id="pagination-container"></div>
                         <div>
-                   
+
                         </div>
                     </div>
                     <!-- Modal to add new user starts-->

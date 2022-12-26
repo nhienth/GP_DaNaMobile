@@ -609,10 +609,10 @@
                         let urlCart = "{{ route('cart.add',":id")}}";
                         urlCart = urlCart.replace(':id',combiId);
 
-                        let urlCompare = "{{ route('cart.add',":id")}}";
+                        let urlCompare = "{{ route('compare.add',":id")}}";
                         urlCompare = urlCompare.replace(':id',combiId);
 
-                        let urlWishlist = "{{ route('cart.add',":id")}}";
+                        let urlWishlist = "{{ route('addWishlist',":id")}}";
                         urlWishlist = urlWishlist.replace(':id',combiId);
 
                         
