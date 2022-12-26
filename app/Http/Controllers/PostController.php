@@ -92,7 +92,12 @@ class PostController extends Controller
         $bannerlist = Banner::where('id', '<>', '9')->get();
         $post = Post::find($id);
         $previews = PostReview::where('posts_id',$id)->get();
-        return view('client.blogs.detail', compact('post','previews','banner', 'bannerlist'));
+        $similarPost = Post::with(['category'])
+            ->where('posts.category_id', $post->category_id)
+            ->where('posts.id', '!=', $id)
+            ->take(6)
+            ->get();
+        return view('client.blogs.detail', compact('post','previews','banner', 'bannerlist', 'similarPost'));
     }
 
     /**

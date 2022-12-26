@@ -21,16 +21,16 @@ class CheckoutController extends Controller
      */
     public function index()
     {
-        $userId = Auth::user()->id;
+        $userId = Auth::id();
         $payments = Payment::where('payment_status', '1')->get();
         $productList = session('cart');
         $user = User::with('user_addresses')->where('users.id', $userId)->first();
-        $this->checkVoucher(Auth::user()->id);
-        $list_vu = VoucherUser::with('vu_voucher','vu_user')->where('user_id',Auth::user()->id)->get();
+        $this->checkVoucher(Auth::id());
+        $list_vu = VoucherUser::with('vu_voucher','vu_user')->where('user_id',Auth::id())->get();
         return view('client.shop.checkout', compact('user', 'productList','payments','list_vu'));
     }
     public function checkVoucher($id){
-        $list = Voucher::all();
+        $list = Voucher::all(); 
         foreach ($list as $key ) {
             if($key->numberof < 1){
                 Voucher::find($key->id)->delete();
@@ -99,7 +99,6 @@ class CheckoutController extends Controller
                 $billDetails->quantity = $cart['quantity'];
                 $billDetails->total_amount = $cart['quantity']*$cart['price'];
                 $billDetails->save();
-
                 $product = Combinations::find($billDetails->product_id);
                 $product->avilableStock = $product->avilableStock - $billDetails->quantity;
                 $product->save();
@@ -119,7 +118,7 @@ class CheckoutController extends Controller
 
     }
 
-    public function vnpay_payment_test($id, $total){      
+    public function vnpay_payment_test($id, $total){     
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
         $vnp_Returnurl = "http://127.0.0.1:8000/checkout";
         $vnp_TmnCode = "K4ZDW395";//Mã website tại VNPAY 
@@ -214,7 +213,6 @@ class CheckoutController extends Controller
 
     public function momo_payment_test($id, $total){
 
-
         // include "../common/helper.php";
 
         $endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
@@ -225,7 +223,7 @@ class CheckoutController extends Controller
         $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
         $orderInfo = "Thanh toán qua ATM MoMo";
         $amount = $total;
-        $orderId = $id;
+        $orderId= $id + 1000000;
         $redirectUrl = "http://127.0.0.1:8000/checkout";
         $ipnUrl = "http://127.0.0.1:8000/checkout";
         $extraData = "";
@@ -251,7 +249,6 @@ class CheckoutController extends Controller
             'signature' => $signature);
         $result = $this->execPostRequest($endpoint, json_encode($data));
         $jsonResult = json_decode($result, true);  // decode json
-
         if($jsonResult['message'] !== "Giao dịch thành công."){
             echo '<script>alert("'.$jsonResult['message'].'");
             window.location="http://127.0.0.1:8000/checkout"

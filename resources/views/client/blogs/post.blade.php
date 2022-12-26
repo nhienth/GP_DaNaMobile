@@ -3,10 +3,11 @@
 <div class="container">
                 <div class="row">
                     <div class="col-xl-9 col-wd">
-                        <div class="min-width-1100-wd">          
-                            <article class="card mb-13 border-0">
+                        <div class="min-width-1100-wd">   
+                            @foreach ($allPost as $post) 
+                            <article class="card mb-3 border-0">
                                 <div class="row">
-                                    @foreach ($allPost as $post) 
+                                  
                                     <div class="col-lg-4 mb-5 mb-lg-0">
                                         <a href="http://localhost:8000/post/details/{{$post->id}}" class="d-block"><img class="img-fluid min-height-250 object-fit-cover" src="{{asset('images/post/'.$post->post_img)}}" alt="Image Description"></a>
                                     </div>
@@ -28,9 +29,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    @endforeach
+                                    
                                 </div>
                             </article>
+                            @endforeach
+
                             
                         </div>
                     </div>

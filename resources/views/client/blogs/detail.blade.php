@@ -38,14 +38,14 @@
                                 </div>
                                 <!-- End Review -->
                             </div>
-                            <ul class="nav justify-content-between mb-11">
+                            {{-- <ul class="nav justify-content-between mb-11">
                                 <li class="nav-item m-0">
                                     <a class="nav-link text-gray-27 px-0" href="../blog/single-blog-post.html"><span class="mr-1">←</span> SpaceX Falcon bùng nổ sau khi hạ cánh</a>
                                 </li>
                                 <li class="nav-item m-0">
                                     <a class="nav-link text-gray-27 px-0" href="../blog/single-blog-post.html">Thông báo - Đăng không có hình ảnh <span class="ml-1">→</span></a>
                                 </li>
-                            </ul>
+                            </ul> --}}
                             <div class="mb-10">
                                 <div class="border-bottom border-color-1 mb-10" style="color: black">
                                     <h4 class="section-title mb-0 pb-3 font-size-25">Bình luận</h4>
@@ -113,81 +113,24 @@
                             </form>
                         </aside>
 
+                    
                         <aside class="mb-7">
                             <div class="border-bottom border-color-1 mb-5">
-                                <h3 class="section-title section-title__sm mb-0 pb-2 font-size-18">Danh mục</h3>
+                                <h3 class="section-title section-title__sm mb-0 pb-2 font-size-18" style="color: black">Bài viết liên quan</h3>
                             </div>
-                            <div class="list-group">
-                                <a href="../blog/single-blog-post.html" class="font-bold-on-hover px-3 py-2 list-group-item list-group-item-action border-0"><i class="mr-2 fas fa-angle-right"></i> Thiết kế</a>
-                                <a href="../blog/single-blog-post.html" class="font-bold-on-hover px-3 py-2 list-group-item list-group-item-action border-right-0 border-left-0 border-bottom-0"><i class="mr-2 fas fa-angle-right"></i> Sự kiện</a>
-                                <a href="../blog/single-blog-post.html" class="font-bold-on-hover px-3 py-2 list-group-item list-group-item-action border-right-0 border-left-0 border-bottom-0"><i class="mr-2 fas fa-angle-right"></i> Liên kết & Trích dẫn</a>
-                                <a href="../blog/single-blog-post.html" class="font-bold-on-hover px-3 py-2 list-group-item list-group-item-action border-right-0 border-left-0 border-bottom-0"><i class="mr-2 fas fa-angle-right"></i> Tin tức</a>
-                                <a href="../blog/single-blog-post.html" class="font-bold-on-hover px-3 py-2 list-group-item list-group-item-action border-right-0 border-left-0 border-bottom-0"><i class="mr-2 fas fa-angle-right"></i> Xã hội</a>
-                                <a href="../blog/single-blog-post.html" class="font-bold-on-hover px-3 py-2 list-group-item list-group-item-action border-right-0 border-left-0 border-bottom-0"><i class="mr-2 fas fa-angle-right"></i> Công nghệ</a>
-                                <a href="../blog/single-blog-post.html" class="font-bold-on-hover px-3 py-2 list-group-item list-group-item-action border-right-0 border-left-0 border-bottom-0"><i class="mr-2 fas fa-angle-right"></i> Âm thanh</a>
-                                <a href="../blog/single-blog-post.html" class="font-bold-on-hover px-3 py-2 list-group-item list-group-item-action border-right-0 border-left-0 border-bottom-0"><i class="mr-2 fas fa-angle-right"></i> Video</a>
-                            </div>
-                        </aside>
-                        <aside class="mb-7">
-                            <div class="border-bottom border-color-1 mb-5">
-                                <h3 class="section-title section-title__sm mb-0 pb-2 font-size-18">Bài viết gần đây</h3>
-                            </div>
+                            
                             <article class="mb-4">
+                                @foreach ($similarPost as $posts)
                                 <div class="media">
                                     <div class="width-75 height-75 mr-3">
-                                        <img class="img-fluid object-fit-cover" src="../../assets/img/ig1.jpg" alt="Image Description">
+                                        <img class="img-fluid object-fit-cover" src="{{asset('images/post/'.$posts->post_img)}}" alt="Image Description">
                                     </div>
                                     <div class="media-body">
-                                        <h4 class="font-size-14 mb-1"><a href="../blog/single-blog-post.html" class="text-gray-39">Robot Wars – Đăng với bộ sưu tập</a></h4>
-                                        <span class="text-gray-5">Tháng 12, 2022</span>
+                                        <h4 class="font-size-14 mb-1"><a href="http://localhost:8000/blogs/details/{{$posts->id}}" class="text-gray-39">{{$posts->title}}</a></h4>
+                                        <span class="text-gray-5">{{$posts->created_at}}</span>
                                     </div>
                                 </div>
-                            </article>
-                            <article class="mb-4">
-                                <div class="media">
-                                    <div class="width-75 height-75 mr-3">
-                                        <img class="img-fluid object-fit-cover" src="../../assets/img/ig4.jpg" alt="Image Description">
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="font-size-14 mb-1"><a href="../blog/single-blog-post.html" class="text-gray-39">Robot Wars – Bây giờ đã đóng - Đăng với âm thanh</a></h4>
-                                        <span class="text-gray-5">Tháng 12, 2022</span>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="mb-4">
-                                <div class="media">
-                                    <div class="width-75 height-75 mr-3">
-                                        <img class="img-fluid object-fit-cover" src="../../assets/img/ig5.jpg" alt="Image Description">
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="font-size-14 mb-1"><a href="../blog/single-blog-post.html" class="text-gray-39">Robot Wars – Bây giờ đã đóng - đăng với Video</a></h4>
-                                        <span class="text-gray-5">Tháng 12, 2022</span>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="mb-4">
-                                <div class="media">
-                                    <div class="width-75 height-75 mr-3 position-relative">
-                                        <img class="img-fluid object-fit-cover" src="https://placehold.it/150x150/DDD/DDD/" alt="Image Description">
-                                        <i class="fa fa-paragraph position-absolute-center text-white"></i>
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="font-size-14 mb-1"><a href="../blog/single-blog-post.html" class="text-gray-39">Thông báo - Đăng không có hình ảnh</a></h4>
-                                        <span class="text-gray-5">Tháng 12, 2022</span>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="mb-4">
-                                <div class="media">
-                                    <div class="width-75 height-75 mr-3">
-                                        <img class="img-fluid object-fit-cover" src="../../assets/img/ig6.jpg" alt="Image Description">
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="font-size-14 mb-1"><a href="../blog/single-blog-post.html" class="text-gray-39">Robot Wars – Bây giờ đã đóng</a></h4>
-                                        <span class="text-gray-5">Tháng 12, 2022</span>
-                                    </div>
-                                </div>
-                            </article>
+                                @endforeach
                         </aside>
                     </div>
                 </div>
