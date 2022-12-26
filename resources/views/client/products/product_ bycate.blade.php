@@ -160,7 +160,7 @@
                 <!-- Shop Body -->
                 <!-- Tab Content -->
                 <div class="tab-content" id="pills-tabContent">
-
+                    {{-- <h2>List</h2> --}}
                     <div class="tab-pane fade pt-2 show active" id="pills-one-example1" role="tabpanel" aria-labelledby="pills-one-example1-tab" data-target-group="groups">
                         <ul class="row list-unstyled products-group no-gutters">
                             @foreach ($productList as $product)

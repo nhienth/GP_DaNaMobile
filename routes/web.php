@@ -26,7 +26,10 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SpecificationController;
 use App\Http\Controllers\PostReviewController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\PostController;
 use App\Models\Order;
+
+
 use GuzzleHttp\Handler\Proxy;
 
 /*
@@ -134,7 +137,21 @@ Route::prefix('/')->group(function () {
 
     // Cổng thanh toán
     Route::post('/vnpay_payment', [CheckoutController::class, 'vnpay_payment']);
+
+
+    Route::prefix('/blogs')->group(function (){
+        Route::get('/', [PostController::class, 'listClient']);
+        Route::get('/details/{id}', [PostController::class, 'detailClient']);
+        Route::post('/post_review/{id}', [PostReviewController::class, 'reviewPost'])->name('post_review');
+
+    });
+
+    Route::prefix('/review')->group(function (){
+    });
 });
+
+
+
 
 
 // -----------------------------------ADMIN-----------------------------
@@ -316,6 +333,19 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
         Route::prefix('/statistical')->group(function () {
             Route::get('/', [StatisticalController::class, 'getAllStatisticals'])->name('statistical.list');
             Route::get('/list', [StatisticalController::class, 'getStatistical']);
+        });
+
+
+        Route::prefix('/post')->group(function (){
+            Route::get('/list', [PostController::class, 'index']);
+            Route::get('/create', [PostController::class, 'create']);
+            Route::post('/create', [PostController::class, 'store']);
+            Route::get('/delete/{id}', [PostController::class, 'destroy']);
+            Route::get('/update/{id}',[PostController::class, 'edit']);
+            Route::post('/update/{id}',[PostController::class, 'update']);
+            Route::get('/detail/{id}', [PostController::class, 'show']);
+
+            
         });
 
     });
