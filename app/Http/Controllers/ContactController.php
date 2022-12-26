@@ -19,12 +19,9 @@ class ContactController extends Controller
     }
     public function index()
     {
-        $banner = Banner::where('id', '9')->first();
-        $bannerlist = Banner::where('id', '<>', '9')->get();
         $result = $this->contact->all();
-        return view('admin.contact.list', compact('result','banner', 'bannerlist'));
+        return view('admin.contact.list', compact('result'));
     }
-
 
     public function show($id)
         {
@@ -40,7 +37,7 @@ class ContactController extends Controller
     {
         $categories = Category::all();
         $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
-        $bannerlist = Banner::first()->orderBy('banner.created_at','DESC')->paginate(1);
+        $bannerlist = Banner::orderBy('banner.created_at','DESC')->get();
         $user = User::first();
         return view('client.contact.index')->with(compact('categories','slider','bannerlist','user'));
     }
@@ -53,6 +50,7 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
+        $bannerlist = Banner::orderBy('banner.created_at','DESC')->get();
         $contact = new Contact();
         $contact->name = $request->name;
         $contact->subject = $request->subject;
@@ -60,7 +58,7 @@ class ContactController extends Controller
         $contact->message = $request->message;
         $contact->save();
 
-        return view('client.contact.index')->with('success', 'Gửi liên hệ thành công');
+        return view('client.contact.index', compact('bannerlist'))->with('success', 'Gửi liên hệ thành công');
     }
     /**
      * Show the form for editing the specified resource.

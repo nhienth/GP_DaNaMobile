@@ -67,10 +67,10 @@ return [
     'in' => 'The selected :attribute is invalid.',
     'in_array' => 'The :attribute field does not exist in :other.',
     'integer' => 'The :attribute must be an integer.',
-    'ip' => 'The :attribute must be a valid IP address.',
-    'ipv4' => 'The :attribute must be a valid IPv4 address.',
-    'ipv6' => 'The :attribute must be a valid IPv6 address.',
-    'json' => 'The :attribute must be a valid JSON string.',
+    'ip' => ':attribute phải là hợp lệ IP address.',
+    'ipv4' => ':attribute phải là hợp lệ IPv4 address.',
+    'ipv6' => ':attribute phải là hợp lệ IPv6 address.',
+    'json' => ':attribute phải là hợp lệ JSON string.',
     'lt' => [
         'array' => 'The :attribute must have less than :value items.',
         'file' => 'The :attribute must be less than :value kilobytes.',
@@ -83,7 +83,7 @@ return [
         'numeric' => 'The :attribute must be less than or equal to :value.',
         'string' => 'The :attribute must be less than or equal to :value characters.',
     ],
-    'mac_address' => 'The :attribute must be a valid MAC address.',
+    'mac_address' => ':attribute phải là hợp lệ MAC address.',
     'max' => [
         'array' => 'The :attribute must not have more than :max items.',
         'file' => 'The :attribute must not be greater than :max kilobytes.',
@@ -134,11 +134,11 @@ return [
     ],
     'starts_with' => 'The :attribute must start with one of the following: :values.',
     'string' => 'The :attribute must be a string.',
-    'timezone' => 'The :attribute must be a valid timezone.',
+    'timezone' => ':attribute phải là hợp lệ timezone.',
     'unique' => 'The :attribute has already been taken.',
     'uploaded' => 'The :attribute failed to upload.',
-    'url' => 'The :attribute must be a valid URL.',
-    'uuid' => 'The :attribute must be a valid UUID.',
+    'url' => ':attribute phải là hợp lệ URL.',
+    'uuid' => ':attribute phải là hợp lệ UUID.',
 
     /*
     |--------------------------------------------------------------------------
