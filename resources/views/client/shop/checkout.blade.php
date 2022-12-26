@@ -335,17 +335,26 @@
                                                                     @endif												
                                                                 </div>
                                                             </td>
-                                                            <td>
-                                                                <div class="primary-btn">
-                                                                    <form action="{{url('/voucher/useCheckout')}}" method="POST" enctype="multipart/form-data">
-                                                                        @csrf
-                                                                        <input type="hidden" name="voucher_id" value="{{$vu->voucher_id}}">
-                                                                        <button class="btn btn-primary" type="submit">Dùng ngay</button>
-                                                                    </form>
-                                                                </div>
-                                                            </td>
+                                                           
                                                             @if(session('vc'))
-                                                            @if($vu->voucher_id == session('vc')['id'])
+                                                                @if($vu->voucher_id !== session('vc')['id'])
+                                                                    <td>
+                                                                        <div class="primary-btn">
+                                                                            <form action="{{url('/voucher/useCheckout')}}" method="POST" enctype="multipart/form-data">
+                                                                                @csrf
+                                                                                <input type="hidden" name="voucher_id" value="{{$vu->voucher_id}}">
+                                                                                <button class="btn btn-primary" type="submit">Dùng ngay</button>
+                                                                            </form>
+                                                                        </div>
+                                                                    </td>
+                                                                @else
+                                                                <td>
+                                                                    <div class="primary-btn">                                    
+                                                                        <p class="btn btn-primary">Đang sử dụng</p>
+                                                                    </div>
+                                                                </td>
+                                                                @endif
+                                                            @else
                                                             <td>
                                                                 <div class="primary-btn">
                                                                     <form action="{{url('/voucher/useCheckout')}}" method="POST" enctype="multipart/form-data">
@@ -354,8 +363,7 @@
                                                                         <button class="btn btn-primary" type="submit">Dùng ngay</button>
                                                                     </form>
                                                                 </div>
-                                                            </td>
-                                                            @endif
+                                                            </td>  
                                                             @endif
                                                         </tr>
                                                         @endforeach

@@ -74,7 +74,7 @@
                 </ul> 
             </li>
             
-            <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('admin/voucher/list')}}"><i data-feather="square"></i><span class="menu-title text-truncate" data-i18n="Modal Examples">Phiếu mua hàng</span></a>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('admin/voucher/list')}}"><i data-feather="square"></i><span class="menu-title text-truncate" data-i18n="Modal Examples">Phiếu giảm giá</span></a>
 
                 <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                     <li><a class="d-flex align-items-center" href="{{url('admin/voucher/list')}}"><i data-feather="list"></i><span class="menu-title text-truncate" data-i18n="list">Danh sách</span></a></li>
