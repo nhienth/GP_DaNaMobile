@@ -130,12 +130,12 @@ class UserController extends Controller
                 'regex:/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.* )(?=.*[^a-zA-Z0-9]).{8,16}$/m',
                 'confirmed',
             ],
-            'password_confirmation' => 'required|confirmed'
+            'password_confirmation' => 'required'
         ], [
             'oldpassword.required' => 'Không được để trống *',
             'password.required' => 'Không được để trống *',
             'password_confirmation.required' => 'Không được để trống *',
-            'password_confirmation.confirmed' => 'Mật khẩu không trùng khớp *',
+            // 'password_confirmation.confirmed' => 'Mật khẩu không trùng khớp *',
             'password.regex' => 'Hãy tạo một mật khẩu mạnh với ít nhất 8 đến 16 ký tự, một chữ hoa và chữ thường, một số và một ký tự đặc biệt *',
             'password.confirmed' => 'Mật khẩu không trùng khớp *'
         ]);

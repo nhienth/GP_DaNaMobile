@@ -54,7 +54,7 @@ $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
                                                     <a href="{{url('/admin')}}" class="dropdown-item">Trang quản trị</a>
                                                     @endif
                                                     <a href="{{url('/voucher/voucher_user')}}" class="dropdown-item">Kho voucher</a>
-                                                    <a href="{{url('user/updatepass/', [Auth::user()->id])}}" class="dropdown-item">Đổi mật khẩu</a>
+                                                    <a href="{{url('user/updatepass', [Auth::user()->id])}}" class="dropdown-item">Đổi mật khẩu</a>
                                                     <hr>
                                                     <a href="route('logout')"
                                                         onclick="event.preventDefault(); this.closest('form').submit();">
