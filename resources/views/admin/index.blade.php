@@ -29,7 +29,7 @@
                                         <div class="d-flex flex-row">
                                             <div class="avatar bg-light-primary me-2">
                                                 <div class="avatar-content">
-                                                    <i data-feather="align-justify" class="avatar-icon"></i>
+                                                    <a href="{{url('admin/category/list')}}"><i data-feather="align-justify" class="avatar-icon"></i></a>
                                                 </div>
                                             </div>
                                             <div class="my-auto">
@@ -42,7 +42,7 @@
                                         <div class="d-flex flex-row">
                                             <div class="avatar bg-light-info me-2">
                                                 <div class="avatar-content">
-                                                    <i data-feather="user" class="avatar-icon"></i>
+                                                    <a href="{{url('admin/user/list')}}"><i data-feather="user" class="avatar-icon"></i></a>
                                                 </div>
                                             </div>
                                             <div class="my-auto">
@@ -55,7 +55,7 @@
                                         <div class="d-flex flex-row">
                                             <div class="avatar bg-light-danger me-2">
                                                 <div class="avatar-content">
-                                                    <i data-feather="box" class="avatar-icon"></i>
+                                                    <a href="{{url('admin/product/list')}}"><i data-feather="box" class="avatar-icon"></i></a>
                                                 </div>
                                             </div>
                                             <div class="my-auto">
@@ -68,7 +68,7 @@
                                         <div class="d-flex flex-row">
                                             <div class="avatar bg-light-success me-2">
                                                 <div class="avatar-content">
-                                                    <i data-feather="shopping-bag" class="avatar-icon"></i>
+                                                    <a href="{{url('admin/order/list')}}"><i data-feather="shopping-bag" class="avatar-icon"></i></a>
                                                 </div>
                                             </div>
                                             <div class="my-auto">
