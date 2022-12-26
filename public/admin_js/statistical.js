@@ -29,6 +29,7 @@ $(document).ready(function () {
             data: data,
             dataType: "json",
             success: function (response) {
+                loadChart(response.productStatistical);
                 $("table").empty();
                 $("table").append(
                     `
@@ -68,6 +69,8 @@ $(document).ready(function () {
                     )
                 });
                 paginationStat('tbody tr');
+
+
 
             }, error: function (response) {
                 console.log(response);
@@ -188,56 +191,6 @@ $(document).ready(function () {
             }
         });
     }
-
-    function choiceDetailTime(optionTimeValue) {
-    $('#choise_detailTime_statistical')
-        .empty()
-        .append('<option value="0">Toàn bộ thời gian</option>')
-    switch(optionTimeValue) {
-        case "1":
-            $('#choise_detailTime_statistical').empty();
-            let selectDayValues = ['1 ngày', '2 ngày', '3 ngày', '4 ngày', '5 ngày', '6 ngày'];
-            $.each(selectDayValues, function (index, value) {
-                $('#choise_detailTime_statistical').append($('<option>', { 
-                    value: index + 1,
-                    text : value
-                }));
-            });
-            break;
-        case "2":
-            $('#choise_detailTime_statistical').empty();
-            let selectWeekValues = ['1 tuần', '2 tuần', '3 tuần', '4 tuần'];
-            $.each(selectWeekValues, function (index, value) {
-                $('#choise_detailTime_statistical').append($('<option>', { 
-                    value: index + 1,
-                    text : value
-                }));
-            });
-            break;
-        case "3":
-            $('#choise_detailTime_statistical').empty();
-            let selectMonthValues = ['1 tháng', '2 tháng', '3 tháng', '4 tháng', '5 tháng', '6 tháng', '7 tháng', '8 tháng', '9 tháng', '10 tháng', '11 tháng'];
-            $.each(selectMonthValues, function (index, value) {
-                $('#choise_detailTime_statistical').append($('<option>', { 
-                    value: index + 1,
-                    text : value
-                }));
-            });
-            break;
-        case "4":
-            $('#choise_detailTime_statistical').empty();
-            let selectYearValues = ['1 năm', '2 năm', '3 năm', '4 năm'];
-            $.each(selectYearValues, function (index, value) {
-                $('#choise_detailTime_statistical').append($('<option>', { 
-                    value: index + 1,
-                    text : value
-                }));
-            });
-            break;
-        default:
-        
-        }
-    }
     
     function paginationStat(element) {
     
@@ -258,6 +211,36 @@ $(document).ready(function () {
                 items.hide().slice(showFrom, showTo).show();
             }
         });
+    }
+
+    $(document).on("click", "#show-chart-stat", function (e) {
+        e.preventDefault();
+        $("#chart-statistical").modal("show");
+    });
+
+    function loadChart(dataChart) {
+        let dataT = "['Sản phẩm', 'Số lượng bán được']";
+        dataChart.forEach(item => {
+            dataT += `['${item.product_name}',${item.totalSold}], `
+        });
+        console.log(dataT);
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+           ,
+            dataT
+        ]);
+
+        var options = {
+        title:'World Wide Wine Production',
+        is3D:true
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('myChart'));
+        chart.draw(data, options);
+        }
     }
 
 });

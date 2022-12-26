@@ -27,6 +27,8 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SpecificationController;
 use App\Http\Controllers\PostReviewController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RoleAdminController;
 use App\Models\Order;
 use GuzzleHttp\Handler\Proxy;
 
@@ -147,7 +149,7 @@ Route::prefix('/')->group(function () {
 
 
 // -----------------------------------ADMIN-----------------------------
-Route::middleware(['auth', 'isAdmin'])->group(function () {
+Route::middleware(['auth','isAdmin'])->group(function () {
     Route::prefix('/admin')->group(function () {
         Route::get('/', [StatisticalController::class, 'index']);
 
@@ -345,6 +347,22 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
             Route::get('/', [StatisticalController::class, 'getAllStatisticals'])->name('statistical.list');
             Route::get('/list', [StatisticalController::class, 'getStatistical']);
         });
+
+        // Phan quyen
+        Route::prefix('/permission')->middleware('checkStaff')->group(function () {
+            Route::get('/', [PermissionController::class, 'index']);
+            Route::get('/create', [PermissionController::class, 'create']);
+            Route::post('/create', [PermissionController::class, 'store']);
+            Route::get('/delete/{id}', [PermissionController::class, 'destroy']);
+        });
+
+        Route::prefix('/role')->middleware('checkAdminFull')->group(function () {
+            Route::get('/create', [RoleAdminController::class, 'create']);
+            Route::get('/list', [PermissionController::class, 'getStatistical']);
+            Route::post('/create', [RoleAdminController::class, 'store']);
+        });
+     
+               
     });
-});
+});         
 require __DIR__ . '/auth.php';

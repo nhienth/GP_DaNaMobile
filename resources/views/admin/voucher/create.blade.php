@@ -78,16 +78,21 @@
                                             <option value="Giảm theo %">
                                                 Giảm Theo %
                                             </option>
-
                                         </select>
                                         </div>
                                         <div class="mb-1">
-                                            <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Giá Trị</label>
-                                            <input value="" type="number" name="voucher_value" id="basic-addon-name" class="form-control" placeholder="Nhập giá trị" aria-label="Name" aria-describedby="basic-addon-name"  />
+                                            <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Giá Trị (Theo tiền)</label>
+                                            <input value="" type="number" min="10000" max="500000" name="voucher_value" id="basic-addon-name" class="form-control" placeholder="Nhập giá trị" aria-label="Name" aria-describedby="basic-addon-name"  />
                                             @error('voucher_value')
                                             <div class="alert alert-danger mt-1">{{ $message }}</div>
                                             @enderror
-
+                                        </div>
+                                        <div class="mb-1">
+                                            <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Giá Trị (Theo %)</label>
+                                            <input value="" type="number" min="5" max="80" name="voucher_value" id="basic-addon-name" class="form-control" placeholder="Nhập giá trị" aria-label="Name" aria-describedby="basic-addon-name"  />
+                                            @error('voucher_value')
+                                            <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="mb-1">
                                             <label class="form-label fs-5 fw-bolder" for="basic-addon-name">Số lượng</label>
@@ -152,3 +157,9 @@
     </div>
     <!-- END: Content-->
 @endsection
+
+<script>
+    jQuery(document).ready(function($) {
+        
+    });
+</script>

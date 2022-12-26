@@ -102,8 +102,8 @@
                                     <div class="col-sm-12 col-lg-6 ps-xl-75 ps-0">
                                         <div class="dt-action-buttons d-flex align-items-center justify-content-center justify-content-lg-end flex-lg-nowrap flex-wrap">                                           
                                             <div class="dt-buttons d-inline-flex mt-50">
-                                                <a type="button" href=""
-                                                    class="dt-button add-new btn btn-primary" tabindex="0"
+                                                <a type="button" href="#"
+                                                    class="dt-button add-new btn btn-primary" id="show-chart-stat" tabindex="0"
                                                     data-bs-target="#modals-slide-in"
                                                     aria-controls="DataTables_Table_0">
                                                     <span>Xem biểu đồ thống kê</span>
@@ -125,6 +125,25 @@
                     </div>
                 </div>
             </section>
+            <div class="modal" id="chart-statistical" tabindex="-1">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Modal title</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+            
+                        <div id="myChart" style="max-width:700px; height:400px"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                            data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
         </div>
     </div>
 </div>
@@ -133,6 +152,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.6/jquery.simplePagination.js"></script> --}}
-
+<script
+src="https://www.gstatic.com/charts/loader.js">
+</script>
 
 <script src="{{asset('admin_js/statistical.js')}}"></script>

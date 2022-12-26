@@ -20,5 +20,8 @@
             </li>
         </ul>
     </div>
+    {{-- @php
+    dd(Auth::user()->role);
+    @endphp --}}
 </nav>
 <!-- END: Header-->

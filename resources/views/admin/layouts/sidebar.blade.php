@@ -101,6 +101,22 @@
                 </ul> 
             </li>
 
+            <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('admin/permission/')}}"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="file-text">Quyền</span></a>
+
+                <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+                    <li><a class="d-flex align-items-center" href="{{url('admin/permission/')}}"><i data-feather="list"></i><span class="menu-title text-truncate" data-i18n="list">Danh sách</span></a></li>
+                    <li><a class="d-flex align-items-center" href="{{url('admin/permission/create')}}"><i data-feather="plus-square"></i><span class="menu-title text-truncate" data-i18n="plus-square">Thêm quyền</span></a>
+                </ul> 
+            </li>
+
+            <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('admin/role/')}}"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="file-text">Vai trò</span></a>
+
+                <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+                    <li><a class="d-flex align-items-center" href="{{url('admin/role/')}}"><i data-feather="list"></i><span class="menu-title text-truncate" data-i18n="list">Danh sách </span></a></li>
+                    <li><a class="d-flex align-items-center" href="{{url('admin/role/create')}}"><i data-feather="plus-square"></i><span class="menu-title text-truncate" data-i18n="plus-square">Thêm vai trò</span></a>
+                </ul> 
+            </li>
+
             <li class=" navigation-header"><span data-i18n="User Interface">Thống kê</span><i data-feather="more-horizontal"></i></li>
             
             <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('admin/statistical')}}"><i data-feather="pie-chart"></i><span class="menu-title text-truncate" data-i18n="file-text">Thống kê sản phẩm</span></a>
