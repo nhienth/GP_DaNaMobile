@@ -37,7 +37,6 @@ class HomeController extends Controller
         $slider = Slider::first()->orderBy('slider.created_at','DESC')->paginate(1);
         $banner = Banner::where('id', '9')->first();
         $bannerlist = Banner::where('id', '<>', '9')->get();
-        // dd($banner);
 
         // sản phẩm sale 
         $productsalemax = Combinations::with(['product'])
@@ -48,7 +47,7 @@ class HomeController extends Controller
         $productsalemax['id'] = $proName->id;
 
         // all sản phẩm
-        $productsld = Product::with('combinations','category')->orderBy('products.id', 'desc')
+        $productsld = Product::with('combinations','category')->orderBy('products.created_at', 'desc')
             ->where('product_status', '1')
             ->take(8)
             ->get();

@@ -318,14 +318,7 @@ use App\Models\Product;
             </div>
         </div>
         <!-- End Deals-and-tabs -->
-        <!-- Full banner -->
-        <div class="mb-6">
-            <a href="../shop/shop.html" class="d-block text-gray-90" style="height: 300px">
-                <div class="" style="background-image: url({{asset('images/background.gif')}});height: 300px;background-repeat: no-repeat;background-size: 100%;">
-                </div>
-            </a>
-        </div>
-        <!-- End Full banner -->
+        
     </div>
     
     <!-- Products-4-1-4 -->
@@ -384,12 +377,11 @@ use App\Models\Product;
                                                         </div>
                                                         <div class="flex-center-between mb-1">
                                                             <div class="prodcut-price">
-                                                                <div class="text-gray-100">{{number_format($products->minprice)}} đ</div>
+                                                                {{-- <div class="text-gray-100">30,990,000đ</div> --}}
                                                             </div>
                                                             <div class="d-none d-xl-block prodcut-add-cart">
                                                                 <a href="{{url('product/detail',[$products->id])}}"
-                                                                    class="btn-add-cart btn-primary transition-3d-hover"><i
-                                                                        class="ec ec-add-to-cart"></i></a>
+                                                                    class="btn btn-primary transition-3d-hover">Xem chi tiết</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -407,6 +399,14 @@ use App\Models\Product;
         </div>
     </div>
     <!-- End Products-4-1-4 -->
+    <!-- Full banner -->
+    <div class="mb-6">
+        <a href="../shop/shop.html" class="d-block text-gray-90" style="height: 300px">
+            <div class="" style="background-image: url({{asset('images/background.gif')}});height: 300px;background-repeat: no-repeat;background-size: 100%;">
+            </div>
+        </a>
+    </div>
+    <!-- End Full banner -->
     <div class="container">
         <!-- Prodcut-cards-carousel -->
         <div class="space-top-2">
